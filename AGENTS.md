@@ -8,6 +8,15 @@
 - 优先研究原始块大小分类上的calibration，分类校准路线经实验仍达不到项目目标时，再研究质量预测回归的calibration。分别评价概率校准、标签正确率和最终压缩质量违规率。`[verified: README.md“研究顺序与分类校准”]`
 - 开始任务先读 [README.md](README.md)，按任务需要读取对应资料和检查记录。研究题目、算法路线与新增实验范围以用户确认的内容为准。`[opinion]`
 
+## 文献发展路线与研究定位
+
+- 完整问题链见[README的发展路线](README.md#文献发展路线与问题演进)，每项工作按“已有问题 → 方法改进 → 剩余限制”阅读和维护。`[verified: README.md“文献发展路线与问题演进”]` `[opinion]`
+- **编码加速路线**。昂贵配置搜索 → FasTC／SegTC的结构近似和Web ASTC的启发式 → TexNN的块内部配置预测；Pruned ASTC另以配置裁剪和下游重训练换取低延迟。记录格式、质量损失和任务用途。`[verified: README.md“编码器加速，从昂贵搜索到近似与学习”]` `[opinion]`
+- **自动选参路线**。固定参数与人工设置 → 2022年目标PSNR搜索 → 2023年astcenc内部集成。GDC 2023另展示离线试压缩标签与ResNet整图选参，本项目优先研究该分类路线的calibration。VBTC作为图内可变分配的系统分支记录。`[verified: README.md“自动选参，从统一配置到质量约束与学习式决策”“研究顺序与分类校准”]`
+- **质量评价路线**。贴图误差 → 多视点渲染比较 → diffuse／normal掩蔽的主观实验、任务专用可见性指标与FLIP误差图。分别记录纹理指标、渲染指标、观看条件和人类接受标准。`[verified: README.md“质量评价，从贴图误差到渲染可见性”]` `[opinion]`
+- **表示与部署路线**。NTC联合材质通道与mip，后续分别研究BC特征／NBC的表示、DBC的任务损失、cooperative vectors的硬件加速、hypernetwork的逐材质优化成本及共享解码器的执行分歧。NTBC加载重建、高斯、JPEG和TexF分支分别保留其存储、采样与运行时条件。`[verified: README.md“神经纹理，从联合表示到硬件、训练与解码效率”“其他表示与系统分支”]`
+- 直接继承关系以作者明确表述为依据，跨论文的问题链标为综述归纳。Multi-output ASTC归入解码电路，ASTC Encoding Survey作为技术地图；本项目的新颖性与质量／字节收益以进一步文献核实和独立实验评价。`[verified: README.md对应路线及“AdaptiveASTC在这些路线中的位置”]` `[opinion]`
+
 ## 目录与资料维护
 
 - `README.md` 汇总项目定位、进展、资料入口、相关研究和综述完整书目。新增研究资料时优先补入已有分类。`[verified: README.md“从这里阅读”“学术综述与相关研究”]` `[opinion]`

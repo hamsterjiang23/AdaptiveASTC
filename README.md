@@ -57,6 +57,7 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ## 从这里阅读
 
+- [文献发展路线与问题演进](#文献发展路线与问题演进)，按已有问题、方法改进和剩余限制串联28篇文献，并说明本项目的位置。`[verified: 本文对应小节]`
 - [逐篇文献简读与原文索引](reference/README.md)，按直接ASTC工作、神经纹理压缩与感知质量组织，分别记录阅读范围和原文可得性。`[verified: reference/README.md及逐篇笔记“来源与阅读范围”]`
 - [演讲阅读笔记](<notes/GDC2023 ASTC贴图压缩参数选择 阅读笔记.md>)，按问题、标签生成、模型、结果及局限组织，附时间戳与截图。`[verified: 对应笔记内容]`
 - [完整中文校订稿](materials/gdc2023-astc-parameter-selection/transcripts/完整中文校订稿.md)，保留开场、转场、结尾和歧义记录。`[verified: 对应全文稿内容]`
@@ -196,6 +197,93 @@ In-hyuk Jeong、Jae-Ho Nah，*An Analytical Survey of ASTC Encoding Techniques*�
 - **Compact Representation of Mipmapped SVBRDFs via Shared Gaussians**。Fengdi Zhang、Haocheng Ren、Qing Luo、Yaqing Li、Jibing Lou、Hongwei Li，2026年7月30日提交的预印本，arXiv `2607.27943`。提出Gaussian Texture Compression，利用多张材质贴图和不同mip层共享的二维高斯结构，研究随机访问、质量和内存权衡。`[verified: arXiv页面Submitted on、Authors、Abstract]` [预印本与全文](https://arxiv.org/abs/2607.27943)
 
 阅读这些工作时，应分别记录参数选择、编码器加速、存储侧压缩表示、运行时解码表示，以及各自的硬件和过滤要求。对比范围由目标平台与实际资产用途确定。`[opinion]`
+
+### 文献发展路线与问题演进
+
+这批文献可以沿四类问题阅读，分别是编码搜索成本、纹理参数分配、可见质量评价，以及压缩表示与部署成本。下文的路线组织属于跨论文归纳，直接继承关系另按作者表述标明。`[opinion]`
+
+| 研究问题 | 问题如何推进 |
+|---|---|
+| 编码搜索成本 | 从减少分区／端点搜索，推进到学习配置预测，以及为特定用途裁剪配置空间。`[opinion]` |
+| 纹理参数分配 | 从固定footprint和人工设置，推进到目标质量搜索、图内可变分配与学习式整图选参。`[opinion]` |
+| 可见质量评价 | 从单张贴图的误差，推进到渲染上下文、主观可见性实验与任务专用指标。`[opinion]` |
+| 压缩表示与部署 | 从逐图块压缩，扩展到多通道／多mip联合表示，再处理神经解码、逐材质优化与系统集成成本。`[opinion]` |
+
+#### 编码器加速，从昂贵搜索到近似与学习
+
+这一组工作的共同问题是编码配置的探索成本。各方法分别利用颜色几何、图像分割、启发式或神经预测缩小搜索范围，质量与速度的取舍仍由各自用途和实验协议决定。`[opinion]`
+
+| 工作 | 针对的问题与方法改进 | 剩余限制或取舍 |
+|---|---|---|
+| FasTC，2013 | 用颜色包围盒估计分区、cluster fit近似端点，再以模拟退火细化，减少昂贵的块配置搜索。`[verified: FasTC原文§3.5–3.7；对应简读“核心方法”]` [简读](reference/FasTC.md) | 主要实验为BPTC，速度结果绑定历史编码器与细化预算。`[verified: 对应简读“实验与证据”“局限与AdaptiveASTC关联”]` |
+| SegTC，2014 | 先做整图超像素分割，再将块内分割匹配到预定义分区，借助图像结构减少逐块搜索。`[verified: SegTC原文§3；对应简读“核心方法”]` [简读](reference/SegTC.md) | 实验为BPTC，超像素参数、Alpha和单子集竞争仍带来限制。`[verified: 对应简读“局限与AdaptiveASTC关联”]` |
+| Real-Time ASTC for the Web，2016 | 面向浏览器缓冲区实时编码，以启发式替代分支定界搜索，主要实现4×4 ASTC。`[verified: 学位论文Abstract、§4；对应简读“核心方法”]` [简读](reference/RealtimeASTCWeb.md) | 作者承认质量仍低于目标参考编码器，低端设备也可能达不到实时要求。`[verified: 对应简读“实验与证据”]` |
+| TexNN，2019 | 用P-NN预测分区，用DEM-NN预测权重缩减与端点模式，以训练数据近似昂贵的ASTC块内部搜索。`[verified: 在线原文§3.2–3.4；对应简读“核心方法”]` [简读](reference/TexNN.md) | 分类对象是块内部配置，不同footprint分别训练。整图footprint选择还需独立定义目标。`[verified: 对应简读“核心方法”]` `[opinion]` |
+| Pruned Lightweight Encoders，2022 | 将ASTC配置空间裁剪到单一内部配置，以SIMD加速，再用压缩域数据重训练下游分类／分割网络。`[verified: 原文§III–IV；对应简读“核心方法”]` [简读](reference/PrunedASTC.md) | 目标是机器视觉任务性能，重训练后仍有任务损失，人眼质量需另行评价。`[verified: 对应简读“实验与证据”]` `[opinion]` |
+
+从这些工作抽出的共同思路是，把重复搜索中的规律变成可复用的结构或模型。对本项目，需要进一步明确复用发生在整图footprint决策还是块内部编码阶段。`[opinion]`
+
+#### 自动选参，从统一配置到质量约束与学习式决策
+
+| 工作 | 针对的问题与方法改进 | 剩余限制或取舍 |
+|---|---|---|
+| PSNR Block-Size Determination，2022 | 人工逐图设置难以扩展，全候选高质量编码成本又高。采用类别级人工预分析、fastest目标PSNR搜索与thorough最终编码。`[verified: 原文Abstract、§3.1–3.2；对应简读“核心方法”]` [简读](reference/PSNRBlockSize.md) | 仍有人工预分析和试探编码，质量目标依赖类别与PSNR。论文计时排除预分析。`[verified: 对应简读“核心方法”“实验与证据”]` |
+| Adaptive astcenc，2023 | 将目标PSNR选块集成到修改版astcenc，软件接口以`-dbtarget`指定目标。作者后续综述描述其用部分像素评价以减少选参成本。`[verified: 软件README L1–8；综述p.12；对应简读“核心方法”]` [简读](reference/AdaptiveASTCEncoder.md) | 当前证据覆盖摘要、软件说明与综述，实际达标率和耗时仍待同口径复核。`[verified: 对应简读“来源与阅读范围”]` `[opinion]` |
+| VBTC，2016，局部分配分支 | 增加间接寻址，使同一纹理内部采用不同块大小，把更多比特分配给细节区域。`[verified: 官方摘要；对应简读“核心方法”]` [简读](reference/VBTC.md) | 需要额外寻址及硬件解码支持，部署条件与整张纹理选一个footprint有所区别。`[verified: 综述p.13；对应简读“局限与AdaptiveASTC关联”]` |
+
+GDC 2023演讲提供另一条学习式路径，离线尝试多个footprint并按质量／体积目标生成标签，再用ResNet预测整图块大小。这与上述质量搜索工作可以按共同问题对照，演讲与这些论文之间的直接技术承继仍需作者资料支持。`[verified: 演讲10:00、11:00–12:28；演讲阅读笔记“标签生成”“分类网络与训练信息”]` `[opinion]` [演讲笔记](<notes/GDC2023 ASTC贴图压缩参数选择 阅读笔记.md>)
+
+本项目在学习式选参上优先研究分类calibration。需要检验的具体问题是，置信度是否能支持更好的质量／字节决策。统一正温度的temperature scaling保持argmax，继续按argmax选参时，最终候选保持一致。因此概率校准指标与质量违规率、字节损失应分别报告，并单独评价使用校准概率的决策规则。`[verified: 本文“研究顺序与分类校准”；Guo等§4.2]` `[opinion]` [校准方法原文](https://proceedings.mlr.press/v70/guo17a/guo17a.pdf#page=6)
+
+#### 质量评价，从贴图误差到渲染可见性
+
+| 工作 | 针对的问题与方法改进 | 剩余限制或取舍 |
+|---|---|---|
+| Texture IQA，2014 | 通过多视点原始／压缩纹理渲染对比，把几何映射和diffuse、gloss、bump之间的掩蔽纳入评价。`[verified: 原文§3–5；对应简读“核心方法”]` [简读](reference/TextureIQA.md) | 测量需给定场景与视点，论文数值与项目接受阈值的关系仍需标定。`[opinion]` |
+| Texture Masking IQA，2015 | 官方摘要继续研究渲染视点采样、贴图类别敏感性和掩蔽效应，目标是在最终渲染质量约束下减少码率。`[verified: NIST Abstract；对应简读“核心方法”“实验与证据”]` [简读](reference/TextureMaskingIQA.md) | 当前为摘要级阅读，相对2014年方法的具体增量待全文核实。`[verified: 对应简读“来源与阅读范围”]` |
+| Psychophysical Masking，2019 | 通过受控2AFC实验研究diffuse与normal相互掩蔽，直接测量ASTC伪影何时可见，检查纹理指标与人类检测的关系。`[verified: 原文§3–4、§6；对应简读“核心方法”“实验与证据”]` [简读](reference/PsychophysicalMasking.md) | 光照、贴图组合和实验刺激影响结论，迁移到完整游戏场景仍需验证。`[verified: 对应简读“局限与AdaptiveASTC关联”]` `[opinion]` |
+| Task-specific Visibility，2019 | 针对任务专用主观数据稀缺，先用已有指标产生大批预测，再用少量感知实验修正并训练CNN指标，应用于albedo／normal分辨率选择。`[verified: 作者项目页Abstract；原文§6–8]` [简读](reference/TextureVisibility.md) | 优化变量为分辨率。将其适配到ASTC选块或Unity导入域，需要新的任务数据和评价。`[verified: 对应简读“核心方法”]` `[opinion]` |
+| FLIP，2020 | 为交替显示参考图和测试图时的差异设计误差图，结合颜色、边缘、点状特征及观看条件。`[verified: 原文§1–2；对应简读“核心方法”]` [简读](reference/FLIP.md) | 原始版本§2明确其不能检测视觉掩蔽，可能高估被遮蔽差异。指标阈值仍需结合项目条件建立。`[verified: 对应简读“局限与AdaptiveASTC关联”]` `[opinion]` |
+
+这一组工作的启发是，将“质量达标”的定义与实际使用场景联系起来。PSNR 35 dB可以作为本项目的经验基线，法线、MSAK及最终渲染质量的阈值还需要分别建立。任务专用感知指标的适配与分类置信度校准具有不同的评价对象，实验时应分别测量。`[opinion]` [可见性指标项目](https://texture-metrics.mpi-inf.mpg.de/)
+
+#### 神经纹理，从联合表示到硬件、训练与解码效率
+
+这条路线把同一材质的多个通道与mipmap作为联合信号。NTC提出量化特征与逐材质MLP的随机访问表示，后续工作分别改进率失真、压缩感知训练、硬件过滤、编码成本和GPU执行效率。`[verified: NTC Abstract、§4；HyperNTC §2.1]` [NTC原文](https://arxiv.org/html/2305.17105)、[后续工作梳理](https://arxiv.org/html/2606.26913v1)
+
+| 工作 | 针对的问题与方法改进 | 剩余限制或取舍 |
+|---|---|---|
+| NTC，2023 | 联合压缩多张材质属性贴图及mipmap，以量化特征金字塔和小型MLP支持按坐标、LOD随机解码。`[verified: 原文Abstract、§4；对应简读“核心方法”]` [简读](reference/NTC.md) | 逐材质优化、神经解码及过滤均需计算，论文单列了编码与渲染成本。`[verified: 对应简读“实验与证据”“局限与AdaptiveASTC关联”]` |
+| NGTC／CNTC，2024 | 针对神经图像压缩适配随机访问、多mip和多通道的困难，采用不对称编码／解码架构、量化网格和按尺度采样。`[verified: 原文Abstract、§4；对应简读“核心方法”]` [简读](reference/NGTC.md) | 仍逐纹理集合训练，作者讨论mip间插值引起aliasing的限制。`[verified: 对应简读“核心方法”“局限与AdaptiveASTC关联”]` |
+| BC Neural Materials，2024 | 将特征直接参数化为BC6块，训练时模拟解码，让特征支持硬件纹理过滤，减轻神经材质的运行时集成负担。`[verified: 原文§1、§4–5；对应简读“核心方法”]` [简读](reference/BCNeuralMaterials.md) | 直接压缩训练后特征会产生伪影，因此需将压缩结构纳入训练，渲染仍执行MLP。`[verified: 原文§4 Figure 3；对应简读“局限与AdaptiveASTC关联”]` |
+| NBC，2025 | 将块压缩推广到神经特征域，用多尺度基础／残差特征及分层量化改善低码率表示，默认采用8／4／2／1 bit分配。`[verified: 原文§3.2–3.4；对应简读“核心方法”]` [简读](reference/NBC.md) | 文中的variable bitrates指特征层的量化分配，仍需训练特征和MLP并执行神经解码。`[verified: 对应简读“核心方法”“局限与AdaptiveASTC关联”]` |
+| DBC，2025 | 针对块压缩误差与后续模型损失不一致，将编码、解码纳入端到端优化，用可微近似、配置采样和Mixture of Partitions处理离散配置。`[verified: 原文Abstract、§3–4；对应简读“核心方法”]` [简读](reference/DBC.md) | 重点为BC6／BC7。作者说明直接压缩普通albedo时通常不会优于标准编码器，并将ASTC列为未来扩展。`[verified: 对应简读“局限与AdaptiveASTC关联”]` |
+| Cooperative Vectors，2025 | 作者明确扩展BC Neural Materials，改用BC1特征与新分辨率布局，通过tile组织和硬件矩阵乘加速MLP，并支持各向异性过滤。`[verified: 原文Abstract、§1、§3–4]` [简读](reference/CooperativeVectorNTC.md) | 混合材质tile仍需分类与重排，原子分配有扩展性成本。`[verified: 原文§6；对应简读“局限与AdaptiveASTC关联”]` |
+| HyperNTC，2026 | 针对逐材质梯度优化昂贵，训练共享hypernetwork，一次产生BC1潜在纹理及该材质MLP权重，将逐资产优化成本摊销到共享训练。`[verified: 原文Abstract、§3、§5]` [简读](reference/HyperNTC.md) | 仍需共享训练及运行时解码，原文比较中PSNR与MS-SSIM优势并不一致。`[verified: 对应简读“实验与证据”“局限与AdaptiveASTC关联”]` |
+| Thread-Efficient NTC，2026，预印本 | 针对同一GPU wave访问不同材质MLP的执行分歧，将纹理聚类并共享解码器，采用逐步冻结的训练策略。`[verified: 原文Abstract、§2–3]` [简读](reference/ThreadEfficientNTC.md) | 共享程度带来重建质量取舍，聚类参数和GPU微基准的适用范围仍需保留。`[verified: 对应简读“实验与证据”“局限与AdaptiveASTC关联”]` |
+
+其中BC Neural Materials → Cooperative Vectors的扩展关系由后者明确陈述。HyperNTC沿用BCF1表示并解决逐材质优化成本，Thread-Efficient NTC则处理多网络执行分歧。将这些工作串成“先压得下，再降低使用成本”的问题链属于本文归纳。`[verified: Cooperative Vectors §1；HyperNTC §2.1、§3.2；Thread-Efficient NTC §2–3]` `[opinion]` [硬件加速原文](https://arxiv.org/html/2506.06040)、[HyperNTC原文](https://arxiv.org/html/2606.26913v1)、[共享解码原文](https://arxiv.org/html/2608.27888v1)
+
+#### 其他表示与系统分支
+
+| 工作 | 针对的问题与方法改进 | 剩余限制或取舍 |
+|---|---|---|
+| NTBC，2024，加载阶段重建 | 为减少标准块纹理的存储开销，保存紧凑神经模型，在加载阶段生成BC1／BC4块，渲染继续使用BC纹理采样。`[verified: 原文Abstract、§3.2、§4.4]` [简读](reference/NTBC.md) | 节省对象为存储，重建与上传增加加载成本，显存收益应另测。`[verified: 对应简读“核心方法”“实验与证据”]` `[opinion]` |
+| Image-GS，2025 | 用内容自适应二维高斯分配表达能力，以局部高斯查询支持随机访问与预算控制。`[verified: 原文§3；对应简读“核心方法”]` [简读](reference/ImageGS.md) | 需要专用查询实现，表现依赖图像内容与预算，低码率比较的mip降采样协议需保留。`[verified: 对应简读“实验与证据”“局限与AdaptiveASTC关联”]` |
+| Shared Gaussian SVBRDF／GTC，2026，预印本 | 在多通道和多mip之间共享二维高斯支撑，并用残差初始化、稀疏正则和剪枝减少冗余，实现非神经随机访问解码。`[verified: 原文§3.2–3.4；对应简读“核心方法”]` [简读](reference/SharedGaussianSVBRDF.md) | 逐资产优化与高频纹理仍有代价，PSNR和FLIP的比较优势存在冲突。`[verified: 对应简读“实验与证据”“局限与AdaptiveASTC关联”]` |
+| JPEG Textures，正式版2026 | 针对变码率图像格式的实时随机访问困难，引入索引、按需MCU解码和跨帧块缓存，在渲染系统层面支持JPEG纹理。`[verified: 原文Abstract、§4–5；对应简读“核心方法”]` [简读](reference/JPEGTextures.md) | 索引、缓存与解码带来额外开销，效果依赖缓存命中、质量及mip使用。`[verified: 对应简读“实验与证据”“局限与AdaptiveASTC关联”]` |
+| TexF，2026，预印本 | 针对UV映射载荷与空间关系被切分的问题，将纹理属性组织为表面对齐的稀疏三维场，并研究存储码流及GPU驻留神经压缩。`[verified: 原文§I、§III；对应简读“核心方法”]` [简读](reference/TexF.md) | 高效UV资产、近邻表面混合、过滤支持和逐资产优化仍有取舍。`[verified: 对应简读“实验与证据”“局限与AdaptiveASTC关联”]` |
+
+Multi-output ASTC Decoder，2017，研究相邻2×2 texel解码时重复计算的问题，通过共享块配置、端点和权重计算改善性能／面积。它属于解码电路路线，收益依赖请求跨块情况及位置、footprint分布假设。`[verified: 原文§2–3；对应简读“核心方法”“实验与证据”]` [简读](reference/MultiOutputASTC.md)
+
+ASTC Encoding Survey，2026，汇总编码结构、加速、自动选块与相关表示，可作为上述路线的技术地图。其比较设置和对其他论文的转述范围需要分别保留。`[verified: 原文p.8、p.12–14；对应简读“核心方法”“实验与证据”]` [简读](reference/ASTCEncodingSurvey.md)
+
+#### AdaptiveASTC在这些路线中的位置
+
+- 当前研究问题是，在给定质量标准与候选footprint下，以尽量少的生产选参成本获得质量／体积可接受的结果。固定8×8为生产基线，分类校准优先，质量预测校准作为经实验决定的后续备选。`[verified: 用户需求；本文“项目需求与优化目标”“研究顺序与分类校准”]`
+- 与搜索式选参比较时，需要同时测量真实总字节、逐图质量违规、按贴图类别结果，以及离线标签构建和生产推理／编码成本。2022年论文总字节下降与逐图等权bpp上升并存，说明两种汇聚口径都值得保留。`[verified: PSNRBlockSize原文Table 2；对应简读“实验与证据”]` `[opinion]`
+- 分类校准研究需要连接“概率可信度”和“实际选参结果”。其研究价值由独立资产测试中的质量违规率、字节损失与成本决定，本批文献尚不足以确立该组合的新颖性或效果。`[opinion]`
+- 法线／MSAK的任务质量、Unity导入域的数据对应关系，以及跨资产／跨项目泛化，属于本项目需要采集数据并验证的环节。感知与神经纹理文献提供方法线索，采用前需明确各自的表示与部署条件。`[opinion]`
 
 ### 文献核实口径
 

@@ -18,6 +18,7 @@ PDF在本机归档。Git同步笔记、索引、校验记录与官方原文链�
 
 ## 阅读入口
 
+- [文献发展路线与问题演进](../README.md#文献发展路线与问题演进)，按问题、改进与剩余限制串联各分支。`[verified: 项目README对应小节]`
 - 先读PSNRBlockSize、AdaptiveASTCEncoder与ASTCEncodingSurvey，建立质量约束选参的直接工作对照。`[opinion]`
 - 接着读TextureIQA、PsychophysicalMasking与TextureVisibility，检查贴图误差和最终可见误差之间的关系。`[opinion]`
 - 神经纹理组用于比较表示与运行时成本，逐篇核对输出格式、解码器和训练开销。`[opinion]`
