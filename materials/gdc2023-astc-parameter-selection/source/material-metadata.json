@@ -1,0 +1,487 @@
+{
+  "source_url": "https://www.gdcvault.com/play/1029226/Machine-Learning-Summit-Parameter-Selection",
+  "session_title": "Machine Learning Summit: Parameter Selection for ASTC Mapping Compression Using Machine Learning",
+  "event": "GDC 2023",
+  "archived_on": "2026-11-09",
+  "presenter_from_opening": "Xing Liu / Liu Xing",
+  "title_slide_names": [
+    "Wunong Li",
+    "Xing Liu"
+  ],
+  "official_overview_mentions": "reinforcement learning",
+  "observed_method": "supervised image classification for per-texture ASTC block-size selection",
+  "video_sha256": "10be7c3d136dbe5f2d6028ac0a3369bf139abaabab8994974f6e1b5fd711ed63",
+  "video_bytes": 139878671,
+  "transcript_source": "website-subtitles-with-editorial-corrections",
+  "independent_audio_asr": "not_run",
+  "english_cues": 328,
+  "chinese_cues": 328,
+  "paragraphs": 40,
+  "coverage": [
+    {
+      "first_cue": 1,
+      "last_cue": 5,
+      "start": "00:00:02,583",
+      "end": "00:00:22,146",
+      "heading": "开场与代讲说明"
+    },
+    {
+      "first_cue": 6,
+      "last_cue": 8,
+      "start": "00:00:23,313",
+      "end": "00:00:29,826",
+      "heading": "演讲主题"
+    },
+    {
+      "first_cue": 9,
+      "last_cue": 21,
+      "start": "00:00:31,533",
+      "end": "00:01:07,446",
+      "heading": "内容安排"
+    },
+    {
+      "first_cue": 22,
+      "last_cue": 29,
+      "start": "00:01:09,333",
+      "end": "00:01:33,546",
+      "heading": "移动游戏中的 ASTC"
+    },
+    {
+      "first_cue": 30,
+      "last_cue": 37,
+      "start": "00:01:35,943",
+      "end": "00:01:58,266",
+      "heading": "资源压力与压缩收益"
+    },
+    {
+      "first_cue": 38,
+      "last_cue": 46,
+      "start": "00:01:59,223",
+      "end": "00:02:26,406",
+      "heading": "GPU 支持"
+    },
+    {
+      "first_cue": 47,
+      "last_cue": 55,
+      "start": "00:02:30,123",
+      "end": "00:02:58,533",
+      "heading": "格式性能对比"
+    },
+    {
+      "first_cue": 56,
+      "last_cue": 60,
+      "start": "00:02:58,533",
+      "end": "00:03:15,663",
+      "heading": "块大小与码率"
+    },
+    {
+      "first_cue": 61,
+      "last_cue": 67,
+      "start": "00:03:15,663",
+      "end": "00:03:36,726",
+      "heading": "PSNR 的含义"
+    },
+    {
+      "first_cue": 68,
+      "last_cue": 72,
+      "start": "00:03:37,593",
+      "end": "00:03:53,403",
+      "heading": "PSNR 与感知差异"
+    },
+    {
+      "first_cue": 73,
+      "last_cue": 85,
+      "start": "00:03:57,183",
+      "end": "00:04:37,763",
+      "heading": "分块压缩原理"
+    },
+    {
+      "first_cue": 86,
+      "last_cue": 97,
+      "start": "00:04:41,433",
+      "end": "00:05:16,213",
+      "heading": "固定块字节与尺寸权衡"
+    },
+    {
+      "first_cue": 98,
+      "last_cue": 110,
+      "start": "00:05:19,053",
+      "end": "00:06:05,403",
+      "heading": "礼盒贴图实例"
+    },
+    {
+      "first_cue": 111,
+      "last_cue": 122,
+      "start": "00:06:05,403",
+      "end": "00:06:46,866",
+      "heading": "低细节贴图实例"
+    },
+    {
+      "first_cue": 123,
+      "last_cue": 128,
+      "start": "00:06:50,103",
+      "end": "00:07:06,126",
+      "heading": "选参问题"
+    },
+    {
+      "first_cue": 129,
+      "last_cue": 136,
+      "start": "00:07:09,243",
+      "end": "00:07:35,736",
+      "heading": "Unity 的默认选择"
+    },
+    {
+      "first_cue": 137,
+      "last_cue": 149,
+      "start": "00:07:37,803",
+      "end": "00:08:15,726",
+      "heading": "默认块大小的代价"
+    },
+    {
+      "first_cue": 150,
+      "last_cue": 160,
+      "start": "00:08:18,813",
+      "end": "00:08:49,836",
+      "heading": "人工选参的成本"
+    },
+    {
+      "first_cue": 161,
+      "last_cue": 172,
+      "start": "00:08:51,363",
+      "end": "00:09:27,276",
+      "heading": "引入机器学习"
+    },
+    {
+      "first_cue": 173,
+      "last_cue": 175,
+      "start": "00:09:29,583",
+      "end": "00:09:35,946",
+      "heading": "问题建模"
+    },
+    {
+      "first_cue": 176,
+      "last_cue": 186,
+      "start": "00:09:39,633",
+      "end": "00:10:13,206",
+      "heading": "分类类比"
+    },
+    {
+      "first_cue": 187,
+      "last_cue": 195,
+      "start": "00:10:14,073",
+      "end": "00:10:41,676",
+      "heading": "将块大小作为标签"
+    },
+    {
+      "first_cue": 196,
+      "last_cue": 206,
+      "start": "00:10:44,523",
+      "end": "00:11:15,893",
+      "heading": "定义优化目标"
+    },
+    {
+      "first_cue": 207,
+      "last_cue": 209,
+      "start": "00:11:15,893",
+      "end": "00:11:25,626",
+      "heading": "固定基线"
+    },
+    {
+      "first_cue": 210,
+      "last_cue": 216,
+      "start": "00:11:28,593",
+      "end": "00:11:48,703",
+      "heading": "自动计算标签"
+    },
+    {
+      "first_cue": 217,
+      "last_cue": 224,
+      "start": "00:11:51,723",
+      "end": "00:12:19,386",
+      "heading": "数据规模"
+    },
+    {
+      "first_cue": 225,
+      "last_cue": 230,
+      "start": "00:12:22,353",
+      "end": "00:12:38,856",
+      "heading": "残差网络"
+    },
+    {
+      "first_cue": 231,
+      "last_cue": 237,
+      "start": "00:12:40,143",
+      "end": "00:12:57,636",
+      "heading": "模型选择的侧重点"
+    },
+    {
+      "first_cue": 238,
+      "last_cue": 253,
+      "start": "00:12:58,584",
+      "end": "00:13:45,366",
+      "heading": "预测块大小的分布"
+    },
+    {
+      "first_cue": 254,
+      "last_cue": 261,
+      "start": "00:13:47,793",
+      "end": "00:14:11,466",
+      "heading": "实际贴图预览"
+    },
+    {
+      "first_cue": 262,
+      "last_cue": 268,
+      "start": "00:14:13,413",
+      "end": "00:14:38,886",
+      "heading": "模型与6×6比较"
+    },
+    {
+      "first_cue": 269,
+      "last_cue": 276,
+      "start": "00:14:40,713",
+      "end": "00:15:00,033",
+      "heading": "关注质量分布"
+    },
+    {
+      "first_cue": 277,
+      "last_cue": 286,
+      "start": "00:15:05,313",
+      "end": "00:15:36,846",
+      "heading": "减少过高精度的分配"
+    },
+    {
+      "first_cue": 287,
+      "last_cue": 295,
+      "start": "00:15:38,733",
+      "end": "00:16:13,326",
+      "heading": "模型与统一12×12比较"
+    },
+    {
+      "first_cue": 296,
+      "last_cue": 304,
+      "start": "00:16:15,573",
+      "end": "00:16:38,856",
+      "heading": "模型与标签方案比较"
+    },
+    {
+      "first_cue": 305,
+      "last_cue": 314,
+      "start": "00:16:41,643",
+      "end": "00:17:16,476",
+      "heading": "构建与推理耗时"
+    },
+    {
+      "first_cue": 315,
+      "last_cue": 321,
+      "start": "00:17:21,183",
+      "end": "00:17:42,126",
+      "heading": "总结"
+    },
+    {
+      "first_cue": 322,
+      "last_cue": 324,
+      "start": "00:17:45,019",
+      "end": "00:17:54,786",
+      "heading": "应用建议"
+    },
+    {
+      "first_cue": 325,
+      "last_cue": 325,
+      "start": "00:17:57,183",
+      "end": "00:18:02,183",
+      "heading": "参考资料"
+    },
+    {
+      "first_cue": 326,
+      "last_cue": 328,
+      "start": "00:18:03,828",
+      "end": "00:18:12,440",
+      "heading": "结束"
+    }
+  ],
+  "subtitle_gaps_at_least_2_seconds": [
+    {
+      "start_seconds": 0.0,
+      "end_seconds": 2.583,
+      "duration_seconds": 2.583
+    },
+    {
+      "start_seconds": 73.866,
+      "end_seconds": 76.623,
+      "duration_seconds": 2.757
+    },
+    {
+      "start_seconds": 93.546,
+      "end_seconds": 95.943,
+      "duration_seconds": 2.397
+    },
+    {
+      "start_seconds": 146.406,
+      "end_seconds": 150.123,
+      "duration_seconds": 3.717
+    },
+    {
+      "start_seconds": 233.403,
+      "end_seconds": 237.183,
+      "duration_seconds": 3.78
+    },
+    {
+      "start_seconds": 277.763,
+      "end_seconds": 281.433,
+      "duration_seconds": 3.67
+    },
+    {
+      "start_seconds": 316.213,
+      "end_seconds": 319.053,
+      "duration_seconds": 2.84
+    },
+    {
+      "start_seconds": 356.706,
+      "end_seconds": 358.983,
+      "duration_seconds": 2.277
+    },
+    {
+      "start_seconds": 367.386,
+      "end_seconds": 370.773,
+      "duration_seconds": 3.387
+    },
+    {
+      "start_seconds": 406.866,
+      "end_seconds": 410.103,
+      "duration_seconds": 3.237
+    },
+    {
+      "start_seconds": 426.126,
+      "end_seconds": 429.243,
+      "duration_seconds": 3.117
+    },
+    {
+      "start_seconds": 445.656,
+      "end_seconds": 447.723,
+      "duration_seconds": 2.067
+    },
+    {
+      "start_seconds": 455.736,
+      "end_seconds": 457.803,
+      "duration_seconds": 2.067
+    },
+    {
+      "start_seconds": 495.726,
+      "end_seconds": 498.813,
+      "duration_seconds": 3.087
+    },
+    {
+      "start_seconds": 567.276,
+      "end_seconds": 569.583,
+      "duration_seconds": 2.307
+    },
+    {
+      "start_seconds": 575.946,
+      "end_seconds": 579.633,
+      "duration_seconds": 3.687
+    },
+    {
+      "start_seconds": 600.033,
+      "end_seconds": 606.093,
+      "duration_seconds": 6.06
+    },
+    {
+      "start_seconds": 641.676,
+      "end_seconds": 644.523,
+      "duration_seconds": 2.847
+    },
+    {
+      "start_seconds": 685.626,
+      "end_seconds": 688.593,
+      "duration_seconds": 2.967
+    },
+    {
+      "start_seconds": 708.703,
+      "end_seconds": 711.723,
+      "duration_seconds": 3.02
+    },
+    {
+      "start_seconds": 739.386,
+      "end_seconds": 742.353,
+      "duration_seconds": 2.967
+    },
+    {
+      "start_seconds": 773.346,
+      "end_seconds": 775.563,
+      "duration_seconds": 2.217
+    },
+    {
+      "start_seconds": 825.366,
+      "end_seconds": 827.793,
+      "duration_seconds": 2.427
+    },
+    {
+      "start_seconds": 900.033,
+      "end_seconds": 905.313,
+      "duration_seconds": 5.28
+    },
+    {
+      "start_seconds": 973.326,
+      "end_seconds": 975.573,
+      "duration_seconds": 2.247
+    },
+    {
+      "start_seconds": 998.856,
+      "end_seconds": 1001.643,
+      "duration_seconds": 2.787
+    },
+    {
+      "start_seconds": 1036.476,
+      "end_seconds": 1041.183,
+      "duration_seconds": 4.707
+    },
+    {
+      "start_seconds": 1062.126,
+      "end_seconds": 1065.019,
+      "duration_seconds": 2.893
+    },
+    {
+      "start_seconds": 1074.786,
+      "end_seconds": 1077.183,
+      "duration_seconds": 2.397
+    },
+    {
+      "start_seconds": 1092.44,
+      "end_seconds": 1098.030233,
+      "duration_seconds": 5.59
+    }
+  ],
+  "fixed_frames_seconds": [
+    0,
+    60,
+    120,
+    180,
+    240,
+    300,
+    360,
+    420,
+    480,
+    540,
+    600,
+    660,
+    720,
+    780,
+    840,
+    900,
+    960,
+    1020,
+    1080
+  ],
+  "detail_frames_seconds": [
+    25,
+    205,
+    335,
+    515,
+    688,
+    748,
+    990,
+    1050,
+    1070,
+    1077
+  ]
+}
