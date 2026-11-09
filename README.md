@@ -57,6 +57,7 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ## 从这里阅读
 
+- [逐篇文献简读与原文索引](reference/README.md)，按直接ASTC工作、神经纹理压缩与感知质量组织，分别记录阅读范围和原文可得性。`[verified: reference/README.md及逐篇笔记“来源与阅读范围”]`
 - [演讲阅读笔记](<notes/GDC2023 ASTC贴图压缩参数选择 阅读笔记.md>)，按问题、标签生成、模型、结果及局限组织，附时间戳与截图。`[verified: 对应笔记内容]`
 - [完整中文校订稿](materials/gdc2023-astc-parameter-selection/transcripts/完整中文校订稿.md)，保留开场、转场、结尾和歧义记录。`[verified: 对应全文稿内容]`
 - [完整字幕对照](materials/gdc2023-astc-parameter-selection/transcripts/完整字幕对照.md)，逐条查看网站英文原字幕、中文原字幕与时间戳。`[verified: 对应对照稿001–328]`
@@ -83,9 +84,16 @@ materials/gdc2023-astc-parameter-selection/
    └─ 完整字幕对照.md
 notes/
 └─ GDC2023 ASTC贴图压缩参数选择 阅读笔记.md
+reference/
+├─ README.md
+├─ 逐篇英文短名.md
+├─ verification.json
+└─ papers/  本地PDF原文，Git排除
 ```
 
 目录按原始资料、截图、文字整理和阅读笔记组织。Obsidian阅读副本位于 `E:\Obsidian_Note\3D_AI`，截图和全文稿在该Vault内有配套副本。`[verified: 交付目录与同步检查；opinion: 组织方式]`
+
+本批论文笔记的Obsidian入口为`3D_AI/神经贴图与材质专题/AdaptiveASTC参考文献/AdaptiveASTC参考文献.md`。可获取的PDF原文分别归档在本仓库`reference/papers/`和Vault的`raw/AdaptiveASTC/`。Git同步阅读笔记、索引、校验记录和官方来源链接，PDF按两个目录的排除规则保存在本机。`[verified: reference/README.md；reference/.gitignore；Obsidian的.gitignore中raw/规则]`
 
 ## 视频与处理口径
 
