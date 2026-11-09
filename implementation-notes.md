@@ -24,3 +24,27 @@
 - 发现并记录6类边界情况。`[verified: 上文编号1–6]`
 - 下次先读README和演讲阅读笔记，再查看逐条字幕对照及时间戳画面。`[opinion]`
 - 自动检查通过，包含视频哈希、完整包扫描、三处音视频解码、29张PNG结构、19张固定截图重提取、328条字幕覆盖与80个本地链接目标。`[verified: verification.json]`
+
+## 实际数据调查执行记录（2026-11-09）
+
+### Deviations
+
+- 按已接受计划交付报告、聚合统计、README入口和Obsidian副本。执行中补充确认了trunk目录中的同快照副本，作为来源关系证据。`[verified: notes/实际数据调查统计.json的snapshot_comparison/trunk_project]`
+
+### Discovered edge cases
+
+- 附件LITE配置与PSNR 35研究目标存在差异，回退路径及大图面积触发规则影响标签含义，preset和RDO也参与选择。`[verified: 实际数据调查报告“配置差异和字段语义”“本地源码中的标签生成机制”]`
+- 64张MD4抽查与全量路径检查分开记录。1,480个重复哈希组的块大小不同，142条Packages路径需要保留包解析口径。`[verified: notes/实际数据调查统计.json的md4_sample、content_hash_groups、field_anomalies]`
+- OpenSSL本机legacy provider不可用，内容核对改用系统certutil的MD4，smoke及64张抽查均通过。`[verified: OpenSSL provider报错；certutil smoke输出；md4_sample.matches=64]`
+
+### Questions for review
+
+- 快照生成时的Editor／编码DLL版本、Unity参考输入、法线实测角度及其他候选结果，按待补齐证据记录。`[verified: 实际数据调查报告“训练可用性与需要补齐的证据”]`
+
+### Completion summary
+
+- 范围变更为0，诊断补充为trunk同快照与包路径口径。`[verified: 已接受计划与本次交付清单]`
+- 最可能重访的是源图到Unity压缩输入的对应关系。`[opinion]`
+- 已记录配置／回退、重复标签／包路径、MD4工具三个检查边界。`[verified: 本节Discovered edge cases]`
+- 后续先读数据调查报告，再按聚合统计中的来源哈希和源码行号复核。`[opinion]`
+- 本次完成数据定位、存在性与抽样哈希检查，真实编码复现与模型训练状态记录为not_run。`[verified: notes/实际数据调查统计.json的verification]`
