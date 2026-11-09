@@ -54,11 +54,12 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 | 资料归档 | 视频、中英文网站字幕、19张每分钟截图、10张关键页补充截图已保存。`[verified: materials/gdc2023-astc-parameter-selection/；verification.json]` |
 | 全文整理 | 中英文字幕各328条，校订稿按40段覆盖全部条目，逐条原文另存对照稿。音轨独立ASR转写状态为未运行。`[verified: source/material-metadata.json；transcripts/完整字幕对照.md]` |
 | 方法核实 | 正文展示有标签数据集、块大小分类和ResNet。官网简介另提到强化学习，具体对应关系待作者材料确认。`[verified: 视频10:00、11:28、12:28；官方简介Overview]` |
-| 实验复现 | 本地数据集构建、训练、选参及质量／字节对照均待开展。当前表格是演讲报告值。`[verified: 本轮只执行资料整理与检查；notes/阅读笔记中的证据分层]` |
+| 实验复现 | 已完成14,000张LITE源图划分、两组ResNet18各30轮及独立温度校准。测试准确率为67.50%／62.35%，中间块大小类别召回较低，详见[实验报告](<experiment report/gdc-lite-rgb-resnet18-seed20261109/training_report.md>)。质量与字节收益需候选压缩实测。`[verified: 实验metrics.json、data_summary.json；opinion: 生产质量评价范围]` |
 | Git | 已初始化，分支为`main`，远端为`hamsterjiang23/AdaptiveASTC`，MP4视频通过Git LFS管理。`[verified: git init、git branch --show-current、git remote add origin输出；.gitattributes中的*.mp4规则]` |
 
 ## 从这里阅读
 
+- [实验报告与复现入口](<experiment report/README.md>)集中记录数据划分、两组ResNet18、独立温度校准及验证结果，Python环境与命令统一使用uv。`[verified: 用户确认的实验方案；pyproject.toml的project.scripts]`
 - [实际数据位置与训练可用性调查](notes/实际数据位置与训练可用性调查.md)及[聚合统计](notes/实际数据调查统计.json)，记录图片主体、快照差异、标签生成机制和训练所需证据。`[verified: 对应报告与统计文件]`
 - [文献发展路线与问题演进](#文献发展路线与问题演进)，按已有问题、方法改进和剩余限制串联28篇文献，并说明本项目的位置。`[verified: 本文对应小节]`
 - [逐篇文献简读与原文索引](reference/README.md)，按直接ASTC工作、神经纹理压缩与感知质量组织，分别记录阅读范围和原文可得性。`[verified: reference/README.md及逐篇笔记“来源与阅读范围”]`

@@ -1,0 +1,228 @@
+{
+  "status": "passed",
+  "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+  "data_fingerprint": "e6053c623cb61cf17cfc6df6050489ee52efb4052930089c38095348ee8d41a7",
+  "cache_audit": {
+    "checked_cached_images": 14000,
+    "sha256_matches": 14000,
+    "rgb_uint8_224_shape_matches": 14000,
+    "data_fingerprint": "e6053c623cb61cf17cfc6df6050489ee52efb4052930089c38095348ee8d41a7",
+    "recomputed_manifest_fingerprint_matches": true,
+    "independent_preparation_manifest_equal": true,
+    "hash_and_asset_group_isolation": true,
+    "per_split": {
+      "test": 2000,
+      "calibration": 1000,
+      "validation": 1000,
+      "train": 10000
+    },
+    "class_counts": {
+      "6x6": 3182,
+      "8x8": 2269,
+      "12x12": 6690,
+      "10x10": 1859
+    },
+    "elapsed_seconds": 5.390954699832946
+  },
+  "data_reproducibility": {
+    "manifest_objects_equal": true,
+    "fingerprint": "e6053c623cb61cf17cfc6df6050489ee52efb4052930089c38095348ee8d41a7",
+    "mother_pools_sha256_equal": true,
+    "original_prepare_seconds": 172.29911769996397,
+    "independent_prepare_seconds": 173.69388190004975,
+    "sizes": {
+      "test": 2000,
+      "calibration": 1000,
+      "validation": 1000,
+      "train": 10000
+    },
+    "compared_sample_records": 14000,
+    "independent_cache_trees": true,
+    "excluded_reference_records": 208
+  },
+  "arms": {
+    "pretrained": {
+      "epochs": 30,
+      "images_per_epoch": 10000,
+      "effective_batches_per_epoch": 157,
+      "best_epoch": 2,
+      "best_validation_nll_recomputed": 0.992324951791316,
+      "best_checkpoint_sha256": "bed03974da760ded40e50ea44860d9528ee23ba2df8d1fe36b1856f928404213",
+      "temperature": 1.4277809838056539,
+      "test_metrics_recomputed_from_saved_logits": true,
+      "argmax_unchanged_count": 2000,
+      "source_snapshot_hash_verified": true
+    },
+    "scratch": {
+      "epochs": 30,
+      "images_per_epoch": 10000,
+      "effective_batches_per_epoch": 157,
+      "best_epoch": 7,
+      "best_validation_nll_recomputed": 1.065273497190234,
+      "best_checkpoint_sha256": "081f272b5a31f9c12efdc56c83dc697f4134ae37db7da8b663150f4b599b2e08",
+      "temperature": 1.2587297892742233,
+      "test_metrics_recomputed_from_saved_logits": true,
+      "argmax_unchanged_count": 2000,
+      "source_snapshot_hash_verified": true
+    }
+  },
+  "installed_locked_versions": {
+    "adaptive-astc": "0.1.0",
+    "basedpyright": "1.40.2",
+    "cloudpickle": "3.1.2",
+    "colorama": "0.4.6",
+    "contourpy": "1.4.0",
+    "cycler": "0.12.1",
+    "filelock": "4.2.9",
+    "fonttools": "4.68.0",
+    "fsspec": "2026.9.0",
+    "imagehash": "4.3.2",
+    "iniconfig": "2.3.1",
+    "jinja2": "3.1.6",
+    "joblib": "1.6.0",
+    "kiwisolver": "1.5.1",
+    "markupsafe": "3.0.4",
+    "matplotlib": "3.11.2",
+    "mpmath": "1.3.0",
+    "narwhals": "2.28.0",
+    "networkx": "3.7",
+    "nodejs-wheel-binaries": "24.19.0",
+    "numpy": "2.5.4",
+    "packaging": "26.3",
+    "pillow": "12.3.0",
+    "pluggy": "1.7.0",
+    "psutil": "7.2.2",
+    "pycryptodome": "3.24.1",
+    "pygments": "2.21.0",
+    "pyparsing": "3.3.3",
+    "pytest": "9.2.0",
+    "python-dateutil": "4.0.0",
+    "pywavelets": "1.10.0",
+    "ruff": "0.17.4",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "setuptools": "84.2.1",
+    "sympy": "1.14.0",
+    "threadpoolctl": "3.8.0",
+    "torch": "2.8.0+cu128",
+    "torchvision": "0.23.0+cu128",
+    "typing-extensions": "4.16.0",
+    "tzdata": "2026.6"
+  },
+  "checks": [
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--frozen"
+      ],
+      "exit_code": 0,
+      "output": "Checked 41 packages in 11ms\n"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "output": "...............                                                          [100%]\n15 passed in 3.58s\n"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src",
+        "tests"
+      ],
+      "exit_code": 0,
+      "output": "All checks passed!\n"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests"
+      ],
+      "exit_code": 0,
+      "output": "8 files already formatted\n"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "basedpyright"
+      ],
+      "exit_code": 0,
+      "output": "0 errors, 0 warnings, 0 notes\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "local_links_checked": 60,
+  "missing_local_links": [],
+  "charts_visually_inspected": [
+    "training_curves.png",
+    "reliability.png",
+    "confusion_matrix.png"
+  ],
+  "git_staging": {
+    "paths": [
+      ".gitignore",
+      ".python-version",
+      "AGENTS.md",
+      "README.md",
+      "experiment report/README.md",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/cache_verification.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/confusion_matrix.png",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/data_protocol_v1_audit.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/data_report.md",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/data_reproducibility.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/data_summary.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/implementation-notes.md",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/metrics.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/preflight.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/pretrained_calibration.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/pretrained_training.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/protocol.md",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/reliability.png",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/scratch_calibration.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/scratch_training.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/task-costs.md",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/training_code_change_audit.json",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/training_curves.png",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/training_report.md",
+      "experiment report/gdc-lite-rgb-resnet18-seed20261109/verification.json",
+      "pyproject.toml",
+      "src/adaptive_astc/__init__.py",
+      "src/adaptive_astc/cli.py",
+      "src/adaptive_astc/common.py",
+      "src/adaptive_astc/data.py",
+      "src/adaptive_astc/metrics.py",
+      "src/adaptive_astc/reports.py",
+      "src/adaptive_astc/training.py",
+      "tests/test_protocol.py",
+      "uv.lock"
+    ],
+    "private_paths_staged": [],
+    "cached_diff_check_exit_code": 0
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "smoke_flow": {
+    "two_arms_train_resume_calibrate_evaluate": true,
+    "resume_matches_uninterrupted_model_bitwise": true,
+    "epochs": 2,
+    "best_checkpoint_written_before_last": true,
+    "dataset_fingerprint": "3db01c4e13ab4144cca3e6d77b89d78039c8f4ba1c689f74d34ba73376ec15b1"
+  },
+  "smoke_resources": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "experiment report/.local/smoke_flow.py"
+    ],
+    "exit_code": 0,
+    "seconds": 104.32799900020473,
+    "peak_aggregate_rss_mib": 2938.8203125,
+    "peak_system_ram_used_gib": 40.228797912597656
+  },
+  "resource_probe": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "adaptive-astc",
+      "train",
+      "--initialization",
+      "scratch",
+      "--epochs",
+      "1",
+      "--max-steps",
+      "2",
+      "--run-dir",
+      "experiment report/.local/resource-probe",
+      "--report-dir",
+      "experiment report/.local/resource-probe/report"
+    ],
+    "exit_code": 0,
+    "seconds": 14.395856599789113,
+    "peak_aggregate_rss_mib": 2721.46875,
+    "peak_system_ram_used_gib": 39.856292724609375
+  },
+  "probe_epoch": {
+    "epoch": 1,
+    "train": {
+      "loss": 1.2648868560791016,
+      "samples": 128,
+      "steps": 2,
+      "seconds": 4.434269999852404
+    },
+    "validation": {
+      "count": 16,
+      "accuracy": 0.6875,
+      "macro_f1": 0.39230769230769236,
+      "balanced_accuracy": 0.45833333333333337,
+      "nll": 1.1029574771979325,
+      "brier": 0.5857847412372716,
+      "ece_15_equal_width": 0.3397356830753308,
+      "confusion_matrix": [
+        [
+          6,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          5
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 6
+        },
+        "8x8": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "10x10": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "12x12": {
+          "precision": 0.7142857142857143,
+          "recall": 0.8333333333333334,
+          "f1": 0.7692307692307693,
+          "support": 6
+        }
+      },
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 0,
+          "confidence": null,
+          "accuracy": null
+        },
+        {
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 0,
+          "confidence": null,
+          "accuracy": null
+        },
+        {
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 0,
+          "confidence": null,
+          "accuracy": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 0,
+          "confidence": null,
+          "accuracy": null
+        },
+        {
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 8,
+          "confidence": 0.3027250976561674,
+          "accuracy": 0.625
+        },
+        {
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 2,
+          "confidence": 0.36415179086355864,
+          "accuracy": 0.5
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 1,
+          "confidence": 0.45482008102988086,
+          "accuracy": 0.0
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 1,
+          "confidence": 0.47865658016654955,
+          "accuracy": 1.0
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 3,
+          "confidence": 0.5850565191815512,
+          "accuracy": 1.0
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 1,
+          "confidence": 0.6351186511369283,
+          "accuracy": 1.0
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 0,
+          "confidence": null,
+          "accuracy": null
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 0,
+          "confidence": null,
+          "accuracy": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 0,
+          "confidence": null,
+          "accuracy": null
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 0,
+          "confidence": null,
+          "accuracy": null
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 0,
+          "confidence": null,
+          "accuracy": null
+        }
+      ]
+    },
+    "lr": 0.01,
+    "epoch_seconds": 8.365415800129995,
+    "peak_vram_mib": 910.25439453125,
+    "rss_mib": 1538.3125
+  },
+  "prepare": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "adaptive-astc",
+      "prepare",
+      "--exclude-manifest",
+      "experiment report/.local/smoke/manifest.json",
+      "--exclude-manifest",
+      "experiment report/.local/resource-probe/manifest.json"
+    ],
+    "exit_code": 0,
+    "seconds": 175.9258171999827,
+    "peak_aggregate_rss_mib": 468.265625,
+    "peak_system_ram_used_gib": 37.63440704345703
+  },
+  "reprepare": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "adaptive-astc",
+      "prepare",
+      "--run-dir",
+      "experiment report/.local/gdc-lite-rgb-resnet18-seed20261109/coverage-v2-reproduce",
+      "--report-dir",
+      "experiment report/.local/gdc-lite-rgb-resnet18-seed20261109/coverage-v2-reproduce/report",
+      "--exclude-manifest",
+      "experiment report/.local/smoke/manifest.json",
+      "--exclude-manifest",
+      "experiment report/.local/resource-probe/manifest.json"
+    ],
+    "exit_code": 0,
+    "seconds": 176.19757469999604,
+    "peak_aggregate_rss_mib": 557.890625,
+    "peak_system_ram_used_gib": 40.09571075439453
+  },
+  "concurrency": "Independent reprepare overlapped pretrained training. GPU arms sequential.",
+  "classification": {
+    "smoke": "moderate by aggregate RSS",
+    "prepare": "light",
+    "each_training_arm": "moderate"
+  },
+  "cuda_wheel": {
+    "url": "https://mirrors.aliyun.com/pytorch-wheels/cu128/torch-2.8.0%2Bcu128-cp312-cp312-win_amd64.whl",
+    "official_index": "https://download.pytorch.org/whl/cu128",
+    "sha256": "0ad925202387f4e7314302a1b4f8860fa824357f9b1466d7992bf276370ebcff",
+    "locked_sha256_matches": true,
+    "bytes": 3461384651,
+    "workers": 8,
+    "seconds": 413.3793760999106
+  },
+  "smoke_peak_cuda_mib": 570.61083984375
+}

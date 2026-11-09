@@ -1,0 +1,181 @@
+{
+  "snapshot_sha256": "4b7a5a7314f4e58cefc1a578d7b3d4f609024971692ef8a3c8c65828c548f843",
+  "seed": 20261109,
+  "classes": [
+    "6x6",
+    "8x8",
+    "10x10",
+    "12x12"
+  ],
+  "image_root": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB",
+  "sizes": {
+    "test": 2000,
+    "calibration": 1000,
+    "validation": 1000,
+    "train": 10000
+  },
+  "smoke": false,
+  "excluded_manifest_sha256": [
+    "257dbe8921129984adeeea033fd0c9e95559fc9a01cd156aa376ab79f03fed07",
+    "9b3b5b1183a22a5497bee67bc56c245b863bf571323f4e669e73320715e6aabe"
+  ],
+  "split_folds": {
+    "test": 1,
+    "calibration": 2,
+    "validation": 3
+  },
+  "minimum_holdout_groups": 50,
+  "fingerprint": "e6053c623cb61cf17cfc6df6050489ee52efb4052930089c38095348ee8d41a7",
+  "source_records": 183051,
+  "eligible_unique_hashes": 157626,
+  "eligible_class_counts": {
+    "6x6": 35827,
+    "8x8": 25558,
+    "10x10": 20925,
+    "12x12": 75316
+  },
+  "asset_groups": 4728,
+  "filter_counts": {
+    "deduplicated_records": 14574,
+    "missing_records": 5597,
+    "conflicting_hash_groups": 1480,
+    "conflicting_records": 4179,
+    "excluded_resource_records": 648,
+    "unsupported_extension_records": 219,
+    "excluded_smoke_hashes": 208,
+    "rejected_unsupported_png_bit_depth": 180,
+    "rejected_md4_mismatch": 230,
+    "rejected_cross_split_near_duplicate": 378
+  },
+  "mother_pool_sha256": "7ac8c862e9d229b3b7748f470a00b3711751ea3f56234bbe02865ff780d38100",
+  "table_config": {
+    "schemaVersion": 2,
+    "astcOptimizerEnabled": true,
+    "targetPsnrDb": 30.0,
+    "targetMsSsimDb": 21.0,
+    "targetNormalMeanDeg": 3.2,
+    "targetNormalP95Deg": 9.0,
+    "blackPixelRatioMild": 0.4,
+    "blackElevatedPsnrMildDb": 35.0,
+    "blackPixelRatioStrong": 0.8,
+    "blackElevatedPsnrStrongDb": 37.0,
+    "sizeFirstMinSideLarge": 512,
+    "rdoRefineMarginDb": 1.0,
+    "rdoGlobalEnabled": true,
+    "rdoQualityScalar": 0.5,
+    "rdoLookback": 256
+  },
+  "audit": {
+    "content_hash_disjoint": true,
+    "asset_group_disjoint": true,
+    "cross_split_near_duplicates": 0,
+    "smoke_hashes_and_near_duplicates_excluded": true
+  },
+  "splits": {
+    "test": {
+      "count": 2000,
+      "class_counts": {
+        "6x6": 455,
+        "8x8": 324,
+        "12x12": 956,
+        "10x10": 265
+      },
+      "asset_groups": 168,
+      "alpha_nonopaque": 575,
+      "presets": {
+        "fastest": 832,
+        "exhaustive": 293,
+        "thorough": 251,
+        "medium": 511,
+        "fast": 113
+      },
+      "rdo": {
+        "True": 812,
+        "False": 1188
+      }
+    },
+    "calibration": {
+      "count": 1000,
+      "class_counts": {
+        "6x6": 227,
+        "10x10": 133,
+        "8x8": 162,
+        "12x12": 478
+      },
+      "asset_groups": 147,
+      "alpha_nonopaque": 456,
+      "presets": {
+        "fastest": 313,
+        "thorough": 223,
+        "medium": 227,
+        "fast": 46,
+        "exhaustive": 191
+      },
+      "rdo": {
+        "True": 388,
+        "False": 612
+      }
+    },
+    "validation": {
+      "count": 1000,
+      "class_counts": {
+        "12x12": 478,
+        "6x6": 227,
+        "10x10": 133,
+        "8x8": 162
+      },
+      "asset_groups": 184,
+      "alpha_nonopaque": 362,
+      "presets": {
+        "fastest": 272,
+        "fast": 56,
+        "exhaustive": 207,
+        "thorough": 231,
+        "medium": 234
+      },
+      "rdo": {
+        "True": 290,
+        "False": 710
+      }
+    },
+    "train": {
+      "count": 10000,
+      "class_counts": {
+        "8x8": 1621,
+        "12x12": 4778,
+        "10x10": 1328,
+        "6x6": 2273
+      },
+      "asset_groups": 1305,
+      "alpha_nonopaque": 5108,
+      "presets": {
+        "thorough": 2340,
+        "fastest": 2897,
+        "medium": 2416,
+        "exhaustive": 1840,
+        "fast": 507
+      },
+      "rdo": {
+        "False": 6589,
+        "True": 3411
+      }
+    }
+  },
+  "elapsed_seconds": 172.29911769996397,
+  "environment": {
+    "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19044-SP0",
+    "pid": 218520,
+    "rss_mib": 406.484375,
+    "available_ram_gib": 26.65378189086914,
+    "uv_lock_sha256": "56758f51f6b6480f65d63022ee58d6470d9d2d0bc92884ada5e0ebc5caa6d0c4",
+    "argv": [
+      "E:\\ASTC_Compression\\.venv\\Scripts\\adaptive-astc",
+      "prepare",
+      "--exclude-manifest",
+      "experiment report/.local/smoke/manifest.json",
+      "--exclude-manifest",
+      "experiment report/.local/resource-probe/manifest.json"
+    ]
+  }
+}
