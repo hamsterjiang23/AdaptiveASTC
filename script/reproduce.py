@@ -14,6 +14,7 @@ from reproductions.common.nah_experiment import NahExperiment  # noqa: E402
 from reproductions.common.upstream import EncoderSource  # noqa: E402
 from reproductions.unity_search_baseline.benchmark import UnitySearchBaseline  # noqa: E402
 from reproductions.unity_search_baseline.engine_patch import EngineTimingPatch  # noqa: E402
+from reproductions.unity_search_baseline.recovery import BaselineRecovery  # noqa: E402
 from reproductions.unity_search_baseline.reporting import write_report  # noqa: E402
 
 
@@ -30,6 +31,8 @@ def main() -> None:
             "summarize",
             "recover",
             "report",
+            "repair",
+            "assemble",
         ],
     )
     parser.add_argument(
@@ -122,6 +125,10 @@ def main() -> None:
         result = {"status": "failed" if conflicts else "passed", "conflicts": conflicts}
     elif args.action == "report":
         result = write_report(baseline)
+    elif args.action == "repair":
+        result = BaselineRecovery(baseline).run()
+    elif args.action == "assemble":
+        result = BaselineRecovery(baseline).assemble()
     else:
         result = baseline.summarize(args.phase)
     print(json.dumps(result, ensure_ascii=False, indent=2))

@@ -13,7 +13,7 @@ import subprocess
 import time
 from collections import defaultdict
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import psutil
 
@@ -159,9 +159,22 @@ class UnitySearchBaseline:
             self._asset_key(row["path"]): row["fileHash"] for row in manifest["splits"]["train"]
         }
         expected = {self._asset_key(row["path"]) for row in config["assets"]}
-        cache = self._read_lines(
-            self.project / config["cacheDirectory"] / "parameter_cache_detail.jsonl"
-        )
+        assembly = self.run_dir / f"{phase}-assembly.json"
+        cache_path = self.project / config["cacheDirectory"] / "parameter_cache_detail.jsonl"
+        if assembly.exists():
+            bundle = json.loads(assembly.read_text(encoding="utf-8"))
+            if bundle["protocol_sha256"] != protocol_hash:
+                raise ValueError("Recovery assembly belongs to another frozen protocol")
+            for item in bundle["inputs"]:
+                if hashlib.sha256(Path(item["path"]).read_bytes()).hexdigest() != item["sha256"]:
+                    raise ValueError(f"Recovery input changed: {item['path']}")
+            for name, expected_hash in bundle["outputs"].items():
+                if Path(name).name != name:
+                    raise ValueError("Recovery output must be a file within the run directory")
+                if hashlib.sha256((self.run_dir / name).read_bytes()).hexdigest() != expected_hash:
+                    raise ValueError(f"Recovered output changed: {name}")
+            cache_path = self.run_dir / f"{phase}-parameters.jsonl"
+        cache = self._read_lines(cache_path)
         policies = [
             row["tableConfig"] for row in cache if row.get("_kind") == "astc_cache_table_config"
         ]
@@ -206,6 +219,9 @@ class UnitySearchBaseline:
             "editor_sha256": editor_hash,
             "source_hashes_verified": len(records),
             "native_policy_verified": True,
+            "assembly_sha256": hashlib.sha256(assembly.read_bytes()).hexdigest()
+            if assembly.exists()
+            else None,
         }
 
     def run(self, phase: str, no_upm: bool = False) -> dict[str, object]:
@@ -297,9 +313,14 @@ class UnitySearchBaseline:
             conflicts = self.restore_metadata(Path(config["backupDirectory"]))
             try:
                 summary = self.summarize(phase)
-                summary["provenance"] = self.audit(phase)
-            except (ValueError, KeyError, TypeError) as error:
+            except (OSError, ValueError, KeyError, TypeError) as error:
                 summary = {"status": "failed", "phase": phase, "errors": [str(error)]}
+            try:
+                summary["provenance"] = self.audit(phase)
+            except (OSError, ValueError, KeyError, TypeError) as error:
+                summary["status"] = "failed"
+                errors = cast(list[str], summary["errors"])
+                errors.append(str(error))
             summary["metadata_restore_conflicts"] = conflicts
             summary["process_exit_code"] = exit_code
             summary["process_wall_seconds"] = time.perf_counter() - started
@@ -313,12 +334,35 @@ class UnitySearchBaseline:
         conflicts: list[str] = []
         if not backup_dir.exists():
             return conflicts
+        index: dict[str, str] = {}
+        index_path = backup_dir / "index.jsonl"
+        journal = index_path.read_bytes() if index_path.exists() else b""
+        for line_number, line in enumerate(journal.splitlines(), 1):
+            if not line.strip():
+                continue
+            try:
+                row = json.loads(line)
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                conflicts.append(f"index.jsonl: incomplete or invalid entry {line_number}")
+                break
+            name = str(row["backup"])
+            relative_name = str(row["asset"]) + ".meta"
+            if Path(name).name != name or index.get(name, relative_name) != relative_name:
+                raise ValueError("Invalid or ambiguous metadata backup index")
+            index[name] = relative_name
         for backup in backup_dir.rglob("*.meta"):
             relative = backup.relative_to(backup_dir)
+            if backup.parent == backup_dir:
+                if backup.name not in index:
+                    conflicts.append(backup.name)
+                    continue
+                relative = Path(index[backup.name])
             target = (self.project / relative).resolve()
             if not target.is_relative_to(self.project / "Assets"):
                 raise ValueError(f"Metadata restore escaped Assets: {target}")
             expected_path = Path(str(backup) + ".expected.sha256")
+            if not expected_path.is_file():
+                expected_path = self.metadata_recovery_hash_path(backup_dir, relative)
             if not target.is_file():
                 conflicts.append(str(relative))
                 continue
@@ -335,6 +379,11 @@ class UnitySearchBaseline:
                 continue
             target.write_bytes(original)
         return conflicts
+
+    @staticmethod
+    def metadata_recovery_hash_path(backup_dir: Path, relative: Path) -> Path:
+        digest = hashlib.sha256(relative.as_posix().casefold().encode("utf-8")).hexdigest()
+        return backup_dir / "recovery-hashes" / f"{digest}.sha256"
 
     def require_project_closed(self) -> None:
         for process in psutil.process_iter(["name", "cmdline"]):

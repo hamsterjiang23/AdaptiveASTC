@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace ASTCReproduction
     public static class BenchmarkRunner
     {
         [Serializable] public sealed class AssetEntry { public string path; }
+        [Serializable] public sealed class MetadataEntry { public string asset; public string backup; }
         [Serializable] public sealed class RunConfig
         {
             public AssetEntry[] assets;
@@ -90,7 +92,11 @@ namespace ASTCReproduction
         {
             var row = new ImportResult { asset = asset.path, run_id = config.runId };
             string meta = asset.path + ".meta";
-            string backup = Path.Combine(config.backupDirectory, asset.path + ".meta");
+            string backupName;
+            using (var sha = SHA256.Create())
+                backupName = BitConverter.ToString(sha.ComputeHash(Encoding.UTF8.GetBytes(asset.path)))
+                    .Replace("-", "").ToLowerInvariant() + ".meta";
+            string backup = Path.Combine(config.backupDirectory, backupName);
             var timer = new Stopwatch();
             try
             {
@@ -105,6 +111,9 @@ namespace ASTCReproduction
                     if (!File.Exists(expected) || HashFile(meta) != File.ReadAllText(expected).Trim())
                         throw new IOException("Metadata changed since benchmark last wrote it: " + meta);
                 }
+                var metadata = new MetadataEntry { asset = asset.path, backup = backupName };
+                File.AppendAllText(Path.Combine(config.backupDirectory, "index.jsonl"),
+                    JsonUtility.ToJson(metadata) + Environment.NewLine);
                 row.texture_type = importer.textureType.ToString();
                 row.srgb = importer.sRGBTexture;
                 row.mipmaps = importer.mipmapEnabled;

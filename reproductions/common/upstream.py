@@ -93,13 +93,40 @@ class BaselineGate:
                 "Complete the 10000-image Unity search baseline before image experiments"
             )
         receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
-        if receipt.get("status") != "passed" or receipt.get("phase") != "full":
+        if (
+            receipt.get("status") not in {"passed", "passed_with_retries"}
+            or receipt.get("phase") != "full"
+        ):
             raise RuntimeError("Formal literature experiments require a passed full Unity baseline")
+        exit_valid = receipt.get("process_exit_code") == 0
+        if receipt["status"] == "passed_with_retries":
+            recovery = receipt.get("recovery", {})
+            assembly_path = receipt_path.with_name("full-assembly.json")
+            if not assembly_path.is_file():
+                raise RuntimeError("Recovered baseline requires its assembly provenance")
+            if hashlib.sha256(assembly_path.read_bytes()).hexdigest() != receipt.get(
+                "provenance", {}
+            ).get("assembly_sha256"):
+                raise RuntimeError("Recovered baseline provenance changed")
+            assembly = json.loads(assembly_path.read_text(encoding="utf-8"))
+            for item in assembly["inputs"]:
+                if hashlib.sha256(Path(item["path"]).read_bytes()).hexdigest() != item["sha256"]:
+                    raise RuntimeError("Recovered baseline input changed")
+            for name, expected_hash in assembly["outputs"].items():
+                if (
+                    Path(name).name != name
+                    or hashlib.sha256((receipt_path.parent / name).read_bytes()).hexdigest()
+                    != expected_hash
+                ):
+                    raise RuntimeError("Recovered baseline output changed")
+            exit_valid = (
+                recovery.get("status") == "passed" and recovery.get("unrecovered_imports") == 0
+            )
         if (
             receipt.get("expected") != 10_000
             or receipt.get("imports") != 10_000
             or receipt.get("native_records") != 10_000
-            or receipt.get("process_exit_code") != 0
+            or not exit_valid
             or receipt.get("metadata_restore_conflicts") != []
             or receipt.get("provenance", {}).get("source_hashes_verified") != 10_000
         ):

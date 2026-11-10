@@ -52,6 +52,16 @@ The [measured report](<../experiment report/unity-search-baseline-lite-rdo-off/R
 
 The training list includes Cubemap imports. An additional two-Cubemap probe passed actual search and metadata restoration. The full run records actual texture dimensions, with search measured on the first image's mip0 and final compression measured across all faces/mips. `[verified: .local/unity-search-baseline-cubemap-probe/probe-receipt.json; ImageOperations.cpp CompressTextureWithMultipleImages; BenchmarkRunner.cs ImportOne]`
 
+The initial full attempt exposed a metadata-sidecar path failure at 265 characters, after copying a 249-character backup path. The revised runner uses flat SHA-256 backup names and a mapping index. Existing nested backups remain supported, with conservative reconstruction of the four intended Android settings for interrupted writes. The revised code has regression coverage; its native retry validation follows completion of the initial full attempt. `[verified: full-imports.jsonl first failed record; long-path-recovery-evidence.json; BenchmarkRunner.cs ImportOne; recovery.py; metadata regression checks]`
+
+```powershell
+uv run --frozen python script/reproduce.py repair
+uv run --frozen python script/reproduce.py assemble
+uv run --frozen python script/reproduce.py report
+```
+
+`repair` runs only failed import rows in a new empty cache after restoring their original metadata. `assemble` retains the original cohort, its failed rows and original process exit code, then combines successful measurements into one result per frozen asset. A recovered full baseline uses `passed_with_retries`, records both process outcomes and pins raw inputs/assembled outputs by SHA-256. Formal literature runs require complete 10,000-image coverage, successful recovery and verified provenance. `[verified: recovery.py run/assemble; benchmark.py audit; common/upstream.py BaselineGate]`
+
 ## Nah encoder commands
 
 Source preparation and compilation are available before full baseline acceptance. Image experiments require the passed 10,000-image baseline receipt. Both native builds retain clean pinned upstream source and record the executable SHA-256. `[verified: common/upstream.py EncoderSource/BaselineGate; common/nah_experiment.py run]`

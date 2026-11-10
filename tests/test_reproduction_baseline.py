@@ -10,6 +10,7 @@ from reproductions.common.encoder import ASTCFile
 from reproductions.common.upstream import BaselineGate
 from reproductions.nah2022_psnr_search.search import FOOTPRINTS, PSNRBlockSearch
 from reproductions.unity_search_baseline.benchmark import UnitySearchBaseline
+from reproductions.unity_search_baseline.recovery import BaselineRecovery
 
 
 def test_search_returns_smallest_even_if_target_is_unattainable() -> None:
@@ -159,3 +160,92 @@ def test_literature_gate_requires_native_coverage(tmp_path: Path) -> None:
     )
     with pytest.raises(RuntimeError, match="coverage"):
         BaselineGate.require(path)
+
+
+def test_flat_metadata_index_allows_identical_warmup_entries(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    target = project / "Assets/test.png.meta"
+    target.parent.mkdir(parents=True)
+    target.write_bytes(b"temporary settings")
+    backups = tmp_path / "backups"
+    backups.mkdir()
+    backup = backups / "hashed.meta"
+    backup.write_bytes(b"original")
+    row = json.dumps({"asset": "Assets/test.png", "backup": "hashed.meta"})
+    (backups / "index.jsonl").write_text(row + "\n" + row + "\n", encoding="utf-8")
+    Path(str(backup) + ".expected.sha256").write_text(
+        hashlib.sha256(target.read_bytes()).hexdigest(), encoding="utf-8"
+    )
+    baseline = UnitySearchBaseline(tmp_path, project, tmp_path / "Unity.exe", tmp_path)
+    assert baseline.restore_metadata(backups) == []
+    assert target.read_bytes() == b"original"
+
+
+def test_legacy_metadata_accepts_short_recovery_hash_location(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    relative = Path("Assets/test.png.meta")
+    target = project / relative
+    target.parent.mkdir(parents=True)
+    target.write_bytes(b"temporary settings")
+    backups = tmp_path / "backups"
+    backup = backups / relative
+    backup.parent.mkdir(parents=True)
+    backup.write_bytes(b"original")
+    expected = UnitySearchBaseline.metadata_recovery_hash_path(backups, relative)
+    expected.parent.mkdir(parents=True)
+    expected.write_text(hashlib.sha256(target.read_bytes()).hexdigest(), encoding="utf-8")
+    baseline = UnitySearchBaseline(tmp_path, project, tmp_path / "Unity.exe", tmp_path)
+    assert baseline.restore_metadata(backups) == []
+    assert target.read_bytes() == b"original"
+
+
+def test_override_reconstruction_changes_only_android_settings() -> None:
+    original = (
+        "  platformSettings:\n  - serializedVersion: 3\n    buildTarget: Android\n"
+        "    textureFormat: -1\n    overridden: 0\n    textureCompression: 1\n"
+        "    crunchedCompression: 0\n  - serializedVersion: 3\n    buildTarget: iPhone\n"
+        "    textureFormat: -1\n    overridden: 0\n"
+    )
+    expected = original.replace("    textureFormat: -1", "    textureFormat: 51", 1)
+    expected = expected.replace("    overridden: 0", "    overridden: 1", 1)
+    assert BaselineRecovery._override_metadata(original) == expected
+
+
+def test_override_reconstruction_appends_android_from_default_settings() -> None:
+    defaults = (
+        "  - serializedVersion: 3\n    buildTarget: DefaultTexturePlatform\n"
+        "    maxTextureSize: 1024\n    textureFormat: -1\n    overridden: 0\n"
+        "    textureCompression: 0\n    crunchedCompression: 0\n"
+    )
+    original = "  platformSettings:\n" + defaults + "  spriteSheet:\n"
+    android = defaults.replace("DefaultTexturePlatform", "Android")
+    android = android.replace("textureFormat: -1", "textureFormat: 51")
+    android = android.replace("overridden: 0", "overridden: 1")
+    android = android.replace("textureCompression: 0", "textureCompression: 1")
+    assert BaselineRecovery._override_metadata(original) == (
+        "  platformSettings:\n" + defaults + android + "  spriteSheet:\n"
+    )
+
+
+@pytest.mark.parametrize("ending", [b'{"asset":', b'{"asset":"\xe4'])
+def test_interrupted_metadata_index_still_restores_the_valid_prefix(
+    tmp_path: Path, ending: bytes
+) -> None:
+    project = tmp_path / "project"
+    target = project / "Assets/test.png.meta"
+    target.parent.mkdir(parents=True)
+    target.write_bytes(b"temporary settings")
+    backups = tmp_path / "backups"
+    backups.mkdir()
+    backup = backups / "hashed.meta"
+    backup.write_bytes(b"original")
+    row = json.dumps({"asset": "Assets/test.png", "backup": "hashed.meta"})
+    (backups / "index.jsonl").write_bytes(row.encode("utf-8") + b"\n" + ending)
+    Path(str(backup) + ".expected.sha256").write_text(
+        hashlib.sha256(target.read_bytes()).hexdigest(), encoding="utf-8"
+    )
+    baseline = UnitySearchBaseline(tmp_path, project, tmp_path / "Unity.exe", tmp_path)
+    conflicts = baseline.restore_metadata(backups)
+    assert len(conflicts) == 1
+    assert "entry 2" in conflicts[0]
+    assert target.read_bytes() == b"original"

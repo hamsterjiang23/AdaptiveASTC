@@ -38,6 +38,7 @@
 
 - 当前执行顺序为Unity搜索baseline、Nah 2023、Nah 2022、TexNN、GDC，再研究新模型与校准。新增方法代码集中在`reproductions/`，启动入口仍放`script/`。先完成10,000张训练图的真实搜索计时报告，再启动正式文献实验。缺作者代码时允许论文重实现，原文设置、补全假设和实际完成状态分别记录。`[verified: 用户2026-11-10实施请求及复现标准选择]`
 - 正式文献实验通过`BaselineGate`检查10,000张覆盖、原生搜索记录、源图哈希核验、退出码与metadata恢复。Unity基线按实际进入ASTC的目标格式测量，临时Android覆盖与恢复、参数缓存隔离和计时区间见[复现入口](reproductions/README.md)。`[verified: reproductions/common/upstream.py BaselineGate；reproductions/unity_search_baseline/benchmark.py]`
+- 技术失败补测使用独立空缓存，保留初次失败记录与退出码，合并结果使用`passed_with_retries`并校验来源SHA-256。初次批次、补测批次、逐图计时与整轮墙钟分别记录。`[verified: reproductions/unity_search_baseline/recovery.py；reproductions/common/upstream.py BaselineGate]`
 - TexNN已取得用户提供的主文，精确网络结构等待用户补充单独的Appendix Tables S1/S2。主文归档、SHA-256与当前状态保留在`reproductions/texnn/`。`[verified: reproductions/texnn/source.json；用户回复“暂时没有等我补充”]`
 - 实验协议、数据、训练、校准、成本及验证报告统一保存在`experiment report/`，逐图清单、缓存、原始日志、预测和检查点保存在该目录的`.local/`并Git忽略。`[verified: 用户确认的GDC复现计划及报告目录要求]`
 - Python环境和依赖统一使用uv，提交`pyproject.toml`、`uv.lock`与`.python-version`；安装使用`uv sync --frozen`，实验和检查使用`uv run`。`[verified: 用户要求“仓库里使用uv进行python依赖管理”；pyproject.toml]`
