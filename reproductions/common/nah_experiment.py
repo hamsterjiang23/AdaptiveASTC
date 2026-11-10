@@ -50,6 +50,13 @@ class NahExperiment:
         source = json.loads((self.method_dir / "source.json").read_text(encoding="utf-8"))
         default_target = source["class_target_psnr"][category] if "2022" in method else 40.0
         self.target = float(default_target if target is None else target)
+        self.target_provenance = (
+            f"published {category} class target from Nah 2022"
+            if "2022" in method
+            else "40 dB from the Nah 2023 author example"
+        )
+        if target is not None:
+            self.target_provenance = "explicit command-line target"
         if not math.isfinite(self.target) or self.target <= 0:
             raise ValueError("PSNR target must be positive and finite")
         self.category = category
@@ -90,6 +97,11 @@ class NahExperiment:
             "mipmaps": False,
             "alpha": "discarded by explicit RGB adaptation",
             "target_psnr": self.target,
+            "target_provenance": self.target_provenance,
+            "target_metric": "full-image RGBA byte-domain PSNR"
+            if "2022" in self.method
+            else "upstream sampled RGBA PSNR estimate",
+            "project_quality_metric": "full-image RGB byte-domain PSNR",
             "initial_footprint": self.initial,
             "initial_provenance": "reconstructed 6x6 default from the Nah 2023 author example"
             if self.initial == (6, 6)
@@ -97,7 +109,9 @@ class NahExperiment:
             "category": self.category,
             "threads": self.threads,
             "final_preset": "thorough" if "2022" in self.method else "medium",
-            "author_2023_randomness": "unmodified upstream srand(time(NULL)) sampling",
+            "author_2023_randomness": None
+            if "2022" in self.method
+            else "unmodified upstream srand(time(NULL)) sampling",
             "comparison_scope": "source-RGB project adaptation, separate from Unity import timing",
         }
         self.run_dir.mkdir(parents=True, exist_ok=False)
@@ -126,6 +140,7 @@ class NahExperiment:
             "succeeded": len(successful),
             "failed": len(rows) - len(successful),
             "target_met": sum(row["target_met"] for row in successful),
+            "reference_target_met": sum(row["reference_target_met"] for row in successful),
             "wall_seconds": time.perf_counter() - started,
             "selected_payload_bytes": sum(row["payload_bytes"] for row in successful),
             "fixed8_payload_bytes": sum(row["fixed8_payload_bytes"] for row in successful),
@@ -168,12 +183,13 @@ class NahExperiment:
             )
             (folder / f"{name}.txt").write_text(stdout, encoding="utf-8")
             decode_seconds = encoder.decode(folder / f"{name}.astc", folder / f"{name}.png")
-            quality = encoder.psnr_rgb(reference, folder / f"{name}.png")
+            quality = encoder.psnr_rgba(reference, folder / f"{name}.png")
             probes.append(
                 {
                     "footprint": footprint,
                     "psnr": quality if math.isfinite(quality) else None,
                     "lossless": math.isinf(quality),
+                    "metric": "RGBA byte-domain PSNR",
                     "encode_seconds": encode_seconds,
                     "decode_seconds": decode_seconds,
                 }
@@ -195,6 +211,7 @@ class NahExperiment:
         (folder / "selected.txt").write_text(stdout, encoding="utf-8")
         decode_seconds = encoder.decode(folder / "selected.astc", folder / "selected.png")
         quality = encoder.psnr_rgb(reference, folder / "selected.png")
+        reference_quality = encoder.psnr_rgba(reference, folder / "selected.png")
         fixed, fixed_seconds, fixed_stdout = encoder.encode(
             reference, folder / "fixed8.astc", (8, 8), preset
         )
@@ -213,6 +230,8 @@ class NahExperiment:
             "psnr_rgb": quality if math.isfinite(quality) else None,
             "lossless": math.isinf(quality),
             "target_met": quality >= self.target,
+            "psnr_rgba": reference_quality if math.isfinite(reference_quality) else None,
+            "reference_target_met": reference_quality >= self.target,
             "preprocess_seconds": preprocessing,
             "decision_encode_seconds": decision_seconds,
             "final_encode_seconds": encode_seconds if probes else None,
@@ -222,4 +241,14 @@ class NahExperiment:
             "fixed8_psnr_rgb": fixed_quality if math.isfinite(fixed_quality) else None,
             "fixed8_lossless": math.isinf(fixed_quality),
             "fixed8_encode_seconds": fixed_seconds,
+            "artifacts_sha256": {
+                name: hashlib.sha256((folder / name).read_bytes()).hexdigest()
+                for name in [
+                    "input.png",
+                    "selected.astc",
+                    "selected.png",
+                    "fixed8.astc",
+                    "fixed8.png",
+                ]
+            },
         }

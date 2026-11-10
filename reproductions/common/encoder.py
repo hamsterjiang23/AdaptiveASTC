@@ -7,6 +7,7 @@ import subprocess
 import time
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Literal
 
 import numpy as np
 from PIL import Image
@@ -90,10 +91,19 @@ class ASTCEncoder:
     @staticmethod
     def psnr_rgb(reference: Path, decoded: Path) -> float:
         """Conventional byte-domain RGB MSE, separate from Unity's channel averaging."""
+        return ASTCEncoder._psnr(reference, decoded, "RGB")
+
+    @staticmethod
+    def psnr_rgba(reference: Path, decoded: Path) -> float:
+        """Byte-domain RGBA MSE, matching the reference CLI's expanded PNG channels."""
+        return ASTCEncoder._psnr(reference, decoded, "RGBA")
+
+    @staticmethod
+    def _psnr(reference: Path, decoded: Path, mode: Literal["RGB", "RGBA"]) -> float:
         with Image.open(reference) as image:
-            original = np.asarray(image.convert("RGB"), dtype=np.float64)
+            original = np.asarray(image.convert(mode), dtype=np.float64)
         with Image.open(decoded) as image:
-            reconstructed = np.asarray(image.convert("RGB"), dtype=np.float64)
+            reconstructed = np.asarray(image.convert(mode), dtype=np.float64)
         if original.shape != reconstructed.shape:
             raise ValueError("Reference and decoded dimensions differ")
         mse = float(np.mean((original - reconstructed) ** 2))

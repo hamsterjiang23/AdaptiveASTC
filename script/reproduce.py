@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from reproductions.common.nah_experiment import NahExperiment  # noqa: E402
+from reproductions.common.reporting import NahReport  # noqa: E402
 from reproductions.common.upstream import EncoderSource  # noqa: E402
 from reproductions.unity_search_baseline.benchmark import UnitySearchBaseline  # noqa: E402
 from reproductions.unity_search_baseline.engine_patch import EngineTimingPatch  # noqa: E402
@@ -69,6 +70,11 @@ def main() -> None:
     )
     args = parser.parse_args()
     if args.method != "unity_search_baseline":
+        if args.action == "report":
+            if args.run_id is None:
+                parser.error("A literature report requires an explicit --run-id")
+            print(json.dumps(NahReport(ROOT, args.method, args.run_id).write(), indent=2))
+            return
         if args.action == "run":
             if args.run_id is None:
                 parser.error("A literature run requires an explicit --run-id")
@@ -92,7 +98,7 @@ def main() -> None:
                 raise SystemExit(1)
             return
         if args.action not in ["fetch", "build"]:
-            parser.error("Literature encoders support fetch, build and run actions")
+            parser.error("Literature encoders support fetch, build, run and report actions")
         source = EncoderSource(
             ROOT / "reproductions" / args.method,
             ROOT / "experiment report/.local/reproduction-binaries" / args.method,

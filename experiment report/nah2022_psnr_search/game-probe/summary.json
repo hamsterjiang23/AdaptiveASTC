@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "expected": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "target_met": 2,
+  "reference_target_met": 2,
+  "wall_seconds": 1.3981751000028453,
+  "selected_payload_bytes": 208,
+  "fixed8_payload_bytes": 208,
+  "preprocess_seconds": 0.01035389999015024,
+  "search_and_final_encode_seconds": 1.2623189999940223,
+  "fixed8_encode_seconds": 0.034706200000073295,
+  "protocol": {
+    "method": "nah2022_psnr_search",
+    "implementation_kind": "paper_reimplementation",
+    "commit": "954af82d2832aa2707d936c5aa5522c76ecd4426",
+    "executable_sha256": "9fc8bc5b971d3b4a4587518525e978ee20f79a65a452a83595b610e8595e1a2a",
+    "baseline_receipt_sha256": "d6b9859334407535ce6a259067d2687eae6dcb2b2b7897533f4b451d0dd2f99b",
+    "manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+    "inputs": [
+      {
+        "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+        "fileHash": "c3336b803c8a71f37f5c127863261ac5"
+      },
+      {
+        "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+        "fileHash": "e3b8f77c45bb1b9970089d8dfd2fa78d"
+      }
+    ],
+    "reference_pixels": "source image converted to RGB8, original resolution",
+    "color_profile": "linear LDR byte-domain RGB",
+    "mipmaps": false,
+    "alpha": "discarded by explicit RGB adaptation",
+    "target_psnr": 37.3873,
+    "target_metric": "reference PNG loader RGBA PSNR (sampled in Nah 2023 search)",
+    "project_quality_metric": "full-image RGB byte-domain PSNR",
+    "initial_footprint": [
+      6,
+      6
+    ],
+    "initial_provenance": "reconstructed 6x6 default from the Nah 2023 author example",
+    "category": "game",
+    "threads": 1,
+    "final_preset": "thorough",
+    "author_2023_randomness": "unmodified upstream srand(time(NULL)) sampling",
+    "comparison_scope": "source-RGB project adaptation, separate from Unity import timing"
+  },
+  "quality_audit": {
+    "verified_outputs": 2,
+    "rgb_target_met": 2,
+    "reference_rgba_target_met": 2,
+    "fixed8_rgb_target_met": 2,
+    "fixed8_rgba_target_met": 2,
+    "lossless_outputs": 0,
+    "images_log_sha256": "27e69b3e279b2911b3e9468811cd88432f988230f22b19d60fecf976fd1f31b2",
+    "receipt_sha256": "4e99cbc8aee9f6d13a3a1089934151259a063eb645703a0cfedae861a7febc70",
+    "protocol_sha256": "0f6e0c695408af07423ebcb12a2c4169c3e4ef0202f1a296f42397610b592212",
+    "decode_verification": "fresh pinned native decode with exact PNG SHA-256 matches",
+    "seconds": 0.10110419999546139
+  }
+}

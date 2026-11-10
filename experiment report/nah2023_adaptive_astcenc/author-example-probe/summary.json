@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "expected": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "target_met": 0,
+  "wall_seconds": 1.5592860000033397,
+  "selected_payload_bytes": 128,
+  "fixed8_payload_bytes": 208,
+  "preprocess_seconds": 0.017573800003447104,
+  "search_and_final_encode_seconds": 1.417631899996195,
+  "fixed8_encode_seconds": 0.0272629999963101,
+  "protocol": {
+    "method": "nah2023_adaptive_astcenc",
+    "implementation_kind": "author_code",
+    "commit": "4a3a3a61b2f961efe63e00c913876576315872fb",
+    "executable_sha256": "eeff85f4871e6e51d5d1cfa386aa54aba66df9e2ad0d7df9ceaf4fa3e041f92c",
+    "baseline_receipt_sha256": "d6b9859334407535ce6a259067d2687eae6dcb2b2b7897533f4b451d0dd2f99b",
+    "manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+    "inputs": [
+      {
+        "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+        "fileHash": "c3336b803c8a71f37f5c127863261ac5"
+      },
+      {
+        "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+        "fileHash": "e3b8f77c45bb1b9970089d8dfd2fa78d"
+      }
+    ],
+    "reference_pixels": "source image converted to RGB8, original resolution",
+    "color_profile": "linear LDR byte-domain RGB",
+    "mipmaps": false,
+    "alpha": "discarded by explicit RGB adaptation",
+    "target_psnr": 40.0,
+    "initial_footprint": [
+      6,
+      6
+    ],
+    "initial_provenance": "reconstructed 6x6 default from the Nah 2023 author example",
+    "category": "game",
+    "threads": 1,
+    "final_preset": "medium",
+    "author_2023_randomness": "unmodified upstream srand(time(NULL)) sampling",
+    "comparison_scope": "source-RGB project adaptation, separate from Unity import timing"
+  },
+  "quality_audit": {
+    "verified_outputs": 2,
+    "rgb_target_met": 0,
+    "reference_rgba_target_met": 0,
+    "fixed8_rgb_target_met": 2,
+    "fixed8_rgba_target_met": 2,
+    "lossless_outputs": 0,
+    "images_log_sha256": "bd453edee48bb3f4181c1b0711adae4c0883b42690a48a7d7f4395e375d6efa4",
+    "receipt_sha256": "486239866de3b157414bd3936236a3d6cd64a35309a322eb502dcc663d78f177",
+    "protocol_sha256": "92d3f662a0a30e1b63427ad546ea2206159f53324d97b2c64032256914b014f7",
+    "decode_verification": "fresh pinned native decode with exact PNG SHA-256 matches",
+    "seconds": 0.19327650000195717
+  }
+}

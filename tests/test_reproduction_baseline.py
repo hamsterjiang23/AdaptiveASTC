@@ -2,11 +2,13 @@
 
 import hashlib
 import json
+import math
 from pathlib import Path
 
 import pytest
+from PIL import Image
 
-from reproductions.common.encoder import ASTCFile
+from reproductions.common.encoder import ASTCEncoder, ASTCFile
 from reproductions.common.upstream import BaselineGate
 from reproductions.nah2022_psnr_search.search import FOOTPRINTS, PSNRBlockSearch
 from reproductions.unity_search_baseline.benchmark import UnitySearchBaseline
@@ -83,6 +85,18 @@ def test_astc_header_uses_ceil_blocks_and_separates_container(tmp_path: Path) ->
     assert parsed.footprint == (6, 6)
     assert parsed.payload_bytes == 64
     assert parsed.container_bytes == 80
+
+
+def test_png_rgba_psnr_keeps_reference_channel_averaging(tmp_path: Path) -> None:
+    reference = tmp_path / "reference.png"
+    decoded = tmp_path / "decoded.png"
+    Image.new("RGB", (2, 2), (100, 100, 100)).save(reference)
+    Image.new("RGB", (2, 2), (110, 110, 110)).save(decoded)
+    rgb = ASTCEncoder.psnr_rgb(reference, decoded)
+    rgba = ASTCEncoder.psnr_rgba(reference, decoded)
+    assert rgb == pytest.approx(10 * math.log10(255**2 / 100))
+    assert rgba - rgb == pytest.approx(10 * math.log10(4 / 3))
+    assert math.isinf(ASTCEncoder.psnr_rgba(reference, reference))
 
 
 def test_metadata_restore_requires_the_last_written_hash(tmp_path: Path) -> None:
