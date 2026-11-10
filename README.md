@@ -36,7 +36,11 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 现有参数快照与图片位置已完成[实际数据调查](notes/实际数据位置与训练可用性调查.md)。附件183,051条记录在`F:\MLBB_Test\haijiangli1_HAMSTERMLBB`中匹配177,184张图片及对应meta，64张分层样本MD4一致。附件采用LITE基础PSNR 30配置，主包代码常量为35；本项目的研究质量目标与历史策略标签需分别记录。`[verified: notes/实际数据调查统计.json的baseline、path_coverage/image_project、md4_sample；报告“LITE与主包质量配置”]` `[opinion]`
 
+源码侧的参考图、标签、候选报告与缓存位置集中标注于[Unity训练数据导出与源码导航](#unity训练数据导出与源码导航)，包含缓存命中、磁盘调试、提前停止与回退条件。`[verified: 本文对应小节]`
+
 ### 研究顺序与分类校准
+
+执行顺序更新为Unity搜索耗时baseline、Nah 2023作者代码、Nah 2022论文重实现、TexNN论文重实现、GDC压缩闭环复现，再研究新模型与校准。复现入口与实际状态见[reproductions](reproductions/README.md)。Unity主基线采用LITE配置且关闭RDO，文献原始配置与项目适配配置分别记录。`[verified: 用户2026-11-10确认的实施计划]`
 
 优先研究原始块大小分类模型上的calibration，先评估分类方案能达到的质量与体积权衡。分类校准方案经实验仍达不到项目目标时，再研究多候选质量预测及其calibration。当前确定的是研究顺序，方法效果待实验验证。`[verified: 用户研究决策（2026-11-09）“在最原本的分类上进行calibration”“先研究这个，如果不行，在研究预测质量的calibration”]`
 
@@ -51,11 +55,580 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 | 项目 | 状态与证据 |
 |---|---|
+| Unity 搜索基线 | 已建立原生计时补丁、固定训练清单、独立缓存和逐图核验入口，实测状态见[基线报告](<experiment report/unity-search-baseline-lite-rdo-off/README.md>)。报告按实际完成的运行更新。`[verified: reproductions/unity_search_baseline/；基线报告 summary.json]` |
 | 资料归档 | 视频、中英文网站字幕、19张每分钟截图、10张关键页补充截图已保存。`[verified: materials/gdc2023-astc-parameter-selection/；verification.json]` |
 | 全文整理 | 中英文字幕各328条，校订稿按40段覆盖全部条目，逐条原文另存对照稿。音轨独立ASR转写状态为未运行。`[verified: source/material-metadata.json；transcripts/完整字幕对照.md]` |
 | 方法核实 | 正文展示有标签数据集、块大小分类和ResNet。官网简介另提到强化学习，具体对应关系待作者材料确认。`[verified: 视频10:00、11:28、12:28；官方简介Overview]` |
 | 实验复现 | 已完成14,000张LITE源图划分、两组ResNet18各30轮及独立温度校准。测试准确率为67.50%／62.35%，中间块大小类别召回较低。[比例复核](<experiment report/gdc-lite-rgb-resnet18-seed20261109/数据集划分比例复核.md>)发现测试集中Mask单组占46.05%，详见[实验报告](<experiment report/gdc-lite-rgb-resnet18-seed20261109/training_report.md>)。质量与字节收益需候选压缩实测。`[verified: 实验metrics.json、data_summary.json、split_proportion_audit.json；opinion: 生产质量评价范围]` |
 | Git | 已初始化，分支为`main`，远端为`hamsterjiang23/AdaptiveASTC`，MP4视频通过Git LFS管理。`[verified: git init、git branch --show-current、git remote add origin输出；.gitattributes中的*.mp4规则]` |
+
+## Unity训练数据导出与源码导航
+
+当前引擎具备“压缩前参考图采集、候选试压缩与质量测量、参数选择、最终参数写表和调试产物导出”的采集基础。训练样本可按“参考图＋blockSize标签＋编码及导入协议”组织，批量采集、稳定配对和训练集封装按待实施工作记录。`[verified: ASTCCompressor.cpp L1982–2021、L2958–3422、L3435–3539]` `[opinion]`
+
+### 压缩参数与图像术语
+
+本节统一解释blockSize、preset、LDR、HDR、sRGB和Linear，并补充理解现有代码所需的texel、bpp、payload、法线用途及质量指标。压缩参数、亮度范围、颜色编码和贴图用途分别记录。`[verified: 用户本次术语入文档要求；ASTCCompressor.cpp L547–577、L3466–3475]` `[opinion]`
+
+#### blockSize、texel、bpp与payload
+
+blockSize为一个ASTC块覆盖的像素宽高，也称block footprint。texel表示纹理中的一个像素。ASTC每块固定输出128 bit，即16字节，块覆盖的像素数决定平均每像素位数bpp。`[verified: Arm《ASTC Format Overview》“Block compression”L190–197]` [Arm格式说明](https://github.com/ARM-software/astc-encoder/blob/main/Docs/FormatOverview.md#block-compression)
+
+- 4×4覆盖16个texel，每块16字节，平均8 bpp。`[verified: Arm《ASTC Format Overview》L197；128/(4*4)=8]`
+- 8×8覆盖64个texel，每块16字节，平均2 bpp。`[verified: Arm《ASTC Format Overview》L197；128/(8*8)=2]`
+- 12×12覆盖144个texel，每块16字节，平均约0.89 bpp。`[verified: Arm《ASTC Format Overview》L197；128/(12*12)≈0.89]`
+
+固定图像尺寸时，较大的块让更多像素共享同一份存储，通常减少payload并增加细节表达的约束。payload在本项目指原始ASTC块数据，按`ceil(width/bx)*ceil(height/by)*16`计算；完整mip链、容器与包压缩后的大小另行计量。`[verified: ASTCCompressor.cpp L3067–3072、L3163–3164；ImageOperations.cpp L2975–2985]` `[opinion]`
+
+#### preset与编码速度
+
+preset是编码器的搜索投入／质量预设。此前交流中的“present速度”统一写为“preset编码档位”或“编码速度”。本项目候选依次使用`fastest → fast → medium → thorough → exhaustive`，候选qualityValue为0～4，底层编码值对应0、10、60、98、100。`[verified: ASTCCompressor.cpp L547–552、L620–625、L3075–3086；用户术语提问]`
+
+从fastest到exhaustive通常投入更多编码时间以寻找更好的编码，额外时间带来的质量改善逐渐减小。这里的速度描述导入／制作阶段的编码过程。`[verified: Arm astc-encoder README “Experimenting”L285–287]` [Arm编码预设说明](https://github.com/ARM-software/astc-encoder#experimenting)
+
+例如，同图、同尺寸、同8×8块大小下，fastest和thorough使用相同的ASTC payload容量，编码内容、耗时和质量可能不同。blockSize控制每像素的存储预算，preset控制寻找编码结果的计算投入。`[verified: ASTCCompressor.cpp L3067–3108]` `[opinion]`
+
+#### LDR与数值归一化
+
+LDR是Low Dynamic Range，低动态范围。常见8位颜色图的单通道整数值为0～255，归一化后为0～1。归一化表示把整数除以255，例如128/255≈0.502；该数值对应怎样的线性光强还取决于颜色编码。`[verified: Unity 2019.4《High dynamic range》“How HDR works”L161–164；Unity《Color space》L177–182；128/255算式]` [Unity亮度范围说明](https://docs.unity3d.com/2019.4/Documentation/Manual/HDR.html)、[Unity颜色编码说明](https://docs.unity3d.com/2019.4/Documentation/Manual/LinearLighting.html)
+
+普通PNG／JPEG是Arm编码器列出的LDR输入示例，实际资产的编码解释还需结合导入设置与贴图用途。`[verified: Arm astc-encoder README “Encoder feature support”L180；ASTCCompressor.cpp L3466–3475]` `[opinion]` [Arm输入格式说明](https://github.com/ARM-software/astc-encoder#encoder-feature-support)
+
+#### HDR与亮度范围
+
+HDR是High Dynamic Range，高动态范围。在游戏的线性光照表示中，可以保留超过1的亮度值，通常用浮点形式承载更大的范围。假设普通表面为0.3、较亮表面为1、强光为10，可以继续保留这些光强差异，供曝光、泛光和色调映射使用。`[verified: Unity 2019.4《High dynamic range》L159–180；平台纹理格式手册“Terminology”L180]` `[opinion]` [Unity HDR说明](https://docs.unity3d.com/2019.4/Documentation/Manual/HDR.html)
+
+Arm编码器列出的HDR输入示例包括EXR和HDR。亮度范围、数值精度与实际纹理存储格式在实验协议中分别记录。`[verified: Arm astc-encoder README L180–194]` `[opinion]` [Arm格式支持](https://github.com/ARM-software/astc-encoder#encoder-feature-support)
+
+#### sRGB与颜色编码
+
+sRGB是一套常用颜色空间标准。在这段代码的讨论中，主要关注其颜色编码值与线性光强之间的非线性映射。这种映射使有限的存储精度更适合视觉需求；线性渲染时，sRGB纹理采样值会转换成线性值参与计算。`[verified: Unity 2019.4《Color space》“Linear and gamma color space”L170–182；《Gamma Textures with linear rendering》L180]` [Unity颜色空间说明](https://docs.unity3d.com/2019.4/Documentation/Manual/LinearLighting.html)、[Unity采样转换说明](https://docs.unity3d.com/2019.4/Documentation/Manual/LinearRendering-GammaTextures.html)
+
+本项目useSRGB读取的是当前纹理reportTex的stored color space。判断图像编码与质量分支时，保留纹理导入配置及运行时读到的属性。`[verified: ASTCCompressor.cpp L3466–3475、L3206–3225]` `[opinion]`
+
+#### Linear与数据贴图
+
+对颜色／光照而言，Linear表示按线性光强解释数值，供光照叠加和混合计算。对遮罩、查找表等数据纹理而言，线性采样保留其存储值的数学含义，例如遮罩0.5可表示一半权重。Unity文档要求这些数据纹理绕过sRGB采样转换。`[verified: Unity 2019.4《Color space》L177–182；《Working with linear Textures》“Linear authored Textures”L174–183]` `[opinion: 遮罩含义用例]` [Unity线性计算说明](https://docs.unity3d.com/2019.4/Documentation/Manual/LinearLighting.html)、[Unity数据纹理说明](https://docs.unity3d.com/2019.4/Documentation/Manual/LinearRendering-LinearTextures.html)
+
+Normal Map表示法线用途，通道值用于还原方向，Unity将法线纹理按线性数据处理。本地实现通过normal usage设置isNormalMap，并采用法线角度评价分支。`[verified: Unity《Working with linear Textures》L174–177；ASTCCompressor.cpp L2552–2559、L3474–3475、L3198–3204]` [Unity法线采样说明](https://docs.unity3d.com/2019.4/Documentation/Manual/LinearRendering-LinearTextures.html)
+
+#### 属性组合与本地代码对应
+
+LDR／HDR描述亮度范围，sRGB／Linear描述编码及数值解释，这两个维度可以组合。Arm编码器分别提供Linear LDR、sRGB LDR、HDR RGB／RGBA模式。Unity使用Linear渲染流程时，也可以采样采用sRGB编码的颜色纹理并执行转换。`[verified: Arm astc-encoder README “Compressing an image”L259–264；Unity《Gamma Textures with linear rendering》L160–180]` [Arm编码模式](https://github.com/ARM-software/astc-encoder#compressing-an-image)、[Unity线性流程与sRGB纹理](https://docs.unity3d.com/2019.4/Documentation/Manual/LinearRendering-GammaTextures.html)
+
+以下组合用于帮助对应概念，具体资产以导入配置及实际像素为准。`[opinion]`
+
+```text
+用途             普通颜色贴图
+亮度范围         LDR
+颜色编码         sRGB
+ASTC块大小       8×8
+编码preset       medium
+```
+
+本地isHDR由输入纹理格式判断，useSRGB由纹理stored color space判断，isNormalMap由usage判断。blockSize与preset在候选表中搜索。这些属性共同决定编码profile与质量评价分支。`[verified: ASTCCompressor.cpp L3746–3747、L3466–3475、L620–625、L3090–3108、L3198–3225]`
+
+#### PSNR、SSIM、MS-SSIM与RDO
+
+PSNR是Peak Signal-to-Noise Ratio，峰值信噪比，通过均方像素误差计算dB值，相同测量口径下越高表示误差越小。本地通道参与规则、全无损返回值等见[导出字段口径](#导出产物与字段口径)。`[verified: ASTCCompressor.cpp L2181–2296]`
+
+SSIM是Structural Similarity，结构相似性，比较局部亮度、对比度和结构。MS-SSIM是多尺度版本，在不同分辨率组合结构相似性。本地保存亮度MS-SSIM的dB转换值msSsimDb。`[verified: Wang等《Multi-scale structural similarity for image quality assessment》§2–3；ASTCCompressor.cpp L2299–2304、L2456–2541]` [作者论文](https://www.cns.nyu.edu/pub/eero/wang03b.pdf)
+
+RDO是Rate-Distortion Optimization，率失真优化，权衡编码失真与码率代价。Arm的ASTC设计讨论将提高应用包中纹理的后续可压缩性列为目标。本地当前核实的是搜索后重编码、质量复测与采用条件，内部代价模型按外部DLL待核实。`[verified: Arm ASTC RDO讨论“Approaches”L136–141；ASTCCompressor.cpp L2754–2956]` `[opinion]` [Arm RDO讨论](https://github.com/ARM-software/astc-encoder/issues/361)
+
+### 源码范围与调用链
+
+本节于2026-11-10按本机源码静态阅读定位。下表链接指向本机文件，行号与下列SHA-256对应，源文件更新后需按符号重新定位。`[verified: 本次Get-FileHash输出及源码读取]` `[opinion]`
+
+| 文件 | 职责与SHA-256 |
+|---|---|
+| [ImageOperations.cpp](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ImageOperations.cpp:2945) | 组织纹理压缩，从Texture2D取得输入，调用ASTC选参，再遍历image／mip编码。SHA-256为`442fc8fbbb57f78077ee3bd7f79e0ba6357cd8ce7733a53fb78206ba0eaeb9aa`。`[verified: ImageOperations.cpp L2945–2985；本次Get-FileHash输出]` |
+| [ASTCCompressor.cpp](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3435) | ASTC后端、自动选参、指标、缓存和调试导出。SHA-256为`ccc8eea44b6bff44b8976389d7ecce96e9ce7f6831f149578f91fc54fb2dd209`。`[verified: ASTCCompressor.cpp L3435–3539、L3925–3967；本次Get-FileHash输出]` |
+
+调用关系按实际代码整理如下。调试图片与报告在磁盘调试开启且进入搜索路径时生成，参数JSONL写出由选参结果及资产路径条件控制。`[verified: ImageOperations.cpp L2958–2968；ASTCCompressor.cpp L2963–2970、L3383–3385、L3506–3523]`
+
+```text
+CompressTextureWithMultipleImages                 ImageOperations.cpp L2945
+  → FindOptimalASTCFormat                         ASTCCompressor.cpp L3738
+    → FindOptimalParameters                       L3435
+      → GetCachedParameters                       L1901，命中时L3461返回
+      → PrepareOriginalImageData                  L2676，RGBA32参考像素
+      → TestAllParameterCombinations              L2958
+        → SetupTestEnvironment                    L1999，调试导出original.png
+        → 编码／解码                              L3088／L3131
+        → PSNR／MS-SSIM／法线角度                 L3160–3226
+        → allResults与参数选择                    L3228–3359
+        → TryAstcRdoRefinementAfterSearch          L2755，调用点L3361
+      → SelectBestParameter                       L3364
+        → GenerateParameterTestReport             L2023，调试报告
+      → SaveBestParametersToCache                 L1935，调用点L3522
+        → SaveCacheEntryToFile                    L1836，追加JSONL
+          → CompactCacheLogToSnapshot             L1730，按阈值合并JSON
+      → 返回选中payload                           L3526
+    → 保存选中payload供后续压缩复用               L3787
+```
+
+本地早期基础提交`789b144a7`的`ISPCTexCompASTC`与当前命名空间内容相同，后续`d0d3980d7`新增`ASTCParameterOptimizer`、选参与写表功能。这里将ISPC归为基础引擎后端，将自动选参和采集逻辑归为项目扩展。官方原版逐行来源仍需对应Unity源码基线。`[verified: 本次Git历史、namespace比较输出；d0d3980d7差异]` `[opinion]`
+
+### 入口、开关与输入属性位置
+
+| 源码位置 | 行范围 | 与采集的关系 |
+|---|---|---|
+| [CompressTextureWithMultipleImages](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ImageOperations.cpp:2945) | 2945–2985 | 从Texture2D取第一个image的mip0，ASTC目标格式进入选参，随后遍历image／mip执行压缩。 `[verified: ImageOperations.cpp L2945–2985]` |
+| [FindOptimalASTCFormat](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3738) | 3738–3784 | 检查自动选参开关，调用FindOptimalParameters，输出格式与preset。 `[verified: ASTCCompressor.cpp L3738–3784]` |
+| [第三方编码／解码接口注册](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:428) | 428–478 | SetAstc3rdCompressFuncPtrEx、SetAstc3rdDecompressFuncPtr和SetAstc3rdOptionOnce提供搜索所需后端。 `[verified: ASTCCompressor.cpp L428–478]` |
+| [选参、RDO和磁盘调试开关](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:453) | 453–472 | SetASTCOptimizationEnabled控制搜索，SetAstc3rdRdoSettings控制RDO，SetAstcDebugEnabled控制图片／报告落盘。 `[verified: ASTCCompressor.cpp L453–472]` |
+| [FindOptimalParameters](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3435) | 3435–3539 | 总调度，依次处理缓存、纹理属性、参考像素、搜索、选择、写表和压缩数据返回。 `[verified: ASTCCompressor.cpp L3435–3539]` |
+| [GetCachedParameters与提前返回](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1901) | 1901–1932、3437–3462 | 按资产路径索引并检查源文件MD4，命中后在参考图准备和调试导出之前返回。 `[verified: ASTCCompressor.cpp L1901–1932、3437–3462]` |
+| [纹理类型与颜色空间](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3466) | 3466–3482 | 从reportTex读取stored color space和normal usage，缺失reportTex时默认sRGB颜色图。 `[verified: ASTCCompressor.cpp L3466–3482]` |
+| [缓存目录设置](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3573) | 3573–3588 | ResetParameterDiskCacheStateForEditorTableDirectory／SetAstcParameterCacheTableDirectory切换目录并重置参数内存缓存。 `[verified: ASTCCompressor.cpp L3573–3588]` |
+| [运行时质量设置](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3590) | 3590–3665 | SetAstcQualityThresholds校验输入后设置PSNR、MS-SSIM和法线角度阈值。 `[verified: ASTCCompressor.cpp L3590–3665]` |
+| [附加策略设置](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3694) | 3694–3735 | 设置RDO余量、纯黑像素PSNR策略和大图面积门槛。 `[verified: ASTCCompressor.cpp L3694–3735]` |
+
+### 参考像素、候选搜索与质量测量位置
+
+| 源码位置 | 行范围 | 与采集的关系 |
+|---|---|---|
+| [ASTCParamCandidate与候选表](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:547) | 547–553、618–625 | 定义块大小与preset，20组候选按12×12、10×10、8×8、6×6及由快到慢preset排序。 `[verified: ASTCCompressor.cpp L547–553、618–625]` |
+| [默认质量与搜索策略](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:627) | 627–643 | 默认PSNR 35、MS-SSIM 24、法线阈值、黑色像素分级、大图门槛和RDO余量。 `[verified: ASTCCompressor.cpp L627–643]` |
+| [TestResult与SharedResult](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:568) | 568–577、645–684 | 保存候选指标、valid、allResults、选中数据、earlyExit和RDO尝试／采用状态。 `[verified: ASTCCompressor.cpp L568–577、645–684]` |
+| [PrepareOriginalImageData](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2676) | 2675–2694 | 按输入颜色空间转换／绑定RGBA32，保留当前输入尺寸，是参考图采集位置。 `[verified: ASTCCompressor.cpp L2675–2694]` |
+| [PrepareTextureName](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2697) | 2697–2719 | 生成纹理名称并替换文件名非法字符，供调试目录命名。 `[verified: ASTCCompressor.cpp L2697–2719]` |
+| [TestAllParameterCombinations](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2958) | 2958–3031 | 建立可选调试环境，确定size-first模式，顺序遍历候选。 `[verified: ASTCCompressor.cpp L2958–3031]` |
+| [候选文件名、块数据大小与preset映射](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3041) | 3041–3086 | 确定候选输出名和TextureFormat，按ceil(width/bx)×ceil(height/by)×16分配payload，映射编码质量。 `[verified: ASTCCompressor.cpp L3041–3086]` |
+| [候选编码与解码](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3088) | 3088–3158 | 扫描阶段关闭RDO，编码至内存，调试时写ASTC／解压PNG，失败候选跳过后续测量。 `[verified: ASTCCompressor.cpp L3088–3158]` |
+| [CalculatePSNR](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2181) | 2180–2296 | 逐通道MSE、纯黑比例、Alpha参与规则、误差非零通道平均及无损返回100。 `[verified: ASTCCompressor.cpp L2180–2296]` |
+| [MS-SSIM基础运算](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2309) | 2309–2454 | BuildGaussianKernel11、GaussianBlurSeparable11、Downsample2x2、ComputeSSIMComponents计算局部统计。 `[verified: ASTCCompressor.cpp L2309–2454]` |
+| [CalculateMSSSIMDb_Luma与SafeMsSsimToDb](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2456) | 2456–2541、2299–2304 | RGB转亮度、多尺度组合并转换为dB，保留本地实现的颜色空间与截断规则。 `[verified: ASTCCompressor.cpp L2456–2541、2299–2304]` |
+| [法线角度基础运算](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2552) | 2552–2620 | DecodeNormalRGB_U8、NormalizeSafe、Dot、DownsampleNormal2x2、ComputeAngleStats完成法线解码和角度统计。 `[verified: ASTCCompressor.cpp L2552–2620]` |
+| [CalculateNormalAngularErrorMip0To3](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2622) | 2622–2673 | 从参考／解压mip0构造最多四级法线降采样图，按像素数加权mean和各级p95。 `[verified: ASTCCompressor.cpp L2622–2673]` |
+| [候选测量与有效阈值](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3160) | 3160–3226 | 计算PSNR和payload字节数，纯黑比例提高PSNR阈值，按normal／sRGB／其他路径判断合格。 `[verified: ASTCCompressor.cpp L3160–3226]` |
+| [候选记录追加](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3228) | 3228–3239 | 构造TestResult并加入allResults，供候选报告或后续结构化采集使用。 `[verified: ASTCCompressor.cpp L3228–3239]` |
+| [大图size-first选择](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3241) | 3241–3290、3348–3359 | 先按PSNR锁块，在该块内提升preset，保留PSNR通过候选作为MS-SSIM失败时的回退。 `[verified: ASTCCompressor.cpp L3241–3290、3348–3359]` |
+| [常规选择与提前停止](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3293) | 3293–3338 | 首个有效结果保存payload并break，候选数组实际覆盖范围由搜索路径决定。 `[verified: ASTCCompressor.cpp L3293–3338]` |
+| [TryAstcRdoRefinementAfterSearch](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2755) | 2754–2956、3361 | 满足开关与PSNR余量条件后对同一块大小／preset额外编码，复测后决定是否采用RDO数据。 `[verified: ASTCCompressor.cpp L2754–2956、3361]` |
+| [SelectBestParameter](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3364) | 3364–3422 | 返回选中结果，全部不合格时在已测结果中选PSNR最高者，调试开启时生成报告。 `[verified: ASTCCompressor.cpp L3364–3422]` |
+
+### 图片、标签、报告与缓存写出位置
+
+| 源码位置 | 行范围 | 与采集的关系 |
+|---|---|---|
+| [ExportImageToPNG](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1982) | 1982–1997 | 将当前ImageReference写出PNG。 `[verified: ASTCCompressor.cpp L1982–1997]` |
+| [SetupTestEnvironment](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1999) | 1999–2021 | 创建ASTC_Cache/<纹理名>_<计数>/，将参考像素写成original.png。 `[verified: ASTCCompressor.cpp L1999–2021]` |
+| [GenerateParameterTestReport](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2023) | 2023–2178 | 写parameter_test_report.txt，包含阈值、已测候选、角度、选择与RDO精炼状态。 `[verified: ASTCCompressor.cpp L2023–2178]` |
+| [CachedParameter](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:555) | 555–566 | 定义最终记录的资产路径、MD4、块大小、preset、质量、字节数、时间戳与RDO采用标志。 `[verified: ASTCCompressor.cpp L555–566]` |
+| [GetFileVerificationHash与GetCurrentTimestamp](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:700) | 699–705、522–537 | MD4针对资产源文件，时间戳取系统时刻，Windows实现使用FILETIME/10000。 `[verified: ASTCCompressor.cpp L699–705、522–537]` |
+| [SaveBestParametersToCache](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1935) | 1935–1975 | 组装最终记录并调用写表函数，截图字段在1964–1973行赋值。 `[verified: ASTCCompressor.cpp L1935–1975]` |
+| [写表调用条件](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3506) | 3506–3523 | 要求选参成功、资产路径有效、候选存在且源文件存在，随后写入最终记录。 `[verified: ASTCCompressor.cpp L3506–3523]` |
+| [缓存文件名和路径](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:607) | 607–615、1158–1175 | 默认ASTC_Cache/tables/default，文件为parameter_cache_detail.json与同名.jsonl。 `[verified: ASTCCompressor.cpp L607–615、1158–1175]` |
+| [BuildAstcTableConfigFingerprintObjectJson](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1179) | 1178–1205 | 保存表级质量、黑像素、大图、RDO和优化开关配置，JSONL首行写配置头。 `[verified: ASTCCompressor.cpp L1178–1205]` |
+| [缓存配置匹配与加载](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1372) | 1372–1467 | 配置不匹配时选择_cfg_后缀目录，旧版缺少tableConfig时保留兼容读取。 `[verified: ASTCCompressor.cpp L1372–1467]` |
+| [SaveCacheEntryToFile与AppendStringToFile](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1836) | 1836–1899、1683–1713 | 加锁后追加JSONL，写入失败输出日志，日志达到2MiB阈值时触发快照合并。 `[verified: ASTCCompressor.cpp L1836–1899、1683–1713]` |
+| [CompactCacheLogToSnapshot](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1730) | 1730–1834 | 合并快照和JSONL并输出entries，1809–1817行写截图形式的最终字段。 `[verified: ASTCCompressor.cpp L1730–1834]` |
+| [返回并缓存选中payload](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3526) | 3526–3535、3787–3824 | 将搜索所得压缩数据交给外层内存缓存，供正式纹理压缩复用。 `[verified: ASTCCompressor.cpp L3526–3535、3787–3824]` |
+| [HandleASTCTextureCompression复用入口](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3925) | 3925–3967 | 校验尺寸、格式与字节数后复制选中payload，使用后清除该内存条目。 `[verified: ASTCCompressor.cpp L3925–3967]` |
+
+### 导出产物与字段口径
+
+| 产物／字段 | 含义与对应位置 |
+|---|---|
+| `original.png` | [SetupTestEnvironment](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1999)导出当前ASTC入口的RGBA32参考图，输入来自Unity当前纹理的第一个image／mip0。`[verified: ASTCCompressor.cpp L1999–2010、L2675–2694；ImageOperations.cpp L2947–2964]` |
+| 候选`.astc`／`*_decompressed.png` | [候选编码与解码落盘](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3041)记录实际尝试的组合，磁盘调试开关控制写出。`[verified: ASTCCompressor.cpp L3041–3046、L3091–3099、L3137–3145]` |
+| `parameter_test_report.txt` | [GenerateParameterTestReport](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2023)记录已测候选及选择过程，包含精炼前后指标和RDO状态。`[verified: ASTCCompressor.cpp L2023–2178]` |
+| 资产路径／`fileHash` | [最终记录组装](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1964)按资产路径配对，MD4标识源文件内容。采集清单还需保存导入设置和参考像素身份。`[verified: ASTCCompressor.cpp L699–705、L1964–1966]` `[opinion]` |
+| `blockSize`／`qualityLevel` | [参数字段赋值](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1967)保存策略选中的块大小和编码preset，分类输入／标签协议需同时保留preset。`[verified: ASTCCompressor.cpp L1967–1968、L3075–3086]` `[opinion]` |
+| `psnr` | [CalculatePSNR](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2181)计算像素误差对应的dB值，参与通道中只平均误差非零通道，恒定Alpha排除，全无损返回100。`[verified: ASTCCompressor.cpp L2238–2296]` |
+| `msSsimDb` | [MS-SSIM亮度计算](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2456)比较多尺度亮度结构，[SafeMsSsimToDb](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:2299)使用`-10*log10(max(1-msSsim,1e-6))`转换。未计算分支可保留0。截图21.42 dB按公式对应约0.99279。`[verified: ASTCCompressor.cpp L2299–2304、L2456–2541、L3191–3225；本次公式换算输出]` |
+| `fileSize` | [payload大小计算](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:3067)为本次参考尺寸的ASTC块payload字节数，公式为`ceil(width/bx)*ceil(height/by)*16`。完整mip链、容器、打包后字节数分开计量。`[verified: ASTCCompressor.cpp L3067–3072、L3163–3164；ImageOperations.cpp L2975–2985]` `[opinion]` |
+| `timestamp` | [GetCurrentTimestamp](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:522)在写缓存时取得系统时刻，Windows路径为`FILETIME/10000`，压缩耗时需要另行采样。`[verified: ASTCCompressor.cpp L522–537、L1972]` `[opinion]` |
+| `rdo` | [RDO采用标志](E:/hamster_unity/unity20190433/Editor/Src/AssetPipeline/TextureImporting/ASTCCompressor.cpp:1973)表示最终采用RDO精炼payload，attempted／status及精炼前后指标在SharedResult与调试报告中另存。`[verified: ASTCCompressor.cpp L657–666、L2115–2158、L2941–2953、L1973]` |
+
+PSNR与MS-SSIM在这里用于质量测量，RDO在搜索后尝试一次同块大小／preset的重编码。固定尺寸和块大小下，两次编码的ASTC payload容量按同一公式确定。RDO内部失真与码率代价的具体实现位于外部编码DLL，当前核实范围覆盖Unity侧调用及质量验收。`[verified: ASTCCompressor.cpp L2754–2807、L2828–2833、L2863–2953]` `[opinion]`
+
+### 自动选参的偏好与判定规则
+
+这些规则共同定义“当前策略选中配置”，也是现有分类标签的生成口径。它们包含候选顺序、贴图类型质量门槛、纯黑像素分级、常规提前停止、大图块大小锁定、无合格结果回退和搜索后RDO精炼。以下按当前源码执行顺序记录，验证深度为静态代码分析。`[verified: ASTCCompressor.cpp L618–643、L2983–2990、L3160–3422、L2754–2956]`
+
+以下C++摘录来自本节记录的同一份源码，仅省略纯注释、空行和公共左缩进。各片段按所标行范围独立展示。`[verified: 本次源码提取规则及ASTCCompressor.cpp对应行]`
+
+#### 候选集合与尝试顺序
+
+搜索表包含20组，块大小依次为`12×12 → 10×10 → 8×8 → 6×6`，每组preset依次为`fastest → fast → medium → thorough → exhaustive`。候选循环顺序执行，较大块和较快preset在前。候选数与排列顺序属于协议的一部分。`[verified: ASTCCompressor.cpp L618–625、L2979–2981、L3026–3028]` `[opinion]`
+
+每次候选的payload大小为`ceil(width/bx)*ceil(height/by)*16`。preset档位`qualityValue=0..4`对应底层编码值`0、10、60、98、100`。顺序搜索阶段RDO关闭，编码或解码检查失败时跳过当前候选，成功测量后才追加allResults。`[verified: ASTCCompressor.cpp L550–552、L3067–3108、L3121–3125、L3157–3158、L3228–3239]`
+
+
+候选数组及排列顺序对应源码L618–625。`[verified: ASTCCompressor.cpp L618–625]`
+
+```cpp
+static const int kParamCandidateCount = 20;  // 4 block sizes * 5 quality levels
+static const ASTCParamCandidate kParamCandidates[] = {
+    {"12x12", "fastest", 12, 0}, {"12x12", "fast", 12, 1}, {"12x12", "medium", 12, 2}, {"12x12", "thorough", 12, 3}, {"12x12", "exhaustive", 12, 4},
+    {"10x10", "fastest", 10, 0}, {"10x10", "fast", 10, 1}, {"10x10", "medium", 10, 2}, {"10x10", "thorough", 10, 3}, {"10x10", "exhaustive", 10, 4},
+    {"8x8", "fastest", 8, 0}, {"8x8", "fast", 8, 1}, {"8x8", "medium", 8, 2}, {"8x8", "thorough", 8, 3}, {"8x8", "exhaustive", 8, 4},
+    {"6x6", "fastest", 6, 0}, {"6x6", "fast", 6, 1}, {"6x6", "medium", 6, 2}, {"6x6", "thorough", 6, 3}, {"6x6", "exhaustive", 6, 4},
+};
+```
+
+#### 质量门槛与纯黑像素策略
+
+下表列C++默认值。运行时可通过SetAstcQualityThresholds等接口覆盖，实际标签协议读取有效配置与tableConfig。LITE与主包阈值差异沿用[配置调查](notes/实际数据位置与训练可用性调查.md#lite与主包质量配置)中的记录。`[verified: ASTCCompressor.cpp L627–643、L1178–1205、L3590–3665、L3694–3735；配置调查“LITE与主包质量配置”]` `[opinion]`
+
+| 贴图／策略条件 | 当前代码的判定方式与默认值 |
+|---|---|
+| 法线图 | `meanWavg ≤ 2.5° AND p95Wavg ≤ 7°`，PSNR留作参考。角度从参考／解压mip0及其最多四级法线降采样图计算，按像素数加权各级均值和各级p95。`[verified: ASTCCompressor.cpp L630–631、L2622–2673、L3198–3204]` |
+| LDR、sRGB颜色图 | `PSNR ≥ effectivePSNRThreshold AND msSsimDb ≥ 24`。PSNR通过后才计算MS-SSIM，PSNR失败时msSsimDb保留0。`[verified: ASTCCompressor.cpp L629、L3206–3219]` |
+| 其他分支，包括Linear或HDR | `PSNR ≥ effectivePSNRThreshold`。`[verified: ASTCCompressor.cpp L3222–3225]` |
+| 纯黑RGB像素比例≤40% | 有效PSNR门槛采用基础值，默认35 dB。`[verified: ASTCCompressor.cpp L628、L2206–2208、L3167–3175]` |
+| 纯黑RGB像素比例>40%且≤80% | 有效PSNR门槛默认40 dB。`[verified: ASTCCompressor.cpp L634–637、L3168–3174]` |
+| 纯黑RGB像素比例>80% | 有效PSNR门槛默认42 dB，先判断这一档。`[verified: ASTCCompressor.cpp L636–637、L3168–3170]` |
+
+PSNR、MS-SSIM和法线角度的数值方向及通道口径按[导出字段说明](#导出产物与字段口径)和对应实现读取。法线合格分支直接使用角度条件，纯黑比例设置的PSNR门槛还会参与RDO尝试余量判断。`[verified: ASTCCompressor.cpp L3198–3204、L2754–2787]`
+
+
+默认质量、黑像素及精炼配置对应源码L627–643。`[verified: ASTCCompressor.cpp L627–643]`
+
+```cpp
+static float kTargetPSNR = 35.0f;
+static float kTargetMSSSIMDb = 24.0f;
+static float kTargetNormalAngleMeanWavgDeg = 2.5f;
+static float kTargetNormalAngleP95WavgDeg = 7.0f;
+static float kBlackPixelRatioForElevatedPsnrMild = 0.40f;
+static float kBlackPixelElevatedPsnrMildDb = 40.0f;
+static float kBlackPixelRatioForElevatedPsnrStrong = 0.80f;
+static float kBlackPixelElevatedPsnrStrongDb = 42.0f;
+static int kSizeFirstMinSideForLargeTexture = 512;
+static float kAstcRdoRefineMinPsnrMarginDb = 1.0f;
+```
+
+有效PSNR门槛的分级计算对应源码L3167–3175。`[verified: ASTCCompressor.cpp L3167–3175]`
+
+```cpp
+float effectivePSNRThreshold = kTargetPSNR;
+if (blackPixelRatio > kBlackPixelRatioForElevatedPsnrStrong)
+{
+    effectivePSNRThreshold = kBlackPixelElevatedPsnrStrongDb;
+}
+else if (blackPixelRatio > kBlackPixelRatioForElevatedPsnrMild)
+{
+    effectivePSNRThreshold = kBlackPixelElevatedPsnrMildDb;
+}
+```
+
+按纹理类型设置isValid对应源码L3195–3226。`[verified: ASTCCompressor.cpp L3195–3226]`
+
+```cpp
+bool isValid = false;
+float distance = psnr - effectivePSNRThreshold;
+if (isNormalMap)
+{
+    NormalAngularResult ang = CalculateNormalAngularErrorMip0To3(originalDataPtr, decompressedRGBA32.data(), origWidth, origHeight, mipCount);
+    angleMeanWavg = ang.meanWavgDeg;
+    angleP95Wavg = ang.p95WavgDeg;
+    isValid = (angleMeanWavg <= kTargetNormalAngleMeanWavgDeg) && (angleP95Wavg <= kTargetNormalAngleP95WavgDeg);
+}
+else if (!isHDR && useSRGB)
+{
+    if (psnr >= effectivePSNRThreshold)
+    {
+        msSsimDb = CalculateMSSSIMDb_Luma(originalDataPtr, decompressedRGBA32.data(), origWidth, origHeight);
+        isValid = (msSsimDb >= kTargetMSSSIMDb);
+    }
+    else
+    {
+        msSsimDb = 0.0f;
+        isValid = false;
+    }
+}
+else
+{
+    isValid = (psnr >= effectivePSNRThreshold);
+}
+```
+
+#### 常规搜索的接受与停止
+
+常规路径在isValid为true后，将候选保存为bestResult，保存对应payload、格式与尺寸，并立即break。SharedResult初始bestResult.valid为false，因此实际流程是“按既定顺序接受首个合格候选”。`[verified: ASTCCompressor.cpp L673–683、L3293–3337]`
+
+代码还列出了已存在有效bestResult时的比较次序，依次为payload字节更少、相同字节下PSNR更低、字节与PSNR都相同时qualityValue更低。当前常规路径首个有效候选即退出，解读行为时同时保留这个break，跨候选全量比较的评价需要额外候选测量。`[verified: ASTCCompressor.cpp L3293–3337]` `[opinion]`
+
+
+常规候选比较、保存及break对应源码L3295–3339。`[verified: ASTCCompressor.cpp L3295–3339]`
+
+```cpp
+if (isValid)
+{
+    bool isBetter = false;
+    if (sharedResult.bestResult.valid)
+    {
+        if (fileSize < sharedResult.bestResult.fileSize)
+        {
+            isBetter = true;
+        }
+        else if (fileSize == sharedResult.bestResult.fileSize)
+        {
+            if (psnr < sharedResult.bestResult.psnr)
+            {
+                isBetter = true;
+            }
+            else if (psnr == sharedResult.bestResult.psnr && param->qualityValue < sharedResult.bestResult.param->qualityValue)
+            {
+                isBetter = true;
+            }
+        }
+    }
+    else
+    {
+        isBetter = true;
+    }
+    if (isBetter)
+    {
+        sharedResult.bestDistanceToTarget = distance;
+        sharedResult.bestResult = result;
+        sharedResult.bestCompressedData = std::move(compressedData);
+        sharedResult.bestTextureFormat = textureFormat;
+        sharedResult.bestWidth = width;
+        sharedResult.bestHeight = height;
+        sharedResult.hasCompressedData = true;
+        sharedResult.earlyExit = true;
+        break;  // Exit the for loop immediately: we can stop testing other parameters since they will have larger file sizes or same size with higher quality
+    }
+}
+```
+
+#### 大图size-first的块大小锁定与回退
+
+触发条件是`!isNormalMap AND !isHDR AND useSRGB AND width*height ≥ sizeFirstMinSideLarge²`，默认面积门槛为512²像素，1024×256也满足这一面积条件。`[verified: ASTCCompressor.cpp L640、L2988–2990；1024×256=512²]`
+
+1. 从较大块开始搜索，首个PSNR达标候选锁定其blockSizeValue。`[verified: ASTCCompressor.cpp L620–625、L3241–3247]`
+2. 锁定后，选择范围限定在同一块大小内，依preset顺序继续尝试，每个PSNR达标候选更新回退记录。`[verified: ASTCCompressor.cpp L3250–3269]`
+3. 同组中某个PSNR达标候选同时满足MS-SSIM门槛时，立即接受并结束搜索。`[verified: ASTCCompressor.cpp L3260–3284]`
+4. 同组始终未满足MS-SSIM时，采用该组最后一个PSNR达标候选。代码将该回退记录valid置为true，再保存为bestResult。`[verified: ASTCCompressor.cpp L3262–3264、L3348–3359]`
+
+该分支允许以MS-SSIM门槛的放宽保留锁定块大小，因此策略接受状态与逐项质量阈值通过状态分别存储。锁组后的切组判断位于候选测量及allResults追加之后，报告可能含一条下一块大小的已测候选，该条在切组位置结束循环。`[verified: ASTCCompressor.cpp L3238–3256、L3262–3264、L3348–3359]` `[opinion]`
+
+
+大图策略触发条件对应源码L2988–2990。`[verified: ASTCCompressor.cpp L2988–2990]`
+
+```cpp
+const long long pixelCountLL = (long long)origWidth * (long long)origHeight;
+const long long sizeFirstPixelMin = (long long)kSizeFirstMinSideForLargeTexture * (long long)kSizeFirstMinSideForLargeTexture;
+const bool useSizeFirstOnLargeTexture = (!isNormalMap && !isHDR && useSRGB && pixelCountLL >= sizeFirstPixelMin);
+```
+
+锁定块大小、保存组内回退及接受候选对应源码L3241–3291。`[verified: ASTCCompressor.cpp L3241–3291]`
+
+```cpp
+if (useSizeFirstOnLargeTexture)
+{
+    if (lockedBlockSizeValue < 0)
+    {
+        if (psnr >= effectivePSNRThreshold)
+            lockedBlockSizeValue = param->blockSizeValue;
+    }
+    if (lockedBlockSizeValue >= 0)
+    {
+        if (param->blockSizeValue != lockedBlockSizeValue)
+        {
+            break;
+        }
+        if (psnr >= effectivePSNRThreshold)
+        {
+            sizeFirstFallbackResult = result;
+            sizeFirstFallbackResult.valid = true; // acceptable for selection under size-first mode
+            sizeFirstFallbackCompressedData = compressedData; // keep a copy for later selection
+            sizeFirstFallbackTextureFormat = textureFormat;
+            sizeFirstFallbackWidth = width;
+            sizeFirstFallbackHeight = height;
+            hasSizeFirstFallback = true;
+            if (msSsimDb >= kTargetMSSSIMDb)
+            {
+                sharedResult.bestDistanceToTarget = distance;
+                sharedResult.bestResult = result;
+                sharedResult.bestResult.valid = true;
+                sharedResult.bestCompressedData = std::move(compressedData);
+                sharedResult.bestTextureFormat = textureFormat;
+                sharedResult.bestWidth = width;
+                sharedResult.bestHeight = height;
+                sharedResult.hasCompressedData = true;
+                sharedResult.earlyExit = true;
+                selectedBySizeFirst = true;
+                break;
+            }
+        }
+    }
+    continue;
+}
+```
+
+锁定块的MS-SSIM回退落地对应源码L3349–3359。`[verified: ASTCCompressor.cpp L3349–3359]`
+
+```cpp
+if (useSizeFirstOnLargeTexture && !selectedBySizeFirst && lockedBlockSizeValue >= 0 && hasSizeFirstFallback)
+{
+    sharedResult.bestResult = sizeFirstFallbackResult;
+    sharedResult.bestDistanceToTarget = sizeFirstFallbackResult.psnr - sizeFirstEffectivePSNRThreshold;
+    sharedResult.bestCompressedData = std::move(sizeFirstFallbackCompressedData);
+    sharedResult.bestTextureFormat = sizeFirstFallbackTextureFormat;
+    sharedResult.bestWidth = sizeFirstFallbackWidth;
+    sharedResult.bestHeight = sizeFirstFallbackHeight;
+    sharedResult.hasCompressedData = true;
+    sharedResult.earlyExit = false;
+}
+```
+
+#### 全部未取得有效结果时的通用回退
+
+SelectBestParameter在bestResult无效且allResults非空时，按严格大于比较选取PSNR最高的已测候选，PSNR并列时保留先出现的候选。该回退统一按PSNR执行，覆盖法线分支；随后仍返回true。allResults为空且bestResult无效时返回false。`[verified: ASTCCompressor.cpp L3371–3380、L3390–3422]`
+
+因此success、策略接受、逐项质量通过、fallback原因和是否存在payload分别记录。最终JSON保存回退参数及质量数值，完整候选与valid／fallback信息需要采集清单或报告支持。`[verified: ASTCCompressor.cpp L3406–3419、L3506–3535、L1964–1975]` `[opinion]`
+
+
+遍历已测候选选最高PSNR对应源码L3370–3381。`[verified: ASTCCompressor.cpp L3370–3381]`
+
+```cpp
+TestResult finalSelectedResult = bestResult;
+if (!bestResult.valid && !sharedResult.allResults.empty())
+{
+    finalSelectedResult = sharedResult.allResults[0];
+    for (const auto& result : sharedResult.allResults)
+    {
+        if (result.psnr > finalSelectedResult.psnr)
+        {
+            finalSelectedResult = result;
+        }
+    }
+}
+```
+
+写出回退结果与无结果时返回失败对应源码L3407–3422。`[verified: ASTCCompressor.cpp L3407–3422]`
+
+```cpp
+if (!sharedResult.allResults.empty())
+{
+    *outBestParam = finalSelectedResult.param;
+    *outBestPSNR = finalSelectedResult.psnr;
+    if (outTempDir != NULL)
+    {
+        *outTempDir = tempDir;
+    }
+    if (outBestResultDetails != NULL)
+    {
+        *outBestResultDetails = finalSelectedResult;
+    }
+    return true;
+}
+return false;
+```
+
+#### 搜索后RDO精炼的尝试与接受
+
+尝试RDO要求全局开启、余量参数>0、编码／解码接口可用、已有有效选中参数及payload，并且`winnerPSNR ≥ sharedResult.effectivePSNRThreshold + rdoRefineMarginDb`，默认余量为1 dB。精炼沿用选中的块大小与preset，额外执行一次编码与质量复测。`[verified: ASTCCompressor.cpp L643、L2754–2833、L2863–2900]`
+
+精炼结果按纹理类型重新检查角度或PSNR／MS-SSIM门槛，并要求payload字节数≤原结果。通过后替换payload和最终指标，标记最终rdo为true。接受条件允许PSNR在通过门槛的前提下低于精炼前结果，精炼前后指标、attempted及status在调试结果中保留。`[verified: ASTCCompressor.cpp L2878–2953、L657–666、L1973、L2115–2158]`
+
+
+RDO尝试前的开关、接口、有效结果及余量检查对应源码L2761–2788。`[verified: ASTCCompressor.cpp L2761–2788]`
+
+```cpp
+if (!Astc3rd_RdoEnabled)
+{
+    sharedResult.rdoRefineStatusLine = "skipped: global RDO (Astc3rd) off";
+    return;
+}
+if (kAstcRdoRefineMinPsnrMarginDb <= 0.0f)
+{
+    sharedResult.rdoRefineStatusLine = Format("skipped: RDO refine PSNR headroom margin <= 0 (%.2f dB)", kAstcRdoRefineMinPsnrMarginDb);
+    return;
+}
+if (Astc3rd_Enable != 1 || astc3rd_funcptr_optimize == NULL || astc3rd_decompress_funcptr == NULL)
+{
+    sharedResult.rdoRefineStatusLine = "skipped: Astc3rd encoder/decompressor not available";
+    return;
+}
+if (!sharedResult.hasCompressedData || !sharedResult.bestResult.valid || sharedResult.bestResult.param == NULL)
+{
+    sharedResult.rdoRefineStatusLine = "skipped: no valid search winner or no compressed data";
+    return;
+}
+const float eff = sharedResult.effectivePSNRThreshold;
+if (sharedResult.bestResult.psnr < eff + kAstcRdoRefineMinPsnrMarginDb)
+{
+    sharedResult.rdoRefineStatusLine = Format("skipped: insufficient PSNR headroom for refine (winner %.2f dB < effective %.2f + margin %.2f)",
+        sharedResult.bestResult.psnr, eff, kAstcRdoRefineMinPsnrMarginDb);
+    return;
+}
+```
+
+RDO结果的质量拒绝、大小检查及最终采用对应源码L2902–2953。`[verified: ASTCCompressor.cpp L2902–2953]`
+
+```cpp
+const long fileSize = compressedSize;
+if (!isValid)
+{
+    if (isNormalMap)
+    {
+        sharedResult.rdoRefineStatusLine = Format(
+            "skipped: RDO refine failed normal angular gates (mean=%.2f deg p95=%.2f deg; require mean<=%.2f p95<=%.2f)",
+            angleMeanWavg, angleP95Wavg, kTargetNormalAngleMeanWavgDeg, kTargetNormalAngleP95WavgDeg);
+    }
+    else if (!isHDR && useSRGB)
+    {
+        if (psnr < effectivePSNRThreshold)
+        {
+            sharedResult.rdoRefineStatusLine = Format(
+                "skipped: RDO refine failed PSNR gate (PSNR=%.2f dB < effective target %.2f dB)",
+                psnr, effectivePSNRThreshold);
+        }
+        else
+        {
+            sharedResult.rdoRefineStatusLine = Format(
+                "skipped: RDO refine failed MS-SSIM gate (MS-SSIM=%.2f dB < target %.2f dB; PSNR=%.2f dB passes)",
+                msSsimDb, kTargetMSSSIMDb, psnr);
+        }
+    }
+    else
+    {
+        sharedResult.rdoRefineStatusLine = Format(
+            "skipped: RDO refine failed PSNR gate (PSNR=%.2f dB < effective target %.2f dB)",
+            psnr, effectivePSNRThreshold);
+    }
+    return;
+}
+if (fileSize > sharedResult.bestResult.fileSize)
+{
+    sharedResult.rdoRefineStatusLine = "skipped: RDO refine larger than winner (unexpected for ASTC fixed block rate)";
+    return;
+}
+sharedResult.bestResult.psnr = psnr;
+sharedResult.bestResult.msSsimDb = msSsimDb;
+sharedResult.bestResult.normalAngleMeanWavgDeg = angleMeanWavg;
+sharedResult.bestResult.normalAngleP95WavgDeg = angleP95Wavg;
+sharedResult.bestResult.fileSize = fileSize;
+sharedResult.bestResult.valid = true;
+sharedResult.bestDistanceToTarget = psnr - effectivePSNRThreshold;
+sharedResult.bestCompressedData = std::move(compressedData);
+sharedResult.bestTextureFormat = textureFormat;
+sharedResult.bestWidth = width;
+sharedResult.bestHeight = height;
+sharedResult.hasCompressedData = true;
+sharedResult.bestCompressedDataFromRdoRefine = true;
+```
+
+#### 标签协议与规则变更
+
+离线数据按“参考像素及导入属性 → 当前规则选中的blockSize／preset／RDO状态”建立对应。更新候选顺序、质量阈值、黑像素策略、大图策略或回退条件时，记录源码／DLL版本和协议变化，重新评价已有标签有效性。表级配置变化、缓存复用与逐图重新测量的影响分开记录。`[verified: ASTCCompressor.cpp L1178–1205、L1372–1446、L3437–3462、L1964–1975]` `[opinion]`
+
+### 批量采集时的执行约束
+
+- **确定采集范围与后端**。目标格式为ASTC才进入该选参入口，自动选参开关及第三方编码／解码接口决定搜索是否执行。固定块大小与preset的直接编码和离线试参分别记录。`[verified: ImageOperations.cpp L2958–2968；ASTCCompressor.cpp L3738–3741、L3030–3031、L3131–3158]` `[opinion]`
+- **处理缓存命中与调试开关**。参数缓存命中会在导出前返回。采集方案应显式选择缓存复用／重新测量方式，保存cache-hit与导出成功状态，图片导出需开启磁盘调试。`[verified: ASTCCompressor.cpp L3437–3462、L2963–2970]` `[opinion]`
+- **建立稳定配对**。当前调试目录使用纹理名和进程内计数，参数表使用资产路径。建议采集清单保存资产路径、源文件MD4、参考图路径与哈希、导入设置、尺寸、颜色空间、用途、Alpha、mip、Editor／DLL版本及tableConfig。`[verified: ASTCCompressor.cpp L2001–2009、L1964–1973、L3466–3499]` `[opinion]`
+- **记录候选覆盖和回退状态**。搜索按顺序执行并提前停止，allResults仅保存成功编码／解码后加入的候选。大图可能接受MS-SSIM未通过的PSNR候选，全部不合格时按最高PSNR回退。标签记录为“当前策略选中配置”，另存质量合格状态、回退原因、失败候选与未测候选。`[verified: ASTCCompressor.cpp L2979–2981、L3121–3125、L3157–3158、L3238–3239、L3262–3269、L3337、L3348–3419]` `[opinion]`
+- **冻结质量协议**。按本次运行读取tableConfig与有效阈值，保留黑色像素和大图策略。已有LITE快照与主包阈值差异见[配置调查](notes/实际数据位置与训练可用性调查.md#lite与主包质量配置)，新标签按确认的项目标准生成。`[verified: ASTCCompressor.cpp L1178–1205、L3166–3175；配置调查“LITE与主包质量配置”]` `[opinion]`
+- **分开保存候选表与最终表**。最终JSON／JSONL保存选中配置，候选指标位于allResults和调试报告。需要评价其他配置或oracle差距时，采集协议明确所需候选覆盖；法线角度指标、valid、earlyExit、回退与RDO尝试状态需追加到样本／候选清单。`[verified: ASTCCompressor.cpp L555–577、L645–671、L1873–1885、L2023–2178、L3238–3239]` `[opinion]`
+- **检查实际落盘**。参数记录可能因源文件缺失、哈希失败、锁获取失败或追加写失败而跳过，采集完成后核对输入清单、参考图、候选报告、JSONL和快照的一致性。快照与尚未合并的日志共同读取，并核实实际缓存目录。`[verified: ASTCCompressor.cpp L1937–1939、L3506–3523、L1854–1897、L1372–1397]` `[opinion]`
+- **先做小样本验收**。验证Unity导入阶段、参考像素一致性、候选测量复现、标签对应与真实字节数后再批量采集。本节验证深度为源码静态分析和文档检查，Unity实际导入／导出与编码实测按待运行记录。`[verified: 本次执行范围；用户“Smoke test first”要求]` `[opinion]`
 
 ## 代码组织与Class规范
 

@@ -1,5 +1,30 @@
 # Implementation notes
 
+## Reproduction implementation, 2026-11-10
+
+### Deviations
+
+- The distribution build was initially launched with the build-machine environment from `build_editor.bat`. That triggered cleanup of part of WindowsEditor. Original Unity.exe and the two source files were backed up, and native linking plus resource restoration are recorded under the baseline run directory. `[verified: editor build logs; engine-originals/; Unity-before-benchmark.exe]`
+- The full build's Package Manager validation and the initial project probe failed because the tool environment omitted ALLUSERSPROFILE. A temporary diagnostic change exposed the stack and was restored in finally. The baseline launcher supplies the missing variable only to its child process. `[verified: upm-diagnostic/stack.txt; benchmark.py]`
+- One full launch exited during startup with "Scripts have compiler errors" after producing the runner assembly. No CS diagnostic was present in that Editor log. A same-configuration restart entered measurement successfully; both attempts remain archived separately. `[verified: attempts/full-assembly-startup-failure/full-editor.log; current full-imports.jsonl]`
+- pueue is unavailable on this Windows host. Long commands use managed exec sessions with explicit logs and exit-code checks. `[verified: Get-Command pueue,pueued returned no tools]`
+
+### Discovered edge cases
+
+- Windows Unity canonicalizes one sample path from `_D.tga` to `_d.tga`. Receipt joining uses slash normalization and case-folding, and still rejects missing, duplicate or unexpected assets. Both 64-image native caches matched the frozen source hashes after this correction. `[verified: smoke1/smoke2 native logs and provenance; benchmark.py summarize/audit; casing regression test]`
+- The Android target is temporarily forced to ASTC to exercise the search for all selected textures. Exact `.meta` backups are restored after process exit. Metadata sidecar hashes are captured immediately after the benchmark write, without authorizing later changes during import. Interrupt handling stops the owned Editor before recovery. `[verified: BenchmarkRunner.cs ImportOne; benchmark.py run/restore_metadata]`
+- Prepared configurations are immutable and receipts bind to a protocol hash. The first two smoke receipts received an explicit post-run native-cache audit, covering source MD4, LITE policy and the measured Editor binary. `[verified: protocol-lock.json; smoke1/smoke2-receipt.json provenance_binding]`
+- All 10,000 sources passed a pre-run MD4 check, reading 10,061,490,379 bytes in 24.29 seconds. Two additional Cubemap imports passed native search and exact metadata restoration. The first nine imports of the initial full launch were archived after stopping the owned Editor to add the metadata revisit guard. Restoration reported zero conflicts before the fresh full launch. `[verified: source-preflight.json; unity-search-baseline-cubemap-probe/probe-receipt.json; attempts/full-before-metadata-revisit-guard/full-receipt.json]`
+- Warmup overlaps the first two measured images. Their importer settings at measurement entry can include the warmup override. The current runner names these fields pre_import_android_*, while original bytes remain in the metadata backups. `[verified: BenchmarkRunner.cs Run/ImportOne; smoke1 first two import records]`
+- The supplied TexNN main paper omits the separately referenced architecture Appendix. The user will supply that later, and exact network implementation waits for it. `[verified: supplied PDF p.12; user reply “暂时没有等我补充”]`
+- The native observer measures the original search, parameter-cache hits and mip payload reuse. Empty native logs reject a run even if import returns successfully. `[verified: ASTCBenchmark.h; benchmark.py summarize; test_reproduction_baseline.py]`
+- Original source hashes are ccc8eea44b6bff44b8976389d7ecce96e9ce7f6831f149578f91fc54fb2dd209 and 442fc8fbbb57f78077ee3bd7f79e0ba6357cd8ce7733a53fb78206ba0eaeb9aa. Source navigation earlier in this document refers to that uninstrumented revision. `[verified: engine-originals/original_hashes.json]`
+- The supplied TexNN PDF has 12 pages and SHA-256 3c4612b705faee35fda1739ee0fd19336cf3f2b99a8566609377db04e2e98d4e. Its separate Appendix Tables S1/S2 remain referenced artifacts. `[verified: reproductions/texnn/source.json; supplied PDF p.12]`
+
+### Questions for review
+
+- Current results and failures must be read from the latest baseline receipts before launching another phase. `[opinion]`
+
 ## Deviations
 
 - 计划范围变更为0。资料按仓库主版本与Obsidian阅读副本组织，Git初始化状态为未运行。`[verified: 本轮文件操作；README“当前状态”]`

@@ -41,10 +41,11 @@ torch = { index = "pytorch-cu128" }
 torchvision = { index = "pytorch-cu128" }
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/adaptive_astc"]
+packages = ["src/adaptive_astc", "reproductions"]
 
 [tool.ruff]
 line-length = 100
+extend-exclude = ["reproductions/*/upstream"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "ANN"]
@@ -52,7 +53,8 @@ ignore = ["ANN401"]
 
 [tool.basedpyright]
 typeCheckingMode = "basic"
-include = ["src", "script", "tests"]
+include = ["src", "script", "tests", "reproductions"]
+exclude = ["reproductions/*/upstream", "**/__pycache__", ".venv"]
 venvPath = "."
 venv = ".venv"
 
