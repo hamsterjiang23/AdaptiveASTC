@@ -59,6 +59,7 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ## 从这里阅读
 
+- [Class架构与兼容性检查](<experiment report/class-refactor-20261110/README.md>)记录按职责拆分后的类、调用流程、旧检查点兼容与新旧数值对照。`[verified: src/adaptive_astc/models/resnet.py L10；training/trainer.py L32；对应verification.json]`
 - [实验报告与复现入口](<experiment report/README.md>)集中记录数据划分、两组ResNet18、独立温度校准及验证结果，Python环境与命令统一使用uv。`[verified: 用户确认的实验方案；pyproject.toml的project.scripts]`
 - [实际数据位置与训练可用性调查](notes/实际数据位置与训练可用性调查.md)及[聚合统计](notes/实际数据调查统计.json)，记录图片主体、快照差异、标签生成机制和训练所需证据。`[verified: 对应报告与统计文件]`
 - [文献发展路线与问题演进](#文献发展路线与问题演进)，按已有问题、方法改进和剩余限制串联28篇文献，并说明本项目的位置。`[verified: 本文对应小节]`

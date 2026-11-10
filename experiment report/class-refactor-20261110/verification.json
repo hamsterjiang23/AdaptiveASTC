@@ -1,0 +1,291 @@
+{
+  "environment": {
+    "torch": "2.8.0+cu128",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4070"
+  },
+  "elapsed_seconds": 110.20065879999993,
+  "initialization_scratch": {
+    "state_tensors": 122,
+    "parameters": 11178564,
+    "all_weights_equal": true,
+    "rng_equal": true
+  },
+  "initialization_pretrained": {
+    "state_tensors": 122,
+    "parameters": 11178564,
+    "all_weights_equal": true,
+    "rng_equal": true
+  },
+  "historical_checkpoint_pretrained": {
+    "strict_load": true,
+    "test_count": 2000,
+    "max_abs_logit_difference": 0.0,
+    "historical_cached_logits_equal": true,
+    "metrics_equal": true,
+    "temperature_fit_equal": true,
+    "temperature": 1.4277809838056539
+  },
+  "historical_checkpoint_scratch": {
+    "strict_load": true,
+    "test_count": 2000,
+    "max_abs_logit_difference": 0.0,
+    "historical_cached_logits_equal": true,
+    "metrics_equal": true,
+    "temperature_fit_equal": true,
+    "temperature": 1.2587297892742233
+  },
+  "training_epoch_parity": {
+    "samples": 68,
+    "micro_batch": 16,
+    "effective_batch": 64,
+    "steps": 2,
+    "loss_and_all_state_equal": true
+  },
+  "cli_prepare": {
+    "argv": [
+      "prepare",
+      "--smoke",
+      "--run-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-run",
+      "--report-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-report"
+    ],
+    "exit_code": 0,
+    "seconds": 32.973285699999906
+  },
+  "preparation_parity": {
+    "fingerprint": "3db01c4e13ab4144cca3e6d77b89d78039c8f4ba1c689f74d34ba73376ec15b1",
+    "manifest_equal": true,
+    "sizes": {
+      "test": 16,
+      "calibration": 8,
+      "validation": 8,
+      "train": 32
+    },
+    "mother_pool_sha256": "c28515bb37147f6ea8628328e02a5d4de69d7480f6472d588297462fb4738872",
+    "full_mother_pool_equal": true
+  },
+  "cli_cross_version_resume": {
+    "argv": [
+      "train",
+      "--initialization",
+      "scratch",
+      "--epochs",
+      "2",
+      "--micro-batch",
+      "16",
+      "--workers",
+      "0",
+      "--resume",
+      "--run-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-run",
+      "--report-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-report"
+    ],
+    "exit_code": 0,
+    "seconds": 4.969016600000032
+  },
+  "cross_version_resume_parity": {
+    "epoch": 2,
+    "all_model_and_optimizer_state_equal": true,
+    "validation_metrics_equal": true,
+    "training_loss_equal": true
+  },
+  "cli_pretrained_train": {
+    "argv": [
+      "train",
+      "--initialization",
+      "pretrained",
+      "--epochs",
+      "1",
+      "--micro-batch",
+      "16",
+      "--workers",
+      "2",
+      "--run-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-run",
+      "--report-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-report"
+    ],
+    "exit_code": 0,
+    "seconds": 11.458286399999906
+  },
+  "cli_calibrate_pretrained": {
+    "argv": [
+      "calibrate",
+      "--initialization",
+      "pretrained",
+      "--workers",
+      "2",
+      "--run-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-run",
+      "--report-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-report"
+    ],
+    "exit_code": 0,
+    "seconds": 7.33652660000007
+  },
+  "cli_calibrate_scratch": {
+    "argv": [
+      "calibrate",
+      "--initialization",
+      "scratch",
+      "--workers",
+      "2",
+      "--run-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-run",
+      "--report-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-report"
+    ],
+    "exit_code": 0,
+    "seconds": 7.438262299999678
+  },
+  "cli_evaluate": {
+    "argv": [
+      "evaluate",
+      "--workers",
+      "2",
+      "--run-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-run",
+      "--report-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-report"
+    ],
+    "exit_code": 0,
+    "seconds": 11.337909400000171
+  },
+  "cli_evaluate_cached": {
+    "argv": [
+      "evaluate",
+      "--workers",
+      "0",
+      "--run-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-run",
+      "--report-dir",
+      "experiment report\\.local\\class-refactor-20261110\\cli-report"
+    ],
+    "exit_code": 0,
+    "seconds": 4.691133799999989
+  },
+  "test_seal_and_report": {
+    "cached_results_equal": true,
+    "seal_unchanged": true,
+    "train_and_calibration_frozen": true,
+    "plots_present": true,
+    "report_present": true
+  },
+  "protected_historical_artifacts": {
+    "files": 44,
+    "all_sha256_unchanged": true
+  },
+  "status": "passed",
+  "final_checks": {
+    "uv sync --frozen": {
+      "exit_code": 0,
+      "output": "Checked 41 packages in 11ms\n",
+      "seconds": 0.042936200000440294
+    },
+    "uv run --frozen ruff check src tests": {
+      "exit_code": 0,
+      "output": "All checks passed!\n",
+      "seconds": 0.09578650000003108
+    },
+    "uv run --frozen ruff format --check src tests": {
+      "exit_code": 0,
+      "output": "32 files already formatted\n",
+      "seconds": 0.08953870000004827
+    },
+    "uv run --frozen basedpyright": {
+      "exit_code": 0,
+      "output": "0 errors, 0 warnings, 0 notes\n",
+      "seconds": 2.884989900000619
+    },
+    "uv run --frozen pytest -q": {
+      "exit_code": 0,
+      "output": "...................                                                      [100%]\n19 passed in 5.46s\n",
+      "seconds": 6.453923000000032
+    },
+    "git diff --check": {
+      "exit_code": 0,
+      "output": "warning: in the working copy of 'AGENTS.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'experiment report/README.md', LF will be replaced by CRLF the next time Git touches it\n",
+      "seconds": 0.04624760000024253
+    },
+    "wheel": {
+      "command": "uv build --wheel --out-dir experiment report\\.local\\class-refactor-20261110\\dist",
+      "exit_code": 0,
+      "sha256": "61f826ef9b1c9e079bd823221e7571cdd6056ea34fc28eb3534d19668e93655c",
+      "package_python_files": 30,
+      "isolated_import_and_forward": true,
+      "import_path": "E:\\ASTC_Compression\\experiment report\\.local\\class-refactor-20261110\\dist\\adaptive_astc-0.1.0-py3-none-any.whl\\adaptive_astc\\__init__.py"
+    }
+  },
+  "source_files_sha256": {
+    "src/adaptive_astc/__init__.py": "c7c2d2f7d1e0746ab6a51903610c3542605f697e757434d75fc0e21ee33e0298",
+    "src/adaptive_astc/calibration/__init__.py": "62bec663aee32cbb874e5ee41a061f15d99f622a92fca956d1aace56380b4f5d",
+    "src/adaptive_astc/calibration/temperature.py": "b8ebd18c4dd46f93772e2bbbcd4ebb778e6719b415965d4f563c333028b84e36",
+    "src/adaptive_astc/cli.py": "e5a42918e586c8e58a7e817e72b4dd16793477900e294a30cc879e5d6f8e91e1",
+    "src/adaptive_astc/common.py": "b542e8956a88b82c334645d9fd26ca97a2852e4b158419bde5c37044581e6f46",
+    "src/adaptive_astc/config.py": "8fa661b82f249b1b2b3a6f6cd15f3e8bf7164835b5162f2a45f73ec336ea0ceb",
+    "src/adaptive_astc/data/__init__.py": "3d526ad244dc54994998e057333a39c014b61fde287f554a5296b4c42c60ae42",
+    "src/adaptive_astc/data/catalog.py": "fcbd82c52e7af87c02aab0f68a640162ed0706fe6e32a2b694b5ba5f9b3a6492",
+    "src/adaptive_astc/data/dataset.py": "60eebe6b98e55dfd48b8670bcc80a3b8cd68ce381557b6e1d395c23c8d43326a",
+    "src/adaptive_astc/data/deduplication.py": "1cd2d9dddeecec7f180b9e4a4014490781fa50756f99f68388ce9a388d0548b1",
+    "src/adaptive_astc/data/images.py": "19fd537afef1f5309d3289a62fbb85815eb7554c661f116c387d1cc3e1720986",
+    "src/adaptive_astc/data/preparation.py": "395ec0791bc113de3da8a6a3c1a09d6ac359573caa71fd3a4d0f4c1b842a9c15",
+    "src/adaptive_astc/data/splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d",
+    "src/adaptive_astc/evaluation/__init__.py": "759698447de917fee78a04c054a89ac69ab46fb7f8059701cd0b1b6180aede88",
+    "src/adaptive_astc/evaluation/evaluator.py": "f9d38472351c83bd5c24fd2e436831e1e567cd71f13ff74c7514c83e66e008d7",
+    "src/adaptive_astc/evaluation/inference.py": "4b660a5c62a2afbfcb90a31d69fcaeae1c23a7c17cd1cf613f295d9fa6ddf06e",
+    "src/adaptive_astc/evaluation/metrics.py": "f476c6e1f9d6bba5f82eb3c83c697f3c9be7fe2b62e286610080f73c3314fb4d",
+    "src/adaptive_astc/metrics.py": "4ac2de5e5063d35a58127075e401dcfcc692afd2c7d21b8576e2858e2a1d9f1c",
+    "src/adaptive_astc/models/__init__.py": "0edefcf4025cd67e524458c4a494c138e2d75f7bbc4e2ced12e9aee4ca12a18a",
+    "src/adaptive_astc/models/resnet.py": "c27477e35d470866b8df249b75a502b1fcae272eb41460cd7d7ed3bfafbd47d4",
+    "src/adaptive_astc/reporting/__init__.py": "f64830557c719d553604c633becd3939dbcb6b28f3f0435c11cfe4fcef1e18c1",
+    "src/adaptive_astc/reporting/report.py": "0438bad59d39cafd624930c1bb4dbd0eb08a7de5817cb58bd757222db541d202",
+    "src/adaptive_astc/reports.py": "5a668ccc2b85925e009fafa574e4f72bec7f2dda5f47f96e827b6ae101472683",
+    "src/adaptive_astc/training/__init__.py": "eb4f0b837643cdac8ec7f12113a00e66f68663f0ad8a4bd5f5e1a170a88a9e36",
+    "src/adaptive_astc/training/trainer.py": "1c08f13e211a186392acb7d260b50fdeb23bc7378630c08f49ef6250deb260b1",
+    "src/adaptive_astc/utils/__init__.py": "8018cdaa91b172a65f2d534b9589aadec351550a602bf8b676b83d32ccd96acc",
+    "src/adaptive_astc/utils/artifacts.py": "6b186f7531d063715308e00dada4e7c9d9d04f4831fa10aa45d14ae125a6564f",
+    "src/adaptive_astc/utils/checkpoints.py": "2bdd813abaa096fa3bdd2162f5e8b7c8fae53169c24850b0265977a5cb7871a5",
+    "src/adaptive_astc/utils/environment.py": "eef3d6303738ab5ff56d0b5789f214a8768c71921da32e257a1b118411574e1f",
+    "src/adaptive_astc/utils/runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5"
+  },
+  "review": {
+    "result": "CLEAN",
+    "scope": "diff and new src/tests files; CLI, state_dict, initialization, resume, data fingerprint, calibration, test seal",
+    "agent": "review_experiment",
+    "read_only": true
+  },
+  "documentation": {
+    "files_checked": [
+      "README.md",
+      "AGENTS.md",
+      "experiment report/README.md",
+      "experiment report/class-refactor-20261110/README.md",
+      "experiment report/class-refactor-20261110/implementation-notes.md"
+    ],
+    "local_links_checked": 77,
+    "broken_local_links": 0,
+    "local_anchors_checked": 5,
+    "broken_local_anchors": 0
+  },
+  "baseline_commit": "9a284fb77f8d325663b1f9d8661c468e4cd51255",
+  "baseline_source_files_sha256": {
+    "__init__.py": "c7c2d2f7d1e0746ab6a51903610c3542605f697e757434d75fc0e21ee33e0298",
+    "cli.py": "f3ef8db78b229f4e269ba6a88cc5022ebacb6e98f365ac2df55f7d3cb706aeae",
+    "common.py": "161d14671a37b84e39dba835bccd5f15dcbd32137f28a3281318f2fe6703ef70",
+    "data.py": "44cc68bfb032df14abfc8e25ef4db50b55e3524551dcfe3e4a59ddf5a62947dc",
+    "metrics.py": "cf6b6b87f296fc030ff0c502b930997dbde7b0c00ef7f9ceb461598790f4638a",
+    "reports.py": "fef361bfaf2ac958d5211bb300b6607e268a53f752e7e1c0c7a3ddb88e3ba2cd",
+    "training.py": "4bcb163dac5474cefa31b7311650169149c0861cb7b9af6460ed5a84896b0931"
+  },
+  "codegraph": {
+    "command": "codegraph index --force E:/ASTC_Compression",
+    "exit_code": 0,
+    "indexed_files": 32,
+    "classes": 19,
+    "nodes": 367,
+    "status_verified_via_mcp": true
+  }
+}

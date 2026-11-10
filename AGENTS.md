@@ -48,6 +48,8 @@
 
 ## 工具与代码风格
 
+- 核心实现按class与职责分包。`models/`维护`ASTCClassifier`，`data/`维护数据准备、Dataset与DataModule，`training/`维护`Trainer`，`calibration/`、`evaluation/`、`reporting/`分别维护校准、推理评估与报告。`[verified: 用户要求“MODEL，DATA，TRAIN这些按照规范需要全部分开”“全部以class的形式分开”；对应包的class定义]`
+- 新调用直接使用class API，旧函数路径作为兼容入口维护。依赖方向为配置与工具 → 数据／模型 → 推理与指标 → 训练／校准／评估 → CLI，数据准备入口保持CPU依赖路径。架构与兼容性检查见[重构报告](<experiment report/class-refactor-20261110/README.md>)。`[opinion]`
 - 文本检索优先 `rg`，Python依赖与执行优先 `uv`、`uv run`，采用用户全局规则中的工具偏好。`[verified: 用户提供的全局规则“Available CLI Tools”]`
 - 所有Python函数参数和返回值都写类型注解，无返回值显式使用 `-> None`，优先现代类型语法。`[verified: 用户提供的全局规则“Python Preferences”]`
 - Python格式与静态检查优先 `ruff`、`basedpyright`，长任务使用无缓冲输出。依赖、检查命令和运行入口以实际代码为准。`[verified: 用户提供的全局规则“Python Preferences”]` `[opinion]`

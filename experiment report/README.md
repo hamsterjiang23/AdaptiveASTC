@@ -1,5 +1,6 @@
 # 实验报告
 
+- [Class架构重构与兼容性检查](class-refactor-20261110/README.md)记录模型、数据、训练、校准、评估和报告的独立class，以及数值对照与CLI检查。`[verified: 对应源码类定义；class-refactor-20261110/verification.json]`
 - [GDC分类复现与独立校准](gdc-lite-rgb-resnet18-seed20261109/protocol.md)使用现有LITE标签与源图，两组ResNet18各完成30轮及温度拟合。结果见[训练报告](gdc-lite-rgb-resnet18-seed20261109/training_report.md)、[数据报告](gdc-lite-rgb-resnet18-seed20261109/data_report.md)和[验证记录](gdc-lite-rgb-resnet18-seed20261109/verification.json)。`[verified: 对应运行报告及验证记录]`
 - [实现记录](gdc-lite-rgb-resnet18-seed20261109/implementation-notes.md)记录计划调整与边界，[资源记录](gdc-lite-rgb-resnet18-seed20261109/task-costs.md)记录试跑和正式运行成本。`[verified: 对应记录文件]`
 - [数据集划分比例复核](gdc-lite-rgb-resnet18-seed20261109/数据集划分比例复核.md)记录2026-11-10全量清单检查，类别占比接近，资源组成与单组集中度存在偏移。`[verified: split_proportion_audit.json的splits、class_conditional_effects]`
