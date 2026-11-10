@@ -58,3 +58,9 @@ scratch训练loss由1.2649至0.0326，验证NLL由1.7747至2.2079，选中第7�
 标签来源为LITE选参缓存，其preset与RDO混合，RGB输入省略Alpha，Unity导入后输入域仍需独立验证。本次类别正确率对应历史标签。PSNR35达标率、法线误差、真实字节收益与生产单次压缩效果需要候选压缩实测。`[verified: protocol.md；data_summary.json /table_config]`
 
 温度在独立校准集拟合，两个模型与温度固定后统一打开测试集。所有逐类指标、混淆矩阵、可靠性分箱及模型指纹见[聚合指标](metrics.json)。`[verified: metrics.json；私有test_seal.json]`
+
+## 2026-11-10划分代表性复核
+
+训练与测试的最大类别占比差为0.03个百分点，测试集中Mask单组占46.05%，候选总体中该组占4.32%。训练／测试含非不透明Alpha比例为51.08%／28.75%。完整对照见[数据集划分比例复核](数据集划分比例复核.md)。`[verified: split_proportion_audit.json /train_test_max_class_percentage_point_gap、/mask_metadata_population、/splits]`
+
+上述指标对应当前资产隔离划分。整体项目代表性需要补充来源、尺寸、Alpha和单组集中度约束，低召回的原因需要控制变量实验。`[opinion]`

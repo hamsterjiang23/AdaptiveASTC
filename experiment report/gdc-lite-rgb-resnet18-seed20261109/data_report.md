@@ -35,3 +35,7 @@ missing_records表示按本轮筛除顺序进入路径检查的缺失记录，�
 留出母池为{'test': 1, 'calibration': 2, 'validation': 3}，测试、校准、验证覆盖168、147、184个资产组。初始版本和调整依据见[data_protocol_v1_audit.json](data_protocol_v1_audit.json)。`[verified: data_summary.json；data_protocol_v1_audit.json]`
 
 软件试跑和资源探测合计208张图片及近重复候选已排除，正式模型从各自指定初始化重新训练。`[verified: data_summary.json /filter_counts/excluded_smoke_hashes；训练config.json]`
+
+## 2026-11-10比例复核
+
+[数据集划分比例复核](数据集划分比例复核.md)给出训练、验证、校准和测试的数量与类别比例，以及资源来源、Alpha、尺寸和最大单组占比。测试集最大单组占46.05%，单纯要求至少50组不足以约束该集中度。`[verified: split_proportion_audit.json /splits/test/largest_group]` `[opinion]`

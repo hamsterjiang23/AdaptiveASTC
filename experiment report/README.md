@@ -2,6 +2,7 @@
 
 - [GDC分类复现与独立校准](gdc-lite-rgb-resnet18-seed20261109/protocol.md)使用现有LITE标签与源图，两组ResNet18各完成30轮及温度拟合。结果见[训练报告](gdc-lite-rgb-resnet18-seed20261109/training_report.md)、[数据报告](gdc-lite-rgb-resnet18-seed20261109/data_report.md)和[验证记录](gdc-lite-rgb-resnet18-seed20261109/verification.json)。`[verified: 对应运行报告及验证记录]`
 - [实现记录](gdc-lite-rgb-resnet18-seed20261109/implementation-notes.md)记录计划调整与边界，[资源记录](gdc-lite-rgb-resnet18-seed20261109/task-costs.md)记录试跑和正式运行成本。`[verified: 对应记录文件]`
+- [数据集划分比例复核](gdc-lite-rgb-resnet18-seed20261109/数据集划分比例复核.md)记录2026-11-10全量清单检查，类别占比接近，资源组成与单组集中度存在偏移。`[verified: split_proportion_audit.json的splits、class_conditional_effects]`
 
 所有逐图清单、缓存、检查点和原始日志保存到本目录的`.local/`。聚合报告和代码纳入Git。`[verified: 用户确认的实验方案]`
 
