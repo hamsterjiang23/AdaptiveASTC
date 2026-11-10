@@ -31,4 +31,4 @@ Cubemap 与 2D 资产分别保留维度字段。原生选参取第一个 image �
 
 ## 全量运行进度快照
 
-在 2026-11-10T14:03:30.198555+00:00，全量已完成 5104/10,000 张，同期原生记录 5105 条，导入失败 0，已完成图片缺失原生记录 0，参数缓存命中 0。全量仍在运行。`[verified: summary.json running_full_snapshot；对应时点 full-imports.jsonl/full-native.jsonl]`
+在 2026-11-10T15:44:24.726504+00:00，全量已完成 7733/10,000 张，同期原生记录 7733 条，导入失败 1，已完成图片缺失原生记录 1，参数缓存命中 0。全量仍在运行。`[verified: summary.json running_full_snapshot；对应时点 full-imports.jsonl/full-native.jsonl]`
