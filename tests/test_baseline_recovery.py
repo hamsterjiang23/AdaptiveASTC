@@ -128,3 +128,40 @@ def test_retry_assembly_preserves_original_failure_and_is_repeatable(
     for item in bundle["inputs"]:
         assert hashlib.sha256(Path(item["path"]).read_bytes()).hexdigest() == item["sha256"]
     assert recovery.assemble()["timings"] == first["timings"]
+
+
+def test_reviewed_metadata_pair_preserves_a_later_external_edit(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    project = tmp_path / "project"
+    relative = Path("Assets/test.png.meta")
+    target = project / relative
+    target.parent.mkdir(parents=True)
+    target.write_bytes(b"migrated metadata")
+    baseline = UnitySearchBaseline(tmp_path, project, tmp_path / "Editor.exe", tmp_path)
+    backups = baseline.run_dir / "backups"
+    backup = backups / relative
+    backup.parent.mkdir(parents=True)
+    backup.write_bytes(b"legacy metadata")
+    baseline._write(baseline.run_dir / "full-config.json", {"backupDirectory": str(backups)})
+    baseline._write(baseline.run_dir / "full-launch.json", {"editor_sha256": "editor"})
+    baseline._write(
+        baseline.run_dir / "reviewed-metadata-overrides.json",
+        {
+            "_protocol_sha256": "protocol",
+            "_editor_sha256": "editor",
+            "Assets/test.png": {
+                "original_sha256": hashlib.sha256(backup.read_bytes()).hexdigest(),
+                "override_sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
+            },
+        },
+    )
+    monkeypatch.setattr(baseline, "verify_protocol", lambda: "protocol")
+    recovery = BaselineRecovery(baseline)
+    failed = [{"asset": "Assets/test.png"}]
+    recovery._recover_interrupted_metadata(failed)
+    assert target.read_bytes() == b"legacy metadata"
+    target.write_bytes(b"later external change")
+    with pytest.raises(ValueError, match="beyond the benchmark override"):
+        recovery._recover_interrupted_metadata(failed)
+    assert target.read_bytes() == b"later external change"

@@ -76,6 +76,19 @@ class BaselineRecovery:
         evidence = (
             json.loads(evidence_path.read_text(encoding="utf-8")) if evidence_path.exists() else []
         )
+        reviewed_path = self.baseline.run_dir / "reviewed-metadata-overrides.json"
+        reviewed = (
+            json.loads(reviewed_path.read_text(encoding="utf-8")) if reviewed_path.exists() else {}
+        )
+        if reviewed:
+            launch = json.loads(
+                (self.baseline.run_dir / "full-launch.json").read_text(encoding="utf-8")
+            )
+            if (
+                reviewed.get("_protocol_sha256") != self.baseline.verify_protocol()
+                or reviewed.get("_editor_sha256") != launch["editor_sha256"]
+            ):
+                raise ValueError("Reviewed metadata changes belong to another baseline identity")
         for row in failed:
             relative = Path(row["asset"] + ".meta")
             backup = backup_dir / relative
@@ -86,12 +99,21 @@ class BaselineRecovery:
                 continue
             original = backup.read_text(encoding="utf-8-sig")
             current = target.read_bytes()
-            if current.decode("utf-8-sig").replace("\r\n", "\n") != self._override_metadata(
-                original
-            ):
-                raise ValueError(
-                    f"Metadata includes changes beyond the benchmark override: {relative}"
-                )
+            try:
+                expected_override = self._override_metadata(original)
+            except ValueError:
+                expected_override = None
+            verification = "reconstructed_android_override"
+            if current.decode("utf-8-sig").replace("\r\n", "\n") != expected_override:
+                checked = reviewed.get(row["asset"], {})
+                if (
+                    checked.get("original_sha256") != self._sha(backup)
+                    or checked.get("override_sha256") != hashlib.sha256(current).hexdigest()
+                ):
+                    raise ValueError(
+                        f"Metadata includes changes beyond the benchmark override: {relative}"
+                    )
+                verification = "reviewed_exact_importer_migration"
             expected = self.baseline.metadata_recovery_hash_path(backup_dir, relative)
             expected.parent.mkdir(parents=True, exist_ok=True)
             expected.write_text(hashlib.sha256(current).hexdigest(), encoding="utf-8")
@@ -100,6 +122,7 @@ class BaselineRecovery:
                     "asset": row["asset"],
                     "original_sha256": self._sha(backup),
                     "override_sha256": hashlib.sha256(current).hexdigest(),
+                    "verification": verification,
                 }
             )
         self.baseline._write(evidence_path, evidence)
@@ -288,6 +311,14 @@ class BaselineRecovery:
             self.repair.run_dir / "BenchmarkRunner.cs",
             retry_parameters,
         ]
+        inputs.extend(
+            path
+            for path in [
+                self.baseline.run_dir / "metadata-recovery-evidence.json",
+                self.baseline.run_dir / "reviewed-metadata-overrides.json",
+            ]
+            if path.is_file()
+        )
         bundle = {
             "protocol_sha256": protocol,
             "inputs": [{"path": str(path.resolve()), "sha256": self._sha(path)} for path in inputs],

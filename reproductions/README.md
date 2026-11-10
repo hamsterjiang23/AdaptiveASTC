@@ -62,6 +62,8 @@ uv run --frozen python script/reproduce.py report
 
 `repair` runs only failed import rows in a new empty cache after restoring their original metadata. `assemble` retains the original cohort, its failed rows and original process exit code, then combines successful measurements into one result per frozen asset. A recovered full baseline uses `passed_with_retries`, records both process outcomes and pins raw inputs/assembled outputs by SHA-256. Formal literature runs require complete 10,000-image coverage, successful recovery and verified provenance. `[verified: recovery.py run/assemble; benchmark.py audit; common/upstream.py BaselineGate]`
 
+Four failed assets also exercised legacy Unity metadata migration. Their exact original/current SHA-256 pairs were reviewed against the observed diffs and the importer's version-conversion code. Recovery requires both hashes and the same protocol/Editor identity for those cases, while later file changes remain conflicts. `[verified: .local/unity-search-baseline-lite-rdo-off/reviewed-metadata-overrides.json; TextureImporter.cpp L769–920 and L953–970; TextureImporterTypes.cpp L66–110; recovery.py _recover_interrupted_metadata; reviewed-pair regression test]`
+
 ## Nah encoder commands
 
 Source preparation and compilation are available before full baseline acceptance. Image experiments require the passed 10,000-image baseline receipt. Both native builds retain clean pinned upstream source and record the executable SHA-256. `[verified: common/upstream.py EncoderSource/BaselineGate; common/nah_experiment.py run]`
