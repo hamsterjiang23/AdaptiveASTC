@@ -57,6 +57,36 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 | 实验复现 | 已完成14,000张LITE源图划分、两组ResNet18各30轮及独立温度校准。测试准确率为67.50%／62.35%，中间块大小类别召回较低。[比例复核](<experiment report/gdc-lite-rgb-resnet18-seed20261109/数据集划分比例复核.md>)发现测试集中Mask单组占46.05%，详见[实验报告](<experiment report/gdc-lite-rgb-resnet18-seed20261109/training_report.md>)。质量与字节收益需候选压缩实测。`[verified: 实验metrics.json、data_summary.json、split_proportion_audit.json；opinion: 生产质量评价范围]` |
 | Git | 已初始化，分支为`main`，远端为`hamsterjiang23/AdaptiveASTC`，MP4视频通过Git LFS管理。`[verified: git init、git branch --show-current、git remote add origin输出；.gitattributes中的*.mp4规则]` |
 
+## 代码组织与Class规范
+
+核心实现按职责分包，并使用独立class组织模型、数据、训练、校准、评估与报告。后续新增功能沿用这一约定，具体执行要求同时写入[AGENTS.md](AGENTS.md#代码组织与class规范)。`[verified: 用户要求“MODEL，DATA，TRAIN这些按照规范需要全部分开”“全部以class的形式分开”及本次规范入文档要求]`
+
+### 目录职责
+
+下列路径均相对于`src/adaptive_astc/`，新增实现优先归入已有职责目录。`[opinion]`
+
+| 目录或文件 | 主要class | 维护职责 |
+|---|---|---|
+| `models/` | `ASTCClassifier` | 网络结构、分类头与前向计算。`[opinion]` |
+| `data/` | `TextureCatalog`、`ImagePreprocessor`、`DatasetSplitter`、`NearDuplicateIndex`、`DataPreparer`、`TextureDataset`、`TextureDataModule` | 目录筛选、预处理、划分、去重、清单、Dataset和DataLoader。`[opinion]` |
+| `training/` | `Trainer` | 优化器、调度器、AMP、训练循环、验证选模和resume。`[opinion]` |
+| `calibration/` | `TemperatureCalibrator` | 独立校准集上的拟合与校准产物。`[opinion]` |
+| `evaluation/` | `Predictor`、`ClassificationMetrics`、`Evaluator` | 推理、指标计算、测试封存与预测导出。`[opinion]` |
+| `reporting/` | `ReportGenerator` | 聚合结果的图表和Markdown报告。`[opinion]` |
+| `utils/`、`config.py` | `ArtifactStore`、`CheckpointStore`、`RunEnvironment`、`ExperimentRuntime` | 通用持久化、检查点、运行环境及配置常量，配置常量集中在`config.py`。`[opinion]` |
+| `cli.py` | `ExperimentCLI` | 参数解析、组件构造、流程调度与运行回执。`[opinion]` |
+
+### 新增与修改代码
+
+- **按职责定义class**。有状态组件通过实例持有配置、依赖和运行状态，纯计算方法可使用`staticmethod`。文件围绕一种主要职责组织，紧密相关的类可放在同一文件。`[opinion]`
+- **沿用命名与接口**。类名使用`PascalCase`，模块和方法使用`snake_case`。复用已有class及其接口，并为所有Python函数参数与返回值提供类型注解，无返回值显式写`-> None`。`[opinion]` `[verified: 用户提供的Python Preferences]`
+- **保持分层组合**。配置和工具支撑数据、模型、推理及指标，Trainer、校准器与评估器组合这些能力，CLI负责调用。数据准备与CLI帮助路径保持CPU依赖，Torch Dataset从`data.dataset`按需导入。`[opinion]`
+- **通过class API扩展**。新业务逻辑放入对应class，旧函数入口通过薄适配委托给class，包入口负责导出与兼容。`[opinion]`
+- **验证兼容性**。结构调整时核对CLI、检查点参数名与加载、初始化随机数顺序、resume状态、清单指纹及测试封存。先做小样本回归，再扩大运行范围，检查记录保存到`experiment report/`。`[opinion]`
+- **使用统一工具链**。依赖通过`uv`管理，检查使用`uv run --frozen pytest -q`、`uv run --frozen ruff check src tests`和`uv run --frozen basedpyright`，代码格式检查使用`uv run --frozen ruff format --check src tests`。`[opinion]`
+
+当前class与文件映射、调用流程和兼容性验证见[架构重构报告](<experiment report/class-refactor-20261110/README.md>)。`[verified: 对应报告“源码结构”“Class API”“验证范围”]`
+
 ## 从这里阅读
 
 - [Class架构与兼容性检查](<experiment report/class-refactor-20261110/README.md>)记录按职责拆分后的类、调用流程、旧检查点兼容与新旧数值对照。`[verified: src/adaptive_astc/models/resnet.py L10；training/trainer.py L32；对应verification.json]`

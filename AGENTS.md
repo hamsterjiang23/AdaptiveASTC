@@ -46,10 +46,18 @@
 - 分别报告数据准备、训练、预测和最终编码耗时，以及体积、质量分布和失败率。跨资产或跨项目划分时检查近重复数据泄漏。`[opinion]`
 - 实验状态以本次运行日志和产物为依据。`verification.json` 中的历史资料检查与新增实验验证分别记录。`[opinion]`
 
+## 代码组织与Class规范
+
+- 核心实现使用独立class，按[README的目录职责](README.md#目录职责)分包。`models/`维护模型，`data/`维护数据准备、Dataset和DataModule，`training/`维护Trainer，`calibration/`、`evaluation/`、`reporting/`分别维护校准、推理评估和报告。`[verified: 用户要求“MODEL，DATA，TRAIN这些按照规范需要全部分开”“全部以class的形式分开”及本次规范入文档要求]`
+- 新功能优先归入已有目录和class，文件围绕一种主要职责组织，紧密相关的类可同文件维护。有状态组件通过实例持有配置、依赖及运行状态，纯计算方法可使用`staticmethod`。`[opinion]`
+- 类名使用`PascalCase`，模块和方法使用`snake_case`，新增接口复用现有表示和调用方式，所有Python函数遵循下节的类型注解要求。`[opinion]`
+- 依赖按配置与工具 → 数据／模型／推理与指标 → 训练／校准／评估 → CLI组织。数据准备和CLI帮助路径保持CPU依赖，Torch Dataset与DataModule从`data.dataset`按需导入。`[opinion]`
+- 新业务逻辑放入对应class，CLI构造组件并调用公开方法。包入口负责导出和薄兼容，既有函数入口委托给class实现。`[opinion]`
+- 结构调整时核对CLI、检查点键与严格加载、初始化随机数顺序、resume状态、数据清单指纹及测试封存。先运行小样本回归，再扩大运行范围，报告写入`experiment report/`。`[opinion]`
+- 修改架构时同步[README规范](README.md#代码组织与class规范)和本节，具体实现与兼容性记录见[重构报告](<experiment report/class-refactor-20261110/README.md>)。`[opinion]`
+
 ## 工具与代码风格
 
-- 核心实现按class与职责分包。`models/`维护`ASTCClassifier`，`data/`维护数据准备、Dataset与DataModule，`training/`维护`Trainer`，`calibration/`、`evaluation/`、`reporting/`分别维护校准、推理评估与报告。`[verified: 用户要求“MODEL，DATA，TRAIN这些按照规范需要全部分开”“全部以class的形式分开”；对应包的class定义]`
-- 新调用直接使用class API，旧函数路径作为兼容入口维护。依赖方向为配置与工具 → 数据／模型 → 推理与指标 → 训练／校准／评估 → CLI，数据准备入口保持CPU依赖路径。架构与兼容性检查见[重构报告](<experiment report/class-refactor-20261110/README.md>)。`[opinion]`
 - 文本检索优先 `rg`，Python依赖与执行优先 `uv`、`uv run`，采用用户全局规则中的工具偏好。`[verified: 用户提供的全局规则“Available CLI Tools”]`
 - 所有Python函数参数和返回值都写类型注解，无返回值显式使用 `-> None`，优先现代类型语法。`[verified: 用户提供的全局规则“Python Preferences”]`
 - Python格式与静态检查优先 `ruff`、`basedpyright`，长任务使用无缓冲输出。依赖、检查命令和运行入口以实际代码为准。`[verified: 用户提供的全局规则“Python Preferences”]` `[opinion]`
