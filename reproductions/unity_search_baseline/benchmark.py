@@ -174,7 +174,7 @@ class UnitySearchBaseline:
                 if hashlib.sha256((self.run_dir / name).read_bytes()).hexdigest() != expected_hash:
                     raise ValueError(f"Recovered output changed: {name}")
             cache_path = self.run_dir / f"{phase}-parameters.jsonl"
-        cache = self._read_lines(cache_path)
+        cache = self.read_parameter_cache(cache_path)
         policies = [
             row["tableConfig"] for row in cache if row.get("_kind") == "astc_cache_table_config"
         ]
@@ -203,6 +203,10 @@ class UnitySearchBaseline:
             or {self._asset_key(x["filePath"]) for x in records} != expected
         ):
             raise ValueError("Native parameter-cache coverage differs from the phase input list")
+        selected = {
+            self._asset_key(row["asset"]): (row["block_size"], row["preset"])
+            for row in self._read_lines(self.run_dir / f"{phase}-native.jsonl")
+        }
         for row in records:
             asset = self._asset_key(row["filePath"])
             if (
@@ -210,6 +214,8 @@ class UnitySearchBaseline:
                 or row.get("rdo") is not False
             ):
                 raise ValueError(f"Source hash or RDO mismatch: {row['filePath']}")
+            if selected.get(asset) != (row["blockSize"], row["qualityLevel"]):
+                raise ValueError(f"Cached choice differs from native selection: {row['filePath']}")
         launch = json.loads((self.run_dir / f"{phase}-launch.json").read_text(encoding="utf-8"))
         editor_hash = hashlib.sha256(self.editor.read_bytes()).hexdigest()
         if editor_hash != launch["editor_sha256"]:
@@ -459,6 +465,30 @@ class UnitySearchBaseline:
     @staticmethod
     def _asset_key(path: str) -> str:
         return path.replace("\\", "/").casefold()
+
+    @staticmethod
+    def read_parameter_cache(log_path: Path) -> list[dict[str, Any]]:
+        """Replay the native compacted snapshot followed by its append-only journal."""
+        snapshot_path = log_path.with_suffix(".json")
+        policy = None
+        entries: dict[str, dict[str, Any]] = {}
+        if snapshot_path.exists():
+            snapshot = json.loads(snapshot_path.read_text(encoding="utf-8-sig"))
+            policy = snapshot["tableConfig"]
+            for asset, row in snapshot["entries"].items():
+                entries[UnitySearchBaseline._asset_key(asset)] = dict(row, filePath=asset)
+        journal = UnitySearchBaseline._read_lines(log_path)
+        if journal:
+            headers = [row["tableConfig"] for row in journal if "tableConfig" in row]
+            if len(headers) != 1 or (policy is not None and policy != headers[0]):
+                raise ValueError("Snapshot and append log have incompatible native cache policies")
+            policy = headers[0]
+            for row in journal:
+                if "filePath" in row:
+                    entries[UnitySearchBaseline._asset_key(row["filePath"])] = row
+        if policy is None:
+            raise ValueError("Native parameter cache has no quality-policy header")
+        return [{"_kind": "astc_cache_table_config", "tableConfig": policy}, *entries.values()]
 
     @staticmethod
     def _read_lines(path: Path) -> list[dict[str, Any]]:

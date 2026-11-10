@@ -4,7 +4,7 @@ Execution order is Unity search baseline, Nah 2023, Nah 2022, TexNN, then GDC 20
 
 | Directory | Implementation | Current evidence |
 |---|---|---|
-| `unity_search_baseline` | Timing observer plus Unity batch runner | Preparation covers 10,000 training textures and a fixed 64-texture smoke subset. Runtime acceptance requires native telemetry. `[verified: unity_search_baseline/benchmark.py, prepare and summarize]` |
+| `unity_search_baseline` | Timing observer plus Unity batch runner | All 10,000 measured with 32 successful technical retries, source-hash/policy/selection checks and zero metadata conflicts. Search totals 4,060.47 s. `[verified: measured baseline summary.json phases.full]` |
 | `nah2023_adaptive_astcenc` | Author source pinned in `source.json` | Upstream checkout uses commit `4a3a3a61b2f961efe63e00c913876576315872fb`. `[verified: upstream git checkout output]` |
 | `nah2022_psnr_search` | Paper reimplementation | astcenc 3.3, class thresholds and missing manual initialization data are recorded in `source.json`. `[verified: source.json; Nah 2022 Table 1 and §4]` |
 | `texnn` | Paper reimplementation | User-supplied 12-page PDF verified by SHA-256. Separate network architecture Appendix is referenced on its p.12. `[verified: texnn/source.json; supplied PDF p.12]` |
@@ -53,6 +53,8 @@ The [measured report](<../experiment report/unity-search-baseline-lite-rdo-off/R
 The training list includes Cubemap imports. An additional two-Cubemap probe passed actual search and metadata restoration. The full run records actual texture dimensions, with search measured on the first image's mip0 and final compression measured across all faces/mips. `[verified: .local/unity-search-baseline-cubemap-probe/probe-receipt.json; ImageOperations.cpp CompressTextureWithMultipleImages; BenchmarkRunner.cs ImportOne]`
 
 The initial full attempt exposed a metadata-sidecar path failure at 265 characters, after copying a 249-character backup path. The revised runner uses flat SHA-256 backup names and a mapping index. Existing nested backups remain supported, with conservative reconstruction of the four intended Android settings for interrupted writes. The revised code has regression coverage; its native retry validation follows completion of the initial full attempt. `[verified: full-imports.jsonl first failed record; long-path-recovery-evidence.json; BenchmarkRunner.cs ImportOne; recovery.py; metadata regression checks]`
+
+The native short-path retry completed all 32 imports and restored its metadata without conflicts. Full validation combines the compacted JSON snapshot and the JSONL append log, then checks all 10,000 source hashes and selected block/preset pairs against native telemetry. Original and retry process exit codes remain recorded as 1 and 0. `[verified: repair-receipt.json; full-receipt.json; benchmark.py read_parameter_cache/audit]`
 
 ```powershell
 uv run --frozen python script/reproduce.py repair

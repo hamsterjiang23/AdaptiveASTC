@@ -55,7 +55,7 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 | 项目 | 状态与证据 |
 |---|---|
-| Unity 搜索基线 | 已建立原生计时补丁、固定训练清单、独立缓存和逐图核验入口，实测状态见[基线报告](<experiment report/unity-search-baseline-lite-rdo-off/README.md>)。报告按实际完成的运行更新。`[verified: reproductions/unity_search_baseline/；基线报告 summary.json]` |
+| Unity 搜索基线 | 10,000 张已完成，包含 32 张技术失败补测，状态为 passed_with_retries。搜索合计 4,060.47 秒，选参及编码合计 4,163.31 秒，详见[基线报告](<experiment report/unity-search-baseline-lite-rdo-off/README.md>)。源图哈希与实际搜索选择通过核验，metadata 恢复无冲突。`[verified: 基线报告 summary.json phases.full]` |
 | 资料归档 | 视频、中英文网站字幕、19张每分钟截图、10张关键页补充截图已保存。`[verified: materials/gdc2023-astc-parameter-selection/；verification.json]` |
 | 全文整理 | 中英文字幕各328条，校订稿按40段覆盖全部条目，逐条原文另存对照稿。音轨独立ASR转写状态为未运行。`[verified: source/material-metadata.json；transcripts/完整字幕对照.md]` |
 | 方法核实 | 正文展示有标签数据集、块大小分类和ResNet。官网简介另提到强化学习，具体对应关系待作者材料确认。`[verified: 视频10:00、11:28、12:28；官方简介Overview]` |

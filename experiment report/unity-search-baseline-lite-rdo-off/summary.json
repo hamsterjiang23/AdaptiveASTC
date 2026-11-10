@@ -190,6 +190,65 @@
       "metadata_restore_conflicts": [],
       "process_exit_code": 0,
       "process_wall_seconds": 451.02190920000066
+    },
+    "full": {
+      "status": "passed_with_retries",
+      "phase": "full",
+      "expected": 10000,
+      "imports": 10000,
+      "native_records": 10000,
+      "timings": {
+        "search_ms": {
+          "sum": 4060469.3016,
+          "mean": 406.04693016,
+          "median": 259.5212,
+          "p95": 1262.0682,
+          "max": 122755.4059
+        },
+        "select_and_encode_ms": {
+          "sum": 4163310.4649,
+          "mean": 416.33104649,
+          "median": 266.82915,
+          "p95": 1286.1679,
+          "max": 137514.6332
+        },
+        "candidates_attempted": {
+          "sum": 77706.0,
+          "mean": 7.7706,
+          "median": 6.0,
+          "p95": 18.0,
+          "max": 20.0
+        },
+        "import_wall_ms": {
+          "sum": 23828660.006300002,
+          "mean": 2382.86600063,
+          "median": 2223.6661000000004,
+          "p95": 3272.8038,
+          "max": 140622.4879
+        }
+      },
+      "errors": [],
+      "provenance": {
+        "protocol_sha256": "55670ea9738066f705378e825464ac509caffbfa17068ea52871f80e0fe758f7",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 10000,
+        "native_policy_verified": true,
+        "assembly_sha256": "3a80db841efc2a08ec9aac1aed3331df7b124d5b2a33e95d00d15c33cca9b331"
+      },
+      "metadata_restore_conflicts": [],
+      "process_exit_code": 1,
+      "process_exit_codes": [
+        1,
+        0
+      ],
+      "process_wall_seconds": 24416.511879399994,
+      "recovery": {
+        "status": "passed",
+        "recovered_imports": 32,
+        "unrecovered_imports": 0,
+        "original_status": "failed",
+        "repair_run": "E:\\ASTC_Compression\\experiment report\\.local\\unity-search-baseline-lite-rdo-off-repair"
+      }
     }
   },
   "smoke_stability": {
@@ -198,38 +257,43 @@
     "search_total_cv": 0.016293059255301567
   },
   "details": {
-    "phase": "smoke3",
+    "phase": "full",
     "selected_block_counts": {
-      "10x10": 15,
-      "12x12": 28,
-      "6x6": 14,
-      "8x8": 7
+      "8x8": 1490,
+      "12x12": 5434,
+      "10x10": 1366,
+      "6x6": 1710
     },
     "selected_preset_counts": {
-      "exhaustive": 16,
-      "fastest": 20,
-      "medium": 10,
-      "thorough": 13,
-      "fast": 5
+      "thorough": 2460,
+      "fastest": 2912,
+      "medium": 2369,
+      "exhaustive": 1808,
+      "fast": 451
     },
     "selection_reason_counts": {
-      "first_valid": 48,
-      "size_first_strict": 6,
-      "size_first_relaxed": 6,
-      "highest_psnr_fallback": 4
+      "first_valid": 7364,
+      "size_first_relaxed": 498,
+      "size_first_strict": 1761,
+      "highest_psnr_fallback": 377
     },
-    "payload_reuses": 64,
+    "payload_reuses": 10000,
     "texture_dimension_counts": {
-      "Tex2D": 64
+      "Tex2D": 9987,
+      "Cube": 13
     },
     "by_texture_type": {
       "Default": {
-        "count": 63,
-        "search_sum_ms": 28130.4703
+        "count": 9696,
+        "search_sum_ms": 3453567.2303
       },
       "NormalMap": {
-        "count": 1,
-        "search_sum_ms": 130140.1813
+        "count": 299,
+        "search_sum_ms": 605313.3568
+      },
+      "Sprite": {
+        "count": 5,
+        "search_sum_ms": 1588.7145
       }
     },
     "slowest_searches": [
@@ -238,9 +302,9 @@
         "block_size": "6x6",
         "preset": "exhaustive",
         "selection_reason": "highest_psnr_fallback",
-        "search_ms": 130140.1813,
-        "format_ms": 145686.5106,
-        "select_and_encode_ms": 145693.6718,
+        "search_ms": 122755.4059,
+        "format_ms": 137508.6278,
+        "select_and_encode_ms": 137514.6332,
         "candidates_attempted": 20,
         "candidates_measured": 20,
         "payload_reuses": 1,
@@ -249,150 +313,140 @@
         "success": true
       },
       {
-        "asset": "Assets/Art/Environment/PVP_049_ob/Textures/DynamicReplace/ML_049_Limittest_ob_8.tga",
-        "block_size": "12x12",
-        "preset": "exhaustive",
-        "selection_reason": "size_first_relaxed",
-        "search_ms": 7739.2831,
-        "format_ms": 7775.0914,
-        "select_and_encode_ms": 7775.8196,
-        "candidates_attempted": 6,
-        "candidates_measured": 6,
-        "payload_reuses": 1,
-        "cache_hit": false,
-        "search_executed": true,
-        "success": true
-      },
-      {
-        "asset": "Assets/Art/Characters/5_nana/Show/skin10_high/5_nana_skin10_high_hair03_m11.tga",
+        "asset": "Assets/Scenes/temp/Environment/PVP_SPD_add/Textures/dimo/ML_067_S5_redbuff_07_N.tga",
         "block_size": "6x6",
-        "preset": "thorough",
-        "selection_reason": "size_first_strict",
-        "search_ms": 2143.409,
-        "format_ms": 2147.7873,
-        "select_and_encode_ms": 2147.8082,
-        "candidates_attempted": 19,
-        "candidates_measured": 19,
+        "preset": "exhaustive",
+        "selection_reason": "highest_psnr_fallback",
+        "search_ms": 34655.4939,
+        "format_ms": 38974.4902,
+        "select_and_encode_ms": 38975.8171,
+        "candidates_attempted": 20,
+        "candidates_measured": 20,
         "payload_reuses": 1,
         "cache_hit": false,
         "search_executed": true,
         "success": true
       },
       {
-        "asset": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900331_MC/Map1900331_M.png",
-        "block_size": "12x12",
+        "asset": "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas445_add/Atlas_HQHeroAtlas445_add.png",
+        "block_size": "8x8",
         "preset": "exhaustive",
         "selection_reason": "size_first_relaxed",
-        "search_ms": 1426.5143,
-        "format_ms": 1431.6724,
-        "select_and_encode_ms": 1431.689,
-        "candidates_attempted": 6,
-        "candidates_measured": 6,
+        "search_ms": 22577.4023,
+        "format_ms": 22598.0013,
+        "select_and_encode_ms": 22599.0088,
+        "candidates_attempted": 16,
+        "candidates_measured": 16,
         "payload_reuses": 1,
         "cache_hit": false,
         "search_executed": true,
         "success": true
       },
       {
-        "asset": "Assets/RuledAssets/Act_SurpriseCard_AS/Art/TAEft/Texture/BangBangcard_03_4k.png",
-        "block_size": "12x12",
+        "asset": "Assets/Scenes/temp/Environment/PVP_065_S5_add/Textures/ML_065_S5_redbuff_08_N.tga",
+        "block_size": "8x8",
         "preset": "medium",
-        "selection_reason": "size_first_strict",
-        "search_ms": 1078.3919,
-        "format_ms": 1118.9824,
-        "select_and_encode_ms": 1276.1645,
-        "candidates_attempted": 3,
-        "candidates_measured": 3,
-        "payload_reuses": 1,
-        "cache_hit": false,
-        "search_executed": true,
-        "success": true
-      },
-      {
-        "asset": "Assets/Art/Characters/129_wuzetian/Show/skin01_high/wuzetian_skin01_high_bantou_d.tga",
-        "block_size": "12x12",
-        "preset": "exhaustive",
-        "selection_reason": "size_first_relaxed",
-        "search_ms": 728.9459,
-        "format_ms": 740.4846,
-        "select_and_encode_ms": 740.5,
-        "candidates_attempted": 6,
-        "candidates_measured": 6,
-        "payload_reuses": 1,
-        "cache_hit": false,
-        "search_executed": true,
-        "success": true
-      },
-      {
-        "asset": "Assets/Art/Characters/29_xiaohongmao/Show/skin09_high/29_Ruby_skin08_high_body02_g.tga",
-        "block_size": "12x12",
-        "preset": "exhaustive",
-        "selection_reason": "size_first_relaxed",
-        "search_ms": 695.5065,
-        "format_ms": 704.728,
-        "select_and_encode_ms": 704.7419,
-        "candidates_attempted": 6,
-        "candidates_measured": 6,
-        "payload_reuses": 1,
-        "cache_hit": false,
-        "search_executed": true,
-        "success": true
-      },
-      {
-        "asset": "Assets/Art/Characters/01_gongjianshou/Show/skin_high_cnnew/gongjianshou_skin00_high_e.tga",
-        "block_size": "12x12",
-        "preset": "exhaustive",
-        "selection_reason": "size_first_relaxed",
-        "search_ms": 673.941,
-        "format_ms": 701.3623,
-        "select_and_encode_ms": 701.3764,
-        "candidates_attempted": 6,
-        "candidates_measured": 6,
-        "payload_reuses": 1,
-        "cache_hit": false,
-        "search_executed": true,
-        "success": true
-      },
-      {
-        "asset": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_wmd_0682.png",
-        "block_size": "6x6",
-        "preset": "fast",
         "selection_reason": "first_valid",
-        "search_ms": 629.9186,
-        "format_ms": 632.765,
-        "select_and_encode_ms": 632.778,
-        "candidates_attempted": 17,
-        "candidates_measured": 17,
+        "search_ms": 17997.2618,
+        "format_ms": 18024.7876,
+        "select_and_encode_ms": 18025.4967,
+        "candidates_attempted": 13,
+        "candidates_measured": 13,
         "payload_reuses": 1,
         "cache_hit": false,
         "search_executed": true,
         "success": true
       },
       {
-        "asset": "Assets/Art/Characters/balancemagic/Materials/skin03_high/balancemagic_skin03_high_weapon_s.jpg",
+        "asset": "Assets/Art/Characters/lancelot/Materials/skin09_high/47_Lancelot_Skin09_n.tga",
+        "block_size": "6x6",
+        "preset": "exhaustive",
+        "selection_reason": "highest_psnr_fallback",
+        "search_ms": 9149.0101,
+        "format_ms": 10212.8635,
+        "select_and_encode_ms": 10213.0967,
+        "candidates_attempted": 20,
+        "candidates_measured": 20,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      {
+        "asset": "Assets/Art/Characters/79_mike/Show/skin12_high/Granger_skin12_high_body02_n5x5.tga",
+        "block_size": "6x6",
+        "preset": "exhaustive",
+        "selection_reason": "highest_psnr_fallback",
+        "search_ms": 8610.3995,
+        "format_ms": 9712.8063,
+        "select_and_encode_ms": 9712.8531,
+        "candidates_attempted": 20,
+        "candidates_measured": 20,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      {
+        "asset": "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas334_add/Atlas_HQHeroAtlas334_add.png",
         "block_size": "12x12",
         "preset": "exhaustive",
         "selection_reason": "size_first_relaxed",
-        "search_ms": 623.1774,
-        "format_ms": 626.5291,
-        "select_and_encode_ms": 626.5438,
+        "search_ms": 8431.5949,
+        "format_ms": 8449.3874,
+        "select_and_encode_ms": 8450.0605,
         "candidates_attempted": 6,
         "candidates_measured": 6,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      {
+        "asset": "Assets/UI/Prefabs/res_version/HeroCardSpine_Atlas/HeroCardSpine_1289/HeroCardSpine_1289.png",
+        "block_size": "12x12",
+        "preset": "exhaustive",
+        "selection_reason": "size_first_relaxed",
+        "search_ms": 8286.6511,
+        "format_ms": 8310.1754,
+        "select_and_encode_ms": 8311.0123,
+        "candidates_attempted": 6,
+        "candidates_measured": 6,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      {
+        "asset": "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas068_add/Atlas_HQHeroAtlas068_add.png",
+        "block_size": "12x12",
+        "preset": "exhaustive",
+        "selection_reason": "size_first_relaxed",
+        "search_ms": 8197.0443,
+        "format_ms": 8212.0226,
+        "select_and_encode_ms": 8212.6745,
+        "candidates_attempted": 6,
+        "candidates_measured": 6,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      {
+        "asset": "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas336_add/Atlas_HQHeroAtlas336_add.png",
+        "block_size": "12x12",
+        "preset": "exhaustive",
+        "selection_reason": "size_first_strict",
+        "search_ms": 8142.1343,
+        "format_ms": 8157.5594,
+        "select_and_encode_ms": 8158.2048,
+        "candidates_attempted": 5,
+        "candidates_measured": 5,
         "payload_reuses": 1,
         "cache_hit": false,
         "search_executed": true,
         "success": true
       }
     ]
-  },
-  "running_full_snapshot": {
-    "observed_utc": "2026-11-10T15:44:24.726504+00:00",
-    "state": "running",
-    "expected": 10000,
-    "imports": 7733,
-    "native_records": 7733,
-    "failed_imports": 1,
-    "unmatched_completed_imports": 1,
-    "cache_hits": 0
   }
 }

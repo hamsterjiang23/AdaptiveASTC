@@ -244,6 +244,21 @@ class BaselineRecovery:
         for name, expected in json.loads(complete_path.read_text(encoding="utf-8")).items():
             if self._sha(archive / name) != expected:
                 raise ValueError(f"Archived original measurement changed: {name}")
+        config = json.loads(
+            (self.baseline.run_dir / "full-config.json").read_text(encoding="utf-8")
+        )
+        snapshot = self.baseline.project / config["cacheDirectory"] / "parameter_cache_detail.json"
+        if snapshot.exists() and not (archive / "full-parameters.json").exists():
+            temporary_snapshot = archive / "full-parameters.json.tmp"
+            shutil.copyfile(snapshot, temporary_snapshot)
+            if self._sha(temporary_snapshot) != self._sha(snapshot):
+                raise ValueError("Native snapshot changed while archiving")
+            temporary_snapshot.replace(archive / "full-parameters.json")
+            hashes = json.loads(complete_path.read_text(encoding="utf-8"))
+            hashes["full-parameters.json"] = self._sha(archive / "full-parameters.json")
+            temporary_complete = complete_path.with_suffix(".tmp")
+            self.baseline._write(temporary_complete, hashes)
+            temporary_complete.replace(complete_path)
         original = json.loads((archive / "full-receipt.json").read_text(encoding="utf-8"))
         primary_rows = self.baseline._read_lines(archive / "full-imports.jsonl")
         failed = {
@@ -266,8 +281,8 @@ class BaselineRecovery:
         retry_parameters = (
             self.repair.project / retry_config["cacheDirectory"] / "parameter_cache_detail.jsonl"
         )
-        parameters = self.baseline._read_lines(archive / "full-parameters.jsonl")
-        extra = self.baseline._read_lines(retry_parameters)
+        parameters = self.baseline.read_parameter_cache(archive / "full-parameters.jsonl")
+        extra = self.baseline.read_parameter_cache(retry_parameters)
         policy = [row for row in parameters if "tableConfig" in row]
         if len(policy) != 1 or policy != [row for row in extra if "tableConfig" in row]:
             raise ValueError("Original and recovery native quality policies differ")

@@ -74,7 +74,7 @@ def write_report(baseline: UnitySearchBaseline) -> dict[str, object]:
         "",
         "search_ms 包含候选试压缩、解压、质量评价与最终选择。select_and_encode_ms 覆盖"
         "CompressTextureWithMultipleImages 的完整压缩过程，包含实际 payload 复用和 mip。"
-        "import_wall_ms 单独测量同步 ImportAsset。Editor 启动、预热和退出计入进程墙钟。"
+        "import_wall_ms 单独测量同步 ImportAsset。总墙钟包含 Editor 启动、预热、退出及恢复核验。"
         "这些区间存在包含关系。`[verified: timing.patch；ASTCBenchmark.h；BenchmarkRunner.cs]`",
         "",
         "Cubemap 与 2D 资产分别保留维度字段。原生选参取第一个 image 的 mip0，"
@@ -83,7 +83,7 @@ def write_report(baseline: UnitySearchBaseline) -> dict[str, object]:
         "",
         "## 实测结果",
         "",
-        "| 运行 | 状态 | 图片数 | 搜索合计 s | 选参及编码合计 s | 导入合计 s | 进程墙钟 s |",
+        "| 运行 | 状态 | 图片数 | 搜索合计 s | 选参及编码合计 s | 导入合计 s | 总墙钟 s |",
         "|---|---|---|---|---|---|---|",
     ]
     for phase, row in receipts.items():
@@ -106,6 +106,54 @@ def write_report(baseline: UnitySearchBaseline) -> dict[str, object]:
                 "`[verified: 当前已生成的 phase receipt 集合]`",
             ]
         )
+    else:
+        full = receipts["full"]
+        lines.extend(
+            [
+                "",
+                "## 全量分布",
+                "",
+                "| 计时区间 | 平均 ms | 中位数 ms | P95 ms | 最大 ms |",
+                "|---|---|---|---|---|",
+            ]
+        )
+        for key in ["search_ms", "select_and_encode_ms", "import_wall_ms"]:
+            stats = full["timings"][key]
+            lines.append(
+                f"| {key} | {stats['mean']:.3f} | {stats['median']:.3f} | "
+                f"{stats['p95']:.3f} | {stats['max']:.3f} `[verified: full-receipt.json timings]` |"
+            )
+        candidates = full["timings"]["candidates_attempted"]
+        lines.extend(
+            [
+                "",
+                f"共尝试 {int(candidates['sum']):,} 个候选，平均每张 {candidates['mean']:.4f} 个。"
+                "候选压缩结果的实际复用已包含在本基线中。"
+                "模型路径比较计入预处理、推理和最终编码。"
+                "`[verified: full-receipt.json timings；ASTCBenchmark.h；用户确认的计时协议]`",
+            ]
+        )
+        if full["status"] == "passed_with_retries":
+            recovered = full["recovery"]["recovered_imports"]
+            lines.extend(
+                [
+                    "",
+                    "## 补测与验收",
+                    "",
+                    f"首批 10,000 张中有 {recovered} 张发生备份路径技术失败，"
+                    "随后在独立空缓存中补测成功。"
+                    "合并结果逐图保留成功测量，初次失败、原始退出码和完整原始记录保存在归档中。"
+                    "本次状态为 `passed_with_retries`。"
+                    "`[verified: full-receipt.json recovery/process_exit_codes；"
+                    "full-assembly.json]`",
+                    "",
+                    "完整覆盖、原生搜索执行、源图 MD4、LITE/RDO-off 策略及参数选择均通过核验，"
+                    "metadata 恢复冲突为 0。引擎参数缓存按 JSON 快照和 JSONL 增量共同读取，"
+                    "原始文件及合并文件由 SHA-256 绑定。"
+                    "`[verified: full-receipt.json provenance/metadata_restore_conflicts；"
+                    "full-assembly.json]`",
+                ]
+            )
     lines.extend(
         [
             "",

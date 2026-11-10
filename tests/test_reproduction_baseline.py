@@ -249,3 +249,40 @@ def test_interrupted_metadata_index_still_restores_the_valid_prefix(
     assert len(conflicts) == 1
     assert "entry 2" in conflicts[0]
     assert target.read_bytes() == b"original"
+
+
+def test_native_cache_replays_compacted_snapshot_and_later_updates(tmp_path: Path) -> None:
+    log = tmp_path / "parameters.jsonl"
+    log.with_suffix(".json").write_text(
+        json.dumps(
+            {
+                "tableConfig": {"psnr": 30},
+                "entries": {"Assets/a.png": {"fileHash": "old"}, "Assets/b.png": {"fileHash": "b"}},
+            }
+        ),
+        encoding="utf-8",
+    )
+    log.write_text(
+        "\n".join(
+            json.dumps(row)
+            for row in [
+                {"tableConfig": {"psnr": 30}},
+                {"filePath": "Assets/a.png", "fileHash": "updated"},
+                {"filePath": "Assets/c.png", "fileHash": "c"},
+            ]
+        ),
+        encoding="utf-8",
+    )
+    rows = UnitySearchBaseline.read_parameter_cache(log)
+    entries = {row["filePath"]: row["fileHash"] for row in rows if "filePath" in row}
+    assert entries == {"Assets/a.png": "updated", "Assets/b.png": "b", "Assets/c.png": "c"}
+
+
+def test_native_cache_rejects_a_snapshot_log_policy_mismatch(tmp_path: Path) -> None:
+    log = tmp_path / "parameters.jsonl"
+    log.with_suffix(".json").write_text(
+        json.dumps({"tableConfig": {"psnr": 30}, "entries": {}}), encoding="utf-8"
+    )
+    log.write_text(json.dumps({"tableConfig": {"psnr": 35}}), encoding="utf-8")
+    with pytest.raises(ValueError, match="incompatible"):
+        UnitySearchBaseline.read_parameter_cache(log)
