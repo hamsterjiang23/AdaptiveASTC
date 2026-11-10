@@ -73,8 +73,10 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 | `calibration/` | `TemperatureCalibrator` | 独立校准集上的拟合与校准产物。`[opinion]` |
 | `evaluation/` | `Predictor`、`ClassificationMetrics`、`Evaluator` | 推理、指标计算、测试封存与预测导出。`[opinion]` |
 | `reporting/` | `ReportGenerator` | 聚合结果的图表和Markdown报告。`[opinion]` |
-| `utils/`、`config.py` | `ArtifactStore`、`CheckpointStore`、`RunEnvironment`、`ExperimentRuntime` | 通用持久化、检查点、运行环境及配置常量，配置常量集中在`config.py`。`[opinion]` |
+| `tracking/` | `SwanLabTracker`、`MetricsUploader` | SwanLab运行生命周期、指标／图表上传和带来源指纹的历史结果导入。`[opinion]` |
+| `utils/`、`config.py` | `ArtifactStore`、`CheckpointStore`、`RunEnvironment`、`ExperimentRuntime`、`TrainConfig`、`SwanLabConfig` | 通用持久化、检查点、运行环境及类型化配置，配置定义集中在`config.py`。`[opinion]` |
 | `cli.py` | `ExperimentCLI` | 参数解析、组件构造、流程调度与运行回执。`[opinion]` |
+| 仓库根目录`script/` | 公开启动脚本 | 读取共享配置并调用class入口，启动脚本集中放在此目录。`[verified: 用户要求“用脚本启动的脚本全部放到script里面”]` |
 
 ### 新增与修改代码
 
@@ -83,9 +85,43 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 - **保持分层组合**。配置和工具支撑数据、模型、推理及指标，Trainer、校准器与评估器组合这些能力，CLI负责调用。数据准备与CLI帮助路径保持CPU依赖，Torch Dataset从`data.dataset`按需导入。`[opinion]`
 - **通过class API扩展**。新业务逻辑放入对应class，旧函数入口通过薄适配委托给class，包入口负责导出与兼容。`[opinion]`
 - **验证兼容性**。结构调整时核对CLI、检查点参数名与加载、初始化随机数顺序、resume状态、清单指纹及测试封存。先做小样本回归，再扩大运行范围，检查记录保存到`experiment report/`。`[opinion]`
-- **使用统一工具链**。依赖通过`uv`管理，检查使用`uv run --frozen pytest -q`、`uv run --frozen ruff check src tests`和`uv run --frozen basedpyright`，代码格式检查使用`uv run --frozen ruff format --check src tests`。`[opinion]`
+- **使用统一工具链**。依赖通过`uv`管理，检查使用`uv run --frozen pytest -q`、`uv run --frozen ruff check src script tests`和`uv run --frozen basedpyright`，代码格式检查使用`uv run --frozen ruff format --check src script tests`。`[opinion]`
 
 当前class与文件映射、调用流程和兼容性验证见[架构重构报告](<experiment report/class-refactor-20261110/README.md>)。`[verified: 对应报告“源码结构”“Class API”“验证范围”]`
+
+## 脚本启动与SwanLab
+
+启动脚本集中在[script/](script/)，五个入口共享[train_config.toml](script/train_config.toml)。先编辑`[training]`和`[swanlab]`，再从仓库根目录运行下面的命令。配置文件内的相对路径以该TOML所在目录为基准，显式命令行参数覆盖文件中的对应值。`[verified: script/五个入口的configuration参数；config.py的TrainConfig.load、SwanLabConfig.load]`
+
+```powershell
+uv sync --frozen
+uv run --frozen python script/prepare.py
+uv run --frozen python script/train.py
+uv run --frozen python script/train.py --initialization scratch
+uv run --frozen python script/calibrate.py --initialization pretrained
+uv run --frozen python script/calibrate.py --initialization scratch
+uv run --frozen python script/evaluate.py
+```
+
+准备数据时可通过`--exclude-manifest`重复传入试跑清单，复核既有GDC数据所用的排除项见[实验入口](<experiment report/README.md#复核本次实验>)。新配置的默认目录为`experiment report/.local/gdc-script-resnet18-seed20261109/`，公开报告目录为同名的`experiment report/`子目录。`[verified: cli.py的prepare参数；script/train_config.toml的run_dir、report_dir]`
+
+```powershell
+# 修改轮数和学习率
+uv run --frozen python script/train.py --epochs 30 --learning-rate 0.01
+
+# 从last.pt恢复，并复用该训练的SwanLab身份
+uv run --frozen python script/train.py --resume
+
+# 先保存离线记录，后续使用SwanLab的sync命令上传
+uv run --frozen python script/train.py --swanlab-mode offline
+
+# 上传同一配置目录中已经完成的训练、校准和测试结果
+uv run --frozen python script/upload_metrics.py
+```
+
+`TrainConfig`集中管理路径、初始化、轮数、micro-batch、有效batch、workers、resume、每轮步数上限、学习率、momentum、weight decay、scheduler周期和seed。核心调用为`TrainConfig.load(...) → Trainer.from_config(...).fit()`。检查点恢复前会核对数据与优化配置，SwanLab身份记录在运行目录的`tracking/`，SDK日志保存在`swanlog/`。`[verified: config.py的TrainConfig；cli.py的ExperimentCLI.train；tracking/swanlab.py的identity_path与log_dir]`
+
+脚本默认按TOML中的online模式上传，登录使用`uv run --frozen swanlab login`。可选择offline或disabled，项目、workspace和实验名可在TOML或命令行配置。逐轮记录train loss／accuracy、验证Accuracy／F1／NLL／Brier／ECE及逐类Precision／Recall／F1，另记录学习率、耗时、VRAM、RSS、校准温度、测试指标和报告图表。完整说明与实际云端记录见[脚本与SwanLab接入报告](<experiment report/script-swanlab-20261110/README.md>)。`[verified: script/train_config.toml；tracking/swanlab.py的log_epoch、log_metrics、log_report；本次SDK检查与验证记录]`
 
 ## 从这里阅读
 

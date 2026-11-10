@@ -6,7 +6,7 @@ import random
 import time
 from collections.abc import Sized
 from pathlib import Path
-from typing import cast
+from typing import TYPE_CHECKING, Literal, cast
 
 import numpy as np
 import psutil
@@ -18,7 +18,7 @@ from torch.utils.data import DataLoader
 from torch.version import cuda as cuda_version
 from torchvision.models import ResNet18_Weights
 
-from adaptive_astc.config import SEED, JsonDict
+from adaptive_astc.config import JsonDict, TrainConfig
 from adaptive_astc.data.dataset import TextureDataModule
 from adaptive_astc.evaluation.inference import Predictor
 from adaptive_astc.evaluation.metrics import ClassificationMetrics
@@ -27,6 +27,9 @@ from adaptive_astc.utils.artifacts import ArtifactStore
 from adaptive_astc.utils.checkpoints import CheckpointStore
 from adaptive_astc.utils.environment import RunEnvironment
 from adaptive_astc.utils.runtime import ExperimentRuntime
+
+if TYPE_CHECKING:
+    from adaptive_astc.tracking.swanlab import SwanLabTracker
 
 
 class Trainer:
@@ -42,6 +45,8 @@ class Trainer:
         workers: int = 2,
         resume: bool = False,
         max_steps: int = 0,
+        *,
+        tracker: "SwanLabTracker | None" = None,
     ) -> None:
         self.run_dir = run_dir
         self.report_dir = report_dir
@@ -52,6 +57,33 @@ class Trainer:
         self.resume = resume
         self.max_steps = max_steps
         self.data = TextureDataModule(run_dir, workers)
+        self.config = TrainConfig(
+            run_dir,
+            report_dir,
+            cast(Literal["pretrained", "scratch"], initialization),
+            epochs,
+            micro_batch,
+            workers,
+            resume,
+            max_steps,
+        )
+        self.tracker = tracker
+
+    @classmethod
+    def from_config(cls, config: TrainConfig, tracker: "SwanLabTracker | None" = None) -> "Trainer":
+        trainer = cls(
+            config.run_dir,
+            config.report_dir,
+            config.initialization,
+            config.epochs,
+            config.micro_batch,
+            config.workers,
+            config.resume,
+            config.max_steps,
+            tracker=tracker,
+        )
+        trainer.config = config
+        return trainer
 
     @staticmethod
     def train_epoch(
@@ -62,18 +94,20 @@ class Trainer:
         scaler: GradScaler,
         micro_batch: int,
         max_steps: int,
+        effective_batch: int = 64,
     ) -> JsonDict:
         model.train()
         optimizer.zero_grad(set_to_none=True)
-        accumulation = 64 // micro_batch
+        accumulation = effective_batch // micro_batch
         total_samples = len(cast(Sized, batches.dataset))
         loss_sum = 0.0
         samples = 0
         steps = 0
+        correct = 0
         started = time.perf_counter()
         for batch_index, (images, labels) in enumerate(batches):
-            group_start = (batch_index // accumulation) * 64
-            group_samples = min(64, total_samples - group_start)
+            group_start = (batch_index // accumulation) * effective_batch
+            group_samples = min(effective_batch, total_samples - group_start)
             images, labels = (
                 images.to(device, non_blocking=True),
                 labels.to(device, non_blocking=True),
@@ -88,6 +122,7 @@ class Trainer:
                 raise ValueError("Non-finite training loss")
             scaler.scale(loss).backward()
             loss_sum += float(summed_loss.detach())
+            correct += int(logits.detach().argmax(dim=1).eq(labels).sum())
             samples += len(labels)
             if (batch_index + 1) % accumulation == 0 or batch_index + 1 == len(batches):
                 scaler.step(optimizer)
@@ -100,13 +135,14 @@ class Trainer:
             torch.cuda.synchronize()
         return {
             "loss": loss_sum / samples,
+            "accuracy": correct / samples,
             "samples": samples,
             "steps": steps,
             "seconds": time.perf_counter() - started,
         }
 
     def fit(self) -> JsonDict:
-        self.device = ExperimentRuntime.configure()
+        self.device = ExperimentRuntime.configure(self.config.seed)
         if (self.run_dir / "test_seal.json").exists():
             raise ValueError("Test already opened; train a new run instead")
         if self.device.type != "cuda":
@@ -119,10 +155,13 @@ class Trainer:
             raise ValueError("Existing training state requires --resume or a new run directory")
         self.model = ASTCClassifier(self.initialization, pretrained=not self.resume).to(self.device)
         self.optimizer = torch.optim.SGD(
-            self.model.parameters(), lr=0.01, momentum=0.9, weight_decay=0.0001
+            self.model.parameters(),
+            lr=self.config.learning_rate,
+            momentum=self.config.momentum,
+            weight_decay=self.config.weight_decay,
         )
         self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-            self.optimizer, T_max=30, eta_min=0
+            self.optimizer, T_max=self.config.scheduler_t_max, eta_min=0
         )
         self.scaler = GradScaler("cuda")
         history: list[JsonDict] = []
@@ -130,10 +169,13 @@ class Trainer:
         start_epoch = 0
         if self.resume:
             state = torch.load(last_path, map_location=self.device, weights_only=False)
-            if state["data_fingerprint"] != self.manifest["fingerprint"]:
-                raise ValueError("Checkpoint belongs to a different dataset")
-            if state["initialization"] != self.initialization:
-                raise ValueError("Checkpoint initialization differs")
+            CheckpointStore.validate_resume(
+                state,
+                self.manifest,
+                self.initialization,
+                output,
+                self.config.optimization_signature(),
+            )
             self.model.load_state_dict(state["model"])
             self.optimizer.load_state_dict(state["optimizer"])
             self.scheduler.load_state_dict(state["scheduler"])
@@ -149,8 +191,7 @@ class Trainer:
         config = {
             "architecture": "resnet18",
             "input": "RGB224_bilinear_ImageNet_normalization",
-            "optimizer": {"name": "SGD", "lr": 0.01, "momentum": 0.9, "weight_decay": 0.0001},
-            "scheduler": {"name": "CosineAnnealingLR", "T_max": 30, "eta_min": 0},
+            **self.config.optimization_signature(),
             "loss": "unweighted_cross_entropy",
             "amp": "fp16",
             "pretrained_weights": {
@@ -164,8 +205,7 @@ class Trainer:
             "initialization": self.initialization,
             "data_fingerprint": self.manifest["fingerprint"],
             "epochs_target": self.epochs,
-            "seed": SEED,
-            "effective_batch": 64,
+            "launch_config": self.config.to_dict(),
             "micro_batch": self.micro_batch,
             "workers": self.workers,
             "max_steps": self.max_steps,
@@ -185,7 +225,7 @@ class Trainer:
         ArtifactStore.write_json(output / "config.json", config)
         for epoch in range(start_epoch, self.epochs):
             batches = self.data.loader(
-                self.manifest["splits"]["train"], self.micro_batch, True, SEED + epoch
+                self.manifest["splits"]["train"], self.micro_batch, True, self.config.seed + epoch
             )
             epoch_started = time.perf_counter()
             training = self.train_epoch(
@@ -196,6 +236,7 @@ class Trainer:
                 self.scaler,
                 self.micro_batch,
                 self.max_steps,
+                self.config.effective_batch,
             )
             logits, truth = Predictor.predict(self.model, validation, self.device)
             metrics = ClassificationMetrics.compute(logits, truth)
@@ -206,6 +247,7 @@ class Trainer:
                 "train": training,
                 "validation": metrics,
                 "lr": learning_rate,
+                "micro_batch": self.micro_batch,
                 "epoch_seconds": time.perf_counter() - epoch_started,
                 "peak_vram_mib": torch.cuda.max_memory_allocated() / 1024**2,
                 "rss_mib": psutil.Process().memory_info().rss / 1024**2,
@@ -225,6 +267,7 @@ class Trainer:
                 "history": history,
                 "data_fingerprint": self.manifest["fingerprint"],
                 "initialization": self.initialization,
+                "optimization_config": self.config.optimization_signature(),
                 "python_rng": random.getstate(),
                 "numpy_rng": np.random.get_state(),
                 "torch_rng": torch.get_rng_state(),
@@ -238,6 +281,8 @@ class Trainer:
                 self.report_dir / f"{self.initialization}_training.json",
                 {"config": config, "epochs": history},
             )
+            if self.tracker is not None:
+                self.tracker.log_epoch(record)
             print(
                 f"{self.initialization} epoch={epoch + 1}/{self.epochs} "
                 f"train_loss={training['loss']:.5f} "

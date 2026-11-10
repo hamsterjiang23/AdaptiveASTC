@@ -1,0 +1,20 @@
+[training]
+run_dir = "../experiment report/.local/gdc-script-resnet18-seed20261109"
+report_dir = "../experiment report/gdc-script-resnet18-seed20261109"
+initialization = "pretrained"
+epochs = 30
+micro_batch = 64
+effective_batch = 64
+workers = 2
+resume = false
+max_steps = 0
+learning_rate = 0.01
+momentum = 0.9
+weight_decay = 0.0001
+scheduler_t_max = 30
+seed = 20261109
+
+[swanlab]
+mode = "online"
+project = "AdaptiveASTC"
+tags = ["gdc-reproduction", "resnet18"]

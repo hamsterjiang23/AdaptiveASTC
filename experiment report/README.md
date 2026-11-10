@@ -1,5 +1,6 @@
 # 实验报告
 
+- [脚本启动与SwanLab接入](script-swanlab-20261110/README.md)记录共享TOML、训练配置、指标上传、历史导入、离线试跑与云端核对。`[verified: 对应源码及verification.json]`
 - [Class架构重构与兼容性检查](class-refactor-20261110/README.md)记录模型、数据、训练、校准、评估和报告的独立class，以及数值对照与CLI检查。`[verified: 对应源码类定义；class-refactor-20261110/verification.json]`
 - [GDC分类复现与独立校准](gdc-lite-rgb-resnet18-seed20261109/protocol.md)使用现有LITE标签与源图，两组ResNet18各完成30轮及温度拟合。结果见[训练报告](gdc-lite-rgb-resnet18-seed20261109/training_report.md)、[数据报告](gdc-lite-rgb-resnet18-seed20261109/data_report.md)和[验证记录](gdc-lite-rgb-resnet18-seed20261109/verification.json)。`[verified: 对应运行报告及验证记录]`
 - [实现记录](gdc-lite-rgb-resnet18-seed20261109/implementation-notes.md)记录计划调整与边界，[资源记录](gdc-lite-rgb-resnet18-seed20261109/task-costs.md)记录试跑和正式运行成本。`[verified: 对应记录文件]`
@@ -15,9 +16,11 @@
 uv sync --frozen
 uv run --frozen adaptive-astc --help
 uv run --frozen pytest -q
-uv run --frozen ruff check src tests
+uv run --frozen ruff check src script tests
 uv run --frozen basedpyright
 ```
+
+日常脚本入口统一位于根目录`script/`，共享`script/train_config.toml`，配置与SwanLab说明见[脚本接入报告](script-swanlab-20261110/README.md)。`[verified: 用户脚本目录要求；对应启动脚本和TOML]`
 
 本次正式数据清单和模型保存在`.local/gdc-lite-rgb-resnet18-seed20261109/coverage-v2/`。独立数据复核目录为同级`coverage-v2-reproduce/`，软件试跑和资源探测分别在`.local/smoke-v2/`、`.local/resource-probe/`。`[verified: 本次运行目录及data_reproducibility.json]`
 

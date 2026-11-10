@@ -55,6 +55,9 @@
 - 新业务逻辑放入对应class，CLI构造组件并调用公开方法。包入口负责导出和薄兼容，既有函数入口委托给class实现。`[opinion]`
 - 结构调整时核对CLI、检查点键与严格加载、初始化随机数顺序、resume状态、数据清单指纹及测试封存。先运行小样本回归，再扩大运行范围，报告写入`experiment report/`。`[opinion]`
 - 修改架构时同步[README规范](README.md#代码组织与class规范)和本节，具体实现与兼容性记录见[重构报告](<experiment report/class-refactor-20261110/README.md>)。`[opinion]`
+- 可维护的启动脚本统一放在根目录`script/`，调用src中的class，阶段之间共享同一TOML的实验目录。历史运行脚本与原始日志按实验工件归档在`experiment report/.local/`。`[verified: 用户要求“用脚本启动的脚本全部放到script里面”；opinion: 入口与历史工件的维护边界]`
+- 训练配置使用`TrainConfig`，SwanLab设置使用`SwanLabConfig`，命令行显式值覆盖TOML。添加配置项时同步参数校验、有效配置快照和resume兼容性检查。`[opinion]`
+- 实验跟踪逻辑放入`tracking/`的class，上传已有可计算指标与聚合图表。创建跟踪run前检查训练目录与resume条件，保存run ID，失败时正确结束跟踪；历史导入保留来源指纹与historical_import标记。接入和验证记录见[脚本与SwanLab报告](<experiment report/script-swanlab-20261110/README.md>)。`[opinion]`
 
 ## 工具与代码风格
 

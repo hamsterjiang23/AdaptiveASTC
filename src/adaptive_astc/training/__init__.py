@@ -6,6 +6,7 @@ from torch import Tensor
 from torch.utils.data import DataLoader
 
 from adaptive_astc.common import SEED, JsonDict
+from adaptive_astc.config import TrainConfig as TrainConfig
 from adaptive_astc.data.dataset import TextureDataModule
 from adaptive_astc.data.dataset import TextureDataset as TextureDataset
 from adaptive_astc.evaluation.inference import Predictor

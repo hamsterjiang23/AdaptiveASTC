@@ -1,0 +1,462 @@
+{
+  "prepare": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/prepare.py",
+      "--smoke",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-report"
+    ],
+    "exit_code": 0,
+    "expected_code": 0,
+    "seconds": 14.842854199999238
+  },
+  "elapsed_seconds": 90.25685990000056,
+  "software_scope": {
+    "sizes": {
+      "test": 16,
+      "calibration": 8,
+      "validation": 8,
+      "train": 32
+    },
+    "data_fingerprint": "3db01c4e13ab4144cca3e6d77b89d78039c8f4ba1c689f74d34ba73376ec15b1"
+  },
+  "train_config": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/train.py",
+      "--config",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software.toml",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-report"
+    ],
+    "exit_code": 0,
+    "expected_code": 0,
+    "seconds": 5.899848400000337
+  },
+  "train_resume": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/train.py",
+      "--config",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software.toml",
+      "--resume",
+      "--epochs",
+      "2",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-report"
+    ],
+    "exit_code": 0,
+    "expected_code": 0,
+    "seconds": 5.9597681999994165
+  },
+  "config_and_offline_resume": {
+    "run_id": "hfyh6waa",
+    "same_run_id": true,
+    "epochs": [
+      1,
+      2
+    ],
+    "effective_learning_rate": 0.02,
+    "effective_batch": 32,
+    "scheduler_t_max": 2,
+    "seed": 20261110,
+    "train_accuracy_present": true
+  },
+  "changed_resume_rejected": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/train.py",
+      "--config",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software.toml",
+      "--resume",
+      "--epochs",
+      "3",
+      "--learning-rate",
+      "0.03",
+      "--swanlab-mode",
+      "disabled",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-report"
+    ],
+    "exit_code": 1,
+    "expected_code": 1,
+    "seconds": 4.01439819999996
+  },
+  "pretrained_train": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/train.py",
+      "--config",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software.toml",
+      "--initialization",
+      "pretrained",
+      "--workers",
+      "2",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-report"
+    ],
+    "exit_code": 0,
+    "expected_code": 0,
+    "seconds": 12.874776599999677
+  },
+  "calibrate_pretrained": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/calibrate.py",
+      "--initialization",
+      "pretrained",
+      "--swanlab-mode",
+      "offline",
+      "--workers",
+      "2",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-report"
+    ],
+    "exit_code": 0,
+    "expected_code": 0,
+    "seconds": 8.583330299999943
+  },
+  "calibrate_scratch": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/calibrate.py",
+      "--initialization",
+      "scratch",
+      "--swanlab-mode",
+      "offline",
+      "--workers",
+      "2",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-report"
+    ],
+    "exit_code": 0,
+    "expected_code": 0,
+    "seconds": 8.59323140000015
+  },
+  "evaluate": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/evaluate.py",
+      "--swanlab-mode",
+      "offline",
+      "--workers",
+      "2",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-report"
+    ],
+    "exit_code": 0,
+    "expected_code": 0,
+    "seconds": 12.799599999999373
+  },
+  "evaluate_cached": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/evaluate.py",
+      "--swanlab-mode",
+      "disabled",
+      "--workers",
+      "0",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-report"
+    ],
+    "exit_code": 0,
+    "expected_code": 0,
+    "seconds": 4.781094699999812
+  },
+  "historical_upload_offline": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/upload_metrics.py",
+      "--swanlab-mode",
+      "offline",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\software-report"
+    ],
+    "exit_code": 0,
+    "expected_code": 0,
+    "seconds": 1.9867801999998846
+  },
+  "offline_end_to_end": {
+    "calibration": true,
+    "test_metrics": true,
+    "cached_metrics_equal": true,
+    "historical_import": true,
+    "plot_files": 3
+  },
+  "default_parity_offline": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "script/train.py",
+      "--run-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\parity-run",
+      "--report-dir",
+      "experiment report\\.local\\script-swanlab-20261110\\final\\parity-report",
+      "--initialization",
+      "scratch",
+      "--epochs",
+      "2",
+      "--micro-batch",
+      "16",
+      "--workers",
+      "0",
+      "--swanlab-mode",
+      "offline"
+    ],
+    "exit_code": 0,
+    "expected_code": 0,
+    "seconds": 6.129102699999748
+  },
+  "default_optimization_parity": {
+    "epochs": 2,
+    "real_offline_tracking": true,
+    "all_model_optimizer_scheduler_scaler_rng_equal": true,
+    "validation_and_loss_equal": true
+  },
+  "protected_artifacts": {
+    "files": 44,
+    "all_sha256_unchanged": true
+  },
+  "status": "passed",
+  "cloud_verification": {
+    "pretrained": {
+      "id": "g2jst3lu",
+      "url": "https://swanlab.cn/@HAMSTER/AdaptiveASTC/runs/g2jst3lu",
+      "state": "FINISHED",
+      "historical_import": true,
+      "scalar_keys": 90,
+      "media_keys": [
+        "calibration/result",
+        "report/confusion_matrix",
+        "report/reliability",
+        "report/training_curves",
+        "test/result"
+      ],
+      "summary": {
+        "test/calibrated/accuracy": 0.675,
+        "test/calibrated/nll": 0.7751764954637452,
+        "test/raw/accuracy": 0.675,
+        "test/raw/nll": 0.8016288771017236
+      },
+      "matches_local_metrics_within_tolerance": true,
+      "absolute_tolerance": 1e-12,
+      "max_absolute_difference": 0.0
+    },
+    "scratch": {
+      "id": "9upi1o1n",
+      "url": "https://swanlab.cn/@HAMSTER/AdaptiveASTC/runs/9upi1o1n",
+      "state": "FINISHED",
+      "historical_import": true,
+      "scalar_keys": 90,
+      "media_keys": [
+        "calibration/result",
+        "report/confusion_matrix",
+        "report/reliability",
+        "report/training_curves",
+        "test/result"
+      ],
+      "summary": {
+        "test/calibrated/accuracy": 0.6235,
+        "test/calibrated/nll": 0.919779772787606,
+        "test/raw/accuracy": 0.6235,
+        "test/raw/nll": 0.9367290951832432
+      },
+      "matches_local_metrics_within_tolerance": true,
+      "absolute_tolerance": 1e-12,
+      "max_absolute_difference": 1.1102230246251565e-16
+    }
+  },
+  "online_training_resume": {
+    "run": {
+      "id": "s4fwa28g",
+      "url": "https://swanlab.cn/@HAMSTER/AdaptiveASTC/runs/s4fwa28g",
+      "project": "AdaptiveASTC",
+      "workspace": null,
+      "mode": "online",
+      "stage": "train",
+      "initialization": "scratch",
+      "data_fingerprint": "3db01c4e13ab4144cca3e6d77b89d78039c8f4ba1c689f74d34ba73376ec15b1",
+      "state": "success"
+    },
+    "same_run_id": true,
+    "epochs": [
+      1,
+      2
+    ],
+    "scope": {
+      "train": 32,
+      "validation": 8,
+      "software_smoke": true
+    },
+    "cloud_state": "FINISHED",
+    "cloud_latest_metrics": {
+      "optimization/micro_batch": {
+        "step": 2,
+        "value": 16
+      },
+      "train/accuracy": {
+        "step": 2,
+        "value": 0.5
+      },
+      "train/loss": {
+        "step": 2,
+        "value": 1.2026596069335938
+      },
+      "validation/nll": {
+        "step": 2,
+        "value": 1.3596642153919956
+      }
+    }
+  },
+  "review": {
+    "result": "CLEAN",
+    "fixed_findings": [
+      "C1 preflight before tracking identity mutation",
+      "C2 shared TOML for all script stages"
+    ],
+    "read_only": true,
+    "agent": "review_experiment"
+  },
+  "final_checks": {
+    "uv sync --frozen": {
+      "exit_code": 0,
+      "output": "Checked 70 packages in 19ms\n"
+    },
+    "uv run --frozen ruff check src script tests": {
+      "exit_code": 0,
+      "output": "All checks passed!\n"
+    },
+    "uv run --frozen ruff format --check src script tests": {
+      "exit_code": 0,
+      "output": "41 files already formatted\n"
+    },
+    "uv run --frozen basedpyright": {
+      "exit_code": 0,
+      "output": "0 errors, 0 warnings, 0 notes\n"
+    },
+    "uv run --frozen pytest -q": {
+      "exit_code": 0,
+      "output": "...................................                                      [100%]\n35 passed in 11.31s\n"
+    },
+    "uv build --wheel --out-dir experiment report\\.local\\script-swanlab-20261110\\dist": {
+      "exit_code": 0,
+      "output": "Building wheel...\nSuccessfully built experiment report\\.local\\script-swanlab-20261110\\dist\\adaptive_astc-0.1.0-py3-none-any.whl\n"
+    },
+    "git diff --check": {
+      "exit_code": 0,
+      "output": "warning: in the working copy of 'AGENTS.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'experiment report/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'pyproject.toml', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'uv.lock', LF will be replaced by CRLF the next time Git touches it\n"
+    }
+  },
+  "baseline_commit": "fc720ed68ec2daa0b46fcca26be808e741d447c0",
+  "source_sha256": {
+    "script\\calibrate.py": "ea686f609c892c07c9138c6ebd73e81d8b9e39921c33d2ad8e56c75129787ba6",
+    "script\\evaluate.py": "4f89074184eb895d4dcce0ea7f4d502f8e196f4bd37b895c6a87b1fa57d196b8",
+    "script\\prepare.py": "cfb9d741a11826a7c2c41d42e3ecb1b8ec93466da9ea9d566363d1602ea65e52",
+    "script\\train.py": "71859a033c9745219f1090b43d8db03c987ef753c65387592ffc3231d5bfac95",
+    "script\\upload_metrics.py": "efb1732d92d4dcd0cba6f8eaeffdaaf0d7da2b557dd329985ac397b1a2c4f758",
+    "src\\adaptive_astc\\__init__.py": "c7c2d2f7d1e0746ab6a51903610c3542605f697e757434d75fc0e21ee33e0298",
+    "src\\adaptive_astc\\calibration\\__init__.py": "62bec663aee32cbb874e5ee41a061f15d99f622a92fca956d1aace56380b4f5d",
+    "src\\adaptive_astc\\calibration\\temperature.py": "b8ebd18c4dd46f93772e2bbbcd4ebb778e6719b415965d4f563c333028b84e36",
+    "src\\adaptive_astc\\cli.py": "88a90f3ac45dcf82b4e6738214a8453eda48a6632464af343deffcbf3f2dafa0",
+    "src\\adaptive_astc\\common.py": "b542e8956a88b82c334645d9fd26ca97a2852e4b158419bde5c37044581e6f46",
+    "src\\adaptive_astc\\config.py": "fe81c8689541f9ef2ed110cdf85ea8a45f28cf1ca9e71ce69ed0dbbca53571af",
+    "src\\adaptive_astc\\data\\__init__.py": "3d526ad244dc54994998e057333a39c014b61fde287f554a5296b4c42c60ae42",
+    "src\\adaptive_astc\\data\\catalog.py": "fcbd82c52e7af87c02aab0f68a640162ed0706fe6e32a2b694b5ba5f9b3a6492",
+    "src\\adaptive_astc\\data\\dataset.py": "60eebe6b98e55dfd48b8670bcc80a3b8cd68ce381557b6e1d395c23c8d43326a",
+    "src\\adaptive_astc\\data\\deduplication.py": "1cd2d9dddeecec7f180b9e4a4014490781fa50756f99f68388ce9a388d0548b1",
+    "src\\adaptive_astc\\data\\images.py": "19fd537afef1f5309d3289a62fbb85815eb7554c661f116c387d1cc3e1720986",
+    "src\\adaptive_astc\\data\\preparation.py": "395ec0791bc113de3da8a6a3c1a09d6ac359573caa71fd3a4d0f4c1b842a9c15",
+    "src\\adaptive_astc\\data\\splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d",
+    "src\\adaptive_astc\\evaluation\\__init__.py": "759698447de917fee78a04c054a89ac69ab46fb7f8059701cd0b1b6180aede88",
+    "src\\adaptive_astc\\evaluation\\evaluator.py": "f9d38472351c83bd5c24fd2e436831e1e567cd71f13ff74c7514c83e66e008d7",
+    "src\\adaptive_astc\\evaluation\\inference.py": "4b660a5c62a2afbfcb90a31d69fcaeae1c23a7c17cd1cf613f295d9fa6ddf06e",
+    "src\\adaptive_astc\\evaluation\\metrics.py": "f476c6e1f9d6bba5f82eb3c83c697f3c9be7fe2b62e286610080f73c3314fb4d",
+    "src\\adaptive_astc\\metrics.py": "4ac2de5e5063d35a58127075e401dcfcc692afd2c7d21b8576e2858e2a1d9f1c",
+    "src\\adaptive_astc\\models\\__init__.py": "0edefcf4025cd67e524458c4a494c138e2d75f7bbc4e2ced12e9aee4ca12a18a",
+    "src\\adaptive_astc\\models\\resnet.py": "c27477e35d470866b8df249b75a502b1fcae272eb41460cd7d7ed3bfafbd47d4",
+    "src\\adaptive_astc\\reporting\\__init__.py": "f64830557c719d553604c633becd3939dbcb6b28f3f0435c11cfe4fcef1e18c1",
+    "src\\adaptive_astc\\reporting\\report.py": "0438bad59d39cafd624930c1bb4dbd0eb08a7de5817cb58bd757222db541d202",
+    "src\\adaptive_astc\\reports.py": "5a668ccc2b85925e009fafa574e4f72bec7f2dda5f47f96e827b6ae101472683",
+    "src\\adaptive_astc\\tracking\\__init__.py": "0429d731380112a80070b06afd03133e81675eff62e38805ac5f8dcc5f0b8512",
+    "src\\adaptive_astc\\tracking\\swanlab.py": "ef954636b016eb97541ac664b42b128e819a224071f28db5a1367406d508c591",
+    "src\\adaptive_astc\\tracking\\upload.py": "7a13a3d84358d440da0c5dee49bc86faad8696166c35b84fef2aabfba854ef1c",
+    "src\\adaptive_astc\\training\\__init__.py": "b724d03985f1e3303e8630d55a4233e6e1360765d897cab9a75b7f92a4fb0aae",
+    "src\\adaptive_astc\\training\\trainer.py": "dad283415243500eda465666b310866c623fecf533b20a6cd7b63941aea39428",
+    "src\\adaptive_astc\\utils\\__init__.py": "8018cdaa91b172a65f2d534b9589aadec351550a602bf8b676b83d32ccd96acc",
+    "src\\adaptive_astc\\utils\\artifacts.py": "6b186f7531d063715308e00dada4e7c9d9d04f4831fa10aa45d14ae125a6564f",
+    "src\\adaptive_astc\\utils\\checkpoints.py": "c3d74001cb62c7ce948c82dd1b20bfcb8f1b0fd73efb04199e16ad7017e0de4d",
+    "src\\adaptive_astc\\utils\\environment.py": "eef3d6303738ab5ff56d0b5789f214a8768c71921da32e257a1b118411574e1f",
+    "src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5"
+  },
+  "launch_config_sha256": "b2bebba1c575096f0eb817b374dcd776e373da4a9cbcfded2eb7f674343994fb",
+  "documentation": {
+    "files": 5,
+    "local_links_checked": 81,
+    "local_anchors_checked": 8,
+    "broken_links": 0
+  },
+  "wheel": {
+    "sha256": "77ebc936b9d6312e1647bd6e727e8261161d3d7d1da1013e9aca6d1366e3a0f0",
+    "python_package_files": 33,
+    "all_package_files_present": true
+  },
+  "codegraph": {
+    "command": "codegraph index --force E:/ASTC_Compression",
+    "indexed_files": 41,
+    "nodes": 467,
+    "exit_code": 0
+  }
+}
