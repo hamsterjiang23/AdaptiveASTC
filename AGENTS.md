@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- [同次预测与编码计时](<experiment report/unity-accuracy90-20261111/unity-deployment.md>)使用`UnityDeploymentTrial`／`UnityDeploymentBenchmark`及`script/benchmark_unity_deployment.py`。计时输入只含参考像素和导入属性，原生压缩每图一次，fixed8独立配对；解码、质量、来源核验和写盘在计时外，模型／DLL加载单列。47项CPU检查和四次真实编码核验通过，CUDA任务等待已绑定上游成功退出；活动期间冻结22份源码，正式结果与完整Unity90%分别验收。`[verified: deployment.py；deployment_benchmark.py；unity-deployment-encode4.json；unity-deployment-smoke2-v1-config.json；opinion: 使用边界]`
+
 - [原生推理输入与计时](<experiment report/unity-accuracy90-20261111/unity-inference.md>)使用`UnityInferenceTexture`／`UnityInferenceInput`和`UnityQualityInference`，输入只来自参考PNG及导入属性，禁止读监督。实际13patch与训练输入零容差一致，51项CPU检查通过；CUDA小样本等待主训练成功退出。`benchmark_unity_inference.py`必须有非空绑定依赖，退出等待后及结束时复核配置／源码，使用显式同步、预热与重复分开的计时；来源核验和Dataset对照排除于推理区间。当前19份执行源码冻结，最终编码及完整端到端计时另行验收。`[verified: unity-inference-input-audit.json；inference_benchmark.py；unity-inference-smoke2-v1-config.json；opinion: 使用边界]`
 
 - 保存原生验证预测的[最终编码核验](<experiment report/unity-accuracy90-20261111/unity-final-encoding.md>)使用`UnityFinalEncoding`和`script/encode_unity_predictions.py`。绑定完成训练、三个最佳产物、重载审计和原策略，先重放冻结预测再各编码一次，固定8×8的preset显式配置；完整ASTC、解码像素和原生质量与归档候选核对。质量build receipt必须等于原候选记录中的完整`quality_build`，不能只自校验当前DLL。两图／四次编码通过，进程4.05秒；仅为mip0编码阶段，推理和端到端成本不能从旧预测补算。`[verified: final_encoding.py；unity-final-encoding-smoke2-v2.json；对应job receipt；opinion: 使用与解释要求]`

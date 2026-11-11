@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[同次运行的预测与最终编码](<experiment report/unity-accuracy90-20261111/unity-deployment.md>)已完成47项CPU检查和两图四次真实编码接口核验；CUDA计时排在当前训练／推理检查之后。每图预测选参后仅编码一次，配对固定8×8，解码质量核验在计时外执行；尚无新的部署总耗时或完整Unity效果结论。`[verified: unity-deployment-encode4.json；unity-deployment-smoke2-v1.json；本轮pytest；opinion: 完成边界]`
+
 [原生独立输入与推理计时](<experiment report/unity-accuracy90-20261111/unity-inference.md>)完成51项CPU检查，两张验证图的13个patch与训练输入完全一致；组件只接收参考像素和导入属性。CUDA任务已排在当前尺寸元数据训练成功退出之后，当前仍等待，尚无新增推理计时或模型效果结果。`[verified: unity-inference-input-audit.json；unity-inference-smoke2-v1.json；本轮pytest；opinion: 完成边界]`
 
 [原生预测的最终编码核验](<experiment report/unity-accuracy90-20261111/unity-final-encoding.md>)已通过：两张已保存验证预测各一次编码，加固定8×8／medium对照，共四次真实DLL编码，ASTC字节、解码像素与原生质量一致。进程4.05秒；只覆盖mip0编码阶段，没有新模型forward或端到端加速结论，完整Unity验收仍待完成。`[verified: unity-final-encoding-smoke2-v2.json；对应job receipt；opinion: 完成边界]`

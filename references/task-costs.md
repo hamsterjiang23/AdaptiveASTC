@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+Unity同次预测与编码入口：47项CPU检查4.94秒，四次真实编码接口核验内部1.99秒；后者仅CPU、不运行新forward。CUDA任务依赖尺寸元数据训练和独立推理进程成功退出，冻结22份源码，读取原生smoke8权重／验证参考／候选归档，写独立`unity-deployment-smoke2-v1`。计划两图、两条路径、一次预热及三次配对重复，共16次编码；模型／DLL加载、解码质量核验与写盘单列，活动阶段预计不足一分钟。进入CUDA前要求4GiB空闲RAM／2GiB显存，等待成本另记。`[verified: 本轮pytest；unity-deployment-encode4.json；unity-deployment-smoke2-v1-config.json；opinion: 成本估计]`
+
 原生独立推理输入核验：真实validation2／13patch，CPU0.878秒，无模型forward；51项相关CPU检查4.52秒。CUDA计时任务等待`scratch-group512-metadata`成功退出，读取已完成原生smoke权重与验证参考，写独立`unity-inference-smoke2-v1`目录，冻结19份源码。计划一次预热／三次重复，活动阶段预计不足一分钟；退出等待后复查至少4GiB空闲RAM和2GiB显存，等待和实际运行成本分开记录。`[verified: unity-inference-input-audit.json；本轮pytest；unity-inference-smoke2-v1-config.json；对应launch-preflight.json；opinion: 成本估计]`
 
 Unity保存验证预测的最终编码检查：两图、两条路径共四次DLL编码，v2内部0.81秒／完整进程4.05秒，CPU单进程，无新模型forward／CUDA。启动前RAM余量和磁盘记录于对应`launch-preflight.json`；读取已完成smoke模型产物与不可变验证候选，写独立`unity-final-encoding-smoke2-v2`目录，与训练及Unity采集并行。首次v1成本3.85秒，源码身份修订后v2独立复跑；不能作为部署端到端加速。`[verified: unity-final-encoding-smoke2-v2.json；对应v1/v2 jobs receipts；opinion: 成本边界]`

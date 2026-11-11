@@ -103,6 +103,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- [Unity同次预测与最终编码](<../../experiment report/unity-accuracy90-20261111/unity-deployment.md>)新增完整计时入口，47项CPU检查及两图四次真实编码核验通过；CUDA配对计时等待原训练／独立推理成功退出。每条路径每图编码一次，重复测量与预热分开，质量核验在计时外；尚无新增部署总耗时或生产准确率，完整Unity验收继续保留。`[verified: unity-deployment-encode4.json；unity-deployment-smoke2-v1.json；本轮pytest；opinion: 完成边界]`
+
 - [Unity独立输入与CUDA推理计时](<../../experiment report/unity-accuracy90-20261111/unity-inference.md>)已完成组件及51项CPU检查；两张实际验证图的13patch与训练输入逐张量完全一致。计时任务绑定原尺寸元数据训练成功退出后执行，当前等待，正式测量为一次预热／三次重复。无新增模型效果或端到端加速结论，完整Unity验收继续保留。`[verified: unity-inference-input-audit.json；unity-inference-smoke2-v1.json；本轮pytest；opinion: 完成边界]`
 
 - [原生保存预测到最终编码](<../../experiment report/unity-accuracy90-20261111/unity-final-encoding.md>)已通过两图真实检查：预测路径与固定8×8／medium各两次编码，ASTC／解码／原生质量复核一致，进程4.05秒。40项CPU检查及两项原生指标补跑通过；实际DLL闭环另行通过。本次不运行模型forward，只补齐mip0编码阶段，完整Unity训练与独立测试及端到端计时仍待完成。`[verified: unity-final-encoding-smoke2-v2.json；对应job receipt；本轮pytest；opinion: 完成边界]`

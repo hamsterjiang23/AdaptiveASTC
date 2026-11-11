@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[同次预测与编码计时](unity-deployment.md)已完成47项CPU检查和两图四次真实编码接口核验，CUDA阶段等待训练和独立推理成功退出。新路径连续计量参考图输入、前向、决策与一次编码，配对fixed8，核验和写盘成本分开；当前未产生新部署总耗时或完整模型准确率。`[verified: unity-deployment-encode4.json；unity-deployment-smoke2-v1.json；opinion: 完成边界]`
+
 [独立原生输入与推理计时](unity-inference.md)通过51项CPU检查及真实13patch输入一致性核验；CUDA小样本已启动等待当前训练成功退出，不并发测量。当前无新增推理时间／效果结论；输入准备、forward、聚合与决策将分阶段保存，最终编码仍单独验收。`[verified: unity-inference-input-audit.json；unity-inference-smoke2-v1.json；opinion: 完成边界]`
 
 [原生保存预测的最终编码](unity-final-encoding.md)完成两图检查：预测与固定8×8／medium各编码两次，完整ASTC、解码像素及质量一致，进程4.05秒。预测质量通过1／2，固定8×8通过2／2，保留失败；这是小样本mip0编码验证，没有新forward或端到端加速结论。`[verified: unity-final-encoding-smoke2-v2.json summary；对应job receipt；opinion: 完成边界]`
