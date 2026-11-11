@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[3906图原生决策接口](unity-native-model.md)已复核通过，精确误差目标重建全部原块大小／preset；262张法线图及319张大图放宽样本继续按各自规则记录。该结果不是模型准确率。数据准备继续[扩展到4674图](unity-patch-batches.md)，复用3906图目标，新增768图提取运行中。`[verified: unity-prediction-interface3906.json；unity-native3906-target-diagnostics.json；unity-patch-batches4674-config.json；opinion: 完成边界]`
+
 后续有效区域汇总组件已通过17项CPU检查和完整133140patch几何核验，参数11,178,564不变；后续54项检查及两轮4次CUDA更新通过，正式对照运行中，详见[组件准备及边界](patch-fixed-capacity/pixel-sampling.md)。`[verified: patch-fixed-capacity/mask-pooling-integration.json、mask-pooling-data-audit.json；opinion: 状态边界]`
 
 原生patch准备新增[3906图冻结扩展](unity-patch-batches.md)，3904／2图的提取、合并及20832patch读取全部通过，见[完成记录](unity-patch-assembly3906.json)；旧2370图产物保持。新增[cap512错误分层](patch-fixed-capacity/pixel-sampling.md#cap512模型的剩余错误)只读取完成训练的冻结验证预测，未做新拟合或访问test。`[verified: unity-patch-batches3906-config.json；group512-geometry-diagnosis.json scope、test_opened；opinion: 状态边界]`

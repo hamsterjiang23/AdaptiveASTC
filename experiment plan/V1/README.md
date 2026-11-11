@@ -99,6 +99,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- [原生决策接口](<../../experiment report/unity-accuracy90-20261111/unity-native-model.md>)完成3906图复核，精确目标全部重建原块大小／preset，不能算模型准确率。3904训练图含262法线及319大图放宽样本，且候选PSNR存在非单调；原生20候选质量输出继续独立。新增[4674图冻结目标准备](<../../experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)已启动，复用3906图并补充768图，完整开发覆盖仍未完成。`[verified: unity-prediction-interface3906.json；unity-native3906-target-diagnostics.json；unity-patch-batches4674-config.json；opinion: 原生约束与完成边界]`
+
 - 有效区域信息的下一项对照先准备为末端特征加权汇总，保留RGB输入和ResNet-18权重结构，新增参数为0。17项CPU检查与全部133140patch、986种有效宽高核验通过；原卷积仍读取边缘填充，不能预先认定能消除填充影响。后续训练器、EMA、验证和重载已接入，54项检查及两轮4次CUDA更新通过；正式对照已启动，源代码与检查记录见[有效区域组件](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)。`[verified: mask-pooling-integration.json；mask-pooling-data-audit.json；opinion: 对照与验收边界]`
 
 - Unity原生patch完成[3906图扩展](<../../experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)：17批3904训练图／2验证图、20832patch已完成提取、合并和完整读取，复用2370图目标；完整开发语料和Unity训练仍未完成。同时核对GDC源RGB cap512模型的155个验证错误，其中83个距最近35dB候选阈值≤0.5dB；单patch图近阈值RMSE仍为2.1655dB。后续继续检查有效区域信息，几何分层的相关性不作为根因结论。`[verified: unity-patch-batches3906-config.json；group512-geometry-diagnosis.json paired_group_cap_change、models.scratch_group512.strata；opinion: 后续判断]`

@@ -1,5 +1,7 @@
 # Unity 原生质量模型与决策接口
 
+后续已在[3906图统一语料](unity-prediction-interface3906.json)上完成接口复核：3904训练图／2验证图的块大小和preset全部重建同次原搜索选择，17个原策略来源通过核对，MSE聚合最大差2.08e-17。检查循环62.50秒、完整进程67.29秒；这些输入是精确测量目标，训练更新为0，不能作为模型准确率。`[verified: unity-prediction-interface3906.json results、policy_origins、wall_seconds、training_updates；jobs/unity-prediction-interface3906/receipt.json；opinion: 验收边界]`
+
 已实现随机初始化ResNet-18的原生模型原型、分项监督损失和预测到原搜索规则的接口。先期18项CPU检查通过，随后新增训练器并完成[8图CUDA训练检查](unity-native-training.md)，含最佳权重重载；相关检查现共35项。2370图精确目标全部重建原块大小和preset，仍只作为接口验证，不是学得的准确率；完整生产训练尚未完成。`[verified: unity-native-model-contract.json；unity-native-smoke8-v1-result.json；unity-native-training-verification.json；unity-prediction-interface2370.json results；opinion: 完成边界]`
 
 ## 输入、输出与计算顺序
@@ -44,6 +46,16 @@ flowchart LR
 | 零通道诊断 | 对训练图的真实MSE设最低正值1e-9并去掉零通道识别，其余质量保持实测：5张块大小改变，26张完整配置改变，严格达标图从2045降至2025，近阈值PSNR RMSE约0.599dB。这只说明数值／通道口径会影响决策，不代表模型的实际误差分布。`[verified: unity-prediction-interface2370.json results.train；opinion: 诊断边界]` |
 
 可复跑入口为[audit_unity_predictions.py](../../script/audit_unity_predictions.py)，配置见[2370图检查配置](unity-prediction-interface2370-config.json)，原始逐图结果按SHA保存在.local。复跑使用新的output和report，已有产物拒绝覆盖。`[verified: prediction_audit.py run；unity-prediction-interface2370-config.json]`
+
+## 部分训练目标的分布
+
+[目标诊断](unity-native3906-target-diagnostics.json)仅覆盖冻结顺序中先完成的3904张训练图，不代表完整训练集分布，也没有打开测试集。四类数量为6×6 429、8×8 512、10×10 549、12×12 2414；选中preset为fastest 1159、fast 138、medium 956、thorough 929、exhaustive 722。`[verified: unity-native3906-target-diagnostics.json counts、labels、presets、limits]`
+
+这批数据包含262张法线图，其中21张采用四级法线评价；319张按大图放宽规则选中，83张按最高PSNR回退。原策略选中结果的严格质量通过率为89.70%，与块大小标签重建率是不同指标；不能把原标签全部当成严格合格样本。`[verified: unity-native3906-target-diagnostics.json input_conditions、selection_reasons；unity-prediction-interface3906.json results.train.exact_targets.actual_quality_pass_rate；opinion: 指标解释]`
+
+同一preset下，改用更小块时PSNR仍有下降的训练图数为30至49张；同一块大小下，改用更慢preset时仍有下降的图数为86至179张，下降判据为超过1e-5dB。因此原生20候选继续保留独立质量输出，不能直接把GDC四候选的单调结构推广为20候选硬约束。`[verified: unity-native3906-target-diagnostics.json nonmonotone_psnr_image_counts；opinion: 模型约束判断]`
+
+对真实MSE加1e-9正值下限并去掉零通道识别，其余质量保持实测，3904训练图中6张块大小、36张完整配置改变，严格质量通过率降至88.93%。这项数值诊断支持保留原生零通道口径，不能用于估算模型实际预测误差。`[verified: unity-prediction-interface3906.json results.train.positive_floor_without_zero_mask；opinion: 诊断边界]`
 
 ## 下一步
 

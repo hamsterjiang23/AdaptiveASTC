@@ -54,6 +54,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 新增[有效区域特征汇总对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)已完成训练／EMA／验证／重载接入，54项检查与两轮4次CUDA更新通过；参数11,178,564不变，正式对照运行中。完整结果尚待验收。`[verified: mask-pooling-integration.json；mask-pooling-data-audit.json；opinion: 完成边界]`
 
+[原生决策接口](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)扩展至3906图，精确目标重建全部原块大小／preset，不代表模型准确率。后续[4674图目标准备](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)已启动，保留3906图产物，新增768图；完整训练覆盖和独立测试验收仍未完成。`[verified: unity-prediction-interface3906.json；unity-patch-batches4674-config.json；opinion: 完成边界]`
+
 Unity原生patch已完成[3906图扩展](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)，3904训练图／2验证图的提取、合并和完整20832patch读取检查均通过，旧2370图目标保持；完整11000图仍未完成。固定容量模型另完成[误差分层诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md#cap512模型的剩余错误>)，仅分析冻结验证预测；完整Unity训练仍要求10000／1000开发覆盖。`[verified: unity-patch-assembly3906.json；unity-assembly3906-dataset-audit.json；group512-geometry-diagnosis.json scope；unity_quality_trainer.py validate_coverage；opinion: 完成边界]`
 
 已完成[按有效像素抽样的固定容量对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)：保持每图／资产组总权重，只改变图内patch概率；正式10轮结束并重载通过，最佳82.0%／同权重近阈值RMSE1.4580dB，比原cap512低2.5个百分点，按负结果保留；参数11,178,564不变。`[verified: scratch-group512-pixels-result.json；scratch-group512-pixels-audit.json；opinion: 结果边界]`

@@ -1,0 +1,123 @@
+{
+  "status": "passed",
+  "scope": "Descriptive audit of the first3904 native training images; partial coverage",
+  "counts": {
+    "train": 3904
+  },
+  "candidate_count": 78080,
+  "labels": {
+    "10x10": 549,
+    "12x12": 2414,
+    "6x6": 429,
+    "8x8": 512
+  },
+  "presets": {
+    "exhaustive": 722,
+    "fast": 138,
+    "fastest": 1159,
+    "medium": 956,
+    "thorough": 929
+  },
+  "selection_reasons": {
+    "first_valid": 2746,
+    "highest_psnr_fallback": 83,
+    "size_first_relaxed": 319,
+    "size_first_strict": 756
+  },
+  "input_conditions": {
+    "normal": 262,
+    "srgb": 3604,
+    "need_alpha": 1287,
+    "constant_alpha": 2615,
+    "single_patch": 1382,
+    "area_ge_512_squared": 1318,
+    "black_ratio_gt_0_4": 526,
+    "black_ratio_gt_0_8": 199,
+    "normal_metric_mips": {
+      "1": 241,
+      "4": 21
+    }
+  },
+  "nonmonotone_psnr_image_counts": {
+    "definition": "At least one decline greater than1e-5dB in the stated candidate order",
+    "smaller_footprint_per_preset": {
+      "fastest": 42,
+      "fast": 39,
+      "medium": 30,
+      "thorough": 31,
+      "exhaustive": 49
+    },
+    "slower_preset_per_footprint": {
+      "12x12": 179,
+      "10x10": 177,
+      "8x8": 90,
+      "6x6": 86
+    }
+  },
+  "zero_channels": {
+    "rgba_counts_across_all_candidates": [
+      1540,
+      1523,
+      2504,
+      51355
+    ],
+    "images_with_any_zero_rgb_candidate_channel": 229,
+    "note": "Descriptive exact channel errors, including channels excluded by native PSNR"
+  },
+  "asset_groups": {
+    "count": 1118,
+    "largest": [
+      {
+        "group": "Assets/Art/Effects/Texture/Common/Group/SD",
+        "images": 257
+      },
+      {
+        "group": "Assets/Art/Effects/Texture/Common/Special/FHD",
+        "images": 224
+      },
+      {
+        "group": "Assets/Art/Effects/Texture/Common/Noise/SD",
+        "images": 205
+      },
+      {
+        "group": "Assets/Art/Effects/Texture/Common/Clamp/SD",
+        "images": 191
+      },
+      {
+        "group": "Assets/Art/Effects/Texture/Common/Flipbook/SD",
+        "images": 164
+      },
+      {
+        "group": "Assets/Art/Effects/Texture/Common/Group/HD",
+        "images": 101
+      },
+      {
+        "group": "Assets/Art/Effects/Texture/Common/Special/HD",
+        "images": 83
+      },
+      {
+        "group": "Assets/Art/Effects/Texture/Common/Noise/HD",
+        "images": 64
+      },
+      {
+        "group": "Assets/Art/Effects/Texture/Common/Smoke/SD",
+        "images": 61
+      },
+      {
+        "group": "Assets/Art/Card_FX_tex",
+        "images": 57
+      }
+    ]
+  },
+  "assembly_sha256": "afd8ec891262f9b242b4ea430ff27f363b994ef7bff10fcbe5ae004bf4464d27",
+  "corpus_sha256": "b48e19352501691436f6fa56f6a164a58d3af84622379aef599b663b31a62cde",
+  "script_sha256": "6e6daf298ad21f2d0551735b8538227edfd3a089f4ffd06473856382d282367e",
+  "model_accuracy": null,
+  "training_updates": 0,
+  "test_opened": false,
+  "limits": [
+    "Published batches follow the frozen collection order, not a representative resample",
+    "No validation/test selection, causal diagnosis, or performance claim",
+    "Native channel PSNR and presets differ from frozen GDC sourceRGB35 protocol"
+  ]
+}
