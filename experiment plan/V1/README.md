@@ -99,6 +99,14 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- 原生模型的[CUDA训练链路](<../../experiment report/unity-accuracy90-20261111/unity-native-training.md>)检查通过：随机初始化、8训练图／2验证图、两轮4次实际更新、0次AMP跳步，权重重载一致，完整进程23.81秒。35项CPU检查通过；正式训练要求完整train10000／validation1000，本次不作为生产准确率。`[verified: unity-native-smoke8-v1-result.json；unity-native-training-verification.json；opinion: 验收边界]`
+
+- GDC成组损失的正式配对实验已全部完成：权重0／1为71.2%／71.7%，对应同权重近阈值RMSE3.5647／2.0188dB，低于历史独立采样80.7%。新增loss提高0.5个百分点，但没有挽回当前成组采样配方的退步；按负结果保留，不扩大参数量来掩盖该对照。`[verified: scratch-bag4-comparison.json；opinion: 实验判断]`
+
+### 前期执行记录
+
+以下保留各阶段当时的状态；后续完成结果见上方执行补充及对应实验报告，实时队列见[progress.json](<../../experiment report/unity-accuracy90-20261111/progress.json>)。`[opinion: 历史记录口径]`
+
 - Unity迁移新增[原生模型接口](<../../experiment report/unity-accuracy90-20261111/unity-native-model.md>)：RGBA＋mask＋导入属性，20候选通道误差、整图零通道和非PSNR质量头，18项CPU检查通过。2370图精确目标全部重建原块大小／preset，尚无模型准确率；原型11,377,660参数，与GDC四输出模型的容量差异明确单列，后续CUDA训练和独立测试验收仍待完成。`[verified: unity-native-model-contract.json；unity-prediction-interface2370.json；opinion: 迁移范围]`
 
 - 固定容量资产组限权对照完成26轮，最佳84.5%／同权重近阈值RMSE1.3869dB，10×10召回71.09%；相对标准采样提高3.8个百分点但仍未过联合门槛。后续[成组损失对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)已完成两组CUDA检查并启动正式串行训练。`[verified: scratch-group512-result.json；scratch-bag4-smoke-summary.json；scratch-bag4-summary.json；opinion: 验收边界]`

@@ -2,7 +2,7 @@
 
 当前方案以用户提供的 [V1：原分辨率 patch 误差回归](<../../experiment plan/V1/README.md>) 为准，诊断依据见 [V1 evidence.json](<../../experiment plan/V1/evidence.json>)。用户清除旧goal后，已按V1重新创建active goal。原来的树模型优先实验和24组SGD搜索不再作为当前执行顺序。`[verified: 用户本轮V1与重建goal要求；create_goal返回active]`
 
-- [Unity原生质量模型与接口](unity-native-model.md)完成18项CPU检查，2370图精确目标的原搜索配置全部重建通过。5通道输入、导入属性调节、20候选误差和整图质量头共11,377,660参数；尚未CUDA训练，model_accuracy为null。GDC聚合实验和Unity采集继续运行。`[verified: unity-native-model-contract.json；unity-prediction-interface2370.json；opinion: 完成边界]`
+- [Unity原生质量模型与接口](unity-native-model.md)后续完成[CUDA训练链路](unity-native-training.md)：8训练图／2验证图、2轮4次实际更新、权重重载通过、进程23.81秒；35项CPU检查通过。原型11,377,660参数，2370图精确目标重放与小样本训练分别记录，完整Unity训练和独立测试90%尚未完成。`[verified: unity-native-smoke8-v1-result.json；unity-native-training-verification.json；unity-prediction-interface2370.json；opinion: 完成边界]`
 
 ## 验收与执行顺序
 
@@ -17,11 +17,13 @@
 
 ## 已完成与当前状态
 
+下列条目保留各阶段的检查规模和当时状态；最新采集计数与运行状态见[progress.json](progress.json)，原生CUDA最新结果见本页开头。`[opinion: 历史与当前记录口径]`
+
 - [Unity分批patch准备](unity-patch-batches.md)通过64train／2validation检查，781／13个patch；2370图冻结子集已完成，2368／2图、15619patch，并已[合并统一清单](unity-patch-assembly.md)；逐批证据见[逐批结果](unity-patch-batches2370.json)。保留首次大小写身份检查失败、修复及已生成语料；42项测试和独立复查通过。`[verified: unity-patch-batches-smoke-v2.json；unity-patch-batches2370.json；pytest与review输出]`
 
 - [Unity原生RGBA Dataset](unity-dataset.md)完成260张真实开发图的输入、20候选逐通道目标和原生PSNR重建检查；19项测试通过。最终复核包含重复patch监督冲突修复，进程13.22秒；Unity模型训练与独立测试仍未完成。`[verified: unity-dataset260-v2.json；jobs/unity-dataset260-v2/receipt.json；pytest 19 passed；opinion: 完成边界]`
 
-- [同图patch聚合损失](patch-fixed-capacity/bag-loss.md)完成CPU组件与10000训练图抽样核验，14项新检查通过；配对配置隔离采样变化与新增loss。后续已接入训练器，两组CUDA检查及重载通过，正式成对训练串行运行。新增冻结预测诊断显示，246张单patch验证图上scratch／pretrained准确率为79.27%／89.02%，聚合实验不能预设解决全部误差。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；scratch-bag4-smoke-summary.json；scratch-bag4-summary.json；opinion: 结果与执行边界]`
+- [同图patch聚合损失](patch-fixed-capacity/bag-loss.md)的正式两组已完成，权重0／1为71.2%／71.7%，最佳权重重载通过，完整进程1869.71秒；均低于历史独立采样80.7%。此前冻结诊断中单patch图也存在误差，这项实验未支持采用当前成组配方，采样变化与新增loss分别解释。`[verified: scratch-bag4-comparison.json；patch-coverage-diagnosis.json；opinion: 结果与归因边界]`
 
 - [Unity 原搜索规则重放](unity-policy-replay.md)完成260张开发图，块大小、preset、选择原因和候选尝试次数均与原搜索一致；其中严格质量通过233张，大图放宽25张、最高PSNR回退2张。去掉非PSNR分支时仅207张块大小一致，这是实测质量的规则诊断，未运行Unity模型。绑定原采集缓存的正式审计进程3.646秒，首次来源绑定不足的记录保留。`[verified: unity-policy260-bound-v2.json；unity-policy260-analysis.json；对应job receipt；opinion: 验收范围]`
 

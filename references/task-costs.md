@@ -1,5 +1,9 @@
 # 实验成本与读写依赖
 
+Unity原生CUDA训练链路的首次8train／2validation探针为2轮4次更新，准备17.07秒、训练器19.28秒、进程23.81秒；峰值分配显存446,280,192字节，image batch4、每图4patch、workers0。只读冻结2370图语料和已完成的原策略归档，写独立训练目录／公开报告；与参考采集及补测不共享写入，GPU训练串行。完整语料及更大batch资源成本须重新测量。`[verified: unity-native-smoke8-v1-result.json；unity-native-smoke8-v1-config.json；opinion: 规模与并发边界]`
+
+GDC bag4的权重0／1配对训练分别1080.91／728.25秒，含两次重载的串行进程1869.71秒；与CPU采集并行，不视为独占部署时延。`[verified: patch-fixed-capacity/scratch-bag4-loss0-result.json、scratch-bag4-loss1-result.json、scratch-bag4-comparison.json；opinion: 计时口径]`
+
 分批原生patch准备只读已完成的参考／候选归档，写独立.local单批语料及公开报告；共享shard目录独占锁，单进程，每批要求20GiB空闲RAM／40GiB磁盘。64train＋2validation首次进程63.53秒因路径大小写失败，保留其64图目标；修复后复用目标的检查用12.81秒。2370图处理成本单列，和CUDA训练／Unity采集重叠，不视作部署性能测量。`[verified: patch_batches.py run、prepare；jobs/unity-patch-batches-smoke、smoke-v2/receipt.json；unity-patch-batches2370-config.json；opinion: 成本边界]`
 
 Unity原生Dataset检查使用CPU，未进行模型训练。7图小样本循环0.24秒／进程6.11秒，首次260图为17.18／22.00秒；补强重复patch目标检查后的最终复核为9.52／13.22秒。各次成本分别保留，缓存及并发状态不同，不据此声称速度改进。`[verified: unity-dataset-smoke.json、unity-dataset260.json、unity-dataset260-v2.json；对应jobs/receipt；opinion: 成本解释]`

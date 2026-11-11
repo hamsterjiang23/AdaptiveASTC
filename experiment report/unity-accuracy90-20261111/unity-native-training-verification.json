@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-11T19:28:43.297349+00:00",
+  "unit_tests": {
+    "count": 35,
+    "command": "uv run --frozen pytest -q tests/test_unity_quality_training.py tests/test_unity_quality.py",
+    "result": "35 passed in 5.57s; independent review rerun 35 passed in 4.20s"
+  },
+  "static_checks": [
+    "ruff format --check",
+    "ruff check",
+    "basedpyright"
+  ],
+  "review_issues_closed": [
+    "selection-time artifact binding",
+    "fresh frozen input audit",
+    "interrupted-update accounting"
+  ],
+  "local_links": 273,
+  "external_urls_checked": false,
+  "native_cuda_actual_updates": 4,
+  "native_smoke_counts": {
+    "train": 8,
+    "validation": 2
+  },
+  "paired_bag_controls_completed": true,
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "production_accuracy": null,
+  "test_opened": false,
+  "inputs_sha256": {
+    "experiment report\\unity-accuracy90-20261111\\unity-native-smoke8-v1.json": "0b6a61132de82f7b4d1dae2f32fe2a1a452392b3b6e32f7d712b90e8c8931014",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-smoke8-v1-result.json": "33939651dd7682d6049d7c7780a72f7d31b4bfbe87e3597e82dd86046b453cc2",
+    "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-smoke8-v1\\receipt.json": "735ad1a020cad87835172af48cdae88fff278c4d24d3b34bfd08f8f8c7cadec1",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-comparison.json": "b48b036e70fef8c6a4c4a65cc0bde62441cc82fead305474ee774778be6d3bd5",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-summary.json": "6d964cf3b8d9ae41e36b97cd8505bfff7e6cd8ce24cb39e6a7f2d56473ef6086",
+    "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-bag4\\receipt.json": "c5267c42a646e7445e79191325442ed423939759d8a4f730ea94e4d4a18c2605",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-loss0.json": "ec14ed4a47f67addd2cccc51a590789ff711b442ea00fa36e8dc51b64de3e91d",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-loss0-audit.json": "d8eb69645c1a818a4a29c61e7ebb4479c044eaa64d7edd2f2451891ed724ec12",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-loss1.json": "19cee51fd3d8b42c4e1f8615e73745f093ca430a5526512a6be1311c8b3c96c6",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-loss1-audit.json": "d7f76e0f6507ebd6e2feb246c6c8dfb42f1884665dcb20dfb77e9ad00b686536"
+  }
+}

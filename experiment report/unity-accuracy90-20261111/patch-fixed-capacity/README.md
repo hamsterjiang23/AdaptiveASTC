@@ -1,6 +1,6 @@
 # 固定容量的学习率、采样与损失对照
 
-资产组限权对照完成，验证准确率84.5%，比同LR标准采样提高3.8个百分点，10×10召回提高16.41个百分点。后续[同图patch聚合损失对照](bag-loss.md)已接入训练器，两组CUDA小样本检查及权重重载通过，正式成对训练串行启动；是否改善泛化按最终验证结果判断。`[verified: scratch-group512-result.json；scratch-bag4-smoke-summary.json；scratch-bag4-summary.json；opinion: 解释边界]`
+资产组限权对照完成，验证准确率84.5%，比同LR标准采样提高3.8个百分点，10×10召回提高16.41个百分点。后续[同图patch聚合损失对照](bag-loss.md)也已完成，权重0／1为71.2%／71.7%，均低于历史独立采样80.7%；保留负结果，采样变化与新增loss的影响分别解释。`[verified: scratch-group512-result.json；scratch-bag4-comparison.json；opinion: 解释边界]`
 
 首批回归与BN诊断结束后，启动随机初始化学习率单项对照。正式配置与原V1 scratch相比只将lr从1e-3改为3e-4，输出身份另建；数据、seed、ResNet-18、标准stem、单调输出、EMA0.999、batch128、AdamW/WD0.05、warmup1、最多30轮、RMSE patience5均保持。配置见[scratch-lr0003-suite.json](scratch-lr0003-suite.json)，启动时逐字段核对仅learning_rate变化。`[verified: 两份suite config；启动字段差异检查输出learning_rate]`
 

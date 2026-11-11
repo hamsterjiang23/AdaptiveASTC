@@ -1,5 +1,11 @@
 # Implementation notes
 
+## 2026-11-12 native CUDA training and completed bag controls
+
+- Added a CUDA-only native trainer with per-image patch bags, full-image quality targets, original-policy validation and frozen best-checkpoint replay. Formal admission requires the complete10000/1000 corpus; the8train/2validation smoke completed2epochs/4updates with0AMP skips and matching reloaded predictions. Total process23.81seconds, prototype11377660parameters; no production accuracy claim. `[verified: unity_quality_trainer.py; unity-native-smoke8-v1-result.json; opinion: scope]`
+- Review found three evidence issues before launch: checkpoint artifacts were not bound to selection-time hashes, final validation reused loaded inputs, and interrupted epochs could undercount updates. Save-time hashes plus pre/post replay checks, fresh frozen validation and selected-training input verification, and immediate update accounting now cover those cases.35targeted tests and independent recheck passed. `[verified: test_unity_quality_training.py; unity-native-training-verification.json; baseline_code_review C1-C3 closure]`
+- GDC bag4 controls completed10/7epochs, accuracy71.2/71.7percent and same-selected-checkpoint nearRMSE3.5647/2.0188dB. Added aggregate loss improved0.5percentage points within paired sampling, but both trails remain below independent sampling80.7percent. Retain the negative result and separate sampling from loss attribution. `[verified: scratch-bag4-comparison.json; opinion: comparison boundary]`
+
 ## 2026-11-12 frozen native patch batches
 
 - Added an independent frozen-snapshot batch preparation path. It revalidates original reference/choice and all20candidate artifacts, then creates immutable per-batch patch corpora with Dataset checks. A64train/2validation smoke passed; the11published-batch snapshot covers2368train/2validation and is being prepared separately. No new encoding or GPU training is involved. `[verified: patch_batches.py; unity-patch-batches-smoke-v2.json; unity-patch-batches2370-config.json]`

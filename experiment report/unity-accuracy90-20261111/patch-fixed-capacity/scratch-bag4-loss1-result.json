@@ -1,0 +1,50 @@
+{
+  "status": "completed_arm",
+  "suite_status_at_observation": "completed",
+  "scope": "GDC development paired bag4 loss weight1; validation1000 only, no Unity acceptance",
+  "selected_epoch": 7,
+  "selected_variant": "raw",
+  "completed_epochs": 7,
+  "metrics": {
+    "accuracy": 0.717,
+    "balanced_accuracy": 0.6430210474254339,
+    "near_threshold_rmse_db": 2.018818791033682,
+    "per_class": {
+      "6x6": {
+        "precision": 0.8092783505154639,
+        "recall": 0.7201834862385321,
+        "f1": 0.7621359223300971,
+        "support": 218
+      },
+      "8x8": {
+        "precision": 0.5025906735751295,
+        "recall": 0.5052083333333334,
+        "f1": 0.5038961038961038,
+        "support": 192
+      },
+      "10x10": {
+        "precision": 0.3546511627906977,
+        "recall": 0.4765625,
+        "f1": 0.4066666666666667,
+        "support": 128
+      },
+      "12x12": {
+        "precision": 0.9115646258503401,
+        "recall": 0.8701298701298701,
+        "f1": 0.8903654485049833,
+        "support": 462
+      }
+    },
+    "quality_pass_rate": 0.778,
+    "payload_bytes": 91387488
+  },
+  "minimum_near_threshold_rmse_across_weights_db": 1.955791825259819,
+  "training_wall_seconds": 728.2484050999992,
+  "parameters": 11178564,
+  "checkpoint_sha256": "083f93310699b562ca4101c0d4777c399a54a3b95a934d5844e8c0151c4d7efa",
+  "test_opened": false,
+  "inputs_sha256": {
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-loss1.json": "19cee51fd3d8b42c4e1f8615e73745f093ca430a5526512a6be1311c8b3c96c6",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-loss1-audit.json": "d7f76e0f6507ebd6e2feb246c6c8dfb42f1884665dcb20dfb77e9ad00b686536"
+  }
+}

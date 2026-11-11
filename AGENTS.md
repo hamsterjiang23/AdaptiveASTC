@@ -36,7 +36,9 @@
 
 ## 实现与实验
 
-- Unity原生模型接口见[模型适配报告](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)。patch误差先在MSE域聚合，零通道与Alpha条件按原生规则处理；MS-SSIM／角度由整图特征头预测，不取patch分数平均。导入属性必须影响patch误差与整图预测，测得质量及原选择只进监督／评价。原型CPU检查通过、CUDA训练待执行；实际参数与GDC四输出模型分别记录。`[verified: models/unity_quality.py encode、predict_images；training/unity_quality_loss.py；evaluation/unity_quality.py；unity-native-model-contract.json；opinion: 接入与验收要求]`
+- Unity原生模型接口见[模型适配报告](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)。patch误差先在MSE域聚合，零通道与Alpha条件按原生规则处理；MS-SSIM／角度由整图特征头预测，不取patch分数平均。导入属性必须影响patch误差与整图预测，测得质量及原选择只进监督／评价。原型35项CPU检查及8训练图／2验证图的CUDA闭环通过；完整训练及独立测试另行验收，实际参数与GDC四输出模型分别记录。`[verified: models/unity_quality.py encode、predict_images；training/unity_quality_loss.py；evaluation/unity_quality.py；unity-native-smoke8-v1-result.json；unity-native-training-verification.json；opinion: 接入与验收要求]`
+
+- 原生训练入口为[train_unity_quality.py](script/train_unity_quality.py)，协议见[训练报告](<experiment report/unity-accuracy90-20261111/unity-native-training.md>)。每轮各图一次、组内patch有放回；整图质量监督与抽样输入的差异明确记录。CUDA必需，正式训练拒绝部分语料；保存时绑定模型／预测／决策SHA，结束后重建冻结验证集、复核训练输入及原策略来源，失败时保留实际更新数。`[verified: unity_quality_trainer.py fit、validate_coverage、verify_input_files、audit_best；unity_image_bags.py；test_unity_quality_training.py；opinion: 使用与验收要求]`
 
 - 原生patch统一清单使用[组装入口](script/assemble_unity_patch_corpus.py)，只接收passed准备报告及外部SHA，按冻结源清单恢复顺序。保留单批来源和原标签，拒绝重复／跨划分／held-out资产；目录、corpus和报告均不可覆盖。完整覆盖需实际counts等于源开发划分；2370图结果仍为partial，不能代替完整Unity训练验收。`[verified: patch_assembly.py run L60–80、L152–155；unity-patch-assembly2370.json；test_unity_patch_assembly.py；opinion: 使用与验收要求]`
 
@@ -44,7 +46,7 @@
 
 - Unity训练输入使用[原生RGBA Dataset](<experiment report/unity-accuracy90-20261111/unity-dataset.md>)的独立接口，外部配置绑定corpus SHA，保留20×4通道误差与精确零误差目标、有效区域mask和8项输入属性。实测质量与原策略选择仅作监督，不进入输入属性；MS-SSIM／法线角度保持整图监督。跨语料合并同时检查划分和目标文件SHA／patch尺寸，不能只比较整图SSE。260图数据检查通过，生产模型尚未训练。`[verified: unity_patch_dataset.py；dataset_audit.py；unity-dataset260-v2.json；opinion: 使用边界]`
 
-- 同图patch聚合实验的准备见[成组损失报告](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)。`ImagePatchBatchSampler`每组只抽同图patch、保留有效像素数；`PatchRegressionLoss`先加权MSE再取log，目标只对实际抽样组精确。权重0／1配对隔离loss，另比较成组采样本身；不能把期望权重一致称为每轮图覆盖一致。已接入训练器，默认独立采样与旧损失保持；两组CUDA小样本检查及权重重载通过，正式配对实验串行执行。运行中不修改其绑定源码，历史源码及检查点身份保持。`[verified: patch_bags.py；patch_loss.py；bag-sampling-analysis.json；scratch-bag4-smoke-summary.json；patch_trainer.py training_batches、fit；opinion: 对照与运行边界]`
+- 同图patch聚合实验见[成组损失报告](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)。`ImagePatchBatchSampler`每组只抽同图patch、保留有效像素数；`PatchRegressionLoss`先加权MSE再取log，目标只对实际抽样组精确。权重0／1配对隔离loss，另比较成组采样本身；不能把期望权重一致称为每轮图覆盖一致。正式两组完成10／7轮，最佳验证71.2%／71.7%，均低于独立采样80.7%；完整串行进程1869.71秒。结果按GDC开发协议记录，不外推Unity效果。`[verified: patch_bags.py；patch_loss.py；bag-sampling-analysis.json；scratch-bag4-comparison.json；opinion: 对照与归因边界]`
 
 - 当前goal以用户的[V1原分辨率patch误差回归计划](<experiment plan/V1/README.md>)和[evidence.json](<experiment plan/V1/evidence.json>)为准，实际状态见[执行记录](<experiment report/unity-accuracy90-20261111/README.md>)。按patch目标／编码核验、分类对照、scratch／pretrained回归、按错误分布改进的顺序执行，训练使用CUDA。GDC train／validation用于开发，最终在Unity导入后参考像素与同次原始搜索标签的独立测试上验收Top-1≥90%。`[verified: 用户本轮V1与重新创建goal要求；V1“目标与开发数据”“实验步骤”]`
 - V1分类五组最高验证Top-1为68.6%；正式随机初始化／预训练patch回归各14轮完成，最佳Top-1为76.0%／88.8%，阈值附近RMSE为1.7681／0.9736dB，两组最佳权重重载通过。各11,178,564参数，继续固定容量诊断；V1开发联合晋级条件及最终Unity90%均未达到。详见[回归状态](<experiment report/unity-accuracy90-20261111/patch-v1/README.md>)。`[verified: classification-controls/comparison.json；patch-v1/summary.json；scratch-result.json；pretrained-result.json；opinion: 后续顺序]`

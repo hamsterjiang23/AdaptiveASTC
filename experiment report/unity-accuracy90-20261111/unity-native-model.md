@@ -1,6 +1,6 @@
 # Unity 原生质量模型与决策接口
 
-已实现随机初始化ResNet-18的原生模型原型、分项监督损失和预测到原搜索规则的接口。CPU前向／梯度及边界检查通过，18项测试通过；当前没有Unity模型CUDA训练结果。2370图的精确目标验证中，块大小和preset全部重建一致，这是接口验证，不是学得的准确率。`[verified: unity-native-model-contract.json；test_unity_quality.py；unity-prediction-interface2370.json results、model_accuracy、training_updates；opinion: 完成边界]`
+已实现随机初始化ResNet-18的原生模型原型、分项监督损失和预测到原搜索规则的接口。先期18项CPU检查通过，随后新增训练器并完成[8图CUDA训练检查](unity-native-training.md)，含最佳权重重载；相关检查现共35项。2370图精确目标全部重建原块大小和preset，仍只作为接口验证，不是学得的准确率；完整生产训练尚未完成。`[verified: unity-native-model-contract.json；unity-native-smoke8-v1-result.json；unity-native-training-verification.json；unity-prediction-interface2370.json results；opinion: 完成边界]`
 
 ## 输入、输出与计算顺序
 
@@ -47,4 +47,4 @@ flowchart LR
 
 ## 下一步
 
-完成CUDA原生训练器小样本闭环，再在完整Unity开发划分上训练并比较。当前GDC成组采样／聚合损失实验继续使用其冻结的独立源码与协议；原生prototype不替换该运行。整图质量头的学习精度、训练时patch抽样覆盖、零通道校准、推理开销及独立测试90%均尚待实测。`[verified: unity-native-model-contract.json cuda_validation、model_accuracy；scratch-bag4-summary.json；opinion: 后续实验范围]`
+CUDA小样本闭环已通过，后续在完整Unity开发划分上训练并比较。GDC成组采样／聚合损失对照已结束，仍保留独立协议和负结果。整图质量头的泛化精度、抽样覆盖、零通道校准、推理开销及独立测试90%均尚待实测。`[verified: unity-native-smoke8-v1-result.json；scratch-bag4-comparison.json；opinion: 后续实验范围]`

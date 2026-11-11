@@ -1,12 +1,20 @@
 # 同图 patch 成组采样与聚合损失
 
-同图成组采样与有效像素加权MSE损失已接入训练器，两组CUDA小样本检查及最佳权重重载通过，正式成对训练已串行启动。资产组cap512训练先结束并归档其原始源码，再修改训练器；旧检查点与结果保持原身份。正式进度见[训练汇总](scratch-bag4-summary.json)，当前不能据小样本检查声明准确率收益。`[verified: scratch-bag4-smoke-summary.json；scratch-bag4-summary.json；jobs/scratch-group512/receipt.json；pre-bag-training-source归档；opinion: 结果边界]`
+同图成组采样与聚合损失的两组CUDA训练均已完成，最佳权重重载通过。权重0／1分别为71.2%／71.7%，加入聚合损失提高0.5个百分点，但都低于历史独立采样80.7%；本组配置没有达到改进目标。资产组cap512训练结束后归档原始源码，再修改训练器，旧检查点与结果保持原身份。正式结果见[配对比较](scratch-bag4-comparison.json)和[训练汇总](scratch-bag4-summary.json)。`[verified: scratch-bag4-comparison.json arms、paired_accuracy_change_percentage_points；scratch-bag4-summary.json status；pre-bag-training-source归档；opinion: 结果判断]`
 
 接入后默认bag_size=1、aggregate_loss_weight=0保持旧抽样序列与损失；bag_size=4采用同图成组DataLoader，按返回的patch索引读取有效像素数和图身份。历史日志新增局部／聚合损失分项，配置记录采样、目标范围和loss源码SHA。集成检查覆盖成对采样完全一致、像素索引映射、有限梯度、非法配置与完整组预算。`[verified: patch_trainer.py training_batches、fit；test_patch_training_bags.py；opinion: 记录要求]`
 
 小语料两组均使用48训练图／16验证图，各2轮、4次实际更新，参数11,178,564不变，峰值分配显存约2.12GB；完整suite29.52秒。权重0的聚合分项为0，权重1的两轮聚合损失分别0.10687／0.09386，输出有限、权重重载一致；只证明执行链路可用。`[verified: scratch-bag4-smoke-loss0.json、scratch-bag4-smoke-loss1.json history、peak_vram_bytes；scratch-bag4-smoke-summary.json；opinion: 小样本检查范围]`
 
-同图成组、聚合权重0的控制组随后完成10轮，按近阈值RMSE早停，最佳准确率权重为epoch1 raw：验证71.2%、同权重RMSE3.5647dB，低于历史独立采样80.7%／1.6040dB；训练1080.91秒，重载审计通过。权重1仍在运行，这项结果只说明当前成组采样配方出现退步，不能当作新增聚合损失的结论。`[verified: scratch-bag4-loss0-result.json；scratch-bag4-summary.json；opinion: 单项控制范围]`
+同图成组、聚合权重0的控制组完成10轮，最佳准确率权重为epoch1 raw：验证71.2%、同权重RMSE3.5647dB，训练1080.91秒。权重1完成7轮，选中epoch7 raw：71.7%／2.0188dB，训练728.25秒；两组均按近阈值RMSE早停，完整串行进程1869.71秒。权重1的跨权重最低RMSE为1.9558dB，不能与最佳准确率拼成同一权重的结果。`[verified: scratch-bag4-loss0-result.json；scratch-bag4-loss1-result.json；scratch-bag4-comparison.json paired_suite_process_seconds；opinion: 指标配对要求]`
+
+| 设置 | 验证Top-1 | 同权重近阈值RMSE | 质量达标率 |
+|---|---:|---:|---:|
+| 历史独立采样 | 80.7% | 1.6040dB | 84.6%。`[verified: scratch-lr0003-result.json metrics]` |
+| 同图4patch，聚合权重0 | 71.2% | 3.5647dB | 76.4%。`[verified: scratch-bag4-loss0-result.json metrics]` |
+| 同图4patch，聚合权重1 | 71.7% | 2.0188dB | 77.8%。`[verified: scratch-bag4-loss1-result.json metrics]` |
+
+权重0／1的配对比较隔离新增损失，历史独立采样的比较另含采样变化，不能把采样造成的整体退步归因于聚合损失。这些都是GDC源RGB开发结果，不是Unity生产验收。`[verified: scratch-bag4-suite.json trials；scratch-bag4-comparison.json scope；opinion: 归因边界]`
 
 ## 假设与对照
 
