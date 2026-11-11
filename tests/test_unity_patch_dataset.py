@@ -139,6 +139,20 @@ def test_external_corpus_hash_rejects_rewritten_labels(tmp_path: Path) -> None:
         UnityPatchDataset(tmp_path, "train", expected_sha256=original_hash)
 
 
+@pytest.mark.parametrize("same_asset", [True, False])
+def test_original_selection_uses_windows_asset_identity(tmp_path: Path, same_asset: bool) -> None:
+    fixture = DatasetFixture(tmp_path)
+    fixture.document["splits"]["train"][0]["original_selection"]["asset"] = (
+        "ASSETS\\TRAIN.png" if same_asset else "Assets/different.png"
+    )
+    fixture.publish()
+    if same_asset:
+        assert len(fixture.load()) == 2
+    else:
+        with pytest.raises(ValueError, match="original search identity"):
+            fixture.load()
+
+
 @pytest.mark.parametrize("split", ["test", "calibration", "validation"])
 def test_unavailable_splits_are_rejected(tmp_path: Path, split: str) -> None:
     fixture = DatasetFixture(tmp_path)

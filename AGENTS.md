@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- 原生patch批次准备见[分批目标报告](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)。只读取冻结快照中已发布的候选批次，重新验证原始参考／选择及候选归档；已完成单批语料绑定配置、报告、corpus哈希后复用。原计划为selected或仅选择部分批次时保留partial；coverage只表示所选范围，完整准备完成须同时满足status=passed、coverage=complete与实际counts等于完整源划分。Windows资产身份统一分隔符及大小写比较，原始文件哈希约束不变。`[verified: patch_batches.py select_batches、coverage、prepare_shard、prepare末段；unity_patch_dataset.py original_selection比较；opinion: 使用要求]`
+
 - Unity训练输入使用[原生RGBA Dataset](<experiment report/unity-accuracy90-20261111/unity-dataset.md>)的独立接口，外部配置绑定corpus SHA，保留20×4通道误差与精确零误差目标、有效区域mask和8项输入属性。实测质量与原策略选择仅作监督，不进入输入属性；MS-SSIM／法线角度保持整图监督。跨语料合并同时检查划分和目标文件SHA／patch尺寸，不能只比较整图SSE。260图数据检查通过，生产模型尚未训练。`[verified: unity_patch_dataset.py；dataset_audit.py；unity-dataset260-v2.json；opinion: 使用边界]`
 
 - 同图patch聚合实验的准备见[成组损失报告](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)。`ImagePatchBatchSampler`每组只抽同图patch、保留有效像素数；`PatchRegressionLoss`先加权MSE再取log，目标只对实际抽样组精确。权重0／1配对隔离loss，另比较成组采样本身；不能把期望权重一致称为每轮图覆盖一致。CPU检查和训练集抽样核验通过，未接入训练器或启动CUDA实验；已有运行的源码及检查点身份保持。`[verified: patch_bags.py；patch_loss.py；bag-sampling-analysis.json；opinion: 对照与运行边界]`

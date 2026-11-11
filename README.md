@@ -89,6 +89,8 @@ V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预�
 
 ## 当前状态
 
+原生数据准备继续扩展：[分批目标入口](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)已通过64训练图／2验证图检查，随后启动冻结的2370图部分语料构建；实际完成数量见对应JSON报告。独立语料复用、Windows路径身份和partial覆盖检查已落实，完整Unity训练仍待完成。`[verified: unity-patch-batches-smoke-v2.json；unity-patch-batches2370.json；opinion: 完成边界]`
+
 Unity迁移新增[原生RGBA Dataset](<experiment report/unity-accuracy90-20261111/unity-dataset.md>)：258训练图／2验证图的20候选逐通道监督、有效像素掩码及输入属性检查通过，原生PSNR重建最大差3.74e-6dB。该结果验证数据接入，Unity模型训练与独立测试90%仍待完成。`[verified: unity-dataset260-v2.json unique_images、corpora、training_updates；opinion: 验收边界]`
 
 | 项目 | 状态与证据 |

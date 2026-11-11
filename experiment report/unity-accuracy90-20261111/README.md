@@ -15,6 +15,8 @@
 
 ## 已完成与当前状态
 
+- [Unity分批patch准备](unity-patch-batches.md)通过64train／2validation检查，781／13个patch；2370图冻结子集已启动，进度见[逐批结果](unity-patch-batches2370.json)。保留首次大小写身份检查失败、修复及已生成语料；42项测试和独立复查通过。`[verified: unity-patch-batches-smoke-v2.json；unity-patch-batches2370.json；pytest与review输出]`
+
 - [Unity原生RGBA Dataset](unity-dataset.md)完成260张真实开发图的输入、20候选逐通道目标和原生PSNR重建检查；19项测试通过。最终复核包含重复patch监督冲突修复，进程13.22秒；Unity模型训练与独立测试仍未完成。`[verified: unity-dataset260-v2.json；jobs/unity-dataset260-v2/receipt.json；pytest 19 passed；opinion: 完成边界]`
 
 - [同图patch聚合损失](patch-fixed-capacity/bag-loss.md)完成CPU组件与10000训练图抽样核验，14项新检查通过；配对配置隔离采样变化与新增loss。尚未接入训练器或启动CUDA训练，继续等待正在运行的资产组对照。新增冻结预测诊断显示，246张单patch验证图上scratch／pretrained准确率为79.27%／89.02%，聚合实验不能预设解决全部误差。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；本轮pytest；opinion: 结果与执行边界]`

@@ -99,6 +99,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- Unity原生数据开始[按已完成批次准备patch目标](<../../experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)：64训练图／2验证图检查通过，2370图冻结子集已启动。修复真实Unity日志大小写路径差异，以及小型selected计划被误标完整覆盖的问题；42项检查通过。所有原始数据与失败记录保留，完整训练语料和生产验收尚未完成。`[verified: unity-patch-batches-smoke-v2.json；unity-patch-batches2370-config.json；pytest 42 passed；opinion: 后续范围]`
+
 - Unity迁移的[原生RGBA Dataset](<../../experiment report/unity-accuracy90-20261111/unity-dataset.md>)已通过258训练图／2验证图检查，保留20×4通道误差、零误差目标、有效像素mask和输入属性。跨语料重复判定补强为精确patch目标一致；19项测试及真实260图复核通过。此次尚未训练Unity模型，图级非PSNR质量分支与最终90%验收继续保留。`[verified: unity-dataset260-v2.json；test_unity_patch_dataset.py；opinion: 后续范围]`
 
 - 固定容量阶段准备[同图patch聚合损失对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)：成组采样和损失组件CPU检查通过，10000训练图上核对40000次patch抽样及MSE聚合；权重0／1使用相同采样作成对控制。当前资产组训练尚未结束，新组件未接入训练器、尚未启动CUDA实验。冻结验证预测的分组诊断显示单patch图仍有较大误差，因此聚合只作为一项假设，输入／元数据等后续改动依实际结果安排。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；test_patch_bags.py；scratch-group512.json status；opinion: 归因与后续范围]`

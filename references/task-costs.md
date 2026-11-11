@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+分批原生patch准备只读已完成的参考／候选归档，写独立.local单批语料及公开报告；共享shard目录独占锁，单进程，每批要求20GiB空闲RAM／40GiB磁盘。64train＋2validation首次进程63.53秒因路径大小写失败，保留其64图目标；修复后复用目标的检查用12.81秒。2370图处理成本单列，和CUDA训练／Unity采集重叠，不视作部署性能测量。`[verified: patch_batches.py run、prepare；jobs/unity-patch-batches-smoke、smoke-v2/receipt.json；unity-patch-batches2370-config.json；opinion: 成本边界]`
+
 Unity原生Dataset检查使用CPU，未进行模型训练。7图小样本循环0.24秒／进程6.11秒，首次260图为17.18／22.00秒；补强重复patch目标检查后的最终复核为9.52／13.22秒。各次成本分别保留，缓存及并发状态不同，不据此声称速度改进。`[verified: unity-dataset-smoke.json、unity-dataset260.json、unity-dataset260-v2.json；对应jobs/receipt；opinion: 成本解释]`
 
 启动较大实验前复核空闲内存、GPU、磁盘与现有任务；表中为本机已测样本，扩大输入规模后重新检查。内存峰值未记录的项目保留未知。`[opinion: 运行安排]`

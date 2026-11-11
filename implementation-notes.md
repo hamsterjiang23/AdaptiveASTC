@@ -1,5 +1,11 @@
 # Implementation notes
 
+## 2026-11-12 frozen native patch batches
+
+- Added an independent frozen-snapshot batch preparation path. It revalidates original reference/choice and all20candidate artifacts, then creates immutable per-batch patch corpora with Dataset checks. A64train/2validation smoke passed; the11published-batch snapshot covers2368train/2validation and is being prepared separately. No new encoding or GPU training is involved. `[verified: patch_batches.py; unity-patch-batches-smoke-v2.json; unity-patch-batches2370-config.json]`
+- The first smoke preserved completed64image targets but failed because the native log used lowercase_d.tga while the source path used_D.tga. Dataset now compares canonical Windows asset paths while retaining external corpus hashes; different assets still fail. Review also caught selected-plan/full-source coverage conflation, now fixed with explicit plan/full counts.42targeted tests and independent recheck pass. `[verified: unity-patch-batches-smoke.json; unity_patch_dataset.py; patch_batches.py coverage; pytest and review outputs]`
+- First smoke process63.53seconds; repaired smoke12.81seconds includes target reuse. The expanded run retains these costs and immutable corpus identity; unified training manifest assembly and full native model evaluation remain pending. `[verified: corresponding jobs/receipt.json; unity-patch-batches-smoke-v2-config.json prior_attempt; opinion: scope]`
+
 ## 2026-11-12 native Unity Dataset validation
 
 - Added a separately frozen RGBA Dataset with valid-pixel masks,20x4channel SSE/log-MSE and zero-error targets,8input-only attributes, and retained whole-image quality supervision. Real258train/2validation images pass pixel/padding and native PSNR reconstruction checks. No Unity model updates or test access occurred. `[verified: unity_patch_dataset.py; unity-dataset260-v2.json unique_images, training_updates, test_opened]`

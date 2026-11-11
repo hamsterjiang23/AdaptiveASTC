@@ -115,7 +115,8 @@ class UnityPatchDataset(Dataset[dict[str, Tensor]]):
                 or actual["need_alpha"] != meta["need_alpha"]
                 or (actual["profile"] == 0) != row["import_metadata"]["srgb"]
                 or meta["is_normal"] != (actual["texture_type_importer"] == "NormalMap")
-                or row["original_selection"]["asset"] != row["path"]
+                or row["original_selection"]["asset"].replace("\\", "/").casefold()
+                != row["path"].replace("\\", "/").casefold()
                 or not row["original_selection"]["search_executed"]
                 or row["original_selection"]["cache_hit"]
             ):
