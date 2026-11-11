@@ -1,5 +1,11 @@
 # Implementation notes
 
+## Classification accuracy research, 2026-11-11
+
+- Added the requested Chinese report with 35 primary sources and explicit reading depth. Recomputed frozen test confusion, feasible-candidate limits, winner margins and RGB224 cache identity. The report's hyperparameter/loss/architecture settings are proposals. `[verified: classification-accuracy-research-20261111 README.md、sources.json、diagnostics.json]`
+- The current GDC reproduction CLI parses learning_rate but omits it in GDCTraining.train. Micro batch changes preserve default effective64 through accumulation. Both are documented as implementation prerequisites for a tuning sweep. `[verified: script/reproduce.py train branch; GDCTraining.train; Trainer.train_epoch]`
+- Source-RGB historical experiments, Unity imported-reference production inputs and per-image policy/quality outcomes keep their own identities. Reported input-shift and candidate-ceiling conclusions retain those scopes. `[verified: report sections on input and labels; formal test2000 and captured-reference64 reports]`
+
 ## Formal GDC training and Unity pixel capture, 2026-11-11
 
 ### Deviations

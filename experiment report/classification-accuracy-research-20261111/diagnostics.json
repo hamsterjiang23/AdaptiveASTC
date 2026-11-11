@@ -1,0 +1,561 @@
+{
+  "status": "computed_from_frozen_reports",
+  "scope": "descriptive post-hoc analysis of already observed source-RGB test2000",
+  "source_sha256": {
+    "experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full\\manifest.json": "89139795be8374df3d363dec3b046effb3709c9deba44983785c106bf828de45",
+    "experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full\\pretrained\\history.json": "af2bd9a137e769e38a00f8961a44e64dd45061ef5fabb6636ebdcaf434885098",
+    "experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full\\pretrained\\config.json": "0c003452c031d80c22be5a857a2b1b8bb97af13093c835f3b567b4bd07725edc",
+    "experiment report\\gdc2023\\source-rgb35-medium-full\\test2000\\pretrained-test.json": "985199e2bd43c19184806ca823d6ab8cdac1edc3869fe4217abf7d40db40bb8c"
+  },
+  "config": {
+    "architecture": "resnet18",
+    "input": "RGB224_bilinear_ImageNet_normalization",
+    "seed": 20261109,
+    "effective_batch": 64,
+    "optimizer": {
+      "name": "SGD",
+      "lr": 0.01,
+      "momentum": 0.9,
+      "weight_decay": 0.0001
+    },
+    "scheduler": {
+      "name": "CosineAnnealingLR",
+      "T_max": 30,
+      "eta_min": 0
+    },
+    "loss": "unweighted_cross_entropy",
+    "amp": "fp16",
+    "amp_step_accounting": "optimizer post-hook; advance scheduler after applied updates",
+    "pretrained_weights": {
+      "url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+      "sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec"
+    },
+    "initialization": "pretrained",
+    "data_fingerprint": "0265a4d5759e1a4c8822d0ba8153af12ba0e151e531951f6f8daea9a42b4bc6b",
+    "epochs_target": 30,
+    "launch_config": {
+      "run_dir": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full",
+      "report_dir": "E:\\ASTC_Compression\\experiment report\\gdc2023\\source-rgb35-medium-full",
+      "initialization": "pretrained",
+      "epochs": 30,
+      "micro_batch": 64,
+      "workers": 2,
+      "resume": false,
+      "max_steps": 0,
+      "learning_rate": 0.01,
+      "momentum": 0.9,
+      "weight_decay": 0.0001,
+      "effective_batch": 64,
+      "scheduler_t_max": 30,
+      "seed": 20261109
+    },
+    "micro_batch": 64,
+    "workers": 2,
+    "max_steps": 0,
+    "torch": "2.8.0+cu128",
+    "torchvision": "0.23.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4070",
+    "environment": {
+      "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+      "platform": "Windows-10-10.0.19044-SP0",
+      "pid": 59244,
+      "rss_mib": 776.80078125,
+      "available_ram_gib": 32.244712829589844,
+      "uv_lock_sha256": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+      "argv": [
+        "E:\\ASTC_Compression\\script\\reproduce.py",
+        "train",
+        "--method",
+        "gdc2023",
+        "--run-id",
+        "source-rgb35-medium-full",
+        "--epochs",
+        "30",
+        "--micro-batch",
+        "64",
+        "--workers",
+        "2"
+      ]
+    },
+    "source_code_sha256": "dcdbeab92bb084bd064e5225d01ea3cea2b6e3a7cb127e30ec71515a1adee02b",
+    "source_files_sha256": {
+      "__init__.py": "c7c2d2f7d1e0746ab6a51903610c3542605f697e757434d75fc0e21ee33e0298",
+      "calibration/__init__.py": "62bec663aee32cbb874e5ee41a061f15d99f622a92fca956d1aace56380b4f5d",
+      "calibration/temperature.py": "b8ebd18c4dd46f93772e2bbbcd4ebb778e6719b415965d4f563c333028b84e36",
+      "cli.py": "88a90f3ac45dcf82b4e6738214a8453eda48a6632464af343deffcbf3f2dafa0",
+      "common.py": "b542e8956a88b82c334645d9fd26ca97a2852e4b158419bde5c37044581e6f46",
+      "config.py": "fe81c8689541f9ef2ed110cdf85ea8a45f28cf1ca9e71ce69ed0dbbca53571af",
+      "data/__init__.py": "3d526ad244dc54994998e057333a39c014b61fde287f554a5296b4c42c60ae42",
+      "data/catalog.py": "fcbd82c52e7af87c02aab0f68a640162ed0706fe6e32a2b694b5ba5f9b3a6492",
+      "data/dataset.py": "60eebe6b98e55dfd48b8670bcc80a3b8cd68ce381557b6e1d395c23c8d43326a",
+      "data/deduplication.py": "1cd2d9dddeecec7f180b9e4a4014490781fa50756f99f68388ce9a388d0548b1",
+      "data/images.py": "19fd537afef1f5309d3289a62fbb85815eb7554c661f116c387d1cc3e1720986",
+      "data/preparation.py": "395ec0791bc113de3da8a6a3c1a09d6ac359573caa71fd3a4d0f4c1b842a9c15",
+      "data/splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d",
+      "evaluation/__init__.py": "759698447de917fee78a04c054a89ac69ab46fb7f8059701cd0b1b6180aede88",
+      "evaluation/evaluator.py": "cf8630da262a64e0c8531c0e78619333ec6abd80bed633ecd4246bc668b70a06",
+      "evaluation/inference.py": "4b660a5c62a2afbfcb90a31d69fcaeae1c23a7c17cd1cf613f295d9fa6ddf06e",
+      "evaluation/metrics.py": "f476c6e1f9d6bba5f82eb3c83c697f3c9be7fe2b62e286610080f73c3314fb4d",
+      "metrics.py": "4ac2de5e5063d35a58127075e401dcfcc692afd2c7d21b8576e2858e2a1d9f1c",
+      "models/__init__.py": "0edefcf4025cd67e524458c4a494c138e2d75f7bbc4e2ced12e9aee4ca12a18a",
+      "models/resnet.py": "c27477e35d470866b8df249b75a502b1fcae272eb41460cd7d7ed3bfafbd47d4",
+      "reporting/__init__.py": "f64830557c719d553604c633becd3939dbcb6b28f3f0435c11cfe4fcef1e18c1",
+      "reporting/report.py": "0438bad59d39cafd624930c1bb4dbd0eb08a7de5817cb58bd757222db541d202",
+      "reports.py": "5a668ccc2b85925e009fafa574e4f72bec7f2dda5f47f96e827b6ae101472683",
+      "tracking/__init__.py": "0429d731380112a80070b06afd03133e81675eff62e38805ac5f8dcc5f0b8512",
+      "tracking/swanlab.py": "ef954636b016eb97541ac664b42b128e819a224071f28db5a1367406d508c591",
+      "tracking/upload.py": "7a13a3d84358d440da0c5dee49bc86faad8696166c35b84fef2aabfba854ef1c",
+      "training/__init__.py": "b724d03985f1e3303e8630d55a4233e6e1360765d897cab9a75b7f92a4fb0aae",
+      "training/trainer.py": "dcdbeab92bb084bd064e5225d01ea3cea2b6e3a7cb127e30ec71515a1adee02b",
+      "utils/__init__.py": "8018cdaa91b172a65f2d534b9589aadec351550a602bf8b676b83d32ccd96acc",
+      "utils/artifacts.py": "6b186f7531d063715308e00dada4e7c9d9d04f4831fa10aa45d14ae125a6564f",
+      "utils/checkpoints.py": "c3d74001cb62c7ce948c82dd1b20bfcb8f1b0fd73efb04199e16ad7017e0de4d",
+      "utils/environment.py": "eef3d6303738ab5ff56d0b5789f214a8768c71921da32e257a1b118411574e1f",
+      "utils/evaluation_seal.py": "290cf5f8ccac70188a427a932c0d2d7b3e73e4d76eefd67921c3163d6e1b128a",
+      "utils/runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5"
+    }
+  },
+  "classes": [
+    "6x6",
+    "8x8",
+    "10x10",
+    "12x12"
+  ],
+  "samples": 2000,
+  "correct": 1471,
+  "accuracy": 0.7355,
+  "wilson95_image_level_descriptive": [
+    0.7157311842582595,
+    0.754365853351899
+  ],
+  "wilson_limit": "Image-level binomial approximation. Asset-group dependence and model selection are excluded",
+  "confusion_matrix": [
+    [
+      439,
+      17,
+      24,
+      15
+    ],
+    [
+      114,
+      76,
+      43,
+      61
+    ],
+    [
+      43,
+      33,
+      41,
+      86
+    ],
+    [
+      11,
+      15,
+      67,
+      915
+    ]
+  ],
+  "per_class_recall": [
+    0.8868686868686869,
+    0.2585034013605442,
+    0.2019704433497537,
+    0.9077380952380952
+  ],
+  "balanced_accuracy": 0.56377015670427,
+  "class_counts": {
+    "train": {
+      "0": 2593,
+      "3": 4276,
+      "1": 1816,
+      "2": 1315
+    },
+    "validation": {
+      "3": 462,
+      "1": 192,
+      "2": 128,
+      "0": 218
+    },
+    "calibration": {
+      "1": 191,
+      "3": 478,
+      "0": 198,
+      "2": 133
+    },
+    "test": {
+      "1": 294,
+      "2": 203,
+      "3": 1008,
+      "0": 495
+    }
+  },
+  "quality_agreement": {
+    "correct_label_and_quality_pass": 1257,
+    "correct_label_and_quality_fail": 214,
+    "wrong_label_and_quality_pass": 283,
+    "wrong_label_and_quality_fail": 246,
+    "infeasible": 218,
+    "avoidable_quality_fail": 242
+  },
+  "quality_ceiling_fixed_candidates": 0.891,
+  "feasible_subset_quality_pass_rate": 0.8641975308641975,
+  "candidate_psnr_nonmonotonic_images": 41,
+  "candidate_feasibility_nonprefix_images": 0,
+  "feasible_winner_margins": {
+    "feasible": 1782,
+    "winner_margin_le_0_5": 167,
+    "winner_margin_le_1_0": 296
+  },
+  "max_validation_accuracy": {
+    "epoch": 2,
+    "accuracy": 0.663,
+    "nll": 0.8283630204665946
+  },
+  "min_validation_nll": {
+    "epoch": 2,
+    "accuracy": 0.663,
+    "nll": 0.8283630204665946
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_accuracy": 0.5995,
+      "val_accuracy": 0.623,
+      "val_nll": 0.9175558013470572,
+      "train_loss": 0.9974159242630005,
+      "val_ece": 0.03899447606987318
+    },
+    {
+      "epoch": 2,
+      "train_accuracy": 0.6715,
+      "val_accuracy": 0.663,
+      "val_nll": 0.8283630204665946,
+      "train_loss": 0.8093280319213867,
+      "val_ece": 0.05651849556566497
+    },
+    {
+      "epoch": 3,
+      "train_accuracy": 0.7055,
+      "val_accuracy": 0.623,
+      "val_nll": 0.9157825458628142,
+      "train_loss": 0.7156093503952027,
+      "val_ece": 0.07062373394566065
+    },
+    {
+      "epoch": 4,
+      "train_accuracy": 0.7478,
+      "val_accuracy": 0.63,
+      "val_nll": 1.035638687440061,
+      "train_loss": 0.5985824601173401,
+      "val_ece": 0.1484393586287238
+    },
+    {
+      "epoch": 5,
+      "train_accuracy": 0.7831,
+      "val_accuracy": 0.629,
+      "val_nll": 0.9490762283767666,
+      "train_loss": 0.5401055825710297,
+      "val_ece": 0.10637978133135947
+    },
+    {
+      "epoch": 6,
+      "train_accuracy": 0.825,
+      "val_accuracy": 0.631,
+      "val_nll": 0.9942033557372076,
+      "train_loss": 0.454540096282959,
+      "val_ece": 0.11943331178006424
+    },
+    {
+      "epoch": 7,
+      "train_accuracy": 0.8627,
+      "val_accuracy": 0.609,
+      "val_nll": 1.4877145878837417,
+      "train_loss": 0.35999818725585936,
+      "val_ece": 0.24931795526748535
+    },
+    {
+      "epoch": 8,
+      "train_accuracy": 0.8934,
+      "val_accuracy": 0.612,
+      "val_nll": 1.423366914936234,
+      "train_loss": 0.28245042409896853,
+      "val_ece": 0.22792333754233474
+    },
+    {
+      "epoch": 9,
+      "train_accuracy": 0.911,
+      "val_accuracy": 0.656,
+      "val_nll": 1.2711952099594426,
+      "train_loss": 0.24140277757644654,
+      "val_ece": 0.20299896672077186
+    },
+    {
+      "epoch": 10,
+      "train_accuracy": 0.9421,
+      "val_accuracy": 0.649,
+      "val_nll": 1.4212139442400409,
+      "train_loss": 0.16352083119153976,
+      "val_ece": 0.20557489526320982
+    },
+    {
+      "epoch": 11,
+      "train_accuracy": 0.9558,
+      "val_accuracy": 0.596,
+      "val_nll": 1.654956787247343,
+      "train_loss": 0.12038654379844665,
+      "val_ece": 0.2769893856497534
+    },
+    {
+      "epoch": 12,
+      "train_accuracy": 0.9603,
+      "val_accuracy": 0.64,
+      "val_nll": 1.8061069217070738,
+      "train_loss": 0.10761383610963822,
+      "val_ece": 0.2554625304908232
+    },
+    {
+      "epoch": 13,
+      "train_accuracy": 0.9657,
+      "val_accuracy": 0.62,
+      "val_nll": 1.7581074512851143,
+      "train_loss": 0.09668791929483414,
+      "val_ece": 0.26600169315947203
+    },
+    {
+      "epoch": 14,
+      "train_accuracy": 0.9854,
+      "val_accuracy": 0.627,
+      "val_nll": 1.8124668956025363,
+      "train_loss": 0.050871068441867826,
+      "val_ece": 0.2748965665728928
+    },
+    {
+      "epoch": 15,
+      "train_accuracy": 0.9853,
+      "val_accuracy": 0.631,
+      "val_nll": 1.8126371898361648,
+      "train_loss": 0.046593637454509736,
+      "val_ece": 0.26859484279893797
+    },
+    {
+      "epoch": 16,
+      "train_accuracy": 0.989,
+      "val_accuracy": 0.629,
+      "val_nll": 1.7094564815575715,
+      "train_loss": 0.03438105388879776,
+      "val_ece": 0.2677769911696797
+    },
+    {
+      "epoch": 17,
+      "train_accuracy": 0.9969,
+      "val_accuracy": 0.65,
+      "val_nll": 1.8523062146991442,
+      "train_loss": 0.009428145837783813,
+      "val_ece": 0.26259922896322885
+    },
+    {
+      "epoch": 18,
+      "train_accuracy": 0.9984,
+      "val_accuracy": 0.656,
+      "val_nll": 1.773554888050802,
+      "train_loss": 0.0055804188251495366,
+      "val_ece": 0.2547569605986117
+    },
+    {
+      "epoch": 19,
+      "train_accuracy": 0.9987,
+      "val_accuracy": 0.645,
+      "val_nll": 1.8154551730419215,
+      "train_loss": 0.0036174887895584107,
+      "val_ece": 0.26803466229059814
+    },
+    {
+      "epoch": 20,
+      "train_accuracy": 0.9992,
+      "val_accuracy": 0.652,
+      "val_nll": 1.833766502330468,
+      "train_loss": 0.0029108708143234254,
+      "val_ece": 0.2678752794816468
+    },
+    {
+      "epoch": 21,
+      "train_accuracy": 0.9994,
+      "val_accuracy": 0.65,
+      "val_nll": 1.8051774363090316,
+      "train_loss": 0.0027391470313072206,
+      "val_ece": 0.2638066455699472
+    },
+    {
+      "epoch": 22,
+      "train_accuracy": 0.9991,
+      "val_accuracy": 0.648,
+      "val_nll": 1.8332778992297727,
+      "train_loss": 0.002877003598213196,
+      "val_ece": 0.27022204147283446
+    },
+    {
+      "epoch": 23,
+      "train_accuracy": 0.9994,
+      "val_accuracy": 0.638,
+      "val_nll": 1.8106567564906504,
+      "train_loss": 0.0022080095529556274,
+      "val_ece": 0.27347486968932644
+    },
+    {
+      "epoch": 24,
+      "train_accuracy": 0.9996,
+      "val_accuracy": 0.64,
+      "val_nll": 1.8460884608228432,
+      "train_loss": 0.0017936443567276002,
+      "val_ece": 0.27730248171297645
+    },
+    {
+      "epoch": 25,
+      "train_accuracy": 0.9996,
+      "val_accuracy": 0.647,
+      "val_nll": 1.8914747954904063,
+      "train_loss": 0.0016073868036270143,
+      "val_ece": 0.27458724144302904
+    },
+    {
+      "epoch": 26,
+      "train_accuracy": 0.9997,
+      "val_accuracy": 0.648,
+      "val_nll": 1.797167016464071,
+      "train_loss": 0.0015256797909736634,
+      "val_ece": 0.26186217687369306
+    },
+    {
+      "epoch": 27,
+      "train_accuracy": 0.9996,
+      "val_accuracy": 0.649,
+      "val_nll": 1.872791580960319,
+      "train_loss": 0.00158163503408432,
+      "val_ece": 0.2709437077057937
+    },
+    {
+      "epoch": 28,
+      "train_accuracy": 0.9993,
+      "val_accuracy": 0.649,
+      "val_nll": 1.8440971395801262,
+      "train_loss": 0.002223745310306549,
+      "val_ece": 0.2670234136681493
+    },
+    {
+      "epoch": 29,
+      "train_accuracy": 0.9995,
+      "val_accuracy": 0.649,
+      "val_nll": 1.8524918629634815,
+      "train_loss": 0.0018602695107460022,
+      "val_ece": 0.26884660496509816
+    },
+    {
+      "epoch": 30,
+      "train_accuracy": 0.9996,
+      "val_accuracy": 0.64,
+      "val_nll": 1.8718676705294748,
+      "train_loss": 0.0015649745106697084,
+      "val_ece": 0.2761815604951533
+    }
+  ],
+  "protocol_boundaries": [
+    "Frozen test outputs are descriptive evidence only; tuning recommendations are untested",
+    "Unity imported-reference64 is a separate input-shift diagnostic"
+  ],
+  "architecture_sizes": [
+    {
+      "model": "ResNet-18",
+      "classes": 4,
+      "parameters": 11178564,
+      "fp32_state_dict_mib": 42.67961120605469,
+      "scope": "local architecture count, no training or pretrained download"
+    },
+    {
+      "model": "ResNet-34",
+      "classes": 4,
+      "parameters": 21286724,
+      "fp32_state_dict_mib": 81.26762390136719,
+      "scope": "local architecture count, no training or pretrained download"
+    },
+    {
+      "model": "ResNet-50",
+      "classes": 4,
+      "parameters": 23516228,
+      "fp32_state_dict_mib": 89.91033172607422,
+      "scope": "local architecture count, no training or pretrained download"
+    },
+    {
+      "model": "ConvNeXt-Tiny",
+      "classes": 4,
+      "parameters": 27823204,
+      "fp32_state_dict_mib": 106.13710021972656,
+      "scope": "local architecture count, no training or pretrained download"
+    },
+    {
+      "model": "EfficientNetV2-S",
+      "classes": 4,
+      "parameters": 20182612,
+      "fp32_state_dict_mib": 77.578369140625,
+      "scope": "local architecture count, no training or pretrained download"
+    }
+  ],
+  "rgb224_cache_collisions": {
+    "unique_cache_sha256": 13940,
+    "conflicting_label_groups": 0,
+    "images_in_conflicting_groups": 0,
+    "cross_split_equal_rgb224_groups": 2,
+    "images_in_cross_split_groups": 37,
+    "scope": "Grouping frozen manifest-recorded cache_sha256 values. Representative NPY arrays for both cross-split groups were inspected. Full physical14000-cache rehash is outside this analysis. Source asset groups and RGB224 equality have separate meanings.",
+    "examples": [],
+    "cross_split_groups": [
+      {
+        "sha256": "9fdddf3f9b855a0de3abdd5d06dfb004636ede430ccca6526578b3814d1918c2",
+        "images": 24,
+        "splits": [
+          "test",
+          "train"
+        ],
+        "unique_rgb_colors": 1,
+        "color": [
+          255,
+          255,
+          255
+        ],
+        "classes": [
+          3
+        ]
+      },
+      {
+        "sha256": "3d170ae10d9b0156e7106a24155e4bfbbf7fef518f8a6c7c7835bb124ffd2aed",
+        "images": 13,
+        "splits": [
+          "test",
+          "train"
+        ],
+        "unique_rgb_colors": 1,
+        "color": [
+          0,
+          0,
+          0
+        ],
+        "classes": [
+          3
+        ]
+      }
+    ]
+  },
+  "current_engine_source_inspection": {
+    "path": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+    "sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+    "functions": {
+      "GetCachedParameters": "1902-1934",
+      "CalculatePSNR": "2181 onward, rgbOnlyPsnr branch2240",
+      "FindOptimalParameters": "3442 onward"
+    },
+    "scope": "current static source snapshot; historical benchmark binary and policy hashes remain their original identities"
+  },
+  "current_runtime_source_sha256": {
+    "src/adaptive_astc/utils/runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+    "src/adaptive_astc/data/splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d"
+  }
+}

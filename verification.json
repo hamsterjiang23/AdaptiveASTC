@@ -320,5 +320,40 @@
       "status": "passed_after_documentation_fix",
       "C12": "Updated stale Unity measurement paragraph to completed10k baseline and64native capture; remaining full production input scope explicit"
     }
+  },
+  "classification_accuracy_research_20261111": {
+    "status": "passed",
+    "date": "2026-11-11",
+    "checks": {
+      "diagnostic_reconciliation": "Frozen2000-image confusion,accuracy,quality quadrants,feasibility ceilings,margins,4split class counts and30epochs reconciled",
+      "source_hashes": 4,
+      "runtime_source_hashes": 2,
+      "engine_source_snapshot_hash": 1,
+      "downloaded_pdf_hashes": 4,
+      "source_catalog": 35,
+      "local_links": 144,
+      "heading_anchors": 17,
+      "external_url_syntax": 161,
+      "cache_identity": "14000 manifest-recorded hashes grouped,13940 distinct IDs,2 train-test equal-cache groups containing37 images;2 representative arrays inspected",
+      "figure": "rendered and visually inspected",
+      "git_diff_check": "passed"
+    },
+    "commands": [
+      "uv run --frozen python -u - (frozen diagnostic reconciliation and source/PDF hash checks)",
+      "uv run --frozen python -u - (Markdown links,heading anchors and external URL syntax)",
+      "git diff --check"
+    ],
+    "review": {
+      "status": "passed_after_wording_fix",
+      "D1": "1782 images have at least one feasible candidate; wording corrected",
+      "expanded_scope": "read-only review found no bugs in import,codec,cache,numerical and deployment additions or source/binary identity boundaries"
+    },
+    "scope": "Research and descriptive diagnostics. Proposed training changes are unmeasured. Reading depth is catalogued. External URL syntax and selected source access are separate checks. Cache groups use manifest hashes; physical14000-cache rehash was not run.",
+    "report_sha256": {
+      "diagnostics.json": "4d4e4ed55dc53ded10c95253b8afa8ae8d4e02ba79f1646be59947c4d529e49d",
+      "README.md": "5cc1bd81e3790537974755c6d999a1116703d32dca10687d99e1d85042d8ccc5",
+      "sources.json": "d4db689ed4f83dde6c12bc9edd62ab185284b5e65437486d9c07d0dd445a71ae",
+      "training-and-errors.png": "8c9f5c4caf80d4a012288371e1d391fe0e98517b7f7c17c53234a81ce977ae02"
+    }
   }
 }

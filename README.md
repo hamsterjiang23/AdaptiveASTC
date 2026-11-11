@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+分类准确率提升的完整调研见[分类准确率与压缩全流程优化报告](<experiment report/classification-accuracy-research-20261111/README.md>)，覆盖35项一手资料、当前中间类别召回诊断、有效batch／学习率入口核对，以及Unity导入、编码、部署和分阶段实验预算。建议值在报告中按待实验记录。`[verified: sources.json primary_source_count；diagnostics.json per_class_recall；该报告“导入、编码与部署的全流程因素”“分阶段预算”]`
+
 执行顺序更新为Unity搜索耗时baseline、Nah 2023作者代码、Nah 2022论文重实现、TexNN论文重实现、GDC压缩闭环复现，再研究新模型与校准。复现入口与实际状态见[reproductions](reproductions/README.md)。Unity主基线采用LITE配置且关闭RDO，文献原始配置与项目适配配置分别记录。`[verified: 用户2026-11-10确认的实施计划]`
 
 优先研究原始块大小分类模型上的calibration，先评估分类方案能达到的质量与体积权衡。分类校准方案经实验仍达不到项目目标时，再研究多候选质量预测及其calibration。当前确定的是研究顺序，方法效果待实验验证。`[verified: 用户研究决策（2026-11-09）“在最原本的分类上进行calibration”“先研究这个，如果不行，在研究预测质量的calibration”]`
