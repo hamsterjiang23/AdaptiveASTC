@@ -1,5 +1,15 @@
 # Implementation notes
 
+## V1 classification controls and patch regression, 2026-11-11
+
+- Five serial CUDA classification controls retain RGB224, ResNet-18, frozen train10000/validation1000, seed20261109 and the historical cosine30 schedule. The baseline repeats66.3% and NLL0.828363 at epoch2. The other arms compare two learning rates with smoothing/weight decay or ordered cumulative loss; they do not isolate every changed component. `[verified: classification-controls/suite.json; baseline-ce.json history]`
+- The ordinal variant uses one shared score with explicitly ordered softplus threshold gaps, three cumulative binary losses and class-probability argmax. It is a local rank-consistent variant, not an exact author-code reproduction. `[verified: models/ordinal.py; classification_control.py ordinal_variant]`
+- Patch V1 adds monotone error outputs, optional EMA of parameters and buffers, raw/EMA validation, separate accuracy/RMSE checkpoints and validation-only margins. EMA advances only after actual optimizer updates. A checkpoint audit reloads selected weights and checks all saved validation PSNR predictions. `[verified: patch_regressor.py; patch_trainer.py track_update/audit_best; patch_metrics.py]`
+- Empty threshold neighborhoods report RMSE=None and do not affect early stopping. Positive finite MSE keeps exact PSNR; predicted zero error remains infinity for decisions and uses a declared300dB placeholder only in numerical regression diagnostics. `[verified: patch_metrics.py; test_patch_metrics.py]`
+- Initial formal patch trials keep the standard stem, monotone outputs, EMA0.999, AdamW/WD0.05, batch128, one warmup epoch and at most30epochs with RMSE patience5. Scratch uses lr1e-3 and pretrained3e-4, so this comparison is of V1 recipes rather than initialization alone. Group weighting, no-maxpool and image-level auxiliary loss remain later comparisons. `[verified: patch-v1/suite.json; opinion: comparison scope]`
+- The archived Unity alpha reference was encoded through the actual shared DLL at10x10/exhaustive. Vertically flipped exported pixels reproduced the stored payload exactly; unflipped pixels did not. This one-image ABI/orientation probe does not establish complete candidate coverage or native quality-metric parity. `[verified: unity-dll-probe.json]`
+- The initial live classification driver lacked a terminal suite summary on exceptions. Its exact started source is archived; the wrapper still records process failure. Subsequent drivers record failed/interrupted states, and both classification and patch drivers have failure-path tests. `[verified: jobs/classification-controls receipt; sources/run_classification_controls-started.py; test_classification_suite.py]`
+
 ## Unity classification90 goal, 2026-11-11
 
 - Plan created before the active goal. The user selected Unity imported references and same-search labels for the90% target. Fixed ResNet-18 tuning precedes capacity and architecture changes. `[verified: user confirmation; create_goal result; unity-accuracy90-20261111/README.md]`

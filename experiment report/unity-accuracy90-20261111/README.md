@@ -21,6 +21,8 @@
 - [全量目标提取](patch-data-full.json)通过，10,000训练图产生120,276个patch，1,000验证图产生12,864个patch；44,000个候选的PSNR重建最大差异1.42e-14 dB，耗时614.55秒。原始SSE为int64，边缘只统计真实像素。`[verified: patch-data-full.json；GDCPatchCorpus._prepare_image]`
 - [CUDA训练探针](patch-training-smoke.json)在RTX4070完成6次实际更新、0次AMP跳步，参数量11,178,564。该记录只有48训练图／16验证图、两轮各3步，用于执行检查。正式模型训练尚待完成。`[verified: patch-training-smoke.json status、config、history]`
 - 独立patch编码20图80候选全部与整图区域逐像素一致。变换编码最大绝对PSNR变化为水平0.84、垂直1.02、旋转6.60 dB，首批训练关闭增强。`[verified: patch-equivalence20.json；opinion: 增强决定]`
+- [五组分类对照](classification-controls/README.md)已完成，原配置验证66.3%，正则化CE最高68.5%，有序loss最高68.6%。保存预测、权重SHA、数据顺序及质量统计复核通过，仍未达到90%。`[verified: classification-controls/comparison.json]`
+- [V1单调／EMA探针](patch-v1-smoke.json)完成6次CUDA更新、0次AMP跳步，batch128峰值显存约2.12GB；[权重重载核验](patch-v1-smoke-audit.json)通过，实际选中EMA权重与保存预测一致。正式scratch／pretrained回归已串行启动，见[回归入口](patch-v1/README.md)。`[verified: patch-v1-smoke.json；patch-v1-smoke-audit.json；patch-v1/summary.json]`
 
 ## 两项执行决定
 
@@ -37,8 +39,18 @@ Unity训练采集保留原搜索提前停止、原标签与baseline计时。离�
 
 ## 入口、记录与交付
 
-入口为 [script/patch_regression.py](../../script/patch_regression.py) 的prepare、probe和train。新增数据、模型与训练class分别位于data、models和training目录。旧 [unity_accuracy90_scratch.toml](../../script/unity_accuracy90_scratch.toml) 是此前整图SGD草案，尚未运行，不用于启动V1回归。`[verified: CLI --help；配置文件；本轮执行记录]`
+入口为 [script/patch_regression.py](../../script/patch_regression.py) 的prepare、probe、train、suite和audit；分类入口为 [classification_control.py](../../script/classification_control.py) 与 [run_classification_controls.py](../../script/run_classification_controls.py)。新增数据、模型与训练class分别位于data、models和training目录。旧 [unity_accuracy90_scratch.toml](../../script/unity_accuracy90_scratch.toml) 是此前整图SGD草案，尚未运行，不用于启动V1回归。`[verified: 对应CLI子命令；配置文件]`
 
 进展入口为 [progress.json](progress.json)，job记录保存在.local的jobs目录。每轮训练保存指标、实际更新数、AMP跳步、权重、预测和源码／数据身份，公开报告在阶段结果形成后同步仓库。V1计划与证据保留用户原始内容，执行差异在本页和implementation-notes中更新。`[verified: PatchTrainer.fit；ReproductionJob.run；用户持续记录及仓库同步要求]`
 
-全量Unity参考／补充候选采集、分类对照、正式patch回归与90%独立验收尚未完成。目标保持active。`[verified: progress.json；本轮create_goal返回active]`
+分类对照已完成；正式patch回归正在运行，全量Unity参考／补充候选采集与90%独立验收尚未完成。目标保持active。`[verified: classification-controls/summary.json；patch-v1/summary.json；progress.json；get_goal active]`
+
+## 正式实验配置与资源
+
+分类五组串行执行，配置见 [分类配置](classification-controls/suite.json)，逐组结果见 [分类汇总](classification-controls/summary.json)。原配置、两档学习率的正则化CE、两档学习率的有序loss使用同一输入与seed，增强关闭，按验证NLL patience5早停。实际启动的队列源码另有归档。`[verified: classification-controls/suite.json；implementation-notes对应记录]`
+
+首批回归采用 [V1回归配置](patch-v1/suite.json)：标准stem、单调输出、EMA0.999、batch128、每图每轮期望4个patch、AdamW/WD0.05、warmup1、最多30轮，按阈值附近RMSE patience5早停。随机初始化lr1e-3为主线，预训练lr3e-4作V1配方对照；不同学习率使结果不能单独归因于初始化。两者均保存原始权重与EMA指标，以及准确率最优和RMSE最优权重。`[verified: patch-v1/suite.json；PatchTrainer.fit]`
+
+GPU实验串行，CPU静态检查可与训练同时发生。当前所有时长为本机开发成本，正式部署延迟需要独立计量。训练前检查空闲显存、RAM与磁盘；小样本确认batch128后再运行完整回归。`[opinion: 资源和计时安排]`
+
+[Unity DLL接口探针](unity-dll-probe.json)在一张归档sRGB Alpha贴图上，以10×10/exhaustive复现了原payload；输入需先垂直翻转以匹配Unity内存顺序。完整20候选补测与原生质量指标复现尚未完成。`[verified: unity-dll-probe.json scope、results]`

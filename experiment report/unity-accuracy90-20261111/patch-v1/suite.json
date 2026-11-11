@@ -1,0 +1,48 @@
+{
+  "summary": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-v1\\summary.json",
+  "trials": [
+    {
+      "name": "scratch-monotone-ema",
+      "config": {
+        "epochs": 30,
+        "batch_size": 128,
+        "patches_per_image": 4,
+        "weight_decay": 0.05,
+        "warmup_epochs": 1,
+        "workers": 2,
+        "seed": 20261111,
+        "remove_maxpool": false,
+        "monotone": true,
+        "ema_decay": 0.999,
+        "patience": 5,
+        "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-full",
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-v1\\scratch-monotone-ema",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-v1\\scratch-monotone-ema.json",
+        "initialization": "scratch",
+        "learning_rate": 0.001
+      }
+    },
+    {
+      "name": "pretrained-monotone-ema",
+      "config": {
+        "epochs": 30,
+        "batch_size": 128,
+        "patches_per_image": 4,
+        "weight_decay": 0.05,
+        "warmup_epochs": 1,
+        "workers": 2,
+        "seed": 20261111,
+        "remove_maxpool": false,
+        "monotone": true,
+        "ema_decay": 0.999,
+        "patience": 5,
+        "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-full",
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-v1\\pretrained-monotone-ema",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-v1\\pretrained-monotone-ema.json",
+        "initialization": "pretrained",
+        "learning_rate": 0.0003
+      }
+    }
+  ],
+  "scope": "GDC source RGB train10000/validation1000; no test; standard stem; initializations use V1 learning rates, not isolated initialization attribution"
+}

@@ -1,0 +1,101 @@
+{
+  "summary": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\classification-controls\\summary.json",
+  "trials": [
+    {
+      "name": "baseline-ce",
+      "config": {
+        "source": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full",
+        "initialization": "pretrained",
+        "epochs": 15,
+        "patience": 5,
+        "batch_size": 64,
+        "workers": 2,
+        "seed": 20261109,
+        "scheduler_t_max": 30,
+        "loss": "cross_entropy",
+        "smoothing": 0.0,
+        "learning_rate": 0.01,
+        "weight_decay": 0.0001,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\classification-controls\\baseline-ce",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\classification-controls\\baseline-ce.json"
+      }
+    },
+    {
+      "name": "regularized-lr003",
+      "config": {
+        "source": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full",
+        "initialization": "pretrained",
+        "epochs": 15,
+        "patience": 5,
+        "batch_size": 64,
+        "workers": 2,
+        "seed": 20261109,
+        "scheduler_t_max": 30,
+        "loss": "cross_entropy",
+        "smoothing": 0.1,
+        "learning_rate": 0.003,
+        "weight_decay": 0.0005,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\classification-controls\\regularized-lr003",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\classification-controls\\regularized-lr003.json"
+      }
+    },
+    {
+      "name": "regularized-lr01",
+      "config": {
+        "source": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full",
+        "initialization": "pretrained",
+        "epochs": 15,
+        "patience": 5,
+        "batch_size": 64,
+        "workers": 2,
+        "seed": 20261109,
+        "scheduler_t_max": 30,
+        "loss": "cross_entropy",
+        "smoothing": 0.1,
+        "learning_rate": 0.01,
+        "weight_decay": 0.0005,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\classification-controls\\regularized-lr01",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\classification-controls\\regularized-lr01.json"
+      }
+    },
+    {
+      "name": "ordinal-lr003",
+      "config": {
+        "source": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full",
+        "initialization": "pretrained",
+        "epochs": 15,
+        "patience": 5,
+        "batch_size": 64,
+        "workers": 2,
+        "seed": 20261109,
+        "scheduler_t_max": 30,
+        "loss": "ordered_cumulative",
+        "smoothing": 0.0,
+        "learning_rate": 0.003,
+        "weight_decay": 0.0005,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\classification-controls\\ordinal-lr003",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\classification-controls\\ordinal-lr003.json"
+      }
+    },
+    {
+      "name": "ordinal-lr01",
+      "config": {
+        "source": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full",
+        "initialization": "pretrained",
+        "epochs": 15,
+        "patience": 5,
+        "batch_size": 64,
+        "workers": 2,
+        "seed": 20261109,
+        "scheduler_t_max": 30,
+        "loss": "ordered_cumulative",
+        "smoothing": 0.0,
+        "learning_rate": 0.01,
+        "weight_decay": 0.0005,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\classification-controls\\ordinal-lr01",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\classification-controls\\ordinal-lr01.json"
+      }
+    }
+  ],
+  "scope": "V1 RGB224 pretrained baseline and recipe controls; validation selection; no test; transforms disabled by measured instability"
+}

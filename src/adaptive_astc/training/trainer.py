@@ -96,6 +96,7 @@ class Trainer:
         micro_batch: int,
         max_steps: int,
         effective_batch: int = 64,
+        criterion: nn.Module | None = None,
     ) -> JsonDict:
         model.train()
         optimizer.zero_grad(set_to_none=True)
@@ -128,7 +129,13 @@ class Trainer:
                     device_type=device.type, dtype=torch.float16, enabled=device.type == "cuda"
                 ):
                     logits = model(images)
-                    summed_loss = nn.functional.cross_entropy(logits, labels, reduction="sum")
+                    if criterion is None:
+                        summed_loss = nn.functional.cross_entropy(logits, labels, reduction="sum")
+                    else:
+                        per_sample_loss = criterion(logits, labels)
+                        if per_sample_loss.shape != labels.shape:
+                            raise ValueError("Training criterion must return one loss per image")
+                        summed_loss = per_sample_loss.sum()
                     loss = summed_loss / group_samples
                 if not torch.isfinite(loss):
                     raise ValueError("Non-finite training loss")

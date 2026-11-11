@@ -23,6 +23,11 @@ def main() -> None:
     probe.add_argument("--output", type=Path, required=True)
     probe.add_argument("--report", type=Path, required=True)
     probe.add_argument("--image-count", type=int, default=20)
+    suite = subcommands.add_parser("suite")
+    suite.add_argument("--config", type=Path, required=True)
+    audit = subcommands.add_parser("audit")
+    audit.add_argument("--output", type=Path, required=True)
+    audit.add_argument("--report", type=Path, required=True)
     train = subcommands.add_parser("train")
     train.add_argument("--corpus", type=Path, required=True)
     train.add_argument("--output", type=Path, required=True)
@@ -38,6 +43,9 @@ def main() -> None:
     train.add_argument("--seed", type=int, default=20261111)
     train.add_argument("--max-steps", type=int, default=0)
     train.add_argument("--keep-maxpool", action="store_true")
+    train.add_argument("--monotone", action="store_true")
+    train.add_argument("--ema-decay", type=float, default=0.0)
+    train.add_argument("--patience", type=int, default=0)
     args = parser.parse_args()
     if args.command == "prepare":
         result = GDCPatchCorpus(args.measured, args.output, args.patch_size).prepare(
@@ -49,6 +57,14 @@ def main() -> None:
         result = GDCPatchProbe(args.corpus, args.executable, args.output, args.report).run(
             args.image_count
         )
+    elif args.command == "suite":
+        from adaptive_astc.training.patch_suite import PatchExperimentSuite
+
+        result = PatchExperimentSuite(args.config).run()
+    elif args.command == "audit":
+        from adaptive_astc.training.patch_trainer import PatchTrainer
+
+        result = PatchTrainer.audit_best(args.output, args.report)
     else:
         from adaptive_astc.training.patch_trainer import PatchTrainConfig, PatchTrainer
 

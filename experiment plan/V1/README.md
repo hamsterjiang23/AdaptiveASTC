@@ -104,3 +104,5 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 - 变换的最大绝对PSNR变化为水平翻转0.84 dB、垂直翻转1.02 dB、90°旋转6.60 dB。首批实验关闭这些增强，后续如启用则重新编码生成对应监督。`[verified: patch-equivalence20.json rows；opinion: 增强决定]`
 - 抽样真实编码先保留为独立成本／质量对照，主路径保持预测后一次最终编码。Unity采用原搜索与补测分离的采集方式，保留原策略标签和计时，另补块大小×preset的缺失候选、解码图及各原生质量分支。`[opinion: 本轮执行决定]`
 - 当前6次CUDA更新仅为执行探针。独立输出／单调结构、标准stem／去maxpool、EMA及组采样均按配置和对照记录，正式分类对照、回归训练与Unity验收尚未完成。`[verified: patch-training-smoke.json；执行记录“实施差异与对照”]`
+- 后续分类五组已完成，验证Top-1从原配置66.3%提高至最高68.6%，中间类别与质量指标仍不足；详见[分类报告](<../../experiment report/unity-accuracy90-20261111/classification-controls/README.md>)。`[verified: classification-controls/comparison.json；opinion: 指标判断]`
+- 单调输出、标准stem、EMA0.999与batch128的新增CUDA探针完成6次更新，权重重载与保存预测核验通过；正式随机初始化／预训练回归队列已启动，见[回归报告](<../../experiment report/unity-accuracy90-20261111/patch-v1/README.md>)。增强继续关闭，组权重及图级loss留待错误分析后逐项比较。`[verified: patch-v1-smoke.json、patch-v1-smoke-audit.json、patch-v1/summary.json；opinion: 后续对照]`

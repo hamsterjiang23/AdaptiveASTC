@@ -11,12 +11,12 @@ import numpy as np
 import torch
 from torch import nn
 from torch.amp.grad_scaler import GradScaler
+from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
 from torch.utils.data import DataLoader, WeightedRandomSampler
 
-from adaptive_astc.config import CLASSES, JsonDict
+from adaptive_astc.config import JsonDict
 from adaptive_astc.data.patch_dataset import NativePatchDataset
-from adaptive_astc.data.patch_targets import PatchErrorGrid
-from adaptive_astc.evaluation.metrics import ClassificationMetrics
+from adaptive_astc.evaluation.patch_metrics import PatchRegressionMetrics
 from adaptive_astc.models.patch_regressor import ASTCPatchRegressor
 from adaptive_astc.utils.artifacts import ArtifactStore
 from adaptive_astc.utils.runtime import ExperimentRuntime
@@ -38,6 +38,9 @@ class PatchTrainConfig:
     seed: int = 20261111
     max_steps: int = 0
     remove_maxpool: bool = True
+    monotone: bool = False
+    ema_decay: float = 0.0
+    patience: int = 0
 
     def validate(self) -> None:
         if min(self.epochs, self.batch_size, self.patches_per_image) < 1:
@@ -50,6 +53,8 @@ class PatchTrainConfig:
             raise ValueError("Learning rate must be finite and positive")
         if not math.isfinite(self.weight_decay) or self.weight_decay < 0:
             raise ValueError("Weight decay must be finite and nonnegative")
+        if not 0 <= self.ema_decay < 1 or self.patience < 0:
+            raise ValueError("EMA decay must be in [0,1), patience nonnegative")
 
 
 class PatchTrainer:
@@ -70,7 +75,19 @@ class PatchTrainer:
         validation = NativePatchDataset(config.corpus, "validation")
         if train.fingerprint != validation.fingerprint:
             raise ValueError("Training and validation corpus identities differ")
-        model = ASTCPatchRegressor(config.initialization, config.remove_maxpool).to(device)
+        model = ASTCPatchRegressor(
+            config.initialization, config.remove_maxpool, config.monotone
+        ).to(device)
+        ema = (
+            AveragedModel(
+                model,
+                device=device,
+                multi_avg_fn=get_ema_multi_avg_fn(config.ema_decay),
+                use_buffers=True,
+            )
+            if config.ema_decay
+            else None
+        )
         optimizer = torch.optim.AdamW(
             model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay
         )
@@ -112,7 +129,9 @@ class PatchTrainer:
                 "sampling": "equal expected image weight; uniform patch within image; replacement",
                 "targets_clipped": False,
                 "augmentations": [],
-                "ema": False,
+                "ema": "parameters and buffers after each applied optimizer update"
+                if ema
+                else False,
                 "selection": "validation exact footprint accuracy at margin0, "
                 "then near-threshold RMSE",
                 "scope": "source RGB GDC development; no test access; no Unity production claim",
@@ -122,6 +141,8 @@ class PatchTrainer:
                         Path(__file__),
                         Path(__file__).parents[1] / "models/patch_regressor.py",
                         Path(__file__).parents[1] / "data/patch_dataset.py",
+                        Path(__file__).parents[1] / "evaluation/patch_metrics.py",
+                        Path(__file__).parents[1] / "data/patch_targets.py",
                     ]
                 },
             }
@@ -129,6 +150,9 @@ class PatchTrainer:
         ArtifactStore.write_json(config.output / "config.json", settings)
         history: list[JsonDict] = []
         best_key = (math.inf, math.inf)
+        best_rmse = math.inf
+        stale_epochs = 0
+        stop_reason = "epoch_budget"
         applied_updates = 0
 
         def track_update(
@@ -136,6 +160,8 @@ class PatchTrainer:
         ) -> None:
             nonlocal applied_updates
             applied_updates += 1
+            if ema is not None:
+                ema.update_parameters(model)
 
         hook = optimizer.register_step_post_hook(track_update)
         torch.cuda.reset_peak_memory_stats()
@@ -192,6 +218,14 @@ class PatchTrainer:
                 metrics, predicted_psnr = self.evaluate(
                     model, validation_batches, validation, device
                 )
+                variants: dict[str, tuple[nn.Module, JsonDict, np.ndarray]] = {
+                    "raw": (model, metrics, predicted_psnr)
+                }
+                if ema is not None:
+                    ema_metrics, ema_psnr = self.evaluate(
+                        ema, validation_batches, validation, device
+                    )
+                    variants["ema"] = (ema.module, ema_metrics, ema_psnr)
                 updates = applied_updates - before_updates
                 row = {
                     "epoch": epoch + 1,
@@ -203,12 +237,22 @@ class PatchTrainer:
                     "learning_rate": optimizer.param_groups[0]["lr"],
                     "training_seconds": training_seconds,
                     "validation": metrics,
+                    "validation_variants": {name: value[1] for name, value in variants.items()},
+                    "ema_updates": int(ema.n_averaged) if ema is not None else 0,
                     "seconds": time.perf_counter() - epoch_started,
                 }
                 if updates == 0:
                     raise RuntimeError("No optimizer update applied; trial is incomplete")
                 history.append(row)
-                key = (-metrics["accuracy"], metrics["near_threshold_rmse_db"])
+                winner = min(
+                    variants,
+                    key=lambda name: (
+                        -variants[name][1]["accuracy"],
+                        self.rmse_key(variants[name][1]),
+                    ),
+                )
+                eval_model, winner_metrics, winner_psnr = variants[winner]
+                key = (-winner_metrics["accuracy"], self.rmse_key(winner_metrics))
                 checkpoint = {
                     "model": model.state_dict(),
                     "optimizer": optimizer.state_dict(),
@@ -216,23 +260,48 @@ class PatchTrainer:
                     "config": settings,
                     "history": history,
                     "epoch": epoch + 1,
+                    "ema": ema.state_dict() if ema is not None else None,
                 }
                 temporary = config.output / "last.tmp"
                 torch.save(checkpoint, temporary)
                 temporary.replace(config.output / "last.pt")
                 if key < best_key:
                     best_key = key
-                    torch.save(checkpoint, config.output / "best.pt")
+                    torch.save(
+                        {
+                            **checkpoint,
+                            "model": eval_model.state_dict(),
+                            "selected_variant": winner,
+                        },
+                        config.output / "best.pt",
+                    )
                     np.savez_compressed(
                         config.output / "best-validation.npz",
-                        psnr=predicted_psnr,
+                        psnr=winner_psnr,
                         labels=np.array([item["class_id"] for item in validation.rows]),
                     )
+                rmse_winner = min(variants, key=lambda name: self.rmse_key(variants[name][1]))
+                epoch_rmse = variants[rmse_winner][1]["near_threshold_rmse_db"]
+                if epoch_rmse is None:
+                    pass
+                elif epoch_rmse < best_rmse:
+                    best_rmse, stale_epochs = epoch_rmse, 0
+                    torch.save(
+                        {
+                            **checkpoint,
+                            "model": variants[rmse_winner][0].state_dict(),
+                            "selected_variant": rmse_winner,
+                        },
+                        config.output / "best_rmse.pt",
+                    )
+                else:
+                    stale_epochs += 1
                 result = {
                     "status": "running",
                     "config": settings,
                     "history": history,
                     "best_validation_accuracy": -best_key[0],
+                    "best_near_threshold_rmse_db": best_rmse if math.isfinite(best_rmse) else None,
                     "wall_seconds": time.perf_counter() - started,
                     "peak_vram_bytes": torch.cuda.max_memory_allocated(),
                     "test_opened": False,
@@ -240,14 +309,69 @@ class PatchTrainer:
                 ArtifactStore.write_json(config.output / "history.json", result)
                 ArtifactStore.write_json(config.report, result)
                 print(row, flush=True)
+                if config.patience and epoch >= warmup and stale_epochs >= config.patience:
+                    stop_reason = "near_threshold_rmse_patience"
+                    break
         finally:
             hook.remove()
         result["status"] = "passed_smoke" if config.max_steps else "completed"
+        result["stop_reason"] = stop_reason
         result["checkpoint_sha256"] = ArtifactStore.sha256_file(config.output / "best.pt")
         result["wall_seconds"] = time.perf_counter() - started
         ArtifactStore.write_json(config.output / "history.json", result)
         ArtifactStore.write_json(config.output / "progress.json", result)
         ArtifactStore.write_json(config.report, result)
+        return result
+
+    @staticmethod
+    def rmse_key(metrics: JsonDict) -> float:
+        value = metrics["near_threshold_rmse_db"]
+        return math.inf if value is None else float(value)
+
+    @staticmethod
+    def audit_best(output: Path, report: Path) -> JsonDict:
+        history = ArtifactStore.read_json(output / "history.json")
+        if history["status"] not in {"completed", "passed_smoke"}:
+            raise ValueError("Checkpoint audit requires a finished trial")
+        checkpoint_path = output / "best.pt"
+        checkpoint_sha = ArtifactStore.sha256_file(checkpoint_path)
+        if checkpoint_sha != history["checkpoint_sha256"]:
+            raise ValueError("Selected checkpoint changed")
+        settings = history["config"]
+        device = ExperimentRuntime.configure(settings["seed"])
+        if device.type != "cuda":
+            raise RuntimeError("Checkpoint prediction audit requires CUDA")
+        checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+        if checkpoint["config"] != settings:
+            raise ValueError("Checkpoint configuration differs from the final report")
+        validation = NativePatchDataset(Path(settings["corpus"]), "validation")
+        if validation.fingerprint != settings["corpus_fingerprint"]:
+            raise ValueError("Checkpoint corpus changed")
+        model = ASTCPatchRegressor("scratch", settings["remove_maxpool"], settings["monotone"]).to(
+            device
+        )
+        model.load_state_dict(checkpoint["model"], strict=True)
+        batches = DataLoader(validation, batch_size=settings["batch_size"], num_workers=0)
+        metrics, psnr = PatchTrainer.evaluate(model, batches, validation, device)
+        with np.load(output / "best-validation.npz", allow_pickle=False) as saved:
+            np.testing.assert_allclose(psnr, saved["psnr"], rtol=0, atol=1e-5)
+            np.testing.assert_array_equal(
+                saved["labels"], np.array([row["class_id"] for row in validation.rows])
+            )
+        if metrics["accuracy"] != history["best_validation_accuracy"]:
+            raise ValueError("Reloaded checkpoint does not reproduce selected accuracy")
+        result = {
+            "status": "passed",
+            "checkpoint_sha256": checkpoint_sha,
+            "predictions_sha256": ArtifactStore.sha256_file(output / "best-validation.npz"),
+            "selected_variant": checkpoint["selected_variant"],
+            "selected_epoch": checkpoint["epoch"],
+            "metrics": metrics,
+            "fp32_parameter_bytes": sum(p.numel() * p.element_size() for p in model.parameters()),
+            "prediction_tolerance_db": 1e-5,
+            "test_opened": False,
+        }
+        ArtifactStore.write_json(report, result)
         return result
 
     @staticmethod
@@ -263,48 +387,6 @@ class PatchTrainer:
                     values = model(images.to(device, non_blocking=True))
                 prediction[indexes.numpy()] = values.float().cpu().numpy()
         mse = dataset.aggregate(prediction)
-        psnr = -10 * np.log10(np.maximum(mse, 1e-10))
-        truth_mse = np.array([row["full_squared_errors"] for row in dataset.rows], dtype=np.float64)
-        truth_mse /= np.array([row["pixel_count"] for row in dataset.rows])[:, None] * 3 * 255**2
-        truth_psnr = -10 * np.log10(np.maximum(truth_mse, 1e-10))
-        labels = np.array([row["class_id"] for row in dataset.rows])
-        chosen = PatchErrorGrid.choose(psnr)
-        # Hard decisions have no classification NLL. Reuse only confusion/recall metrics.
-        logits = torch.nn.functional.one_hot(torch.from_numpy(chosen), 4).float()
-        all_metrics = ClassificationMetrics.compute(logits, torch.from_numpy(labels))
-        metrics = {
-            key: all_metrics[key]
-            for key in [
-                "count",
-                "accuracy",
-                "macro_f1",
-                "balanced_accuracy",
-                "confusion_matrix",
-                "per_class",
-            ]
-        }
-        near = np.abs(truth_psnr - 35) <= 3
-        near_rmse = (
-            float(np.sqrt(np.square(psnr[near] - truth_psnr[near]).mean())) if near.any() else 0.0
-        )
-        quality_pass = truth_psnr[np.arange(len(chosen)), chosen] > 35
-        payload = np.array([row["payload_bytes"] for row in dataset.rows])
-        metrics.update(
-            {
-                "near_threshold_rmse_db": near_rmse,
-                "near_threshold_candidate_count": int(near.sum()),
-                "quality_pass_rate": float(quality_pass.mean()),
-                "payload_bytes": int(payload[np.arange(len(chosen)), chosen].sum()),
-                "fixed8_payload_bytes": int(payload[:, 1].sum()),
-                "seconds": time.perf_counter() - started,
-                "margins": [
-                    {
-                        "margin_db": margin,
-                        "accuracy": float((PatchErrorGrid.choose(psnr, margin) == labels).mean()),
-                    }
-                    for margin in [0.0, 0.25, 0.5, 0.75, 1.0]
-                ],
-                "classes": list(CLASSES),
-            }
-        )
+        metrics, psnr = PatchRegressionMetrics.compute(mse, dataset.rows)
+        metrics["seconds"] = time.perf_counter() - started
         return metrics, psnr
