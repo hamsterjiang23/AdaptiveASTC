@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- [原生推理输入与计时](<experiment report/unity-accuracy90-20261111/unity-inference.md>)使用`UnityInferenceTexture`／`UnityInferenceInput`和`UnityQualityInference`，输入只来自参考PNG及导入属性，禁止读监督。实际13patch与训练输入零容差一致，51项CPU检查通过；CUDA小样本等待主训练成功退出。`benchmark_unity_inference.py`必须有非空绑定依赖，退出等待后及结束时复核配置／源码，使用显式同步、预热与重复分开的计时；来源核验和Dataset对照排除于推理区间。当前19份执行源码冻结，最终编码及完整端到端计时另行验收。`[verified: unity-inference-input-audit.json；inference_benchmark.py；unity-inference-smoke2-v1-config.json；opinion: 使用边界]`
+
 - 保存原生验证预测的[最终编码核验](<experiment report/unity-accuracy90-20261111/unity-final-encoding.md>)使用`UnityFinalEncoding`和`script/encode_unity_predictions.py`。绑定完成训练、三个最佳产物、重载审计和原策略，先重放冻结预测再各编码一次，固定8×8的preset显式配置；完整ASTC、解码像素和原生质量与归档候选核对。质量build receipt必须等于原候选记录中的完整`quality_build`，不能只自校验当前DLL。两图／四次编码通过，进程4.05秒；仅为mip0编码阶段，推理和端到端成本不能从旧预测补算。`[verified: final_encoding.py；unity-final-encoding-smoke2-v2.json；对应job receipt；opinion: 使用与解释要求]`
 
 - 历史patch模型的BN重估可显式指定`--training-source-archive`，逐份匹配原训练绑定SHA，并单列当前执行源码；缺失或不符时拒绝。仍要求raw／EMA原验证结果复现、学习参数不变、运行后源码与检查点身份复核。group512末轮已完成，重估EMA84.4%／1.4284dB，低于原最佳84.5%／1.3869dB，后续保留原权重；本次重估按图等权而非资产组限权，成本单列。`[verified: patch_normalization.py bind_training_sources/run；normalization-group512.json；scratch-group512-result.json；opinion: 来源与比较边界]`

@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+原生独立推理输入核验：真实validation2／13patch，CPU0.878秒，无模型forward；51项相关CPU检查4.52秒。CUDA计时任务等待`scratch-group512-metadata`成功退出，读取已完成原生smoke权重与验证参考，写独立`unity-inference-smoke2-v1`目录，冻结19份源码。计划一次预热／三次重复，活动阶段预计不足一分钟；退出等待后复查至少4GiB空闲RAM和2GiB显存，等待和实际运行成本分开记录。`[verified: unity-inference-input-audit.json；本轮pytest；unity-inference-smoke2-v1-config.json；对应launch-preflight.json；opinion: 成本估计]`
+
 Unity保存验证预测的最终编码检查：两图、两条路径共四次DLL编码，v2内部0.81秒／完整进程4.05秒，CPU单进程，无新模型forward／CUDA。启动前RAM余量和磁盘记录于对应`launch-preflight.json`；读取已完成smoke模型产物与不可变验证候选，写独立`unity-final-encoding-smoke2-v2`目录，与训练及Unity采集并行。首次v1成本3.85秒，源码身份修订后v2独立复跑；不能作为部署端到端加速。`[verified: unity-final-encoding-smoke2-v2.json；对应v1/v2 jobs receipts；opinion: 成本边界]`
 
 尺寸元数据训练接入的46项CPU检查5.49秒，CUDA48train／16validation检查两轮4次更新、进程20.45秒、峰值分配显存2,118,428,672字节；后续BN路径检查10.51秒。正式启动前RAM空闲26.93GiB、GPU1172／12282MiB，batch128、workers2、单GPU，与Unity采集／补测并行，读冻结GDC语料并写独立训练目录。按既有10–30轮成本估计40–140分钟，实际早停轮数与完整成本待结束记录；旧15份源码预先归档，运行冻结12份训练源码。`[verified: metadata-integration.json；对应jobs receipts、launch-preflight.json；opinion: 预算与调度范围]`

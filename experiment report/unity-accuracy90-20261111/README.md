@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[独立原生输入与推理计时](unity-inference.md)通过51项CPU检查及真实13patch输入一致性核验；CUDA小样本已启动等待当前训练成功退出，不并发测量。当前无新增推理时间／效果结论；输入准备、forward、聚合与决策将分阶段保存，最终编码仍单独验收。`[verified: unity-inference-input-audit.json；unity-inference-smoke2-v1.json；opinion: 完成边界]`
+
 [原生保存预测的最终编码](unity-final-encoding.md)完成两图检查：预测与固定8×8／medium各编码两次，完整ASTC、解码像素及质量一致，进程4.05秒。预测质量通过1／2，固定8×8通过2／2，保留失败；这是小样本mip0编码验证，没有新forward或端到端加速结论。`[verified: unity-final-encoding-smoke2-v2.json summary；对应job receipt；opinion: 完成边界]`
 
 [尺寸元数据对照](patch-fixed-capacity/metadata.md)已接入训练、EMA、验证、重载和BN，46项CPU检查与两轮4次CUDA更新通过；新增16参数，总11,178,580。完整train10000／validation1000对照已启动，只改变尺寸特征输入，当前没有完整效果结论。`[verified: patch-fixed-capacity/metadata-integration.json；scratch-group512-metadata-suite.json；normalization-metadata-smoke.json；opinion: 完成边界]`

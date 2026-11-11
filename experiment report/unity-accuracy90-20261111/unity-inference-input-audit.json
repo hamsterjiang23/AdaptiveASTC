@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "images": 2,
+  "patches": 13,
+  "input_keys": [
+    "metadata",
+    "patch_index",
+    "rgba",
+    "valid_mask"
+  ],
+  "exact_input_parity": true,
+  "scope": "Validation2 input tensors only; no CUDA/model forward; old Dataset reads targets outside inference component",
+  "test_opened": false,
+  "training_updates": 0,
+  "wall_seconds": 0.8781581000002916,
+  "sources_sha256": {
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+  },
+  "corpus_sha256": "27a43c576c5f17a7dc529b421dd40b22925082f76cd8686363b1220688112f02",
+  "script_sha256": "920e7d8a6ac83746bc327ab92836aa187451febc960e9f324e029d9dc1951972"
+}
