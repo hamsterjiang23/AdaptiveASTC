@@ -1,0 +1,94 @@
+{
+  "status": "passed",
+  "scope": "Input-size feature geometry only; no model training or prediction",
+  "features": [
+    "log2_image_width_div12",
+    "log2_image_height_div12",
+    "valid_patch_width_fraction",
+    "valid_patch_height_fraction"
+  ],
+  "quantile_levels": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+  ],
+  "splits": {
+    "train": {
+      "images": 10000,
+      "patches": 120276,
+      "quantiles": {
+        "log2_image_width_div12": [
+          0.0,
+          0.8333333134651184,
+          0.8333333134651184,
+          0.9166666865348816,
+          1.0928932428359985
+        ],
+        "log2_image_height_div12": [
+          0.0,
+          0.8333333134651184,
+          0.8333333134651184,
+          0.9166666865348816,
+          1.024312138557434
+        ],
+        "valid_patch_width_fraction": [
+          0.004166666883975267,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "valid_patch_height_fraction": [
+          0.004166666883975267,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "validation": {
+      "images": 1000,
+      "patches": 12864,
+      "quantiles": {
+        "log2_image_width_div12": [
+          0.276827335357666,
+          0.7571215778589249,
+          0.8333333134651184,
+          0.8333333134651184,
+          0.9547817707061768
+        ],
+        "log2_image_height_div12": [
+          0.1934940069913864,
+          0.75,
+          0.8333333134651184,
+          0.8333333134651184,
+          1.0015166997909546
+        ],
+        "valid_patch_width_fraction": [
+          0.008333333767950535,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "valid_patch_height_fraction": [
+          0.02083333395421505,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "wall_seconds": 4.909056000004057,
+  "corpus_sha256": "c1c1208bbb17fbd49cae1bc244b8ff67f0bf3c7342741be8134c054c5e752a95",
+  "corpus_fingerprint": "45c879fa42839d8778af7b2224acaafa1209659bde11c8cb9302647343fd636f",
+  "source_sha256": "8dedcaae26477a1122f73e6d2378b4e3e8e0d5d7518d153a7e03ff3e1ff28c54",
+  "script_sha256": "8e259869a67451831b1383470385d7adf4a2aeb83822f946b7d558a90652a276",
+  "test_opened": false,
+  "training_updates": 0
+}

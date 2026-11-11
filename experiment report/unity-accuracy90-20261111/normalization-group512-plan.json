@@ -1,0 +1,80 @@
+{
+  "status": "ready_after_smoke",
+  "scope": "GDC development validation only; not Unity acceptance",
+  "training": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512",
+  "history_sha256": "11467bbc1df3bdac21a4f2a9360083ffa1cbeb7be975a46551460b3d9bc195ee",
+  "last_checkpoint_sha256": "54a8a222c53960e667930723bbab690d9b69ccbd81e43fc8527ce6d205f2f5ea",
+  "epoch": 26,
+  "calibration_patches_per_variant": 16384,
+  "calibration_sampling": "equal image weight; uniform patch; no asset group cap",
+  "optimizer_updates": 0,
+  "test_opened": false,
+  "source_binding": {
+    "archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\scratch-group512-training-source",
+    "sources": [
+      {
+        "relative_path": "src/adaptive_astc/training/patch_trainer.py",
+        "training_sha256": "bfe71b3bd46b43d8c86584362980c98c6190f1b524209ab40285853f9b45aaac",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\scratch-group512-training-source\\src\\adaptive_astc\\training\\patch_trainer.py",
+        "current_sha256": "ba5213cfe6b74b5f016755c5d42761e65fbdce8a3dd27bda41502e643fcaf146"
+      },
+      {
+        "relative_path": "src/adaptive_astc/models/patch_regressor.py",
+        "training_sha256": "e5e6e5f2d8b9205e6a9b53e68953d1cf593658ce5d2bb4da3c1e9e291e8f4adc",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\scratch-group512-training-source\\src\\adaptive_astc\\models\\patch_regressor.py",
+        "current_sha256": "e5e6e5f2d8b9205e6a9b53e68953d1cf593658ce5d2bb4da3c1e9e291e8f4adc"
+      },
+      {
+        "relative_path": "src/adaptive_astc/data/patch_dataset.py",
+        "training_sha256": "3013a257aeca22f1b2d9cc192cfe6e5b10cf41c61178ed872c383f94ef5b7f09",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\scratch-group512-training-source\\src\\adaptive_astc\\data\\patch_dataset.py",
+        "current_sha256": "3013a257aeca22f1b2d9cc192cfe6e5b10cf41c61178ed872c383f94ef5b7f09"
+      },
+      {
+        "relative_path": "src/adaptive_astc/data/patch_sampling.py",
+        "training_sha256": "f6aa0a5212147cf863fdc8b411ca63024071fd71d35c4ebb8e9ebb360e706bdb",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\scratch-group512-training-source\\src\\adaptive_astc\\data\\patch_sampling.py",
+        "current_sha256": "19fa199ba347b2394491524f7029210ec369b9288caa6952971a5720f4ba5658"
+      },
+      {
+        "relative_path": "src/adaptive_astc/evaluation/patch_metrics.py",
+        "training_sha256": "9e11b6d9e0b2fb519c70369f54615ebd610aeb685a3f0851ed39690773172e71",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\scratch-group512-training-source\\src\\adaptive_astc\\evaluation\\patch_metrics.py",
+        "current_sha256": "9e11b6d9e0b2fb519c70369f54615ebd610aeb685a3f0851ed39690773172e71"
+      },
+      {
+        "relative_path": "src/adaptive_astc/data/patch_targets.py",
+        "training_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\scratch-group512-training-source\\src\\adaptive_astc\\data\\patch_targets.py",
+        "current_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      }
+    ]
+  },
+  "execution_sources_sha256": {
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\patch_normalization.py": "3d440e3828bf2c22fe8e944ffba684d06c13823e45e0536984fecea2ec66b18b",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\patch_trainer.py": "ba5213cfe6b74b5f016755c5d42761e65fbdce8a3dd27bda41502e643fcaf146",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\patch_loss.py": "be9513750999e5227875ce68212f5f4cb7d8ec6fcf72f828dbf2f59b06fccbca",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\patch_regressor.py": "e5e6e5f2d8b9205e6a9b53e68953d1cf593658ce5d2bb4da3c1e9e291e8f4adc",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\masked_patch_regressor.py": "e76aeaf4807ca357b2a57ce11d91ce0fbef13948082a02f95570d01d162850b9",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_dataset.py": "3013a257aeca22f1b2d9cc192cfe6e5b10cf41c61178ed872c383f94ef5b7f09",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_geometry.py": "bc78a56fe483c658df9541a68f2d1b5ff3b47d5e04b75152bcd37bfa60c88619",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_sampling.py": "19fa199ba347b2394491524f7029210ec369b9288caa6952971a5720f4ba5658",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_bags.py": "39a8a75e19d848fad5b4ec0c99752f4905141dbc84de19c5103ca958a5a75fa6",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\patch_metrics.py": "9e11b6d9e0b2fb519c70369f54615ebd610aeb685a3f0851ed39690773172e71",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "E:\\ASTC_Compression\\script\\patch_normalization.py": "41b3e432b71d6db349affc68fa290f5bcfba955f9a1650bc4599a2fe3b6ca9be"
+  },
+  "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-group512\\job.json",
+  "job_sha256": "eed8ee147b93889b5ef3b62a5b6e053d1949ef0f5239775eeb773fd7d37cd079",
+  "smoke_report": "normalization-group512-archive-smoke.json",
+  "smoke_report_sha256": "834f0702107c2553e60989bece57b834086ba825fef0fa566749f6c46605c05f",
+  "smoke_process_seconds": 10.518041000002995,
+  "checks": {
+    "cpu_tests": 6,
+    "static_checks": "ruff format/check; basedpyright; CLI help passed",
+    "code_review": "No bugs found; real historical sources independently checked"
+  },
+  "expected_process_seconds": 450
+}

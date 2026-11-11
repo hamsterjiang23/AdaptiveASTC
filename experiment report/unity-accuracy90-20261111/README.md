@@ -6,6 +6,10 @@
 
 ## 验收与执行顺序
 
+[尺寸元数据对照](patch-fixed-capacity/metadata.md)已准备四项输入尺寸特征和16参数修正组件，12项CPU检查与完整133140patch几何核验通过；尚未接入正式训练，当前没有效果结论。`[verified: patch-fixed-capacity/metadata-contract.json；metadata-data-audit.json；opinion: 完成边界]`
+
+[组均衡末轮BN重估](normalization.md)已完成，EMA从79.4%变为84.4%／1.4284dB，0次优化器更新，原六份源码与当前14份执行源码分别核验；原训练最佳为84.5%／1.3869dB，继续保留原权重。完整进程429.16秒，Unity独立测试验收仍未完成。`[verified: normalization-group512.json；normalization-group512-plan.json；对应job receipt；scratch-group512-result.json；opinion: 选模与完成边界]`
+
 [全量原生数据衔接](unity-native-pipeline.md)已通过25项检查及三次66图四阶段闭环，最终复跑22.70秒；完整任务启动后等待原采集、候选补测和当前4674图准备全部成功，再执行11000图数据准备／合并／读取／原规则重放。数据就绪与模型90%验收仍分开，当前仅为等待状态。`[verified: unity-native-pipeline-smoke66-v3.json；unity-native-pipeline-full-v2.json；opinion: 完成边界]`
 
 [3906图原生决策接口](unity-native-model.md)已复核通过，精确误差目标重建全部原块大小／preset；262张法线图及319张大图放宽样本继续按各自规则记录。该结果不是模型准确率。数据准备已[扩展到4674图](unity-patch-batches.md)，实际4672训练图／2验证图、23255patch，复用3906图目标并新增768图，进程1849.48秒；coverage仍为partial。`[verified: unity-prediction-interface3906.json；unity-native3906-target-diagnostics.json；unity-patch-batches4674.json counts、patch_counts、coverage；对应job receipt；opinion: 完成边界]`

@@ -72,6 +72,10 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 实验步骤
 
+尺寸元数据对照已完成[组件与全量几何检查](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/metadata.md>)：新增16个零初始化参数，总11,178,580，使用整图尺寸和patch有效比例；12项CPU检查通过。当前仅为组件准备，训练接入、CUDA小样本和完整效果对照尚待完成。`[verified: metadata-contract.json；metadata-data-audit.json；opinion: 执行边界]`
+
+组均衡cap512的[末轮BN诊断](<../../experiment report/unity-accuracy90-20261111/normalization.md>)也已完成，重估EMA为84.4%／近阈值RMSE1.4284dB，未超过原最佳84.5%／1.3869dB，后续继续采用原权重作为对照。重估使用16384训练patch、0次优化器更新，独立计入429.16秒进程成本；当前仍未满足V1联合晋级或Unity最终验收。`[verified: normalization-group512.json；对应job receipt；scratch-group512-result.json；opinion: 选模与验收边界]`
+
 | 编号 | 内容 | 完成或晋级判据 |
 |---|---|---|
 | E1 | 提取 train＋validation 的 120 对齐 patch 误差目标；抽取约 20 张不同尺寸的图，将对齐 patch 单独编码并与整图编码的对应区域比较；同批 patch 测翻转和旋转后的误差变化 | 11,000×4 个整图 PSNR 由 patch 重建与 receipt 差≤0.001 dB；单独编码与整图编码解码像素一致；增强按误差变化分布决定是否启用 |

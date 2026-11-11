@@ -1,0 +1,32 @@
+{
+  "status": "component_and_data_checks_passed",
+  "parameters": 11178580,
+  "added_parameters": 16,
+  "added_fp32_parameter_bytes": 64,
+  "initialization": "Zero metadata correction; same backbone/head initialization and RNG",
+  "features": [
+    "log2(image_width)/12",
+    "log2(image_height)/12",
+    "valid_patch_width/patch_size",
+    "valid_patch_height/patch_size"
+  ],
+  "features_from": "image dimensions and valid patch geometry only",
+  "trainers_integrated": false,
+  "cuda_training_completed": false,
+  "model_accuracy": null,
+  "test_opened": false,
+  "training_updates": 0,
+  "cpu_checks": {
+    "command": "uv run --frozen pytest -q tests/test_patch_metadata.py",
+    "passed": 12,
+    "wall_seconds": 4.4
+  },
+  "data_audit": "metadata-data-audit.json",
+  "data_audit_sha256": "ca29be7671870b4152f958e00a776a7eac4151aaeac36d75342e832f252617e4",
+  "source_sha256": {
+    "src/adaptive_astc/data/patch_metadata.py": "8dedcaae26477a1122f73e6d2378b4e3e8e0d5d7518d153a7e03ff3e1ff28c54",
+    "src/adaptive_astc/models/metadata_patch_regressor.py": "c3574b0afffcae2945f8731dc5abd6b4a1eab4292b59890533123ece29be4297",
+    "tests/test_patch_metadata.py": "260f5035788d681855216231f08103b4bd5214874a2980d6298837b1424c24f9"
+  },
+  "review": "No bugs found; CPU recheck12passed4.15s; no CUDA or Unity operations"
+}

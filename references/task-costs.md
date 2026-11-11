@@ -1,5 +1,9 @@
 # 实验成本与读写依赖
 
+组均衡cap512末轮BN诊断已完成，raw／EMA分别使用16384训练patch重估并各验证前后状态，0次优化器更新；内部424.57秒、完整进程429.16秒，观察到进程树RSS约2571MiB、GPU总占用2116MiB，非峰值。启动前RAM空闲27.37GiB，沿用单GPU串行、与Unity采集并行；原checkpoint及归档源码只读，写独立诊断目录。先期CUDA小样本进程10.52秒，原／当前执行源码分开绑定。`[verified: normalization-group512.json；对应job receipt及launch-preflight.json；本轮psutil/nvidia-smi观测；opinion: 资源与计时范围]`
+
+尺寸元数据组件12项CPU检查4.40秒；完整11000图133140patch尺寸特征审计4.91秒，读取corpus及目标NPZ并核验SHA，不加载图片或运行模型。新增16参数的CUDA训练与推理成本尚未测量。`[verified: metadata-contract.json；metadata-data-audit.json；audit_patch_metadata.py；opinion: 待测范围]`
+
 3906图patch准备已完成，循环1684.91秒／进程1687.78秒；统一清单组装64.13／67.60秒，20832patch完整Dataset检查113.73／116.98秒。此范围仍为partial，旧11批目标哈希保持，6批新增目标单列；成本含重验与并发，不用于部署加速比。`[verified: unity-patch-batches3906.json；unity-patch-assembly3906.json；unity-assembly3906-dataset-audit.json；native3906-assembly-verification.json process_costs；opinion: 成本边界]`
 
 3906图精确目标决策接口检查循环62.50秒／进程67.29秒，17个原策略来源核对，0次训练更新。4674图扩展已完成，复用17批3906图目标、新增3批768图，循环1845.25秒／进程1849.48秒，超过启动时10–20分钟估计。单CPU进程只读已发布归档，写共享shard目录并持有独占锁，运行期间与CUDA训练和参考采集并行；这些数据准备成本不用于部署加速比。`[verified: unity-prediction-interface3906.json；jobs/unity-prediction-interface3906/receipt.json；unity-patch-batches4674.json；jobs/unity-patch-batches4674/receipt.json、launch-preflight.json；opinion: 估时与并发范围]`

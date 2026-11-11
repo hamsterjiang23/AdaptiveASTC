@@ -1,11 +1,70 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 import numpy as np
+import pytest
 import torch
 from torch import nn
 
 from adaptive_astc.evaluation.patch_metrics import PatchRegressionMetrics
 from adaptive_astc.evaluation.patch_normalization import PatchNormalizationAudit
+from adaptive_astc.utils.artifacts import ArtifactStore
+
+
+def test_training_source_binding_requires_explicit_exact_archive(tmp_path: Path) -> None:
+    root = tmp_path / "project"
+    source = root / "src/model.py"
+    source.parent.mkdir(parents=True)
+    source.write_text("original", encoding="utf-8")
+    expected = ArtifactStore.sha256_file(source)
+    settings = {"source_files_sha256": {str(source): expected}}
+    assert PatchNormalizationAudit.bind_training_sources(settings, root, None)["archive"] is None
+    archive = tmp_path / "archive"
+    saved = archive / "src/model.py"
+    saved.parent.mkdir(parents=True)
+    saved.write_bytes(source.read_bytes())
+    source.write_text("current", encoding="utf-8")
+    with pytest.raises(ValueError, match="bound source snapshot"):
+        PatchNormalizationAudit.bind_training_sources(settings, root, None)
+    bound = PatchNormalizationAudit.bind_training_sources(settings, root, archive)
+    assert bound["sources"][0]["training_sha256"] == expected
+    assert bound["sources"][0]["current_sha256"] == ArtifactStore.sha256_file(source)
+    assert bound["sources"][0]["verified_source"] == str(saved)
+    saved.write_text("tampered", encoding="utf-8")
+    with pytest.raises(ValueError, match="bound source snapshot"):
+        PatchNormalizationAudit.bind_training_sources(settings, root, archive)
+
+
+def test_training_source_binding_rejects_incomplete_archive(tmp_path: Path) -> None:
+    source = tmp_path / "model.py"
+    source.write_text("model", encoding="utf-8")
+    settings = {"source_files_sha256": {str(source): ArtifactStore.sha256_file(source)}}
+    archive = tmp_path / "archive"
+    archive.mkdir()
+    with pytest.raises(ValueError, match="bound source snapshot"):
+        PatchNormalizationAudit.bind_training_sources(settings, tmp_path, archive)
+    with pytest.raises(ValueError, match="existing directory"):
+        PatchNormalizationAudit.bind_training_sources(settings, tmp_path, archive / "missing")
+
+
+def test_training_source_binding_rejects_outside_project_and_empty(tmp_path: Path) -> None:
+    source = tmp_path / "outside.py"
+    source.write_text("model", encoding="utf-8")
+    settings = {"source_files_sha256": {str(source): ArtifactStore.sha256_file(source)}}
+    with pytest.raises(ValueError, match="outside the project"):
+        PatchNormalizationAudit.bind_training_sources(settings, tmp_path / "project", None)
+    with pytest.raises(ValueError, match="bindings are required"):
+        PatchNormalizationAudit.bind_training_sources({"source_files_sha256": {}}, tmp_path, None)
+
+
+def test_execution_bindings_include_current_inference_and_cli() -> None:
+    sources = PatchNormalizationAudit.execution_sources()
+    assert len(sources) == 14
+    assert any(path.endswith("patch_normalization.py") for path in sources)
+    assert any(path.endswith("masked_patch_regressor.py") for path in sources)
+    for name, sha in sources.items():
+        assert ArtifactStore.sha256_file(Path(name)) == sha
 
 
 def test_recalibration_preserves_weights_modes_and_momentum() -> None:

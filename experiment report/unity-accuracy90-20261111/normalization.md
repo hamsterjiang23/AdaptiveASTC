@@ -1,5 +1,7 @@
 # 固定权重的BatchNorm统计量诊断
 
+新增组均衡cap512末轮诊断已完成：重估EMA为84.4%／近阈值RMSE1.4284dB，未超过训练时选中的84.5%／1.3869dB，后续保留原最佳权重。四种变体和来源适配记录见本页末节；这是独立后处理，不替代Unity验收。`[verified: normalization-group512.json rows；patch-fixed-capacity/scratch-group512-result.json metrics；opinion: 选模与验收边界]`
+
 原V1随机初始化、预训练及后续scratch低学习率三组诊断均已完成。每组读取完成训练的末轮last.pt，不更新任何学习参数，仅对BatchNorm的running mean／variance及计数做训练集重估；原始检查点保留。它是独立的训练后处理实验，不能与训练中选出的最佳epoch混为一组。`[verified: normalization-scratch.json；normalization-pretrained.json；normalization-scratch-lr0003.json；PatchNormalizationAudit.run/recalibrate；opinion: 比较边界]`
 
 每个变体用相同seed抽取16384个原生训练patch，按图等期望权重、图内均匀采样，共128批；本次覆盖8066张训练图。重估不使用验证像素或标签，评估使用冻结validation1000。参数逐项一致性检查通过，optimizer更新0次，test未打开。`[verified: normalization-scratch.json calibration_patches、unique_training_images、rows.parameters_unchanged、optimizer_updates、test_opened]`
@@ -34,6 +36,8 @@ uv run --frozen python script/patch_normalization.py --training <已完成训练
 
 此入口只接受已完成开发训练且有EMA的检查点，复核原训练代码／corpus身份，拒绝覆盖旧输出。报告中的last-epoch身份、训练参数不变与统计量重估成本必须随后续结果一起保留。`[verified: PatchNormalizationAudit.run；opinion: 后续记录要求]`
 
+训练源码后来发生修改时，可显式传入`--training-source-archive <保存仓库相对路径的原源码目录>`。归档必须包含原训练记录绑定的全部源码且SHA完全一致，缺失或不符均拒绝；当前执行代码另行绑定，并在结束时复核。当前执行器仍须复现原raw／EMA末轮验证准确率与近阈值RMSE，并逐参数确认只更新BN统计量。该模式表示使用当前实现核验历史权重，不声称直接执行了归档代码。`[verified: PatchNormalizationAudit.bind_training_sources、execution_sources、run；script/patch_normalization.py；opinion: 历史与当前执行边界]`
+
 ## 后续随机初始化lr0.0003的末轮诊断
 
 [低学习率诊断](normalization-scratch-lr0003.json)使用已完成epoch12的last.pt、相同16384个训练patch／8066图。四种变体学习参数均未改变，0次优化器更新，test未打开；内部墙钟402.01秒，进程419.26秒。`[verified: normalization-scratch-lr0003.json calibration_patches、unique_training_images、rows.parameters_unchanged、optimizer_updates、wall_seconds；.local对应jobs/normalization-scratch-lr0003/receipt.json]`
@@ -59,3 +63,18 @@ uv run --frozen python script/patch_normalization.py --training <已完成训练
 | EMA，训练集重估 | 78.6% | 2.1127dB。`[verified: normalization-scratch-stem2-lr0003.json rows[3].metrics]` |
 
 重估EMA的balanced accuracy为73.73%、质量达标率87.1%、payload96,820,144字节。相同后处理下，标准stem配方为80.9%／1.3716dB，仍优于这次去maxpool结果；下一项资产组抽样对照沿用标准stem。这里比较各自完成训练的末轮后处理，训练轮数不同，不能归因为单独的BN效果。`[verified: normalization-scratch-stem2-lr0003.json rows[3].metrics；normalization-scratch-lr0003.json rows[3].metrics；opinion: 后续配方与比较边界]`
+
+## 资产组cap512的末轮诊断
+
+[组均衡诊断](normalization-group512.json)使用完成训练的epoch26权重，每个变体用相同16384个训练patch／8066图重估；重估采样按图等权、图内均匀，不使用训练时的资产组cap512限权。验证只使用冻结validation1000，参数逐项不变，0次优化器更新，test未打开。`[verified: normalization-group512.json epoch、calibration_patches、unique_training_images、calibration_sampling、optimizer_updates、rows.parameters_unchanged、test_opened]`
+
+| epoch26变体 | 验证Top-1 | 阈值附近RMSE |
+|---|---|---|
+| raw，原统计量 | 83.6% | 1.4894dB。`[verified: normalization-group512.json rows[0].metrics]` |
+| raw，训练集重估 | 79.7% | 1.6618dB。`[verified: normalization-group512.json rows[1].metrics]` |
+| EMA，原统计量 | 79.4% | 1.6210dB。`[verified: normalization-group512.json rows[2].metrics]` |
+| EMA，训练集重估 | 84.4% | 1.4284dB。`[verified: normalization-group512.json rows[3].metrics]` |
+
+重估EMA的balanced accuracy为79.66%，四类召回87.61%／70.31%／67.19%／93.51%；零余量质量达标86.1%、payload91,722,320字节。原epoch21最佳权重为84.5%、质量达标84.8%、payload87,607,504字节；重估EMA提高了质量达标率但增大payload，块大小准确率未提高。保留原最佳权重，并保存该后处理的质量／体积取舍，不将差异归为模型容量收益。`[verified: normalization-group512.json rows[3].metrics；patch-fixed-capacity/scratch-group512-result.json metrics；opinion: 选模与比较边界]`
+
+本次先通过[归档源码模式的CUDA小样本](normalization-group512-archive-smoke.json)，48训练图／16验证图、每个变体256个训练patch，进程10.52秒。正式使用的六份历史源码逐一匹配原history SHA，当前14份执行源码另外绑定，raw／EMA原统计量复现检查通过；6项CPU回归、静态检查和独立代码审查通过。正式内部墙钟424.57秒、含启动归档的进程429.16秒，与Unity采集并行，成本按开发实验记录。`[verified: normalization-group512-plan.json；normalization-group512.json training_source_binding、execution_sources_sha256、wall_seconds；对应jobs receipts；test_patch_normalization.py；opinion: 成本范围]`

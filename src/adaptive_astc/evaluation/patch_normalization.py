@@ -20,6 +20,57 @@ from adaptive_astc.utils.runtime import ExperimentRuntime
 
 class PatchNormalizationAudit:
     @staticmethod
+    def bind_training_sources(
+        settings: JsonDict, project_root: Path, training_source_archive: Path | None
+    ) -> JsonDict:
+        project_root = project_root.resolve()
+        archive = training_source_archive.resolve() if training_source_archive else None
+        if archive is not None and not archive.is_dir():
+            raise ValueError("Training source archive must be an existing directory")
+        sources = settings["source_files_sha256"]
+        if not sources:
+            raise ValueError("Training source bindings are required")
+        rows = []
+        for name, expected in sources.items():
+            current = Path(name).resolve()
+            if not current.is_relative_to(project_root):
+                raise ValueError("Training source lies outside the project")
+            relative = current.relative_to(project_root)
+            historical = archive / relative if archive else current
+            if not historical.is_file() or ArtifactStore.sha256_file(historical) != expected:
+                raise ValueError("Training implementation differs from its bound source snapshot")
+            rows.append(
+                {
+                    "relative_path": relative.as_posix(),
+                    "training_sha256": expected,
+                    "verified_source": str(historical),
+                    "current_sha256": ArtifactStore.sha256_file(current),
+                }
+            )
+        return {"archive": str(archive) if archive else None, "sources": rows}
+
+    @staticmethod
+    def execution_sources() -> dict[str, str]:
+        package = Path(__file__).parents[1]
+        paths = [
+            Path(__file__),
+            package / "training/patch_trainer.py",
+            package / "training/patch_loss.py",
+            package / "models/patch_regressor.py",
+            package / "models/masked_patch_regressor.py",
+            package / "data/patch_dataset.py",
+            package / "data/patch_geometry.py",
+            package / "data/patch_sampling.py",
+            package / "data/patch_bags.py",
+            package / "data/patch_targets.py",
+            package / "evaluation/patch_metrics.py",
+            package / "utils/runtime.py",
+            package / "utils/artifacts.py",
+            package.parents[1] / "script/patch_normalization.py",
+        ]
+        return {str(path): ArtifactStore.sha256_file(path) for path in paths}
+
+    @staticmethod
     def baseline_matches(measured: JsonDict, recorded: JsonDict) -> bool:
         actual, expected = (
             measured["near_threshold_rmse_db"],
@@ -68,7 +119,13 @@ class PatchNormalizationAudit:
         return count
 
     @staticmethod
-    def run(training: Path, output: Path, report: Path, calibration_batches: int = 128) -> JsonDict:
+    def run(
+        training: Path,
+        output: Path,
+        report: Path,
+        calibration_batches: int = 128,
+        training_source_archive: Path | None = None,
+    ) -> JsonDict:
         if calibration_batches < 1:
             raise ValueError("Positive calibration batch budget required")
         if output.exists() or report.exists():
@@ -78,9 +135,12 @@ class PatchNormalizationAudit:
         if history["status"] not in {"completed", "passed_smoke"} or history["test_opened"]:
             raise ValueError("Require a completed development training run")
         settings = history["config"]
-        for name, expected in settings["source_files_sha256"].items():
-            if ArtifactStore.sha256_file(Path(name)) != expected:
-                raise ValueError("Training implementation changed before normalization audit")
+        project_root = Path(__file__).parents[3]
+        source_binding = PatchNormalizationAudit.bind_training_sources(
+            settings, project_root, training_source_archive
+        )
+        execution_sources = PatchNormalizationAudit.execution_sources()
+        history_sha = ArtifactStore.sha256_file(history_path)
         checkpoint_path = training / "last.pt"
         checkpoint_sha = ArtifactStore.sha256_file(checkpoint_path)
         checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
@@ -122,10 +182,14 @@ class PatchNormalizationAudit:
             "status": "running",
             "scope": "Frozen last-epoch weights; train-only BN statistics; development validation",
             "training": str(training),
-            "history_sha256": ArtifactStore.sha256_file(history_path),
+            "history_sha256": history_sha,
             "checkpoint_sha256": checkpoint_sha,
             "epoch": checkpoint["epoch"],
             "source_sha256": ArtifactStore.sha256_file(Path(__file__)),
+            "training_source_binding": source_binding,
+            "execution_sources_sha256": execution_sources,
+            "baseline_reload_required": True,
+            "calibration_sampling": "Equal image weight, uniform patch within image, no group cap",
             "corpus_fingerprint": train.fingerprint,
             "calibration_batches": calibration_batches,
             "calibration_patches": len(sampled),
@@ -199,6 +263,14 @@ class PatchNormalizationAudit:
                     ArtifactStore.write_json(output / "receipt.json", state)
             if ArtifactStore.sha256_file(checkpoint_path) != checkpoint_sha:
                 raise ValueError("Original checkpoint changed during diagnosis")
+            if ArtifactStore.sha256_file(history_path) != history_sha:
+                raise ValueError("Original training history changed during diagnosis")
+            if execution_sources != PatchNormalizationAudit.execution_sources():
+                raise ValueError("Normalization execution sources changed during diagnosis")
+            if source_binding != PatchNormalizationAudit.bind_training_sources(
+                settings, project_root, training_source_archive
+            ):
+                raise ValueError("Training source bindings changed during diagnosis")
             state["status"] = "passed"
         except BaseException as error:
             state.update(status="failed", error=repr(error))

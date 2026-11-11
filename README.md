@@ -52,6 +52,10 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+下一项[尺寸元数据对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/metadata.md>)已准备组件：四项尺寸特征、16个新增参数，12项CPU检查及133140patch几何核验通过；当前尚未接入训练器或获得CUDA训练结果，原cap512基准保持。`[verified: metadata-contract.json；metadata-data-audit.json；opinion: 完成边界]`
+
+[组均衡模型的BN重估](<experiment report/unity-accuracy90-20261111/normalization.md>)已完成，epoch26 EMA重估为84.4%／1.4284dB，未超过原最佳84.5%／1.3869dB，后续保留原权重。重估仅更新训练集统计量，0次优化器更新，完整进程429.16秒；该GDC开发结果不代表Unity验收。`[verified: normalization-group512.json；对应job receipt；scratch-group512-result.json；opinion: 选模与完成边界]`
+
 新增[有效区域特征汇总对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)已完成10轮CUDA训练与最佳权重重载，验证78.0%／同权重近阈值RMSE1.7141dB，比原cap512低6.5个百分点；参数11,178,564不变。保留负结果，后续沿用原池化；该开发结果不代表Unity生产准确率。`[verified: scratch-group512-validpool-result.json metrics、accuracy_change_pp、parameters；opinion: 后续选择与完成边界]`
 
 [原生决策接口](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)扩展至3906图，精确目标重建全部原块大小／preset，不代表模型准确率。后续[4674图目标准备](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)已完成，实际4672训练图／2验证图、23255patch，进程1849.48秒；复用3906图并补充768图。该范围仍为partial，完整训练覆盖和独立测试验收仍未完成。`[verified: unity-prediction-interface3906.json；unity-patch-batches4674.json counts、patch_counts、coverage；对应job receipt；opinion: 完成边界]`
