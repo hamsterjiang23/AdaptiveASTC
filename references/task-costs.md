@@ -27,3 +27,5 @@
 新任务先跑小样本；聚合成本随批量和并发重新估算。同一工程、数据生成目录、模型保存目录出现读写冲突时先完成写入方，保留每次实验的独立身份。`[opinion]`
 
 连续候选队列读取参考队列已发布批次的归档、原DLL和原生指标构建，写独立.local目录；候选队列持有工程级candidates.lock，参考队列持有series.lock。每批至少20GiB空闲RAM／40GiB输出磁盘，只启动一个补测工作进程；全11000图为重型批处理，256图测量用于预算参考，尺寸与用途分布不同会改变耗时。`[verified: candidate_queue.py lock、require_resources、run；unity-candidate-queue-full-config.json；opinion: 成本分类及外推边界]`
+
+去maxpool正式训练15轮3345.85秒，包含权重重载的进程3385.97秒；末轮BN诊断另用599.74秒。下一项组限权训练的48train／16validation CUDA检查用34.44秒，正式启动前空闲RAM30.25GiB、GPU1229／12282MiB。训练继续单GPU串行，原生采集与候选补测的CPU／磁盘成本重叠，正式训练时间待结束后记录。`[verified: patch-fixed-capacity/scratch-stem2-lr0003-result.json；对应jobs/receipt；normalization-scratch-stem2-lr0003.json；jobs/scratch-group512/launch-preflight.json及启动前nvidia-smi输出；opinion: 成本范围]`

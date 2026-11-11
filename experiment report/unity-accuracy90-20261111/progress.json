@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T16:15:46.257073+00:00",
+  "updated_utc": "2026-11-11T16:30:41.902968+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -61,7 +61,7 @@
     }
   ],
   "next": [
-    "Finish frozen stem-checkpoint BN diagnosis; select the next fixed-capacity control",
+    "Run the train-only asset-group capped sampling control at fixed capacity",
     "Finish serial original-reference/label collection for train10000/validation1000",
     "Follow published reference batches to build all20candidate training targets",
     "Validate remaining Unity quality branches; keep independent final test sealed"
@@ -519,10 +519,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T16:15:24.449397+00:00",
+      "last_observed_alive_utc": "2026-11-11T16:30:24.944884+00:00",
       "name": "unity-reference-series-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\receipt.json",
-      "sha256": "6395872068ba56e934da91f70d936eb2c231e6f890a7d1916efa6c2c0940a78a",
+      "sha256": "65b0bbb7da2c9d61650bdf9193eff7c95fdb319aa9d4fd66e2520f117b7e282a",
       "observed_processes": [
         {
           "pid": 51744,
@@ -626,10 +626,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T16:15:47.064265+00:00",
+      "last_observed_alive_utc": "2026-11-11T16:30:17.715473+00:00",
       "name": "unity-candidate-queue-full",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-full\\receipt.json",
-      "sha256": "9eab4694249013b0b9117498bf2368034e5c86a933398ec2decd5fddac728344",
+      "sha256": "e0945c1402a7c718f1d23f41c9029530afb28a48f20e00f0ad27fd8110f8c08f",
       "observed_processes": [
         {
           "pid": 39556,
@@ -644,25 +644,49 @@
       ]
     },
     {
-      "status": "running",
+      "status": "passed",
       "started_utc": "2026-11-11T16:13:34.581786+00:00",
+      "ended_utc": "2026-11-11T16:23:34.330030+00:00",
+      "wall_seconds": 599.7421388999974,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T16:23:05.245321+00:00",
+      "name": "normalization-scratch-stem2-lr0003",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-scratch-stem2-lr0003\\receipt.json",
+      "sha256": "d1fe7281049d0fd2a095d42d00700074856b06962ef259f66f02ba44058196d5",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T16:25:18.873681+00:00",
+      "ended_utc": "2026-11-11T16:25:53.316145+00:00",
+      "wall_seconds": 34.44051149999723,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T16:25:48.893056+00:00",
+      "name": "scratch-group512-smoke",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-smoke\\receipt.json",
+      "sha256": "3f11e2226da16b4c504f90996d912760684a2a6482f4a1612d5bd55f465eab0f",
+      "observed_processes": []
+    },
+    {
+      "status": "running",
+      "started_utc": "2026-11-11T16:27:08.219518+00:00",
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T16:15:34.917546+00:00",
-      "name": "normalization-scratch-stem2-lr0003",
-      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-scratch-stem2-lr0003\\receipt.json",
-      "sha256": "0fe1979184848003c3922d403143ba3b8f652b8033262eaf99d8b1cca239ae04",
+      "last_observed_alive_utc": "2026-11-11T16:30:38.364015+00:00",
+      "name": "scratch-group512",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512\\receipt.json",
+      "sha256": "4eb6b8d74861260800abce5bfcec1215d629acdd4ede5596f6166c844382c8d8",
       "observed_processes": [
         {
-          "pid": 29284,
+          "pid": 55564,
           "name": "python.exe",
-          "create_time": 1794413614.0979247
+          "create_time": 1794414427.8768525
         },
         {
-          "pid": 58540,
+          "pid": 56388,
           "name": "python.exe",
-          "create_time": 1794413614.5899596
+          "create_time": 1794414428.2265308
         }
       ]
     }
@@ -675,7 +699,8 @@
       "normalization-smoke.json",
       "normalization-scratch.json",
       "normalization-pretrained.json",
-      "normalization-scratch-lr0003.json"
+      "normalization-scratch-lr0003.json",
+      "normalization-scratch-stem2-lr0003.json"
     ]
   },
   "fixed_capacity_control": {
@@ -694,17 +719,17 @@
   "unity_reference_series": {
     "status": "running",
     "counts": {
-      "train": 1088,
+      "train": 1344,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-004-20261111",
+    "current_batch": "unity-v1-train-005-20261111",
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "f617b8b8f21106f093e1eb6929b02f6e1cc49a181d6c33fb17492d5b47cad911",
+    "report_sha256": "4c43afa17c79873f988de9b1117b698703ac5b91250ec49949508de36967c811",
     "scope": "original imported references/choices only; supplemental targets pending"
   },
   "fixed_capacity_stem": {
@@ -725,16 +750,23 @@
   "unity_candidate_queue": {
     "status": "running",
     "counts": {
-      "train": 0,
-      "validation": 0
+      "train": 320,
+      "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-actual-options64-20261111",
+    "current_batch": "unity-v1-train-001-20261111",
     "test_opened": false,
     "report": "unity-candidate-queue-full.json",
-    "report_sha256": "1df5fecc3a84b10d211edb0e47d5e6033b6b46c179b393fdb61364291d395a47"
+    "report_sha256": "b9856e24733d54e792d345bf196cee139e32a9043c42984f3eb0f33079146560"
+  },
+  "fixed_capacity_group_sampling": {
+    "status": "running",
+    "summary": "patch-fixed-capacity\\scratch-group512-summary.json",
+    "summary_sha256": "cc384e1aa5ee98d3953761ff21289b1b9920531d2fb98cbe474a647d2a708ae0",
+    "changed_factor": "group_image_cap 0 -> 512; standard stem scratch LR0.0003",
+    "test_opened": false
   }
 }

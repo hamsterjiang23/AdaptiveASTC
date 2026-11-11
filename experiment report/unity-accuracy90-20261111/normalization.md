@@ -46,3 +46,16 @@ uv run --frozen python script/patch_normalization.py --training <已完成训练
 | EMA，训练集重估 | 80.9% | 1.3716dB。`[verified: normalization-scratch-lr0003.json rows[3].metrics]` |
 
 重估EMA的balanced accuracy为76.97%，四类召回88.99%／71.35%／60.94%／86.58%；质量达标率87.9%、payload95,148,832字节。相对本轮训练选中的epoch7 raw，准确率高0.2个百分点、10×10召回高6.25个百分点，但12×12召回更低，payload也更大。这是独立后处理结果，未达到V1的90%／0.75dB，不能代替Unity生产验收。`[verified: normalization-scratch-lr0003.json rows[3].metrics；patch-fixed-capacity/scratch-lr0003-result.json metrics；opinion: 比较范围]`
+
+## 去maxpool的末轮诊断
+
+[去maxpool诊断](normalization-scratch-stem2-lr0003.json)使用完成训练的epoch15权重，以同样16384个训练patch／8066张图重估统计量。四种变体均核对学习参数未改变，优化器更新0次；内部589.30秒，完整进程599.74秒，成本与CPU数据准备重叠。`[verified: normalization-scratch-stem2-lr0003.json epoch、calibration_patches、unique_training_images、optimizer_updates、rows.parameters_unchanged、wall_seconds；.local对应job receipt]`
+
+| epoch15变体 | 验证Top-1 | 阈值附近RMSE |
+|---|---|---|
+| raw，原统计量 | 73.7% | 2.8858dB。`[verified: normalization-scratch-stem2-lr0003.json rows[0].metrics]` |
+| raw，训练集重估 | 77.5% | 2.4997dB。`[verified: normalization-scratch-stem2-lr0003.json rows[1].metrics]` |
+| EMA，原统计量 | 52.4% | 4.0869dB。`[verified: normalization-scratch-stem2-lr0003.json rows[2].metrics]` |
+| EMA，训练集重估 | 78.6% | 2.1127dB。`[verified: normalization-scratch-stem2-lr0003.json rows[3].metrics]` |
+
+重估EMA的balanced accuracy为73.73%、质量达标率87.1%、payload96,820,144字节。相同后处理下，标准stem配方为80.9%／1.3716dB，仍优于这次去maxpool结果；下一项资产组抽样对照沿用标准stem。这里比较各自完成训练的末轮后处理，训练轮数不同，不能归因为单独的BN效果。`[verified: normalization-scratch-stem2-lr0003.json rows[3].metrics；normalization-scratch-lr0003.json rows[3].metrics；opinion: 后续配方与比较边界]`

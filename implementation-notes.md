@@ -275,3 +275,8 @@
 - 已记录配置／回退、重复标签／包路径、MD4工具三个检查边界。`[verified: 本节Discovered edge cases]`
 - 后续先读数据调查报告，再按聚合统计中的来源哈希和源码行号复核。`[opinion]`
 - 本次完成数据定位、存在性与抽样哈希检查，真实编码复现与模型训练状态记录为not_run。`[verified: notes/实际数据调查统计.json的verification]`
+
+## 2026-11-12 fixed-capacity group sampling
+
+- Stem2 completed15epochs: selectedepoch14raw74.6%/2.5459dB, minus6.1pp against the standardstem LR0.0003 control. FrozenlastEMA with train-onlyBNreestimate reaches78.6%/2.1127dB, still below standardstem80.9%/1.3716dB; zerooptimizerupdates, process599.74seconds. `[verified: scratch-stem2-lr0003-result.json; normalization-scratch-stem2-lr0003.json; normalization-scratch-lr0003.json; correspondingjobreceipt]`
+- Next single-factor control keeps standardstem/scratch/LR0.0003, caps each assetgroup at512effectiveimages and distributes imageweight across its patches. Train-only10000image analysis reduces maximumgroup share20.77%to6.41%; this is not class balancing. Defaultcap0exactly preserves prior weights; actual120276patch weights and9tests pass. CUDA48train/16validation smoke usescap2toexercise downweighting,2epochs and reload passed; fullcap512training started. `[verified: group-sampling-analysis.json; PatchSampling.weights; test_patch_sampling.py; scratch-group512smokesuite/summary; fulljobreceipt]`

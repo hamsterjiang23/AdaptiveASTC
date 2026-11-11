@@ -1,0 +1,109 @@
+{
+  "status": "passed",
+  "scope": "Training manifest only, analytic sampling weights; no model evaluation or new test access",
+  "corpus_sha256": "c1c1208bbb17fbd49cae1bc244b8ff67f0bf3c7342741be8134c054c5e752a95",
+  "corpus_fingerprint": "45c879fa42839d8778af7b2224acaafa1209659bde11c8cb9302647343fd636f",
+  "training_images": 10000,
+  "asset_groups": 1305,
+  "largest_groups": [
+    [
+      "Assets/Art/Effects/Texture/Common/Special",
+      2077
+    ],
+    [
+      "Assets/Art/Effects/Texture/Common/Trail",
+      965
+    ],
+    [
+      "Assets/Art/Effects/Texture/Ui",
+      481
+    ],
+    [
+      "Assets/Art/Effects/Texture/Common/Group",
+      365
+    ],
+    [
+      "Assets/Art/Effects/Texture/Common/Noise",
+      279
+    ],
+    [
+      "Assets/Art/Effects/Texture/Common/Clamp",
+      241
+    ],
+    [
+      "Assets/Art/Effects/Texture/Common/Flipbook",
+      233
+    ],
+    [
+      "Assets/UI/Image_add/HeroSkin",
+      165
+    ],
+    [
+      "Assets/Art/Effects/Texture/Common/Smoke",
+      132
+    ],
+    [
+      "Assets/Art/Effects/Texture/Common/Water",
+      80
+    ]
+  ],
+  "scenarios": [
+    {
+      "group_image_cap": null,
+      "effective_image_weight": 10000.0,
+      "expected_class_share": {
+        "6x6": 0.2593,
+        "8x8": 0.1816,
+        "10x10": 0.1315,
+        "12x12": 0.4276
+      },
+      "largest_group_share": 0.2077,
+      "downweighted_groups": 0
+    },
+    {
+      "group_image_cap": 1024,
+      "effective_image_weight": 8947.0,
+      "expected_class_share": {
+        "6x6": 0.25785878956906605,
+        "8x8": 0.17696385589368388,
+        "10x10": 0.13037381263944592,
+        "12x12": 0.4348035418978041
+      },
+      "largest_group_share": 0.11445177154353414,
+      "downweighted_groups": 1
+    },
+    {
+      "group_image_cap": 512,
+      "effective_image_weight": 7982.0,
+      "expected_class_share": {
+        "6x6": 0.2591470964861891,
+        "8x8": 0.1736557040924309,
+        "10x10": 0.13014714416544373,
+        "12x12": 0.4370500552559363
+      },
+      "largest_group_share": 0.06414432473064395,
+      "downweighted_groups": 2
+    },
+    {
+      "group_image_cap": 256,
+      "effective_image_weight": 7113.0,
+      "expected_class_share": {
+        "6x6": 0.2581634878377389,
+        "8x8": 0.17033888333167685,
+        "10x10": 0.12873733534245388,
+        "12x12": 0.4427602934881304
+      },
+      "largest_group_share": 0.035990440039364545,
+      "downweighted_groups": 5
+    }
+  ],
+  "test_opened": false,
+  "actual_patch_weight_check": {
+    "status": "passed",
+    "training_patches": 120276,
+    "cap": 512,
+    "effective_image_mass": 7982.000000000002,
+    "zero_cap_matches_original_exactly": true,
+    "sampler_source_sha256": "f6aa0a5212147cf863fdc8b411ca63024071fd71d35c4ebb8e9ebb360e706bdb"
+  }
+}

@@ -35,3 +35,13 @@
 训练过程的最低近阈值RMSE为2.3122dB，发生在epoch10，对应准确率74.0%；它与epoch14的最高准确率来自不同权重，不组合成一对模型指标。当前这次单seed实验不支持将去maxpool作为默认改进；后续保留标准stem配方，另对已冻结的末轮raw／EMA做相同train-only BN诊断，成本和结果单列。`[verified: scratch-stem2-lr0003.json history[9]；scratch-stem2-lr0003-result.json metric_pair_scope；opinion: 配方选择与范围]`
 
 ![固定参数量的stem对照](scratch-stem-comparison.png)
+
+上述末轮BN诊断随后完成：去maxpool的epoch15 EMA重估后为78.6%／2.1127dB，仍低于标准stem的80.9%／1.3716dB；完整后处理进程599.74秒，0次优化器更新。四种变体均保留在[诊断报告](../normalization.md#去maxpool的末轮诊断)，不替换原训练选中权重或结果。`[verified: ../normalization-scratch-stem2-lr0003.json；对应job receipt；opinion: 历史记录边界]`
+
+## 下一项资产组抽样对照
+
+[训练清单分析](group-sampling-analysis.json)重新核对10000图、1305个资产组，最大组`Assets/Art/Effects/Texture/Common/Special`含2077图，占20.77%。按每组512张等效图权重封顶，只下调两个最大组，最大组的期望抽样占比降到6.41%；6／8／10／12类别的期望占比为25.91%／17.37%／13.01%／43.71%。这项控制限制资产组集中程度，不等于类别均衡。`[verified: group-sampling-analysis.json largest_groups、scenarios[2]；opinion: 解释边界]`
+
+下一组保留标准stem、随机初始化、lr0.0003和原训练预算，仅改变组抽样权重。每张图的总权重为`min(1,512/组图数)`，再均分给该图所有patch；原图级采样对应cap=0。120276个实际训练patch的权重检查通过，cap=0逐项等于旧公式，cap512的图权重合计7982。效果与CUDA执行仍须实跑，采样决定只用了train清单。`[verified: group-sampling-analysis.json actual_patch_weight_check；PatchSampling.weights；opinion: 下一组配置]`
+
+[两轮CUDA检查](scratch-group512-smoke-summary.json)已通过，完整进程34.44秒、最佳权重重载通过。小语料48张train／16张validation使用cap2，以实际触发组限权；[正式配置](scratch-group512-suite.json)使用cap512，其余设置相对标准stem的lr0.0003对照保持不变。正式训练已启动，进度见[汇总](scratch-group512-summary.json)，结果尚未完成。原有图级采样默认cap0，代码与配置SHA随检查点保存；9项单元测试及独立复核通过。`[verified: scratch-group512-smoke-suite.json、scratch-group512-smoke-summary.json；scratch-group512-suite.json；对应job receipts；test_patch_sampling.py；review回执]`

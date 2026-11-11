@@ -16,6 +16,7 @@ from torch.utils.data import DataLoader, WeightedRandomSampler
 
 from adaptive_astc.config import JsonDict
 from adaptive_astc.data.patch_dataset import NativePatchDataset
+from adaptive_astc.data.patch_sampling import PatchSampling
 from adaptive_astc.evaluation.patch_metrics import PatchRegressionMetrics
 from adaptive_astc.models.patch_regressor import ASTCPatchRegressor
 from adaptive_astc.utils.artifacts import ArtifactStore
@@ -41,10 +42,13 @@ class PatchTrainConfig:
     monotone: bool = False
     ema_decay: float = 0.0
     patience: int = 0
+    group_image_cap: int = 0
 
     def validate(self) -> None:
         if min(self.epochs, self.batch_size, self.patches_per_image) < 1:
             raise ValueError("Epoch, batch and sampling budget must be positive")
+        if type(self.group_image_cap) is not int or self.group_image_cap < 0:
+            raise ValueError("Asset group image cap must be a nonnegative integer")
         if self.initialization not in {"scratch", "pretrained"}:
             raise ValueError("Unsupported initialization")
         if self.workers < 0 or self.max_steps < 0 or self.warmup_epochs < 0:
@@ -94,7 +98,7 @@ class PatchTrainer:
         scaler = GradScaler("cuda")
         generator = torch.Generator().manual_seed(config.seed)
         sampler = WeightedRandomSampler(
-            train.image_balanced_weights().tolist(),
+            PatchSampling.weights(train.rows, train.image_ids, config.group_image_cap).tolist(),
             len(train.rows) * config.patches_per_image,
             replacement=True,
             generator=generator,
@@ -126,7 +130,12 @@ class PatchTrainer:
                 "torch": torch.__version__,
                 "loss": "Huber log10(MSE+1e-10), delta0.1=1dB; "
                 "threshold weight 1+2exp(-distance/3dB)",
-                "sampling": "equal expected image weight; uniform patch within image; replacement",
+                "sampling": (
+                    f"image weight min(1,{config.group_image_cap}/asset_group_images); "
+                    "uniform patch within image; replacement"
+                    if config.group_image_cap
+                    else "equal expected image weight; uniform patch within image; replacement"
+                ),
                 "targets_clipped": False,
                 "augmentations": [],
                 "ema": "parameters and buffers after each applied optimizer update"
@@ -141,6 +150,7 @@ class PatchTrainer:
                         Path(__file__),
                         Path(__file__).parents[1] / "models/patch_regressor.py",
                         Path(__file__).parents[1] / "data/patch_dataset.py",
+                        Path(__file__).parents[1] / "data/patch_sampling.py",
                         Path(__file__).parents[1] / "evaluation/patch_metrics.py",
                         Path(__file__).parents[1] / "data/patch_targets.py",
                     ]
