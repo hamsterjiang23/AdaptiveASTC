@@ -1,0 +1,82 @@
+{
+  "status": "passed",
+  "split": "validation",
+  "images": 1000,
+  "groups": {
+    "scratch_lr0003": {
+      "strata": {
+        "one_patch": {
+          "images": 246,
+          "errors": 51,
+          "accuracy": 0.7926829268292683,
+          "near_threshold_rmse_db": 2.5102347431350536,
+          "near_threshold_bias_db": 0.6837343773804365
+        },
+        "two_to_four": {
+          "images": 184,
+          "errors": 42,
+          "accuracy": 0.7717391304347826,
+          "near_threshold_rmse_db": 1.7085800292588018,
+          "near_threshold_bias_db": 0.12015896370093573
+        },
+        "five_to_sixteen": {
+          "images": 265,
+          "errors": 50,
+          "accuracy": 0.8113207547169812,
+          "near_threshold_rmse_db": 1.059951668919886,
+          "near_threshold_bias_db": -0.15558640446704364
+        },
+        "over_sixteen": {
+          "images": 305,
+          "errors": 50,
+          "accuracy": 0.8360655737704918,
+          "near_threshold_rmse_db": 1.0872833774112407,
+          "near_threshold_bias_db": -0.2714517409108598
+        }
+      },
+      "selected_epoch": 7,
+      "audit_sha256": "fe6ac975cfba4d5dafaef857e3554e320a70b99ce57714705088d6b6937acc92",
+      "predictions_sha256": "5fc8005966d548174be30d97240e3c193501e055320446129f5a43803521c70c"
+    },
+    "pretrained": {
+      "strata": {
+        "one_patch": {
+          "images": 246,
+          "errors": 27,
+          "accuracy": 0.8902439024390244,
+          "near_threshold_rmse_db": 1.4837088938049061,
+          "near_threshold_bias_db": -0.01465817048765162
+        },
+        "two_to_four": {
+          "images": 184,
+          "errors": 36,
+          "accuracy": 0.8043478260869565,
+          "near_threshold_rmse_db": 1.0842840091449082,
+          "near_threshold_bias_db": -0.03234577336763332
+        },
+        "five_to_sixteen": {
+          "images": 265,
+          "errors": 23,
+          "accuracy": 0.9132075471698113,
+          "near_threshold_rmse_db": 0.6600622315856208,
+          "near_threshold_bias_db": 0.0012402796173254535
+        },
+        "over_sixteen": {
+          "images": 305,
+          "errors": 26,
+          "accuracy": 0.9147540983606557,
+          "near_threshold_rmse_db": 0.6573883819323214,
+          "near_threshold_bias_db": 0.018159140788504058
+        }
+      },
+      "selected_epoch": 9,
+      "audit_sha256": "f29e909610b0b774b5ee1f3c56056d2d730606019e553046a54a39c28af6e599",
+      "predictions_sha256": "0915c2b6221878031fbef508564352d402bc0c66356b85d44a4a2c718ce7d5ef"
+    }
+  },
+  "test_opened": false,
+  "corpus_sha256": "c1c1208bbb17fbd49cae1bc244b8ff67f0bf3c7342741be8134c054c5e752a95",
+  "scope": "Frozen selected raw checkpoints; validation diagnosis only; no fitting/training/test",
+  "script": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\diagnose_patch_coverage.py",
+  "script_sha256": "67e7ff2a24e5e2f33fe77e0be1d88a8edc43effdd3858389f00a258849daaf7b"
+}

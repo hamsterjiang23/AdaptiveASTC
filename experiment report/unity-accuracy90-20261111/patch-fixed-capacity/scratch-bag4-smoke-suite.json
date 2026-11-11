@@ -1,0 +1,54 @@
+{
+  "trials": [
+    {
+      "name": "scratch-bag4-smoke-loss0",
+      "config": {
+        "epochs": 2,
+        "batch_size": 128,
+        "patches_per_image": 4,
+        "weight_decay": 0.05,
+        "warmup_epochs": 1,
+        "workers": 2,
+        "seed": 20261111,
+        "remove_maxpool": false,
+        "monotone": true,
+        "ema_decay": 0.999,
+        "patience": 5,
+        "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-smoke64",
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-smoke-loss0",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-smoke-loss0.json",
+        "initialization": "scratch",
+        "learning_rate": 0.0003,
+        "group_image_cap": 0,
+        "bag_size": 4,
+        "aggregate_loss_weight": 0.0
+      }
+    },
+    {
+      "name": "scratch-bag4-smoke-loss1",
+      "config": {
+        "epochs": 2,
+        "batch_size": 128,
+        "patches_per_image": 4,
+        "weight_decay": 0.05,
+        "warmup_epochs": 1,
+        "workers": 2,
+        "seed": 20261111,
+        "remove_maxpool": false,
+        "monotone": true,
+        "ema_decay": 0.999,
+        "patience": 5,
+        "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-smoke64",
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-smoke-loss1",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-smoke-loss1.json",
+        "initialization": "scratch",
+        "learning_rate": 0.0003,
+        "group_image_cap": 0,
+        "bag_size": 4,
+        "aggregate_loss_weight": 1.0
+      }
+    }
+  ],
+  "summary": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-smoke-summary.json",
+  "scope": "Paired same-image bag4 controls: aggregate weight0 vs1, same initialization/sampling/patch budget; CUDA only, GDC development, no test. Compare sampling control separately against independent-patch baseline."
+}

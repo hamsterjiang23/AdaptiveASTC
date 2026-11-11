@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- 同图patch聚合实验的准备见[成组损失报告](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)。`ImagePatchBatchSampler`每组只抽同图patch、保留有效像素数；`PatchRegressionLoss`先加权MSE再取log，目标只对实际抽样组精确。权重0／1配对隔离loss，另比较成组采样本身；不能把期望权重一致称为每轮图覆盖一致。CPU检查和训练集抽样核验通过，未接入训练器或启动CUDA实验；已有运行的源码及检查点身份保持。`[verified: patch_bags.py；patch_loss.py；bag-sampling-analysis.json；opinion: 对照与运行边界]`
+
 - 当前goal以用户的[V1原分辨率patch误差回归计划](<experiment plan/V1/README.md>)和[evidence.json](<experiment plan/V1/evidence.json>)为准，实际状态见[执行记录](<experiment report/unity-accuracy90-20261111/README.md>)。按patch目标／编码核验、分类对照、scratch／pretrained回归、按错误分布改进的顺序执行，训练使用CUDA。GDC train／validation用于开发，最终在Unity导入后参考像素与同次原始搜索标签的独立测试上验收Top-1≥90%。`[verified: 用户本轮V1与重新创建goal要求；V1“目标与开发数据”“实验步骤”]`
 - V1分类五组最高验证Top-1为68.6%；正式随机初始化／预训练patch回归各14轮完成，最佳Top-1为76.0%／88.8%，阈值附近RMSE为1.7681／0.9736dB，两组最佳权重重载通过。各11,178,564参数，继续固定容量诊断；V1开发联合晋级条件及最终Unity90%均未达到。详见[回归状态](<experiment report/unity-accuracy90-20261111/patch-v1/README.md>)。`[verified: classification-controls/comparison.json；patch-v1/summary.json；scratch-result.json；pretrained-result.json；opinion: 后续顺序]`
 - Unity回归采集保留原搜索提前停止、标签及baseline计时，另行补测块大小×preset缺失候选并记录解码图及原生质量分支。抽样真实编码先作为独立成本／质量对照，主路径保持预测后一次最终编码。方案差异、未完成配置和实际测量分别写入执行记录。`[verified: V1“待决定事项”；opinion: 本轮执行决定]`

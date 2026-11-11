@@ -15,6 +15,8 @@
 
 ## 已完成与当前状态
 
+- [同图patch聚合损失](patch-fixed-capacity/bag-loss.md)完成CPU组件与10000训练图抽样核验，14项新检查通过；配对配置隔离采样变化与新增loss。尚未接入训练器或启动CUDA训练，继续等待正在运行的资产组对照。新增冻结预测诊断显示，246张单patch验证图上scratch／pretrained准确率为79.27%／89.02%，聚合实验不能预设解决全部误差。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；本轮pytest；opinion: 结果与执行边界]`
+
 - [Unity 原搜索规则重放](unity-policy-replay.md)完成260张开发图，块大小、preset、选择原因和候选尝试次数均与原搜索一致；其中严格质量通过233张，大图放宽25张、最高PSNR回退2张。去掉非PSNR分支时仅207张块大小一致，这是实测质量的规则诊断，未运行Unity模型。绑定原采集缓存的正式审计进程3.646秒，首次来源绑定不足的记录保留。`[verified: unity-policy260-bound-v2.json；unity-policy260-analysis.json；对应job receipt；opinion: 验收范围]`
 
 - [Unity原生监督与法线恢复](unity-patch-targets.md)新增完成：258图5160候选的RGBA通道SSE重建PSNR最大差3.74e-6dB；两张多级评价法线40候选补测与单独patch提取通过。原队列因mip0-only限制失败的记录保持，新候选队列重新核验已有578图并继续；质量分支建模和Unity生产验收仍未完成。`[verified: unity-patches-train256.json；unity-normal-multimip2.json；unity-patches-multimip2.json；unity-candidate-queue-multimip-v2.json；opinion: 验收范围]`

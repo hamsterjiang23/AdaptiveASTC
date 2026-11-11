@@ -1,5 +1,7 @@
 # 固定容量的学习率对照
 
+下一项[同图patch聚合损失对照](bag-loss.md)已完成CPU组件和训练集抽样核验，两份配置处于准备状态，等待当前资产组训练完成后接入训练器并运行CUDA小样本检查。新增验证分组诊断显示单patch图仍有较大误差，聚合实验不预设能解决全部差距。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；opinion: 执行顺序与解释]`
+
 首批回归与BN诊断结束后，启动随机初始化学习率单项对照。正式配置与原V1 scratch相比只将lr从1e-3改为3e-4，输出身份另建；数据、seed、ResNet-18、标准stem、单调输出、EMA0.999、batch128、AdamW/WD0.05、warmup1、最多30轮、RMSE patience5均保持。配置见[scratch-lr0003-suite.json](scratch-lr0003-suite.json)，启动时逐字段核对仅learning_rate变化。`[verified: 两份suite config；启动字段差异检查输出learning_rate]`
 
 这项实验检验较低学习率是否改善随机初始化配方的泛化及阈值误差，也补齐与预训练lr3e-4相同超参数的初始化比较；不预设能达到90%。仍只使用GDC train10000／validation1000，CUDA串行，未打开test。`[opinion: 单项假设；verified: suite scope、PatchTrainer.fit]`

@@ -1,5 +1,11 @@
 # Implementation notes
 
+## 2026-11-12 same-image patch bag preparation
+
+- Added independent sampler/loss components while leaving live group512 trainer/model/data sources unchanged. Bag4 draws preserve marginal image weights but this seed covers6336distinct training images from10000bags/40000patch draws;7276bags repeat an index. Paired loss0/loss1 configurations isolate the added loss, with a separate historical independent-patch comparison for sampling. CUDA integration and execution remain pending. `[verified: patch_bags.py; bag-sampling-analysis.json; scratch-bag4-suite.json; opinion: comparison boundary]`
+- Pixel-weighted log-MSE aggregation matches existing inference epsilon/clipping and exact sampled targets within1.26e-6log units. It supervises sampled bags, not complete images. Fourteen component checks and existing nine sampling checks pass; independent review found no issues. `[verified: patch_loss.py; test_patch_bags.py; bag-sampling-analysis.json; pytest and review outputs]`
+- Frozen validation predictions show single-patch images remain difficult: scratch246images/51errors, pretrained246/27. This diagnosis does not fit new parameters or access test; aggregation is one experiment rather than an asserted cause of all errors. `[verified: patch-coverage-diagnosis.json; opinion: interpretation]`
+
 ## 2026-11-12 original Unity policy replay
 
 - Added a pure rule decoder for the complete20candidate RDO-off LDR grid. It preserves nativefloat32 gates, normal versus color branches, black thresholds, large-image locking, the already-measured next-block candidate and highest-PSNR fallback. All260development choices match the original block, preset, reason and attempted count. `[verified: policy.py select; unity-policy260-bound-v2.json matching_fields, mismatches]`

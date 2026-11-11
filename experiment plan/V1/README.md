@@ -99,6 +99,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- 固定容量阶段准备[同图patch聚合损失对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)：成组采样和损失组件CPU检查通过，10000训练图上核对40000次patch抽样及MSE聚合；权重0／1使用相同采样作成对控制。当前资产组训练尚未结束，新组件未接入训练器、尚未启动CUDA实验。冻结验证预测的分组诊断显示单patch图仍有较大误差，因此聚合只作为一项假设，输入／元数据等后续改动依实际结果安排。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；test_patch_bags.py；scratch-group512.json status；opinion: 归因与后续范围]`
+
 - Unity迁移的原规则重放通过260张开发图，四项比较（块大小、preset、选择原因、候选次数）全部一致；去掉非PSNR质量分支时，块大小仅207／260一致。该诊断要求Unity路径继续保留MS-SSIM、法线角度、黑像素和大图分支，四个medium候选的GDC PSNR回归维持原开发协议。质量分支预测／聚合与最终Unity90%验收尚待完成，详见[规则重放报告](<../../experiment report/unity-accuracy90-20261111/unity-policy-replay.md>)。`[verified: unity-policy260-bound-v2.json matching_fields、mismatches、psnr_only_footprint_matches；opinion: 迁移要求与待办]`
 
 - 原搜索提前停止的mip0法线已接入统一离线候选补齐。256图5120候选全部完成，新增覆盖3688组，原指标与winner一致；进程609.70秒，补测与原参考采集／策略标签保持独立。连续补测队列258图检查通过；全量参考队列已核验train1088／validation2，继续按冻结划分推进。多mip／HDR及完整生产验收尚未完成。`[verified: unity-candidates-train256-audit.json；对应job receipt；unity-candidate-queue-smoke.json；unity-reference-series.json；opinion: 验收范围]`

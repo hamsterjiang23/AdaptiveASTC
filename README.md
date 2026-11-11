@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+固定容量阶段新增[同图patch聚合损失的准备与诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)，成组采样及聚合数学检查通过；“成组采样＋原损失”和“相同采样＋聚合损失”分别配置。当前尚未接入训练器和启动新CUDA实验，资产组训练继续；新模块没有改变网络参数。`[verified: patch_bags.py；patch_loss.py；scratch-bag4-suite.json；opinion: 执行状态边界]`
+
 新增 [Unity 原搜索规则重放](<experiment report/unity-accuracy90-20261111/unity-policy-replay.md>)：260 张开发图的块大小、preset、选择分支和候选尝试次数全部复现。只保留真实 PSNR 的诊断仅命中 207 张块大小，表明迁移必须保留 MS-SSIM／法线等原规则信息；该结果不是模型准确率。Unity 模型训练与独立测试 90% 仍待完成。`[verified: unity-policy260-bound-v2.json matching_fields、mismatches、psnr_only_footprint_matches；opinion: 迁移要求与验收边界]`
 
 当前goal按用户的[V1原分辨率patch误差回归计划](<experiment plan/V1/README.md>)执行，证据见[V1 evidence.json](<experiment plan/V1/evidence.json>)，实际状态见[执行记录](<experiment report/unity-accuracy90-20261111/README.md>)。依次完成patch目标／编码核验、正则化分类对照、scratch／pretrained回归对照，再按错误分布改进。训练使用CUDA，最终仍以Unity导入后参考像素与同次原始搜索标签的独立测试Top-1≥90%验收。`[verified: 用户本轮V1与重建goal要求；create_goal返回active；V1“实验步骤”]`
