@@ -80,7 +80,9 @@
 
 ## Unity训练数据采集与源码定位
 
-- 原搜索提前停止的颜色／mip0法线候选可用`script/complete_unity_candidates.py --config ...`补齐，256图5120候选及原winner审计已通过。全量跟随入口为`script/complete_unity_candidate_series.py --config ... --follow`，仅消费已发布的参考批次；归档复核后复用已完成结果，部分失败使用新retry身份并保留原始成本，最终按原划分生成完整清单。258图实跑检查通过。法线仍限Linear RGBA8、Profile1、normal-pack=false、Tex2D、mipmaps=false；HDR／多mip单独验证。详见[补测进展](<experiment report/unity-accuracy90-20261111/unity-supplement.md#连续补测队列与训练清单>)。`[verified: candidate_completion.py verify_actual_options、verify_normal_imports；candidate_queue.py run、prepare_attempt；candidate_archive.py verify；unity-candidates-train256-audit.json；unity-candidate-queue-smoke.json]`
+- 原搜索提前停止的颜色／mip0法线候选可用`script/complete_unity_candidates.py --config ...`补齐，256图5120候选及原winner审计已通过。全量跟随入口为`script/complete_unity_candidate_series.py --config ... --follow`，仅消费已发布的参考批次；归档复核后复用已完成结果，部分失败使用新retry身份并保留原始成本，最终按原划分生成完整清单。258图实跑检查通过。法线限定Linear RGBA8、Profile1、normal-pack=false和Tex2D；角度评价层数按已归档mipmaps与尺寸推导并clamp1–4，每个原候选须复现原指标。两张mipmaps=true法线40候选实测通过；这仍是mip0编码，不是完整mip压缩链。HDR单独验证。详见[补测进展](<experiment report/unity-accuracy90-20261111/unity-supplement.md#连续补测队列与训练清单>)。`[verified: candidate_completion.py verify_actual_options、verify_normal_imports；candidate_queue.py run、prepare_attempt；candidate_archive.py verify；unity-candidates-train256-audit.json；unity-candidate-queue-smoke.json]`
+
+- Unity监督提取入口为`script/unity_patch_targets.py --config ...`，RGBA各通道SSE按240patch保存，整图聚合后排除零误差通道及不参与的Alpha；MS-SSIM和法线角度保留整图指标。258图5160候选重建检查通过，另两张四级法线评价数据通过；原标签不变，未开始Unity正式训练。数据身份及恢复要求见[原生监督报告](<experiment report/unity-accuracy90-20261111/unity-patch-targets.md>)。`[verified: patch_targets.py UnityChannelErrors、UnityPatchCorpus；unity-patches-train256.json；unity-patches-multimip2.json]`
 
 - 离线候选补测入口为`script/unity_supplement.py`，其质量函数从本机引擎原样提取到.local并编译，编码DLL沿原采集协议锁与identity核验。当前两张LDR Default开发图的40候选与原16项质量重放通过；needAlpha等仍是重放核验的推定设置，正式采集要记录实际回调参数。参见[补测报告](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)。`[verified: unity-supplement2-bound.json capture_binding、rows、config.items；quality.py]`
 

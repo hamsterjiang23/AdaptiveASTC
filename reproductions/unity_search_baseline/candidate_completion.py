@@ -1,4 +1,4 @@
-"""Complete archived color and mip0 normal candidates without opening Unity."""
+"""Complete mip0 encodings with the captured color or normal quality protocol."""
 
 from __future__ import annotations
 
@@ -44,6 +44,23 @@ class UnityCandidateCompletion(UnitySupplementalCapture):
         return rows
 
     @staticmethod
+    def normal_metric_mips(imported: JsonDict) -> int:
+        """Infer the clamped evaluation depth of a full Tex2D mip chain."""
+        if (
+            type(imported["mipmaps"]) is not bool
+            or imported["texture_dimension"] != "Tex2D"
+            or any(
+                type(imported[key]) is not int or imported[key] < 1 for key in ["width", "height"]
+            )
+        ):
+            raise ValueError("Normal mip evaluation requires valid captured Tex2D metadata")
+        return (
+            min(4, max(imported["width"], imported["height"]).bit_length())
+            if imported["mipmaps"]
+            else 1
+        )
+
+    @staticmethod
     def verify_normal_imports(config: JsonDict, receipt: JsonDict) -> None:
         path = Path(config["capture_run"]) / f"{config['capture_phase']}-imports.jsonl"
         if ArtifactStore.sha256_file(path) != config["imports_sha256"]:
@@ -61,12 +78,16 @@ class UnityCandidateCompletion(UnitySupplementalCapture):
             if (
                 imported["texture_type"] != "NormalMap"
                 or imported["srgb"]
-                or imported["mipmaps"] is not False
                 or imported["texture_dimension"] != "Tex2D"
                 or type(item.get("mip_count")) is not int
-                or item["mip_count"] != 1
+                or item["mip_count"] != UnityCandidateCompletion.normal_metric_mips(imported)
+                or (imported["width"], imported["height"])
+                != (
+                    receipt["rows"][item["index"]]["width"],
+                    receipt["rows"][item["index"]]["height"],
+                )
             ):
-                raise ValueError("Normal completion requires captured mip0-only Linear Tex2D")
+                raise ValueError("Normal metric mip scope disagrees with captured Linear Tex2D")
 
     @staticmethod
     def verify_actual_options(config: JsonDict, receipt: JsonDict) -> JsonDict:
@@ -102,7 +123,11 @@ class UnityCandidateCompletion(UnitySupplementalCapture):
             **binding,
             "imports_sha256": config["imports_sha256"],
             "completion_source_sha256": config["completion_source_sha256"],
-            "normal_scope": "Linear RGBA8, normal_pack=false, mip0 only",
+            "normal_scope": (
+                "Linear RGBA8, normal_pack=false, mip0 encoded; angular evaluation depth "
+                "inferred from captured mipmaps and dimensions, clamped to4, checked "
+                "against every original candidate's rounded native metrics"
+            ),
         }
 
     def collect_image(
@@ -154,7 +179,7 @@ class UnityCandidateCompletion(UnitySupplementalCapture):
                     need_alpha=item["need_alpha"],
                     compute_ssim=False,
                     normal=True,
-                    mip_count=1,
+                    mip_count=item["mip_count"],
                 )
                 timings["quality_seconds"] = time.perf_counter() - started
                 key = f"{block}x{block}", preset

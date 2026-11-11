@@ -30,6 +30,8 @@ def test_mip_scope_uses_hashed_actual_import_metadata(tmp_path: Path) -> None:
         "srgb": False,
         "mipmaps": False,
         "texture_dimension": "Tex2D",
+        "width": 512,
+        "height": 512,
     }
     path.write_text(json.dumps(imported) + "\n", encoding="utf-8")
     config = {
@@ -38,10 +40,10 @@ def test_mip_scope_uses_hashed_actual_import_metadata(tmp_path: Path) -> None:
         "imports_sha256": ArtifactStore.sha256_file(path),
         "items": [{"index": 0, "is_normal": True, "mip_count": 1}],
     }
-    receipt = {"rows": [{"path": "Assets/normal.png"}]}
+    receipt = {"rows": [{"path": "Assets/normal.png", "width": 512, "height": 512}]}
     UnityCandidateCompletion.verify_normal_imports(config, receipt)
     config["items"][0]["mip_count"] = True
-    with pytest.raises(ValueError, match="mip0-only"):
+    with pytest.raises(ValueError, match="mip scope"):
         UnityCandidateCompletion.verify_normal_imports(config, receipt)
     config["items"][0]["mip_count"] = 1
     imported["mipmaps"] = True
@@ -49,8 +51,29 @@ def test_mip_scope_uses_hashed_actual_import_metadata(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match="metadata changed"):
         UnityCandidateCompletion.verify_normal_imports(config, receipt)
     config["imports_sha256"] = ArtifactStore.sha256_file(path)
-    with pytest.raises(ValueError, match="mip0-only"):
+    with pytest.raises(ValueError, match="mip scope"):
         UnityCandidateCompletion.verify_normal_imports(config, receipt)
+    config["items"][0]["mip_count"] = 4
+    UnityCandidateCompletion.verify_normal_imports(config, receipt)
+
+
+@pytest.mark.parametrize(
+    "width,height,depth", [(1, 1, 1), (2, 1, 2), (4, 4, 3), (8, 8, 4), (512, 512, 4)]
+)
+def test_normal_evaluation_depth_is_clamped(width: int, height: int, depth: int) -> None:
+    imported = {"mipmaps": True, "texture_dimension": "Tex2D", "width": width, "height": height}
+    assert UnityCandidateCompletion.normal_metric_mips(imported) == depth
+    assert UnityCandidateCompletion.normal_metric_mips({**imported, "mipmaps": False}) == 1
+
+
+@pytest.mark.parametrize(
+    "field,value", [("mipmaps", 1), ("width", 0), ("height", True), ("texture_dimension", "Cube")]
+)
+def test_invalid_normal_metadata_cannot_infer_evaluation_depth(field: str, value: object) -> None:
+    imported = {"mipmaps": True, "texture_dimension": "Tex2D", "width": 512, "height": 512}
+    imported[field] = value
+    with pytest.raises(ValueError, match="metadata"):
+        UnityCandidateCompletion.normal_metric_mips(imported)
 
 
 def test_completion_source_is_bound(tmp_path: Path) -> None:

@@ -103,7 +103,7 @@ uv run --frozen python script/capture_unity_options.py restore --journal <该批
 
 新增`script/complete_unity_candidates.py`及`UnityCandidateCompletion`，继承既有颜色补测流程，增加原搜索提前停止后的法线候选补齐。读取已完成采集的归档参考图和选中ASTC，不依赖活动工程中的调试候选目录，也不打开Editor。原搜索label／提前停止／基线产物保持，补测单列计时。运行中的参考采集所依赖的原supplement／metadata／collection实现未修改。`[verified: candidate_completion.py、complete_unity_candidates.py；git diff及已冻结collection SHA；opinion: 运行边界]`
 
-法线范围明确为实际回调Profile1、normal-pack=false、RGBA8、Linear、Tex2D、mipmaps=false的mip0图；needAlpha按实际值。补测配置绑定导入日志SHA及扩展源码SHA；原搜索已测候选复核PSNR与mean／p95角度，选中候选完整ASTC与解码像素一致，ASTC header的footprint须与原label一致。多mip、HDR和normal-pack=true仍拒绝执行，不能用本次结果覆盖这些分支。`[verified: candidate_completion.py verify_normal_imports、verify_actual_options、collect_image；test_unity_candidate_completion.py；opinion: 验证范围]`
+第一版法线范围为实际回调Profile1、normal-pack=false、RGBA8、Linear、Tex2D、mipmaps=false的mip0图；needAlpha按实际值。补测配置绑定导入日志SHA及扩展源码SHA；原搜索已测候选复核PSNR与mean／p95角度，选中候选完整ASTC与解码像素一致，ASTC header的footprint须与原label一致。该版拒绝多mip、HDR和normal-pack=true；当前最多四级法线角度评价的扩展见下文，完整mip压缩链和HDR仍未验证。`[verified: candidate_completion.py verify_normal_imports、verify_actual_options、collect_image；test_unity_candidate_completion.py；opinion: 验证范围]`
 
 | 真实三图探针 | 全部候选 | 原已测／新测 | 结果 |
 |---|---|---|---|
@@ -119,7 +119,7 @@ uv run --frozen python script/capture_unity_options.py restore --journal <该批
 uv run --frozen python script/complete_unity_candidates.py --config "experiment report/unity-accuracy90-20261111/unity-candidates-train256-config.json"
 ```
 
-上面的身份已经完成，保留运行产物；下一批使用新的配置／输出身份。四项扩展测试及既有原生指标测试分别核验重复／缺失角度行、导入SHA变化、多mip拒绝、源码身份与错误ASTC header拒绝。`[verified: test_unity_candidate_completion.py；test_unity_supplement.py；unity-candidates-train256.json status；opinion: 运行约束]`
+上面的身份已经完成，保留运行产物；下一批使用新的配置／输出身份。扩展测试及既有原生指标测试核验重复／缺失角度行、导入SHA变化、评价层数与导入设置的一致性、源码身份与错误ASTC header拒绝。`[verified: test_unity_candidate_completion.py；test_unity_supplement.py；unity-candidates-train256.json status；opinion: 运行约束]`
 
 ## 连续补测队列与训练清单
 
@@ -127,12 +127,22 @@ uv run --frozen python script/complete_unity_candidates.py --config "experiment 
 
 [实际队列检查](unity-candidate-queue-smoke.json)覆盖256张train＋2张validation，5160组候选；首轮复用256图已有结果，另编码验证图40组，完整进程46.20秒。随后针对启动时报告尚未发布、相对路径及最后批次发布与进程退出的竞态补充保护和测试；最终源码再次复跑归档队列，历史进程与源码快照仍保留。子集结果显式标记`coverage=selected`，不代表完整11000图语料。`[verified: unity-candidate-queue-smoke.json counts、batches、coverage；jobs/unity-candidate-queue-smoke/receipt.json；test_unity_candidate_queue.py；opinion: 验收边界]`
 
-正式[队列配置](unity-candidate-queue-full-config.json)绑定原45批计划、原生指标构建及候选扩展源码，目标train10000／validation1000。独立项目锁禁止两个补测队列写同一工程；参考采集与补测使用不同锁，补测只读取已经归档的图片。每批前检查20GiB空闲RAM和40GiB输出磁盘，轮询间隔30秒；未支持的HDR／多mip法线仍明确失败，不跳过后伪称全量成功。`[verified: unity-candidate-queue-full-config.json；candidate_queue.py lock、require_resources、run；candidate_completion.py verify_normal_imports、verify_actual_options]`
+首轮[队列配置](unity-candidate-queue-full-config.json)绑定原45批计划、原生指标构建及候选扩展源码，目标train10000／validation1000。独立项目锁禁止两个补测队列写同一工程；参考采集与补测使用不同锁，补测只读取已经归档的图片。每批前检查20GiB空闲RAM和40GiB输出磁盘，轮询间隔30秒；该版遇到多mip法线会明确失败；新队列扩展角度评价层数后继续，HDR等未支持输入仍会失败，不跳过后伪称全量成功。`[verified: unity-candidate-queue-full-config.json；candidate_queue.py lock、require_resources、run；candidate_completion.py verify_normal_imports、verify_actual_options]`
 
 ```powershell
 uv run --frozen python script/complete_unity_candidate_series.py --config "experiment report/unity-accuracy90-20261111/unity-candidate-queue-full-config.json" --follow
 ```
 
-上述命令用于复跑入口记录；已有活动队列时不重复启动。完整语料、Unity模型训练与独立测试90%仍分别验收。`[opinion: 运行与验收范围]`
+上述命令为首轮启动入口的历史记录；当前配置见下文，已有活动队列时不重复启动。完整语料、Unity模型训练与独立测试90%仍分别验收。`[opinion: 运行与验收范围]`
 
-正式队列已启动，实时[补测状态](unity-candidate-queue-full.json)与[参考采集状态](unity-reference-series.json)分开发布。启动前实测空闲RAM30.88GiB、输出盘928.79GiB，相关45项测试及静态检查通过；归档、启动与恢复的独立代码复核通过。工作进程每30秒记录心跳，未完成时保持running／waiting_references。`[verified: jobs/unity-candidate-queue-full/launch-preflight.json、receipt.json；pytest45passed；ruff／basedpyright输出；review回执；candidate_queue.py run]`
+首轮[失败与成本记录](unity-candidate-queue-full.json)保留原身份；当前活动补测队列见下文。首轮启动前实测空闲RAM30.88GiB、输出盘928.79GiB，相关45项测试及静态检查通过；归档、启动与恢复的独立代码复核通过。工作进程每30秒记录心跳；该首轮后来因mip0-only限制结束为failed。`[verified: jobs/unity-candidate-queue-full/launch-preflight.json、receipt.json；pytest45passed；ruff／basedpyright输出；review回执；candidate_queue.py run]`
+
+## 多级法线评价与新队列
+
+第一版全量队列在两张mipmaps=true法线处被mip0-only检查拒绝。两图40候选的新检查已通过，17组原指标、2个winner均吻合；法线角度按从mip0构造的最多四级向量图评价，原选参／参考图／计时保持。新队列使用显式旧producer与config/report SHA复用完成的批次，首轮失败和成本保留，详见[恢复与patch监督报告](unity-patch-targets.md)。`[verified: unity-candidate-queue-full.json error；unity-normal-multimip2.json；unity-candidate-queue-multimip-v2-config.json；candidate_completion.py、candidate_queue.py；opinion: 范围说明]`
+
+当前[补测状态](unity-candidate-queue-multimip-v2.json)与[参考采集状态](unity-reference-series.json)分别发布；新的完整45批配置保留首轮失败SHA和已完成批次的producer／config／report SHA，完整生产验收仍待完成。`[verified: unity-candidate-queue-multimip-v2-config.json prior_queue、reuse；opinion: 验收范围]`
+
+```powershell
+uv run --frozen python script/complete_unity_candidate_series.py --config "experiment report/unity-accuracy90-20261111/unity-candidate-queue-multimip-v2-config.json" --follow
+```

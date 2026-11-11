@@ -1,0 +1,198 @@
+{
+  "status": "passed",
+  "config": {
+    "capture": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-002-20261111\\references\\normalized-batch",
+    "capture_run": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-002-20261111",
+    "capture_phase": "batch",
+    "capture_receipt_sha256": "e7784ef610af5ce2b1f3146fe24f7aa055d287820d320cc391dba927aa0cc368",
+    "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-002-20261111\\options-receipt.json",
+    "options_receipt_sha256": "ad283c8d0494208ad2b83103a7e4d7afc6847a31b5149661f7f5dea2f3e35e92",
+    "imports_sha256": "5ac4ce48af4c24be3c83a0281e71938d42fbf31851157527602f07de20d018ef",
+    "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+    "encoder_dll": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-shared.dll",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+    "quality_build_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\normal-multimip2",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-normal-multimip2.json",
+    "scope": "Imported development references; all20candidate targets; original search choices preserved; cost separate",
+    "items": [
+      {
+        "index": 190,
+        "path": "Assets/Art/Characters/Assassin/Materials/skin06_high/Assassin_high_6_n.jpg",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": true,
+        "mip_count": 4,
+        "metadata_source": "Captured Tex2D mipmaps and dimensions; metric depth inferred and checked against original native angles"
+      },
+      {
+        "index": 253,
+        "path": "Assets/Art/Characters/Guinevere/Materials/skin07_high/Guinevere_skin07_high_01_n.jpg",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": true,
+        "mip_count": 4,
+        "metadata_source": "Captured Tex2D mipmaps and dimensions; metric depth inferred and checked against original native angles"
+      }
+    ],
+    "prior_queue": {
+      "config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-candidate-queue-full-config.json",
+      "config_sha256": "327d1e8ba3b3543c810023ab763ec3a59f320f5d591577d5d1e3a297d022ae68",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-candidate-queue-full.json",
+      "report_sha256": "a29709de2cc73ae25686d028acbc1f07433a87985bc8edfbc8af4a225345a7f4",
+      "job_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-full\\receipt.json",
+      "error": "ValueError('Normal completion requires captured mip0-only Linear Tex2D')",
+      "completed_counts": {
+        "train": 576,
+        "validation": 2
+      },
+      "job_receipt_sha256": "188df6ee631022e97f5f75338ae4e4ae4afc547887e82f84ea7a7cb54af8c11d",
+      "wall_seconds": 1233.8258916999985
+    }
+  },
+  "config_sha256": "1307dd24bea16223441df5f84298743e2072ae441b3465743d74a096246bb952",
+  "quality_build": {
+    "status": "passed",
+    "binding": {
+      "engine_source": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+      "engine_source_sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+      "engine_first_line": 2182,
+      "engine_last_line": 2675,
+      "extracted_sha256": "6c35c61f99982f22c2971bd8ed1b8cfa840c925a6dd73eb2d82b0517ec02ec31",
+      "wrapper_sha256": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+      "cmake_sha256": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+      "arithmetic": "MSVC fp:precise; unchanged engine functions; parity checked separately"
+    },
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native",
+        "-B",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64",
+        "-DMETRICS_SOURCE=E:/ASTC_Compression/experiment report/.local/unity-accuracy90-20261111/unity-quality-native-retry1/metrics.cpp"
+      ],
+      [
+        "cmake",
+        "--build",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "--config",
+        "Release",
+        "--parallel",
+        "1"
+      ]
+    ],
+    "dll": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+    "dll_sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+    "generated_sha256": "317966c31f0b8fda57a4e5cab7946d6b3f9118cdcda24d9683c0a99cca0de94a"
+  },
+  "capture_binding": {
+    "protocol_sha256": "d15bfbe62d59addad05ab24ad09dd20f6cf12a0c3d53c7f862cff055a5073576",
+    "identity_sha256": "8b575c6294e2b37ebf272b51fcaf862fbb93bb2edd02ee58f401201c43185dba",
+    "phase_config_sha256": "44d1b61ac8cb49738a42b180996d45c4decc4f0700c07fc5c9bd3aec8a72bb5c",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64"
+  },
+  "metadata_binding": {
+    "status": "verified_actual_callback",
+    "receipt_sha256": "ad283c8d0494208ad2b83103a7e4d7afc6847a31b5149661f7f5dea2f3e35e92",
+    "raw_options_sha256": "582443d48c0c8d7199e38d177dffd3a6f1720d8a6004770d1a6a0ca1e627b127",
+    "audit_source_sha256": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+    "imports_sha256": "5ac4ce48af4c24be3c83a0281e71938d42fbf31851157527602f07de20d018ef",
+    "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+    "normal_scope": "Linear RGBA8, normal_pack=false, mip0 encoded; angular evaluation depth inferred from captured mipmaps and dimensions, clamped to4, checked against every original candidate's rounded native metrics"
+  },
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03"
+  },
+  "rows": [
+    {
+      "index": 190,
+      "path": "Assets/Art/Characters/Assassin/Materials/skin06_high/Assassin_high_6_n.jpg",
+      "metadata": {
+        "index": 190,
+        "path": "Assets/Art/Characters/Assassin/Materials/skin06_high/Assassin_high_6_n.jpg",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": true,
+        "mip_count": 4,
+        "metadata_source": "Captured Tex2D mipmaps and dimensions; metric depth inferred and checked against original native angles"
+      },
+      "original_selection": {
+        "asset": "Assets/Art/Characters/Assassin/Materials/skin06_high/Assassin_high_6_n.jpg",
+        "block_size": "6x6",
+        "preset": "fastest",
+        "selection_reason": "first_valid",
+        "search_ms": 4680.0196,
+        "format_ms": 4683.3173,
+        "select_and_encode_ms": 4730.9044,
+        "candidates_attempted": 16,
+        "candidates_measured": 16,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 16,
+      "new_candidates": 4,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 16,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 2.6047431000115466,
+        "decode_seconds": 0.1723677000045427,
+        "quality_seconds": 0.15179749997332692
+      },
+      "candidate_receipt_sha256": "eb6218ccdc16120c25584fe8f78530b3b1e6d50e187db6b33666b54e2bf7f358"
+    },
+    {
+      "index": 253,
+      "path": "Assets/Art/Characters/Guinevere/Materials/skin07_high/Guinevere_skin07_high_01_n.jpg",
+      "metadata": {
+        "index": 253,
+        "path": "Assets/Art/Characters/Guinevere/Materials/skin07_high/Guinevere_skin07_high_01_n.jpg",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": true,
+        "mip_count": 4,
+        "metadata_source": "Captured Tex2D mipmaps and dimensions; metric depth inferred and checked against original native angles"
+      },
+      "original_selection": {
+        "asset": "Assets/Art/Characters/Guinevere/Materials/skin07_high/Guinevere_skin07_high_01_n.jpg",
+        "block_size": "12x12",
+        "preset": "fastest",
+        "selection_reason": "first_valid",
+        "search_ms": 333.3864,
+        "format_ms": 337.4305,
+        "select_and_encode_ms": 554.5963,
+        "candidates_attempted": 1,
+        "candidates_measured": 1,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 1,
+      "new_candidates": 19,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 1,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 1.777193299982173,
+        "decode_seconds": 0.14971020001394209,
+        "quality_seconds": 0.16472010002325987
+      },
+      "candidate_receipt_sha256": "eb30188d95a5b5a04759499ce9c57f555fdc9ccb802e55ae752ca36224316c55"
+    }
+  ],
+  "test_opened": false,
+  "wall_seconds": 6.672539999999572,
+  "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\normal-multimip2\\receipt.json",
+  "raw_receipt_sha256": "265b7aaa6519c666e156f2fdd226d7c796220bde50a92b962c9798012ec1f62f"
+}

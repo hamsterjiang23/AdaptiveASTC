@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "local_links_and_anchors": 250,
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "normal_multimip_candidate_checks": 40,
+  "normal_original_metric_checks": 17,
+  "corpora": [
+    {
+      "name": "smoke",
+      "counts": {
+        "train": 5,
+        "validation": 2
+      },
+      "patch_counts": {
+        "train": 19,
+        "validation": 13
+      },
+      "candidate_count": 140,
+      "max_psnr_reconstruction_error_db": 1.904413757358725e-06,
+      "report_sha256": "2e04261ee09ad427f2da83b62d6858f8fb2de9f79fab0a0479c3382f21a13566"
+    },
+    {
+      "name": "train256",
+      "counts": {
+        "train": 256,
+        "validation": 2
+      },
+      "patch_counts": {
+        "train": 1664,
+        "validation": 13
+      },
+      "candidate_count": 5160,
+      "max_psnr_reconstruction_error_db": 3.7415360765180594e-06,
+      "report_sha256": "1ac0a9bc265efb627fac45588733898ed047c89cb275172394d67ea88f518384"
+    },
+    {
+      "name": "multimip2",
+      "counts": {
+        "train": 2,
+        "validation": 2
+      },
+      "patch_counts": {
+        "train": 18,
+        "validation": 13
+      },
+      "candidate_count": 80,
+      "max_psnr_reconstruction_error_db": 1.8835202411082719e-06,
+      "report_sha256": "acc586c2ddc0860a73491eccf13bf93f95c27ccd93171f397469db834a35c973"
+    }
+  ],
+  "prior_failure_preserved": true,
+  "active_collection_sources_unchanged": true,
+  "pytest": {
+    "files": [
+      "tests/test_unity_patch_targets.py",
+      "tests/test_unity_candidate_completion.py",
+      "tests/test_unity_candidate_archive.py",
+      "tests/test_unity_candidate_queue.py",
+      "tests/test_unity_reference_series.py",
+      "tests/test_unity_supplement.py"
+    ],
+    "passed": 63,
+    "seconds": 30.12,
+    "native_quality_env": "UNITY_QUALITY_RECEIPT"
+  },
+  "static_checks": "ruff format --check, ruff check, basedpyright; 10 changed Python files passed",
+  "verification_script_sha256": "9702a14461faad4b248cf71ed83ac55e693aa13409e424141761e1dac4395a26",
+  "test_opened": false
+}

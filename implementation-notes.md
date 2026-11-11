@@ -280,3 +280,9 @@
 
 - Stem2 completed15epochs: selectedepoch14raw74.6%/2.5459dB, minus6.1pp against the standardstem LR0.0003 control. FrozenlastEMA with train-onlyBNreestimate reaches78.6%/2.1127dB, still below standardstem80.9%/1.3716dB; zerooptimizerupdates, process599.74seconds. `[verified: scratch-stem2-lr0003-result.json; normalization-scratch-stem2-lr0003.json; normalization-scratch-lr0003.json; correspondingjobreceipt]`
 - Next single-factor control keeps standardstem/scratch/LR0.0003, caps each assetgroup at512effectiveimages and distributes imageweight across its patches. Train-only10000image analysis reduces maximumgroup share20.77%to6.41%; this is not class balancing. Defaultcap0exactly preserves prior weights; actual120276patch weights and9tests pass. CUDA48train/16validation smoke usescap2toexercise downweighting,2epochs and reload passed; fullcap512training started. `[verified: group-sampling-analysis.json; PatchSampling.weights; test_patch_sampling.py; scratch-group512smokesuite/summary; fulljobreceipt]`
+
+## 2026-11-12：Unity四级法线评价与RGBA监督
+
+两张开启mipmap的法线触发旧补测限制，保留首轮队列失败和已完成576train／2validation。扩展按导入设置与尺寸推导角度评价层数，逐原候选比较仍强制执行；真实40候选和原winner一致后启动新队列。历史完成producer只允许显式SHA绑定的归档复用，不重新执行旧版本。`[verified: unity-normal-multimip2.json；candidate_queue.py verify_capture_binding、run；unity-candidate-queue-multimip-v2-config.json]`
+
+RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha／非零误差通道规则。258图5160候选最大PSNR差3.74e-6dB。审查发现并修正manifest的candidate_receipt_sha256实际指向candidates.json、非单图receipt.json；补上公开报告→raw→单图内容身份链和缓存／元数据／test行反例。整图MS-SSIM与角度保留，后续模型聚合待实现。`[verified: patch_targets.py measured_image、prepare_image；test_unity_patch_targets.py；unity-patches-train256.json；opinion: 后续模型范围]`

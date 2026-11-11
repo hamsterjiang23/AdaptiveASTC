@@ -159,3 +159,17 @@ def test_changed_coverage_accounting_is_rejected(tmp_path: Path) -> None:
     fixture.publish()
     with pytest.raises(ValueError, match="coverage accounting"):
         fixture.verify()
+
+
+def test_normal_metrics_preserve_configured_multimip_scope(tmp_path: Path) -> None:
+    fixture = CandidateFixture(tmp_path)
+    fixture.config["items"][0].update(is_normal=True, mip_count=4)
+    ArtifactStore.write_json(fixture.config_path, fixture.config)
+    for candidate in fixture.candidates:
+        candidate["metrics"].update(normal_mean_deg=2.7, normal_p95_deg=8.9, mip_count=4)
+    fixture.publish()
+    fixture.verify()
+    fixture.candidates[0]["metrics"]["mip_count"] = 1
+    fixture.publish()
+    with pytest.raises(ValueError, match="mip scope changed"):
+        fixture.verify()

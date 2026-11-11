@@ -111,7 +111,14 @@ class UnityCandidateArchive:
                     for key in required
                 ):
                     raise ValueError("Candidate quality targets are missing or nonfinite")
-                if metrics["need_alpha"] is not item["need_alpha"] or metrics["mip_count"] != 1:
+                expected_mips = item["mip_count"] if item["is_normal"] else 1
+                if (
+                    type(expected_mips) is not int
+                    or not 1 <= expected_mips <= 4
+                    or type(metrics["mip_count"]) is not int
+                    or metrics["need_alpha"] is not item["need_alpha"]
+                    or metrics["mip_count"] != expected_mips
+                ):
                     raise ValueError("Candidate metric Alpha or mip scope changed")
                 if type(candidate["measured_in_original_search"]) is not bool:
                     raise ValueError("Candidate original-coverage flag must be boolean")

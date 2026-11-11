@@ -64,9 +64,11 @@ V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预�
 
 [Unity参考像素全量队列](<experiment report/unity-accuracy90-20261111/unity-reference-series.md>)已启动，冻结45批覆盖train10000／validation1000，原搜索策略与标签保留。已完成320张train、2张validation；66张已有归档的实际合并检查通过，剩余批次串行采集。每批核对像素、实际编码参数、来源哈希和恢复记录；候选补测及生产训练另行验收。实时状态见[队列报告](<experiment report/unity-accuracy90-20261111/unity-reference-series.json>)。`[verified: unity-reference-series-plan.json；unity-reference-series-smoke.json；unity-reference-series.json counts/current_batch；opinion: 验收范围]`
 
-[Unity离线补测](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)已扩展到8张不同尺寸颜色图160候选，原52组指标和8个winner复核一致，新增108组。真实4096²法线样本先完成20组原ASTC解码与原生角度审计，再实际重编码全部20组，压缩字节和解码像素均一致。全部候选未过角度门槛，原结果仍为最高PSNR回退。全量采集、HDR和多mip法线仍待验证。`[verified: unity-color8.json rows；unity-normal20-policy.json；unity-normal-replay20.json rows.reencoding、quality_passing_candidates]`
+[Unity离线补测](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)已扩展到8张不同尺寸颜色图160候选，原52组指标和8个winner复核一致，新增108组。真实4096²法线样本先完成20组原ASTC解码与原生角度审计，再实际重编码全部20组，压缩字节和解码像素均一致。全部候选未过角度门槛，原结果仍为最高PSNR回退。该先期记录仅覆盖mip0；多级法线评价的后续核验见下文，HDR与全量数据仍待完成。`[verified: unity-color8.json rows；unity-normal20-policy.json；unity-normal-replay20.json rows.reencoding、quality_passing_candidates]`
 
 后续已完成[颜色与提前停止法线的统一补测](<experiment report/unity-accuracy90-20261111/unity-supplement.md#颜色与提前停止法线的统一补测>)：256图5120次编码，补齐3688组原搜索未测候选，原1432组指标及256个winner复核通过，进程609.70秒。连续补测队列的258图实际检查通过，保持train／validation划分；全量参考采集已核验train1088／validation2，余下批次继续。候选准备与Unity90%模型验收分别记录。`[verified: unity-candidates-train256-audit.json；unity-candidate-queue-smoke.json；unity-reference-series.json counts；opinion: 验收范围]`
+
+已完成 [Unity原生RGBA patch监督](<experiment report/unity-accuracy90-20261111/unity-patch-targets.md>) 的258图检查：5160候选重建PSNR最大差3.74e-6dB，完整进程57.00秒；另两张多级评价法线40候选补测通过。全量补测保留首轮失败，改用四级法线评价的新队列继续，原参考和策略标签不变。当前生产训练与独立测试90%仍未完成。`[verified: unity-patches-train256.json；unity-normal-multimip2.json；unity-candidate-queue-multimip-v2-config.json prior_queue；opinion: 验收边界]`
 
 分类准确率提升的完整调研见[分类准确率与压缩全流程优化报告](<experiment report/classification-accuracy-research-20261111/README.md>)，覆盖35项一手资料、当前中间类别召回诊断、有效batch／学习率入口核对，以及Unity导入、编码、部署和分阶段实验预算。建议值在报告中按待实验记录。`[verified: sources.json primary_source_count；diagnostics.json per_class_recall；该报告“导入、编码与部署的全流程因素”“分阶段预算”]`
 

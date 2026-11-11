@@ -191,6 +191,19 @@ def test_completed_capture_must_be_the_same_frozen_batch(tmp_path: Path) -> None
         "quality_build_receipt": queue.config["quality_build_receipt"],
     }
     queue.verify_capture_binding(batch, config)
+    # Reusing an older completed producer requires explicit identity in the frozen queue.
+    current_producer = config["completion_source_sha256"]
+    config["completion_source_sha256"] = "old-completed-producer"
+    with pytest.raises(ValueError, match="frozen batch"):
+        queue.verify_capture_binding(batch, config)
+    queue.config["reuse"] = {
+        batch["config"]["run_id"]: {"completion_source_sha256": "old-completed-producer"}
+    }
+    queue.verify_capture_binding(batch, config)
+    config["completion_source_sha256"] = current_producer
+    with pytest.raises(ValueError, match="frozen batch"):
+        queue.verify_capture_binding(batch, config)
+    queue.config["reuse"] = {}
     config["capture"] = str(tmp_path / "another-capture")
     with pytest.raises(ValueError, match="frozen batch"):
         queue.verify_capture_binding(batch, config)

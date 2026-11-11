@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "failed",
   "started_utc": "2026-11-11T16:12:47.424585+00:00",
   "config_sha256": "327d1e8ba3b3543c810023ab763ec3a59f320f5d591577d5d1e3a297d022ae68",
   "implementation_sha256": "cde8600fe5c568ddec02f07106a462ce127592f07e0a7944f8c3921d5017e631",
@@ -10,7 +10,7 @@
   },
   "coverage": "complete",
   "counts": {
-    "train": 320,
+    "train": 576,
     "validation": 2
   },
   "batches": [
@@ -103,12 +103,43 @@
         "decode_seconds": 0.3180168999970192,
         "quality_seconds": 0.477231099990604
       }
+    },
+    {
+      "run_id": "unity-v1-train-001-20261111",
+      "source_split": "train",
+      "reference": {
+        "run_id": "unity-v1-train-001-20261111",
+        "source_split": "train",
+        "images": 256,
+        "callbacks": 1537,
+        "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-001-20261111\\options-receipt.json",
+        "options_sha256": "3da891c38c0638d78d5f84e2ea4ceea3ea15fd46b3b23a9a694954ff183d3d7b",
+        "reference_receipt_sha256": "7736df092849214d9d4c55c7173fe02b4b5b6586fdb71f190149ecb41019f8d8",
+        "phase_receipt_sha256": "884cc7edb032de42138f7073ffdeca31b85b2b834db40be543f6419c4a4f8215",
+        "editor_process_seconds": 938.1937619000018
+      },
+      "prior_attempts": [],
+      "images": 256,
+      "candidates": 5120,
+      "new_candidates": 3583,
+      "original_candidates": 1537,
+      "normal_images": 32,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\reports\\unity-v1-train-001-20261111.json",
+      "report_sha256": "1d0738004fa7d019800c1d327b4529b626cea1401cde7fb6165e8240b0aaea1e",
+      "raw_receipt_sha256": "c390fe0c575bb1e0457b30a4fd64b7af8de370f324c5740690fbb8bcc1779d19",
+      "wall_seconds": 709.6681202999971,
+      "cost": {
+        "encode_seconds": 410.02427030040417,
+        "decode_seconds": 39.75428479987022,
+        "quality_seconds": 70.38679589983803
+      }
     }
   ],
   "test_opened": false,
   "invocation_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\invocations\\a805a675db044dc5b465f2b87e2fa2f7\\receipt.json",
   "scope": "native20 candidate targets paired to original imported references and search choices",
-  "current_batch": "unity-v1-train-001-20261111",
-  "updated_utc": "2026-11-11T16:20:04.983698+00:00",
-  "wall_seconds": 437.5592231999981
+  "current_batch": "unity-v1-train-002-20261111",
+  "updated_utc": "2026-11-11T16:33:20.769111+00:00",
+  "wall_seconds": 1233.3440876000022,
+  "error": "ValueError('Normal completion requires captured mip0-only Linear Tex2D')"
 }

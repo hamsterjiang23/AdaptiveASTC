@@ -1,0 +1,53 @@
+{
+  "reference_plan": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\reference-series-plan-v2\\complete.json",
+  "reference_plan_sha256": "519df9a08a326067bd5a6467a3be355b648acf92709afb21539e596feff004b8",
+  "reference_job_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\receipt.json",
+  "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+  "quality_build_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+  "quality_build_sha256": "870ad425363c6e415a9504020f7e72424ed03b5aac5401a615c240d5bfb902f9",
+  "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2",
+  "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-candidate-queue-multimip-v2.json",
+  "minimum_free_ram_gib": 20,
+  "minimum_free_disk_gib": 40,
+  "poll_seconds": 30,
+  "reuse": {
+    "unity-actual-options64-20261111": {
+      "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\configs\\unity-actual-options64-20261111.json",
+      "config_sha256": "fcac3b5b3a07e00db5cb106b246cf8d05629a1b4c7242b8e69461400f78c668b",
+      "report_sha256": "7538a3f1de5887a753487a35349b5ad0e066761e70ee8c02d1ce7d9f4c1cf9b4",
+      "completion_source_sha256": "56546d463a7c013c53c86e1731b68ec156fb89f3c359900b3dc2193432f63c04"
+    },
+    "unity-train256-batch001-20261111": {
+      "config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-candidates-train256-config.json",
+      "config_sha256": "92fbef708fb98b83b90ca7ffed3b366326a9b6a56a66bda43b9e7450054f6938",
+      "report_sha256": "cd1832b57f82a65a0cf86bd3e5ddfb59681915ac77bd3d014a777d877800c818",
+      "completion_source_sha256": "56546d463a7c013c53c86e1731b68ec156fb89f3c359900b3dc2193432f63c04"
+    },
+    "unity-validation2-20261111": {
+      "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\configs\\unity-validation2-20261111.json",
+      "config_sha256": "e10c31d065e960e8daf1621e356481353655790198b485b1d8991ba6b2f0a17a",
+      "report_sha256": "ab4f34a23dd3774e40cc4bf5e8c4181450561782e98cbd86db335dc0e2cd0472",
+      "completion_source_sha256": "56546d463a7c013c53c86e1731b68ec156fb89f3c359900b3dc2193432f63c04"
+    },
+    "unity-v1-train-001-20261111": {
+      "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\configs\\unity-v1-train-001-20261111.json",
+      "config_sha256": "1934a9692440d8b78a2513bea348d0f00211f5d253e70af1cb253dc788b26e76",
+      "report_sha256": "1d0738004fa7d019800c1d327b4529b626cea1401cde7fb6165e8240b0aaea1e",
+      "completion_source_sha256": "56546d463a7c013c53c86e1731b68ec156fb89f3c359900b3dc2193432f63c04"
+    }
+  },
+  "prior_queue": {
+    "config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-candidate-queue-full-config.json",
+    "config_sha256": "327d1e8ba3b3543c810023ab763ec3a59f320f5d591577d5d1e3a297d022ae68",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-candidate-queue-full.json",
+    "report_sha256": "a29709de2cc73ae25686d028acbc1f07433a87985bc8edfbc8af4a225345a7f4",
+    "job_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-full\\receipt.json",
+    "error": "ValueError('Normal completion requires captured mip0-only Linear Tex2D')",
+    "completed_counts": {
+      "train": 576,
+      "validation": 2
+    },
+    "job_receipt_sha256": "188df6ee631022e97f5f75338ae4e4ae4afc547887e82f84ea7a7cb54af8c11d",
+    "wall_seconds": 1233.8258916999985
+  }
+}

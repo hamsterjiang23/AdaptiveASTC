@@ -121,3 +121,5 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 - 真实4096²法线后续重编码全部20候选，完整ASTC与RGBA解码均与同次原搜索一致。该结果只覆盖mip0、normal-pack=false，原候选全不达标的回退身份保持。开发采集新增显式train／validation分批路径，保留划分并拒绝test／calibration；两张真实validation图的导出／恢复通过，7次回调吻合，再补齐40候选，新增33组，原winner一致。`[verified: unity-normal-replay20.json；test_unity_reference_batches.py；unity-validation2.json；unity-validation2-supplement.json]`
 
 - 去maxpool末轮EMA的train-only BN重估完成，为78.6%／2.1127dB，仍低于标准stem。下一项固定容量对照只改变资产组抽样cap512，保留标准stem／scratch／lr0.0003，CUDA小样本与权重重载通过后正式启动；当前没有完整效果结论。`[verified: normalization-scratch-stem2-lr0003.json；scratch-group512-suite.json、scratch-group512-smoke-summary.json；opinion: 单项假设与结果范围]`
+
+- Unity迁移新增RGBA逐通道监督提取：258图、5160候选，PSNR重建最大差3.74e-6dB，数据准备进程57.00秒。两张多级评价法线40候选重放通过，全量补测以新身份继续并保留首轮失败与已完成工作；MS-SSIM／角度仍是整图监督，相关模型目标待完成。详见[原生监督与恢复报告](<../../experiment report/unity-accuracy90-20261111/unity-patch-targets.md>)。`[verified: unity-patches-train256.json；unity-normal-multimip2.json；unity-candidate-queue-multimip-v2-config.json prior_queue；opinion: 迁移待办]`

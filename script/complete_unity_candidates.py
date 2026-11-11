@@ -1,4 +1,4 @@
-"""Measure full candidate grids from frozen imported color and mip0 normal references."""
+"""Measure mip0 candidate grids using the captured color or normal quality scope."""
 
 import argparse
 from pathlib import Path

@@ -15,6 +15,8 @@
 
 ## 已完成与当前状态
 
+- [Unity原生监督与法线恢复](unity-patch-targets.md)新增完成：258图5160候选的RGBA通道SSE重建PSNR最大差3.74e-6dB；两张多级评价法线40候选补测与单独patch提取通过。原队列因mip0-only限制失败的记录保持，新候选队列重新核验已有578图并继续；质量分支建模和Unity生产验收仍未完成。`[verified: unity-patches-train256.json；unity-normal-multimip2.json；unity-patches-multimip2.json；unity-candidate-queue-multimip-v2.json；opinion: 验收范围]`
+
 - Unity串行参考采集已核验train1088／validation2。256图候选补测全部完成，5120次编码新增3688组覆盖，原1432组指标与256个winner一致，进程609.70秒；[连续队列](unity-supplement.md#连续补测队列与训练清单)的258图实跑及最终源码复核通过，完整45批另行运行。原标签／基线保持，去maxpool CUDA对照已完成15轮，为74.6%／2.5459dB，低于标准stem；末轮EMA重估为78.6%／2.1127dB，资产组限权的下一项单因素CUDA训练已启动；完整Unity验收尚未完成。`[verified: unity-reference-series.json counts；unity-candidates-train256-audit.json；unity-candidate-queue-smoke.json；scratch-stem2-lr0003-result.json；normalization-scratch-stem2-lr0003.json；scratch-group512-summary.json；对应job receipts；opinion: 验收边界]`
 
 - 新Unity两图参考采集通过，源文件与运行时规则核对通过，meta恢复0冲突。前两次启动失败及恢复记录保留在 [progress.json](progress.json)；成功记录见 [probe.json](probe.json)。已有64图归档另见 [data-readiness.json](data-readiness.json)。`[verified: 对应JSON记录]`

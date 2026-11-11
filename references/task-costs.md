@@ -16,6 +16,8 @@
 | 256张训练图原生采集 | 1432回调，Editor阶段901.88秒／完整进程963.42秒 | 16张NormalMap；源码／meta恢复通过。45批队列逐批检查至少20GiB空闲RAM与相关卷40GiB磁盘，允许独立冻结GDC语料的CUDA训练。包含刷新／导出／哈希，不用于替换搜索基线。`[verified: ../experiment report/unity-accuracy90-20261111/unity-train256-batch001.json；unity-reference-series-plan.json；collection.py require_resources；opinion: 并发与计时范围]` |
 | 颜色／部分搜索法线补齐 | 256图5120编码，进程609.70秒；编码326.07秒、解码41.25秒、质量评价63.72秒 | 新增3688组覆盖，16法线均mip0-only；258图队列初次／复核46.20／43.16秒。与Editor采集和CUDA训练重叠，作为准备成本。`[verified: ../experiment report/unity-accuracy90-20261111/unity-candidates-train256-audit.json；unity-candidate-queue-smoke.json；.local对应jobs/receipt；opinion: 计时范围]` |
 
+原生RGBA监督在258图上循环51.53秒／进程57.00秒，5160候选生成1677个patch。两张法线的四级评价补测循环6.67秒／进程6.99秒；原候选队列首轮1233.83秒包含已完成578图，不能全部记为无效重试。各项均与正在运行的采集／训练重叠，作为数据准备成本。`[verified: unity-patches-train256.json；unity-normal-multimip2.json；对应jobs/receipt；unity-candidate-queue-multimip-v2-config.json prior_queue；opinion: 成本范围]`
+
 | 任务 | 读取 | 写入与互斥 |
 |---|---|---|
 | patch训练 | 冻结GDC源RGB patch corpus | 每个trial独立检查点、历史、预测与报告；完成前不读取活动checkpoint开展新诊断。`[verified: PatchTrainer.fit；opinion: 并发约束]` |

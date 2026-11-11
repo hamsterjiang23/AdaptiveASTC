@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import math
 import os
 import shutil
@@ -120,6 +121,15 @@ class UnityCandidateQueue:
         phase = batch["config"]["phase"]
         archive = baseline.run_dir / "references" / f"normalized-{phase}"
         options = baseline.run_dir / "options-receipt.json"
+        imports_path = baseline.run_dir / f"{phase}-imports.jsonl"
+        imports = [
+            json.loads(line) for line in imports_path.read_text("utf-8-sig").splitlines() if line
+        ]
+        if len(imports) != len(references) or any(
+            imported["asset"] != reference["path"]
+            for imported, reference in zip(imports, references, strict=True)
+        ):
+            raise ValueError("Candidate metadata must match the verified reference order")
         config = {
             "capture": str(archive),
             "capture_run": str(baseline.run_dir),
@@ -149,9 +159,14 @@ class UnityCandidateQueue:
                     "need_alpha": row["actual_options"]["need_alpha"],
                     "is_hdr": row["actual_options"]["profile"] not in {0, 1},
                     "is_normal": row["actual_options"]["texture_type_importer"] == "NormalMap",
-                    "mip_count": 1,
+                    "mip_count": (
+                        UnityCandidateCompletion.normal_metric_mips(imports[index])
+                        if row["actual_options"]["texture_type_importer"] == "NormalMap"
+                        else 1
+                    ),
                     "metadata_source": (
-                        "Verified frozen reference series, actual callback and original import log"
+                        "Verified frozen reference series and actual callback; normal metric mip "
+                        "depth inferred from captured Tex2D mipmaps and dimensions"
                     ),
                 }
                 for index, row in enumerate(references)
@@ -209,13 +224,15 @@ class UnityCandidateQueue:
         baseline = self.series.baseline(batch["config"])
         phase = batch["config"]["phase"]
         archive = baseline.run_dir / "references" / f"normalized-{phase}"
+        reuse = self.config.get("reuse", {}).get(batch["config"]["run_id"], {})
+        producer = reuse.get("completion_source_sha256", self.config["completion_source_sha256"])
         if (
             Path(config["capture"]).resolve() != archive.resolve()
             or Path(config["capture_run"]).resolve() != baseline.run_dir.resolve()
             or config["capture_phase"] != phase
             or Path(config["options_receipt"]).resolve()
             != (baseline.run_dir / "options-receipt.json").resolve()
-            or config["completion_source_sha256"] != self.config["completion_source_sha256"]
+            or config["completion_source_sha256"] != producer
             or Path(config["quality_build_receipt"]).resolve()
             != Path(self.config["quality_build_receipt"]).resolve()
         ):
@@ -296,26 +313,31 @@ class UnityCandidateQueue:
                         save()
                         references, reference_binding = self.series.verify_batch(batch)
                         path = self.candidate_config(batch, references)
-                        completion = UnityCandidateCompletion(path)
-                        self.verify_capture_binding(batch, completion.config)
-                        report = Path(completion.config["report"])
+                        candidate_config = ArtifactStore.read_json(path)
+                        self.verify_capture_binding(batch, candidate_config)
+                        report = Path(candidate_config["report"])
                         source_receipt = ArtifactStore.read_json(
-                            Path(completion.config["capture"]) / "receipt.json"
+                            Path(candidate_config["capture"]) / "receipt.json"
                         )
-                        completion.verify_capture_provenance(completion.config, source_receipt)
-                        completion.verify_actual_options(completion.config, source_receipt)
+                        UnityCandidateCompletion.verify_capture_provenance(
+                            candidate_config, source_receipt
+                        )
+                        UnityCandidateCompletion.verify_actual_options(
+                            candidate_config, source_receipt
+                        )
                         if not report.exists():
-                            completion.run()
-                        assembled, summary = UnityCandidateArchive.verify(
-                            report, references, completion.config_path
-                        )
+                            UnityCandidateCompletion(path).run()
+                        assembled, summary = UnityCandidateArchive.verify(report, references, path)
                         rows[batch["split"]].extend(assembled)
                         state["batches"].append(
                             {
                                 "run_id": name,
                                 "source_split": batch["split"],
                                 "reference": reference_binding,
-                                "prior_attempts": completion.config.get("prior_attempts", []),
+                                "prior_attempts": candidate_config.get("prior_attempts", []),
+                                "completion_source_sha256": candidate_config[
+                                    "completion_source_sha256"
+                                ],
                                 **summary,
                             }
                         )
