@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T21:53:23.429463+00:00",
+  "updated_utc": "2026-11-11T22:07:02.466542+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -534,10 +534,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T21:53:04.044550+00:00",
+      "last_observed_alive_utc": "2026-11-11T22:06:34.361675+00:00",
       "name": "unity-reference-series-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\receipt.json",
-      "sha256": "d67459fe9f4029d9df8a06a48d4cab735f0511f9ff97715576f789240fef35d2",
+      "sha256": "5a3254331540286061e2e2bad1fd07bbe8e93706b103e88244fd9d5fff9f23b3",
       "observed_processes": [
         {
           "pid": 51744,
@@ -701,10 +701,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T21:53:09.049984+00:00",
+      "last_observed_alive_utc": "2026-11-11T22:06:39.339934+00:00",
       "name": "unity-candidate-queue-multimip-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\receipt.json",
-      "sha256": "0ebcc7d169e2b3aed28e6bebab69960e9432246284979f4f7df6bcd372b4cfc6",
+      "sha256": "fa07e576608c0dfd640db395137ce5f800bbba2dd611d9338d0a0cc0c7c5817f",
       "observed_processes": [
         {
           "pid": 25096,
@@ -896,7 +896,13 @@
       "name": "unity-patch-assembly66-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-patch-assembly66-v2\\receipt.json",
       "sha256": "6c81b92c6453c6f82c08ffdb942fb4d83792dfd0ba4919b8eaf1e8b80dc06e4e",
-      "observed_processes": []
+      "observed_processes": [
+        {
+          "pid": 59508,
+          "name": "python.exe",
+          "create_time": 1794434822.357036
+        }
+      ]
     },
     {
       "status": "passed",
@@ -1090,10 +1096,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T21:53:06.358411+00:00",
+      "last_observed_alive_utc": "2026-11-11T22:06:36.658872+00:00",
       "name": "unity-native-pipeline-full-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v2\\receipt.json",
-      "sha256": "37654b4d26a59727f5303c63ba9ce45504fdb0a7728d1e70ad589dd2e705f7ef",
+      "sha256": "cf6f13908943e8111b70d9f9fce725c854595a330290662d40d4a2fb9107a2d0",
       "observed_processes": [
         {
           "pid": 30076,
@@ -1189,13 +1195,7 @@
       "name": "normalization-metadata-smoke",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-metadata-smoke\\receipt.json",
       "sha256": "30d4424ec9d982d42204667c02adba0886ff4dd2176222020a6fa168a8043cd1",
-      "observed_processes": [
-        {
-          "pid": 25292,
-          "name": "svchost.exe",
-          "create_time": 1794433989.7178845
-        }
-      ]
+      "observed_processes": []
     },
     {
       "status": "running",
@@ -1203,10 +1203,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T21:53:19.283138+00:00",
+      "last_observed_alive_utc": "2026-11-11T22:06:49.563422+00:00",
       "name": "scratch-group512-metadata",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-metadata\\receipt.json",
-      "sha256": "6a289a932424d123ac088fc358c559cb152fe4ec49c19754813525a957cee02c",
+      "sha256": "6807ebfe2f8d6103fdac2b4094871723f29abe0db1e2e8310888175372a020a2",
       "observed_processes": [
         {
           "pid": 67328,
@@ -1219,6 +1219,30 @@
           "create_time": 1794433279.013654
         }
       ]
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T22:00:50.537781+00:00",
+      "ended_utc": "2026-11-11T22:00:54.397643+00:00",
+      "wall_seconds": 3.8544136000055005,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-final-encoding-smoke2-v1",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-final-encoding-smoke2-v1\\receipt.json",
+      "sha256": "318974c5c9a065646649d4bdd8b7047db1cb0cf2d80145227bfb02e39cd42f44",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T22:03:08.977599+00:00",
+      "ended_utc": "2026-11-11T22:03:13.038232+00:00",
+      "wall_seconds": 4.05426680000528,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-final-encoding-smoke2-v2",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-final-encoding-smoke2-v2\\receipt.json",
+      "sha256": "a25d4a08ad2929203304782f39b156a699e29e2437d3f24d67d2736b2ba2192d",
+      "observed_processes": []
     }
   ],
   "normalization_diagnostics": {
@@ -1252,17 +1276,17 @@
   "unity_reference_series": {
     "status": "running",
     "counts": {
-      "train": 5952,
+      "train": 6208,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-023-20261111",
+    "current_batch": "unity-v1-train-024-20261111",
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "b5a69638177547bd8e9ca0cf9673238b67aa762cf9b87c87a4c4810f2b876a33",
+    "report_sha256": "4f9e6edfd0acffdb08f115f4176b861f92e5c2f5b3b28842025c10d50b6a0ee2",
     "scope": "original imported references/choices only; supplemental targets pending"
   },
   "fixed_capacity_stem": {
@@ -1283,7 +1307,7 @@
   "unity_candidate_queue": {
     "status": "waiting_references",
     "counts": {
-      "train": 5952,
+      "train": 6208,
       "validation": 2
     },
     "expected_counts": {
@@ -1293,7 +1317,7 @@
     "current_batch": null,
     "test_opened": false,
     "report": "unity-candidate-queue-multimip-v2.json",
-    "report_sha256": "b241451d7aaab09507e5a26423ad053d82388d57a7af91e439957fc421c50e21",
+    "report_sha256": "da9f7f0114eb4d663710795b098bb8418732745ef12946e78520b1d5a419938c",
     "prior_failure_report": "unity-candidate-queue-full.json",
     "prior_failure_counts": {
       "train": 576,
@@ -1636,7 +1660,7 @@
     "training_updates": 0,
     "test_opened": false,
     "report": "unity-native-pipeline-full-v2.json",
-    "report_sha256": "62b6503da29005c5c81062ba896af83bc14f57dc01de56199f6958cb945e21be",
+    "report_sha256": "ef77384f2b3250922199a3e493e7d486bd77a8982573d0368e5b7b3a669ea9b6",
     "final_smoke": "unity-native-pipeline-smoke66-v3.json"
   },
   "fixed_capacity_metadata": {
@@ -1653,5 +1677,33 @@
     "formal_summary": "patch-fixed-capacity\\scratch-group512-metadata-summary.json",
     "formal_summary_sha256": "5d1af3a0a98cdedc3ee808e997d24aa255c175df3b70666f1142555fa0c8aa43",
     "formal_completed_trials": 0
+  },
+  "unity_final_encoding": {
+    "status": "passed",
+    "validation_images": 2,
+    "training_updates": 0,
+    "test_opened": false,
+    "summary": {
+      "prediction": {
+        "images": 2,
+        "encoding_calls": 2,
+        "payload_bytes": 59168,
+        "strict_quality_pass_rate": 0.5,
+        "encode_seconds": 0.021254599996609613
+      },
+      "fixed8": {
+        "images": 2,
+        "encoding_calls": 2,
+        "payload_bytes": 81920,
+        "strict_quality_pass_rate": 1.0,
+        "encode_seconds": 0.03217780000704806
+      }
+    },
+    "model_inference_seconds": null,
+    "end_to_end_seconds": null,
+    "timing_scope": "Saved validation predictions; native mip0 encoding/decode/quality only; no inference or deployment speedup",
+    "report": "unity-final-encoding-smoke2-v2.json",
+    "report_sha256": "b138f86ccc2fc48757faeb8dc30a2ec8b9b85e4070d9c53fd186d7b09f072cc5",
+    "scope": "Saved smoke model validation2; four real native mip0 encodings only"
   }
 }

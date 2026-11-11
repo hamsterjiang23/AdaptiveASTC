@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- 保存原生验证预测的[最终编码核验](<experiment report/unity-accuracy90-20261111/unity-final-encoding.md>)使用`UnityFinalEncoding`和`script/encode_unity_predictions.py`。绑定完成训练、三个最佳产物、重载审计和原策略，先重放冻结预测再各编码一次，固定8×8的preset显式配置；完整ASTC、解码像素和原生质量与归档候选核对。质量build receipt必须等于原候选记录中的完整`quality_build`，不能只自校验当前DLL。两图／四次编码通过，进程4.05秒；仅为mip0编码阶段，推理和端到端成本不能从旧预测补算。`[verified: final_encoding.py；unity-final-encoding-smoke2-v2.json；对应job receipt；opinion: 使用与解释要求]`
+
 - 历史patch模型的BN重估可显式指定`--training-source-archive`，逐份匹配原训练绑定SHA，并单列当前执行源码；缺失或不符时拒绝。仍要求raw／EMA原验证结果复现、学习参数不变、运行后源码与检查点身份复核。group512末轮已完成，重估EMA84.4%／1.4284dB，低于原最佳84.5%／1.3869dB，后续保留原权重；本次重估按图等权而非资产组限权，成本单列。`[verified: patch_normalization.py bind_training_sources/run；normalization-group512.json；scratch-group512-result.json；opinion: 来源与比较边界]`
 - V1尺寸元数据使用`PatchMetadata`／`MetadataPatchRegressor`，仅输入整图宽高log2／12与有效patch宽高比例，在未约束输出上加零初始化4×4修正，再执行原单调变换；新增16参数，总11,178,580，原初始化与RNG保持。训练／EMA／验证／重载／BN统一使用`model_inputs`，46项CPU检查、两轮4次CUDA更新及重载通过，完整对照运行中。`size_metadata`默认关闭，与`valid_area_pooling`互斥；运行期间冻结12份绑定训练源码，完整准确率和成本以终态验收。`[verified: metadata-integration.json；metadata-data-audit.json；patch_trainer.py validate/model_inputs；opinion: 运行及解释要求]`
 - 后续输入对照新增`MaskedPatchRegressor`和`PatchGeometry`，只按有效区域加权末端特征，参数量仍为11,178,564，RGB与边缘填充及卷积保持。54项检查、完整开发集133140patch几何检查及两轮CUDA检查通过；正式10轮完成并重载，最佳78.0%／同权重近阈值RMSE1.7141dB，比原cap512低6.5个百分点，保留负结果并沿用原池化。训练、EMA、验证及重载必须一致传mask；仍保留卷积感受野受填充影响的边界。`[verified: scratch-group512-validpool-result.json；mask-pooling-integration.json；mask-pooling-data-audit.json；masked_patch_regressor.py forward；opinion: 后续选择与解释要求]`

@@ -103,6 +103,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- [原生保存预测到最终编码](<../../experiment report/unity-accuracy90-20261111/unity-final-encoding.md>)已通过两图真实检查：预测路径与固定8×8／medium各两次编码，ASTC／解码／原生质量复核一致，进程4.05秒。40项CPU检查及两项原生指标补跑通过；实际DLL闭环另行通过。本次不运行模型forward，只补齐mip0编码阶段，完整Unity训练与独立测试及端到端计时仍待完成。`[verified: unity-final-encoding-smoke2-v2.json；对应job receipt；本轮pytest；opinion: 完成边界]`
+
 - [全量原生数据衔接](<../../experiment report/unity-accuracy90-20261111/unity-native-pipeline.md>)已通过25项状态／边界检查及三次66图四阶段闭环，最终复跑22.70秒。完整任务已启动等待原采集、候选补测和4674图准备成功结束，之后自动准备10000／1000完整语料并执行原规则重放。smoke、等待、数据完成和最终模型90%验收分别记录。`[verified: unity-native-pipeline-smoke66-v3.json；unity-native-pipeline-full-v2.json；opinion: 验收边界]`
 
 - [原生决策接口](<../../experiment report/unity-accuracy90-20261111/unity-native-model.md>)完成3906图复核，精确目标全部重建原块大小／preset，不能算模型准确率。3904训练图含262法线及319大图放宽样本，且候选PSNR存在非单调；原生20候选质量输出继续独立。新增[4674图冻结目标准备](<../../experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)已完成，实际4672／2图、23255patch，复用3906图并补充768图；完整开发覆盖仍未完成。`[verified: unity-prediction-interface3906.json；unity-native3906-target-diagnostics.json；unity-patch-batches4674.json counts、patch_counts、coverage；opinion: 原生约束与完成边界]`

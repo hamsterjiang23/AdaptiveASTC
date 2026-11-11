@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[原生预测的最终编码核验](<experiment report/unity-accuracy90-20261111/unity-final-encoding.md>)已通过：两张已保存验证预测各一次编码，加固定8×8／medium对照，共四次真实DLL编码，ASTC字节、解码像素与原生质量一致。进程4.05秒；只覆盖mip0编码阶段，没有新模型forward或端到端加速结论，完整Unity验收仍待完成。`[verified: unity-final-encoding-smoke2-v2.json；对应job receipt；opinion: 完成边界]`
+
 [尺寸元数据对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/metadata.md>)已接入训练、EMA、验证、重载和BN；46项CPU检查、两轮4次CUDA更新及重载通过。新增16参数，总11,178,580；完整对照已启动，当前尚无完整准确率结果，原cap512基准保持。`[verified: metadata-integration.json；scratch-group512-metadata-smoke-summary.json；normalization-metadata-smoke.json；opinion: 完成边界]`
 
 [组均衡模型的BN重估](<experiment report/unity-accuracy90-20261111/normalization.md>)已完成，epoch26 EMA重估为84.4%／1.4284dB，未超过原最佳84.5%／1.3869dB，后续保留原权重。重估仅更新训练集统计量，0次优化器更新，完整进程429.16秒；该GDC开发结果不代表Unity验收。`[verified: normalization-group512.json；对应job receipt；scratch-group512-result.json；opinion: 选模与完成边界]`

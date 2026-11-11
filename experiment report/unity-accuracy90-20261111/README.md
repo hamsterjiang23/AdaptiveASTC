@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[原生保存预测的最终编码](unity-final-encoding.md)完成两图检查：预测与固定8×8／medium各编码两次，完整ASTC、解码像素及质量一致，进程4.05秒。预测质量通过1／2，固定8×8通过2／2，保留失败；这是小样本mip0编码验证，没有新forward或端到端加速结论。`[verified: unity-final-encoding-smoke2-v2.json summary；对应job receipt；opinion: 完成边界]`
+
 [尺寸元数据对照](patch-fixed-capacity/metadata.md)已接入训练、EMA、验证、重载和BN，46项CPU检查与两轮4次CUDA更新通过；新增16参数，总11,178,580。完整train10000／validation1000对照已启动，只改变尺寸特征输入，当前没有完整效果结论。`[verified: patch-fixed-capacity/metadata-integration.json；scratch-group512-metadata-suite.json；normalization-metadata-smoke.json；opinion: 完成边界]`
 
 [组均衡末轮BN重估](normalization.md)已完成，EMA从79.4%变为84.4%／1.4284dB，0次优化器更新，原六份源码与当前14份执行源码分别核验；原训练最佳为84.5%／1.3869dB，继续保留原权重。完整进程429.16秒，Unity独立测试验收仍未完成。`[verified: normalization-group512.json；normalization-group512-plan.json；对应job receipt；scratch-group512-result.json；opinion: 选模与完成边界]`

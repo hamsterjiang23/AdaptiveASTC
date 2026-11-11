@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+Unity保存验证预测的最终编码检查：两图、两条路径共四次DLL编码，v2内部0.81秒／完整进程4.05秒，CPU单进程，无新模型forward／CUDA。启动前RAM余量和磁盘记录于对应`launch-preflight.json`；读取已完成smoke模型产物与不可变验证候选，写独立`unity-final-encoding-smoke2-v2`目录，与训练及Unity采集并行。首次v1成本3.85秒，源码身份修订后v2独立复跑；不能作为部署端到端加速。`[verified: unity-final-encoding-smoke2-v2.json；对应v1/v2 jobs receipts；opinion: 成本边界]`
+
 尺寸元数据训练接入的46项CPU检查5.49秒，CUDA48train／16validation检查两轮4次更新、进程20.45秒、峰值分配显存2,118,428,672字节；后续BN路径检查10.51秒。正式启动前RAM空闲26.93GiB、GPU1172／12282MiB，batch128、workers2、单GPU，与Unity采集／补测并行，读冻结GDC语料并写独立训练目录。按既有10–30轮成本估计40–140分钟，实际早停轮数与完整成本待结束记录；旧15份源码预先归档，运行冻结12份训练源码。`[verified: metadata-integration.json；对应jobs receipts、launch-preflight.json；opinion: 预算与调度范围]`
 
 组均衡cap512末轮BN诊断已完成，raw／EMA分别使用16384训练patch重估并各验证前后状态，0次优化器更新；内部424.57秒、完整进程429.16秒，观察到进程树RSS约2571MiB、GPU总占用2116MiB，非峰值。启动前RAM空闲27.37GiB，沿用单GPU串行、与Unity采集并行；原checkpoint及归档源码只读，写独立诊断目录。先期CUDA小样本进程10.52秒，原／当前执行源码分开绑定。`[verified: normalization-group512.json；对应job receipt及launch-preflight.json；本轮psutil/nvidia-smi观测；opinion: 资源与计时范围]`
