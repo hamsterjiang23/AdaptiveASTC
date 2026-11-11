@@ -1,6 +1,6 @@
 # 固定容量的学习率、采样与损失对照
 
-最新启动[按有效像素抽样的对照](pixel-sampling.md)，沿用cap512基准，只调整图内patch概率，每图／组总权重和参数量不变。小样本两轮4次CUDA更新、权重重载及26项检查通过，完整train10000／validation1000正在运行；尚不报告正式准确率收益。`[verified: scratch-group512-pixels-suite.json；scratch-group512-pixels-smoke-summary.json；pixel-sampling-verification.json；opinion: 效果边界]`
+当前[尺寸元数据对照](metadata.md)运行中；此前[按有效像素抽样及有效区域池化](pixel-sampling.md)已完成，验证准确率分别为82.0%和78.0%，均低于原cap512的84.5%，保留负结果。新增[冻结预测残差诊断](#固定预测的残差与阈值诊断)显示，在已检查的全局余量网格上最高仍为84.5%；本轮没有修改训练或部署参数。`[verified: scratch-group512-metadata.json status；scratch-group512-pixels-result.json、scratch-group512-validpool-result.json、scratch-group512-result.json metrics；scratch-group512-residuals.json same_validation_best_global_margin；opinion: 实验选择]`
 
 资产组限权对照完成，验证准确率84.5%，比同LR标准采样提高3.8个百分点，10×10召回提高16.41个百分点。后续[同图patch聚合损失对照](bag-loss.md)也已完成，权重0／1为71.2%／71.7%，均低于历史独立采样80.7%；保留负结果，采样变化与新增loss的影响分别解释。`[verified: scratch-group512-result.json；scratch-bag4-comparison.json；opinion: 解释边界]`
 
@@ -62,3 +62,22 @@
 ![固定参数量的资产组抽样对照](scratch-group-comparison.png)
 
 [结果与输入哈希](scratch-group512-result.json)来自冻结训练记录和最佳权重审计，未重新推理或访问test。聚合损失的首轮成对配置沿用cap0，以保留已准备的采样控制；后续若组合cap512，应以新身份单独实测。`[verified: scratch-group512-result.json scope；scratch-bag4-suite.json；opinion: 后续实验范围]`
+
+## 固定预测的残差与阈值诊断
+
+原cap512最佳权重的1000张验证预测已完成[残差诊断](scratch-group512-residuals.json)。在全局余量−2.5至+2.5dB、步长0.05的101点网格中，最高准确率仍为原margin0的84.5%。逐候选减去本验证集近阈值平均残差后，RMSE从1.3869降至1.3372dB，准确率反而为83.9%。这两种简单修正没有达到90%，后续保持原预测与决策，不把它们加入部署。`[verified: scratch-group512-residuals.json baseline、global_margin_sweep、same_validation_offset_diagnostic；opinion: 后续选择]`
+
+统计范围为真实候选PSNR距35dB不超过3dB的1171项测量；正残差表示模型高估PSNR。下表按**被预测的候选块大小**分组，与按最终标签计算的分类召回不同。`[verified: scratch-group512-residuals.json near_threshold、near_threshold_by_candidate；analyze_group512_residuals.py near/per_candidate]`
+
+| 候选块大小 | 近阈值测量数 | 平均预测偏差 | 原RMSE | 减去该候选均值后RMSE |
+|---|---|---|---|---|
+| 6×6 | 132 | +1.0272dB | 2.3172dB | 2.0770dB。`[verified: scratch-group512-residuals.json near_threshold_by_candidate.6x6]` |
+| 8×8 | 305 | +0.2395dB | 1.5195dB | 1.5005dB。`[verified: scratch-group512-residuals.json near_threshold_by_candidate.8x8]` |
+| 10×10 | 361 | −0.0009dB | 1.0800dB | 1.0800dB。`[verified: scratch-group512-residuals.json near_threshold_by_candidate.10x10]` |
+| 12×12 | 373 | −0.0655dB | 1.0590dB | 1.0570dB。`[verified: scratch-group512-residuals.json near_threshold_by_candidate.12x12]` |
+
+整体近阈值平均偏差仅+0.1570dB，去掉这一统一偏差后RMSE仍为1.3780dB；绝对误差中位数0.6286dB，90分位2.0817dB。对这个固定模型，统一偏高或偏低只能解释一小部分平方误差，仍需改善不同图片上的预测差异。该观察不能确定输入、采样、损失或容量中哪一个是根因。`[verified: scratch-group512-residuals.json near_threshold；opinion: 误差分解与归因边界]`
+
+四候选均为有限真实PSNR的图片上，跨候选残差相关系数约0.57–0.90。原V1高斯噪声模拟保留为精度参考，不能将实际RMSE直接换成其模拟准确率保证。`[verified: scratch-group512-residuals.json finite_image_count_for_correlation、residual_candidate_correlation；opinion: 模拟解释范围]`
+
+偏移和最佳余量都使用本验证集真值拟合、也在本验证集计分，属于描述性诊断；原检查点本身也已按此验证集选模。没有独立校准收益、准确率上限或Unity生产结论。脚本归档为`.local/unity-accuracy90-20261111/analyze_group512_residuals.py`，报告记录预测、检查点、corpus、原审计和脚本SHA；重建的标签、准确率、payload与近阈值RMSE均与原审计一致。未加载模型、未新推理、未读test，训练更新0次。`[verified: scratch-group512-residuals.json inputs_sha256、limits、training_updates、test_opened；analyze_group512_residuals.py run；opinion: 证据边界]`

@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[原cap512冻结预测诊断](patch-fixed-capacity/README.md#固定预测的残差与阈值诊断)已完成：全局余量101点扫描最高84.5%，逐候选平均偏差修正后的近阈值RMSE为1.3372dB、准确率83.9%。没有新推理或训练，也没有test访问；这是同验证集拟合／计分的描述性结果，当前不更换部署参数。`[verified: patch-fixed-capacity/scratch-group512-residuals.json；opinion: 结果范围和执行选择]`
+
 [完整原生训练衔接](unity-native-training-queue.md)通过55项CPU检查，已启动等待现有CUDA队列。先运行32图正式batch检查，再等待完整数据四阶段通过后启动随机初始化正式训练；等待、预检、开发训练完成与最终Unity独立测试验收分别记录。`[verified: unity-native-training-full-v1-config.json；unity-native-training-full-v1.json；opinion: 完成边界]`
 
 [同次预测与编码计时](unity-deployment.md)已完成47项CPU检查和两图四次真实编码接口核验，CUDA阶段等待训练和独立推理成功退出。新路径连续计量参考图输入、前向、决策与一次编码，配对fixed8，核验和写盘成本分开；当前未产生新部署总耗时或完整模型准确率。`[verified: unity-deployment-encode4.json；unity-deployment-smoke2-v1.json；opinion: 完成边界]`

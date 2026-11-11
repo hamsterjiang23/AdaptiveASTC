@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "waiting_references",
   "started_utc": "2026-11-11T16:41:00.922705+00:00",
   "config_sha256": "54066e5194a684c81b2b8bc6168be1e1052495690ce348c18864d89d2b7c7ca5",
   "implementation_sha256": "aa4b6ffbd2e4822272dedcb71867d304529f84e13275752e4250e113adf4f932",
@@ -10,7 +10,7 @@
   },
   "coverage": "complete",
   "counts": {
-    "train": 6976,
+    "train": 7232,
     "validation": 2
   },
   "batches": [
@@ -912,12 +912,43 @@
         "decode_seconds": 37.11853829994652,
         "quality_seconds": 22.474622900073882
       }
+    },
+    {
+      "run_id": "unity-v1-train-027-20261111",
+      "source_split": "train",
+      "reference": {
+        "run_id": "unity-v1-train-027-20261111",
+        "source_split": "train",
+        "images": 256,
+        "callbacks": 2656,
+        "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-027-20261111\\options-receipt.json",
+        "options_sha256": "530b7b929fb1a313c63d64838c2d96a4c97fa2d824427663330e1ca177e67254",
+        "reference_receipt_sha256": "882651316ec14ab803c49f5e0ceaa0ba1f66eeb198ee6f894ed3f5cf1372c764",
+        "phase_receipt_sha256": "7fffe43f798eb8af87181f2a1d709c52a4b822a553ec9740c03d6734e57a9fd3",
+        "editor_process_seconds": 980.6552468000009
+      },
+      "prior_attempts": [],
+      "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+      "images": 256,
+      "candidates": 5120,
+      "new_candidates": 2464,
+      "original_candidates": 2656,
+      "normal_images": 0,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2\\reports\\unity-v1-train-027-20261111.json",
+      "report_sha256": "46364956d3b77ab1bf505638e1943836fb0c96e2013b7f3bf6963f7cf3587430",
+      "raw_receipt_sha256": "fe6943f446e5b5f4eca5a9a2a040f2a8caa689b80eb43fc43c6072f341ea1ff8",
+      "wall_seconds": 207.5074550999998,
+      "cost": {
+        "encode_seconds": 76.42761889996473,
+        "decode_seconds": 36.6426384998631,
+        "quality_seconds": 4.965149399540678
+      }
     }
   ],
   "test_opened": false,
   "invocation_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2\\invocations\\02529dfaed964d438220ab772717dcdd\\receipt.json",
   "scope": "native20 candidate targets paired to original imported references and search choices",
-  "current_batch": "unity-v1-train-027-20261111",
-  "updated_utc": "2026-11-11T23:00:26.207184+00:00",
-  "wall_seconds": 22765.284040699997
+  "current_batch": null,
+  "updated_utc": "2026-11-11T23:14:28.932573+00:00",
+  "wall_seconds": 23608.0094522
 }

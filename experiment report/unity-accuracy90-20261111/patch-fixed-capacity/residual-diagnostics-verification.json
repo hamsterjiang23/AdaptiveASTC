@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-11T23:13:40.812881+00:00",
+  "scope": "Frozen GDC validation residual diagnostics; no model execution or test access",
+  "report_sha256": "1c3d9763d5099f40ee3097570b461dba9d4381ac1930fb719f6e8f7a68f63b7f",
+  "analysis_input_hashes_checked": 6,
+  "corpus_config_and_splits_fingerprint_recomputed": true,
+  "original_metrics_reproduced": [
+    "labels",
+    "accuracy",
+    "payload_bytes",
+    "near_threshold_rmse_db"
+  ],
+  "independent_review": "No bugs found; independent numeric reconstruction; C1 fingerprint binding fixed",
+  "checks": [
+    {
+      "command": "uv run --frozen ruff format --check --line-length 100 <analysis_script>",
+      "result": "passed"
+    },
+    {
+      "command": "uv run --frozen ruff check --line-length 100 <analysis_script>",
+      "result": "passed"
+    },
+    {
+      "command": "uv run --frozen basedpyright --project <pyright_config>",
+      "source_files_checked": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "command": "uv run --frozen python <analysis_script>",
+      "result": "passed"
+    }
+  ],
+  "analysis_script": "experiment report/.local/unity-accuracy90-20261111/analyze_group512_residuals.py",
+  "pyright_config": "experiment report/.local/unity-accuracy90-20261111/residual-analysis-pyright.json",
+  "typecheck_note": "Default hidden-directory discovery found no files; explicit project checks one source.",
+  "local_file_links_checked": 315,
+  "internal_anchors_checked": 29,
+  "active_native_queue_source_bindings_unchanged": 23,
+  "active_gdc_training_source_bindings_unchanged": 12,
+  "active_native_pipeline_bindings": "passed",
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "training_updates": 0,
+  "test_opened": false,
+  "production_acceptance": "not evaluated"
+}

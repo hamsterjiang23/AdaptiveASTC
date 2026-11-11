@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- 冻结预测的[残差与余量诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)只使用原cap512验证1000。101点全局余量扫描最高84.5%；逐候选平均偏移修正RMSE为1.3372dB、准确率83.9%，不进入部署。校正参数和计分使用同一验证集，不能称独立泛化收益或准确率上限；候选PSNR误差分组与最终标签召回分别解释，继续保留原模型和终态训练验收。`[verified: scratch-group512-residuals.json；opinion: 使用与解释要求]`
+
 - [完整Unity训练衔接](<experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)使用`UnityTrainingQueue`及`script/queue_unity_training.py`，依赖已绑定CUDA进程成功退出，先做32图／两轮／正式batch预检，再等待完整数据四阶段核验后启动10000／1000正式训练。23份源码冻结，阶段目录严格分开，失败及重载证据保留；55项CPU检查通过，当前等待状态不算新训练完成。后续GPU任务须纳入串行调度，队列passed也不能代替独立测试90%验收。`[verified: training_queue.py；unity-native-training-full-v1-config.json；unity-native-training-full-v1.json；opinion: 调度与验收边界]`
 
 - [同次预测与编码计时](<experiment report/unity-accuracy90-20261111/unity-deployment.md>)使用`UnityDeploymentTrial`／`UnityDeploymentBenchmark`及`script/benchmark_unity_deployment.py`。计时输入只含参考像素和导入属性，原生压缩每图一次，fixed8独立配对；解码、质量、来源核验和写盘在计时外，模型／DLL加载单列。47项CPU检查和四次真实编码核验通过，CUDA任务等待已绑定上游成功退出；活动期间冻结22份源码，正式结果与完整Unity90%分别验收。`[verified: deployment.py；deployment_benchmark.py；unity-deployment-encode4.json；unity-deployment-smoke2-v1-config.json；opinion: 使用边界]`

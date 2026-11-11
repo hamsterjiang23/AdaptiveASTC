@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[冻结预测残差诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)显示，cap512模型在−2.5至+2.5dB的101点全局余量网格上最高仍为84.5%；逐候选均值偏移修正后近阈值RMSE为1.3372dB、准确率83.9%。同验证集拟合的修正不作为泛化收益，也不加入当前部署；尺寸元数据与完整Unity训练按既有队列继续。`[verified: scratch-group512-residuals.json same_validation_best_global_margin、same_validation_offset_diagnostic；opinion: 实验选择与解释边界]`
+
 [完整Unity训练衔接](<experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)已通过55项CPU检查并启动等待：现有CUDA任务结束后先做32图正式batch预检；完整10000／1000语料四项核验通过后再自动训练。沿用原生随机初始化模型，当前尚未产生新训练结果或独立测试准确率。`[verified: unity-native-training-readiness.json；unity-native-training-full-v1.json；本轮pytest；opinion: 完成边界]`
 
 [同次运行的预测与最终编码](<experiment report/unity-accuracy90-20261111/unity-deployment.md>)已完成47项CPU检查和两图四次真实编码接口核验；CUDA计时排在当前训练／推理检查之后。每图预测选参后仅编码一次，配对固定8×8，解码质量核验在计时外执行；尚无新的部署总耗时或完整Unity效果结论。`[verified: unity-deployment-encode4.json；unity-deployment-smoke2-v1.json；本轮pytest；opinion: 完成边界]`
