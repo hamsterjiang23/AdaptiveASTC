@@ -56,6 +56,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 V1分类五组已完成，验证Top-1最高68.6%；原生patch的单调／EMA CUDA探针及权重重载核验通过，正式随机初始化／预训练回归串行运行。详见[分类对照](<experiment report/unity-accuracy90-20261111/classification-controls/README.md>)与[回归状态](<experiment report/unity-accuracy90-20261111/patch-v1/README.md>)；最终Unity90%验收尚未完成。`[verified: classification-controls/comparison.json；patch-v1-smoke-audit.json；patch-v1/summary.json]`
 
+随机初始化patch回归已完成14轮，最佳验证Top-1为76.0%、阈值附近RMSE为1.7681dB，最佳权重重载核验通过；预训练对照继续运行。Unity两图实际参数绑定后40候选重放通过；64图采集另记录558次回调，RGBA哈希吻合，源码和导入设置恢复通过。`[verified: patch-v1/scratch-result.json；unity-supplement2-actual.json；unity-actual-options64.json；smoke1-receipt.json]`
+
 [Unity离线补测](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)已在两张归档LDR颜色图上补齐20候选，复用原生质量函数并核对原DLL身份、选中payload及已有质量记录。全量采集和真实法线／HDR验证尚待完成。`[verified: unity-supplement2-bound.json；补测报告限制]`
 
 分类准确率提升的完整调研见[分类准确率与压缩全流程优化报告](<experiment report/classification-accuracy-research-20261111/README.md>)，覆盖35项一手资料、当前中间类别召回诊断、有效batch／学习率入口核对，以及Unity导入、编码、部署和分阶段实验预算。建议值在报告中按待实验记录。`[verified: sources.json primary_source_count；diagnostics.json per_class_recall；该报告“导入、编码与部署的全流程因素”“分阶段预算”]`

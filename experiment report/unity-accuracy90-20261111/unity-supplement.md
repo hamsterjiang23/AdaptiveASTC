@@ -37,3 +37,25 @@
 uv run --frozen python script/unity_supplement.py build-metrics --engine-source <ASTCCompressor.cpp> --output <新的本地构建目录>
 uv run --frozen python script/unity_supplement.py collect --config <新的补测配置.json>
 ```
+
+## 后续实际编码参数采集
+
+[两图实际参数记录](unity-actual-options2.json)来自重新启动的Editor，共16次原搜索回调。两图实际`need_alpha=true`、profile0即LDR sRGB、normal pack关闭，输入通道为RGBA32。对回调指针内存做SHA-256，与归档PNG按Unity行序还原后的字节完全一致。整次启动／采集268.67秒，包含脚本编译、预热、PNG导出及哈希开销，不能替代原搜索baseline计时。`[verified: unity-actual-options2.json rows；jobs/unity-options2/receipt.json；astccustom.cs AstcEncProfile]`
+
+入口临时给原managed回调添加记录调用，原编码调用保留。原文件和改后文件先写入独立恢复目录并落盘，回调记录失败继续原编码、由采集审计拒绝缺失数据；正常结束和异常路径均执行受保护恢复，发现第三方独立修改时拒绝覆盖。实测原始与恢复源码SHA均为`64dfbd63ce9baf390299ff70881b38fb6505bacab8d1ff42e0a8507447ef7265`，meta恢复0冲突。`[verified: metadata.py ManagedCaptureHook、UnityOptionCapture.run；unity-actual-options2.json managed_source_restoration；原probe-receipt.json]`
+
+审查后补齐了候选身份核验：合法footprint、私有format枚举、preset质量值、原表已测候选覆盖及原winner成员关系。对同一归档记录重新核验通过，结果另存[严格核验记录](unity-actual-options2-revalidated.json)，原结果与运行时源码快照保留。此复核没有重新运行Editor或编码。`[verified: unity-actual-options2-revalidated.json scope、candidate_keys；tests/test_unity_metadata.py]`
+
+[实际参数绑定补测](unity-supplement2-actual.json)再次完成40组候选，原16组指标吻合、新增覆盖24组，两图原选中payload和RGBA解码逐字节一致。补测墙钟0.92785秒，当前与CUDA训练并行。配置显式绑定实际参数记录及原始回调日志SHA，Alpha/profile不符、原日志改变或来源采集不同会拒绝运行；此前基于重放推定的结果继续保留历史身份。`[verified: unity-supplement2-actual.json metadata_binding、rows、wall_seconds；supplement.py verify_actual_options]`
+
+固定[64张训练图采集](unity-actual-options64.json)通过，共558次回调，覆盖63 Default和1 NormalMap、63 sRGB和1 Linear；needAlpha为true／false的图数分别31／33。源码恢复哈希一致，meta恢复0冲突；进程637.63秒，其中输入SHA计算合计74.20秒，该数值不含全部日志与导出成本。`[verified: unity-actual-options64.json rows；jobs/unity-options64/receipt.json；smoke1-receipt.json]`
+
+NormalMap样本为4096²，实际normal-pack=false，不能将pack标志直接当作法线用途。采集完成只证明参数与参考像素覆盖；离线补测目前仍只接收LDR Default颜色图，真实法线／HDR补测与全量生产数据仍未验收。`[verified: unity-actual-options64.json NormalMap row；supplement.py collect_image；opinion: 完成边界]`
+
+```powershell
+uv run --frozen python script/capture_unity_options.py run --config <新的采集配置.json>
+uv run --frozen python script/capture_unity_options.py audit --config <采集配置.json> --report <新的审计记录.json>
+uv run --frozen python script/capture_unity_options.py restore --journal <managed-hook目录>
+```
+
+采集配置包含project、editor、manifest、run_id、phase和report；当前phase限probe／smoke1／smoke2／smoke3，全量采集仍需另行通过覆盖与成本检查。独立restore要求项目关闭，只恢复原字节或本次补丁可识别的文件状态。`[verified: metadata.py UnityOptionCapture.run；capture_unity_options.py main]`

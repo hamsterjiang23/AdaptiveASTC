@@ -1,0 +1,175 @@
+{
+  "status": "passed",
+  "scope": "GDC source RGB validation1000; no new forward or test access; single seed",
+  "inputs_sha256": {
+    "scratch-monotone-ema.json": "679c27dc253c4f4aee012f8e7f04b1fb45ff488a3723af15665fc9d36a62649c",
+    "scratch-monotone-ema-audit.json": "caa8b4d0bfa0d100fb8eca62fefeac502f9808b3b2df2fc3b16e8f26cbcb9e4c",
+    "comparison.json": "f83af8ec68dbc74c8f52e5c0dfe0c20fbd18c643d11215a79519b2e7ec6dd9b9",
+    "record_scratch_result.py": "111f89533c066d6b019607d310e088a385b3c122890f836bee329f6da4826fb5"
+  },
+  "selected_epoch": 9,
+  "selected_variant": "raw",
+  "completed_epochs": 14,
+  "wall_seconds": 2787.3909258999993,
+  "stop_reason": "near_threshold_rmse_patience",
+  "parameters": 11178564,
+  "fp32_parameter_bytes": 44714256,
+  "metrics": {
+    "accuracy": 0.76,
+    "balanced_accuracy": 0.6954051181043727,
+    "per_class": {
+      "6x6": {
+        "precision": 0.819672131147541,
+        "recall": 0.6880733944954128,
+        "f1": 0.7481296758104738,
+        "support": 218
+      },
+      "8x8": {
+        "precision": 0.5380952380952381,
+        "recall": 0.5885416666666666,
+        "f1": 0.5621890547263682,
+        "support": 192
+      },
+      "10x10": {
+        "precision": 0.4810126582278481,
+        "recall": 0.59375,
+        "f1": 0.5314685314685315,
+        "support": 128
+      },
+      "12x12": {
+        "precision": 0.9376391982182628,
+        "recall": 0.9112554112554112,
+        "f1": 0.9242590559824369,
+        "support": 462
+      }
+    },
+    "near_threshold_rmse_db": 1.768051229439978,
+    "quality_pass_rate": 0.791,
+    "payload_bytes": 82596432,
+    "fixed8_payload_bytes": 128132896,
+    "label_payload_bytes": 90264688,
+    "margins": [
+      {
+        "margin_db": 0.0,
+        "accuracy": 0.76,
+        "quality_pass_rate": 0.791,
+        "payload_bytes": 82596432
+      },
+      {
+        "margin_db": 0.25,
+        "accuracy": 0.76,
+        "quality_pass_rate": 0.818,
+        "payload_bytes": 85035520
+      },
+      {
+        "margin_db": 0.5,
+        "accuracy": 0.762,
+        "quality_pass_rate": 0.844,
+        "payload_bytes": 88031072
+      },
+      {
+        "margin_db": 0.75,
+        "accuracy": 0.759,
+        "quality_pass_rate": 0.865,
+        "payload_bytes": 91092240
+      },
+      {
+        "margin_db": 1.0,
+        "accuracy": 0.732,
+        "quality_pass_rate": 0.879,
+        "payload_bytes": 94449056
+      }
+    ],
+    "by_long_side": {
+      "at_most256": {
+        "count": 411,
+        "accuracy": 0.7372262773722628
+      },
+      "257_to1023": {
+        "count": 281,
+        "accuracy": 0.7615658362989324
+      },
+      "at_least1024": {
+        "count": 308,
+        "accuracy": 0.788961038961039
+      }
+    },
+    "group_macro_accuracy": 0.7809004160580578
+  },
+  "accuracy_gain_vs_original_pp": 9.699999999999998,
+  "accuracy_gain_vs_best_control_pp": 7.399999999999995,
+  "best_ema_accuracy": 0.483,
+  "curves": {
+    "raw": {
+      "accuracy": [
+        0.564,
+        0.561,
+        0.576,
+        0.659,
+        0.67,
+        0.683,
+        0.686,
+        0.629,
+        0.76,
+        0.596,
+        0.699,
+        0.7,
+        0.694,
+        0.624
+      ],
+      "near_threshold_rmse_db": [
+        3.41251683428077,
+        3.039413667731092,
+        3.3443028841250086,
+        2.0555613883535346,
+        2.462518590304525,
+        2.409317198006943,
+        2.4643050943648257,
+        2.5479406316387414,
+        1.768051229439978,
+        3.160667587014929,
+        2.435278220735245,
+        2.4892535239617284,
+        2.1293477144734134,
+        2.7289274085334707
+      ]
+    },
+    "ema": {
+      "accuracy": [
+        0.193,
+        0.465,
+        0.462,
+        0.462,
+        0.462,
+        0.463,
+        0.468,
+        0.468,
+        0.468,
+        0.466,
+        0.469,
+        0.478,
+        0.481,
+        0.483
+      ],
+      "near_threshold_rmse_db": [
+        2.9103682070773145,
+        4.6199232978970795,
+        6.1506387957794155,
+        6.45748983259426,
+        6.277720599782884,
+        6.018022815404015,
+        5.625252956222347,
+        5.649992702006096,
+        6.079685312685485,
+        6.271184253979639,
+        5.9053276198470535,
+        5.725990531162145,
+        5.574946246273063,
+        5.511408459973941
+      ]
+    }
+  },
+  "figure_sha256": "1ae806d199c1bd1eeeece85ce5bda4254c3d1e652f4ce5d5c8499677b9021cd9",
+  "v1_development_gate_passed": false,
+  "production_acceptance": "not evaluated"
+}

@@ -1,0 +1,175 @@
+{
+  "status": "passed",
+  "config": {
+    "capture": "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options2-20261111\\references\\normalized-probe",
+    "capture_receipt_sha256": "633ae8d90ff035e05017f8fbf5443336f77a00a9fb70740f74c6bbe6c3bd0814",
+    "encoder_dll": "F:/MLBB_Test/haijiangli1_HAMSTERMLBB/Assets/Editor/Astc/Plugins/astcenc-avx2-shared.dll",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+    "quality_build_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-supplement2-actual",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-supplement2-actual.json",
+    "scope": "Two archived train color references; reencode20candidates separately; original search labels/timing untouched; CPU overlaps CUDA training; no production speed claim",
+    "items": [
+      {
+        "index": 0,
+        "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "direct callback arguments and input RGBA SHA; bound to options receipt"
+      },
+      {
+        "index": 1,
+        "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "direct callback arguments and input RGBA SHA; bound to options receipt"
+      }
+    ],
+    "capture_run": "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options2-20261111",
+    "capture_phase": "probe",
+    "options_receipt": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-actual-options2-revalidated.json",
+    "options_receipt_sha256": "8add8d5395e904560af0d284ae7f3707b052a969f2f2f113527f16a552a0987d"
+  },
+  "config_sha256": "4cf38a7a7bdb1ff330134fe93003246aa42a36dbb34425f0350971e477343629",
+  "quality_build": {
+    "status": "passed",
+    "binding": {
+      "engine_source": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+      "engine_source_sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+      "engine_first_line": 2182,
+      "engine_last_line": 2675,
+      "extracted_sha256": "6c35c61f99982f22c2971bd8ed1b8cfa840c925a6dd73eb2d82b0517ec02ec31",
+      "wrapper_sha256": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+      "cmake_sha256": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+      "arithmetic": "MSVC fp:precise; unchanged engine functions; parity checked separately"
+    },
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native",
+        "-B",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64",
+        "-DMETRICS_SOURCE=E:/ASTC_Compression/experiment report/.local/unity-accuracy90-20261111/unity-quality-native-retry1/metrics.cpp"
+      ],
+      [
+        "cmake",
+        "--build",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "--config",
+        "Release",
+        "--parallel",
+        "1"
+      ]
+    ],
+    "dll": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+    "dll_sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+    "generated_sha256": "317966c31f0b8fda57a4e5cab7946d6b3f9118cdcda24d9683c0a99cca0de94a"
+  },
+  "capture_binding": {
+    "protocol_sha256": "7007b9ef1e7d7ec5a8e5e847ea951da6bda4d9947120e69991561011882eb047",
+    "identity_sha256": "f9dc86162654b1ea4b41257060563b3ae408337bc29d129df2b268a515a15aaa",
+    "phase_config_sha256": "bf7f85503b285332953df4de6d03cb058a41d701712a115567326fc5b835f7a2",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64"
+  },
+  "metadata_binding": {
+    "status": "verified_actual_callback",
+    "receipt_sha256": "8add8d5395e904560af0d284ae7f3707b052a969f2f2f113527f16a552a0987d",
+    "raw_options_sha256": "b359f957edbf89730374399e86b09e1e859896c52056e8d2e8630edc414fa8ab",
+    "audit_source_sha256": "bf2747a65f7b6eeed1ca7ce776869fa860e31dd8fe89f4cbf5ce6f0de94c3472"
+  },
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "f39050484b832f8ab18f0481a11b2ec4c9c7922b52df576aae7fed8eb0e2d6de",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03"
+  },
+  "rows": [
+    {
+      "index": 0,
+      "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+      "metadata": {
+        "index": 0,
+        "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "direct callback arguments and input RGBA SHA; bound to options receipt"
+      },
+      "original_selection": {
+        "asset": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+        "block_size": "10x10",
+        "preset": "exhaustive",
+        "selection_reason": "first_valid",
+        "search_ms": 212.8271,
+        "format_ms": 217.8381,
+        "select_and_encode_ms": 217.8501,
+        "candidates_attempted": 10,
+        "candidates_measured": 10,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 10,
+      "new_candidates": 10,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 10,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.17181149999669287,
+        "decode_seconds": 0.13477110000167158,
+        "quality_seconds": 0.0015767999975651037
+      },
+      "candidate_receipt_sha256": "0af8a3eb59137a233ee8ac99a0ea39e0174bdfac7d7bdd84d17c7c597c5ebde0"
+    },
+    {
+      "index": 1,
+      "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+      "metadata": {
+        "index": 1,
+        "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "direct callback arguments and input RGBA SHA; bound to options receipt"
+      },
+      "original_selection": {
+        "asset": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+        "block_size": "10x10",
+        "preset": "fastest",
+        "selection_reason": "first_valid",
+        "search_ms": 143.177,
+        "format_ms": 146.0415,
+        "select_and_encode_ms": 146.0543,
+        "candidates_attempted": 6,
+        "candidates_measured": 6,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 6,
+      "new_candidates": 14,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 6,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.2146162000062759,
+        "decode_seconds": 0.15193630000430858,
+        "quality_seconds": 0.00235370000518742
+      },
+      "candidate_receipt_sha256": "35d6c935d2f3a8b7c4de55cc58fcae5ef9fabdb8802d4d5779d4baa8ab7a99c4"
+    }
+  ],
+  "test_opened": false,
+  "wall_seconds": 0.9278458000007959,
+  "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-supplement2-actual\\receipt.json",
+  "raw_receipt_sha256": "09dd2121e97188240b4859c1f349854e5836693bc8afae5d1d6721a243c83c06"
+}

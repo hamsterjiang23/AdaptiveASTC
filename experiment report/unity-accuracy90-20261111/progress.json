@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T12:54:40.673668+00:00",
+  "updated_utc": "2026-11-11T13:31:00.843580+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -61,9 +61,9 @@
     }
   ],
   "next": [
-    "Complete scratch/pretrained native-patch regression and audit checkpoints",
-    "Analyze validation errors; compare group sampling, metadata, stem or image-level loss",
-    "Extend Unity supplemental candidate capture preserving original policy and baseline"
+    "Complete pretrained recipe/checkpoint audit, then analyze errors at fixed capacity",
+    "Validate 64-image actual callback coverage and widen LDR/normal supplemental measurements",
+    "Prepare split-aware Unity reference corpus; keep independent final test sealed"
   ],
   "decisions": [
     "User confirmed Unity imported references as main acceptance data",
@@ -220,71 +220,25 @@
   },
   "patch_v1": {
     "status": "running",
-    "suite": "patch-v1/suite.json",
-    "initializations": [
-      "scratch",
-      "pretrained"
-    ],
-    "monotone": true,
-    "ema_decay": 0.999,
-    "batch_size": 128,
-    "standard_stem": true,
-    "current_trial": "scratch-monotone-ema",
-    "smoke": "patch-v1-smoke.json",
-    "audit": "patch-v1-smoke-audit.json",
     "summary": "patch-v1/summary.json",
-    "job": "experiment report/.local/unity-accuracy90-20261111/jobs/patch-v1/receipt.json",
-    "completed_epochs": 9,
-    "current_report": "patch-v1/scratch-monotone-ema.json",
-    "latest_raw_accuracy": 0.76,
-    "best_validation_accuracy": 0.76,
-    "best_near_threshold_rmse_db": 1.768051229439978,
-    "latest_epoch_seconds": 191.32062320000114,
-    "initial_epoch_only": false,
-    "latest_variants": {
-      "raw": {
-        "accuracy": 0.76,
-        "near_threshold_rmse_db": 1.768051229439978,
-        "quality_pass_rate": 0.791
-      },
-      "ema": {
-        "accuracy": 0.468,
-        "near_threshold_rmse_db": 6.079685312685485,
-        "quality_pass_rate": 0.465
+    "current_trial": "pretrained-monotone-ema",
+    "completed_results": [
+      {
+        "name": "scratch-monotone-ema",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-v1\\scratch-monotone-ema.json",
+        "status": "completed",
+        "best_validation_accuracy": 0.76,
+        "best_near_threshold_rmse_db": 1.768051229439978,
+        "completed_epochs": 14,
+        "wall_seconds": 2787.3909258999993,
+        "report_sha256": "679c27dc253c4f4aee012f8e7f04b1fb45ff488a3723af15665fc9d36a62649c",
+        "checkpoint_audit": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-v1\\scratch-monotone-ema-audit.json",
+        "checkpoint_audit_status": "passed",
+        "checkpoint_audit_sha256": "caa8b4d0bfa0d100fb8eca62fefeac502f9808b3b2df2fc3b16e8f26cbcb9e4c"
       }
-    },
-    "latest_raw_margin_sweep": [
-      {
-        "margin_db": 0.0,
-        "accuracy": 0.76,
-        "quality_pass_rate": 0.791,
-        "payload_bytes": 82596432
-      },
-      {
-        "margin_db": 0.25,
-        "accuracy": 0.76,
-        "quality_pass_rate": 0.818,
-        "payload_bytes": 85035520
-      },
-      {
-        "margin_db": 0.5,
-        "accuracy": 0.762,
-        "quality_pass_rate": 0.844,
-        "payload_bytes": 88031072
-      },
-      {
-        "margin_db": 0.75,
-        "accuracy": 0.759,
-        "quality_pass_rate": 0.865,
-        "payload_bytes": 91092240
-      },
-      {
-        "margin_db": 1.0,
-        "accuracy": 0.732,
-        "quality_pass_rate": 0.879,
-        "payload_bytes": 94449056
-      }
-    ]
+    ],
+    "test_opened": false,
+    "scratch_result": "patch-v1/scratch-result.json"
   },
   "development_classification_best_validation_accuracy": 0.686,
   "unity_supplement": {
@@ -302,5 +256,68 @@
       "Real normal and HDR data unverified",
       "Full Unity production collection incomplete"
     ]
-  }
+  },
+  "actual_callback_capture": {
+    "two_image_status": "passed",
+    "two_image_callbacks": 16,
+    "two_image_receipt": "unity-actual-options2-revalidated.json",
+    "actual_metadata_bound_supplement": "unity-supplement2-actual.json",
+    "expanded_capture": "64 training images in independent cache; normal/HDR supplemental encoding not yet validated",
+    "expanded_result": {
+      "status": "passed",
+      "images": 64,
+      "candidate_callbacks": 558,
+      "error": null,
+      "restoration_error": null
+    }
+  },
+  "v1_current_jobs": [
+    {
+      "status": "running",
+      "started_utc": "2026-11-11T12:22:32.945627+00:00",
+      "ended_utc": null,
+      "wall_seconds": null,
+      "process_exit_code": null,
+      "last_observed_alive_utc": "2026-11-11T13:30:35.425736+00:00",
+      "name": "patch-v1",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\patch-v1\\receipt.json",
+      "sha256": "386a626cb896dee392a7cfc169fed39202b22c9bf77670ec6777d911b27b780c",
+      "observed_processes": [
+        {
+          "pid": 61912,
+          "name": "python.exe",
+          "create_time": 1794399752.830695
+        },
+        {
+          "pid": 11260,
+          "name": "python.exe",
+          "create_time": 1794399752.951856
+        }
+      ]
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T13:10:31.702163+00:00",
+      "ended_utc": "2026-11-11T13:15:00.378414+00:00",
+      "wall_seconds": 268.6697847000032,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T13:14:31.854696+00:00",
+      "name": "unity-options2",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-options2\\receipt.json",
+      "sha256": "b414489ee1857ea0580fdac6893558da89175529f938eb9ea7e9fe3045d3786f",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T13:18:09.529267+00:00",
+      "ended_utc": "2026-11-11T13:28:47.168477+00:00",
+      "wall_seconds": 637.6335146999991,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T13:28:39.998351+00:00",
+      "name": "unity-options64",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-options64\\receipt.json",
+      "sha256": "5881861ea9ba6d530844e01c5554f16a4a12841c1ecf6718bb829295bf6154b8",
+      "observed_processes": []
+    }
+  ]
 }

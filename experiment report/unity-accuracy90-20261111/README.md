@@ -56,3 +56,5 @@ GPU实验串行，CPU静态检查可与训练同时发生。当前所有时长�
 最初的[Unity DLL接口探针](unity-dll-probe.json)在一张归档sRGB Alpha贴图上，以10×10/exhaustive复现了原payload；输入需先垂直翻转以匹配Unity内存顺序。该探针仅验证一个已选候选。`[verified: unity-dll-probe.json scope、results]`
 
 后续[Unity两图补测](unity-supplement.md)完成40组候选，新增24组原搜索未覆盖结果；原选中payload／解码一致，原16组已测质量在记录精度内一致。普通LDR实图与原生指标函数已跑通，真实法线／HDR、直接回调元数据及全量生产采集仍待完成。`[verified: unity-supplement2-bound.json；unity-quality-probe.json；补测报告限制]`
+
+后续直接参数采集与随机初始化正式训练均取得结果：[回归汇总](patch-v1/scratch-result.json)记录14轮后按早停结束、最佳Top-1 76.0%、阈值附近RMSE 1.7681dB；[实际参数核验](unity-actual-options2-revalidated.json)记录两图16次回调和源码恢复，[参数绑定补测](unity-supplement2-actual.json)重放40候选通过。[64图采集](unity-actual-options64.json)另记录558次回调，包含普通颜色和法线用途，恢复无冲突。预训练回归继续运行，目标仍未完成。`[verified: 对应JSON记录；patch-v1/summary.json；smoke1-receipt.json]`

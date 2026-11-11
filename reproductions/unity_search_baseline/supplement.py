@@ -180,6 +180,60 @@ class UnitySupplementalCapture:
             raise ValueError("Native search table is empty or duplicated")
         return {(block, preset): (float(psnr), float(ssim)) for block, preset, psnr, ssim in rows}
 
+    @staticmethod
+    def verify_actual_options(config: JsonDict, receipt: JsonDict) -> JsonDict:
+        path = config.get("options_receipt")
+        if path is None:
+            return {"status": "not_recorded", "scope": "historical replay-verified assumptions"}
+        source = Path(path)
+        if ArtifactStore.sha256_file(source) != config["options_receipt_sha256"]:
+            raise ValueError("Actual encoder options receipt changed")
+        options = ArtifactStore.read_json(source)
+        restoration = options["managed_source_restoration"]
+        if (
+            options["status"] != "passed"
+            or Path(options["run_directory"]).resolve() != Path(config["capture_run"]).resolve()
+            or options["capture_receipt_sha256"] != config["capture_receipt_sha256"]
+            or options["native_provenance"] != receipt["capture_provenance"]
+            or restoration["status"] != "restored"
+            or restoration["original_sha256"] != restoration["restored_sha256"]
+        ):
+            raise ValueError("Actual encoder options belong to a different/incomplete capture")
+        raw_log = Path(config["capture_run"]) / f"{config['capture_phase']}-options.jsonl"
+        if ArtifactStore.sha256_file(raw_log) != options["options_sha256"]:
+            raise ValueError("Actual encoder callback records changed")
+        if len(options["rows"]) != len(receipt["rows"]):
+            raise ValueError("Actual encoder options do not cover the reference cohort")
+        for index, (observed, reference) in enumerate(
+            zip(options["rows"], receipt["rows"], strict=True)
+        ):
+            if (
+                observed["index"] != index
+                or observed["path"] != reference["path"]
+                or (observed["width"], observed["height"])
+                != (reference["width"], reference["height"])
+            ):
+                raise ValueError("Actual encoder options disagree with reference identity")
+        for item in config["items"]:
+            observed = options["rows"][item["index"]]
+            reference = receipt["rows"][item["index"]]
+            if (
+                item["need_alpha"] is not observed["need_alpha"]
+                or observed["profile"] != (0 if reference["srgb"] else 1)
+                or observed["normal_pack"]
+                or observed["channel"] != 4
+                or item["is_hdr"]
+                or item["is_normal"]
+                or item["path"] != observed["path"]
+            ):
+                raise ValueError("Supplemental settings disagree with actual encoder options")
+        return {
+            "status": "verified_actual_callback",
+            "receipt_sha256": config["options_receipt_sha256"],
+            "raw_options_sha256": options["options_sha256"],
+            "audit_source_sha256": options["audit_source_sha256"],
+        }
+
     def run(self) -> JsonDict:
         config = self.config
         archive = Path(config["capture"])
@@ -207,6 +261,7 @@ class UnitySupplementalCapture:
             )
         ):
             raise ValueError("Require unique, nonnegative capture indexes within the frozen cohort")
+        metadata_binding = self.verify_actual_options(config, source_receipt)
         output = Path(config["output"])
         if output.exists() and any(output.iterdir()):
             raise FileExistsError("Use a new supplemental identity; keep prior attempts")
@@ -220,6 +275,7 @@ class UnitySupplementalCapture:
             "config_sha256": ArtifactStore.sha256_file(self.config_path),
             "quality_build": quality.receipt,
             "capture_binding": provenance,
+            "metadata_binding": metadata_binding,
             "source_files_sha256": {
                 str(path): ArtifactStore.sha256_file(path)
                 for path in [Path(__file__), Path(__file__).with_name("quality.py")]

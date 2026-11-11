@@ -1,8 +1,16 @@
 # V1：原分辨率patch回归
 
-正式CUDA队列已启动，先随机初始化，再预训练。结果更新在[汇总](summary.json)和各组同名报告，当前状态见[总进展](../progress.json)。尚无完成的正式回归结果。`[verified: jobs/patch-v1/receipt.json；summary.json]`
+正式CUDA队列先随机初始化，再预训练。随机初始化已完成14轮并通过最佳权重重载核验，预训练对照正在运行。结果更新在[汇总](summary.json)和各组同名报告，当前状态见[总进展](../progress.json)。`[verified: summary.json；scratch-monotone-ema-audit.json]`
 
-第9轮阶段记录：随机初始化raw权重在验证1000图上Top-1为76.0%，阈值附近PSNR RMSE为1.7681dB。训练仍在进行，未达到V1的90%／0.75dB晋级判据，预训练对照尚未完成。该数值属于GDC开发验证集，不能作为Unity独立验收。`[verified: scratch-monotone-ema.json history epoch9 validation；V1实验步骤]`
+随机初始化最终选中第9轮raw权重：验证1000图Top-1为76.0%，balanced accuracy为69.54%，阈值附近PSNR RMSE为1.7681dB。第14轮触发RMSE patience5早停，总训练流程2787.39秒。相同验证集上，比原RGB224分类66.3%高9.7个百分点，比最佳分类对照68.6%高7.4个百分点；这是输入、目标及训练配方一起改变后的结果。未达到V1的90%／0.75dB晋级判据，不能作为Unity独立验收。`[verified: scratch-result.json；scratch-monotone-ema-audit.json；opinion: 归因边界]`
+
+逐类召回为6×6 68.81%、8×8 58.85%、10×10 59.38%、12×12 91.13%。中间类提高，但6×6低于原分类对照的83.03%。长边≤256、257–1023、≥1024三个组的准确率分别为73.72%、76.16%、78.90%；小图和各类错误仍需要拆分分析。`[verified: scratch-result.json metrics；classification-controls/comparison.json baseline-ce；opinion: 后续诊断]`
+
+同一权重的决策余量0.5dB使准确率达到76.2%、实际质量达标率84.4%，payload为88,031,072字节；零余量分别为76.0%、79.1%、82,596,432字节。这些质量和字节数取自已测四候选，不是新的部署编码计时。EMA0.999的最高准确率仅48.3%，本组没有获得EMA收益，原因尚待单独检验。`[verified: scratch-result.json metrics.margins、best_ema_accuracy；PatchRegressionMetrics.compute；opinion: EMA结论边界]`
+
+结果汇总见[scratch-result.json](scratch-result.json)，[权重核验](scratch-monotone-ema-audit.json)记录checkpoint和保存预测SHA。模型参数11,178,564，纯FP32参数44,714,256字节；含优化器的训练检查点文件大小另计。`[verified: scratch-result.json parameters、fp32_parameter_bytes；scratch-monotone-ema-audit.json]`
+
+![随机初始化回归的验证曲线、逐类召回及决策余量](scratch-validation.png)
 
 输入为240×240原分辨率patch，起点对齐120；边缘复制值仅用于模型输入，误差目标与整图聚合只按真实像素计量。训练10000图、验证1000图，共133140个可用patch；每轮按图等权期望抽4个patch，即40000训练样本，验证覆盖全部12864个patch。`[verified: ../patch-data-full.json；suite.json；NativePatchDataset.aggregate；PatchTrainer.fit]`
 

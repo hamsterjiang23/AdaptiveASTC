@@ -1,0 +1,54 @@
+    [System.Serializable]
+    private sealed class ASTCTrainingOptions
+    {
+        public string astc_file;
+        public int width;
+        public int height;
+        public int channel;
+        public int format_value;
+        public string format_name;
+        public bool need_alpha;
+        public int quality;
+        public bool normal_pack;
+        public int profile;
+        public bool rdo;
+        public float rdo_quality_scalar;
+        public int rdo_lookback;
+        public string rgba_sha256;
+        public double input_hash_ms;
+    }
+
+    private static readonly object s_ASTCTrainingOptionsLock = new object();
+
+    private unsafe static void RecordASTCTrainingOptions(byte* srcdata, int width, int height,
+        int channel, TextureFormat format, bool needAlpha, int quality, bool normalPack,
+        int profile, bool saveASTC, string astcFile, bool rdo, float rdoScalar, int rdoLookback)
+    {
+        string log = System.Environment.GetEnvironmentVariable("ASTC_TRAINING_CAPTURE_OPTIONS");
+        if (string.IsNullOrEmpty(log) || !saveASTC || string.IsNullOrEmpty(astcFile)) return;
+        try
+        {
+            if (srcdata == null || width < 1 || height < 1 || channel != 4)
+                throw new System.InvalidOperationException("Capture requires contiguous RGBA32");
+            var timer = System.Diagnostics.Stopwatch.StartNew();
+            string hash;
+            using (var input = new System.IO.UnmanagedMemoryStream(srcdata, (long)width * height * channel))
+            using (var sha = System.Security.Cryptography.SHA256.Create())
+                hash = System.BitConverter.ToString(sha.ComputeHash(input)).Replace("-", "").ToLowerInvariant();
+            timer.Stop();
+            var row = new ASTCTrainingOptions {
+                astc_file = astcFile, width = width, height = height, channel = channel,
+                format_value = (int)format, format_name = format.ToString(),
+                need_alpha = needAlpha, quality = quality, normal_pack = normalPack,
+                profile = profile, rdo = rdo, rdo_quality_scalar = rdoScalar,
+                rdo_lookback = rdoLookback, rgba_sha256 = hash, input_hash_ms = timer.Elapsed.TotalMilliseconds
+            };
+            lock (s_ASTCTrainingOptionsLock)
+                System.IO.File.AppendAllText(log, UnityEngine.JsonUtility.ToJson(row) + System.Environment.NewLine);
+        }
+        catch (System.Exception error)
+        {
+            // Never alter the encoder call on a logging failure; the collection audit rejects missing rows.
+            UnityEngine.Debug.LogError("ASTC_CAPTURE_METADATA_FAILED: " + error);
+        }
+    }

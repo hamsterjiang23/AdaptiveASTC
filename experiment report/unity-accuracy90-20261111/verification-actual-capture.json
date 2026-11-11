@@ -1,0 +1,70 @@
+{
+  "generated_utc": "2026-11-11T13:31:59.444353+00:00",
+  "pytest": {
+    "command": "UNITY_QUALITY_RECEIPT=<unity-quality-native-retry1/build-receipt.json> uv run --frozen pytest tests/test_unity_metadata.py tests/test_unity_reference.py tests/test_unity_supplement.py -q",
+    "passed": 17,
+    "skipped": 0
+  },
+  "python_checks": {
+    "commands": [
+      "uv run --frozen ruff format --check <7 scoped Python files>",
+      "uv run --frozen ruff check <7 scoped Python files>",
+      "uv run --frozen basedpyright <7 scoped Python files>"
+    ],
+    "files": [
+      "reproductions/unity_search_baseline/metadata.py",
+      "reproductions/unity_search_baseline/supplement.py",
+      "script/capture_unity_options.py",
+      "tests/test_unity_metadata.py",
+      "tests/test_unity_supplement.py",
+      "experiment report/.local/unity-accuracy90-20261111/record_capture_stage.py",
+      "experiment report/.local/unity-accuracy90-20261111/record_scratch_result.py"
+    ],
+    "status": "passed"
+  },
+  "documents": {
+    "local_file_links_checked": 197,
+    "missing": [],
+    "line_suffixes_stripped": true,
+    "external_urls_checked": false,
+    "new_internal_anchors": 0
+  },
+  "git_diff_check": "passed",
+  "code_review": "Backup durability, candidate substitution and mixed-cohort support gate findings fixed and rechecked",
+  "source_sha256": {
+    "reproductions/unity_search_baseline/metadata.py": "e6f9487c3ce3f4d1e835433f9d81ebcb358308966ff1c2b048408899a03a110a",
+    "reproductions/unity_search_baseline/native/capture_options.cs.txt": "c05ab61d53f2e3fd4ea1af5a9cb6d9b259563b4bb2d3f5deaacbb954246e06ad",
+    "reproductions/unity_search_baseline/supplement.py": "ba1c38e115696892f59cae4f1008b412d25dc852c883a523836d0e3d6d1af9d5",
+    "script/capture_unity_options.py": "8943ae9e02b22aba4113b4865c07a3efb3add056c11d7c8cf57fee4df01a47ae",
+    "tests/test_unity_metadata.py": "cf0e6a2cb4289335fb7df611064eb25138afe9c95d8c775772c9aadb6dc6168e",
+    "tests/test_unity_supplement.py": "beba0d1ea3a393ceb24bd9ae39091d7759b2f997e3a5738d6485030ae9b1b94f"
+  },
+  "evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "completed_measurements": {
+    "scratch_training": "patch-v1/scratch-result.json",
+    "scratch_checkpoint_reload": "patch-v1/scratch-monotone-ema-audit.json",
+    "actual_callbacks_two_images": "unity-actual-options2-revalidated.json",
+    "actual_options_bound40_candidates": "unity-supplement2-actual.json",
+    "actual_callbacks64_images": "unity-actual-options64.json"
+  },
+  "limits": [
+    "pretrained training still running",
+    "no complete real normal/HDR supplemental encoding validation",
+    "no full Unity production dataset or independent90% acceptance",
+    "no deployment speedup claim"
+  ],
+  "archived_run_sources": {
+    "experiment report/.local/unity-accuracy90-20261111/jobs/unity-options2/metadata-launch.py": "8903ddd64b1d2077c86e3fd2f000eded9dc88ae91927f13f037a1cba1db8787f",
+    "experiment report/.local/unity-accuracy90-20261111/jobs/unity-options2/metadata-revalidated.py": "bf2747a65f7b6eeed1ca7ce776869fa860e31dd8fe89f4cbf5ce6f0de94c3472",
+    "experiment report/.local/unity-accuracy90-20261111/unity-supplement2-actual/supplement-launch.py": "f39050484b832f8ab18f0481a11b2ec4c9c7922b52df576aae7fed8eb0e2d6de"
+  },
+  "expanded_callback_capture": {
+    "images": 64,
+    "callbacks": 558,
+    "wall_seconds": 637.6335146999991,
+    "hash_seconds": 74.2023836,
+    "source_restored_sha256": "64dfbd63ce9baf390299ff70881b38fb6505bacab8d1ff42e0a8507447ef7265",
+    "meta_restore_conflicts": [],
+    "job_receipt_sha256": "5881861ea9ba6d530844e01c5554f16a4a12841c1ecf6718bb829295bf6154b8"
+  }
+}

@@ -96,6 +96,82 @@ def test_partial_edge_blocks_have_real_payload_size(tmp_path: Path) -> None:
     )
 
 
+def test_supplement_rejects_changes_to_observed_alpha_and_log(tmp_path: Path) -> None:
+    log = tmp_path / "probe-options.jsonl"
+    log.write_text("frozen actual callback log", encoding="utf-8")
+    observed = {
+        "index": 0,
+        "path": "Assets/a.png",
+        "width": 2,
+        "height": 2,
+        "profile": 0,
+        "need_alpha": True,
+        "normal_pack": False,
+        "channel": 4,
+    }
+    options = {
+        "status": "passed",
+        "run_directory": str(tmp_path),
+        "capture_receipt_sha256": "capture-sha",
+        "native_provenance": {"protocol": "frozen"},
+        "managed_source_restoration": {
+            "status": "restored",
+            "original_sha256": "original",
+            "restored_sha256": "original",
+        },
+        "options_sha256": ArtifactStore.sha256_file(log),
+        "rows": [observed],
+        "audit_source_sha256": "audit-sha",
+    }
+    path = tmp_path / "options.json"
+    ArtifactStore.write_json(path, options)
+    config = {
+        "options_receipt": str(path),
+        "options_receipt_sha256": ArtifactStore.sha256_file(path),
+        "capture_run": str(tmp_path),
+        "capture_phase": "probe",
+        "capture_receipt_sha256": "capture-sha",
+        "items": [
+            {
+                "index": 0,
+                "path": "Assets/a.png",
+                "need_alpha": True,
+                "is_hdr": False,
+                "is_normal": False,
+            }
+        ],
+    }
+    receipt = {
+        "capture_provenance": {"protocol": "frozen"},
+        "rows": [{"path": "Assets/a.png", "width": 2, "height": 2, "srgb": True}],
+    }
+    assert (
+        UnitySupplementalCapture.verify_actual_options(config, receipt)["status"]
+        == "verified_actual_callback"
+    )
+    options["rows"].append(
+        {**observed, "index": 1, "path": "Assets/normal.png", "normal_pack": True}
+    )
+    receipt["rows"].append({"path": "Assets/normal.png", "width": 2, "height": 2, "srgb": True})
+    ArtifactStore.write_json(path, options)
+    config["options_receipt_sha256"] = ArtifactStore.sha256_file(path)
+    assert (
+        UnitySupplementalCapture.verify_actual_options(config, receipt)["status"]
+        == "verified_actual_callback"
+    )
+    config["items"].append({**config["items"][0], "index": 1, "path": "Assets/normal.png"})
+    with pytest.raises(ValueError, match="disagree with actual"):
+        UnitySupplementalCapture.verify_actual_options(config, receipt)
+    config["items"].pop()
+    config["items"][0]["need_alpha"] = False
+    with pytest.raises(ValueError, match="disagree with actual"):
+        UnitySupplementalCapture.verify_actual_options(config, receipt)
+    config["items"][0]["need_alpha"] = True
+    log.write_text("changed raw record", encoding="utf-8")
+    with pytest.raises(ValueError, match="callback records changed"):
+        UnitySupplementalCapture.verify_actual_options(config, receipt)
+
+
 def test_native_metric_excludes_lossless_channels_and_constant_alpha(
     native_quality: UnityQuality,
 ) -> None:
