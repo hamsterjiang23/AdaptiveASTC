@@ -52,9 +52,9 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
-新增[有效区域特征汇总对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)已完成训练／EMA／验证／重载接入，54项检查与两轮4次CUDA更新通过；参数11,178,564不变，正式对照运行中。完整结果尚待验收。`[verified: mask-pooling-integration.json；mask-pooling-data-audit.json；opinion: 完成边界]`
+新增[有效区域特征汇总对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)已完成10轮CUDA训练与最佳权重重载，验证78.0%／同权重近阈值RMSE1.7141dB，比原cap512低6.5个百分点；参数11,178,564不变。保留负结果，后续沿用原池化；该开发结果不代表Unity生产准确率。`[verified: scratch-group512-validpool-result.json metrics、accuracy_change_pp、parameters；opinion: 后续选择与完成边界]`
 
-[原生决策接口](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)扩展至3906图，精确目标重建全部原块大小／preset，不代表模型准确率。后续[4674图目标准备](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)已启动，保留3906图产物，新增768图；完整训练覆盖和独立测试验收仍未完成。`[verified: unity-prediction-interface3906.json；unity-patch-batches4674-config.json；opinion: 完成边界]`
+[原生决策接口](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)扩展至3906图，精确目标重建全部原块大小／preset，不代表模型准确率。后续[4674图目标准备](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)已完成，实际4672训练图／2验证图、23255patch，进程1849.48秒；复用3906图并补充768图。该范围仍为partial，完整训练覆盖和独立测试验收仍未完成。`[verified: unity-prediction-interface3906.json；unity-patch-batches4674.json counts、patch_counts、coverage；对应job receipt；opinion: 完成边界]`
 
 [全量原生数据衔接](<experiment report/unity-accuracy90-20261111/unity-native-pipeline.md>)已通过25项检查及三次66图真实闭环，最终复跑进程22.70秒。完整任务已启动等待，原采集、候选补测及4674图准备全部成功退出后，自动进行11000图patch准备、合并、完整读取和原规则重放；当前不代表完整数据或模型验收通过。`[verified: unity-native-pipeline-smoke66-v3.json；unity-native-pipeline-full-v2.json；opinion: 完成边界]`
 

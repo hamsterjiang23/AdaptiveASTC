@@ -1,14 +1,14 @@
 # 按有效像素抽取原尺寸 patch
 
-按有效像素抽样的固定容量对照已完成10轮，选中epoch9 raw，最佳验证82.0%／同权重近阈值RMSE1.4580dB，比原cap512低2.5个百分点。质量达标率从84.8%降为80.0%，本次保留为负结果；下一项有效区域特征汇总沿用原图内均匀采样，只改变末端池化。`[verified: scratch-group512-pixels-result.json metrics、accuracy_change_pp；scratch-group512-result.json metrics；scratch-group512-validpool-suite.json；opinion: 后续基准]`
+两项固定容量对照均已完成：按有效像素抽样为82.0%／同权重近阈值RMSE1.4580dB；原均匀采样加有效区域池化为78.0%／1.7141dB，分别比原cap512低2.5／6.5个百分点。两项都没有改善当前结果，保留负结果，后续沿用原采样与原池化。`[verified: scratch-group512-pixels-result.json、scratch-group512-validpool-result.json metrics、accuracy_change_pp；opinion: 后续基准]`
 
-| GDC源RGB validation1000 | cap512均匀patch | cap512按有效像素 |
-|---|---:|---:|
-| Top-1 | 84.5% | 82.0%。`[verified: 两份result.json metrics.accuracy]` |
-| 8×8召回 | 72.92% | 63.54%。`[verified: 两份result.json metrics.per_class.8x8.recall]` |
-| 10×10召回 | 71.09% | 52.34%。`[verified: 两份result.json metrics.per_class.10x10.recall]` |
-| 同权重近阈值RMSE | 1.3869dB | 1.4580dB。`[verified: 两份result.json metrics.near_threshold_rmse_db]` |
-| 质量达标率 | 84.8% | 80.0%。`[verified: 两份result.json metrics.quality_pass_rate]` |
+| GDC源RGB validation1000 | cap512均匀patch | cap512按有效像素 | cap512有效区域池化 |
+|---|---:|---:|---:|
+| Top-1 | 84.5% | 82.0% | 78.0%。`[verified: scratch-group512、scratch-group512-pixels、scratch-group512-validpool的result.json metrics.accuracy]` |
+| 8×8召回 | 72.92% | 63.54% | 57.29%。`[verified: 三份result.json metrics.per_class.8x8.recall]` |
+| 10×10召回 | 71.09% | 52.34% | 54.69%。`[verified: 三份result.json metrics.per_class.10x10.recall]` |
+| 同权重近阈值RMSE | 1.3869dB | 1.4580dB | 1.7141dB。`[verified: 三份result.json metrics.near_threshold_rmse_db]` |
+| 质量达标率 | 84.8% | 80.0% | 77.4%。`[verified: 三份result.json metrics.quality_pass_rate]` |
 
 整个训练中的最低RMSE为1.4095dB，和准确率最优epoch9的1.4580dB分别记录。训练器2389.30秒、包含权重重载的进程2419.23秒；单seed、同机采集并行且早停轮数不同，不据此声称部署加速。汇总核对两次实际训练配置、SHA绑定的suite及旧结果来源，确认配置变化只有像素抽样开关。`[verified: scratch-group512-pixels-result.json；record_pixel_control.py；opinion: 比较范围]`
 
@@ -53,7 +53,11 @@
 
 [先期组件记录](mask-pooling-contract.json)核对参数量仍为11,178,564，新增参数为0；权重键、同seed初始化和初始化后的随机数状态均相同，旧权重严格加载通过。完整mask的240输入输出与原模型一致，17项CPU检查和独立复查通过，覆盖部分区域权重、单像素区域及FP16池化；该记录保存接入训练器之前的状态。`[verified: mask-pooling-contract.json；test_masked_patch_regressor.py；baseline_code_review数值复查；opinion: 阶段边界]`
 
-后续[训练接入](mask-pooling-integration.json)统一了训练、raw／EMA验证、最佳权重重载和BN重估的mask参数；默认关闭仍走原输入路径。54项检查通过，48训练图／16验证图的两轮CUDA检查完成4次实际更新，权重重载通过；进程21.21秒，峰值分配显存2,118,557,184字节。[正式配置](scratch-group512-validpool-suite.json)只开启`valid_area_pooling`，沿用原cap512均匀采样；训练已启动，当前尚无完整效果结论。像素采样实验的原8份绑定源码及相关入口已预先归档；实验结束后才进行本次接入。`[verified: mask-pooling-integration.json；scratch-group512-validpool-smoke-summary.json；对应job receipt；pre-mask-pooling-source/sources.json；opinion: 正式效果边界]`
+后续[训练接入](mask-pooling-integration.json)统一了训练、raw／EMA验证、最佳权重重载和BN重估的mask参数；默认关闭仍走原输入路径。54项检查通过，48训练图／16验证图的两轮CUDA检查完成4次实际更新，权重重载通过；进程21.21秒，峰值分配显存2,118,557,184字节。该接入记录保留正式运行启动时的状态，终态见下述完整结果。像素采样实验的原8份绑定源码及相关入口已预先归档；实验结束后才进行本次接入。`[verified: mask-pooling-integration.json；scratch-group512-validpool-smoke-summary.json；对应job receipt；pre-mask-pooling-source/sources.json；opinion: 记录边界]`
+
+[正式配置](scratch-group512-validpool-suite.json)只开启`valid_area_pooling`，沿用原cap512均匀采样。[完成结果](scratch-group512-validpool-result.json)核对实际配置、绑定源码、权重和预测SHA，10轮后按近阈值RMSE早停，3126次实际更新、4次AMP跳步；最佳准确率权重为epoch6 raw，78.0%／1.7141dB。全程最低RMSE为1.5792dB，来自另一轮，不能与78.0%拼成同一模型结果。训练2289.52秒，含重载进程2323.97秒。`[verified: scratch-group512-validpool-result.json changed_configuration、training_sources_sha256、selected_epoch、selected_variant、metrics、minimum_rmse_across_training、training_wall_seconds、process_wall_seconds]`
+
+该权重在零余量下质量达标77.4%、payload81,397,472字节；原cap512为84.8%、87,607,504字节，因此更小payload伴随质量退步。余量0.25dB时准确率78.7%、质量达标80.3%，仍未达到V1联合晋级条件。当前结果为单seed的GDC开发验证，不代表Unity生产准确率或等质量部署加速。`[verified: scratch-group512-validpool-result.json metrics、v1_development_gate_passed、limits；scratch-group512-result.json metrics；opinion: 比较边界]`
 
 [完整开发几何检查](mask-pooling-data-audit.json)覆盖train10000／validation1000的133,140个patch，逐文件核对目标SHA和网格，共986种有效宽高；mask像素数及缩到8×8后的权重和全部正确，CPU耗时55.73秒。该检查没有训练或读取test。后续训练、验证、EMA与最佳权重重载必须一致传入mask，并分别记录额外运算成本。`[verified: mask-pooling-data-audit.json splits、unique_valid_shapes、wall_seconds、test_opened；opinion: 接入要求]`
 

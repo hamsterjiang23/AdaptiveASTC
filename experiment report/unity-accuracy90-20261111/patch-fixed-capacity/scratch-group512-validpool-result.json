@@ -1,0 +1,196 @@
+{
+  "status": "passed",
+  "scope": "Completed GDC source-RGB validation control; no Unity or test accuracy claim",
+  "changed_configuration": {
+    "valid_area_pooling": [
+      false,
+      true
+    ]
+  },
+  "configuration_comparison": "Actual effective histories, checked against SHA-bound suites",
+  "training_sources_sha256": {
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\patch_trainer.py": "ba5213cfe6b74b5f016755c5d42761e65fbdce8a3dd27bda41502e643fcaf146",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\patch_regressor.py": "e5e6e5f2d8b9205e6a9b53e68953d1cf593658ce5d2bb4da3c1e9e291e8f4adc",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\masked_patch_regressor.py": "e76aeaf4807ca357b2a57ce11d91ce0fbef13948082a02f95570d01d162850b9",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_dataset.py": "3013a257aeca22f1b2d9cc192cfe6e5b10cf41c61178ed872c383f94ef5b7f09",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_geometry.py": "bc78a56fe483c658df9541a68f2d1b5ff3b47d5e04b75152bcd37bfa60c88619",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_sampling.py": "19fa199ba347b2394491524f7029210ec369b9288caa6952971a5720f4ba5658",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_bags.py": "39a8a75e19d848fad5b4ec0c99752f4905141dbc84de19c5103ca958a5a75fa6",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\patch_loss.py": "be9513750999e5227875ce68212f5f4cb7d8ec6fcf72f828dbf2f59b06fccbca",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\patch_metrics.py": "9e11b6d9e0b2fb519c70369f54615ebd610aeb685a3f0851ed39690773172e71",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+  },
+  "selected_epoch": 6,
+  "selected_variant": "raw",
+  "completed_epochs": 10,
+  "parameters": 11178564,
+  "fp32_parameter_bytes": 44714256,
+  "training_wall_seconds": 2289.5156787000014,
+  "process_wall_seconds": 2323.9682418999946,
+  "stop_reason": "near_threshold_rmse_patience",
+  "minimum_rmse_across_training": 1.5792332846369173,
+  "optimizer_updates": 3126,
+  "amp_skipped_steps": 4,
+  "metric_pair_scope": "All following metrics belong to the same accuracy-best checkpoint",
+  "metrics": {
+    "accuracy": 0.78,
+    "balanced_accuracy": 0.7003180663946146,
+    "per_class": {
+      "6x6": {
+        "precision": 0.8449197860962567,
+        "recall": 0.7247706422018348,
+        "f1": 0.7802469135802469,
+        "support": 218
+      },
+      "8x8": {
+        "precision": 0.6010928961748634,
+        "recall": 0.5729166666666666,
+        "f1": 0.5866666666666667,
+        "support": 192
+      },
+      "10x10": {
+        "precision": 0.5223880597014925,
+        "recall": 0.546875,
+        "f1": 0.5343511450381679,
+        "support": 128
+      },
+      "12x12": {
+        "precision": 0.8911290322580645,
+        "recall": 0.9567099567099567,
+        "f1": 0.9227557411273486,
+        "support": 462
+      }
+    },
+    "near_threshold_rmse_db": 1.7140627561381248,
+    "quality_pass_rate": 0.774,
+    "payload_bytes": 81397472,
+    "margins": [
+      {
+        "margin_db": 0.0,
+        "accuracy": 0.78,
+        "quality_pass_rate": 0.774,
+        "payload_bytes": 81397472
+      },
+      {
+        "margin_db": 0.25,
+        "accuracy": 0.787,
+        "quality_pass_rate": 0.803,
+        "payload_bytes": 84163088
+      },
+      {
+        "margin_db": 0.5,
+        "accuracy": 0.78,
+        "quality_pass_rate": 0.822,
+        "payload_bytes": 86483376
+      },
+      {
+        "margin_db": 0.75,
+        "accuracy": 0.775,
+        "quality_pass_rate": 0.84,
+        "payload_bytes": 89057984
+      },
+      {
+        "margin_db": 1.0,
+        "accuracy": 0.771,
+        "quality_pass_rate": 0.858,
+        "payload_bytes": 91541808
+      }
+    ],
+    "by_long_side": {
+      "at_most256": {
+        "count": 411,
+        "accuracy": 0.7688564476885644
+      },
+      "257_to1023": {
+        "count": 281,
+        "accuracy": 0.797153024911032
+      },
+      "at_least1024": {
+        "count": 308,
+        "accuracy": 0.7792207792207793
+      }
+    }
+  },
+  "accuracy_change_pp": -6.499999999999995,
+  "recall_change_pp": {
+    "6x6": -11.926605504587162,
+    "8x8": -15.625,
+    "10x10": -16.40625,
+    "12x12": 2.5974025974025983
+  },
+  "checkpoint_sha256": "7af62c45f0ed9d69b17b8ba55ebeb1e14092435a2c4c2790a5721024b590cf15",
+  "v1_development_gate_passed": false,
+  "production_acceptance": "not evaluated",
+  "test_opened": false,
+  "curves": {
+    "raw": {
+      "accuracy": [
+        0.674,
+        0.646,
+        0.669,
+        0.725,
+        0.765,
+        0.78,
+        0.769,
+        0.707,
+        0.678,
+        0.777
+      ],
+      "near_threshold_rmse_db": [
+        2.286000299050472,
+        2.5305144839203333,
+        3.6439968837023726,
+        1.887262231171598,
+        1.5792332846369173,
+        1.7140627561381248,
+        1.7158365752931992,
+        2.385848038288106,
+        2.5864063082077666,
+        1.6243551183975722
+      ]
+    },
+    "ema": {
+      "accuracy": [
+        0.193,
+        0.462,
+        0.462,
+        0.463,
+        0.462,
+        0.463,
+        0.465,
+        0.472,
+        0.475,
+        0.48
+      ],
+      "near_threshold_rmse_db": [
+        3.0778832862515055,
+        5.883566278428127,
+        9.700370827427506,
+        7.753686005689541,
+        6.90039227359684,
+        6.43448527968367,
+        6.179088419638895,
+        5.722476766803754,
+        5.4954551489398655,
+        5.1427772065628385
+      ]
+    }
+  },
+  "inputs_sha256": {
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool.json": "280bd5ca0624b3dd86bd8f45dd594c8783eb11857e989ff597c4be11b8fb4720",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool-audit.json": "02cc4b5164dca38a11f9f139a410376bd21c2e4d6d84bcb63abe6fdbb4f4ca59",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool-summary.json": "97f6cc8545ec7a673eb902d373c4e189444680b78b61007ef9abcfb3a8d9008c",
+    "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-validpool\\receipt.json": "5638c1784e734a7c24f7361664b86f8f0607b107c6b0fe2784a20f51a33f6f3c",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-result.json": "a2002693cbc57d2a413c6fd257be494b46697a9c914e3544b3e21ed10bcd0463",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512.json": "11467bbc1df3bdac21a4f2a9360083ffa1cbeb7be975a46551460b3d9bc195ee",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-summary.json": "6e71687dbec237add3ad1365ec0dd7a7fb1e5b8f86744b61cb842a52fdfdcc06",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-suite.json": "fc3ad9151296cdbe15368448e9adee55b42ef0d0e69100e82c36d26d8d68bf91",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool-suite.json": "7911db8fbf3d3ceea394898157b7f957fc578e526a17ab70b92fd7d7a0f24ed2",
+    "experiment report\\.local\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool\\best-validation.npz": "d43de4e8963458315f4fa10b79d15c4017998b581864f1a574fc4bfa6a6e192d",
+    "experiment report\\.local\\unity-accuracy90-20261111\\record_validpool_control.py": "0db8db6524584c55903b8bec515e2b05df46be1de544fdfa6d2135baad089f9c"
+  },
+  "limits": [
+    "One seed",
+    "Concurrent Unity data work; timing is development cost"
+  ]
+}

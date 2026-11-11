@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-11T21:13:07.490073+00:00",
+  "pooling_accuracy": 0.78,
+  "pooling_same_checkpoint_rmse_db": 1.7140627561381248,
+  "pooling_process_seconds": 2323.9682418999946,
+  "native_counts": {
+    "train": 4672,
+    "validation": 2
+  },
+  "native_patch_counts": {
+    "train": 23242,
+    "validation": 13
+  },
+  "native_candidate_count": 93480,
+  "native_shards_reused": 17,
+  "native_psnr_max_error_db": 3.8077622548371437e-06,
+  "native_prepare_process_seconds": 1849.4758082999979,
+  "full_pipeline_observation": {
+    "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v2\\job.json",
+    "status": "running",
+    "pid": 43872,
+    "created": 1794430895.0713837
+  },
+  "upstream_observations": [
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "status": "running",
+      "pid": 41024,
+      "created": 1794409642.5245771
+    },
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\job.json",
+      "status": "running",
+      "pid": 33640,
+      "created": 1794415260.4741013
+    },
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-patch-batches4674\\job.json",
+      "status": "passed",
+      "receipt_sha256": "aa2c6bff5f4d5337d9c243021a4fa39a7a7d3022266c2090f2c007e5daf868b3"
+    }
+  ],
+  "local_file_links": 289,
+  "test_opened": false,
+  "production_acceptance": "not evaluated",
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "inputs_sha256": {
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool-result.json": "683a9dcab23ada0c93344a872f93ad9524f654e983637ea7a23e6b25675f693d",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool.json": "280bd5ca0624b3dd86bd8f45dd594c8783eb11857e989ff597c4be11b8fb4720",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool-audit.json": "02cc4b5164dca38a11f9f139a410376bd21c2e4d6d84bcb63abe6fdbb4f4ca59",
+    "experiment report\\unity-accuracy90-20261111\\unity-patch-batches4674.json": "f2dac3c47184fa461c87738bc83d4afb7756b12e98879e52de7863028c959a70",
+    "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-patch-batches4674\\receipt.json": "aa2c6bff5f4d5337d9c243021a4fa39a7a7d3022266c2090f2c007e5daf868b3",
+    "experiment report\\unity-accuracy90-20261111\\unity-patch-batches3906.json": "22156980143ede279b31a2b3602e6cf5f0cd6acb5f5e85d4c0c9a6e2055417ca",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline-full-v2-config.json": "53ffc10e8a918006b6217dce72ee37fc383431b71ea57d5348b0fc1dc5b38429"
+  },
+  "script_sha256": "05cd9fd27877ce86590cdb6b5a1999b9957a2bac846d0fdd3f37a424f8283c92"
+}

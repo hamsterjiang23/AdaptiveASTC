@@ -1,6 +1,6 @@
 # Unity 分批原生 patch 目标准备
 
-当前新增[4674图冻结扩展](unity-patch-batches4674-config.json)，选取20个已发布候选批次，目标4672训练图／2验证图；复用已完成的3906图目标，提取新增768图。单CPU进程已启动，保持partial覆盖，正在采集的批次不进入该快照。启动前空闲RAM超过22GiB，继续执行每批20GiB门槛，未启动额外GPU训练。`[verified: unity-patch-batches4674-config.json run_ids、previous_completed_report；jobs/unity-patch-batches4674/launch-preflight.json、receipt.json；opinion: 覆盖与并发边界]`
+当前新增[4674图冻结扩展](unity-patch-batches4674-config.json)已完成：20个已发布候选批次、4672训练图／2验证图、23242／13patch、93480候选；复用3906图目标并补充768图。[完成记录](unity-patch-batches4674.json)的原生PSNR重建最大差3.8078e-6dB，循环1845.25秒、进程1849.48秒，超过启动时10–20分钟估计。coverage保持partial；这里仅为分批目标准备，不代表已完成4674图统一清单或全量训练。`[verified: unity-patch-batches4674.json counts、patch_counts、shards、wall_seconds、coverage；jobs/unity-patch-batches4674/receipt.json、launch-preflight.json；opinion: 覆盖与验收边界]`
 
 后续已完成[3906图扩展](unity-patch-batches3906-config.json)：冻结17个已发布候选批次，实际3904 train／2 validation，复用已完成的2370图目标，并为另外1536张图提取监督。[提取](unity-patch-batches3906.json)、[统一清单](unity-patch-assembly3906.json)和[全部20832patch读取](unity-assembly3906-dataset-audit.json)均通过；原生PSNR重建最大差3.8078e-6dB，完整11000图覆盖仍未完成。`[verified: unity-patch-batches3906-config.json run_ids、previous_completed_report；jobs/unity-patch-batches3906/launch-preflight.json frozen_counts、additional_images；unity-patch-batches3906.json status；opinion: 状态口径]`
 

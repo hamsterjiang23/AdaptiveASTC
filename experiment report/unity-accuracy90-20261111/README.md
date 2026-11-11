@@ -8,9 +8,9 @@
 
 [全量原生数据衔接](unity-native-pipeline.md)已通过25项检查及三次66图四阶段闭环，最终复跑22.70秒；完整任务启动后等待原采集、候选补测和当前4674图准备全部成功，再执行11000图数据准备／合并／读取／原规则重放。数据就绪与模型90%验收仍分开，当前仅为等待状态。`[verified: unity-native-pipeline-smoke66-v3.json；unity-native-pipeline-full-v2.json；opinion: 完成边界]`
 
-[3906图原生决策接口](unity-native-model.md)已复核通过，精确误差目标重建全部原块大小／preset；262张法线图及319张大图放宽样本继续按各自规则记录。该结果不是模型准确率。数据准备继续[扩展到4674图](unity-patch-batches.md)，复用3906图目标，新增768图提取运行中。`[verified: unity-prediction-interface3906.json；unity-native3906-target-diagnostics.json；unity-patch-batches4674-config.json；opinion: 完成边界]`
+[3906图原生决策接口](unity-native-model.md)已复核通过，精确误差目标重建全部原块大小／preset；262张法线图及319张大图放宽样本继续按各自规则记录。该结果不是模型准确率。数据准备已[扩展到4674图](unity-patch-batches.md)，实际4672训练图／2验证图、23255patch，复用3906图目标并新增768图，进程1849.48秒；coverage仍为partial。`[verified: unity-prediction-interface3906.json；unity-native3906-target-diagnostics.json；unity-patch-batches4674.json counts、patch_counts、coverage；对应job receipt；opinion: 完成边界]`
 
-后续有效区域汇总组件已通过17项CPU检查和完整133140patch几何核验，参数11,178,564不变；后续54项检查及两轮4次CUDA更新通过，正式对照运行中，详见[组件准备及边界](patch-fixed-capacity/pixel-sampling.md)。`[verified: patch-fixed-capacity/mask-pooling-integration.json、mask-pooling-data-audit.json；opinion: 状态边界]`
+有效区域汇总正式对照已完成10轮CUDA训练与最佳权重重载，验证78.0%／同权重近阈值RMSE1.7141dB，比原cap512低6.5个百分点；质量达标率77.4%，参数11,178,564不变。保留负结果，后续沿用原池化，详见[完整结果及边界](patch-fixed-capacity/pixel-sampling.md)。`[verified: patch-fixed-capacity/scratch-group512-validpool-result.json metrics、accuracy_change_pp、parameters；opinion: 后续选择与状态边界]`
 
 原生patch准备新增[3906图冻结扩展](unity-patch-batches.md)，3904／2图的提取、合并及20832patch读取全部通过，见[完成记录](unity-patch-assembly3906.json)；旧2370图产物保持。新增[cap512错误分层](patch-fixed-capacity/pixel-sampling.md#cap512模型的剩余错误)只读取完成训练的冻结验证预测，未做新拟合或访问test。`[verified: unity-patch-batches3906-config.json；group512-geometry-diagnosis.json scope、test_opened；opinion: 状态边界]`
 
