@@ -1,5 +1,13 @@
 # Implementation notes
 
+## Unity supplemental quality and candidate probe, 2026-11-11
+
+- The unchanged native PSNR/MS-SSIM/normal function region is extracted into a local-only source and compiled with MSVC precise floats. Engine source, extracted region, wrapper and DLL hashes are bound; no engine source copy is added to Git. `[verified: unity-quality-probe.json metric_build; quality.py]`
+- The initial CMake command used backslashes in METRICS_SOURCE, causing invalid escape parsing. A new build directory with POSIX-form paths passed. The first metric comparator incorrectly required1e-4dB equality against2-decimal cache values; its record remains archived and the result now states rounded-record agreement. `[verified: native build logs; unity-quality-probe.json prior_comparison]`
+- Two archived LDR Default alpha images now have40 separately timed candidate encodes/decodes,24 previously unmeasured candidates, exact original selected payload/decode parity and16 original quality comparisons within0.00501dB. Final collection guards include capture/manifest hashes, train/validation-only scope, unique indexes, dimensions and code hashes. `[verified: unity-supplement2-verified.json; supplement.py]`
+- NeedAlpha and LDR metadata are replay-verified assumptions for this pilot, not observed callback fields. Formal production collection still needs direct metadata, split-aware capture, real normal/HDR branch validation and full candidate coverage. Per-channel error aggregation must preserve Unity's lossy-channel count and constant-alpha semantics. `[verified: supplemental config metadata_source; native CalculatePSNR; opinion: migration requirements]`
+- Review found payload serialization inside the decode timer and an incomplete link from the supplemental DLL to the original capture identity. Both were fixed; the bound run verifies protocol-lock→identity/phase→original DLL and cohort order. A fresh40-candidate run passed, and6tests include the identity-tampering rejection plus actual native metric execution. Earlier attempts and the previous collector source remain archived. `[verified: unity-supplement2-bound.json; test_unity_supplement.py; sources/supplement-v2.py; review recheck]`
+
 ## V1 classification controls and patch regression, 2026-11-11
 
 - Five serial CUDA classification controls retain RGB224, ResNet-18, frozen train10000/validation1000, seed20261109 and the historical cosine30 schedule. The baseline repeats66.3% and NLL0.828363 at epoch2. The other arms compare two learning rates with smoothing/weight decay or ordered cumulative loss; they do not isolate every changed component. `[verified: classification-controls/suite.json; baseline-ce.json history]`

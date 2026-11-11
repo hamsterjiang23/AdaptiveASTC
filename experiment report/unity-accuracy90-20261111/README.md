@@ -53,4 +53,6 @@ Unity训练采集保留原搜索提前停止、原标签与baseline计时。离�
 
 GPU实验串行，CPU静态检查可与训练同时发生。当前所有时长为本机开发成本，正式部署延迟需要独立计量。训练前检查空闲显存、RAM与磁盘；小样本确认batch128后再运行完整回归。`[opinion: 资源和计时安排]`
 
-[Unity DLL接口探针](unity-dll-probe.json)在一张归档sRGB Alpha贴图上，以10×10/exhaustive复现了原payload；输入需先垂直翻转以匹配Unity内存顺序。完整20候选补测与原生质量指标复现尚未完成。`[verified: unity-dll-probe.json scope、results]`
+最初的[Unity DLL接口探针](unity-dll-probe.json)在一张归档sRGB Alpha贴图上，以10×10/exhaustive复现了原payload；输入需先垂直翻转以匹配Unity内存顺序。该探针仅验证一个已选候选。`[verified: unity-dll-probe.json scope、results]`
+
+后续[Unity两图补测](unity-supplement.md)完成40组候选，新增24组原搜索未覆盖结果；原选中payload／解码一致，原16组已测质量在记录精度内一致。普通LDR实图与原生指标函数已跑通，真实法线／HDR、直接回调元数据及全量生产采集仍待完成。`[verified: unity-supplement2-bound.json；unity-quality-probe.json；补测报告限制]`

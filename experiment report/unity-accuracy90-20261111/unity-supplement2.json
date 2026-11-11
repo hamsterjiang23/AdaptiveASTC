@@ -1,0 +1,155 @@
+{
+  "status": "passed",
+  "config": {
+    "capture": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-capture-20261111-retry2\\references\\normalized-probe",
+    "capture_receipt_sha256": "44994ef91272c0045fce27028889a6d896712e11c95a513d975303e988e7d95d",
+    "encoder_dll": "F:/MLBB_Test/haijiangli1_HAMSTERMLBB/Assets/Editor/Astc/Plugins/astcenc-avx2-shared.dll",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+    "quality_build_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-supplement2",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-supplement2.json",
+    "scope": "Two archived train color references; reencode20candidates separately; original search labels/timing untouched; CPU overlaps CUDA training; no production speed claim",
+    "items": [
+      {
+        "index": 0,
+        "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "LDR alpha color pilot; flags inferred and checked by exact selected payload plus all originally measured candidate metrics; production requires direct callback metadata"
+      },
+      {
+        "index": 1,
+        "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "LDR alpha color pilot; flags inferred and checked by exact selected payload plus all originally measured candidate metrics; production requires direct callback metadata"
+      }
+    ]
+  },
+  "config_sha256": "15f5a79e98a593eaaf2a7d421a4fb3a4b5f2b76a878f8ca03cec454fc1b1d407",
+  "quality_build": {
+    "status": "passed",
+    "binding": {
+      "engine_source": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+      "engine_source_sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+      "engine_first_line": 2182,
+      "engine_last_line": 2675,
+      "extracted_sha256": "6c35c61f99982f22c2971bd8ed1b8cfa840c925a6dd73eb2d82b0517ec02ec31",
+      "wrapper_sha256": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+      "cmake_sha256": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+      "arithmetic": "MSVC fp:precise; unchanged engine functions; parity checked separately"
+    },
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native",
+        "-B",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64",
+        "-DMETRICS_SOURCE=E:/ASTC_Compression/experiment report/.local/unity-accuracy90-20261111/unity-quality-native-retry1/metrics.cpp"
+      ],
+      [
+        "cmake",
+        "--build",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "--config",
+        "Release",
+        "--parallel",
+        "1"
+      ]
+    ],
+    "dll": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+    "dll_sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+    "generated_sha256": "317966c31f0b8fda57a4e5cab7946d6b3f9118cdcda24d9683c0a99cca0de94a"
+  },
+  "rows": [
+    {
+      "index": 0,
+      "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+      "metadata": {
+        "index": 0,
+        "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "LDR alpha color pilot; flags inferred and checked by exact selected payload plus all originally measured candidate metrics; production requires direct callback metadata"
+      },
+      "original_selection": {
+        "asset": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+        "block_size": "10x10",
+        "preset": "exhaustive",
+        "selection_reason": "first_valid",
+        "search_ms": 205.4581,
+        "format_ms": 231.4818,
+        "select_and_encode_ms": 231.4967,
+        "candidates_attempted": 10,
+        "candidates_measured": 10,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 10,
+      "new_candidates": 10,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 10,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.1699704999991809,
+        "decode_seconds": 0.13353870000355528,
+        "quality_seconds": 0.0015443999946000986
+      },
+      "candidate_receipt_sha256": "a6f9c1bb875a695091cceadbe302e92ab0d49fe2fa1ec38d856300f6c618e66a"
+    },
+    {
+      "index": 1,
+      "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+      "metadata": {
+        "index": 1,
+        "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "LDR alpha color pilot; flags inferred and checked by exact selected payload plus all originally measured candidate metrics; production requires direct callback metadata"
+      },
+      "original_selection": {
+        "asset": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+        "block_size": "10x10",
+        "preset": "fastest",
+        "selection_reason": "first_valid",
+        "search_ms": 152.0987,
+        "format_ms": 155.8959,
+        "select_and_encode_ms": 155.9091,
+        "candidates_attempted": 6,
+        "candidates_measured": 6,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 6,
+      "new_candidates": 14,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 6,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.19011869999667397,
+        "decode_seconds": 0.1396539999950619,
+        "quality_seconds": 0.0022329000021272805
+      },
+      "candidate_receipt_sha256": "ff7ccfe53f24fcb44f87892e6a25e1b8032dacf698775c2df44937c9d108ebf5"
+    }
+  ],
+  "test_opened": false,
+  "wall_seconds": 0.8718685999992886,
+  "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-supplement2\\receipt.json",
+  "raw_receipt_sha256": "d3c8565171dd8a2ed717fe701fce2aa6eb01603169215f875ea2f40144db9413"
+}

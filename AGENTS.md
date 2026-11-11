@@ -73,6 +73,8 @@
 
 ## Unity训练数据采集与源码定位
 
+- 离线候选补测入口为`script/unity_supplement.py`，其质量函数从本机引擎原样提取到.local并编译，编码DLL沿原采集协议锁与identity核验。当前两张LDR Default开发图的40候选与原16项质量重放通过；needAlpha等仍是重放核验的推定设置，正式采集要记录实际回调参数。参见[补测报告](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)。`[verified: unity-supplement2-bound.json capture_binding、rows、config.items；quality.py]`
+
 - 面向 Unity 生产选参的训练与评估使用导入处理完成后、进入 ASTC 搜索前的第一个 image／mip0 参考图。模型从该图生成 RGB 224×224 输入，质量测量使用原尺寸的导入后参考像素。参考图与同一次导入和搜索产生的块大小标签配对。缺图时补采或标记缺失。原图用于来源核验、对照及明确标注的历史／文献复现。 `[verified: 用户本次确认；README“Unity导入结果与训练数据准备”；LITE 训练协议 L21]`
 - LITE／RDO 关闭的 64 张实测配对中，19 张尺寸变化（例如 4096×4096 → 128×128、240×390 → 256×512），7 张同尺寸但 RGB 变化，38 张尺寸和 RGB 相同。7 张中有 5 张只在两侧均完全透明的像素改变 RGB，另 2 张是原因待核实的 JPEG。当前模型只读取 RGB，透明区域的差异也会进入模型。按这批样本解释差异，Alpha 等价性和全量比例分别核实。详见[README 实测差异](README.md#导入前后的实测差异)。 `[verified: 64 张配对图尺寸和 RGBA 逐像素复查；LITE 训练协议 L21]`
 - 训练数据导出任务先读[README源码导航](README.md#unity训练数据导出与源码导航)，再核对本机引擎文件哈希、函数和行号。README保存完整位置表、调用链、字段与采集条件。`[verified: 用户要求“全部整理到readme和agent里面”；README对应小节]` `[opinion]`

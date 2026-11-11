@@ -106,3 +106,4 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 - 当前6次CUDA更新仅为执行探针。独立输出／单调结构、标准stem／去maxpool、EMA及组采样均按配置和对照记录，正式分类对照、回归训练与Unity验收尚未完成。`[verified: patch-training-smoke.json；执行记录“实施差异与对照”]`
 - 后续分类五组已完成，验证Top-1从原配置66.3%提高至最高68.6%，中间类别与质量指标仍不足；详见[分类报告](<../../experiment report/unity-accuracy90-20261111/classification-controls/README.md>)。`[verified: classification-controls/comparison.json；opinion: 指标判断]`
 - 单调输出、标准stem、EMA0.999与batch128的新增CUDA探针完成6次更新，权重重载与保存预测核验通过；正式随机初始化／预训练回归队列已启动，见[回归报告](<../../experiment report/unity-accuracy90-20261111/patch-v1/README.md>)。增强继续关闭，组权重及图级loss留待错误分析后逐项比较。`[verified: patch-v1-smoke.json、patch-v1-smoke-audit.json、patch-v1/summary.json；opinion: 后续对照]`
+- Unity原搜索与补测分离的两图核验通过：40候选、24新增覆盖，原选中payload／解码一致，原16项质量按两位小数精度吻合。采用原样提取的引擎PSNR／MS-SSIM函数，原DLL通过采集协议锁绑定；真实法线／HDR、直接回调参数与全量数据仍未验收，见[补测报告](<../../experiment report/unity-accuracy90-20261111/unity-supplement.md>)。`[verified: unity-supplement2-bound.json；unity-quality-probe.json]`

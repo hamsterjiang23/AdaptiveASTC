@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "updated_utc": "2026-11-11T12:52:38.093515+00:00",
+  "scope": "Unity two-image LDR color supplemental candidate pilot; not full production acceptance",
+  "checks": [
+    {
+      "command": "uv run --frozen ruff format --check reproductions/unity_search_baseline/quality.py reproductions/unity_search_baseline/supplement.py script/unity_supplement.py tests/test_unity_supplement.py",
+      "result": "4 files already formatted"
+    },
+    {
+      "command": "uv run --frozen ruff check <same4Python files>",
+      "result": "all checks passed"
+    },
+    {
+      "command": "uv run --frozen basedpyright <same4Python files>",
+      "result": "0 errors,0 warnings"
+    },
+    {
+      "command": "UNITY_QUALITY_RECEIPT=<native build receipt>; uv run --frozen pytest -q tests/test_unity_supplement.py",
+      "result": "6 passed; native tests executed,0skipped"
+    },
+    {
+      "command": "uv run --frozen python -u script/run_reproduction_job.py --config experiment report/.local/unity-accuracy90-20261111/jobs/unity-supplement2-bound/job.json",
+      "result": "exit0;40 candidates;16 original metrics agree within recorded precision;2 selected payload/decode pairs match"
+    },
+    {
+      "command": "Added Markdown link existence check",
+      "result": "8 local links;0 missing"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "review": {
+    "C1_decode_timer": "fixed; payload copy excluded from decode interval",
+    "C2_capture_encoder_identity": "fixed; protocol lock,identity,phase andoriginal DLL SHA automatically checked",
+    "final_review": "no remaining findings in focused recheck"
+  },
+  "raw_process_sha256": "ef410240302c6fdf55281c2e29623ad1c2bda1c240fe72ca2e570fb7f4187491",
+  "report_sha256": "53c1330a9155412c4f186c2bd22ba20731af47cce17f1a4c73b923964cac893c",
+  "build_failure_log_sha256": "7bf9e091176650661a37f2736829b04270aa5bd47446a099199d27ec001fbde2",
+  "limits": [
+    "Callback metadata still inferred for pilot",
+    "Real normal/HDR branch unverified",
+    "Full Unity capture incomplete",
+    "Concurrent CUDA training; no isolated latency claim"
+  ]
+}

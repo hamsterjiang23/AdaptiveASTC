@@ -2,6 +2,8 @@
 
 正式CUDA队列已启动，先随机初始化，再预训练。结果更新在[汇总](summary.json)和各组同名报告，当前状态见[总进展](../progress.json)。尚无完成的正式回归结果。`[verified: jobs/patch-v1/receipt.json；summary.json]`
 
+第9轮阶段记录：随机初始化raw权重在验证1000图上Top-1为76.0%，阈值附近PSNR RMSE为1.7681dB。训练仍在进行，未达到V1的90%／0.75dB晋级判据，预训练对照尚未完成。该数值属于GDC开发验证集，不能作为Unity独立验收。`[verified: scratch-monotone-ema.json history epoch9 validation；V1实验步骤]`
+
 输入为240×240原分辨率patch，起点对齐120；边缘复制值仅用于模型输入，误差目标与整图聚合只按真实像素计量。训练10000图、验证1000图，共133140个可用patch；每轮按图等权期望抽4个patch，即40000训练样本，验证覆盖全部12864个patch。`[verified: ../patch-data-full.json；suite.json；NativePatchDataset.aggregate；PatchTrainer.fit]`
 
 两组保留11,178,564参数的ResNet-18，标准stem、单调误差输出、AdamW、WD0.05、batch128、warmup1、EMA0.999，最多30轮，阈值附近RMSE patience5早停。scratch lr1e-3，pretrained lr3e-4，其他设置相同；这是两套V1训练配方对照。完整参数见[suite.json](suite.json)。`[verified: suite.json；../patch-v1-smoke.json config；opinion: 比较边界]`

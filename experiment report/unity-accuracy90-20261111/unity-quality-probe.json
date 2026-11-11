@@ -1,0 +1,94 @@
+{
+  "status": "passed_at_recorded_precision",
+  "scope": "Two archived sRGB alpha color images; selected candidates only; normal branch not yet validated",
+  "metric_build": {
+    "status": "passed",
+    "binding": {
+      "engine_source": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+      "engine_source_sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+      "engine_first_line": 2182,
+      "engine_last_line": 2675,
+      "extracted_sha256": "6c35c61f99982f22c2971bd8ed1b8cfa840c925a6dd73eb2d82b0517ec02ec31",
+      "wrapper_sha256": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+      "cmake_sha256": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+      "arithmetic": "MSVC fp:precise; unchanged engine functions; parity checked separately"
+    },
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native",
+        "-B",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64",
+        "-DMETRICS_SOURCE=E:/ASTC_Compression/experiment report/.local/unity-accuracy90-20261111/unity-quality-native-retry1/metrics.cpp"
+      ],
+      [
+        "cmake",
+        "--build",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "--config",
+        "Release",
+        "--parallel",
+        "1"
+      ]
+    ],
+    "dll": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+    "dll_sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+    "generated_sha256": "317966c31f0b8fda57a4e5cab7946d6b3f9118cdcda24d9683c0a99cca0de94a"
+  },
+  "rows": [
+    {
+      "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+      "measured": {
+        "psnr": 30.030742645263672,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": 21.56623077392578,
+        "normal_mean_deg": null,
+        "normal_p95_deg": null,
+        "mip_count": 1,
+        "need_alpha": true
+      },
+      "native_cache": {
+        "psnr": 30.03,
+        "msSsimDb": 21.57
+      },
+      "differences": {
+        "psnr": 0.0007426452636707381,
+        "ms_ssim_db": -0.0037692260742190342
+      }
+    },
+    {
+      "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+      "measured": {
+        "psnr": 30.996728897094727,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": 31.11578941345215,
+        "normal_mean_deg": null,
+        "normal_p95_deg": null,
+        "mip_count": 1,
+        "need_alpha": true
+      },
+      "native_cache": {
+        "psnr": 31.0,
+        "msSsimDb": 31.12
+      },
+      "differences": {
+        "psnr": -0.0032711029052734375,
+        "ms_ssim_db": -0.004210586547852557
+      }
+    }
+  ],
+  "metadata_boundary": "needAlpha=True inferred from variable alpha and selected replay; exact callback metadata required for production",
+  "comparison": "Native cache and text report round PSNR and MS-SSIM to2 decimals; require <=0.005dB, not unrounded equality",
+  "tolerance_db": 0.005,
+  "prior_comparison": {
+    "status": "failed",
+    "reason": "Initial1e-4 tolerance was finer than recorded native precision",
+    "archive": "experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\probe-strict-comparison.json",
+    "sha256": "9a4361b22750da39b01f8557622b9c3f993889e12089c2a8b1bd71f894944493"
+  }
+}

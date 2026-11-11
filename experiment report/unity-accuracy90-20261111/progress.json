@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T12:27:10.515855+00:00",
+  "updated_utc": "2026-11-11T12:54:40.673668+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -11,8 +11,8 @@
   "model": "ResNet-18",
   "known_parameter_count": 11178564,
   "verified_existing_reference_images": 64,
-  "new_training_completed_epochs": 1,
-  "new_validation_accuracy": 0.564,
+  "new_training_completed_epochs": 9,
+  "new_validation_accuracy": 0.76,
   "new_test_accuracy": null,
   "live_update_sources": {
     "job_heartbeat": "jobs/*/receipt.json updates every30 seconds while child runs",
@@ -234,25 +234,73 @@
     "audit": "patch-v1-smoke-audit.json",
     "summary": "patch-v1/summary.json",
     "job": "experiment report/.local/unity-accuracy90-20261111/jobs/patch-v1/receipt.json",
-    "completed_epochs": 1,
+    "completed_epochs": 9,
     "current_report": "patch-v1/scratch-monotone-ema.json",
-    "latest_raw_accuracy": 0.564,
-    "best_validation_accuracy": 0.564,
-    "best_near_threshold_rmse_db": 2.9103682070773145,
-    "latest_epoch_seconds": 210.98312199999782,
-    "initial_epoch_only": true,
+    "latest_raw_accuracy": 0.76,
+    "best_validation_accuracy": 0.76,
+    "best_near_threshold_rmse_db": 1.768051229439978,
+    "latest_epoch_seconds": 191.32062320000114,
+    "initial_epoch_only": false,
     "latest_variants": {
       "raw": {
-        "accuracy": 0.564,
-        "near_threshold_rmse_db": 3.41251683428077,
-        "quality_pass_rate": 0.556
+        "accuracy": 0.76,
+        "near_threshold_rmse_db": 1.768051229439978,
+        "quality_pass_rate": 0.791
       },
       "ema": {
-        "accuracy": 0.193,
-        "near_threshold_rmse_db": 2.9103682070773145,
-        "quality_pass_rate": 0.782
+        "accuracy": 0.468,
+        "near_threshold_rmse_db": 6.079685312685485,
+        "quality_pass_rate": 0.465
       }
-    }
+    },
+    "latest_raw_margin_sweep": [
+      {
+        "margin_db": 0.0,
+        "accuracy": 0.76,
+        "quality_pass_rate": 0.791,
+        "payload_bytes": 82596432
+      },
+      {
+        "margin_db": 0.25,
+        "accuracy": 0.76,
+        "quality_pass_rate": 0.818,
+        "payload_bytes": 85035520
+      },
+      {
+        "margin_db": 0.5,
+        "accuracy": 0.762,
+        "quality_pass_rate": 0.844,
+        "payload_bytes": 88031072
+      },
+      {
+        "margin_db": 0.75,
+        "accuracy": 0.759,
+        "quality_pass_rate": 0.865,
+        "payload_bytes": 91092240
+      },
+      {
+        "margin_db": 1.0,
+        "accuracy": 0.732,
+        "quality_pass_rate": 0.879,
+        "payload_bytes": 94449056
+      }
+    ]
   },
-  "development_classification_best_validation_accuracy": 0.686
+  "development_classification_best_validation_accuracy": 0.686,
+  "unity_supplement": {
+    "status": "passed_limited_pilot",
+    "report": "unity-supplement2-bound.json",
+    "notes": "unity-supplement.md",
+    "images": 2,
+    "candidates": 40,
+    "new_coverage": 24,
+    "native_metric_replays": 16,
+    "selected_payload_decode_matches": 2,
+    "metrics_native_tests": 6,
+    "limits": [
+      "Direct callback metadata pending",
+      "Real normal and HDR data unverified",
+      "Full Unity production collection incomplete"
+    ]
+  }
 }
