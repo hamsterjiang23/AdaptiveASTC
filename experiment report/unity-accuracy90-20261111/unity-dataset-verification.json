@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "scope": "native RGBA Dataset verification; no model training",
+  "source_snapshots": {
+    "experiment report\\.local\\unity-accuracy90-20261111\\unity-dataset-source-final\\reproductions\\unity_search_baseline\\dataset_audit.py": "e2cc2eb260dd00a754ffa21dd6d7105f8b9c720ff39953453b291acb32685c3a",
+    "experiment report\\.local\\unity-accuracy90-20261111\\unity-dataset-source-final\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "90dd540361ab3fadbf26b0d2476c3083768e081e98ef39e09ccaf3351724ea00"
+  },
+  "job_receipts": {
+    "unity-dataset-smoke": {
+      "path": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-dataset-smoke\\receipt.json",
+      "sha256": "76d55388fbc6dc9462d2970c626ad303d0b84f8d5b8a5ca22805f121cec5cd76",
+      "wall_seconds": 6.113562899998215,
+      "exit_code": 0
+    },
+    "unity-dataset260": {
+      "path": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-dataset260\\receipt.json",
+      "sha256": "294949bcbf3deb210f683d574ca68b76548196fc7feeee75cce683239c000695",
+      "wall_seconds": 22.004651499999454,
+      "exit_code": 0
+    },
+    "unity-dataset260-v2": {
+      "path": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-dataset260-v2\\receipt.json",
+      "sha256": "8c00b8d10807f030adf64b2b511c3edfb2d4fba4a1333b24eccbd9d5d5ed9708",
+      "wall_seconds": 13.222589799996058,
+      "exit_code": 0
+    }
+  },
+  "live_training_sources_unchanged": true,
+  "collector_sources_unchanged": true,
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "local_links_and_anchors": 230,
+  "audit_sha256": "622d2ed8f82b68c5ed2ff61668782fe46e29f43f1176e761e8ea5968204dbe43",
+  "tests": {
+    "test_unity_patch_dataset": 19,
+    "review_C1": "fixed and independently rechecked"
+  },
+  "test_opened": false,
+  "script": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\verify_native_dataset.py",
+  "script_sha256": "2918f659e9741c2696bede851ef8fe5c9d8a0c69807ce4ee45ce55b55c7bd0ec"
+}

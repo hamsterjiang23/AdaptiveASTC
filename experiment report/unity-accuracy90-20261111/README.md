@@ -15,6 +15,8 @@
 
 ## 已完成与当前状态
 
+- [Unity原生RGBA Dataset](unity-dataset.md)完成260张真实开发图的输入、20候选逐通道目标和原生PSNR重建检查；19项测试通过。最终复核包含重复patch监督冲突修复，进程13.22秒；Unity模型训练与独立测试仍未完成。`[verified: unity-dataset260-v2.json；jobs/unity-dataset260-v2/receipt.json；pytest 19 passed；opinion: 完成边界]`
+
 - [同图patch聚合损失](patch-fixed-capacity/bag-loss.md)完成CPU组件与10000训练图抽样核验，14项新检查通过；配对配置隔离采样变化与新增loss。尚未接入训练器或启动CUDA训练，继续等待正在运行的资产组对照。新增冻结预测诊断显示，246张单patch验证图上scratch／pretrained准确率为79.27%／89.02%，聚合实验不能预设解决全部误差。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；本轮pytest；opinion: 结果与执行边界]`
 
 - [Unity 原搜索规则重放](unity-policy-replay.md)完成260张开发图，块大小、preset、选择原因和候选尝试次数均与原搜索一致；其中严格质量通过233张，大图放宽25张、最高PSNR回退2张。去掉非PSNR分支时仅207张块大小一致，这是实测质量的规则诊断，未运行Unity模型。绑定原采集缓存的正式审计进程3.646秒，首次来源绑定不足的记录保留。`[verified: unity-policy260-bound-v2.json；unity-policy260-analysis.json；对应job receipt；opinion: 验收范围]`

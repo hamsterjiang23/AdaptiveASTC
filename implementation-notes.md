@@ -1,5 +1,11 @@
 # Implementation notes
 
+## 2026-11-12 native Unity Dataset validation
+
+- Added a separately frozen RGBA Dataset with valid-pixel masks,20x4channel SSE/log-MSE and zero-error targets,8input-only attributes, and retained whole-image quality supervision. Real258train/2validation images pass pixel/padding and native PSNR reconstruction checks. No Unity model updates or test access occurred. `[verified: unity_patch_dataset.py; unity-dataset260-v2.json unique_images, training_updates, test_opened]`
+- Review C1 reproduced a duplicate identity bug: unchanged whole-image SSE could hide changed patch distributions. The final identity also binds target_sha256 and patch_size. The regression accepts each corpus independently and rejects the conflicting merge;19tests and the final260image audit pass. Earlier audit versions remain as historical receipts. `[verified: dataset_audit.py; test_unity_patch_dataset.py; unity-dataset260-v2.json; review C1 followup]`
+- Final audit loop9.52seconds/process13.22seconds;1708checks include13repeated validation patches. These are data validation costs under concurrent workloads, not deployment latency. Native non-PSNR model objectives and full production training remain pending. `[verified: unity-dataset260-v2.json; jobs/unity-dataset260-v2/receipt.json; opinion: cost and completion scope]`
+
 ## 2026-11-12 same-image patch bag preparation
 
 - Added independent sampler/loss components while leaving live group512 trainer/model/data sources unchanged. Bag4 draws preserve marginal image weights but this seed covers6336distinct training images from10000bags/40000patch draws;7276bags repeat an index. Paired loss0/loss1 configurations isolate the added loss, with a separate historical independent-patch comparison for sampling. CUDA integration and execution remain pending. `[verified: patch_bags.py; bag-sampling-analysis.json; scratch-bag4-suite.json; opinion: comparison boundary]`

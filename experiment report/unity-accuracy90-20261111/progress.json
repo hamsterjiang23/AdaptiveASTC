@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T17:40:06.586474+00:00",
+  "updated_utc": "2026-11-11T18:01:20.362491+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -513,10 +513,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T17:39:57.477991+00:00",
+      "last_observed_alive_utc": "2026-11-11T18:00:57.996176+00:00",
       "name": "unity-reference-series-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\receipt.json",
-      "sha256": "1b94ad4f4edc0d5e8fe897074c24d48e78c1ae77918bbfa38577f66fbeebe312",
+      "sha256": "b0e8ef07e87986e756386c37777f97c54052252ecf986e63aca050e244a42f1d",
       "observed_processes": [
         {
           "pid": 51744,
@@ -656,10 +656,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T17:39:40.651734+00:00",
+      "last_observed_alive_utc": "2026-11-11T18:01:11.307476+00:00",
       "name": "scratch-group512",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512\\receipt.json",
-      "sha256": "1d45eee526a2a684f8ad8049ff9e85660a2616502813dbeff2beda0b65b61b9c",
+      "sha256": "52d29e08012daf3deb886bd6cfed1622f4c345350d67f12f6a5dea1c4e7956ba",
       "observed_processes": [
         {
           "pid": 55564,
@@ -691,10 +691,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T17:40:02.649431+00:00",
+      "last_observed_alive_utc": "2026-11-11T18:01:03.196148+00:00",
       "name": "unity-candidate-queue-multimip-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\receipt.json",
-      "sha256": "29acb8406a8d24069359924a1e99df6a0754cbbf65f21320f5145ce2cfd0e311",
+      "sha256": "9235dba6000586bc476147c4a9443d9e62a155295dcd6783bada742426dfac16",
       "observed_processes": [
         {
           "pid": 25096,
@@ -767,6 +767,42 @@
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-policy260-bound-v2\\receipt.json",
       "sha256": "bea08c199e02b61ffceefb8231039739685acc2ed0d94caa7a4b589ad501c418",
       "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T17:49:11.308919+00:00",
+      "ended_utc": "2026-11-11T17:49:17.425593+00:00",
+      "wall_seconds": 6.113562899998215,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-dataset-smoke",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-dataset-smoke\\receipt.json",
+      "sha256": "76d55388fbc6dc9462d2970c626ad303d0b84f8d5b8a5ca22805f121cec5cd76",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T17:50:21.139853+00:00",
+      "ended_utc": "2026-11-11T17:50:43.147151+00:00",
+      "wall_seconds": 22.004651499999454,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-dataset260",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-dataset260\\receipt.json",
+      "sha256": "294949bcbf3deb210f683d574ca68b76548196fc7feeee75cce683239c000695",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T17:56:12.924510+00:00",
+      "ended_utc": "2026-11-11T17:56:26.153582+00:00",
+      "wall_seconds": 13.222589799996058,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-dataset260-v2",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-dataset260-v2\\receipt.json",
+      "sha256": "8c00b8d10807f030adf64b2b511c3edfb2d4fba4a1333b24eccbd9d5d5ed9708",
+      "observed_processes": []
     }
   ],
   "normalization_diagnostics": {
@@ -797,17 +833,17 @@
   "unity_reference_series": {
     "status": "running",
     "counts": {
-      "train": 2112,
+      "train": 2368,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-008-20261111",
+    "current_batch": "unity-v1-train-009-20261111",
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "692512212e235b8e8e2059b6dbfdceaecf5a502f08fe168495f51f39cc9c1ce7",
+    "report_sha256": "3de0edc5617d8062bdc36040a3fc618e6938fc134065725f15d1fb2c2b0f072b",
     "scope": "original imported references/choices only; supplemental targets pending"
   },
   "fixed_capacity_stem": {
@@ -826,19 +862,19 @@
     "scope": "complete20candidate archived colors and mip0 normals; original choices retained"
   },
   "unity_candidate_queue": {
-    "status": "running",
+    "status": "waiting_references",
     "counts": {
-      "train": 1600,
+      "train": 2368,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-006-20261111",
+    "current_batch": null,
     "test_opened": false,
     "report": "unity-candidate-queue-multimip-v2.json",
-    "report_sha256": "cdd23f795437e934a7ed18a03d8f341ee3d981d381c734139fb4493f9275e7cf",
+    "report_sha256": "26f777460dc5cabc5b2ee3d187000bbaae9deb1c1effded16ff1f2efd4c6b969",
     "prior_failure_report": "unity-candidate-queue-full.json",
     "prior_failure_counts": {
       "train": 576,
@@ -851,9 +887,9 @@
     "summary_sha256": "cc384e1aa5ee98d3953761ff21289b1b9920531d2fb98cbe474a647d2a708ae0",
     "changed_factor": "group_image_cap 0 -> 512; standard stem scratch LR0.0003",
     "test_opened": false,
-    "completed_epochs": 14,
-    "best_validation_accuracy": 0.794,
-    "best_near_threshold_rmse_db": 1.6249584017391194
+    "completed_epochs": 19,
+    "best_validation_accuracy": 0.815,
+    "best_near_threshold_rmse_db": 1.5020624616619782
   },
   "unity_rgba_patch_targets": [
     {
@@ -937,5 +973,18 @@
     "verification": "patch-fixed-capacity/bag-preparation-verification.json",
     "new_cuda_experiments_started": false,
     "next": "After group512 exits, integrate configuration; run paired CUDA smoke before full training"
+  },
+  "unity_native_dataset": {
+    "status": "passed",
+    "unique_images": {
+      "train": 258,
+      "validation": 2
+    },
+    "test_opened": false,
+    "training_updates": 0,
+    "report": "unity-dataset.md",
+    "receipt": "unity-dataset260-v2.json",
+    "receipt_sha256": "622d2ed8f82b68c5ed2ff61668782fe46e29f43f1176e761e8ea5968204dbe43",
+    "scope": "Input/target verification only; native model objectives and training pending"
   }
 }

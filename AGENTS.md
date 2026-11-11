@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- Unity训练输入使用[原生RGBA Dataset](<experiment report/unity-accuracy90-20261111/unity-dataset.md>)的独立接口，外部配置绑定corpus SHA，保留20×4通道误差与精确零误差目标、有效区域mask和8项输入属性。实测质量与原策略选择仅作监督，不进入输入属性；MS-SSIM／法线角度保持整图监督。跨语料合并同时检查划分和目标文件SHA／patch尺寸，不能只比较整图SSE。260图数据检查通过，生产模型尚未训练。`[verified: unity_patch_dataset.py；dataset_audit.py；unity-dataset260-v2.json；opinion: 使用边界]`
+
 - 同图patch聚合实验的准备见[成组损失报告](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)。`ImagePatchBatchSampler`每组只抽同图patch、保留有效像素数；`PatchRegressionLoss`先加权MSE再取log，目标只对实际抽样组精确。权重0／1配对隔离loss，另比较成组采样本身；不能把期望权重一致称为每轮图覆盖一致。CPU检查和训练集抽样核验通过，未接入训练器或启动CUDA实验；已有运行的源码及检查点身份保持。`[verified: patch_bags.py；patch_loss.py；bag-sampling-analysis.json；opinion: 对照与运行边界]`
 
 - 当前goal以用户的[V1原分辨率patch误差回归计划](<experiment plan/V1/README.md>)和[evidence.json](<experiment plan/V1/evidence.json>)为准，实际状态见[执行记录](<experiment report/unity-accuracy90-20261111/README.md>)。按patch目标／编码核验、分类对照、scratch／pretrained回归、按错误分布改进的顺序执行，训练使用CUDA。GDC train／validation用于开发，最终在Unity导入后参考像素与同次原始搜索标签的独立测试上验收Top-1≥90%。`[verified: 用户本轮V1与重新创建goal要求；V1“目标与开发数据”“实验步骤”]`

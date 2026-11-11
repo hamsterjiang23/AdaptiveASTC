@@ -89,6 +89,8 @@ V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预�
 
 ## 当前状态
 
+Unity迁移新增[原生RGBA Dataset](<experiment report/unity-accuracy90-20261111/unity-dataset.md>)：258训练图／2验证图的20候选逐通道监督、有效像素掩码及输入属性检查通过，原生PSNR重建最大差3.74e-6dB。该结果验证数据接入，Unity模型训练与独立测试90%仍待完成。`[verified: unity-dataset260-v2.json unique_images、corpora、training_updates；opinion: 验收边界]`
+
 | 项目 | 状态与证据 |
 |---|---|
 | Unity 搜索基线 | 10,000 张已完成，包含 32 张技术失败补测，状态为 passed_with_retries。搜索合计 4,060.47 秒，选参及编码合计 4,163.31 秒，详见[基线报告](<experiment report/unity-search-baseline-lite-rdo-off/README.md>)。源图哈希与实际搜索选择通过核验，metadata 恢复无冲突。`[verified: 基线报告 summary.json phases.full]` |

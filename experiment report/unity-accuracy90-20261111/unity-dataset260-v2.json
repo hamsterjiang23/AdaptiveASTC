@@ -1,0 +1,137 @@
+{
+  "status": "passed",
+  "config": {
+    "corpora": [
+      {
+        "name": "train256",
+        "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-patches-train256",
+        "sha256": "fee31eb8f60f30ae44e1a4c2326dfa5844da9cf56778383971ddb553da7fe9d6"
+      },
+      {
+        "name": "multimip2",
+        "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-patches-multimip2",
+        "sha256": "6db61928f2067b32b014ff0adf178f857ad79ac24a8b8c28d41b0e8174cf6b03"
+      }
+    ],
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-dataset260-v2.json",
+    "prior_smoke_report_sha256": "7abb67e4a3bc2c06d0f31f39b1b81c6f42f2fd488ed768e9fc2782ee3cd16731",
+    "prior_audit_report_sha256": "275361509f92665172bc42c855b976482547495b4a5b2e1c0a550faa1c8eac3b",
+    "change": "Bind duplicate identity to exact patch target hash and patch size"
+  },
+  "config_sha256": "e630a606f6bc71d0d52eb84baa1c6c870f1d55e4624f82ec606f28809493b559",
+  "corpora": [
+    {
+      "name": "train256",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-patches-train256",
+      "sha256": "fee31eb8f60f30ae44e1a4c2326dfa5844da9cf56778383971ddb553da7fe9d6",
+      "splits": {
+        "train": {
+          "images": 256,
+          "patches": 1664,
+          "candidates": 5120,
+          "exact_pixel_and_padding_checks": 1664,
+          "max_native_psnr_error_db": 3.7415360765180594e-06,
+          "normal_images": 16,
+          "multimip_normal_images": 0,
+          "alpha_participating_images": 13,
+          "image_candidates_with_a_lossless_rgb_channel": 377,
+          "image_candidates_with_no_rgb_error": 38,
+          "patch_channel_zero_error_counts": [
+            3013,
+            3468,
+            5432,
+            31658
+          ],
+          "corpus_fingerprint": "48691a17ab463b84138791b4dab9166df94e6408d2c2b08212895cfc38126692"
+        },
+        "validation": {
+          "images": 2,
+          "patches": 13,
+          "candidates": 40,
+          "exact_pixel_and_padding_checks": 13,
+          "max_native_psnr_error_db": 1.8835202411082719e-06,
+          "normal_images": 0,
+          "multimip_normal_images": 0,
+          "alpha_participating_images": 1,
+          "image_candidates_with_a_lossless_rgb_channel": 14,
+          "image_candidates_with_no_rgb_error": 0,
+          "patch_channel_zero_error_counts": [
+            40,
+            58,
+            72,
+            100
+          ],
+          "corpus_fingerprint": "48691a17ab463b84138791b4dab9166df94e6408d2c2b08212895cfc38126692"
+        }
+      }
+    },
+    {
+      "name": "multimip2",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-patches-multimip2",
+      "sha256": "6db61928f2067b32b014ff0adf178f857ad79ac24a8b8c28d41b0e8174cf6b03",
+      "splits": {
+        "train": {
+          "images": 2,
+          "patches": 18,
+          "candidates": 40,
+          "exact_pixel_and_padding_checks": 18,
+          "max_native_psnr_error_db": 1.7913976506633844e-06,
+          "normal_images": 2,
+          "multimip_normal_images": 2,
+          "alpha_participating_images": 0,
+          "image_candidates_with_a_lossless_rgb_channel": 0,
+          "image_candidates_with_no_rgb_error": 0,
+          "patch_channel_zero_error_counts": [
+            0,
+            0,
+            0,
+            360
+          ],
+          "corpus_fingerprint": "80f3d05cfa40edbd6e3d98febbc477f8b881c0c21cf3c0d649186a3bce86aee0"
+        },
+        "validation": {
+          "images": 2,
+          "patches": 13,
+          "candidates": 40,
+          "exact_pixel_and_padding_checks": 13,
+          "max_native_psnr_error_db": 1.8835202411082719e-06,
+          "normal_images": 0,
+          "multimip_normal_images": 0,
+          "alpha_participating_images": 1,
+          "image_candidates_with_a_lossless_rgb_channel": 14,
+          "image_candidates_with_no_rgb_error": 0,
+          "patch_channel_zero_error_counts": [
+            40,
+            58,
+            72,
+            100
+          ],
+          "corpus_fingerprint": "80f3d05cfa40edbd6e3d98febbc477f8b881c0c21cf3c0d649186a3bce86aee0"
+        }
+      }
+    }
+  ],
+  "unique_images": {
+    "train": 258,
+    "validation": 2
+  },
+  "metadata_names": [
+    "log2_width",
+    "log2_height",
+    "srgb",
+    "normal",
+    "need_alpha",
+    "alpha_constant",
+    "normal_metric_mips",
+    "black_pixel_ratio"
+  ],
+  "sources_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\dataset_audit.py": "e2cc2eb260dd00a754ffa21dd6d7105f8b9c720ff39953453b291acb32685c3a",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "90dd540361ab3fadbf26b0d2476c3083768e081e98ef39e09ccaf3351724ea00"
+  },
+  "test_opened": false,
+  "training_updates": 0,
+  "device": "cpu",
+  "wall_seconds": 9.52248690000124,
+  "scope": "Native Dataset input/target/geometry verification; no model training or accuracy claim"
+}
