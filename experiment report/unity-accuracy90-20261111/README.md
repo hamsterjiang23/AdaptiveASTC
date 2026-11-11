@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[全量原生数据衔接](unity-native-pipeline.md)已通过25项检查及三次66图四阶段闭环，最终复跑22.70秒；完整任务启动后等待原采集、候选补测和当前4674图准备全部成功，再执行11000图数据准备／合并／读取／原规则重放。数据就绪与模型90%验收仍分开，当前仅为等待状态。`[verified: unity-native-pipeline-smoke66-v3.json；unity-native-pipeline-full-v2.json；opinion: 完成边界]`
+
 [3906图原生决策接口](unity-native-model.md)已复核通过，精确误差目标重建全部原块大小／preset；262张法线图及319张大图放宽样本继续按各自规则记录。该结果不是模型准确率。数据准备继续[扩展到4674图](unity-patch-batches.md)，复用3906图目标，新增768图提取运行中。`[verified: unity-prediction-interface3906.json；unity-native3906-target-diagnostics.json；unity-patch-batches4674-config.json；opinion: 完成边界]`
 
 后续有效区域汇总组件已通过17项CPU检查和完整133140patch几何核验，参数11,178,564不变；后续54项检查及两轮4次CUDA更新通过，正式对照运行中，详见[组件准备及边界](patch-fixed-capacity/pixel-sampling.md)。`[verified: patch-fixed-capacity/mask-pooling-integration.json、mask-pooling-data-audit.json；opinion: 状态边界]`

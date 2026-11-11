@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-11T21:04:44.619487+00:00",
+  "smoke_counts": {
+    "train": 64,
+    "validation": 2
+  },
+  "smoke_costs": {
+    "v1": {
+      "process_seconds": 71.14032469999802,
+      "execution_seconds": 70.29895369999576,
+      "waiting_seconds": 0.02216210000187857
+    },
+    "v2": {
+      "process_seconds": 24.854555199999595,
+      "execution_seconds": 24.140293700002076,
+      "waiting_seconds": 0.018948400000226684
+    },
+    "v3": {
+      "process_seconds": 22.696652800004813,
+      "execution_seconds": 22.015890900001978,
+      "waiting_seconds": 0.02312320000055479
+    }
+  },
+  "unit_tests": {
+    "command": "uv run --frozen pytest -q tests/test_unity_native_data_pipeline.py",
+    "passed": 25
+  },
+  "source_files_bound": 14,
+  "full_pipeline_status": "waiting_upstream",
+  "full_pipeline_process": {
+    "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v2\\job.json",
+    "status": "running",
+    "pid": 43872,
+    "created": 1794430895.0713837
+  },
+  "upstream_observations": [
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "status": "running",
+      "pid": 41024,
+      "created": 1794409642.5245771
+    },
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\job.json",
+      "status": "running",
+      "pid": 33640,
+      "created": 1794415260.4741013
+    },
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-patch-batches4674\\job.json",
+      "status": "running",
+      "pid": 28616,
+      "created": 1794429382.909862
+    }
+  ],
+  "local_links": 271,
+  "training_updates": 0,
+  "test_opened": false,
+  "production_acceptance": "not evaluated",
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "inputs_sha256": {
+    "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline-smoke66-v1.json": "5d03adc3a77a8f9ecb7ee462c92cc84de2f44961b88f620cad14c8b3cb5c0945",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline-smoke66-v1-config.json": "e24e02bd1a2b885ff2d858c8d5b2f0dbec78b6138d4ad94c9e416640ca35af0c",
+    "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-smoke66-v1\\receipt.json": "db04b06ad0dfd82f7db7b3dca33f1070d3caff9060394e08c640a29659f237c1",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v1\\prepare.json": "4fc5df959be8496479ad5388f8c82c224be469390d020c5b3dfd4d4674533709",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v1\\assembly.json": "543ba15fba9f0bdecdc1466ee981b8ebf47303757dc07d5cb8b9d333958c6505",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v1\\dataset.json": "a7569adccfb106df51b5d44bbba15d675fdb73eff53ef623e11dd718c756e9ba",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v1\\interface.json": "98c13d1a7a70ddab10d6ef8cb9e406864b37bb9f4dbf95b1e67d9985d116f6af",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline-smoke66-v2.json": "6a733831bad973ad1825aa29ab59ab1086a98618879d98e55eb97cd816c17ab4",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline-smoke66-v2-config.json": "9121c4b4b476dc13cac982e9122b69bd7a67d42a41439eebe687d77c12ebb37f",
+    "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-smoke66-v2\\receipt.json": "4365479a7b6a3778f6856a0e4efd191c06d0f968ddd8676df5a10d7df1e289f3",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v2\\prepare.json": "8e431b80b8f94f6db76fbfdcf9c55820115e6174f4f655b99b0d7466b45c83e7",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v2\\assembly.json": "a224b070c6b38d9095d01265b1ff2dc0a03acd787792a4d1e469d76d5700e3ee",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v2\\dataset.json": "9f829fdeb5682747c49aedfd3baff8e8cd6dc7b063c2e6b136920053c6b7c1d4",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v2\\interface.json": "a933ae16cb9f5f24d1a0fdf2174e02aef65f91a37401a89bfb913a45971fcb56",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline-smoke66-v3.json": "b0c3f9b280e6369677b8f9088ca8f0037cbe41022774b6b2c6b5e3541764dfb1",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline-smoke66-v3-config.json": "27c211eeacfab704101e1ac0ea29164f9be29979ce234252beba3ea111fb8269",
+    "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-smoke66-v3\\receipt.json": "8db1b3bfb1cd79b896eaf8106c39c350de344680f3573b6973a643813648c32d",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v3\\prepare.json": "69a76ef83558e8da48d2a396c3bc2e8f8f5c98d8008a1dfe9d9422df4eb69caf",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v3\\assembly.json": "8730494167b7b0d3e0301c6b5fdb19537a2e4cec1fb5880d66af51b7b2388071",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v3\\dataset.json": "3fd7e8a25e04b822a21f400d23c744cea828a8da53137ac04adffad404b097b6",
+    "experiment report\\unity-accuracy90-20261111\\native-pipeline-smoke66-v3\\interface.json": "bd1d96b410dd844345e3a75484083e41b0e32a2bd8167eff0ca61ea2d02d09c3",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline-full-v2-config.json": "53ffc10e8a918006b6217dce72ee37fc383431b71ea57d5348b0fc1dc5b38429",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline-full-v2.json": "c8b3180e9210c70ecf9bd87c70667d5679ca3551347063c3d793b5f4c224ca3f"
+  },
+  "script_sha256": "857c17f5d280cefb08d68e74799ddcdc72bb9a53a7c6391c7977eb499097d2f8"
+}

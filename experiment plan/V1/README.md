@@ -99,6 +99,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- [全量原生数据衔接](<../../experiment report/unity-accuracy90-20261111/unity-native-pipeline.md>)已通过25项状态／边界检查及三次66图四阶段闭环，最终复跑22.70秒。完整任务已启动等待原采集、候选补测和4674图准备成功结束，之后自动准备10000／1000完整语料并执行原规则重放。smoke、等待、数据完成和最终模型90%验收分别记录。`[verified: unity-native-pipeline-smoke66-v3.json；unity-native-pipeline-full-v2.json；opinion: 验收边界]`
+
 - [原生决策接口](<../../experiment report/unity-accuracy90-20261111/unity-native-model.md>)完成3906图复核，精确目标全部重建原块大小／preset，不能算模型准确率。3904训练图含262法线及319大图放宽样本，且候选PSNR存在非单调；原生20候选质量输出继续独立。新增[4674图冻结目标准备](<../../experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)已启动，复用3906图并补充768图，完整开发覆盖仍未完成。`[verified: unity-prediction-interface3906.json；unity-native3906-target-diagnostics.json；unity-patch-batches4674-config.json；opinion: 原生约束与完成边界]`
 
 - 有效区域信息的下一项对照先准备为末端特征加权汇总，保留RGB输入和ResNet-18权重结构，新增参数为0。17项CPU检查与全部133140patch、986种有效宽高核验通过；原卷积仍读取边缘填充，不能预先认定能消除填充影响。后续训练器、EMA、验证和重载已接入，54项检查及两轮4次CUDA更新通过；正式对照已启动，源代码与检查记录见[有效区域组件](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)。`[verified: mask-pooling-integration.json；mask-pooling-data-audit.json；opinion: 对照与验收边界]`

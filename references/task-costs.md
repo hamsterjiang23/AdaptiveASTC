@@ -4,6 +4,8 @@
 
 3906图精确目标决策接口检查循环62.50秒／进程67.29秒，17个原策略来源核对，0次训练更新。4674图扩展复用17批3906图目标、新增3批768图，单CPU进程；只读已发布归档，写共享shard目录并持有独占锁，与当前CUDA训练和参考采集同时运行。启动资源与预计10–20分钟记录在独立job，完成后以实测替换预计成本。`[verified: unity-prediction-interface3906.json；jobs/unity-prediction-interface3906/receipt.json；jobs/unity-patch-batches4674/launch-preflight.json；opinion: 估时与并发范围]`
 
+完整原生数据流水线等待时只检查上游进程和哈希，成功退出后按顺序调用原准备／组装／Dataset／决策检查，复用既有目标。三次66图进程依次71.14／24.85／22.70秒，后两次复用首次目标；最终源码阶段合计22.02秒。首个全量等待身份因退出竞态修复主动停止，226.26秒未进入数据阶段，记录单列；当前full-v2任务继续等待。执行阶段要求22GiB空闲RAM／40GiB磁盘；waiting_seconds、execution_seconds和总wall_seconds分开，等待时长不当作处理耗时或加速比。`[verified: unity-native-pipeline-smoke66-v1.json、v2.json、v3.json；对应jobs receipts；unity-native-pipeline-full-v2-config.json prior_attempt；opinion: 成本边界]`
+
 像素比例采样10轮训练2389.30秒／完整进程2419.23秒，最佳82.0%。下一项有效区域池化CUDA检查2轮4更新、进程21.21秒、峰值分配显存2,118,557,184字节；正式运行启动前RAM26.87GiB空闲、GPU1083／12282MiB，单GPU训练，与Unity采集并行。`[verified: scratch-group512-pixels-result.json；mask-pooling-integration.json；jobs/scratch-group512-validpool/launch-preflight.json；opinion: 调度口径]`
 
 有效区域mask的完整几何核对读取冻结GDC corpus及11000份目标NPZ，覆盖133140patch／986种宽高，CPU耗时55.73秒、2线程；不读取图片像素、不做训练。组件17项CPU测试8.76秒，后续CUDA检查成本见本节顶部，正式训练和推理成本另行测量。`[verified: patch-fixed-capacity/mask-pooling-data-audit.json；mask-pooling-contract.json unit_tests；opinion: 后续成本范围]`

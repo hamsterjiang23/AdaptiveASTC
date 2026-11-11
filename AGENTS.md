@@ -38,6 +38,7 @@
 
 - 后续输入对照新增`MaskedPatchRegressor`和`PatchGeometry`，只按有效区域加权末端特征，参数量仍为11,178,564，RGB与边缘填充及卷积保持。17项CPU检查、完整开发集133140patch几何检查通过；后续训练器／EMA／验证／重载已接入，54项检查及两轮4次CUDA更新通过，正式对照运行中，完整效果尚待完成。接入时训练、EMA、验证及权重重载必须一致传mask；仍保留卷积感受野受填充影响的边界。`[verified: mask-pooling-integration.json；mask-pooling-data-audit.json；masked_patch_regressor.py forward；opinion: 接入与解释要求]`
 - 原生决策接口已扩展到3906图，精确目标全部重建原块大小／preset；不得称为模型准确率。先完成的3904训练图含262法线、319大图放宽样本，类别／preset分布和非单调情况只作部分覆盖诊断，原生20候选不强加单调硬约束。4674图目标扩展采用新快照及配置，复用已有3906图，新增768图准备运行中，正式训练门槛保持。`[verified: unity-prediction-interface3906.json；unity-native3906-target-diagnostics.json；unity-patch-batches4674-config.json；opinion: 解释与约束]`
+- [完整原生数据衔接](<experiment report/unity-accuracy90-20261111/unity-native-pipeline.md>)的`UnityNativeDataPipeline`等待已绑定上游job成功退出，复用原准备／组装／Dataset／决策接口class；完整模式必须10000训练／1000验证，smoke单列。25项检查及最终66图四阶段闭环通过，全量等待任务已启动。活动期间保持配置绑定的14个源码文件不变；如需修订，先处理该任务身份及原始记录，不能热改运行版本。主报告原子占用，失败使用新身份重试，等待与执行成本分开。`[verified: native_data_pipeline.py；unity-native-pipeline-smoke66-v3.json；unity-native-pipeline-full-v2-config.json sources_sha256；opinion: 运行版本要求]`
 
 - 原生patch扩展使用独立[3906图配置](<experiment report/unity-accuracy90-20261111/unity-patch-batches3906-config.json>)和冻结17批快照，目标3904训练图／2验证图，复用2370图不可变目标。提取、合并和全部20832patch读取已通过，保持partial；正式训练门槛不随部分覆盖降低。冻结预测的几何／阈值分层只作描述性诊断，不把相关性归因为填充或采样。`[verified: unity-patch-assembly3906.json；unity-assembly3906-dataset-audit.json；group512-geometry-diagnosis.json limits；unity_quality_trainer.py validate_coverage；opinion: 使用与验收边界]`
 
