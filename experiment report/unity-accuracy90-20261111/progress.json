@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T13:31:00.843580+00:00",
+  "updated_utc": "2026-11-11T14:06:52.964263+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -61,8 +61,8 @@
     }
   ],
   "next": [
-    "Complete pretrained recipe/checkpoint audit, then analyze errors at fixed capacity",
-    "Validate 64-image actual callback coverage and widen LDR/normal supplemental measurements",
+    "Complete raw/EMA normalization audit, then choose fixed-capacity controls",
+    "Validate normal re-encoding and broader Unity quality branches separately",
     "Prepare split-aware Unity reference corpus; keep independent final test sealed"
   ],
   "decisions": [
@@ -219,9 +219,9 @@
     "comparison": "classification-controls/comparison.json"
   },
   "patch_v1": {
-    "status": "running",
+    "status": "completed",
     "summary": "patch-v1/summary.json",
-    "current_trial": "pretrained-monotone-ema",
+    "current_trial": null,
     "completed_results": [
       {
         "name": "scratch-monotone-ema",
@@ -235,10 +235,24 @@
         "checkpoint_audit": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-v1\\scratch-monotone-ema-audit.json",
         "checkpoint_audit_status": "passed",
         "checkpoint_audit_sha256": "caa8b4d0bfa0d100fb8eca62fefeac502f9808b3b2df2fc3b16e8f26cbcb9e4c"
+      },
+      {
+        "name": "pretrained-monotone-ema",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-v1\\pretrained-monotone-ema.json",
+        "status": "completed",
+        "best_validation_accuracy": 0.888,
+        "best_near_threshold_rmse_db": 0.9735591526475568,
+        "completed_epochs": 14,
+        "wall_seconds": 2966.683657999998,
+        "report_sha256": "37354eb0308781f9af75a24b07eab77b3a2121fc33c17578834d7537eed587ed",
+        "checkpoint_audit": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-v1\\pretrained-monotone-ema-audit.json",
+        "checkpoint_audit_status": "passed",
+        "checkpoint_audit_sha256": "f29e909610b0b774b5ee1f3c56056d2d730606019e553046a54a39c28af6e599"
       }
     ],
     "test_opened": false,
-    "scratch_result": "patch-v1/scratch-result.json"
+    "scratch_result": "patch-v1/scratch-result.json",
+    "pretrained_result": "patch-v1/pretrained-result.json"
   },
   "development_classification_best_validation_accuracy": 0.686,
   "unity_supplement": {
@@ -262,7 +276,10 @@
     "two_image_callbacks": 16,
     "two_image_receipt": "unity-actual-options2-revalidated.json",
     "actual_metadata_bound_supplement": "unity-supplement2-actual.json",
-    "expanded_capture": "64 training images in independent cache; normal/HDR supplemental encoding not yet validated",
+    "expanded_capture": "64 training images, 558 callbacks, exact reference hashes",
+    "color_supplement": "unity-color8.json",
+    "normal_decode_metric_audit": "unity-normal20-policy.json",
+    "limitations": "normal audit has zero new encodes and mip0 only; HDR/full corpus pending",
     "expanded_result": {
       "status": "passed",
       "images": 64,
@@ -273,27 +290,16 @@
   },
   "v1_current_jobs": [
     {
-      "status": "running",
+      "status": "passed",
       "started_utc": "2026-11-11T12:22:32.945627+00:00",
-      "ended_utc": null,
-      "wall_seconds": null,
-      "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T13:30:35.425736+00:00",
+      "ended_utc": "2026-11-11T13:59:25.399183+00:00",
+      "wall_seconds": 5812.449120999998,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T13:59:06.245987+00:00",
       "name": "patch-v1",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\patch-v1\\receipt.json",
-      "sha256": "386a626cb896dee392a7cfc169fed39202b22c9bf77670ec6777d911b27b780c",
-      "observed_processes": [
-        {
-          "pid": 61912,
-          "name": "python.exe",
-          "create_time": 1794399752.830695
-        },
-        {
-          "pid": 11260,
-          "name": "python.exe",
-          "create_time": 1794399752.951856
-        }
-      ]
+      "sha256": "c9cd91e99f8d320f8613e32c4e350a738f99828a536f6c2804f044e315b9a5ed",
+      "observed_processes": []
     },
     {
       "status": "passed",
@@ -318,6 +324,84 @@
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-options64\\receipt.json",
       "sha256": "5881861ea9ba6d530844e01c5554f16a4a12841c1ecf6718bb829295bf6154b8",
       "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T13:44:32.520027+00:00",
+      "ended_utc": "2026-11-11T13:45:25.313647+00:00",
+      "wall_seconds": 52.78841190000094,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T13:45:02.534027+00:00",
+      "name": "unity-color8",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-color8\\receipt.json",
+      "sha256": "872cc5ef6530020fba2c705e4279646ee1f9a6f8d1690c3aeb6fe5fadf803214",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T13:41:29.664044+00:00",
+      "ended_utc": "2026-11-11T13:41:50.355007+00:00",
+      "wall_seconds": 20.687457899999572,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-normal20",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-normal20\\receipt.json",
+      "sha256": "2deb35411ed2ce4d2c626baae9b6bfb6b568ab34200abbdb8aa8be73866bb1a7",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T13:51:49.045653+00:00",
+      "ended_utc": "2026-11-11T13:52:10.475830+00:00",
+      "wall_seconds": 21.400265199998103,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-normal20-policy",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-normal20-policy\\receipt.json",
+      "sha256": "03b65afd95f4bcf32e142128f93c39d57a6a420a0ac24c386b3d5117c9902ba7",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T13:59:50.388086+00:00",
+      "ended_utc": "2026-11-11T14:00:01.057438+00:00",
+      "wall_seconds": 10.664434999998775,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "normalization-smoke",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-smoke\\receipt.json",
+      "sha256": "2a389011619220a0412e5f094525816f4925539e5126b66e84c41ac98e2e6b2d",
+      "observed_processes": []
+    },
+    {
+      "status": "running",
+      "started_utc": "2026-11-11T14:00:27.646410+00:00",
+      "ended_utc": null,
+      "wall_seconds": null,
+      "process_exit_code": null,
+      "last_observed_alive_utc": "2026-11-11T14:06:27.887849+00:00",
+      "name": "normalization-scratch",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-scratch\\receipt.json",
+      "sha256": "070678f3cc5b5f4d8cb61ae1b46fa729daa7787d2b60db8ecdc8ec4cfbf66010",
+      "observed_processes": [
+        {
+          "pid": 19816,
+          "name": "python.exe",
+          "create_time": 1794405627.556232
+        },
+        {
+          "pid": 60940,
+          "name": "python.exe",
+          "create_time": 1794405627.6763413
+        }
+      ]
     }
-  ]
+  ],
+  "normalization_diagnostics": {
+    "scope": "fixed learned weights; train-only BN statistics; development validation",
+    "optimizer_updates": 0,
+    "reports": [
+      "normalization-smoke.json"
+    ]
+  }
 }

@@ -1,4 +1,4 @@
-# Unity候选补测：两图执行核验
+# Unity候选补测与原生指标核验
 
 两张已归档训练图各完成20组候选编码、解码与质量测量。原搜索测过10／6组，本次分别补齐10／14组；原选中候选的payload和RGBA解码像素逐字节一致，原搜索16组指标在原记录两位小数的精度内一致。`[verified: unity-supplement2-bound.json rows]`
 
@@ -51,6 +51,22 @@ uv run --frozen python script/unity_supplement.py collect --config <新的补测
 固定[64张训练图采集](unity-actual-options64.json)通过，共558次回调，覆盖63 Default和1 NormalMap、63 sRGB和1 Linear；needAlpha为true／false的图数分别31／33。源码恢复哈希一致，meta恢复0冲突；进程637.63秒，其中输入SHA计算合计74.20秒，该数值不含全部日志与导出成本。`[verified: unity-actual-options64.json rows；jobs/unity-options64/receipt.json；smoke1-receipt.json]`
 
 NormalMap样本为4096²，实际normal-pack=false，不能将pack标志直接当作法线用途。采集完成只证明参数与参考像素覆盖；离线补测目前仍只接收LDR Default颜色图，真实法线／HDR补测与全量生产数据仍未验收。`[verified: unity-actual-options64.json NormalMap row；supplement.py collect_image；opinion: 完成边界]`
+
+## 颜色覆盖扩展与真实法线审计
+
+[八图补测](unity-color8.json)绑定64图实际回调记录，覆盖1×1、5×2、4×1、8×9、512²、1024×607、2048²和1024²；全部160候选完成编码／解码／质量测量，原52组指标在两位小数容差内一致，新增108组。8张图原winner的payload与解码像素均一致，包括first-valid、size-first-strict和size-first-relaxed标签分支。进程52.79秒，收集循环52.43秒，与CUDA训练并行，成本不替换原搜索baseline。`[verified: unity-color8.json rows、wall_seconds；jobs/unity-color8/receipt.json]`
+
+[法线20候选审计](unity-normal20-policy.json)使用64图中的4096² NormalMap，导入mipmaps=false、实际Linear profile1、needAlpha=false、normal-pack=false。复用原搜索留下的20个ASTC，逐个重新解码后与原候选PNG逐像素核对，再用原样提取的原生函数计算PSNR、法线平均角度与p95角度，均在原报告两位小数精度内一致。实际新编码次数为0；该结果验证真实法线mip0的解码与质量评价，未覆盖法线重新编码或多mip。`[verified: unity-normal20-policy.json input_options、rows、encoded_candidates、native_mip_evidence]`
+
+20组均未达到平均角度≤3.2°且p95≤9°的要求。原选中6×6/exhaustive的PSNR为31.32078dB、平均角度2.93632°、p95为11.59958°，因此属于最高PSNR回退。即使PSNR超过30dB、平均角度合格，也不能把这个结果标为法线质量达标。`[verified: unity-normal20-policy.json quality_passing_candidates、original_selection、rows[19].metrics]`
+
+审查修正两处边界：原报告状态可能带`Valid [BEST]`；角度门槛必须采用真实tableConfig并还原float32，避免Python双精度3.2错误拒绝原生float32(3.2)的等值候选。原先的[首次审计](unity-normal20.json)保留，修正后的审计使用新目录重跑，通过20组比较，进程21.40秒、循环15.93秒。原tableConfig、源SHA及运行代码SHA随结果归档。`[verified: tests/test_unity_normal_audit.py；unity-normal20-policy.json native_policy_binding、source_files_sha256、wall_seconds；jobs/unity-normal20-policy/receipt.json]`
+
+```powershell
+uv run --frozen python script/unity_supplement.py audit-normal --config <新的法线审计配置.json>
+```
+
+对应配置为[颜色八图](unity-color8-config.json)与[法线审计](unity-normal20-policy-config.json)。全量train／validation导入参考与完整候选仍待收集，HDR及多mip法线未验证。资源与读写依赖见[实验成本表](../../references/task-costs.md)。`[verified: 对应配置；opinion: 后续范围]`
 
 ```powershell
 uv run --frozen python script/capture_unity_options.py run --config <新的采集配置.json>

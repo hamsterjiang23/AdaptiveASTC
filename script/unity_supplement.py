@@ -3,6 +3,7 @@
 import argparse
 from pathlib import Path
 
+from reproductions.unity_search_baseline.normal_audit import UnityNormalCandidateAudit
 from reproductions.unity_search_baseline.quality import UnityQualityBuild
 from reproductions.unity_search_baseline.supplement import UnitySupplementalCapture
 
@@ -15,9 +16,13 @@ def main() -> None:
     build.add_argument("--output", type=Path, required=True)
     collect = subcommands.add_parser("collect")
     collect.add_argument("--config", type=Path, required=True)
+    audit = subcommands.add_parser("audit-normal")
+    audit.add_argument("--config", type=Path, required=True)
     args = parser.parse_args()
     if args.command == "build-metrics":
         result = UnityQualityBuild.build(args.engine_source, args.output)
+    elif args.command == "audit-normal":
+        result = UnityNormalCandidateAudit(args.config).run()
     else:
         result = UnitySupplementalCapture(args.config).run()
     print(result, flush=True)

@@ -131,6 +131,33 @@ class UnityASTCBackend:
             + payload
         )
 
+    def decode_payload(
+        self, payload: bytes, width: int, height: int, block: int, *, srgb: bool
+    ) -> tuple[NDArray[np.uint8], float]:
+        if (
+            min(width, height) < 1
+            or width * height > 536870911
+            or block not in self.BLOCKS
+            or len(payload) != ((width + block - 1) // block) * ((height + block - 1) // block) * 16
+        ):
+            raise ValueError("Invalid native ASTC payload dimensions")
+        data = np.frombuffer(payload, dtype=np.uint8)
+        decoded = np.zeros((height, width, 4), dtype=np.uint8)
+        started = time.perf_counter()
+        self.decode_function(
+            data.ctypes.data,
+            data.size,
+            width,
+            height,
+            block,
+            decoded.ctypes.data,
+            0 if srgb else 1,
+            False,
+            None,
+            False,
+        )
+        return decoded, time.perf_counter() - started
+
 
 class UnitySupplementalCapture:
     def __init__(self, config: Path) -> None:
@@ -181,10 +208,10 @@ class UnitySupplementalCapture:
         return {(block, preset): (float(psnr), float(ssim)) for block, preset, psnr, ssim in rows}
 
     @staticmethod
-    def verify_actual_options(config: JsonDict, receipt: JsonDict) -> JsonDict:
+    def read_actual_options(config: JsonDict, receipt: JsonDict) -> JsonDict:
         path = config.get("options_receipt")
         if path is None:
-            return {"status": "not_recorded", "scope": "historical replay-verified assumptions"}
+            raise ValueError("Actual callback metadata is required")
         source = Path(path)
         if ArtifactStore.sha256_file(source) != config["options_receipt_sha256"]:
             raise ValueError("Actual encoder options receipt changed")
@@ -214,6 +241,13 @@ class UnitySupplementalCapture:
                 != (reference["width"], reference["height"])
             ):
                 raise ValueError("Actual encoder options disagree with reference identity")
+        return options
+
+    @staticmethod
+    def verify_actual_options(config: JsonDict, receipt: JsonDict) -> JsonDict:
+        if config.get("options_receipt") is None:
+            return {"status": "not_recorded", "scope": "historical replay-verified assumptions"}
+        options = UnitySupplementalCapture.read_actual_options(config, receipt)
         for item in config["items"]:
             observed = options["rows"][item["index"]]
             reference = receipt["rows"][item["index"]]

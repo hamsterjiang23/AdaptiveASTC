@@ -19,7 +19,7 @@
 - [PSNR矩阵复核](psnr-matrix-audit.json)核对train10000／validation1000的receipt哈希和矩阵顺序，均与35 dB规则及回退一致。独立高斯噪声σ0.75 dB、5个seed的训练标签命中率平均90.116%；它是决策敏感性模拟。`[verified: psnr-matrix-audit.json results]`
 - [64图目标探针](patch-data-smoke.json)通过，生成601个训练patch与155个验证patch，PSNR最大重建差异7.11e-15 dB。`[verified: patch-data-smoke.json]`
 - [全量目标提取](patch-data-full.json)通过，10,000训练图产生120,276个patch，1,000验证图产生12,864个patch；44,000个候选的PSNR重建最大差异1.42e-14 dB，耗时614.55秒。原始SSE为int64，边缘只统计真实像素。`[verified: patch-data-full.json；GDCPatchCorpus._prepare_image]`
-- [CUDA训练探针](patch-training-smoke.json)在RTX4070完成6次实际更新、0次AMP跳步，参数量11,178,564。该记录只有48训练图／16验证图、两轮各3步，用于执行检查。正式模型训练尚待完成。`[verified: patch-training-smoke.json status、config、history]`
+- [CUDA训练探针](patch-training-smoke.json)在RTX4070完成6次实际更新、0次AMP跳步，参数量11,178,564。该记录只有48训练图／16验证图、两轮各3步，用于执行检查，正式结果另见本页回归记录。`[verified: patch-training-smoke.json status、config、history；patch-v1/summary.json]`
 - 独立patch编码20图80候选全部与整图区域逐像素一致。变换编码最大绝对PSNR变化为水平0.84、垂直1.02、旋转6.60 dB，首批训练关闭增强。`[verified: patch-equivalence20.json；opinion: 增强决定]`
 - [五组分类对照](classification-controls/README.md)已完成，原配置验证66.3%，正则化CE最高68.5%，有序loss最高68.6%。保存预测、权重SHA、数据顺序及质量统计复核通过，仍未达到90%。`[verified: classification-controls/comparison.json]`
 - [V1单调／EMA探针](patch-v1-smoke.json)完成6次CUDA更新、0次AMP跳步，batch128峰值显存约2.12GB；[权重重载核验](patch-v1-smoke-audit.json)通过，实际选中EMA权重与保存预测一致。正式scratch／pretrained回归已串行启动，见[回归入口](patch-v1/README.md)。`[verified: patch-v1-smoke.json；patch-v1-smoke-audit.json；patch-v1/summary.json]`
@@ -43,7 +43,7 @@ Unity训练采集保留原搜索提前停止、原标签与baseline计时。离�
 
 进展入口为 [progress.json](progress.json)，job记录保存在.local的jobs目录。每轮训练保存指标、实际更新数、AMP跳步、权重、预测和源码／数据身份，公开报告在阶段结果形成后同步仓库。V1计划与证据保留用户原始内容，执行差异在本页和implementation-notes中更新。`[verified: PatchTrainer.fit；ReproductionJob.run；用户持续记录及仓库同步要求]`
 
-分类对照已完成；正式patch回归正在运行，全量Unity参考／补充候选采集与90%独立验收尚未完成。目标保持active。`[verified: classification-controls/summary.json；patch-v1/summary.json；progress.json；get_goal active]`
+分类对照与首批两组正式patch回归已完成；最佳开发准确率88.8%、阈值附近RMSE0.9736dB，全量Unity参考／补充候选采集与90%独立验收尚未完成。目标保持active。`[verified: classification-controls/summary.json；patch-v1/summary.json；pretrained-result.json；get_goal active]`
 
 ## 正式实验配置与资源
 
@@ -57,4 +57,8 @@ GPU实验串行，CPU静态检查可与训练同时发生。当前所有时长�
 
 后续[Unity两图补测](unity-supplement.md)完成40组候选，新增24组原搜索未覆盖结果；原选中payload／解码一致，原16组已测质量在记录精度内一致。普通LDR实图与原生指标函数已跑通，真实法线／HDR、直接回调元数据及全量生产采集仍待完成。`[verified: unity-supplement2-bound.json；unity-quality-probe.json；补测报告限制]`
 
-后续直接参数采集与随机初始化正式训练均取得结果：[回归汇总](patch-v1/scratch-result.json)记录14轮后按早停结束、最佳Top-1 76.0%、阈值附近RMSE 1.7681dB；[实际参数核验](unity-actual-options2-revalidated.json)记录两图16次回调和源码恢复，[参数绑定补测](unity-supplement2-actual.json)重放40候选通过。[64图采集](unity-actual-options64.json)另记录558次回调，包含普通颜色和法线用途，恢复无冲突。预训练回归继续运行，目标仍未完成。`[verified: 对应JSON记录；patch-v1/summary.json；smoke1-receipt.json]`
+后续直接参数采集与随机初始化正式训练均取得结果：[回归汇总](patch-v1/scratch-result.json)记录14轮后按早停结束、最佳Top-1 76.0%、阈值附近RMSE 1.7681dB；[实际参数核验](unity-actual-options2-revalidated.json)记录两图16次回调和源码恢复，[参数绑定补测](unity-supplement2-actual.json)重放40候选通过。[64图采集](unity-actual-options64.json)另记录558次回调，包含普通颜色和法线用途，恢复无冲突。预训练结果见下文，目标仍未完成。`[verified: 对应JSON记录；patch-v1/summary.json；smoke1-receipt.json]`
+
+[颜色扩展](unity-color8.json)完成8图160候选，新覆盖108组，原52组及winner一致。[法线审计](unity-normal20-policy.json)对真实4096² NormalMap的20个原ASTC重新解码、复测角度指标，通过原记录精度核验；新编码0次，原最高PSNR回退仍判为角度不达标。具体范围、浮点阈值修正和成本见[补测报告](unity-supplement.md)。`[verified: 对应JSON rows、encoded_candidates、quality_passing_candidates]`
+
+预训练回归现已完成14轮，选中epoch9 raw，验证Top-1为88.8%、balanced accuracy85.81%、阈值附近RMSE0.9736dB，最佳权重重载通过。两组均未达到V1的90%／0.75dB，下一步固定容量先检验BN统计量，再按错误分布安排单项训练对照。`[verified: patch-v1/pretrained-result.json、pretrained-monotone-ema-audit.json；opinion: 下一步]`

@@ -1,0 +1,755 @@
+{
+  "status": "passed",
+  "scope": "Frozen last-epoch weights; train-only BN statistics; development validation",
+  "training": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-v1-smoke",
+  "history_sha256": "e98e61427cc87dcf0cede612928f80d743631b00905b5644ec612887981949d9",
+  "checkpoint_sha256": "628b4a4ebe8672d716e2707cdf6c3b339d53ed40ed0a1de79439395328187ca5",
+  "epoch": 2,
+  "source_sha256": "5c970162aa310cae59dd45bfde4425eb87a00e1c974aa8a033a58b3906a3f612",
+  "corpus_fingerprint": "41ecd4ac40b2fd64b28f9b4774d2f7532bd50e2cd2eac55223879e1db4ae0ff6",
+  "calibration_batches": 2,
+  "calibration_patches": 256,
+  "unique_training_images": 48,
+  "calibration_indexes_sha256": "a44de2f2ec788581df9ac375e4e7f87718cf7684a3175b2ac56e65b6bc8654de",
+  "optimizer_updates": 0,
+  "test_opened": false,
+  "rows": [
+    {
+      "name": "raw-original",
+      "parameters_unchanged": true,
+      "calibration_seconds": 0.0,
+      "metrics": {
+        "count": 16,
+        "accuracy": 0.25,
+        "macro_f1": 0.1,
+        "balanced_accuracy": 0.2,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            4
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 7
+          },
+          "8x8": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 3
+          },
+          "10x10": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 1
+          },
+          "12x12": {
+            "precision": 0.26666666666666666,
+            "recall": 0.8,
+            "f1": 0.4,
+            "support": 5
+          }
+        },
+        "near_threshold_rmse_db": 78.71091182156195,
+        "near_threshold_evaluable": true,
+        "zero_predicted_mse_candidates": 4,
+        "zero_mse_diagnostic_psnr_db": 300.0,
+        "near_threshold_candidate_count": 23,
+        "finite_candidate_rmse_db": 66.76323499291435,
+        "lossless_candidate_count": 0,
+        "quality_pass_rate": 0.3125,
+        "payload_bytes": 651008,
+        "fixed8_payload_bytes": 1361376,
+        "label_payload_bytes": 1346944,
+        "margins": [
+          {
+            "margin_db": 0.0,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.3125,
+            "payload_bytes": 651008
+          },
+          {
+            "margin_db": 0.25,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.3125,
+            "payload_bytes": 651008
+          },
+          {
+            "margin_db": 0.5,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.3125,
+            "payload_bytes": 730336
+          },
+          {
+            "margin_db": 0.75,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.3125,
+            "payload_bytes": 730336
+          },
+          {
+            "margin_db": 1.0,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.3125,
+            "payload_bytes": 730336
+          }
+        ],
+        "by_asset_group": {
+          "Assets/Art/Characters/11_bane": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/50_zhask": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/asura": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/kongfu": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/ninja": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/xiaoyang": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Effects/TempTexture": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Effects/Texture/Common/Decal": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Effects/Texture/Common/Ring": {
+            "count": 2,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Environment/heroshow_scenes": {
+            "count": 3,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_25shangfenjie/UI/UITexture/Atlas_add/Atlas_Activity_25shangfenjie2_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/Prefabs/res_version/IntestPrefabs/HeroCard": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Common_Atlas/Atlas_MainInterface_Fortificationsnew": {
+            "count": 1,
+            "accuracy": 0.0
+          }
+        },
+        "group_macro_accuracy": 0.3076923076923077,
+        "by_long_side": {
+          "at_most256": {
+            "count": 5,
+            "accuracy": 0.0
+          },
+          "257_to1023": {
+            "count": 7,
+            "accuracy": 0.2857142857142857
+          },
+          "at_least1024": {
+            "count": 4,
+            "accuracy": 0.5
+          }
+        },
+        "classes": [
+          "6x6",
+          "8x8",
+          "10x10",
+          "12x12"
+        ],
+        "seconds": 0.5144110000001092
+      },
+      "weights_sha256": "2a39bff774d7c844a872de62a6a8026ebf432265083998a786e612043ad22fff",
+      "predictions_sha256": "0e24d60fc8a0c3e0fda1e8ae51ca78fee3596cc7792614682f14d189c7c910ec"
+    },
+    {
+      "name": "raw-recalibrated",
+      "parameters_unchanged": true,
+      "calibration_seconds": 1.861297999999806,
+      "metrics": {
+        "count": 16,
+        "accuracy": 0.25,
+        "macro_f1": 0.16269841269841268,
+        "balanced_accuracy": 0.18571428571428572,
+        "confusion_matrix": [
+          [
+            1,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            3
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "precision": 0.5,
+            "recall": 0.14285714285714285,
+            "f1": 0.2222222222222222,
+            "support": 7
+          },
+          "8x8": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 3
+          },
+          "10x10": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 1
+          },
+          "12x12": {
+            "precision": 0.3333333333333333,
+            "recall": 0.6,
+            "f1": 0.42857142857142855,
+            "support": 5
+          }
+        },
+        "near_threshold_rmse_db": 4.733563191089016,
+        "near_threshold_evaluable": true,
+        "zero_predicted_mse_candidates": 0,
+        "zero_mse_diagnostic_psnr_db": 300.0,
+        "near_threshold_candidate_count": 23,
+        "finite_candidate_rmse_db": 8.012826384949683,
+        "lossless_candidate_count": 0,
+        "quality_pass_rate": 0.375,
+        "payload_bytes": 1416896,
+        "fixed8_payload_bytes": 1361376,
+        "label_payload_bytes": 1346944,
+        "margins": [
+          {
+            "margin_db": 0.0,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.375,
+            "payload_bytes": 1416896
+          },
+          {
+            "margin_db": 0.25,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.4375,
+            "payload_bytes": 1452848
+          },
+          {
+            "margin_db": 0.5,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.4375,
+            "payload_bytes": 1452848
+          },
+          {
+            "margin_db": 0.75,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.4375,
+            "payload_bytes": 1498224
+          },
+          {
+            "margin_db": 1.0,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.4375,
+            "payload_bytes": 1551024
+          }
+        ],
+        "by_asset_group": {
+          "Assets/Art/Characters/11_bane": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/50_zhask": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/asura": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/kongfu": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/ninja": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/xiaoyang": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Effects/TempTexture": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Effects/Texture/Common/Decal": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Effects/Texture/Common/Ring": {
+            "count": 2,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Environment/heroshow_scenes": {
+            "count": 3,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_25shangfenjie/UI/UITexture/Atlas_add/Atlas_Activity_25shangfenjie2_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/Prefabs/res_version/IntestPrefabs/HeroCard": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Common_Atlas/Atlas_MainInterface_Fortificationsnew": {
+            "count": 1,
+            "accuracy": 0.0
+          }
+        },
+        "group_macro_accuracy": 0.3076923076923077,
+        "by_long_side": {
+          "at_most256": {
+            "count": 5,
+            "accuracy": 0.0
+          },
+          "257_to1023": {
+            "count": 7,
+            "accuracy": 0.2857142857142857
+          },
+          "at_least1024": {
+            "count": 4,
+            "accuracy": 0.5
+          }
+        },
+        "classes": [
+          "6x6",
+          "8x8",
+          "10x10",
+          "12x12"
+        ],
+        "seconds": 0.22824079999918467
+      },
+      "weights_sha256": "a10057d3c5e2c6eb9b4c4a908fd81ae8acda6d47fb6564b9bc22fe4ee0296ff9",
+      "predictions_sha256": "cba3492876bc1fa7fc11f414995e1864cd8e0c16916163f441a41277a4a5e9c1"
+    },
+    {
+      "name": "ema-original",
+      "parameters_unchanged": true,
+      "calibration_seconds": 0.0,
+      "metrics": {
+        "count": 16,
+        "accuracy": 0.3125,
+        "macro_f1": 0.11904761904761904,
+        "balanced_accuracy": 0.25,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            5
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 7
+          },
+          "8x8": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 3
+          },
+          "10x10": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 1
+          },
+          "12x12": {
+            "precision": 0.3125,
+            "recall": 1.0,
+            "f1": 0.47619047619047616,
+            "support": 5
+          }
+        },
+        "near_threshold_rmse_db": 8.000565950756204,
+        "near_threshold_evaluable": true,
+        "zero_predicted_mse_candidates": 0,
+        "zero_mse_diagnostic_psnr_db": 300.0,
+        "near_threshold_candidate_count": 23,
+        "finite_candidate_rmse_db": 10.758962035459552,
+        "lossless_candidate_count": 0,
+        "quality_pass_rate": 0.3125,
+        "payload_bytes": 615056,
+        "fixed8_payload_bytes": 1361376,
+        "label_payload_bytes": 1346944,
+        "margins": [
+          {
+            "margin_db": 0.0,
+            "accuracy": 0.3125,
+            "quality_pass_rate": 0.3125,
+            "payload_bytes": 615056
+          },
+          {
+            "margin_db": 0.25,
+            "accuracy": 0.3125,
+            "quality_pass_rate": 0.3125,
+            "payload_bytes": 615056
+          },
+          {
+            "margin_db": 0.5,
+            "accuracy": 0.3125,
+            "quality_pass_rate": 0.3125,
+            "payload_bytes": 628736
+          },
+          {
+            "margin_db": 0.75,
+            "accuracy": 0.3125,
+            "quality_pass_rate": 0.3125,
+            "payload_bytes": 628736
+          },
+          {
+            "margin_db": 1.0,
+            "accuracy": 0.3125,
+            "quality_pass_rate": 0.3125,
+            "payload_bytes": 628736
+          }
+        ],
+        "by_asset_group": {
+          "Assets/Art/Characters/11_bane": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/50_zhask": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/asura": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/kongfu": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/ninja": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/xiaoyang": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Effects/TempTexture": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Effects/Texture/Common/Decal": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Effects/Texture/Common/Ring": {
+            "count": 2,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Environment/heroshow_scenes": {
+            "count": 3,
+            "accuracy": 0.3333333333333333
+          },
+          "Assets/RuledAssets/Act_25shangfenjie/UI/UITexture/Atlas_add/Atlas_Activity_25shangfenjie2_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/Prefabs/res_version/IntestPrefabs/HeroCard": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Common_Atlas/Atlas_MainInterface_Fortificationsnew": {
+            "count": 1,
+            "accuracy": 0.0
+          }
+        },
+        "group_macro_accuracy": 0.3333333333333333,
+        "by_long_side": {
+          "at_most256": {
+            "count": 5,
+            "accuracy": 0.0
+          },
+          "257_to1023": {
+            "count": 7,
+            "accuracy": 0.42857142857142855
+          },
+          "at_least1024": {
+            "count": 4,
+            "accuracy": 0.5
+          }
+        },
+        "classes": [
+          "6x6",
+          "8x8",
+          "10x10",
+          "12x12"
+        ],
+        "seconds": 0.2297407000005478
+      },
+      "weights_sha256": "eb7d25a362e52b6c00dfb380379470c79995fce389bb1647e4af1a5d8142d848",
+      "predictions_sha256": "c1e6e203d6036b4e0c975aeccdece1dc05d645f2ee571da8a5493575c385b885"
+    },
+    {
+      "name": "ema-recalibrated",
+      "parameters_unchanged": true,
+      "calibration_seconds": 1.8257773000004818,
+      "metrics": {
+        "count": 16,
+        "accuracy": 0.125,
+        "macro_f1": 0.07142857142857142,
+        "balanced_accuracy": 0.16666666666666666,
+        "confusion_matrix": [
+          [
+            0,
+            5,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            4,
+            1,
+            0
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 7
+          },
+          "8x8": {
+            "precision": 0.18181818181818182,
+            "recall": 0.6666666666666666,
+            "f1": 0.2857142857142857,
+            "support": 3
+          },
+          "10x10": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 1
+          },
+          "12x12": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5
+          }
+        },
+        "near_threshold_rmse_db": 2.9060909600918197,
+        "near_threshold_evaluable": true,
+        "zero_predicted_mse_candidates": 0,
+        "zero_mse_diagnostic_psnr_db": 300.0,
+        "near_threshold_candidate_count": 23,
+        "finite_candidate_rmse_db": 6.7208127544994705,
+        "lossless_candidate_count": 0,
+        "quality_pass_rate": 0.4375,
+        "payload_bytes": 1307808,
+        "fixed8_payload_bytes": 1361376,
+        "label_payload_bytes": 1346944,
+        "margins": [
+          {
+            "margin_db": 0.0,
+            "accuracy": 0.125,
+            "quality_pass_rate": 0.4375,
+            "payload_bytes": 1307808
+          },
+          {
+            "margin_db": 0.25,
+            "accuracy": 0.1875,
+            "quality_pass_rate": 0.5,
+            "payload_bytes": 1352352
+          },
+          {
+            "margin_db": 0.5,
+            "accuracy": 0.1875,
+            "quality_pass_rate": 0.5,
+            "payload_bytes": 1352736
+          },
+          {
+            "margin_db": 0.75,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.5625,
+            "payload_bytes": 1355808
+          },
+          {
+            "margin_db": 1.0,
+            "accuracy": 0.25,
+            "quality_pass_rate": 0.5625,
+            "payload_bytes": 1355808
+          }
+        ],
+        "by_asset_group": {
+          "Assets/Art/Characters/11_bane": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/50_zhask": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/asura": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/kongfu": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/ninja": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/xiaoyang": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Effects/TempTexture": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Effects/Texture/Common/Decal": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Effects/Texture/Common/Ring": {
+            "count": 2,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Environment/heroshow_scenes": {
+            "count": 3,
+            "accuracy": 0.3333333333333333
+          },
+          "Assets/RuledAssets/Act_25shangfenjie/UI/UITexture/Atlas_add/Atlas_Activity_25shangfenjie2_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/Prefabs/res_version/IntestPrefabs/HeroCard": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Common_Atlas/Atlas_MainInterface_Fortificationsnew": {
+            "count": 1,
+            "accuracy": 0.0
+          }
+        },
+        "group_macro_accuracy": 0.10256410256410256,
+        "by_long_side": {
+          "at_most256": {
+            "count": 5,
+            "accuracy": 0.2
+          },
+          "257_to1023": {
+            "count": 7,
+            "accuracy": 0.14285714285714285
+          },
+          "at_least1024": {
+            "count": 4,
+            "accuracy": 0.0
+          }
+        },
+        "classes": [
+          "6x6",
+          "8x8",
+          "10x10",
+          "12x12"
+        ],
+        "seconds": 0.24326760000258218
+      },
+      "weights_sha256": "db8eb1177a5e7abd430ae2dc39807560be09f420f961069cfe1821f18f6d08f9",
+      "predictions_sha256": "43e377cec1a1e560a610689dd26ebdf3f5751dab50f14c3c963f18630fb55fe6"
+    }
+  ],
+  "wall_seconds": 5.9460227999989
+}

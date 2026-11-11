@@ -1,6 +1,17 @@
 # V1：原分辨率patch回归
 
-正式CUDA队列先随机初始化，再预训练。随机初始化已完成14轮并通过最佳权重重载核验，预训练对照正在运行。结果更新在[汇总](summary.json)和各组同名报告，当前状态见[总进展](../progress.json)。`[verified: summary.json；scratch-monotone-ema-audit.json]`
+正式CUDA队列已完成随机初始化和预训练两组，各14轮，两组最佳权重重载核验均通过。结果见[汇总](summary.json)，当前状态见[总进展](../progress.json)。两组均未达到V1开发晋级要求，进入固定容量下的误差诊断。`[verified: summary.json；scratch-monotone-ema-audit.json；pretrained-monotone-ema-audit.json；opinion: 后续安排]`
+
+| 配方 | 验证Top-1 | Balanced accuracy | 阈值附近RMSE | 最佳epoch／变体 |
+|---|---|---|---|---|
+| 随机初始化lr1e-3 | 76.0% | 69.54% | 1.7681dB | 9／raw。`[verified: scratch-result.json]` |
+| 预训练lr3e-4 | 88.8% | 85.81% | 0.9736dB | 9／raw。`[verified: pretrained-result.json]` |
+
+预训练组耗时2966.68秒，参数量仍为11,178,564。四类召回依次为91.74%、81.77%、75.78%、93.94%；长边≤256的小图准确率85.40%，另外两个尺寸组为90.75%／91.56%。相同验证集上比原RGB224分类高22.5个百分点、比最佳分类修正配方高20.2个百分点；多个方法组件共同改变，不能把增益全部归因于原分辨率或初始化。`[verified: pretrained-result.json metrics、wall_seconds、parameters、accuracy_gain_vs_original_pp、accuracy_gain_vs_best_control_pp；opinion: 归因边界]`
+
+预训练最佳权重的零余量准确率88.8%、质量达标88.3%、payload89,546,480字节；余量0.5dB时分别85.0%、90.8%、94,416,752字节。质量达标率超过90%不等于标签准确率超过90%。EMA本组最高81.4%，后续用冻结权重的训练集BatchNorm重估诊断统计量影响。`[verified: pretrained-result.json metrics.margins、best_ema_accuracy；opinion: 诊断安排]`
+
+![预训练回归的验证曲线、逐类召回及决策余量](pretrained-validation.png)
 
 随机初始化最终选中第9轮raw权重：验证1000图Top-1为76.0%，balanced accuracy为69.54%，阈值附近PSNR RMSE为1.7681dB。第14轮触发RMSE patience5早停，总训练流程2787.39秒。相同验证集上，比原RGB224分类66.3%高9.7个百分点，比最佳分类对照68.6%高7.4个百分点；这是输入、目标及训练配方一起改变后的结果。未达到V1的90%／0.75dB晋级判据，不能作为Unity独立验收。`[verified: scratch-result.json；scratch-monotone-ema-audit.json；opinion: 归因边界]`
 

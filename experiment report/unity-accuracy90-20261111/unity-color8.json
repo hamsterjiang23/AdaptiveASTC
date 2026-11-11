@@ -1,0 +1,457 @@
+{
+  "status": "passed",
+  "config": {
+    "capture": "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111\\references\\normalized-smoke1",
+    "capture_receipt_sha256": "722b8c87790a71dac06785c476062061fe5482bdeb88b55d24f5272eea9641dc",
+    "encoder_dll": "F:/MLBB_Test/haijiangli1_HAMSTERMLBB/Assets/Editor/Astc/Plugins/astcenc-avx2-shared.dll",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+    "quality_build_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-color8",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-color8.json",
+    "scope": "Eight diverse native Default references, all20 candidates; dimensions1 through2048, odd edges, alpha, large-image branch; CPU overlaps CUDA training; no production speedup claim",
+    "items": [
+      {
+        "index": 16,
+        "path": "Assets/RuledAssets/System_RankLevel_CN/UI/UITexture/Atlas_add/Atlas_RankLevelShow_CN_add/Line_Yellow.png",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      {
+        "index": 17,
+        "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/CommonLine.png",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      {
+        "index": 18,
+        "path": "Assets/RuledAssets/Act_HelloKitty/UI/UITexture/Atlas_add/Atlas_HaloKitty03Main_add/HK_line.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      {
+        "index": 39,
+        "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/gg02.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      {
+        "index": 50,
+        "path": "Assets/Art/Characters/5_nana/Show/skin10_high/5_nana_skin10_high_hair03_m11.tga",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      {
+        "index": 32,
+        "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900331_MC/Map1900331_M.png",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      {
+        "index": 37,
+        "path": "Assets/RuledAssets/Act_SurpriseCard_AS/Art/TAEft/Texture/BangBangcard_03_4k.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      {
+        "index": 55,
+        "path": "Assets/Art/Characters/Guinevere/Materials/skin09_high/guinevere_Skin09_body_d_CN.tga",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      }
+    ],
+    "capture_run": "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111",
+    "capture_phase": "smoke1",
+    "options_receipt": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-actual-options64.json",
+    "options_receipt_sha256": "c382e972f80ab2e0065c1aebc0f0ea41e52c38c06a724460368ea84c60443409"
+  },
+  "config_sha256": "afa2a172ea0a0b67bb2df10d49aba37cf642499784dd42fa5a66113bfe9a2913",
+  "quality_build": {
+    "status": "passed",
+    "binding": {
+      "engine_source": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+      "engine_source_sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+      "engine_first_line": 2182,
+      "engine_last_line": 2675,
+      "extracted_sha256": "6c35c61f99982f22c2971bd8ed1b8cfa840c925a6dd73eb2d82b0517ec02ec31",
+      "wrapper_sha256": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+      "cmake_sha256": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+      "arithmetic": "MSVC fp:precise; unchanged engine functions; parity checked separately"
+    },
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native",
+        "-B",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64",
+        "-DMETRICS_SOURCE=E:/ASTC_Compression/experiment report/.local/unity-accuracy90-20261111/unity-quality-native-retry1/metrics.cpp"
+      ],
+      [
+        "cmake",
+        "--build",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "--config",
+        "Release",
+        "--parallel",
+        "1"
+      ]
+    ],
+    "dll": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+    "dll_sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+    "generated_sha256": "317966c31f0b8fda57a4e5cab7946d6b3f9118cdcda24d9683c0a99cca0de94a"
+  },
+  "capture_binding": {
+    "protocol_sha256": "a9c0678ce2cc279a2b2cb929efff8ed5fdd209fed824a68a7a57bead80b7fb22",
+    "identity_sha256": "f9dc86162654b1ea4b41257060563b3ae408337bc29d129df2b268a515a15aaa",
+    "phase_config_sha256": "8f5d866e0b3db9af085eda62cea4c882a8a4c6e703512fd497047e2175d475aa",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64"
+  },
+  "metadata_binding": {
+    "status": "verified_actual_callback",
+    "receipt_sha256": "c382e972f80ab2e0065c1aebc0f0ea41e52c38c06a724460368ea84c60443409",
+    "raw_options_sha256": "09c665ffe80b705a5b39e2ca8f1b8d6d04a1e334a0217423423b40a0c7ff2bcb",
+    "audit_source_sha256": "e6f9487c3ce3f4d1e835433f9d81ebcb358308966ff1c2b048408899a03a110a"
+  },
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03"
+  },
+  "rows": [
+    {
+      "index": 16,
+      "path": "Assets/RuledAssets/System_RankLevel_CN/UI/UITexture/Atlas_add/Atlas_RankLevelShow_CN_add/Line_Yellow.png",
+      "metadata": {
+        "index": 16,
+        "path": "Assets/RuledAssets/System_RankLevel_CN/UI/UITexture/Atlas_add/Atlas_RankLevelShow_CN_add/Line_Yellow.png",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      "original_selection": {
+        "asset": "Assets/RuledAssets/System_RankLevel_CN/UI/UITexture/Atlas_add/Atlas_RankLevelShow_CN_add/Line_Yellow.png",
+        "block_size": "12x12",
+        "preset": "fastest",
+        "selection_reason": "first_valid",
+        "search_ms": 23.1181,
+        "format_ms": 25.951,
+        "select_and_encode_ms": 25.963,
+        "candidates_attempted": 1,
+        "candidates_measured": 1,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 1,
+      "new_candidates": 19,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 1,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.14607440002146177,
+        "decode_seconds": 0.13770310001200414,
+        "quality_seconds": 0.001002500004688045
+      },
+      "candidate_receipt_sha256": "7b3a6a6c1e67639ab84a3953ff84978b2a151c066647d1744bbe35b60f385b2c"
+    },
+    {
+      "index": 17,
+      "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/CommonLine.png",
+      "metadata": {
+        "index": 17,
+        "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/CommonLine.png",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      "original_selection": {
+        "asset": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/CommonLine.png",
+        "block_size": "12x12",
+        "preset": "fastest",
+        "selection_reason": "first_valid",
+        "search_ms": 23.4242,
+        "format_ms": 26.3422,
+        "select_and_encode_ms": 26.3536,
+        "candidates_attempted": 1,
+        "candidates_measured": 1,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 1,
+      "new_candidates": 19,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 1,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.14066579999780515,
+        "decode_seconds": 0.13679680000132066,
+        "quality_seconds": 0.0010864999967452604
+      },
+      "candidate_receipt_sha256": "6247e799b2045e6608300edd1e0e5d8098d2c8892a9b5a1f3198f4c4db92868d"
+    },
+    {
+      "index": 18,
+      "path": "Assets/RuledAssets/Act_HelloKitty/UI/UITexture/Atlas_add/Atlas_HaloKitty03Main_add/HK_line.png",
+      "metadata": {
+        "index": 18,
+        "path": "Assets/RuledAssets/Act_HelloKitty/UI/UITexture/Atlas_add/Atlas_HaloKitty03Main_add/HK_line.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      "original_selection": {
+        "asset": "Assets/RuledAssets/Act_HelloKitty/UI/UITexture/Atlas_add/Atlas_HaloKitty03Main_add/HK_line.png",
+        "block_size": "12x12",
+        "preset": "fastest",
+        "selection_reason": "first_valid",
+        "search_ms": 23.3859,
+        "format_ms": 26.1604,
+        "select_and_encode_ms": 45.9299,
+        "candidates_attempted": 1,
+        "candidates_measured": 1,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 1,
+      "new_candidates": 19,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 1,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.1506725000035658,
+        "decode_seconds": 0.14809569998760708,
+        "quality_seconds": 0.0010591000063868705
+      },
+      "candidate_receipt_sha256": "0f285a7097ce8f7e377dc0c7dfb960a576758fba3b636220ed86e91e8e794f02"
+    },
+    {
+      "index": 39,
+      "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/gg02.png",
+      "metadata": {
+        "index": 39,
+        "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/gg02.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      "original_selection": {
+        "asset": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/gg02.png",
+        "block_size": "6x6",
+        "preset": "fast",
+        "selection_reason": "first_valid",
+        "search_ms": 300.9529,
+        "format_ms": 303.7347,
+        "select_and_encode_ms": 303.7469,
+        "candidates_attempted": 17,
+        "candidates_measured": 17,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 17,
+      "new_candidates": 3,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 17,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.1558184000023175,
+        "decode_seconds": 0.1387455999974918,
+        "quality_seconds": 0.0013441999981296249
+      },
+      "candidate_receipt_sha256": "805d22a27a1934415a0057766494e128efa397a5c64b88f30c2b520dd42acb48"
+    },
+    {
+      "index": 50,
+      "path": "Assets/Art/Characters/5_nana/Show/skin10_high/5_nana_skin10_high_hair03_m11.tga",
+      "metadata": {
+        "index": 50,
+        "path": "Assets/Art/Characters/5_nana/Show/skin10_high/5_nana_skin10_high_hair03_m11.tga",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      "original_selection": {
+        "asset": "Assets/Art/Characters/5_nana/Show/skin10_high/5_nana_skin10_high_hair03_m11.tga",
+        "block_size": "6x6",
+        "preset": "thorough",
+        "selection_reason": "size_first_strict",
+        "search_ms": 3986.7062,
+        "format_ms": 3991.019,
+        "select_and_encode_ms": 3991.0399,
+        "candidates_attempted": 19,
+        "candidates_measured": 19,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 19,
+      "new_candidates": 1,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 19,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 2.5663338000013027,
+        "decode_seconds": 0.164094900002965,
+        "quality_seconds": 0.4049505000039062
+      },
+      "candidate_receipt_sha256": "fe29c0dfd2deb493df4cb6836a4467cef7c65d423b88d1c1db38497409a040ba"
+    },
+    {
+      "index": 32,
+      "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900331_MC/Map1900331_M.png",
+      "metadata": {
+        "index": 32,
+        "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900331_MC/Map1900331_M.png",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      "original_selection": {
+        "asset": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900331_MC/Map1900331_M.png",
+        "block_size": "12x12",
+        "preset": "exhaustive",
+        "selection_reason": "size_first_relaxed",
+        "search_ms": 2663.7283,
+        "format_ms": 2668.6126,
+        "select_and_encode_ms": 2668.6293,
+        "candidates_attempted": 6,
+        "candidates_measured": 6,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 6,
+      "new_candidates": 14,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 6,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 4.664115599996876,
+        "decode_seconds": 0.15572259998953086,
+        "quality_seconds": 0.8913570000040636
+      },
+      "candidate_receipt_sha256": "7e6fef546ae5d4e9619e76e17b84ef687ad668d5a0572d5e45d8ccd129bf954f"
+    },
+    {
+      "index": 37,
+      "path": "Assets/RuledAssets/Act_SurpriseCard_AS/Art/TAEft/Texture/BangBangcard_03_4k.png",
+      "metadata": {
+        "index": 37,
+        "path": "Assets/RuledAssets/Act_SurpriseCard_AS/Art/TAEft/Texture/BangBangcard_03_4k.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      "original_selection": {
+        "asset": "Assets/RuledAssets/Act_SurpriseCard_AS/Art/TAEft/Texture/BangBangcard_03_4k.png",
+        "block_size": "12x12",
+        "preset": "medium",
+        "selection_reason": "size_first_strict",
+        "search_ms": 4689.5938,
+        "format_ms": 4728.2741,
+        "select_and_encode_ms": 4885.1152,
+        "candidates_attempted": 3,
+        "candidates_measured": 3,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 3,
+      "new_candidates": 17,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 3,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 18.459282499999972,
+        "decode_seconds": 0.22414059999937308,
+        "quality_seconds": 6.173850700008188
+      },
+      "candidate_receipt_sha256": "1c59e68f8a0d3f6fc9baad4afa3fdd8587c601edf8b31113d3c50fec86074514"
+    },
+    {
+      "index": 55,
+      "path": "Assets/Art/Characters/Guinevere/Materials/skin09_high/guinevere_Skin09_body_d_CN.tga",
+      "metadata": {
+        "index": 55,
+        "path": "Assets/Art/Characters/Guinevere/Materials/skin09_high/guinevere_Skin09_body_d_CN.tga",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback arguments and reference RGBA hash in frozen64capture"
+      },
+      "original_selection": {
+        "asset": "Assets/Art/Characters/Guinevere/Materials/skin09_high/guinevere_Skin09_body_d_CN.tga",
+        "block_size": "12x12",
+        "preset": "thorough",
+        "selection_reason": "size_first_strict",
+        "search_ms": 1791.0888,
+        "format_ms": 1827.2744,
+        "select_and_encode_ms": 1827.2959,
+        "candidates_attempted": 4,
+        "candidates_measured": 4,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 4,
+      "new_candidates": 16,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 4,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 5.660899300000892,
+        "decode_seconds": 0.1769431000102486,
+        "quality_seconds": 1.6347994999850926
+      },
+      "candidate_receipt_sha256": "39e6ac26632da9698a839ea70a33e9e6d2408a37191d5932f8ca8ea654f5c89e"
+    }
+  ],
+  "test_opened": false,
+  "wall_seconds": 52.4264304999997,
+  "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-color8\\receipt.json",
+  "raw_receipt_sha256": "59a74cc695407a638ea12a1b178978b258f7cc03bf2cefa1e71f77503b2a0169"
+}
