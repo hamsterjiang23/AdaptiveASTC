@@ -10,6 +10,7 @@ from adaptive_astc.evaluation.inference import Predictor
 from adaptive_astc.evaluation.metrics import ClassificationMetrics
 from adaptive_astc.utils.artifacts import ArtifactStore
 from adaptive_astc.utils.checkpoints import CheckpointStore
+from adaptive_astc.utils.evaluation_seal import EvaluationSeal
 
 
 class Evaluator:
@@ -22,7 +23,6 @@ class Evaluator:
 
     def run(self) -> JsonDict:
         manifest = ArtifactStore.read_json(self.run_dir / "manifest.json")
-        seal_path = self.run_dir / "test_seal.json"
         arms = ("pretrained", "scratch")
         locked: JsonDict = {"data_fingerprint": manifest["fingerprint"], "arms": {}}
         for arm in arms:
@@ -39,9 +39,7 @@ class Evaluator:
                     self.run_dir / arm / "temperature.json"
                 ),
             }
-        if seal_path.exists() and ArtifactStore.read_json(seal_path) != locked:
-            raise ValueError("The locked models/temperatures changed after test opening")
-        ArtifactStore.write_json(seal_path, locked)
+        locked = EvaluationSeal.probabilities(self.run_dir, manifest["fingerprint"], locked["arms"])
         results: JsonDict = {"data_fingerprint": manifest["fingerprint"], "arms": {}}
         for arm in arms:
             logits_path = self.run_dir / arm / "test_logits.pt"

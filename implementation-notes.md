@@ -1,5 +1,22 @@
 # Implementation notes
 
+## TexNN expanded measurements and GDC smoke loop, 2026-11-11
+
+### Deviations
+
+- Expanded TexNN to 1,024 source patches: 186,141 / 75,758 / 48,456 nonconstant blocks. Six networks consumed 1,865.59 seconds of measured training. Independent validation8 top3×10 lost 1.07/1.63/2.36 dB at pipeline ratios 0.678/0.702/0.796. These are project reconstruction results; paper-scale performance remains unverified. `[verified: expanded data.json; validation8-patch128.json training/groups/audit]`
+- GDC smoke used 32 training, 8 validation, 8 calibration and 16 test images with ten training epochs. The real predicted encode/decode chain passed, with strict PSNR >35 on 5/16. The formal 14k collection is now running; formal 10k×30 training, 2k evaluation and common-input comparisons remain pending. `[verified: smoke pretrained-test.json; formal collection log]`
+
+### Discovered edge cases
+
+- GDC cached/assembled receipts now require all four candidates, thirteen artifacts, real ASTC dimensions/bytes, reconstructed PSNR and recomputed selection. Resume rejects a different frozen recipe, and Nah rejects unsupported full input rather than silently running 64. `[verified: dataset.py validate_receipt; script/reproduce.py; eleven label/CLI regression tests]`
+- GDC evaluation rejects stale completed-training records, binds training/model/cost hashes and preflights sources before sealing. Shared probability and compression seals retain temperature identity. Unknown prior training durations remain unknown; foreign collection and cost metadata are rejected. `[verified: evaluation.py; training.py; reporting.py; utils/evaluation_seal.py; metadata regression tests]`
+- The two-image AMP probe's first step had empty optimizer state and scale 32768, while its epoch was counted as completed. Real optimizer post-hooks now distinguish applied updates from skips; scheduler/best selection requires an update, and a run with no valid best cannot publish completion. The separate 32-image smoke applied ten updates. Historical artifacts remain unchanged. `[verified: probe last.pt; training/trainer.py; test_amp_step_accounting.py; smoke history.json]` [PyTorch 2.8 AMP](https://docs.pytorch.org/docs/2.8/notes/amp_examples.html#typical-mixed-precision-training).
+
+### Questions for review
+
+- Formal GDC labels use 6.793 billion source pixels across 14k images. Preflight measured about 41.8 GiB available RAM, 983 GiB free disk and low host load; four single-encoding-thread workers were chosen. Encoding latency, data generation cost, training cost and Unity import wall time retain separate scopes. `[verified: full manifest/resource preflight; formal command; method protocols]`
+
 ## GDC measured-label source preparation, 2026-11-11
 
 ### Deviations

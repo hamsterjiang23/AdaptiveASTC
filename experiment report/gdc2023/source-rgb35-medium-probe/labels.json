@@ -1,0 +1,285 @@
+{
+  "status": "passed_label_probe",
+  "images": 8,
+  "candidate_encodings": 32,
+  "encoder_commit": "954af82d2832aa2707d936c5aa5522c76ecd4426",
+  "encoder_sha256": "9fc8bc5b971d3b4a4587518525e978ee20f79a65a452a83595b610e8595e1a2a",
+  "protocol": {
+    "implementation": "talk_reimplementation_project_four_square",
+    "manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+    "encoder_commit": "954af82d2832aa2707d936c5aa5522c76ecd4426",
+    "encoder_sha256": "9fc8bc5b971d3b4a4587518525e978ee20f79a65a452a83595b610e8595e1a2a",
+    "footprints": [
+      "6x6",
+      "8x8",
+      "10x10",
+      "12x12"
+    ],
+    "preset": "medium",
+    "threads_per_encoder": 1,
+    "decode_threads": "astcenc CLI default",
+    "target_psnr": 35.0,
+    "comparison": ">",
+    "metric": "full-image byte-domain RGB MSE PSNR",
+    "input": "source RGB8, original dimensions, Linear LDR, no mip, no RDO",
+    "sizes": {
+      "train": 2,
+      "validation": 2,
+      "calibration": 2,
+      "test": 2
+    },
+    "fallback": "highest measured RGB PSNR, then smallest payload",
+    "equal_payload": "largest footprint area",
+    "candidate_coverage": "all four candidates",
+    "missing_original_settings": [
+      "full footprint set",
+      "encoder version/preset",
+      "original corpus"
+    ],
+    "inputs": [
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Card_FX_04.png",
+        "fileHash": "d9b24c7b6066b46514b9694d286a81b9"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Card_FX_37.jpg",
+        "fileHash": "80285840f742c94aecbdbc9054341505"
+      },
+      {
+        "split": "validation",
+        "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+        "fileHash": "30e4065ac961da24ae9354ba01cf7b34"
+      },
+      {
+        "split": "validation",
+        "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour02/bane_skin06_pbs_Colour02_m2.png",
+        "fileHash": "fc0fdcb371ca69c18cf4564a9892cbd2"
+      },
+      {
+        "split": "calibration",
+        "path": "Assets/Art/Characters/102_madierda/3.0Battle/ColorSkin/skin04_low_Colour01/madierda_skin04_pbs_Colour01_s.png",
+        "fileHash": "85a6a2d34c126a50fd31a4ae8aa5a6a3"
+      },
+      {
+        "split": "calibration",
+        "path": "Assets/Art/Characters/102_madierda/3.0Battle/skin01next/madierda_skin01_pbs_d.png",
+        "fileHash": "85599b96a43c815843921c60911d08fd"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/Colourskin/skin03_Colour02/Phoveus_skin03_pbs_Colour02_s.png",
+        "fileHash": "d50ac8995cc943c07cd630b7980eaaa0"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/skin/Phoveus_skin_pbs_m.png",
+        "fileHash": "deffe639cb7df163f9077024bc222848"
+      }
+    ]
+  },
+  "protocol_sha256": "0f1bb8a77bf31cddf461c7b788c40c4d101a63cc0ee008887a4d19635ccafa04",
+  "collection_sha256": "3fd1d4c1875e6d2c8fb784d3180261e7ca9b6b6a03da98b507ef3607470a0266",
+  "fingerprint": "d0e600971b5cf2cff624580bbc9af3f6c89a1b99e43727c53f2739e803f745e4",
+  "wall_seconds": 5.61279359999935,
+  "target_met": 7,
+  "selection": [
+    {
+      "index": 0,
+      "path": "Assets/Art/Card_FX_tex/Card_FX_04.png",
+      "fileHash": "d9b24c7b6066b46514b9694d286a81b9",
+      "split": "train",
+      "selected": {
+        "name": "6x6",
+        "footprint": [
+          6,
+          6
+        ],
+        "payload_bytes": 7744,
+        "container_bytes": 7760,
+        "rgb_psnr": 33.53175702089998,
+        "lossless": false,
+        "timings": {
+          "encode_seconds": 1.6378604999990785,
+          "decode_seconds": 0.0199875999987853,
+          "metric_seconds": 0.0027876000003743684
+        }
+      },
+      "target_met": false,
+      "fallback": "no_feasible_candidate"
+    },
+    {
+      "index": 1,
+      "path": "Assets/Art/Card_FX_tex/Card_FX_37.jpg",
+      "fileHash": "80285840f742c94aecbdbc9054341505",
+      "split": "train",
+      "selected": {
+        "name": "12x12",
+        "footprint": [
+          12,
+          12
+        ],
+        "payload_bytes": 1936,
+        "container_bytes": 1952,
+        "rgb_psnr": 40.48691553563151,
+        "lossless": false,
+        "timings": {
+          "encode_seconds": 0.02508769999985816,
+          "decode_seconds": 0.024898199999370263,
+          "metric_seconds": 0.0015828000014153076
+        }
+      },
+      "target_met": true,
+      "fallback": null
+    },
+    {
+      "index": 2,
+      "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+      "fileHash": "30e4065ac961da24ae9354ba01cf7b34",
+      "split": "validation",
+      "selected": {
+        "name": "12x12",
+        "footprint": [
+          12,
+          12
+        ],
+        "payload_bytes": 29584,
+        "container_bytes": 29600,
+        "rgb_psnr": 47.20805932720981,
+        "lossless": false,
+        "timings": {
+          "encode_seconds": 0.029352199999266304,
+          "decode_seconds": 0.04648639999868465,
+          "metric_seconds": 0.00985219999893161
+        }
+      },
+      "target_met": true,
+      "fallback": null
+    },
+    {
+      "index": 3,
+      "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour02/bane_skin06_pbs_Colour02_m2.png",
+      "fileHash": "fc0fdcb371ca69c18cf4564a9892cbd2",
+      "split": "validation",
+      "selected": {
+        "name": "12x12",
+        "footprint": [
+          12,
+          12
+        ],
+        "payload_bytes": 29584,
+        "container_bytes": 29600,
+        "rgb_psnr": 48.03357488013589,
+        "lossless": false,
+        "timings": {
+          "encode_seconds": 0.028393399999913527,
+          "decode_seconds": 0.03498799999943003,
+          "metric_seconds": 0.009364399998958106
+        }
+      },
+      "target_met": true,
+      "fallback": null
+    },
+    {
+      "index": 4,
+      "path": "Assets/Art/Characters/102_madierda/3.0Battle/ColorSkin/skin04_low_Colour01/madierda_skin04_pbs_Colour01_s.png",
+      "fileHash": "85a6a2d34c126a50fd31a4ae8aa5a6a3",
+      "split": "calibration",
+      "selected": {
+        "name": "8x8",
+        "footprint": [
+          8,
+          8
+        ],
+        "payload_bytes": 65536,
+        "container_bytes": 65552,
+        "rgb_psnr": 36.87656398912027,
+        "lossless": false,
+        "timings": {
+          "encode_seconds": 0.3461005000008299,
+          "decode_seconds": 0.05834169999980077,
+          "metric_seconds": 0.01551370000015595
+        }
+      },
+      "target_met": true,
+      "fallback": null
+    },
+    {
+      "index": 5,
+      "path": "Assets/Art/Characters/102_madierda/3.0Battle/skin01next/madierda_skin01_pbs_d.png",
+      "fileHash": "85599b96a43c815843921c60911d08fd",
+      "split": "calibration",
+      "selected": {
+        "name": "8x8",
+        "footprint": [
+          8,
+          8
+        ],
+        "payload_bytes": 65536,
+        "container_bytes": 65552,
+        "rgb_psnr": 35.84111346449469,
+        "lossless": false,
+        "timings": {
+          "encode_seconds": 0.3517139999985375,
+          "decode_seconds": 0.06274759999905655,
+          "metric_seconds": 0.020278900001358124
+        }
+      },
+      "target_met": true,
+      "fallback": null
+    },
+    {
+      "index": 6,
+      "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/Colourskin/skin03_Colour02/Phoveus_skin03_pbs_Colour02_s.png",
+      "fileHash": "d50ac8995cc943c07cd630b7980eaaa0",
+      "split": "test",
+      "selected": {
+        "name": "8x8",
+        "footprint": [
+          8,
+          8
+        ],
+        "payload_bytes": 65536,
+        "container_bytes": 65552,
+        "rgb_psnr": 36.072427077116835,
+        "lossless": false,
+        "timings": {
+          "encode_seconds": 0.39315849999911734,
+          "decode_seconds": 0.05365619999975024,
+          "metric_seconds": 0.015763900000820286
+        }
+      },
+      "target_met": true,
+      "fallback": null
+    },
+    {
+      "index": 7,
+      "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/skin/Phoveus_skin_pbs_m.png",
+      "fileHash": "deffe639cb7df163f9077024bc222848",
+      "split": "test",
+      "selected": {
+        "name": "8x8",
+        "footprint": [
+          8,
+          8
+        ],
+        "payload_bytes": 65536,
+        "container_bytes": 65552,
+        "rgb_psnr": 35.651432064944984,
+        "lossless": false,
+        "timings": {
+          "encode_seconds": 0.36013719999937166,
+          "decode_seconds": 0.046888099999705446,
+          "metric_seconds": 0.01567090000025928
+        }
+      },
+      "target_met": true,
+      "fallback": null
+    }
+  ],
+  "cache_replay": "passed, original collection and receipt SHA-256 unchanged",
+  "model_training": "one-epoch legacy AMP probe: optimizer state empty, scale reduced to 32768; not used as a trained-model result",
+  "model_final_encoding": "not_run; complete chain uses source-rgb35-medium-smoke",
+  "timing_context": "native dependency probe overlapped TexNN GPU training; no comparative performance claim"
+}

@@ -1,0 +1,1099 @@
+{
+  "status": "passed",
+  "scope": "source RGB project four-square talk reconstruction",
+  "smoke": true,
+  "initialization": "pretrained",
+  "split": "test",
+  "images": 16,
+  "data_fingerprint": "afdc81b433f9b08537746e03a22e844ed2c049f95fc041ae6fe022bc115ceae9",
+  "binding": {
+    "data_fingerprint": "afdc81b433f9b08537746e03a22e844ed2c049f95fc041ae6fe022bc115ceae9",
+    "checkpoint_sha256": "23b06fdae6445c960aaac345b3e008eb1a605ba40a26ceb1d35fc4a133acc665",
+    "initialization": "pretrained",
+    "split": "test",
+    "training_files_sha256": {
+      "training_complete.json": "7c74aef503c1876f00c3611f775acd9e284043e0559508076697e5459ad9f476",
+      "config.json": "a151cf9d68f11e09b83c9528897c259b4f4c138c4c4b3413138e910ed0a04c07",
+      "history.json": "3c50745c146f573e8efd14c057802c74c27ade254ce0245ce651a27a87cdfc62",
+      "last.pt": "0f06d69ae535137af96db413404ff047054d54b1a6499b7c55db581e715a503f",
+      "wall-clock.json": "b774fceb988ff1620f66779f73129ede66ecade844009170885a7850e53f811c"
+    }
+  },
+  "protocol": {
+    "implementation": "talk_reimplementation_project_four_square",
+    "manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+    "encoder_commit": "954af82d2832aa2707d936c5aa5522c76ecd4426",
+    "encoder_sha256": "9fc8bc5b971d3b4a4587518525e978ee20f79a65a452a83595b610e8595e1a2a",
+    "footprints": [
+      "6x6",
+      "8x8",
+      "10x10",
+      "12x12"
+    ],
+    "preset": "medium",
+    "threads_per_encoder": 1,
+    "decode_threads": "astcenc CLI default",
+    "target_psnr": 35.0,
+    "comparison": ">",
+    "metric": "full-image byte-domain RGB MSE PSNR",
+    "input": "source RGB8, original dimensions, Linear LDR, no mip, no RDO",
+    "sizes": {
+      "train": 32,
+      "validation": 8,
+      "calibration": 8,
+      "test": 16
+    },
+    "fallback": "highest measured RGB PSNR, then smallest payload",
+    "equal_payload": "largest footprint area",
+    "candidate_coverage": "all four candidates",
+    "missing_original_settings": [
+      "full footprint set",
+      "encoder version/preset",
+      "original corpus"
+    ],
+    "inputs": [
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Card_FX_04.png",
+        "fileHash": "d9b24c7b6066b46514b9694d286a81b9"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Card_FX_37.jpg",
+        "fileHash": "80285840f742c94aecbdbc9054341505"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Card_FX_41.jpg",
+        "fileHash": "6fc591e96046ff6cdc84e150d155e74b"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero0104010_mask.jpg",
+        "fileHash": "6b6a89b64a9a3ec238ac9dacd698e6ee"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero013_wdb_mask1.png",
+        "fileHash": "7ace13f986a4d3caae224945cfafdd37"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero025_MASK.jpg",
+        "fileHash": "dfbbecf3a072f6e2635410d6c5102b2f"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero074Mask1.png",
+        "fileHash": "88b2157dbf4951f8c00152f3bf166733"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero100113_mask2_00.png",
+        "fileHash": "bacbfb6c77d44a7c2fefc4eb002808b3"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero100113mask.png",
+        "fileHash": "5eab8e1a878b97639de2df9527f3f8f6"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero100510.png",
+        "fileHash": "8e9ca44f740713eeb058b19c6e6e0256"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero100710_Mask.jpg",
+        "fileHash": "7f876f45303475d6074800f1972c0dda"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero101811_Mask.png",
+        "fileHash": "d2d145318663da2dafd481dbd655ede5"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero102510_Mask.png",
+        "fileHash": "b1639de403c359b45b44ef7ef4696803"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero102610_mask.jpg",
+        "fileHash": "e052fc736c70e91fca38e65ffd6be453"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero102611_Mask.jpg",
+        "fileHash": "f60dcc6bc8b45ed052d9a88db51e435e"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero105610_Mask.png",
+        "fileHash": "a7113a4f81b090532d341fbebda33063"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero105810_Mask_02.png",
+        "fileHash": "3babfe7938eeabb0d0c3c920817bf470"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero106710_mask01.png",
+        "fileHash": "b562741eb996420cd395d51386ddf3af"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero1095_Mask_1.png",
+        "fileHash": "baf8bb9d5808fca12f71e30c02a3127e"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero1106_Mask1.png",
+        "fileHash": "64dbfb6325d4993817480d7688f8052a"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero1106_Mask2.png",
+        "fileHash": "7108c908a5f5652359ba7d84f9958931"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero1166_Mask.png",
+        "fileHash": "215208d6cecbd7bc5c29703e8e4d1c5e"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero126_Mask.jpg",
+        "fileHash": "f7c5d5ba7add712dc2bd34c2d1a7efc7"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero1283_add.png",
+        "fileHash": "6e1dfa2d8f3add9a25be4050220f5643"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero2065_add_Mask01.png",
+        "fileHash": "b0b30d1015b1df044cb0a3bbd23c508d"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero234_mask.png",
+        "fileHash": "bde8c6c1a71eeaa8ebd44c417899da38"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero297_mask.jpg",
+        "fileHash": "bd4e4b0de8d8cbfacfc6ce36d29218d0"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero337_Mask.jpg",
+        "fileHash": "d29586b01b902599a895dea120cd3fe0"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero339_Mask.png",
+        "fileHash": "533a4eb085cae43ae0e23d48c5da01ea"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero367_Mask_1.jpg",
+        "fileHash": "b7a51a3eaee823c13f88f5429006fdd6"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero368_add_,Mask01.png",
+        "fileHash": "1ddfe7c10c3c58dfd42d93785228a7bf"
+      },
+      {
+        "split": "train",
+        "path": "Assets/Art/Card_FX_tex/Hero427_Mask.jpg",
+        "fileHash": "62171fe57a5ca351df0de0c5a43b4ae6"
+      },
+      {
+        "split": "validation",
+        "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+        "fileHash": "30e4065ac961da24ae9354ba01cf7b34"
+      },
+      {
+        "split": "validation",
+        "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour02/bane_skin06_pbs_Colour02_m2.png",
+        "fileHash": "fc0fdcb371ca69c18cf4564a9892cbd2"
+      },
+      {
+        "split": "validation",
+        "path": "Assets/Art/Characters/11_bane/3.0Battle/skin02next/bane_skin02_pbs_s.png",
+        "fileHash": "d05f50d0e74432885815c896b532c876"
+      },
+      {
+        "split": "validation",
+        "path": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour01/Bane_skin06_high_hair_Colour01_g.tga",
+        "fileHash": "1f383a7363b1594a4a35d00d74fcf333"
+      },
+      {
+        "split": "validation",
+        "path": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_body_Colour02_g.tga",
+        "fileHash": "a40a01d93ef4e85a5dcbac5deb639aa9"
+      },
+      {
+        "split": "validation",
+        "path": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_gem_Colour02_em.tga",
+        "fileHash": "c7430d6e8328217fc44d5436c1273151"
+      },
+      {
+        "split": "validation",
+        "path": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_g.tga",
+        "fileHash": "087ced6d071e73189d55d4f4a762885a"
+      },
+      {
+        "split": "validation",
+        "path": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_n5x5.tga",
+        "fileHash": "d0892a7fe181a43c0614fb1334d1c911"
+      },
+      {
+        "split": "calibration",
+        "path": "Assets/Art/Characters/102_madierda/3.0Battle/ColorSkin/skin04_low_Colour01/madierda_skin04_pbs_Colour01_s.png",
+        "fileHash": "85a6a2d34c126a50fd31a4ae8aa5a6a3"
+      },
+      {
+        "split": "calibration",
+        "path": "Assets/Art/Characters/102_madierda/3.0Battle/skin01next/madierda_skin01_pbs_d.png",
+        "fileHash": "85599b96a43c815843921c60911d08fd"
+      },
+      {
+        "split": "calibration",
+        "path": "Assets/Art/Characters/102_madierda/3.0Battle/skin02next/madierda_skin02_pbs_s.png",
+        "fileHash": "6e2e525aeb8b3015c7e3f165761488ad"
+      },
+      {
+        "split": "calibration",
+        "path": "Assets/Art/Characters/102_madierda/3.0Battle/skin05/madierda_skin05_pbs_d.png",
+        "fileHash": "063e29a988c0e62b88f67f57852c4ab4"
+      },
+      {
+        "split": "calibration",
+        "path": "Assets/Art/Characters/102_madierda/3.0Battle/skinnext/madierda_skin_pbs_m.png",
+        "fileHash": "b8a356605477a823c408da1cc9d717e8"
+      },
+      {
+        "split": "calibration",
+        "path": "Assets/Art/Characters/102_madierda/Show/ColorSkin/skin04_high_Colour01/102_madierda_skin04_high_hair_Colour01_hair_Colour01map.tga",
+        "fileHash": "03d93b44483be6ccac9c33d83ba46a79"
+      },
+      {
+        "split": "calibration",
+        "path": "Assets/Art/Characters/102_madierda/Show/ColorSkin/skin04_high_Colour01/102_madierda_skin04_high_weapon_Colour01_m.tga",
+        "fileHash": "484eedec686a266efba6a24a7fc1acba"
+      },
+      {
+        "split": "calibration",
+        "path": "Assets/Art/Characters/102_madierda/Show/skin04_high/102_madierda_skin04_high_body_leishe.tga",
+        "fileHash": "97e6bca61b83d191995b49e95b1c5997"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/Colourskin/skin03_Colour02/Phoveus_skin03_pbs_Colour02_s.png",
+        "fileHash": "d50ac8995cc943c07cd630b7980eaaa0"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/skin/Phoveus_skin_pbs_m.png",
+        "fileHash": "deffe639cb7df163f9077024bc222848"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/skin03/Phoveus_skin03_pbs_m.png",
+        "fileHash": "6ddd019489a77e0d7eb68068624df2fb"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/skin03/Phoveus_skin03_pbs_m2.png",
+        "fileHash": "b8cd672f564cff04da143ac7c174385d"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/ColourSkin/skin03_high_Colour01/Phoveus_skin03_high_body02_Colour01_em.tga",
+        "fileHash": "846f225fe6343264082782de2ba8ddfc"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/ColourSkin/skin03_high_Colour01/Phoveus_skin03_high_body02_Colour01_m.tga",
+        "fileHash": "ce24ff9a73aa98257a8415588c097fa1"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/ColourSkin/skin03_high_Colour01/Phoveus_skin03_high_body02_Colour01_n5x5.tga",
+        "fileHash": "98d9257cc15efb89a2f2a8da9049698d"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/ColourSkin/skin03_high_Colour01/Phoveus_skin03_high_hair_Colour01_hairmap.tga",
+        "fileHash": "5f8d490ffbc74c14a7f26fe21cb88e64"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/ColourSkin/skin03_high_Colour02/Phoveus_skin03_high_gem_Colour02_em.tga",
+        "fileHash": "62b445e5fa0df75eb4999fea66244ee1"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/skin01_high/06_Phoveus_skin01_body_high_d.tga",
+        "fileHash": "d800954ba60bd3333f669eeb7d18d922"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/skin03_high/Phoveus_skin03_high_body02_e.tga",
+        "fileHash": "807c0bf9d742197899eadeae80ced2c9"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/skin03_high/Phoveus_skin03_high_body_m.tga",
+        "fileHash": "0cab2ff91d4edf9689ebd7a24a9272c0"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/skin03_high/Phoveus_skin03_high_gem_m.tga",
+        "fileHash": "b827a1fbd8313d89b8616bd593ca0971"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/skin03_high/Phoveus_skin03_high_hair_d.tga",
+        "fileHash": "a875c911a79e24c016cabfbbaa3b20b8"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/skin03_high/Phoveus_skin03_high_hair_m.tga",
+        "fileHash": "d338d4726428361c820dc04776f176ac"
+      },
+      {
+        "split": "test",
+        "path": "Assets/Art/Characters/106_Phoveus/Show/skin04_high/106_Phoveus_skin04_high_body02_d.tga",
+        "fileHash": "df1608519401546c7fb31aecd625ba63"
+      }
+    ]
+  },
+  "evaluation_receipt_sha256": "344c5f8d4d7e8b360b172cf48fb313a01a8da545246d3df6b57d7904136b1bce",
+  "quality": {
+    "target_psnr": 35.0,
+    "comparison": ">",
+    "model_target_met": 5,
+    "model_violation_rate": 0.6875,
+    "fixed8_target_met": 15,
+    "label_target_met": 16,
+    "model_finite_mean_psnr": 35.37545255488882,
+    "model_finite_std_psnr": 4.242753850241515,
+    "fixed8_finite_mean_psnr": 40.66091635326274,
+    "model_lossless": 0,
+    "fixed8_lossless": 0,
+    "classification_accuracy": 0.3125
+  },
+  "payload": {
+    "model_bytes": 1538368,
+    "fixed8_bytes": 3407872,
+    "label_best_bytes": 2518128,
+    "model_to_fixed8_ratio": 0.451416015625
+  },
+  "costs": {
+    "label_collection_wall_seconds": 49.89653229999931,
+    "label_collection_workers": 2,
+    "training": {
+      "status": "passed",
+      "config": {
+        "run_dir": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-smoke",
+        "report_dir": "E:\\ASTC_Compression\\experiment report\\gdc2023\\source-rgb35-medium-smoke",
+        "initialization": "pretrained",
+        "epochs": 10,
+        "micro_batch": 16,
+        "workers": 0,
+        "resume": false,
+        "max_steps": 0,
+        "learning_rate": 0.01,
+        "momentum": 0.9,
+        "weight_decay": 0.0001,
+        "effective_batch": 64,
+        "scheduler_t_max": 30,
+        "seed": 20261109
+      },
+      "data_fingerprint": "afdc81b433f9b08537746e03a22e844ed2c049f95fc041ae6fe022bc115ceae9",
+      "gate_seconds": 0.13411769999947865,
+      "started_unix": 1794374966.084244,
+      "wall_seconds": 2.5939699999998993,
+      "initialization": "pretrained",
+      "start_checkpoint_sha256": null,
+      "unaccounted_prior_training": false,
+      "completed_epochs": 10,
+      "best_epoch": 10,
+      "checkpoint_last_sha256": "0f06d69ae535137af96db413404ff047054d54b1a6499b7c55db581e715a503f",
+      "model_sha256": "23b06fdae6445c960aaac345b3e008eb1a605ba40a26ceb1d35fc4a133acc665",
+      "training_complete_sha256": "7c74aef503c1876f00c3611f775acd9e284043e0559508076697e5459ad9f476",
+      "all_attempts_known_wall_seconds": 2.5939699999998993,
+      "unknown_duration_attempts": 0,
+      "all_attempts_wall_seconds": 2.5939699999998993,
+      "prior_partial_attempts": 0,
+      "source_sha256": "b774fceb988ff1620f66779f73129ede66ecade844009170885a7850e53f811c"
+    },
+    "evaluation_setup_seconds": 3.6056719000007433,
+    "evaluation_wall_seconds": 22.329909099998986,
+    "source_rgb_seconds": 0.8989465000013297,
+    "classifier_preprocessing_seconds": 0.0525603999994928,
+    "inference_seconds": 0.16778410000733857,
+    "final_encode_seconds": 7.424236600003496,
+    "model_pipeline_seconds": 8.543527600011657,
+    "fixed8_pipeline_seconds": 9.792475800002649,
+    "model_to_fixed8_time_ratio": 0.8724583827931794,
+    "verification_seconds": 4.546434300000328
+  },
+  "per_image": [
+    {
+      "status": "passed",
+      "index": 0,
+      "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/Colourskin/skin03_Colour02/Phoveus_skin03_pbs_Colour02_s.png",
+      "fileHash": "d50ac8995cc943c07cd630b7980eaaa0",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.9519246816635132,
+      "label_class": 1,
+      "label_target_met": true,
+      "label_payload_bytes": 65536,
+      "rgb_psnr": 31.70994843502493,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 36.072427077116835,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 29584,
+      "fixed8_payload_bytes": 65536,
+      "timings": {
+        "source_rgb_seconds": 0.05054509999899892,
+        "classifier_preprocessing_seconds": 0.011478699998406228,
+        "inference_seconds": 0.0033992000007856404,
+        "final_encode_seconds": 0.27822029999879305,
+        "model_pipeline_seconds": 0.34364329999698384,
+        "fixed8_encode_seconds": 0.36475550000068324,
+        "fixed8_pipeline_seconds": 0.41530059999968216,
+        "verification_seconds": 0.1526211999989755
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "3f5a204e18d6d85f56c0ccb425415e173b0b34f981c4b37fa2f1bc53caf8f0e8",
+        "fixed8.png": "e0a0c6b67cfee96a7be3a542a5e0f02d78cc398b9d1d904c019f0d56b47875f5",
+        "fixed8.txt": "2b4c097df2317b1d4d9ccfd512d41511f91449f648d5bd24995d63407ad79f44",
+        "input.png": "e834a4d9e43ad469034c7fa0a7f5e3980918cffe50e6f079c8731d30f944dc8b",
+        "selected.astc": "11daf28d9f1e506f0ba88716895cafcb410321f112a7093744be9aa1393e51a2",
+        "selected.png": "34d077c7c124a6e7378633b7e97f646bf14a8c5eb099a12257a112aa933c39ec",
+        "selected.txt": "ce3d3c7a2560c88024f9a11bf109d114094894ee5318a3e692ede44624ecca32"
+      },
+      "receipt_sha256": "a923a08e322781478092bc280822419b95ec71317a842b8c0512c5c616ce4379"
+    },
+    {
+      "status": "passed",
+      "index": 1,
+      "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/skin/Phoveus_skin_pbs_m.png",
+      "fileHash": "deffe639cb7df163f9077024bc222848",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.9568347930908203,
+      "label_class": 1,
+      "label_target_met": true,
+      "label_payload_bytes": 65536,
+      "rgb_psnr": 31.21045015576973,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 35.651432064944984,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 29584,
+      "fixed8_payload_bytes": 65536,
+      "timings": {
+        "source_rgb_seconds": 0.027143699999214732,
+        "classifier_preprocessing_seconds": 0.0014829000010649906,
+        "inference_seconds": 0.001903800000945921,
+        "final_encode_seconds": 0.2809130000005098,
+        "model_pipeline_seconds": 0.3114434000017354,
+        "fixed8_encode_seconds": 0.33075859999917157,
+        "fixed8_pipeline_seconds": 0.3579022999983863,
+        "verification_seconds": 0.1283676999992167
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "f904ebac8e953d02106a993e55726dab86aa69f512602587bb624b1084361bb6",
+        "fixed8.png": "3a76244dc238c581b739c204a5cc8d5e165a538ccb62999b5d56e7797b8e3836",
+        "fixed8.txt": "caa6353ecb345fb6d37bc8d7c257638cb54521826b6d988eb5657230a0888dee",
+        "input.png": "6102ab653bc8a282bd71c6f1fa51c5fa485b67ce0e96e6828baf5584fe246074",
+        "selected.astc": "397f10d96e6f2ec8dcae33c6b968b72ae720b6e4a0c1f8351f3ef582b933c43c",
+        "selected.png": "07e277100384888e57ab4f63777887bcc77e1cf2b2367e264cab322ae2e944b7",
+        "selected.txt": "265366d17e980b810eaba29a69d96c981cc962fa966115f0479ad016ccb45a2c"
+      },
+      "receipt_sha256": "2bfe679ed71c8a1cbed7e46c7e85df79517cbf50f00a86515e19970b36b62864"
+    },
+    {
+      "status": "passed",
+      "index": 2,
+      "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/skin03/Phoveus_skin03_pbs_m.png",
+      "fileHash": "6ddd019489a77e0d7eb68068624df2fb",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.9343720078468323,
+      "label_class": 2,
+      "label_target_met": true,
+      "label_payload_bytes": 43264,
+      "rgb_psnr": 33.916239682841194,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 38.777791002658006,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 29584,
+      "fixed8_payload_bytes": 65536,
+      "timings": {
+        "source_rgb_seconds": 0.019306800000777002,
+        "classifier_preprocessing_seconds": 0.0012645999995584134,
+        "inference_seconds": 0.002045900000666734,
+        "final_encode_seconds": 0.15589300000101503,
+        "model_pipeline_seconds": 0.17851030000201717,
+        "fixed8_encode_seconds": 0.20275179999953252,
+        "fixed8_pipeline_seconds": 0.22205860000030953,
+        "verification_seconds": 0.11589679999997315
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "4ee55a3e04b099f76267c52564124783061dab9f7f302737df726d3e944f9ae6",
+        "fixed8.png": "b7c4678daecf4c61a360d07819f205206131969f26a437dadb8597910f114b82",
+        "fixed8.txt": "47e63e93cc87cd5b6cbc212f37c1c26e9b8bec30b6705364c51ad66ceb14fc7f",
+        "input.png": "a99ddd2ce24cb3be062154e06ce9ecd54edaf1e2ccb4bf3748738373f0dd1a2b",
+        "selected.astc": "a71dd20f5e9eb5a4c64cfd4c905614877baef72edf67353fd2d51a8deb4ab6aa",
+        "selected.png": "7a1e926872c655b6d495d31191dddb9f88e5fb33dc5b41bc46c79a7248486b4f",
+        "selected.txt": "e25b612933f2debb25528766e2536b553d8ace2e1414c65defcb1f8d789a48a9"
+      },
+      "receipt_sha256": "95dc7d5ff108bc867248bbdb0d40565b9ca7e7306bf25bb310fffeb2be9640aa"
+    },
+    {
+      "status": "passed",
+      "index": 3,
+      "path": "Assets/Art/Characters/106_Phoveus/3.0Battle/skin03/Phoveus_skin03_pbs_m2.png",
+      "fileHash": "b8cd672f564cff04da143ac7c174385d",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.9993354678153992,
+      "label_class": 3,
+      "label_target_met": true,
+      "label_payload_bytes": 29584,
+      "rgb_psnr": 45.78348902004247,
+      "lossless": false,
+      "target_met": true,
+      "fixed8_rgb_psnr": 52.191655180537644,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 29584,
+      "fixed8_payload_bytes": 65536,
+      "timings": {
+        "source_rgb_seconds": 0.005243499999778578,
+        "classifier_preprocessing_seconds": 0.002034099999946193,
+        "inference_seconds": 0.002653699999427772,
+        "final_encode_seconds": 0.03300130000025092,
+        "model_pipeline_seconds": 0.042932599999403465,
+        "fixed8_encode_seconds": 0.028386199999658857,
+        "fixed8_pipeline_seconds": 0.033629699999437435,
+        "verification_seconds": 0.08534719999988738
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "2306dd2f5dcb73cf2ab3266e560d09e9064ffbeea18f42be9d5f222f08a101b7",
+        "fixed8.png": "f716c11fb5b3c4bbf2b5cc1990106930d05159e866ee5bb0253e00c9535735a0",
+        "fixed8.txt": "c73efdea989d8f28f775d7ec810426590ffbf773eed55212d893656514ed4966",
+        "input.png": "a337cf4c3e8ee20eceb23f16036cc236f2060e92aeb28241a09dc9f221f6b6cf",
+        "selected.astc": "80d7bc88f209d5cac7188a34799d2e0aee74bcf9af97a548eba7720e8fd2326b",
+        "selected.png": "f331ed6055bd2f6728367ea1ba97e96f415eae7bb7bab8f48db19013ff62c5ff",
+        "selected.txt": "6458acbb3072318a26fd51505491cbcf41cabb791b9a2be4c797f1b17b4b6096"
+      },
+      "receipt_sha256": "c0c995940c83cefa31f14a17cefa139f9bc5e336f5993fdb0e677b47664725ee"
+    },
+    {
+      "status": "passed",
+      "index": 4,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/ColourSkin/skin03_high_Colour01/Phoveus_skin03_high_body02_Colour01_em.tga",
+      "fileHash": "846f225fe6343264082782de2ba8ddfc",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.9655810594558716,
+      "label_class": 3,
+      "label_target_met": true,
+      "label_payload_bytes": 118336,
+      "rgb_psnr": 41.95222234270675,
+      "lossless": false,
+      "target_met": true,
+      "fixed8_rgb_psnr": 48.27327205944059,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.025541200000589015,
+        "classifier_preprocessing_seconds": 0.0027484999991429504,
+        "inference_seconds": 0.001970300001630676,
+        "final_encode_seconds": 0.11763980000068841,
+        "model_pipeline_seconds": 0.14789980000205105,
+        "fixed8_encode_seconds": 0.11342770000010205,
+        "fixed8_pipeline_seconds": 0.13896890000069106,
+        "verification_seconds": 0.22684839999965334
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "52c74f1a31008bdd4ca3fd47f62204b2559b0fcbc95abd3845204c8d4bfb70c0",
+        "fixed8.png": "056b7c2964e2b063591ddf8be0c2e33fdcfbb10b496e1181385cb13cc832d916",
+        "fixed8.txt": "ac6c974ebaaf98fe54dac9a77aa39e29e5d39d17b94efeb9b173054916c8fb13",
+        "input.png": "34766e3824c88a0fb35e3d9a113342c6a546c213be1328ad98fff0fd7ab045d5",
+        "selected.astc": "9f5188037120f4d8085e41a43f9d2a47e8badc3565e43dacb8e7b75438510b1a",
+        "selected.png": "744832587a205309ab45189d69aa901f7538a80a5234b48edcff844384bca457",
+        "selected.txt": "966041d681ae706f1b18852a3aa34e82e6124a2841de9e118623f6f1b970a7aa"
+      },
+      "receipt_sha256": "15498517330efbbd6c008aee74cf89a186035885a0ab5c869d127dff5d8ba345"
+    },
+    {
+      "status": "passed",
+      "index": 5,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/ColourSkin/skin03_high_Colour01/Phoveus_skin03_high_body02_Colour01_m.tga",
+      "fileHash": "ce24ff9a73aa98257a8415588c097fa1",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.9840129613876343,
+      "label_class": 2,
+      "label_target_met": true,
+      "label_payload_bytes": 169744,
+      "rgb_psnr": 34.228550264773965,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 39.31535054041453,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.09175750000031258,
+        "classifier_preprocessing_seconds": 0.0030491999987134477,
+        "inference_seconds": 0.004909600000246428,
+        "final_encode_seconds": 0.5090847999999824,
+        "model_pipeline_seconds": 0.6088010999992548,
+        "fixed8_encode_seconds": 0.6009861000002275,
+        "fixed8_pipeline_seconds": 0.69274360000054,
+        "verification_seconds": 0.35103760000129114
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "e61c7b6eb8800cb42906f0545ba058434adb41cb28b7320d4275351f3233ce9c",
+        "fixed8.png": "951a4e005c268df239ebf2ae8ac07311a1ff5dc20d49e4975b4d55be17a46e62",
+        "fixed8.txt": "c5ae17b3b16989d6f6873be11757d68fb62128bc715bea5c8b670daff0a46c22",
+        "input.png": "f25d9e77320dcd246207e48d1c5c5b001b09217244602056dc436d8edd7dbb01",
+        "selected.astc": "c91d986e14c07ca1bc9dfed022d8a5bdcdf4f2049706b6f7949e76f87331e27b",
+        "selected.png": "0b83e612d338c6dcf31ec29fa149980416a615a52a031eb950aba45bdc642e49",
+        "selected.txt": "4da711afd580ac9922f2690cc5635c4fa82f1846781342852e6b7faee7fb1d36"
+      },
+      "receipt_sha256": "6f7e25b179ea3b08d79d25afe7dbcd8a25dea496650aca811af57ed550fbaa22"
+    },
+    {
+      "status": "passed",
+      "index": 6,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/ColourSkin/skin03_high_Colour01/Phoveus_skin03_high_body02_Colour01_n5x5.tga",
+      "fileHash": "98d9257cc15efb89a2f2a8da9049698d",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.7609502077102661,
+      "label_class": 0,
+      "label_target_met": true,
+      "label_payload_bytes": 467856,
+      "rgb_psnr": 29.75572014781864,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 33.27632745567361,
+      "fixed8_lossless": false,
+      "fixed8_target_met": false,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.09206850000009581,
+        "classifier_preprocessing_seconds": 0.003134800001134863,
+        "inference_seconds": 0.011215000000447617,
+        "final_encode_seconds": 1.5952736999988701,
+        "model_pipeline_seconds": 1.7016920000005484,
+        "fixed8_encode_seconds": 2.1463977999992494,
+        "fixed8_pipeline_seconds": 2.238466299999345,
+        "verification_seconds": 0.4075136999999813
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "719946f291d9ac8f45bc75d6e2e4b280413889d04d9d367f424efa4b8b8f802b",
+        "fixed8.png": "62e301ba0996e4c512862b0a4149e8a91b5ce15d1b960f38151b821e3761dffa",
+        "fixed8.txt": "121c9467941b55ae66c33ba29037a5ae31b4ed5bbe3431a8560622a6754a5c7e",
+        "input.png": "28033818752279b94f8356315c7729b3262ea78d1fef0c14c69a485dfad9ab39",
+        "selected.astc": "ad45f19aac96968a6308e1aeb7e2201ad206fed3f479e9efc5f5f3a586b6551e",
+        "selected.png": "0f4edbc34b898c99a679801423cabb223cc260537de25ca8c25aea5baa691b67",
+        "selected.txt": "996fa582c7291a0b92864314391de52c1251e1f815c4d2d17fecfd7ebc5d0a81"
+      },
+      "receipt_sha256": "94a1ceb675b94c523ec6abc4f4ef2de6a29ed879a14e15105fb7093d4164fa40"
+    },
+    {
+      "status": "passed",
+      "index": 7,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/ColourSkin/skin03_high_Colour01/Phoveus_skin03_high_hair_Colour01_hairmap.tga",
+      "fileHash": "5f8d490ffbc74c14a7f26fe21cb88e64",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.9289542436599731,
+      "label_class": 3,
+      "label_target_met": true,
+      "label_payload_bytes": 118336,
+      "rgb_psnr": 41.46443646004496,
+      "lossless": false,
+      "target_met": true,
+      "fixed8_rgb_psnr": 47.579800593927466,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.036803700000746176,
+        "classifier_preprocessing_seconds": 0.0034096999988832977,
+        "inference_seconds": 0.01837150000028487,
+        "final_encode_seconds": 0.24765210000077786,
+        "model_pipeline_seconds": 0.3062370000006922,
+        "fixed8_encode_seconds": 0.24438180000106513,
+        "fixed8_pipeline_seconds": 0.2811855000018113,
+        "verification_seconds": 0.30565310000019963
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "4735b9c7d44230a7c78c5eb502c70067a081078b2f9b971d9fcf85d245ea3b51",
+        "fixed8.png": "3806b09f705908cf0886a195726de6d43c495527746cd012abd0727eafb91bef",
+        "fixed8.txt": "cadcb4096dfaed980c2b14de6f2c8f530b3d357d329ab334de36b5ae05dcacaf",
+        "input.png": "37131b8289fed73aa7be3c02ebcab8040d1cdd806163cf6238239a26621e79b3",
+        "selected.astc": "79366969162df31648b4d992f61f52aac1bbf306134f2a41fbde671ab5e0a0c5",
+        "selected.png": "d7dc83f5dfaf8234b878f29903bd4b1c4c5c41b4a2460f13ee4adc631bcdf187",
+        "selected.txt": "bbf3456a61a8fced3199484107e47927c40e4fe3fb1e44f20bfabe0ce7c5d480"
+      },
+      "receipt_sha256": "f0b2a0d0537ae12fcde965631c79cdb99f1ecdbcaeb90b12cafeebecd815b7a0"
+    },
+    {
+      "status": "passed",
+      "index": 8,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/ColourSkin/skin03_high_Colour02/Phoveus_skin03_high_gem_Colour02_em.tga",
+      "fileHash": "62b445e5fa0df75eb4999fea66244ee1",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.8583085536956787,
+      "label_class": 2,
+      "label_target_met": true,
+      "label_payload_bytes": 169744,
+      "rgb_psnr": 34.58466999443088,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 40.7054802598052,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.06259309999950347,
+        "classifier_preprocessing_seconds": 0.0031219000011333264,
+        "inference_seconds": 0.017499300000054063,
+        "final_encode_seconds": 0.5702053000004526,
+        "model_pipeline_seconds": 0.6534196000011434,
+        "fixed8_encode_seconds": 0.4924570000002859,
+        "fixed8_pipeline_seconds": 0.5550500999997894,
+        "verification_seconds": 0.31618230000094627
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "7c7af9600cb36dacc93db97d70fe89446c84af34ad766d0a2242918f18f3af8b",
+        "fixed8.png": "ac2bfaa7c3a54d2418612ae32aaf7f7485f426db8ad13a3917a40c5fb16b556a",
+        "fixed8.txt": "2d129e34757f600e4a1fa849f6b504f02f1b1d0c586891f7318ae2a46728f192",
+        "input.png": "ce8a0c330731591d4182446b12506eabd9fe2e41abe3eab09d973954cea14e4a",
+        "selected.astc": "d9590b3d749fa04b96c6b8081dfdec6a945d222593a014cfe57d15cf18774b75",
+        "selected.png": "621006f3f27ac29aa73e2734ed73264edd22295d9fb5b2dbcf5a58d08c29f366",
+        "selected.txt": "72c5f0754661d3a6f60353753bb549540476106351430291641900a4a06375f3"
+      },
+      "receipt_sha256": "f6ec86529e08819b7a7cbef10ad781513fe0cd3aa902b602333383071c442f0b"
+    },
+    {
+      "status": "passed",
+      "index": 9,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/skin01_high/06_Phoveus_skin01_body_high_d.tga",
+      "fileHash": "d800954ba60bd3333f669eeb7d18d922",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.8326321840286255,
+      "label_class": 1,
+      "label_target_met": true,
+      "label_payload_bytes": 262144,
+      "rgb_psnr": 32.93868180679236,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 38.110304678629944,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.07110560000000987,
+        "classifier_preprocessing_seconds": 0.0035262000001239358,
+        "inference_seconds": 0.01702830000067479,
+        "final_encode_seconds": 0.6963275000016438,
+        "model_pipeline_seconds": 0.7879876000024524,
+        "fixed8_encode_seconds": 0.8065519000010681,
+        "fixed8_pipeline_seconds": 0.877657500001078,
+        "verification_seconds": 0.41191930000059074
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "f430ec4f74834b06502b1a28c21e4e6690dae09186caac83b3e4ffc02079f08a",
+        "fixed8.png": "03d1c316ed4ac7b094354e37e9180161558728c534e08b2b971f7bcb055672cb",
+        "fixed8.txt": "1da28acb46535b9a80440881d46286c608c6477b845564c7dddd33ab0aecfd7c",
+        "input.png": "cb6e24c86de30ff2d573da8758a6357b92a5615f4ec6b95c5e8c45bfa6c572f0",
+        "selected.astc": "7259533e4538c1a5fd64f4eea54c92128c93110d32dac93a18867b41a6c8dff5",
+        "selected.png": "a57656f54b4558f1b417a79bfd44d68ce04f478b30757032ae626c2e3d4b1837",
+        "selected.txt": "afe7a03bb7e7c59fa12caa7df98687b1273c2e34be954da5287efe5e1f18ca40"
+      },
+      "receipt_sha256": "ce0712e5307dee305536c61068a5253b59c0336fac9e1e130017c0ed372553be"
+    },
+    {
+      "status": "passed",
+      "index": 10,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/skin03_high/Phoveus_skin03_high_body02_e.tga",
+      "fileHash": "807c0bf9d742197899eadeae80ced2c9",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.5549201369285583,
+      "label_class": 2,
+      "label_target_met": true,
+      "label_payload_bytes": 169744,
+      "rgb_psnr": 33.70484227569355,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 39.15891139173284,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.09284310000111873,
+        "classifier_preprocessing_seconds": 0.0027767000010499032,
+        "inference_seconds": 0.011317500000586733,
+        "final_encode_seconds": 0.5581331000012142,
+        "model_pipeline_seconds": 0.6650704000039696,
+        "fixed8_encode_seconds": 0.6462296999998216,
+        "fixed8_pipeline_seconds": 0.7390728000009403,
+        "verification_seconds": 0.3578392999988864
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "13a1b8058fb16824fd3162e86536415a54fd9a0c1736df203dd58d90702b3f46",
+        "fixed8.png": "7555af0189d8a00a78c229035a94350e4235edbd8e6c3a6bb7a54efab3c5f0de",
+        "fixed8.txt": "9868b15354595c40e5b2184d2979b1e1e3699f057fc444654906f1d6995a9181",
+        "input.png": "e1fde1be15272f50838aad2d5ceae586a3bddc1112fb7b472aeda791e4576996",
+        "selected.astc": "c7d62223d15f9cc1b45d93429a81fef0909187f188ea30f91047696b08156820",
+        "selected.png": "71685756ddb0e99ba8d3ef4694cbf2e77e67f02b1f93d308f271b9c4597bcba3",
+        "selected.txt": "728d0c89d9d43925db069d35c2985fadd97506d612ae4d2ed0e6be6a23bac166"
+      },
+      "receipt_sha256": "d6690e7940e5a07292215328dcd9204a496f9cf59e982ea47df18ad1acdcb9a3"
+    },
+    {
+      "status": "passed",
+      "index": 11,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/skin03_high/Phoveus_skin03_high_body_m.tga",
+      "fileHash": "0cab2ff91d4edf9689ebd7a24a9272c0",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.9884203672409058,
+      "label_class": 1,
+      "label_target_met": true,
+      "label_payload_bytes": 262144,
+      "rgb_psnr": 32.19476078553926,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 37.60622920671163,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.06828150000001187,
+        "classifier_preprocessing_seconds": 0.0030095999991317512,
+        "inference_seconds": 0.014219600001524668,
+        "final_encode_seconds": 0.7619119999999384,
+        "model_pipeline_seconds": 0.8474227000006067,
+        "fixed8_encode_seconds": 0.7499476000011782,
+        "fixed8_pipeline_seconds": 0.8182291000011901,
+        "verification_seconds": 0.34201500000017404
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "0f8768afc844d9abb1f1a83df23d0a4d6951caf6c3bd3edeef6840baae392fba",
+        "fixed8.png": "b5a7053dab82518c6cbd4610f28e1d8cc4c0a4f9ae61222c7e729f599f9577de",
+        "fixed8.txt": "85039b33de6ff74fa3b33bf45481f5db4a55477e4570a38878e3a024c371e327",
+        "input.png": "31019b0a4a95e38454fd81bff3965928084eebc01aed76b749c5640ff8474701",
+        "selected.astc": "b0a40cdb5f0dbd1c004972d2e6cce38bc33f2a701d75712f8a2d0a51b814094d",
+        "selected.png": "aa5c0978961d4fe248d1bfe8ea9272f90b3d72dc01dc38d3b601ae42cfbf6e50",
+        "selected.txt": "17f0d41258365c37a18cc79c365d34651a263709c35a60efc6867d51adbfede2"
+      },
+      "receipt_sha256": "ca7982876bac352a8a99113a6a4c3d58d19ee6d5448af95a668be5b521b50b06"
+    },
+    {
+      "status": "passed",
+      "index": 12,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/skin03_high/Phoveus_skin03_high_gem_m.tga",
+      "fileHash": "b827a1fbd8313d89b8616bd593ca0971",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.9590713977813721,
+      "label_class": 2,
+      "label_target_met": true,
+      "label_payload_bytes": 169744,
+      "rgb_psnr": 34.424916083922206,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 39.99325747658668,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.0685696000000462,
+        "classifier_preprocessing_seconds": 0.0029768000003969064,
+        "inference_seconds": 0.011540299999978743,
+        "final_encode_seconds": 0.588257599998542,
+        "model_pipeline_seconds": 0.6713442999989638,
+        "fixed8_encode_seconds": 0.6117443999992247,
+        "fixed8_pipeline_seconds": 0.6803139999992709,
+        "verification_seconds": 0.3170927999999549
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "bf299ab242e470d99a559a03f1ae85f89e5a2c66d36d0954bc1909c183d7a415",
+        "fixed8.png": "2969e59738388b73bd51163968e84fd6b7d921244c7a9e47ef2c602a1b313066",
+        "fixed8.txt": "0f3fc329531f36558413b410295c7abddf5e4e653972ff6b4c0c23fa8e714902",
+        "input.png": "c710201ed287460e07cfb355f53b1bba160977255c2ab6da5a91a35ce63a95ec",
+        "selected.astc": "64b6a2c2ef50e46f549e1b00dfd979309caf5e789476d71ac35730a71b50b754",
+        "selected.png": "3552176229d2d7348c5b967c67918d7a66989fcce1a64e1719737a12b4b823e2",
+        "selected.txt": "4fb2acfbdc3f6603307b9002f1f1471e24b9903dba72c1d83a396ecb772c4881"
+      },
+      "receipt_sha256": "eba6f02c6f86a76efdba46e3484f775ab006544c0f0ee417af75edc3e6765b54"
+    },
+    {
+      "status": "passed",
+      "index": 13,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/skin03_high/Phoveus_skin03_high_hair_d.tga",
+      "fileHash": "a875c911a79e24c016cabfbbaa3b20b8",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.7038100361824036,
+      "label_class": 3,
+      "label_target_met": true,
+      "label_payload_bytes": 118336,
+      "rgb_psnr": 35.77196018196693,
+      "lossless": false,
+      "target_met": true,
+      "fixed8_rgb_psnr": 40.89702209986434,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.0723097999998572,
+        "classifier_preprocessing_seconds": 0.002720799999224255,
+        "inference_seconds": 0.02107160000014119,
+        "final_encode_seconds": 0.3285049000005529,
+        "model_pipeline_seconds": 0.42460709999977553,
+        "fixed8_encode_seconds": 0.4746864999997342,
+        "fixed8_pipeline_seconds": 0.5469962999995914,
+        "verification_seconds": 0.3548606000003929
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "52b155e2bc5a8d62b451525cfe4de77e9cb7493b879a28c6b37c645c54cbe0d2",
+        "fixed8.png": "dbcc5168d8319187fb5b9e156b4bf659a3e00061e86f8b884bf9487178fa24da",
+        "fixed8.txt": "7d64ca29049be6216df188443f2e3fb3d6891641038b18a1f61953909baf968e",
+        "input.png": "4939c7313936a88c79e9b0284d9038c73296f4ff5436674587f6db331f04000a",
+        "selected.astc": "ea82ac709132dc2662de9dd0e128eb183a43ba8983307c94704038a215920bce",
+        "selected.png": "c47576794a785a2a1cc79124f66a2a9f39fbe976f5ca08d1cb133d68d18f8626",
+        "selected.txt": "0efa900f2e90c51a7f494df25427e7828e09085b9fd8f4c1b39aa99bc1c9430d"
+      },
+      "receipt_sha256": "f7ced5e99a106a6fcbf2be76e2ade67f409276bbc1276e521c6a6745ce8b3bb9"
+    },
+    {
+      "status": "passed",
+      "index": 14,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/skin03_high/Phoveus_skin03_high_hair_m.tga",
+      "fileHash": "d338d4726428361c820dc04776f176ac",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.8941696882247925,
+      "label_class": 3,
+      "label_target_met": true,
+      "label_payload_bytes": 118336,
+      "rgb_psnr": 38.60317333745144,
+      "lossless": false,
+      "target_met": true,
+      "fixed8_rgb_psnr": 44.94182523816207,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.05120410000017728,
+        "classifier_preprocessing_seconds": 0.002702800000406569,
+        "inference_seconds": 0.017055599999366677,
+        "final_encode_seconds": 0.1862252000009903,
+        "model_pipeline_seconds": 0.2571877000009408,
+        "fixed8_encode_seconds": 0.22504189999926894,
+        "fixed8_pipeline_seconds": 0.2762459999994462,
+        "verification_seconds": 0.26800059999914083
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "05e9652fe4cc887a7b3d0afe435e0156401e4159d02dbf6481db254ba898bbc0",
+        "fixed8.png": "84d978d766f60fa79094c195c2c412aada036cebeb013231b91ec72ebf2e8f0b",
+        "fixed8.txt": "97d28cd72974eefd5157bd1ea57f00cf3c1043ac95b2e3e0fa3c206d891f78f2",
+        "input.png": "77820b55833c2701bdcc0f9eb5284e92f21b73817b2501196e62327f544d6bf0",
+        "selected.astc": "098dd079408e13ab489f3c629037ac2a796639b9838cbc29bbff43fd4803cb1e",
+        "selected.png": "e962421b9cd8591300a3ae30c9ef950f7ab7f05f609d34aab8c1e475dbd10622",
+        "selected.txt": "af23b1af36ea62ec2e8621ee3bd2bbbf681db96fe5953841c2c8d77be98e4500"
+      },
+      "receipt_sha256": "f35c33688ebb9fd80a6aac7ad9e0aa17b5cc97958268d71fa1cc69ed5acb7ab3"
+    },
+    {
+      "status": "passed",
+      "index": 15,
+      "path": "Assets/Art/Characters/106_Phoveus/Show/skin04_high/106_Phoveus_skin04_high_body02_d.tga",
+      "fileHash": "df1608519401546c7fb31aecd625ba63",
+      "predicted_class": 3,
+      "predicted_footprint": "12x12",
+      "confidence": 0.9685113430023193,
+      "label_class": 2,
+      "label_target_met": true,
+      "label_payload_bytes": 169744,
+      "rgb_psnr": 33.76317990340185,
+      "lossless": false,
+      "target_met": false,
+      "fixed8_rgb_psnr": 38.023575325997484,
+      "fixed8_lossless": false,
+      "fixed8_target_met": true,
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "source_rgb_seconds": 0.06362970000009227,
+        "classifier_preprocessing_seconds": 0.0031231000011757715,
+        "inference_seconds": 0.011582900000576046,
+        "final_encode_seconds": 0.5169929999992746,
+        "model_pipeline_seconds": 0.5953287000011187,
+        "fixed8_encode_seconds": 0.855024800001047,
+        "fixed8_pipeline_seconds": 0.9186545000011392,
+        "verification_seconds": 0.405238700001064
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "3d07056aad523c2fcf487349d864563b6f7ebf02805de7ed3b80bf6c717f943f",
+        "fixed8.png": "a329523ac7ad0877436bb169fade1fdb18bbfe0ceddd71edb24f9f80896b274b",
+        "fixed8.txt": "bbf6089782313a39774c4f06e79e8d7dd9d4d61368f9c4e3db346131d5889f50",
+        "input.png": "19f308f6a4929c53b9109adee1ab2de01c5bd9bf851e6466992b0e4b4a4d25e0",
+        "selected.astc": "989bc5bc4b9b8b3276ba00dc5eebadbc79aa4414da34cdd105326a5aaa0db557",
+        "selected.png": "e176842e177f6fcb9a677257d13b93db59f48b8f0abc26a85d8841522efa7227",
+        "selected.txt": "6cd9a515ee9e6360de0ba0bb39a2053d962824bccf33ad51731a3a36ded1ba1b"
+      },
+      "receipt_sha256": "1ecb849a9c29c2210c4a8a426ffb4dc45b85c70f4584716a2d2583728f3fc2a1"
+    }
+  ],
+  "limits": [
+    "Four square footprints, astcenc3.3 medium, source RGB8 and ResNet18 are project reconstructions",
+    "Original talk candidate set, hyperparameters, corpus and published performance are not reproduced",
+    "Single final encoding retains quality violations without re-encoding",
+    "Model is uncalibrated; probability calibration is a separate experiment",
+    "Input profile, metric, encoder and timing differ from the Unity LITE baseline",
+    "Preprocessing, inference and final encoding are timed; setup and verification are separate",
+    "Classification and bytes do not establish equal-quality production acceptance"
+  ]
+}

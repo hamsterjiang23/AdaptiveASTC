@@ -1,15 +1,42 @@
 {
-  "status": "passed_source_preparation_only",
-  "checks": {
-    "pytest": "75 passed in 44.49s; includes 11 GDC selector, receipt admission and CLI checks",
-    "ruff": "uv run --frozen ruff check src script tests reproductions: passed",
-    "basedpyright": "uv run --frozen basedpyright: zero errors/warnings",
-    "code_review": "C1/C2 resolved; final No bugs found"
+  "status": "passed_smoke_formal_pending",
+  "historical_label_preparation": {
+    "commit": "e2a08424b84e88e4ec192653ead2065ec7900bb4",
+    "verification": {
+      "status": "passed_source_preparation_only",
+      "checks": {
+        "pytest": "75 passed in 44.49s; includes 11 GDC selector, receipt admission and CLI checks",
+        "ruff": "uv run --frozen ruff check src script tests reproductions: passed",
+        "basedpyright": "uv run --frozen basedpyright: zero errors/warnings",
+        "code_review": "C1/C2 resolved; final No bugs found"
+      },
+      "native_gdc_experiments": "not_run",
+      "source_sha256": {
+        "reproductions\\gdc2023\\dataset.py": "9387619ed6c2008b0ba75fe93cf01717cdb68c2d5a04a31c538e070e448ef893",
+        "tests\\test_gdc_labels.py": "b22afc1be678df570aa72b2432812546f2c4e2e473c3d4f5555a9ed3780e33b6",
+        "script\\reproduce.py": "bf9c77c9ecd667b77ab249049ff59daa914956cc2bc00f65d8d9e98f17dd4c0e"
+      }
+    }
   },
-  "native_gdc_experiments": "not_run",
+  "checks": {
+    "pytest": "91 passed in 45.82s",
+    "ruff": "uv run --frozen ruff check src script tests reproductions: passed",
+    "basedpyright": "uv run --frozen basedpyright: 0 errors/warnings",
+    "code_review": "No bugs found after all identified fixes, including AMP post-hook cleanup",
+    "native_label_probe": "8 images, 32 ASTCs, cache replay preserved hashes",
+    "native_smoke": "64 labels, 32 train images x10 epochs, 16 final model/fixed8 pairs, exact frozen ASTC and PNG matches",
+    "optimizer_updates": "10 applied, 0 skipped in smoke; initial 2-image probe skip retained separately",
+    "formal": "14000-image label generation running; formal training/evaluation pending"
+  },
   "source_sha256": {
-    "reproductions\\gdc2023\\dataset.py": "9387619ed6c2008b0ba75fe93cf01717cdb68c2d5a04a31c538e070e448ef893",
-    "tests\\test_gdc_labels.py": "b22afc1be678df570aa72b2432812546f2c4e2e473c3d4f5555a9ed3780e33b6",
-    "script\\reproduce.py": "bf9c77c9ecd667b77ab249049ff59daa914956cc2bc00f65d8d9e98f17dd4c0e"
-  }
+    "reproductions/gdc2023/dataset.py": "9387619ed6c2008b0ba75fe93cf01717cdb68c2d5a04a31c538e070e448ef893",
+    "reproductions/gdc2023/training.py": "d591ff1b390cbc2903ea11b4c43f503c25b07b533eae0ea5637227b72e45b408",
+    "reproductions/gdc2023/evaluation.py": "1e4a34fd0f83d2fbe85e5023aa4e0c72b680761a8b534607e316d3eb2048a9a8",
+    "reproductions/gdc2023/reporting.py": "2c9b82b7ba17e94acf1acd558fd72c49f97957d0a6004feeadb955e1080613d0",
+    "src/adaptive_astc/utils/evaluation_seal.py": "290cf5f8ccac70188a427a932c0d2d7b3e73e4d76eefd67921c3163d6e1b128a",
+    "src/adaptive_astc/evaluation/evaluator.py": "cf8630da262a64e0c8531c0e78619333ec6abd80bed633ecd4246bc668b70a06",
+    "src/adaptive_astc/training/trainer.py": "dcdbeab92bb084bd064e5225d01ea3cea2b6e3a7cb127e30ec71515a1adee02b",
+    "script/reproduce.py": "7c85482730622324a96a06d310cb7fb0c07b625d57e460aa6bcc1c26910af06a"
+  },
+  "smoke_report_sha256": "a67dd7dc3af65ee466143807871c451e83ce2f32fe323fb3ac5ed59416e72789"
 }

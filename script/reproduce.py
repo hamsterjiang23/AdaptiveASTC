@@ -73,7 +73,7 @@ def main() -> None:
     parser.add_argument("--patch-size", type=int, default=64)
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--seed", type=int, default=20261111)
-    parser.add_argument("--epochs", type=int, default=100)
+    parser.add_argument("--epochs", type=int)
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--learning-rate", type=float, default=1e-4)
     parser.add_argument("--patience", type=int, default=8)
@@ -85,6 +85,9 @@ def main() -> None:
     parser.add_argument("--joint-topk", type=int, default=1)
     parser.add_argument("--evaluation-id")
     parser.add_argument("--inference-device", default="cpu")
+    parser.add_argument("--initialization", choices=["pretrained", "scratch"], default="pretrained")
+    parser.add_argument("--split", choices=["validation", "test"], default="test")
+    parser.add_argument("--micro-batch", type=int, choices=[16, 32, 64], default=64)
     parser.add_argument(
         "--phase", choices=["probe", "smoke1", "smoke2", "smoke3", "full"], default="probe"
     )
@@ -127,8 +130,47 @@ def main() -> None:
             result = dataset.assemble()
         elif args.action == "assemble":
             result = dataset.assemble()
+        elif args.action == "evaluate":
+            from reproductions.gdc2023.evaluation import GDCCompressionEvaluation
+
+            if (
+                not args.evaluation_id
+                or Path(args.evaluation_id).name != args.evaluation_id
+                or args.evaluation_id in {".", ".."}
+            ):
+                parser.error("GDC evaluation requires a single-directory --evaluation-id")
+            result = GDCCompressionEvaluation(ROOT, directory, args.initialization).evaluate(
+                directory / "evaluations" / args.evaluation_id / args.initialization, args.split
+            )
+        elif args.action == "train":
+            from reproductions.gdc2023.training import GDCTraining
+
+            result = GDCTraining(
+                ROOT, directory, ROOT / "experiment report/gdc2023" / args.run_id
+            ).train(
+                args.initialization,
+                epochs=30 if args.epochs is None else args.epochs,
+                micro_batch=args.micro_batch,
+                workers=args.workers,
+                resume=args.resume,
+            )
+        elif args.action == "report":
+            from reproductions.gdc2023.reporting import GDCReport
+
+            if (
+                not args.evaluation_id
+                or Path(args.evaluation_id).name != args.evaluation_id
+                or args.evaluation_id in {".", ".."}
+            ):
+                parser.error("GDC report requires a single-directory --evaluation-id")
+            result = GDCReport(
+                ROOT,
+                directory,
+                directory / "evaluations" / args.evaluation_id / args.initialization,
+                ROOT / "experiment report/gdc2023" / args.run_id / args.evaluation_id,
+            ).write()
         else:
-            parser.error("GDC preparation supports dataset and assemble actions")
+            parser.error("GDC supports dataset, assemble, train, evaluate and report actions")
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return
     if args.method == "texnn":
@@ -202,7 +244,7 @@ def main() -> None:
                         directory / "prepared" / f"{size}x{size}",
                         directory / "models" / f"{size}x{size}" / network,
                         network,
-                        epochs=args.epochs,
+                        epochs=100 if args.epochs is None else args.epochs,
                         batch_size=args.batch_size,
                         learning_rate=args.learning_rate,
                         patience=args.patience,

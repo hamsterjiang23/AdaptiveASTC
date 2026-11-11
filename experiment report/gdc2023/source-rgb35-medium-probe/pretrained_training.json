@@ -1,0 +1,295 @@
+{
+  "config": {
+    "architecture": "resnet18",
+    "input": "RGB224_bilinear_ImageNet_normalization",
+    "seed": 20261109,
+    "effective_batch": 64,
+    "optimizer": {
+      "name": "SGD",
+      "lr": 0.01,
+      "momentum": 0.9,
+      "weight_decay": 0.0001
+    },
+    "scheduler": {
+      "name": "CosineAnnealingLR",
+      "T_max": 30,
+      "eta_min": 0
+    },
+    "loss": "unweighted_cross_entropy",
+    "amp": "fp16",
+    "pretrained_weights": {
+      "url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+      "sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec"
+    },
+    "initialization": "pretrained",
+    "data_fingerprint": "d0e600971b5cf2cff624580bbc9af3f6c89a1b99e43727c53f2739e803f745e4",
+    "epochs_target": 1,
+    "launch_config": {
+      "run_dir": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-probe",
+      "report_dir": "E:\\ASTC_Compression\\experiment report\\gdc2023\\source-rgb35-medium-probe",
+      "initialization": "pretrained",
+      "epochs": 1,
+      "micro_batch": 16,
+      "workers": 0,
+      "resume": false,
+      "max_steps": 0,
+      "learning_rate": 0.01,
+      "momentum": 0.9,
+      "weight_decay": 0.0001,
+      "effective_batch": 64,
+      "scheduler_t_max": 30,
+      "seed": 20261109
+    },
+    "micro_batch": 16,
+    "workers": 0,
+    "max_steps": 0,
+    "torch": "2.8.0+cu128",
+    "torchvision": "0.23.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4070",
+    "environment": {
+      "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+      "platform": "Windows-10-10.0.19044-SP0",
+      "pid": 27356,
+      "rss_mib": 728.23828125,
+      "available_ram_gib": 35.99290466308594,
+      "uv_lock_sha256": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+      "argv": [
+        "script/reproduce.py",
+        "train",
+        "--method",
+        "gdc2023",
+        "--run-id",
+        "source-rgb35-medium-probe",
+        "--epochs",
+        "1",
+        "--micro-batch",
+        "16",
+        "--workers",
+        "0"
+      ]
+    },
+    "source_code_sha256": "dad283415243500eda465666b310866c623fecf533b20a6cd7b63941aea39428",
+    "source_files_sha256": {
+      "__init__.py": "c7c2d2f7d1e0746ab6a51903610c3542605f697e757434d75fc0e21ee33e0298",
+      "calibration/__init__.py": "62bec663aee32cbb874e5ee41a061f15d99f622a92fca956d1aace56380b4f5d",
+      "calibration/temperature.py": "b8ebd18c4dd46f93772e2bbbcd4ebb778e6719b415965d4f563c333028b84e36",
+      "cli.py": "88a90f3ac45dcf82b4e6738214a8453eda48a6632464af343deffcbf3f2dafa0",
+      "common.py": "b542e8956a88b82c334645d9fd26ca97a2852e4b158419bde5c37044581e6f46",
+      "config.py": "fe81c8689541f9ef2ed110cdf85ea8a45f28cf1ca9e71ce69ed0dbbca53571af",
+      "data/__init__.py": "3d526ad244dc54994998e057333a39c014b61fde287f554a5296b4c42c60ae42",
+      "data/catalog.py": "fcbd82c52e7af87c02aab0f68a640162ed0706fe6e32a2b694b5ba5f9b3a6492",
+      "data/dataset.py": "60eebe6b98e55dfd48b8670bcc80a3b8cd68ce381557b6e1d395c23c8d43326a",
+      "data/deduplication.py": "1cd2d9dddeecec7f180b9e4a4014490781fa50756f99f68388ce9a388d0548b1",
+      "data/images.py": "19fd537afef1f5309d3289a62fbb85815eb7554c661f116c387d1cc3e1720986",
+      "data/preparation.py": "395ec0791bc113de3da8a6a3c1a09d6ac359573caa71fd3a4d0f4c1b842a9c15",
+      "data/splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d",
+      "evaluation/__init__.py": "759698447de917fee78a04c054a89ac69ab46fb7f8059701cd0b1b6180aede88",
+      "evaluation/evaluator.py": "cf8630da262a64e0c8531c0e78619333ec6abd80bed633ecd4246bc668b70a06",
+      "evaluation/inference.py": "4b660a5c62a2afbfcb90a31d69fcaeae1c23a7c17cd1cf613f295d9fa6ddf06e",
+      "evaluation/metrics.py": "f476c6e1f9d6bba5f82eb3c83c697f3c9be7fe2b62e286610080f73c3314fb4d",
+      "metrics.py": "4ac2de5e5063d35a58127075e401dcfcc692afd2c7d21b8576e2858e2a1d9f1c",
+      "models/__init__.py": "0edefcf4025cd67e524458c4a494c138e2d75f7bbc4e2ced12e9aee4ca12a18a",
+      "models/resnet.py": "c27477e35d470866b8df249b75a502b1fcae272eb41460cd7d7ed3bfafbd47d4",
+      "reporting/__init__.py": "f64830557c719d553604c633becd3939dbcb6b28f3f0435c11cfe4fcef1e18c1",
+      "reporting/report.py": "0438bad59d39cafd624930c1bb4dbd0eb08a7de5817cb58bd757222db541d202",
+      "reports.py": "5a668ccc2b85925e009fafa574e4f72bec7f2dda5f47f96e827b6ae101472683",
+      "tracking/__init__.py": "0429d731380112a80070b06afd03133e81675eff62e38805ac5f8dcc5f0b8512",
+      "tracking/swanlab.py": "ef954636b016eb97541ac664b42b128e819a224071f28db5a1367406d508c591",
+      "tracking/upload.py": "7a13a3d84358d440da0c5dee49bc86faad8696166c35b84fef2aabfba854ef1c",
+      "training/__init__.py": "b724d03985f1e3303e8630d55a4233e6e1360765d897cab9a75b7f92a4fb0aae",
+      "training/trainer.py": "dad283415243500eda465666b310866c623fecf533b20a6cd7b63941aea39428",
+      "utils/__init__.py": "8018cdaa91b172a65f2d534b9589aadec351550a602bf8b676b83d32ccd96acc",
+      "utils/artifacts.py": "6b186f7531d063715308e00dada4e7c9d9d04f4831fa10aa45d14ae125a6564f",
+      "utils/checkpoints.py": "c3d74001cb62c7ce948c82dd1b20bfcb8f1b0fd73efb04199e16ad7017e0de4d",
+      "utils/environment.py": "eef3d6303738ab5ff56d0b5789f214a8768c71921da32e257a1b118411574e1f",
+      "utils/evaluation_seal.py": "290cf5f8ccac70188a427a932c0d2d7b3e73e4d76eefd67921c3163d6e1b128a",
+      "utils/runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5"
+    }
+  },
+  "epochs": [
+    {
+      "epoch": 1,
+      "train": {
+        "loss": 1.5458984375,
+        "accuracy": 0.0,
+        "samples": 2,
+        "steps": 1,
+        "seconds": 0.6242663000011817
+      },
+      "validation": {
+        "count": 2,
+        "accuracy": 0.0,
+        "macro_f1": 0.0,
+        "balanced_accuracy": 0.0,
+        "nll": 2.1679275467973316,
+        "brier": 1.0761670679406454,
+        "ece_15_equal_width": 0.38452290782362386,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "8x8": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "10x10": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "12x12": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 2
+          }
+        },
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.06666666666666667,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.06666666666666667,
+            "upper": 0.13333333333333333,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.13333333333333333,
+            "upper": 0.2,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.26666666666666666,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.26666666666666666,
+            "upper": 0.3333333333333333,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.3333333333333333,
+            "upper": 0.4,
+            "count": 2,
+            "confidence": 0.38452290782362386,
+            "accuracy": 0.0
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.4666666666666667,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.4666666666666667,
+            "upper": 0.5333333333333333,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.5333333333333333,
+            "upper": 0.6,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.6666666666666666,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.6666666666666666,
+            "upper": 0.7333333333333333,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.7333333333333333,
+            "upper": 0.8,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.8666666666666667,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.8666666666666667,
+            "upper": 0.9333333333333333,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.9333333333333333,
+            "upper": 1.0,
+            "count": 0,
+            "confidence": null,
+            "accuracy": null
+          }
+        ]
+      },
+      "lr": 0.01,
+      "micro_batch": 16,
+      "epoch_seconds": 0.6472799999992276,
+      "peak_vram_mib": 125.72900390625,
+      "rss_mib": 1473.2265625
+    }
+  ]
+}

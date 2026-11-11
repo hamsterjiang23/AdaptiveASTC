@@ -5,8 +5,9 @@ import math
 import random
 import time
 from collections.abc import Sized
+from contextlib import ExitStack
 from pathlib import Path
-from typing import TYPE_CHECKING, Literal, cast
+from typing import TYPE_CHECKING, Any, Literal, cast
 
 import numpy as np
 import psutil
@@ -103,34 +104,45 @@ class Trainer:
         loss_sum = 0.0
         samples = 0
         steps = 0
+        optimizer_updates = 0
         correct = 0
         started = time.perf_counter()
-        for batch_index, (images, labels) in enumerate(batches):
-            group_start = (batch_index // accumulation) * effective_batch
-            group_samples = min(effective_batch, total_samples - group_start)
-            images, labels = (
-                images.to(device, non_blocking=True),
-                labels.to(device, non_blocking=True),
-            )
-            with torch.autocast(
-                device_type=device.type, dtype=torch.float16, enabled=device.type == "cuda"
-            ):
-                logits = model(images)
-                summed_loss = nn.functional.cross_entropy(logits, labels, reduction="sum")
-                loss = summed_loss / group_samples
-            if not torch.isfinite(loss):
-                raise ValueError("Non-finite training loss")
-            scaler.scale(loss).backward()
-            loss_sum += float(summed_loss.detach())
-            correct += int(logits.detach().argmax(dim=1).eq(labels).sum())
-            samples += len(labels)
-            if (batch_index + 1) % accumulation == 0 or batch_index + 1 == len(batches):
-                scaler.step(optimizer)
-                scaler.update()
-                optimizer.zero_grad(set_to_none=True)
-                steps += 1
-                if max_steps and steps >= max_steps:
-                    break
+
+        def applied_step(
+            optimizer: torch.optim.Optimizer, args: tuple[Any, ...], kwargs: dict[str, Any]
+        ) -> None:
+            nonlocal optimizer_updates
+            optimizer_updates += 1
+
+        with ExitStack() as cleanup:
+            hook = optimizer.register_step_post_hook(applied_step)
+            cleanup.callback(hook.remove)
+            for batch_index, (images, labels) in enumerate(batches):
+                group_start = (batch_index // accumulation) * effective_batch
+                group_samples = min(effective_batch, total_samples - group_start)
+                images, labels = (
+                    images.to(device, non_blocking=True),
+                    labels.to(device, non_blocking=True),
+                )
+                with torch.autocast(
+                    device_type=device.type, dtype=torch.float16, enabled=device.type == "cuda"
+                ):
+                    logits = model(images)
+                    summed_loss = nn.functional.cross_entropy(logits, labels, reduction="sum")
+                    loss = summed_loss / group_samples
+                if not torch.isfinite(loss):
+                    raise ValueError("Non-finite training loss")
+                scaler.scale(loss).backward()
+                loss_sum += float(summed_loss.detach())
+                correct += int(logits.detach().argmax(dim=1).eq(labels).sum())
+                samples += len(labels)
+                if (batch_index + 1) % accumulation == 0 or batch_index + 1 == len(batches):
+                    scaler.step(optimizer)
+                    scaler.update()
+                    optimizer.zero_grad(set_to_none=True)
+                    steps += 1
+                    if max_steps and steps >= max_steps:
+                        break
         if device.type == "cuda":
             torch.cuda.synchronize()
         return {
@@ -138,6 +150,8 @@ class Trainer:
             "accuracy": correct / samples,
             "samples": samples,
             "steps": steps,
+            "optimizer_updates": optimizer_updates,
+            "amp_skipped_steps": steps - optimizer_updates,
             "seconds": time.perf_counter() - started,
         }
 
@@ -194,6 +208,7 @@ class Trainer:
             **self.config.optimization_signature(),
             "loss": "unweighted_cross_entropy",
             "amp": "fp16",
+            "amp_step_accounting": "optimizer post-hook; advance scheduler after applied updates",
             "pretrained_weights": {
                 "url": ResNet18_Weights.IMAGENET1K_V1.url,
                 "sha256": ArtifactStore.sha256_file(
@@ -241,7 +256,8 @@ class Trainer:
             logits, truth = Predictor.predict(self.model, validation, self.device)
             metrics = ClassificationMetrics.compute(logits, truth)
             learning_rate = self.optimizer.param_groups[0]["lr"]
-            self.scheduler.step()
+            if training["optimizer_updates"] > 0:
+                self.scheduler.step()
             record = {
                 "epoch": epoch + 1,
                 "train": training,
@@ -254,7 +270,7 @@ class Trainer:
             }
             history.append(record)
             key = (metrics["nll"], -metrics["accuracy"], epoch + 1)
-            improved = key < best_key
+            improved = training["optimizer_updates"] > 0 and key < best_key
             if improved:
                 best_key = key
             state = {
@@ -289,6 +305,10 @@ class Trainer:
                 f"val_nll={metrics['nll']:.5f} val_acc={metrics['accuracy']:.4f} "
                 f"seconds={record['epoch_seconds']:.1f}",
                 flush=True,
+            )
+        if not best_path.exists() or not math.isfinite(best_key[0]):
+            raise RuntimeError(
+                "Training completed without an applied optimizer update; resume last.pt"
             )
         result = {"completed_epochs": len(history), "best_epoch": best_key[2], "config": config}
         ArtifactStore.write_json(output / "training_complete.json", result)
