@@ -72,7 +72,7 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 实验步骤
 
-尺寸元数据对照已完成[训练与CUDA接入](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/metadata.md>)：新增16个零初始化参数，总11,178,580；46项CPU检查、两轮4次CUDA更新、最佳权重重载和BN路径检查通过。完整对照已启动，只改变尺寸特征输入，保留原cap512配方；完整效果与成本尚待验收。`[verified: metadata-integration.json；scratch-group512-metadata-suite.json；normalization-metadata-smoke.json；opinion: 执行边界]`
+[尺寸元数据对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/metadata.md>)完成27轮CUDA训练，选中epoch27 raw，验证Top-1为84.2%、同一权重近阈值RMSE1.5334dB；比原cap512低0.3个百分点，8×8／10×10召回分别下降2.60／7.81个百分点。新增16参数，总11,178,580，完整进程6244.32秒；本次保留原84.5%模型作为scratch对照。这是GDC开发集单次对照，完整Unity独立测试尚未完成。`[verified: scratch-group512-metadata-result.json metrics、recall_change_pp、process_seconds；opinion: 选模与解释范围]`
 
 组均衡cap512的[末轮BN诊断](<../../experiment report/unity-accuracy90-20261111/normalization.md>)也已完成，重估EMA为84.4%／近阈值RMSE1.4284dB，未超过原最佳84.5%／1.3869dB，后续继续采用原权重作为对照。重估使用16384训练patch、0次优化器更新，独立计入429.16秒进程成本；当前仍未满足V1联合晋级或Unity最终验收。`[verified: normalization-group512.json；对应job receipt；scratch-group512-result.json；opinion: 选模与验收边界]`
 
@@ -103,13 +103,15 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
-- [冻结预测残差诊断](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)完成：cap512验证1000上的全局余量101点扫描最高仍为84.5%；逐候选减去近阈值平均残差仅将RMSE从1.3869降至1.3372dB，准确率为83.9%。这类简单修正不加入部署，继续完成尺寸元数据对照及Unity原生训练。偏移与余量在同一验证集拟合／计分，不能当独立泛化收益或模型上限；没有新增训练或test访问。`[verified: scratch-group512-residuals.json；opinion: 后续选择与解释边界]`
+- [独立确认集预留](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-cohort.md>)已预留2000张主名单、500张备用，主名单覆盖1227个未出现于9份历史清单的资产组；2500份实际源文件及meta身份复核通过。仅完成源资产隔离，后续仍需Unity参考像素、同次原搜索标签、像素重复审计，以及模型和决策冻结后的独立测试；当前未打开模型测试。`[verified: unity-confirmation2000-v1.json primary_images、primary_groups、reserve_images、native_pixels_audited、native_labels_collected、model_sealed；unity-confirmation-reservation-verification.json；opinion: 后续验收]`
 
-- [完整Unity训练衔接](<../../experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)已通过55项CPU检查并启动等待；先在现有CUDA任务结束后执行32图正式batch预检，只有完整10000／1000语料及四项核验全部通过后才启动原生随机初始化训练。配置与23份源码冻结，当前没有新增训练结果，最终独立测试90%仍待验收。`[verified: unity-native-training-readiness.json；unity-native-training-full-v1.json；本轮pytest；opinion: 完成边界]`
+- [冻结预测残差诊断](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)完成：cap512验证1000上的全局余量101点扫描最高仍为84.5%；逐候选减去近阈值平均残差仅将RMSE从1.3869降至1.3372dB，准确率为83.9%。这类简单修正不加入部署，尺寸元数据终态见上方，继续完成Unity原生训练。偏移与余量在同一验证集拟合／计分，不能当独立泛化收益或模型上限；没有新增训练或test访问。`[verified: scratch-group512-residuals.json；opinion: 后续选择与解释边界]`
 
-- [Unity同次预测与最终编码](<../../experiment report/unity-accuracy90-20261111/unity-deployment.md>)新增完整计时入口，47项CPU检查及两图四次真实编码核验通过；CUDA配对计时等待原训练／独立推理成功退出。每条路径每图编码一次，重复测量与预热分开，质量核验在计时外；尚无新增部署总耗时或生产准确率，完整Unity验收继续保留。`[verified: unity-deployment-encode4.json；unity-deployment-smoke2-v1.json；本轮pytest；opinion: 完成边界]`
+- [完整Unity训练衔接](<../../experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)已完成32训练图／2验证图的CUDA预检：两轮4次实际更新、0次AMP跳步、最佳权重重载通过，完整进程83.45秒。当前等待完整10000／1000数据四阶段核验，正式训练尚未启动；后续GPU任务继续纳入串行调度，独立测试90%仍待验收。`[verified: native-training-full-v1/smoke.json training_updates、checkpoint_audit；unity-native-training-full-v1.json status、stages；opinion: 验收与调度边界]`
 
-- [Unity独立输入与CUDA推理计时](<../../experiment report/unity-accuracy90-20261111/unity-inference.md>)已完成组件及51项CPU检查；两张实际验证图的13patch与训练输入逐张量完全一致。计时任务绑定原尺寸元数据训练成功退出后执行，当前等待，正式测量为一次预热／三次重复。无新增模型效果或端到端加速结论，完整Unity验收继续保留。`[verified: unity-inference-input-audit.json；unity-inference-smoke2-v1.json；本轮pytest；opinion: 完成边界]`
+- [同次预测与最终编码](<../../experiment report/unity-accuracy90-20261111/unity-deployment.md>)已完成两图、一次预热及三次配对重复，共16次真实编码。两图合计参考PNG到内存mip0 ASTC的中位数为预测路径48.81ms、fixed8路径38.34ms；质量通过率分别1／2与2／2，payload分别59168与81920字节。使用原生smoke8权重，此小样本没有速度或等质量收益结论，也不代表完整Unity验收。`[verified: unity-deployment-smoke2-v1.json summary、measurements；opinion: 解释边界]`
+
+- [原生独立输入与推理计时](<../../experiment report/unity-accuracy90-20261111/unity-inference.md>)已完成两张验证图／13patch的CUDA计时，一次预热、三次正式测量，新预测与原生smoke8权重的已保存预测完全一致。两图合计预处理＋推理＋决策中位数27.50ms；等待3932.86秒与活动2.39秒分开记录。只验证小样本推理，完整Unity模型效果及最终编码另行评价。`[verified: unity-inference-smoke2-v1.json measurements、median_preprocess_inference_decision_seconds、active_seconds；v1-completed-runtime-verification.json stages；opinion: 解释范围]`
 
 - [原生保存预测到最终编码](<../../experiment report/unity-accuracy90-20261111/unity-final-encoding.md>)已通过两图真实检查：预测路径与固定8×8／medium各两次编码，ASTC／解码／原生质量复核一致，进程4.05秒。40项CPU检查及两项原生指标补跑通过；实际DLL闭环另行通过。本次不运行模型forward，只补齐mip0编码阶段，完整Unity训练与独立测试及端到端计时仍待完成。`[verified: unity-final-encoding-smoke2-v2.json；对应job receipt；本轮pytest；opinion: 完成边界]`
 

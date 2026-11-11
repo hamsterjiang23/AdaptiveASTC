@@ -52,17 +52,19 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
-[冻结预测残差诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)显示，cap512模型在−2.5至+2.5dB的101点全局余量网格上最高仍为84.5%；逐候选均值偏移修正后近阈值RMSE为1.3372dB、准确率83.9%。同验证集拟合的修正不作为泛化收益，也不加入当前部署；尺寸元数据与完整Unity训练按既有队列继续。`[verified: scratch-group512-residuals.json same_validation_best_global_margin、same_validation_offset_diagnostic；opinion: 实验选择与解释边界]`
+[独立确认集预留](<experiment report/unity-accuracy90-20261111/unity-confirmation-cohort.md>)已预留2000张主名单、500张备用，主名单覆盖1227个未出现于9份历史清单的资产组；2500份实际源文件及meta身份复核通过。仅完成源资产隔离，后续仍需Unity参考像素、同次原搜索标签、像素重复审计，以及模型和决策冻结后的独立测试；当前未打开模型测试。`[verified: unity-confirmation2000-v1.json primary_images、primary_groups、reserve_images、native_pixels_audited、native_labels_collected、model_sealed；unity-confirmation-reservation-verification.json；opinion: 后续验收]`
 
-[完整Unity训练衔接](<experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)已通过55项CPU检查并启动等待：现有CUDA任务结束后先做32图正式batch预检；完整10000／1000语料四项核验通过后再自动训练。沿用原生随机初始化模型，当前尚未产生新训练结果或独立测试准确率。`[verified: unity-native-training-readiness.json；unity-native-training-full-v1.json；本轮pytest；opinion: 完成边界]`
+[冻结预测残差诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)显示，cap512模型在−2.5至+2.5dB的101点全局余量网格上最高仍为84.5%；逐候选均值偏移修正后近阈值RMSE为1.3372dB、准确率83.9%。同验证集拟合的修正不作为泛化收益，也不加入当前部署；尺寸元数据终态见下方，完整Unity训练继续等待原生数据。`[verified: scratch-group512-residuals.json same_validation_best_global_margin、same_validation_offset_diagnostic；opinion: 实验选择与解释边界]`
 
-[同次运行的预测与最终编码](<experiment report/unity-accuracy90-20261111/unity-deployment.md>)已完成47项CPU检查和两图四次真实编码接口核验；CUDA计时排在当前训练／推理检查之后。每图预测选参后仅编码一次，配对固定8×8，解码质量核验在计时外执行；尚无新的部署总耗时或完整Unity效果结论。`[verified: unity-deployment-encode4.json；unity-deployment-smoke2-v1.json；本轮pytest；opinion: 完成边界]`
+[完整Unity训练衔接](<experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)已完成32训练图／2验证图的CUDA预检：两轮4次实际更新、0次AMP跳步、最佳权重重载通过，完整进程83.45秒。当前等待完整10000／1000数据四阶段核验，正式训练尚未启动；后续GPU任务继续纳入串行调度，独立测试90%仍待验收。`[verified: native-training-full-v1/smoke.json training_updates、checkpoint_audit；unity-native-training-full-v1.json status、stages；opinion: 验收与调度边界]`
 
-[原生独立输入与推理计时](<experiment report/unity-accuracy90-20261111/unity-inference.md>)完成51项CPU检查，两张验证图的13个patch与训练输入完全一致；组件只接收参考像素和导入属性。CUDA任务已排在当前尺寸元数据训练成功退出之后，当前仍等待，尚无新增推理计时或模型效果结果。`[verified: unity-inference-input-audit.json；unity-inference-smoke2-v1.json；本轮pytest；opinion: 完成边界]`
+[同次预测与最终编码](<experiment report/unity-accuracy90-20261111/unity-deployment.md>)已完成两图、一次预热及三次配对重复，共16次真实编码。两图合计参考PNG到内存mip0 ASTC的中位数为预测路径48.81ms、fixed8路径38.34ms；质量通过率分别1／2与2／2，payload分别59168与81920字节。使用原生smoke8权重，此小样本没有速度或等质量收益结论，也不代表完整Unity验收。`[verified: unity-deployment-smoke2-v1.json summary、measurements；opinion: 解释边界]`
+
+[原生独立输入与推理计时](<experiment report/unity-accuracy90-20261111/unity-inference.md>)已完成两张验证图／13patch的CUDA计时，一次预热、三次正式测量，新预测与原生smoke8权重的已保存预测完全一致。两图合计预处理＋推理＋决策中位数27.50ms；等待3932.86秒与活动2.39秒分开记录。只验证小样本推理，完整Unity模型效果及最终编码另行评价。`[verified: unity-inference-smoke2-v1.json measurements、median_preprocess_inference_decision_seconds、active_seconds；v1-completed-runtime-verification.json stages；opinion: 解释范围]`
 
 [原生预测的最终编码核验](<experiment report/unity-accuracy90-20261111/unity-final-encoding.md>)已通过：两张已保存验证预测各一次编码，加固定8×8／medium对照，共四次真实DLL编码，ASTC字节、解码像素与原生质量一致。进程4.05秒；只覆盖mip0编码阶段，没有新模型forward或端到端加速结论，完整Unity验收仍待完成。`[verified: unity-final-encoding-smoke2-v2.json；对应job receipt；opinion: 完成边界]`
 
-[尺寸元数据对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/metadata.md>)已接入训练、EMA、验证、重载和BN；46项CPU检查、两轮4次CUDA更新及重载通过。新增16参数，总11,178,580；完整对照已启动，当前尚无完整准确率结果，原cap512基准保持。`[verified: metadata-integration.json；scratch-group512-metadata-smoke-summary.json；normalization-metadata-smoke.json；opinion: 完成边界]`
+[尺寸元数据对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/metadata.md>)完成27轮CUDA训练，选中epoch27 raw，验证Top-1为84.2%、同一权重近阈值RMSE1.5334dB；比原cap512低0.3个百分点，8×8／10×10召回分别下降2.60／7.81个百分点。新增16参数，总11,178,580，完整进程6244.32秒；本次保留原84.5%模型作为scratch对照。这是GDC开发集单次对照，完整Unity独立测试尚未完成。`[verified: scratch-group512-metadata-result.json metrics、recall_change_pp、process_seconds；opinion: 选模与解释范围]`
 
 [组均衡模型的BN重估](<experiment report/unity-accuracy90-20261111/normalization.md>)已完成，epoch26 EMA重估为84.4%／1.4284dB，未超过原最佳84.5%／1.3869dB，后续保留原权重。重估仅更新训练集统计量，0次优化器更新，完整进程429.16秒；该GDC开发结果不代表Unity验收。`[verified: normalization-group512.json；对应job receipt；scratch-group512-result.json；opinion: 选模与完成边界]`
 

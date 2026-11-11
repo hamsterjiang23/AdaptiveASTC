@@ -1,6 +1,6 @@
 # 完整 Unity 数据到正式 CUDA 训练的衔接
 
-衔接任务已启动等待现有CUDA任务结束；当前没有新训练更新，也未启动完整Unity训练。55项相关CPU检查通过，其中38项覆盖本次衔接与边界。独立审查发现的预检／正式输出路径冲突已在启动前修复，七种别名路径被拒绝。`[verified: unity-native-training-full-v1.json status=waiting_cuda、stages；本轮pytest55passed；training_queue.py __init__；test_unity_training_queue.py]`
+已完成32训练图／2验证图的CUDA预检：两轮4次实际更新、0次AMP跳步、最佳权重重载通过，完整进程83.45秒。当前等待完整10000／1000数据四阶段核验，正式训练尚未启动；后续GPU任务继续纳入串行调度，独立测试90%仍待验收。`[verified: native-training-full-v1/smoke.json training_updates、checkpoint_audit；unity-native-training-full-v1.json status、stages；opinion: 验收与调度边界]`
 
 入口为[queue_unity_training.py](../../script/queue_unity_training.py)，调度实现为[UnityTrainingQueue](../../reproductions/unity_search_baseline/training_queue.py)。[冻结配置](unity-native-training-full-v1-config.json)和[32图预检配置](unity-native-smoke32-v1-config.json)明确两个阶段，使用已存在的UnityQualityTrainer执行；没有修改正在运行的训练、推理、编码或数据准备源码。活动期间23份绑定源码保持不变。`[verified: unity-native-training-full-v1-config.json sources_sha256；training_queue.py train；opinion: 活动版本要求]`
 

@@ -1,6 +1,6 @@
 # 尺寸元数据的原尺寸 patch 回归对照
 
-尺寸元数据已接入训练、raw／EMA验证、最佳权重重载和BN重估。46项CPU检查、两轮4次更新的CUDA训练与重载、BN路径检查均通过；新增16个参数，总11,178,580。[完整对照](scratch-group512-metadata-suite.json)已启动，当前没有完整准确率结果；原组均衡模型84.5%仍作为随机初始化基准。`[verified: metadata-integration.json；scratch-group512-metadata-smoke-summary.json；normalization-metadata-smoke.json；scratch-group512-result.json metrics.accuracy；opinion: 对照与完成边界]`
+尺寸元数据对照完成27轮CUDA训练，选中epoch27 raw，验证Top-1为84.2%、同一权重近阈值RMSE1.5334dB；比原cap512低0.3个百分点，8×8／10×10召回分别下降2.60／7.81个百分点。新增16参数，总11,178,580，完整进程6244.32秒；本次保留原84.5%模型作为scratch对照。这是GDC开发集单次对照，完整Unity独立测试尚未完成。`[verified: scratch-group512-metadata-result.json metrics、recall_change_pp、process_seconds；opinion: 选模与解释范围]`
 
 ## 输入与模型
 
@@ -29,4 +29,9 @@
 
 [完整配置](scratch-group512-metadata-suite.json)相对原cap512只启用`size_metadata`，保留scratch、标准stem、原池化、单调输出、lr0.0003、WD0.05、EMA0.999、batch128、每轮40000个patch、最多30轮及近阈值RMSE patience5。使用原冻结train10000／validation1000；维持原图内均匀采样，不混入此前两项负结果的改动。最终报告需比较同一选中权重的准确率、RMSE、质量、payload和完整成本。`[verified: scratch-group512-metadata-suite.json config、baseline；opinion: 比较要求]`
 
-运行期间冻结绑定的12份训练源码，原15份执行源码已先行归档在`experiment report/.local/unity-accuracy90-20261111/pre-size-metadata-training-source`；旧权重与结果保持其原身份。启动前RAM空闲26.93GiB、GPU占用1172／12282MiB，单GPU训练，与Unity参考采集及候选补测并行。完整耗时待结束后记录，不把开发训练成本解释为部署性能。`[verified: metadata-integration.json source_files_sha256、prior_execution_source_archive；jobs/scratch-group512-metadata/launch-preflight.json；opinion: 运行与计时边界]`
+运行期间绑定的12份训练源码保持，原15份执行源码归档于`experiment report/.local/unity-accuracy90-20261111/pre-size-metadata-training-source`。训练器6206.63秒、完整进程6244.32秒，与Unity参考采集和候选补测并行；开发训练成本不作为部署性能。`[verified: scratch-group512-metadata-result.json training_wall_seconds、process_seconds；metadata-integration.json prior_execution_source_archive；opinion: 计时范围]`
+## 完整验证结果
+
+[终态结果](scratch-group512-metadata-result.json)与最佳权重重载绑定。选中权重的逐类召回为6×6 87.16%、8×8 70.31%、10×10 63.28%、12×12 94.37%；balanced accuracy为78.78%。其质量通过率86.4%、payload为90,951,984字节。最小训练期RMSE1.4847dB属于其他检查点，不能与84.2%拼成同一模型的结果；本次联合晋级条件未通过。`[verified: scratch-group512-metadata-result.json metrics、minimum_rmse_across_training、metric_pair_scope、v1_development_gate_passed]`
+
+原cap512仍作为scratch准确率基准。此次仅检验一个seed、当前16参数线性尺寸修正与现有配方，不能推断尺寸信息对所有结构都无用；后续优先完成原生Unity数据和训练。`[opinion]`

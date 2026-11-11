@@ -1,30 +1,93 @@
 {
-  "status": "waiting_cuda",
-  "stages": [],
+  "status": "waiting_data",
+  "stages": [
+    {
+      "name": "smoke",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-training-full-v1\\smoke.json",
+      "report_sha256": "7a64e392c40c34ed87fa5a95c551532e9ac9383c0ea9a0c2957ebb7bf9f01e9a",
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-training-full-v1\\smoke-job\\job.json",
+      "job_receipt_sha256": "f71ba4df23c33ca2216ba65f9c6e9d76df724ee080f18e50cdc6bf520659289d",
+      "process_seconds": 83.447645500004,
+      "training_updates": 4,
+      "checkpoint_sha256": "bff0ccd4e75546ab480fa6b75f40118a3f1bf46ea57b5aade49f56617a262192",
+      "validation_metrics": {
+        "count": 2,
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "full_choice_accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 0,
+            "recall": null
+          },
+          "8x8": {
+            "support": 0,
+            "recall": null
+          },
+          "10x10": {
+            "support": 0,
+            "recall": null
+          },
+          "12x12": {
+            "support": 2,
+            "recall": 0.5
+          }
+        },
+        "actual_quality_pass_rate": 0.5,
+        "no_strict_feasible_images": 0,
+        "color_near_threshold_candidate_count": 2,
+        "color_near_threshold_rmse_db": 2.969733341196751,
+        "selected_payload_bytes": 45968,
+        "original_payload_bytes": 37328,
+        "fixed8_payload_bytes": 81920,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.015853299999434967
+      }
+    }
+  ],
   "test_opened": false,
   "config_sha256": "81fd380809d59cde8dd21734cfbf8a16e582da50d3ca808c194d6457500e613c",
   "goal_complete": false,
   "dependencies": [
     {
-      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-metadata\\job.json",
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v2\\job.json",
       "status": "running",
-      "pid": 48048,
-      "created": 1794433279.013654
-    },
-    {
-      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-inference-smoke2-v1\\job.json",
-      "status": "running",
-      "pid": 63628,
-      "created": 1794435588.892778
-    },
-    {
-      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-deployment-smoke2-v1\\job.json",
-      "status": "running",
-      "pid": 48404,
-      "created": 1794436498.5635917
+      "pid": 43872,
+      "created": 1794430895.0713837
     }
   ],
   "resources": {
     "ready": true
-  }
+  },
+  "wait_seconds": {
+    "cuda": 1981.5235832000035
+  },
+  "current_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-training-full-v1\\smoke-job\\job.json",
+  "current_config_sha256": "be79ba6a331e017b5ace2d4b773fba3d457017768246a59e4feb1457fffd248a"
 }

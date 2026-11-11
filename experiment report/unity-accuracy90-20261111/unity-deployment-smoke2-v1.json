@@ -1,20 +1,861 @@
 {
-  "status": "waiting_dependencies",
-  "measurements": [],
+  "status": "passed",
+  "measurements": [
+    {
+      "repetition": 0,
+      "warmup": true,
+      "order": [
+        "prediction",
+        "fixed8"
+      ],
+      "arms": {
+        "prediction": {
+          "timings": {
+            "end_to_end_seconds": 0.3472838000016054,
+            "reference_and_metadata_seconds": 0.01137419999577105,
+            "reference_load_and_flip_seconds": 0.0002973000009660609,
+            "inference": {
+              "total_seconds": 0.306816099997377,
+              "patch_input_seconds": 0.006087000001571141,
+              "patch_forward_and_transfer_seconds": 0.26352960000076564,
+              "image_head_and_transfer_seconds": 0.036734000001160894,
+              "mse_aggregation_seconds": 0.00016080000204965472,
+              "images": 2,
+              "patches": 13,
+              "batch_size": 16,
+              "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+            },
+            "policy_seconds": 0.003673699997307267,
+            "native_encode_seconds": 0.02330630000506062,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "selected_index": 18,
+                "block": 6,
+                "preset": "thorough",
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 58.02772903442383,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 42.70477294921875,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "decode_audit_seconds": 0.003913900000043213,
+                "astc_sha256": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+                "candidate_bytes_and_pixels_match": true
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "selected_index": 0,
+                "block": 12,
+                "preset": "fastest",
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "strict_quality_met": false,
+                "metrics": {
+                  "psnr": 32.06110763549805,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 15.372034072875977,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "decode_audit_seconds": 0.010320199995476287,
+                "astc_sha256": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+                "candidate_bytes_and_pixels_match": true
+              }
+            ],
+            "payload_bytes": 59168,
+            "strict_quality_pass_rate": 0.5,
+            "outputs_sha256": {
+              "00000.astc": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+              "00001.astc": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+              "choices.json": "9abb0f93f1cadd42afa686175dba991981335b531451a39b2fc0bfec2b46d015",
+              "predictions.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379"
+            }
+          },
+          "audit_and_write_seconds": 0.08213099999557016
+        },
+        "fixed8": {
+          "timings": {
+            "end_to_end_seconds": 0.04244440000184113,
+            "reference_and_metadata_seconds": 0.0,
+            "reference_load_and_flip_seconds": 0.007477699997252785,
+            "inference": {},
+            "policy_seconds": 7.999995432328433e-06,
+            "native_encode_seconds": 0.034510000004956964,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "selected_index": 12,
+                "block": 8,
+                "preset": "medium",
+                "payload_bytes": 16384,
+                "container_bytes": 16400,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 49.99437713623047,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 35.098873138427734,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "decode_audit_seconds": 0.006027000003086869,
+                "astc_sha256": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+                "candidate_bytes_and_pixels_match": true
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "selected_index": 12,
+                "block": 8,
+                "preset": "medium",
+                "payload_bytes": 65536,
+                "container_bytes": 65552,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 38.30811309814453,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 23.100170135498047,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "decode_audit_seconds": 0.006047999995644204,
+                "astc_sha256": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+                "candidate_bytes_and_pixels_match": true
+              }
+            ],
+            "payload_bytes": 81920,
+            "strict_quality_pass_rate": 1.0,
+            "outputs_sha256": {
+              "00000.astc": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+              "00001.astc": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+              "choices.json": "8e1bec149849455e07094844f5982d1305302ec5ee493fc865f1baee2474f1a6"
+            }
+          },
+          "audit_and_write_seconds": 0.07556299999851035
+        }
+      }
+    },
+    {
+      "repetition": 1,
+      "warmup": false,
+      "order": [
+        "fixed8",
+        "prediction"
+      ],
+      "arms": {
+        "fixed8": {
+          "timings": {
+            "end_to_end_seconds": 0.042325299997173715,
+            "reference_and_metadata_seconds": 0.0,
+            "reference_load_and_flip_seconds": 0.007663600001251325,
+            "inference": {},
+            "policy_seconds": 6.300004315562546e-06,
+            "native_encode_seconds": 0.03422860000137007,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "selected_index": 12,
+                "block": 8,
+                "preset": "medium",
+                "payload_bytes": 16384,
+                "container_bytes": 16400,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 49.99437713623047,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 35.098873138427734,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "decode_audit_seconds": 0.005592300003627315,
+                "astc_sha256": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+                "candidate_bytes_and_pixels_match": true
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "selected_index": 12,
+                "block": 8,
+                "preset": "medium",
+                "payload_bytes": 65536,
+                "container_bytes": 65552,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 38.30811309814453,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 23.100170135498047,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "decode_audit_seconds": 0.005684299998392817,
+                "astc_sha256": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+                "candidate_bytes_and_pixels_match": true
+              }
+            ],
+            "payload_bytes": 81920,
+            "strict_quality_pass_rate": 1.0,
+            "outputs_sha256": {
+              "00000.astc": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+              "00001.astc": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+              "choices.json": "8e1bec149849455e07094844f5982d1305302ec5ee493fc865f1baee2474f1a6"
+            }
+          },
+          "audit_and_write_seconds": 0.07540180000069086
+        },
+        "prediction": {
+          "timings": {
+            "end_to_end_seconds": 0.05555129999993369,
+            "reference_and_metadata_seconds": 0.010705399996368214,
+            "reference_load_and_flip_seconds": 0.00024699999630684033,
+            "inference": {
+              "total_seconds": 0.018710799995460548,
+              "patch_input_seconds": 0.010210500011453405,
+              "patch_forward_and_transfer_seconds": 0.006993000002694316,
+              "image_head_and_transfer_seconds": 0.001218099998368416,
+              "mse_aggregation_seconds": 0.00013549999857787043,
+              "images": 2,
+              "patches": 13,
+              "batch_size": 16,
+              "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+            },
+            "policy_seconds": 0.0035383000067668036,
+            "native_encode_seconds": 0.021805099997436628,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "selected_index": 18,
+                "block": 6,
+                "preset": "thorough",
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 58.02772903442383,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 42.70477294921875,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "decode_audit_seconds": 0.003686700001708232,
+                "astc_sha256": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+                "candidate_bytes_and_pixels_match": true
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "selected_index": 0,
+                "block": 12,
+                "preset": "fastest",
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "strict_quality_met": false,
+                "metrics": {
+                  "psnr": 32.06110763549805,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 15.372034072875977,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "decode_audit_seconds": 0.010305899995728396,
+                "astc_sha256": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+                "candidate_bytes_and_pixels_match": true
+              }
+            ],
+            "payload_bytes": 59168,
+            "strict_quality_pass_rate": 0.5,
+            "outputs_sha256": {
+              "00000.astc": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+              "00001.astc": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+              "choices.json": "9abb0f93f1cadd42afa686175dba991981335b531451a39b2fc0bfec2b46d015",
+              "predictions.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379"
+            }
+          },
+          "audit_and_write_seconds": 0.07414080000307877
+        }
+      }
+    },
+    {
+      "repetition": 2,
+      "warmup": false,
+      "order": [
+        "prediction",
+        "fixed8"
+      ],
+      "arms": {
+        "prediction": {
+          "timings": {
+            "end_to_end_seconds": 0.04880509999929927,
+            "reference_and_metadata_seconds": 0.011693299995386042,
+            "reference_load_and_flip_seconds": 0.0002606999987619929,
+            "inference": {
+              "total_seconds": 0.014584299999114592,
+              "patch_input_seconds": 0.007195199999841861,
+              "patch_forward_and_transfer_seconds": 0.005967400000372436,
+              "image_head_and_transfer_seconds": 0.0011603000020841137,
+              "mse_aggregation_seconds": 0.00012969999806955457,
+              "images": 2,
+              "patches": 13,
+              "batch_size": 16,
+              "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+            },
+            "policy_seconds": 0.003292699999292381,
+            "native_encode_seconds": 0.018430900003295392,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "selected_index": 18,
+                "block": 6,
+                "preset": "thorough",
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 58.02772903442383,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 42.70477294921875,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "decode_audit_seconds": 0.004021700005978346,
+                "astc_sha256": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+                "candidate_bytes_and_pixels_match": true
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "selected_index": 0,
+                "block": 12,
+                "preset": "fastest",
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "strict_quality_met": false,
+                "metrics": {
+                  "psnr": 32.06110763549805,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 15.372034072875977,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "decode_audit_seconds": 0.01027829999657115,
+                "astc_sha256": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+                "candidate_bytes_and_pixels_match": true
+              }
+            ],
+            "payload_bytes": 59168,
+            "strict_quality_pass_rate": 0.5,
+            "outputs_sha256": {
+              "00000.astc": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+              "00001.astc": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+              "choices.json": "9abb0f93f1cadd42afa686175dba991981335b531451a39b2fc0bfec2b46d015",
+              "predictions.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379"
+            }
+          },
+          "audit_and_write_seconds": 0.07725619999837363
+        },
+        "fixed8": {
+          "timings": {
+            "end_to_end_seconds": 0.038267600000835955,
+            "reference_and_metadata_seconds": 0.0,
+            "reference_load_and_flip_seconds": 0.008124800006044097,
+            "inference": {},
+            "policy_seconds": 5.599998985417187e-06,
+            "native_encode_seconds": 0.02967940000235103,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "selected_index": 12,
+                "block": 8,
+                "preset": "medium",
+                "payload_bytes": 16384,
+                "container_bytes": 16400,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 49.99437713623047,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 35.098873138427734,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "decode_audit_seconds": 0.005718899999919813,
+                "astc_sha256": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+                "candidate_bytes_and_pixels_match": true
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "selected_index": 12,
+                "block": 8,
+                "preset": "medium",
+                "payload_bytes": 65536,
+                "container_bytes": 65552,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 38.30811309814453,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 23.100170135498047,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "decode_audit_seconds": 0.0058499000006122515,
+                "astc_sha256": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+                "candidate_bytes_and_pixels_match": true
+              }
+            ],
+            "payload_bytes": 81920,
+            "strict_quality_pass_rate": 1.0,
+            "outputs_sha256": {
+              "00000.astc": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+              "00001.astc": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+              "choices.json": "8e1bec149849455e07094844f5982d1305302ec5ee493fc865f1baee2474f1a6"
+            }
+          },
+          "audit_and_write_seconds": 0.07575570000335574
+        }
+      }
+    },
+    {
+      "repetition": 3,
+      "warmup": false,
+      "order": [
+        "fixed8",
+        "prediction"
+      ],
+      "arms": {
+        "fixed8": {
+          "timings": {
+            "end_to_end_seconds": 0.03834330000245245,
+            "reference_and_metadata_seconds": 0.0,
+            "reference_load_and_flip_seconds": 0.007293700000445824,
+            "inference": {},
+            "policy_seconds": 5.69999247090891e-06,
+            "native_encode_seconds": 0.03057029999763472,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "selected_index": 12,
+                "block": 8,
+                "preset": "medium",
+                "payload_bytes": 16384,
+                "container_bytes": 16400,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 49.99437713623047,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 35.098873138427734,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "decode_audit_seconds": 0.006174100002681371,
+                "astc_sha256": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+                "candidate_bytes_and_pixels_match": true
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "selected_index": 12,
+                "block": 8,
+                "preset": "medium",
+                "payload_bytes": 65536,
+                "container_bytes": 65552,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 38.30811309814453,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 23.100170135498047,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "decode_audit_seconds": 0.0064248999988194555,
+                "astc_sha256": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+                "candidate_bytes_and_pixels_match": true
+              }
+            ],
+            "payload_bytes": 81920,
+            "strict_quality_pass_rate": 1.0,
+            "outputs_sha256": {
+              "00000.astc": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+              "00001.astc": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+              "choices.json": "8e1bec149849455e07094844f5982d1305302ec5ee493fc865f1baee2474f1a6"
+            }
+          },
+          "audit_and_write_seconds": 0.07962299999780953
+        },
+        "prediction": {
+          "timings": {
+            "end_to_end_seconds": 0.0465464000008069,
+            "reference_and_metadata_seconds": 0.011465599993243814,
+            "reference_load_and_flip_seconds": 0.0002597999991849065,
+            "inference": {
+              "total_seconds": 0.012314200001128484,
+              "patch_input_seconds": 0.00512449999951059,
+              "patch_forward_and_transfer_seconds": 0.005650899998727255,
+              "image_head_and_transfer_seconds": 0.0012872000006609596,
+              "mse_aggregation_seconds": 0.00013069999840809032,
+              "images": 2,
+              "patches": 13,
+              "batch_size": 16,
+              "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+            },
+            "policy_seconds": 0.00366070000018226,
+            "native_encode_seconds": 0.018282800003362354,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "selected_index": 18,
+                "block": 6,
+                "preset": "thorough",
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 58.02772903442383,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 42.70477294921875,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "decode_audit_seconds": 0.003904999997757841,
+                "astc_sha256": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+                "candidate_bytes_and_pixels_match": true
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "selected_index": 0,
+                "block": 12,
+                "preset": "fastest",
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "strict_quality_met": false,
+                "metrics": {
+                  "psnr": 32.06110763549805,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 15.372034072875977,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "decode_audit_seconds": 0.010899000000790693,
+                "astc_sha256": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+                "candidate_bytes_and_pixels_match": true
+              }
+            ],
+            "payload_bytes": 59168,
+            "strict_quality_pass_rate": 0.5,
+            "outputs_sha256": {
+              "00000.astc": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+              "00001.astc": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+              "choices.json": "9abb0f93f1cadd42afa686175dba991981335b531451a39b2fc0bfec2b46d015",
+              "predictions.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379"
+            }
+          },
+          "audit_and_write_seconds": 0.07612009999866132
+        }
+      }
+    }
+  ],
   "test_opened": false,
   "training_updates": 0,
   "dependencies": [
     {
       "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-metadata\\job.json",
-      "status": "running",
-      "pid": 48048,
-      "created": 1794433279.013654
+      "status": "passed",
+      "receipt_sha256": "c979b8d0f9c14a6a198f5ffa999b539b3328b0ce57b756e62b3a28a211d27fd5"
     },
     {
       "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-inference-smoke2-v1\\job.json",
-      "status": "running",
-      "pid": 63628,
-      "created": 1794435588.892778
+      "status": "passed",
+      "receipt_sha256": "8a25144ddbab5a2fe9256b785e55e3692bad8d2948f0b18688b4edd2f2e6e88f"
     }
-  ]
+  ],
+  "dependency_wait_seconds": 3032.8437698000052,
+  "binding_and_backend_load_seconds": 0.8546599999972386,
+  "config": {
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-deployment-smoke2-v1",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-deployment-smoke2-v1.json",
+    "encoding_config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-final-encoding-smoke2-v2-config.json",
+    "encoding_config_sha256": "1722f0b99936100db12a6d2cfa2faf4ba4821a36a62c4c30c393e6b1ebd76238",
+    "sources_sha256": {
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\final_encoding.py": "820913a7bf0eb773b10387c8e6ae06ffc809e68870630b285b08cb57b0486141",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\candidate_completion.py": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+      "E:\\ASTC_Compression\\reproductions\\common\\encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+      "E:\\ASTC_Compression\\script\\encode_unity_predictions.py": "f5d37b6e175be82b2feaf2dadaba064120ee98d76ab9e084b41753b6e6736e84",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_inference.py": "639c4a52c7fda9208bdfa3c208b7bae268db10fb20caf014333294a854babfe7",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "8bf6b36441d052e1f1733c09a5983c22ff7f9c09a5836f6171a052dd443f014c",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\inference_benchmark.py": "63be0b8b3a04ca2a128e79428740c5fc7bb7a3bf2a2cd6041683d339a7aa769b",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+      "E:\\ASTC_Compression\\script\\benchmark_unity_inference.py": "510ed28b2de3f998d4c97204b40ac75197a42a430e0a5a0a30f731da44a0e3fd",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\deployment.py": "0f1eb725b178de32acddb53826a4cfaffec33d4144134226923b5914210351b1",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\deployment_benchmark.py": "dc9ff77d55e8cc4c0b5ad710469b6c1fdfcf6a6b64564b6c8ab99c6b037f4e59",
+      "E:\\ASTC_Compression\\script\\benchmark_unity_deployment.py": "e0d112813634ae05e6263d78398c88c2951c5520c89d7a2de98e7d5ddc71436f"
+    },
+    "dependencies": [
+      {
+        "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-metadata\\job.json",
+        "sha256": "7ab3d9c73113c784136502262e0eafc957e051a5dbbf581e31455f3b7b846918"
+      },
+      {
+        "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-inference-smoke2-v1\\job.json",
+        "sha256": "cd4acf00623c091175181cbd28539555ece4bfcdc585154f36ef16483d8b4540"
+      }
+    ],
+    "warmups": 1,
+    "repetitions": 3,
+    "scope": "Validation2 same-run CUDA prediction-to-mip0 ASTC and fixed8 paired smoke"
+  },
+  "checkpoint_sha256": "b4679b4fa48f66ec04e0c9f87f40571d669d459feb7bae33642376ae5c5d99ec",
+  "model_load_and_cuda_init_seconds": 0.294214200002898,
+  "gpu": "NVIDIA GeForce RTX 4070",
+  "free_vram_before_bytes": 11630804992,
+  "total_vram_bytes": 12878086144,
+  "parameters": 11377660,
+  "checkpoint_bytes": 136658521,
+  "validation_images": 2,
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\final_encoding.py": "820913a7bf0eb773b10387c8e6ae06ffc809e68870630b285b08cb57b0486141",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\candidate_completion.py": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "E:\\ASTC_Compression\\reproductions\\common\\encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "E:\\ASTC_Compression\\script\\encode_unity_predictions.py": "f5d37b6e175be82b2feaf2dadaba064120ee98d76ab9e084b41753b6e6736e84",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_inference.py": "639c4a52c7fda9208bdfa3c208b7bae268db10fb20caf014333294a854babfe7",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "8bf6b36441d052e1f1733c09a5983c22ff7f9c09a5836f6171a052dd443f014c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\inference_benchmark.py": "63be0b8b3a04ca2a128e79428740c5fc7bb7a3bf2a2cd6041683d339a7aa769b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+    "E:\\ASTC_Compression\\script\\benchmark_unity_inference.py": "510ed28b2de3f998d4c97204b40ac75197a42a430e0a5a0a30f731da44a0e3fd",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\deployment.py": "0f1eb725b178de32acddb53826a4cfaffec33d4144134226923b5914210351b1",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\deployment_benchmark.py": "dc9ff77d55e8cc4c0b5ad710469b6c1fdfcf6a6b64564b6c8ab99c6b037f4e59",
+    "E:\\ASTC_Compression\\script\\benchmark_unity_deployment.py": "e0d112813634ae05e6263d78398c88c2951c5520c89d7a2de98e7d5ddc71436f"
+  },
+  "wall_seconds": 3036.1857377999986,
+  "active_seconds": 3.3419656999976723,
+  "peak_vram_bytes": 136338944,
+  "inputs_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-final-encoding-smoke2-v2-config.json": "1722f0b99936100db12a6d2cfa2faf4ba4821a36a62c4c30c393e6b1ebd76238",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\final_encoding.py": "820913a7bf0eb773b10387c8e6ae06ffc809e68870630b285b08cb57b0486141",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\candidate_completion.py": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "E:\\ASTC_Compression\\reproductions\\common\\encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "E:\\ASTC_Compression\\script\\encode_unity_predictions.py": "f5d37b6e175be82b2feaf2dadaba064120ee98d76ab9e084b41753b6e6736e84",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-native-smoke8-v1.json": "0b6a61132de82f7b4d1dae2f32fe2a1a452392b3b6e32f7d712b90e8c8931014",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\config.json": "6889c26fa89007c6b42b69403167fb9c25db20f0d5527d8426d44d4d4d94f2b7",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best.pt": "b4679b4fa48f66ec04e0c9f87f40571d669d459feb7bae33642376ae5c5d99ec",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best-validation.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best-decisions.json": "b3801f9488f1df6c52ee1723cbbd9c880bcba1304a39c9be4ceb0165e1a7138a",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\checkpoint-audit.json": "2524c312baa139ddc75b2f656ae035bc17248de2f14afe72786ba061d7ddcda0",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-assembled2370\\corpus.json": "27a43c576c5f17a7dc529b421dd40b22925082f76cd8686363b1220688112f02",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-validation2-20261111\\corpus.json": "7fafcb29b28d85cc97ca2ddbd0343afe1c3629a2c86908b7020be53139f32811",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-validation2-20261111.json": "c723ac7b9a7b93a3fd6b325a3eb7ebe26de5b2e6e7282679f79ee9f496e479e1",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "da8cfed7a2ec6d87a724f9ead8120242eaca87ee5c37d8874eb1ae191c410986",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-native-smoke8-v1-config.json": "aa8949f690d6b876e07d29edb3d8c1a53e30fb58061452300ad6e0466088a991",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_bags.py": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "8bf6b36441d052e1f1733c09a5983c22ff7f9c09a5836f6171a052dd443f014c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_loss.py": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\00000\\original.png": "f0fe4b22726ba3558c84d7f020dd9a02d3d5f04e2e669ae5f129f91377816da3",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\reports\\unity-validation2-20261111.json": "ab4f34a23dd3774e40cc4bf5e8c4181450561782e98cbd86db335dc0e2cd0472",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\receipt.json": "81e2d095690b9b108ed6c08a3634c3ba78060e16a2235d92d7f8faa6441383ae",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\candidates.json": "cdd1a079d96d0f5ba246976b9ad01a6ec460dfb76e7d247cf06c5881b22df121",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\receipt.json": "1028f3114a156e759c35d57fe7a4248292639ebc9db2b20ed39efdad401c6409",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\protocol-lock.json": "d95e38874c500c578cd158012100659bd72c2ac9e49a9a836be5537f6425a81d",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\identity.json": "5498e2fc6c11b268a53ef5f257681afa64276b05f43960261b598486c86b7a37",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-config.json": "b09576ef8ded4b16e9074863080e996b47624c4c5630e2b566e92eeb695aca1d",
+    "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\ASTC_Cache\\benchmark\\unity-validation2-20261111\\batch\\parameter_cache_detail.jsonl": "5d1cc96dddb5480fc42170e8344587e9645fc3acaaa2d184c35beed9ce5db47e",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\options-receipt.json": "cf47bdfcc105d970f1efd871a4facd80c1d4d2ab822a5a42f040ed100c19cfd9",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-imports.jsonl": "f5610ff52ee0fed1afc271e63821286b26eb47cfe43a1e418609a3157c2fe990",
+    "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-shared.dll": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json": "870ad425363c6e415a9504020f7e72424ed03b5aac5401a615c240d5bfb902f9",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\12x12_fastest.astc": "70412e95c294698dc2e06d55ccab053e5426051922099aba40a043f7b67adeb3",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\12x12_fastest.png": "3ce794fe7b61072ab35ac8ac8e6e47884c7629aebb54f39366814f49f5844a4b",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\12x12_fast.astc": "01dc207875966671fcd74f4aded6a49ae5642ec7a315b7921a768f9f15bbb1cb",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\12x12_fast.png": "a2a87d7642ed36f6481c95096a5523309d78d8b4641f290f59234b2b46cb9c03",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\12x12_medium.astc": "184e50af27eee94b3c238f27c48be7722c3a2da27239d89b34508b2e4ea3112b",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\12x12_medium.png": "1bfb39e6127462e5908c499183203383e8003918b8973bb9f9f4a49c7c95e6c4",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\12x12_thorough.astc": "b4c6b508108e227898144e7f902508c45d7e291229661b9fd094e936671a1e62",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\12x12_thorough.png": "b161096354462c668431d42d8739977f8f9d027371a70103be6d72ef34b20574",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\12x12_exhaustive.astc": "cf8f074c3346503bbff7c0dbb8638ccce9b64cb0ef9bd7be2b27f4988db50d04",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\12x12_exhaustive.png": "d856cb3fed0458a621cc48cac64fe6d6de4509f897e9f0d71cd2ddf98247f317",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\10x10_fastest.astc": "1df7bffbc72b8f72164427300ae1c7e74fe663297e57b09b2c81ddf7a7d22034",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\10x10_fastest.png": "c1622bf2ea2d7b753077c853c670d7a32bcad43e05fe4a901ddd61b6724b6ebb",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\10x10_fast.astc": "67a7d44e186a335a3cc8964f4e571f2d6de15a80782b7a23da44b82e674f069e",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\10x10_fast.png": "c2b9399a7d81b4dd82e11df6b1a8a37c375327ab14ddeb6d69f419b33d3b2464",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\10x10_medium.astc": "fe820d1d916e79a35fd6dd90b1bcd70fa81cddeb5568d82ca8d43cb08c69a594",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\10x10_medium.png": "d0caa7b468e863f0d9659885f96c753fbc3cdbc29bc500c117d1700798088671",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\10x10_thorough.astc": "0d5b0d047f76800b7080eb22c323126cfee8b5d820676c528cffe6ce4826a620",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\10x10_thorough.png": "b899d2037fda9f733169ecf1e6f61a717c67c536a5b33295c7df1a487b307368",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\10x10_exhaustive.astc": "33fe362b182f48867f50387285fb9c0b015560f36c4057f6c2355da26f4277c5",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\10x10_exhaustive.png": "848166bbef2bc25c3acc7fbe0729b4095a89b3025b79f4eb301d7e8370815a16",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\8x8_fastest.astc": "19e1cad13145991a997155cd0e1a55557d062071f60b058c1f120ec8c8ca630a",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\8x8_fastest.png": "0c0dac26d8d8503a59a38ec86570832c1751ba7cc2374e981ab9ff18eb3003cb",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\8x8_fast.astc": "d235b35eade6e46920427c331e469ea3878670b6273b1e14f3f48450d7412264",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\8x8_fast.png": "60a245633b0a5cfccabcc0c47d19a6fc02c555589c5e7fe2bde231c06b7ce4eb",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\8x8_medium.astc": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\8x8_medium.png": "a5da01ba6e7bd9038c66a75a9a16101831fabed4dbe9a25df3fddee767cdab8a",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\8x8_thorough.astc": "abd8ca4e6953bffe4e3fcb8348c18fb169ec8f2ab070b9fd1b80215359028fff",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\8x8_thorough.png": "ecd6bc4abbe90f6841edafc83a171ad16605c4c6f03b4a9eecf395b1e7634d1e",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\8x8_exhaustive.astc": "ba7f1fe62e130b93abdbbfc4094d34c97c6c77989d4065ee28450c085899eaf6",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\8x8_exhaustive.png": "7d8cae86e4a1129f0152da66719479d2bc3a4ff64b05b57c0dcbb83d5e1de374",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\6x6_fastest.astc": "8e50a8fb8ef595c4db3259bbc6250e79589af00ea80686078a24c40a47698f78",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\6x6_fastest.png": "b5e7196978e7089ad76911896e988467ab5e40d32003d8e25c38eb43106da8e5",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\6x6_fast.astc": "eed9a03d624bb83bef7f716b7b31cfc0197ac949ece9b1f70183ba3ecd4d12de",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\6x6_fast.png": "2f23f96f12bfe7742769ad050bf442b4a18dcf88b86a4df8c7ae689b59f4649b",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\6x6_medium.astc": "6bd362c25e53d44f4a99321d91f38b585f82161d0f140f2d76ea6d50ae97a4a6",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\6x6_medium.png": "480c636c36e4cb5998645722313a12b55869c9cd7474b67072317583ab585e1e",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\6x6_thorough.astc": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\6x6_thorough.png": "afd5b2e55a24ddd64d6f67f5dba17785f671c2c3294f39bca9f73c28d28e57c7",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\6x6_exhaustive.astc": "0c494912e361d88a1c30abb7c34fc917b57e7dcc6e4dedc195e587bb0f51836d",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00000\\6x6_exhaustive.png": "8c8887a58a2e4794908c1dd943d821086f8bdb43df91e2e168eb7cf791dbda78",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\00001\\original.png": "9f9941b36d008200d88356ae0a8fc8e27b81cff4747c3c410447b9d4cbc63d63",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\candidates.json": "56db451fbdbfee60d14d4a57a4bc0e7a9d7d7b17c5a8fecc846605dbccdf53fa",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\12x12_fastest.astc": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\12x12_fastest.png": "07efd4e7dc0667368c0ed5ac87d7556c0439103017f14d5745d3df916ac6e268",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\12x12_fast.astc": "365c2a119c3217dd9efac72095d98c791f117ffe66d5effaf1c6da07a2605669",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\12x12_fast.png": "036a217c2f9ee7fb4d3aa2befc4048ec5b271ed8c899b26f26fdbb8e211ffb58",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\12x12_medium.astc": "265b3c55d67fa89215f3e169e8be7962ea7adb4a4a72c36b5f993ada9c0ceb16",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\12x12_medium.png": "3f4b0fd9ebdab62535631bba5d09a0d86a453921f522e41cc86c2082668b6cdf",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\12x12_thorough.astc": "f5e226f7cbd02d263bb4be2d46b5d71eeb769d8dc1bcde6ab8008a3b313c7a5d",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\12x12_thorough.png": "446ed5f9138d01dd8c0643a1c6d2de126bc535b67269be882d11d22f3f03b95b",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\12x12_exhaustive.astc": "90fbe77f10d33654b7fe4866be01e508fa7b11d84409fc2ccb029143534f2579",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\12x12_exhaustive.png": "08fa01461ea1e775b883b58958c0aca7628ba826df4200d796a76220063667ee",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\10x10_fastest.astc": "1038c271730f7a227941a94c97f23a9dbcd99ddb515dbc28fa0ca7a21cf4d3f2",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\10x10_fastest.png": "22c9b5d976425a7481b4de1ba8b7fea291e372a9d4048bc0126222f9be91061f",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\10x10_fast.astc": "1ea3382a4ec7c6980eee5485bd9a8f7f42d85e20c903deee5ca594f02236c1f6",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\10x10_fast.png": "6384fccc2000e8b7c594d1939b09304d2a5a4f12bf28d858161d094efc979ee4",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\10x10_medium.astc": "f831120701e961ba7a7a6b441f2bcadf7fbb54993465519bb1b2fb888fab294d",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\10x10_medium.png": "b7a8d2107e0dbb95e95d39c83717cac07641c30c133cb6346865f1c8d8a8c663",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\10x10_thorough.astc": "bf468107e3176983509931e8f588f5ad587634bd6008329f6237eb67948103db",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\10x10_thorough.png": "d2d118538c5e658bf02c9dcfd924d0c38ce3fa28f1dac21cf7f5d7d1f7b7ae7f",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\10x10_exhaustive.astc": "40a5fe3d12aa91dd62d4128441036826219fb2b424a03bc774384c5af5702c24",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\10x10_exhaustive.png": "d4faf650f5c9368d7c62bb76aa4c341ce9eee2c934ee00eace0e63ff66fb726f",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\8x8_fastest.astc": "2b556f301f19f7e1b315508c2e9648d3ef3c3ac8608ac9fc14b79d01fb9fbfd1",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\8x8_fastest.png": "fec73fe4ae1a4a12f27e5e13cd9d0d9673ac51a858f0e8f830f5d0a9a7e1bf37",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\8x8_fast.astc": "cd8e5975c98bf7f144612096126f32d7784806e37016b6f7270d42892232659d",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\8x8_fast.png": "23419b63710205fc4d83802644a4a32cbfe182b67ab624907010d7fc1cd4c621",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\8x8_medium.astc": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\8x8_medium.png": "6090a660efd1b7daf60c4c30704bb5a03f2ea587b80c8f4faf5b7cf5c12163d5",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\8x8_thorough.astc": "61cba1a194a87a94c58dece1b70062b8a3b75dedc4e9ba45b784ff54501a3607",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\8x8_thorough.png": "75f17603c62d38294972fb0102926837161902d3ec4676a6d8ef23c17076c895",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\8x8_exhaustive.astc": "864e0b881b10773a8afefa7d37acd130d32b691c85d1943b3b2869f774455714",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\8x8_exhaustive.png": "c30b8a8c2c5a086ed08e8e504737a1cea59ccd1db5a30af463315c758a74d159",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\6x6_fastest.astc": "dde79dfae4961cdc5065c828b3a356f6d5f32bcbaadaea7c7db21f62bbb6e16e",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\6x6_fastest.png": "d6f925a6604cb60356681dcb443ae1a7aa399f6a56283a6907a0eb56a7d63d1b",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\6x6_fast.astc": "9b6cb93015409e8163fc9f348b0a473be751f6f084479ed443bff05b502b17bf",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\6x6_fast.png": "38bd363e0fa4636a1954a723d1fca3ee6271916982cc0c7b49d3841df7dbb8b5",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\6x6_medium.astc": "ecf55215e21b1c0c618f0f5c94f9e532eb5051b26e6348f6638b659dca08c148",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\6x6_medium.png": "79894889c75c23e164283d9ff114f73cd456c49b26e6b378e28741124abf5b0d",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\6x6_thorough.astc": "33938af3ff8dd5e49b8c594be83cb23c1988d382a0f136a1023a656e1f1ca6a5",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\6x6_thorough.png": "8361940d912cb60c916a3e2a596dfb8cc67ba914b5aa62481ac734c90c3f14dd",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\6x6_exhaustive.astc": "454fe49567a4fd9c93e9e8105943df4847c1920b7ccd8d2127fcd743f95ac5eb",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-full\\batches\\unity-validation2-20261111\\00001\\6x6_exhaustive.png": "ebecccdfc2165517640fbfdd5063e811fe3cdeb6433921b6183a60234a1ee18b"
+  },
+  "summary": {
+    "prediction": {
+      "median_end_to_end_seconds": 0.04880509999929927,
+      "measured_encoding_calls": 6,
+      "warmup_encoding_calls": 2,
+      "payload_bytes": 59168,
+      "strict_quality_pass_rate": 0.5
+    },
+    "fixed8": {
+      "median_end_to_end_seconds": 0.03834330000245245,
+      "measured_encoding_calls": 6,
+      "warmup_encoding_calls": 2,
+      "payload_bytes": 81920,
+      "strict_quality_pass_rate": 1.0
+    }
+  },
+  "scope": "Development mip0 smoke; warm model/DLL and filesystem; no production or equal-quality speedup claim"
 }

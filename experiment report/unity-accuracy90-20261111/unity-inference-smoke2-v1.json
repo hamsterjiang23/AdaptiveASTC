@@ -1,14 +1,223 @@
 {
-  "status": "waiting_training",
-  "measurements": [],
+  "status": "passed",
+  "measurements": [
+    {
+      "repetition": 0,
+      "warmup": true,
+      "reference_and_metadata_seconds": 0.01066749999881722,
+      "inference": {
+        "total_seconds": 0.3794874000013806,
+        "patch_input_seconds": 0.009047899991855957,
+        "patch_forward_and_transfer_seconds": 0.30859439999767346,
+        "image_head_and_transfer_seconds": 0.06126919999951497,
+        "mse_aggregation_seconds": 0.00030220000189729035,
+        "images": 2,
+        "patches": 13,
+        "batch_size": 16,
+        "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+      },
+      "policy_seconds": 0.0005632000029436313,
+      "preprocess_inference_decision_seconds": 0.3936057000028086,
+      "max_abs_prediction_difference": {
+        "channel_mse": 0.0,
+        "channel_zero": 0.0,
+        "zero_probability": 0.0,
+        "image_quality": 0.0
+      },
+      "choices_match": true
+    },
+    {
+      "repetition": 1,
+      "warmup": false,
+      "reference_and_metadata_seconds": 0.012860900002124254,
+      "inference": {
+        "total_seconds": 0.019938400000683032,
+        "patch_input_seconds": 0.009594699993613176,
+        "patch_forward_and_transfer_seconds": 0.008541800001694355,
+        "image_head_and_transfer_seconds": 0.0015185000011115335,
+        "mse_aggregation_seconds": 0.00013269999908516183,
+        "images": 2,
+        "patches": 13,
+        "batch_size": 16,
+        "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+      },
+      "policy_seconds": 0.0002530999990995042,
+      "preprocess_inference_decision_seconds": 0.033143900000141,
+      "max_abs_prediction_difference": {
+        "channel_mse": 0.0,
+        "channel_zero": 0.0,
+        "zero_probability": 0.0,
+        "image_quality": 0.0
+      },
+      "choices_match": true
+    },
+    {
+      "repetition": 2,
+      "warmup": false,
+      "reference_and_metadata_seconds": 0.010662100001354702,
+      "inference": {
+        "total_seconds": 0.016362299997126684,
+        "patch_input_seconds": 0.008230599996750243,
+        "patch_forward_and_transfer_seconds": 0.006250699996598996,
+        "image_head_and_transfer_seconds": 0.0015015000026323833,
+        "mse_aggregation_seconds": 0.0002336999968974851,
+        "images": 2,
+        "patches": 13,
+        "batch_size": 16,
+        "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+      },
+      "policy_seconds": 0.0003696999992826022,
+      "preprocess_inference_decision_seconds": 0.027503500001330394,
+      "max_abs_prediction_difference": {
+        "channel_mse": 0.0,
+        "channel_zero": 0.0,
+        "zero_probability": 0.0,
+        "image_quality": 0.0
+      },
+      "choices_match": true
+    },
+    {
+      "repetition": 3,
+      "warmup": false,
+      "reference_and_metadata_seconds": 0.010679999999410938,
+      "inference": {
+        "total_seconds": 0.013664300000527874,
+        "patch_input_seconds": 0.006270000005315524,
+        "patch_forward_and_transfer_seconds": 0.005775700003141537,
+        "image_head_and_transfer_seconds": 0.0013561000014306046,
+        "mse_aggregation_seconds": 0.00013000000035390258,
+        "images": 2,
+        "patches": 13,
+        "batch_size": 16,
+        "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+      },
+      "policy_seconds": 0.00025430000096093863,
+      "preprocess_inference_decision_seconds": 0.024686700002348516,
+      "max_abs_prediction_difference": {
+        "channel_mse": 0.0,
+        "channel_zero": 0.0,
+        "zero_probability": 0.0,
+        "image_quality": 0.0
+      },
+      "choices_match": true
+    }
+  ],
   "test_opened": false,
   "training_updates": 0,
   "dependencies": [
     {
       "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-metadata\\job.json",
-      "status": "running",
-      "pid": 48048,
-      "created": 1794433279.013654
+      "status": "passed",
+      "receipt_sha256": "c979b8d0f9c14a6a198f5ffa999b539b3328b0ce57b756e62b3a28a211d27fd5"
     }
-  ]
+  ],
+  "dependency_wait_seconds": 3932.8576354000033,
+  "input_parity_patches": 13,
+  "input_binding_audit_seconds": 0.9942052000042167,
+  "config": {
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-inference-smoke2-v1",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-inference-smoke2-v1.json",
+    "encoding_config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-final-encoding-smoke2-v2-config.json",
+    "encoding_config_sha256": "1722f0b99936100db12a6d2cfa2faf4ba4821a36a62c4c30c393e6b1ebd76238",
+    "sources_sha256": {
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\final_encoding.py": "820913a7bf0eb773b10387c8e6ae06ffc809e68870630b285b08cb57b0486141",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\candidate_completion.py": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+      "E:\\ASTC_Compression\\reproductions\\common\\encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+      "E:\\ASTC_Compression\\script\\encode_unity_predictions.py": "f5d37b6e175be82b2feaf2dadaba064120ee98d76ab9e084b41753b6e6736e84",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_inference.py": "639c4a52c7fda9208bdfa3c208b7bae268db10fb20caf014333294a854babfe7",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "8bf6b36441d052e1f1733c09a5983c22ff7f9c09a5836f6171a052dd443f014c",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\inference_benchmark.py": "63be0b8b3a04ca2a128e79428740c5fc7bb7a3bf2a2cd6041683d339a7aa769b",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+      "E:\\ASTC_Compression\\script\\benchmark_unity_inference.py": "510ed28b2de3f998d4c97204b40ac75197a42a430e0a5a0a30f731da44a0e3fd"
+    },
+    "dependencies": [
+      {
+        "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-metadata\\job.json",
+        "sha256": "7ab3d9c73113c784136502262e0eafc957e051a5dbbf581e31455f3b7b846918"
+      }
+    ],
+    "warmups": 1,
+    "repetitions": 3,
+    "scope": "Input-only native validation2 CUDA smoke; warmup/repeats separate; no final encode or test"
+  },
+  "checkpoint_sha256": "b4679b4fa48f66ec04e0c9f87f40571d669d459feb7bae33642376ae5c5d99ec",
+  "model_load_seconds": 0.1744159000008949,
+  "gpu": "NVIDIA GeForce RTX 4070",
+  "free_vram_before_bytes": 11630804992,
+  "total_vram_bytes": 12878086144,
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\final_encoding.py": "820913a7bf0eb773b10387c8e6ae06ffc809e68870630b285b08cb57b0486141",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\candidate_completion.py": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "E:\\ASTC_Compression\\reproductions\\common\\encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "E:\\ASTC_Compression\\script\\encode_unity_predictions.py": "f5d37b6e175be82b2feaf2dadaba064120ee98d76ab9e084b41753b6e6736e84",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_inference.py": "639c4a52c7fda9208bdfa3c208b7bae268db10fb20caf014333294a854babfe7",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "8bf6b36441d052e1f1733c09a5983c22ff7f9c09a5836f6171a052dd443f014c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\inference_benchmark.py": "63be0b8b3a04ca2a128e79428740c5fc7bb7a3bf2a2cd6041683d339a7aa769b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+    "E:\\ASTC_Compression\\script\\benchmark_unity_inference.py": "510ed28b2de3f998d4c97204b40ac75197a42a430e0a5a0a30f731da44a0e3fd"
+  },
+  "scope": "Saved smoke validation inputs; fresh CUDA inference only; encoding and independent test pending",
+  "wall_seconds": 3935.250265800001,
+  "active_seconds": 2.392629699999816,
+  "peak_vram_bytes": 136338944,
+  "median_preprocess_inference_decision_seconds": 0.027503500001330394,
+  "deployment_end_to_end_seconds": null,
+  "encoding_calls": 0,
+  "inputs_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-final-encoding-smoke2-v2-config.json": "1722f0b99936100db12a6d2cfa2faf4ba4821a36a62c4c30c393e6b1ebd76238",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\final_encoding.py": "820913a7bf0eb773b10387c8e6ae06ffc809e68870630b285b08cb57b0486141",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\candidate_completion.py": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "E:\\ASTC_Compression\\reproductions\\common\\encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "E:\\ASTC_Compression\\script\\encode_unity_predictions.py": "f5d37b6e175be82b2feaf2dadaba064120ee98d76ab9e084b41753b6e6736e84",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-native-smoke8-v1.json": "0b6a61132de82f7b4d1dae2f32fe2a1a452392b3b6e32f7d712b90e8c8931014",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\config.json": "6889c26fa89007c6b42b69403167fb9c25db20f0d5527d8426d44d4d4d94f2b7",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best.pt": "b4679b4fa48f66ec04e0c9f87f40571d669d459feb7bae33642376ae5c5d99ec",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best-validation.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best-decisions.json": "b3801f9488f1df6c52ee1723cbbd9c880bcba1304a39c9be4ceb0165e1a7138a",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\checkpoint-audit.json": "2524c312baa139ddc75b2f656ae035bc17248de2f14afe72786ba061d7ddcda0",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-assembled2370\\corpus.json": "27a43c576c5f17a7dc529b421dd40b22925082f76cd8686363b1220688112f02",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-validation2-20261111\\corpus.json": "7fafcb29b28d85cc97ca2ddbd0343afe1c3629a2c86908b7020be53139f32811",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-validation2-20261111.json": "c723ac7b9a7b93a3fd6b325a3eb7ebe26de5b2e6e7282679f79ee9f496e479e1",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "da8cfed7a2ec6d87a724f9ead8120242eaca87ee5c37d8874eb1ae191c410986",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-native-smoke8-v1-config.json": "aa8949f690d6b876e07d29edb3d8c1a53e30fb58061452300ad6e0466088a991",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_bags.py": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "8bf6b36441d052e1f1733c09a5983c22ff7f9c09a5836f6171a052dd443f014c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_loss.py": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\00000\\original.png": "f0fe4b22726ba3558c84d7f020dd9a02d3d5f04e2e669ae5f129f91377816da3",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-validation2-20261111\\validation\\00000.npz": "ae29e68caf1053f0000f51dc01c272e03e628907d0a6f6ee0e36c3b0809e31d5",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\00001\\original.png": "9f9941b36d008200d88356ae0a8fc8e27b81cff4747c3c410447b9d4cbc63d63",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-validation2-20261111\\validation\\00001.npz": "815d691712a85bd527cd6f51c17443033eec97961f8f5f209a95208d1a707b39"
+  },
+  "outputs_sha256": {
+    "predictions.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379",
+    "decisions.json": "9abb0f93f1cadd42afa686175dba991981335b531451a39b2fc0bfec2b46d015"
+  }
 }

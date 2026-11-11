@@ -1,6 +1,6 @@
 # 固定容量的学习率、采样与损失对照
 
-当前[尺寸元数据对照](metadata.md)运行中；此前[按有效像素抽样及有效区域池化](pixel-sampling.md)已完成，验证准确率分别为82.0%和78.0%，均低于原cap512的84.5%，保留负结果。新增[冻结预测残差诊断](#固定预测的残差与阈值诊断)显示，在已检查的全局余量网格上最高仍为84.5%；本轮没有修改训练或部署参数。`[verified: scratch-group512-metadata.json status；scratch-group512-pixels-result.json、scratch-group512-validpool-result.json、scratch-group512-result.json metrics；scratch-group512-residuals.json same_validation_best_global_margin；opinion: 实验选择]`
+[尺寸元数据对照](metadata.md)已完成，为84.2%／同权重近阈值RMSE1.5334dB，低于原cap512的84.5%。此前[有效像素抽样及有效区域池化](pixel-sampling.md)分别为82.0%和78.0%；[冻结预测余量诊断](#固定预测的残差与阈值诊断)在所测101点网格最高仍为84.5%。保留以上负结果及原基准权重，不据此声称模型上限。`[verified: scratch-group512-metadata-result.json metrics；scratch-group512-pixels-result.json、scratch-group512-validpool-result.json metrics；scratch-group512-residuals.json；opinion: 解释与选模]`
 
 资产组限权对照完成，验证准确率84.5%，比同LR标准采样提高3.8个百分点，10×10召回提高16.41个百分点。后续[同图patch聚合损失对照](bag-loss.md)也已完成，权重0／1为71.2%／71.7%，均低于历史独立采样80.7%；保留负结果，采样变化与新增loss的影响分别解释。`[verified: scratch-group512-result.json；scratch-bag4-comparison.json；opinion: 解释边界]`
 

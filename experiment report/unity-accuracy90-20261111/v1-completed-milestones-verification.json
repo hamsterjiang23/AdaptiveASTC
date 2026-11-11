@@ -1,0 +1,99 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-11T23:46:03.270360+00:00",
+  "cpu_tests": {
+    "command": "uv run pytest tests/test_unity_confirmation.py -q",
+    "passed": 16,
+    "seconds": 4.1
+  },
+  "static_checks": {
+    "ruff": "format/check passed for three new source files and four analytical helpers",
+    "basedpyright": "three new files and explicit project for four hidden helpers: passed"
+  },
+  "review": {
+    "code": "CLEAN; report exclusive claim and case-normalized special groups verified",
+    "docs": "CLEAN after correcting repeat-audit cost and completed deployment wording",
+    "scope": "New confirmation implementation and current milestone documentation"
+  },
+  "local_file_links": 354,
+  "internal_anchors": 29,
+  "source_bindings": {
+    "unity-native-training-full-v1": 23,
+    "unity-native-pipeline-full-v2": 14,
+    "unity-inference-smoke2-v1": 19,
+    "unity-deployment-smoke2-v1": 22
+  },
+  "live_jobs": {
+    "unity-reference-series-v2": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+        "status": "running",
+        "pid": 41024,
+        "created": 1794409642.5245771
+      },
+      "report_sha256": "7a3aeeefe6a5a236ad9cac88f85c5f327e90ed8f11ba4c1c3fb305a3cc11f014",
+      "status": "running",
+      "counts": {
+        "train": 7488,
+        "validation": 2
+      },
+      "current_batch": "unity-v1-train-029-20261111"
+    },
+    "unity-candidate-queue-multimip-v2": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\job.json",
+        "status": "running",
+        "pid": 33640,
+        "created": 1794415260.4741013
+      },
+      "report_sha256": "a51bb6e6ebfd0804007e52581f34abd9f6bc63268bf97715062c2dea4579c1a9",
+      "status": "running",
+      "counts": {
+        "train": 7232,
+        "validation": 2
+      },
+      "current_batch": "unity-v1-train-028-20261111"
+    },
+    "unity-native-pipeline-full-v2": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v2\\job.json",
+        "status": "running",
+        "pid": 43872,
+        "created": 1794430895.0713837
+      },
+      "report_sha256": "8a20f510ade2172eddf0921d9cb1136033ec83ab1165efadb77d09a00eb8f717",
+      "status": "waiting_upstream"
+    },
+    "unity-native-training-full-v1": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v1\\job.json",
+        "status": "running",
+        "pid": 47576,
+        "created": 1794437559.1115017
+      },
+      "report_sha256": "76c9129d0f8eec055b402b5a835d13c1428c34925da454bc0a2ac6a2263cd8f1",
+      "status": "waiting_data"
+    }
+  },
+  "resources": {
+    "free_ram_bytes": 28673728512,
+    "free_disk_bytes": 968203128832
+  },
+  "docs_sha256": {
+    "README.md": "441622d64c3e0c286e5352a3b0837920b55b6bd24a086bf5876aca27a693aab9",
+    "AGENTS.md": "620058236cc0f2cc332f6cfeed578a25b0fd92a4e331153a6fd5cf37b5f5767f",
+    "experiment plan\\V1\\README.md": "3d0ea374769e067eb9ab0c324fca787fa5f296ecc67b8092caa2a029ee3772c4",
+    "experiment report\\unity-accuracy90-20261111\\README.md": "0ea141546889675a8cf0ec347e2ae68ea8470b2e2086426953ccaacd8d301bbb",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-training-queue.md": "797540acd957796fca9bdda1124ac638558389ce35606c13cadc8b62d7cca6dc",
+    "experiment report\\unity-accuracy90-20261111\\unity-confirmation-cohort.md": "1cc32311e101c8627594c64e178f503e18a290ace8c117ac7083659972fb64af",
+    "experiment report\\unity-accuracy90-20261111\\unity-inference.md": "9e3b4f16a11ef67daf9b19630911725ff91065833c62069b0a98c3ff97b03fe8",
+    "experiment report\\unity-accuracy90-20261111\\unity-deployment.md": "0e069070f7b8d219b1814a662468761e1807c26039a740d5713b538ded4212a0",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\README.md": "17316fe12a0aff1df3d9b2900380b4b4921fdc73f4c6cc2e304fe4db9112dc52",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\metadata.md": "94a9f77be56307141889d50323c6380430d7b0e8ec96991d5e86a56dcfd772c4",
+    "references\\task-costs.md": "39bef9f4a4e4dc5058fd96b102db9abb2ac31f54e06f612af02bf6aaba628b25"
+  },
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "test_opened": false,
+  "goal_complete": false,
+  "script_sha256": "41ed24920818edb160dcb28d8d4c89c7a96a7955a9c14a6f185ee0d8f49d4074"
+}

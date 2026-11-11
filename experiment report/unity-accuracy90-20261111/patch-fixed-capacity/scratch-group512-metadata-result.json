@@ -1,0 +1,116 @@
+{
+  "status": "passed",
+  "scope": "Completed GDC development control; no Unity production accuracy",
+  "changed_configuration": {
+    "size_metadata": [
+      false,
+      true
+    ]
+  },
+  "selected_epoch": 27,
+  "selected_variant": "raw",
+  "completed_epochs": 27,
+  "parameters": 11178580,
+  "fp32_parameter_bytes": 44714320,
+  "training_wall_seconds": 6206.626021300006,
+  "process_seconds": 6244.324173599998,
+  "stop_reason": "near_threshold_rmse_patience",
+  "minimum_rmse_across_training": 1.484736147526066,
+  "metric_pair_scope": "All metrics belong to the selected accuracy-best checkpoint",
+  "metrics": {
+    "accuracy": 0.842,
+    "balanced_accuracy": 0.7878050191876167,
+    "per_class": {
+      "6x6": {
+        "precision": 0.8296943231441049,
+        "recall": 0.8715596330275229,
+        "f1": 0.8501118568232662,
+        "support": 218
+      },
+      "8x8": {
+        "precision": 0.6923076923076923,
+        "recall": 0.703125,
+        "f1": 0.6976744186046512,
+        "support": 192
+      },
+      "10x10": {
+        "precision": 0.6639344262295082,
+        "recall": 0.6328125,
+        "f1": 0.648,
+        "support": 128
+      },
+      "12x12": {
+        "precision": 0.960352422907489,
+        "recall": 0.9437229437229437,
+        "f1": 0.9519650655021834,
+        "support": 462
+      }
+    },
+    "near_threshold_rmse_db": 1.5333615259508884,
+    "quality_pass_rate": 0.864,
+    "payload_bytes": 90951984,
+    "margins": [
+      {
+        "margin_db": 0.0,
+        "accuracy": 0.842,
+        "quality_pass_rate": 0.864,
+        "payload_bytes": 90951984
+      },
+      {
+        "margin_db": 0.25,
+        "accuracy": 0.825,
+        "quality_pass_rate": 0.881,
+        "payload_bytes": 93468656
+      },
+      {
+        "margin_db": 0.5,
+        "accuracy": 0.825,
+        "quality_pass_rate": 0.902,
+        "payload_bytes": 96225264
+      },
+      {
+        "margin_db": 0.75,
+        "accuracy": 0.797,
+        "quality_pass_rate": 0.907,
+        "payload_bytes": 98619088
+      },
+      {
+        "margin_db": 1.0,
+        "accuracy": 0.762,
+        "quality_pass_rate": 0.91,
+        "payload_bytes": 100514560
+      }
+    ],
+    "by_long_side": {
+      "at_most256": {
+        "count": 411,
+        "accuracy": 0.781021897810219
+      },
+      "257_to1023": {
+        "count": 281,
+        "accuracy": 0.8612099644128114
+      },
+      "at_least1024": {
+        "count": 308,
+        "accuracy": 0.9058441558441559
+      }
+    }
+  },
+  "accuracy_change_pp": -0.30000000000000027,
+  "recall_change_pp": {
+    "6x6": 2.752293577981646,
+    "8x8": -2.604166666666663,
+    "10x10": -7.8125,
+    "12x12": 1.2987012987012991
+  },
+  "v1_development_gate_passed": false,
+  "test_opened": false,
+  "production_acceptance": "not evaluated",
+  "inputs_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-metadata.json": "df37c350551a669def91bb9be0ea0680e18555046b913cb6ada5f7e762fa6f7e",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-metadata-audit.json": "5553e0e240cf3e0da6de885c1510fdb5b958a77e857d64398caf22fbaf8786b5",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-result.json": "a2002693cbc57d2a413c6fd257be494b46697a9c914e3544b3e21ed10bcd0463",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-metadata\\receipt.json": "c979b8d0f9c14a6a198f5ffa999b539b3328b0ce57b756e62b3a28a211d27fd5"
+  },
+  "script_sha256": "ca58442778ab751c6f68cb16e3f4af54e27a5dd43e11201c444a60f9f4bec23f"
+}

@@ -1,18 +1,20 @@
 # 实验成本与读写依赖
 
-完整Unity训练衔接：55项CPU检查6.02秒，32图CUDA预检尚未执行。image batch16×4patch、workers2、validation batch16，预计预检30–120秒、正式30轮上限1–4小时；先等现有三个CUDA任务成功退出，再等完整数据四阶段通过。每次启动训练前要求RAM余量12GiB、显存6GiB及GPU利用率≤20%，原生参数11,377,660不变；冻结23份源码，读部分／完整语料分别绑定SHA，写独立`unity-native-training-full-v1`。其他GPU实验须先纳入串行调度，实际阶段成本与等待分别记录。`[verified: 本轮pytest；unity-native-training-readiness.json；unity-native-training-full-v1-config.json；opinion: 成本预算与调度要求]`
+独立确认集预留：2000主名单＋500备用，CPU内部47.03秒、完整进程52.71秒；2500份源文件／meta再次复核10.03秒。读取9份历史清单及参数快照的资产身份字段，写独立.local名单和公开摘要，不运行模型、不采集Unity标签。峰值内存未测；不与后续原生采集成本混合。`[verified: unity-confirmation2000-v1.json wall_seconds、primary_images、reserve_images；unity-confirmation-reservation-verification.json wall_seconds、reservation_process_seconds；opinion: 成本范围]`
 
-Unity同次预测与编码入口：47项CPU检查4.94秒，四次真实编码接口核验内部1.99秒；后者仅CPU、不运行新forward。CUDA任务依赖尺寸元数据训练和独立推理进程成功退出，冻结22份源码，读取原生smoke8权重／验证参考／候选归档，写独立`unity-deployment-smoke2-v1`。计划两图、两条路径、一次预热及三次配对重复，共16次编码；模型／DLL加载、解码质量核验与写盘单列，活动阶段预计不足一分钟。进入CUDA前要求4GiB空闲RAM／2GiB显存，等待成本另记。`[verified: 本轮pytest；unity-deployment-encode4.json；unity-deployment-smoke2-v1-config.json；opinion: 成本估计]`
+完整Unity训练衔接的32图CUDA预检已完成：2轮4次更新、0次AMP跳步，训练器75.44秒、完整进程83.45秒。image batch16×4patch、workers2、validation batch16、11,377,660参数；正式训练仍等待完整数据四阶段通过，预计最多30轮1–4小时仅为预算。活动期间冻结23份源码，其他GPU任务须纳入串行调度。`[verified: native-training-full-v1/smoke.json wall_seconds、history；unity-native-training-full-v1.json stages、status；opinion: 预算与调度]`
 
-原生独立推理输入核验：真实validation2／13patch，CPU0.878秒，无模型forward；51项相关CPU检查4.52秒。CUDA计时任务等待`scratch-group512-metadata`成功退出，读取已完成原生smoke权重与验证参考，写独立`unity-inference-smoke2-v1`目录，冻结19份源码。计划一次预热／三次重复，活动阶段预计不足一分钟；退出等待后复查至少4GiB空闲RAM和2GiB显存，等待和实际运行成本分开记录。`[verified: unity-inference-input-audit.json；本轮pytest；unity-inference-smoke2-v1-config.json；对应launch-preflight.json；opinion: 成本估计]`
+Unity同次预测与编码已完成两图一次预热＋三次配对重复，共16次编码；活动3.34秒、依赖等待3032.84秒、完整进程3041.19秒。两图合计预测路径中位数48.81ms，fixed8为38.34ms，质量通过分别1／2、2／2。读取原生smoke8权重，模型／DLL加载、解码核验和写盘单列；不代表等质量部署收益。`[verified: unity-deployment-smoke2-v1.json summary、active_seconds、dependency_wait_seconds；对应job receipt；opinion: 解释范围]`
+
+原生独立推理两图13patch已完成一次预热＋三次测量；两图合计预处理＋推理＋决策中位数27.50ms，活动2.39秒、依赖等待3932.86秒、完整进程3939.57秒。模型加载0.1744秒单列，0次训练更新，无test访问；不将独立推理和旧编码时长相加报告端到端收益。`[verified: unity-inference-smoke2-v1.json measurements、median_preprocess_inference_decision_seconds、model_load_seconds；对应job receipt；opinion: 计时边界]`
 
 Unity保存验证预测的最终编码检查：两图、两条路径共四次DLL编码，v2内部0.81秒／完整进程4.05秒，CPU单进程，无新模型forward／CUDA。启动前RAM余量和磁盘记录于对应`launch-preflight.json`；读取已完成smoke模型产物与不可变验证候选，写独立`unity-final-encoding-smoke2-v2`目录，与训练及Unity采集并行。首次v1成本3.85秒，源码身份修订后v2独立复跑；不能作为部署端到端加速。`[verified: unity-final-encoding-smoke2-v2.json；对应v1/v2 jobs receipts；opinion: 成本边界]`
 
-尺寸元数据训练接入的46项CPU检查5.49秒，CUDA48train／16validation检查两轮4次更新、进程20.45秒、峰值分配显存2,118,428,672字节；后续BN路径检查10.51秒。正式启动前RAM空闲26.93GiB、GPU1172／12282MiB，batch128、workers2、单GPU，与Unity采集／补测并行，读冻结GDC语料并写独立训练目录。按既有10–30轮成本估计40–140分钟，实际早停轮数与完整成本待结束记录；旧15份源码预先归档，运行冻结12份训练源码。`[verified: metadata-integration.json；对应jobs receipts、launch-preflight.json；opinion: 预算与调度范围]`
+尺寸元数据正式27轮CUDA训练完成：训练器6206.63秒、含重载的完整进程6244.32秒，选中84.2%／1.5334dB，新增16参数。先期46项CPU检查5.49秒、小样本进程20.45秒、BN检查10.51秒分别保留。单GPU、batch128、workers2，与Unity采集／补测并行；此为开发训练成本，不是部署延迟。`[verified: scratch-group512-metadata-result.json；metadata-integration.json；对应jobs receipts；opinion: 成本范围]`
 
 组均衡cap512末轮BN诊断已完成，raw／EMA分别使用16384训练patch重估并各验证前后状态，0次优化器更新；内部424.57秒、完整进程429.16秒，观察到进程树RSS约2571MiB、GPU总占用2116MiB，非峰值。启动前RAM空闲27.37GiB，沿用单GPU串行、与Unity采集并行；原checkpoint及归档源码只读，写独立诊断目录。先期CUDA小样本进程10.52秒，原／当前执行源码分开绑定。`[verified: normalization-group512.json；对应job receipt及launch-preflight.json；本轮psutil/nvidia-smi观测；opinion: 资源与计时范围]`
 
-尺寸元数据组件12项CPU检查4.40秒；完整11000图133140patch尺寸特征审计4.91秒，读取corpus及目标NPZ并核验SHA，不加载图片或运行模型。以上为先期组件检查成本，CUDA小样本成本见本节顶部；正式完整训练与部署推理成本尚待测量。`[verified: metadata-contract.json；metadata-data-audit.json；audit_patch_metadata.py；metadata-integration.json；opinion: 待测范围]`
+尺寸元数据组件12项CPU检查4.40秒；完整11000图133140patch尺寸特征审计4.91秒，读取corpus及目标NPZ并核验SHA，不加载图片或运行模型。以上为先期组件检查成本，CUDA小样本成本见本节顶部；正式完整训练成本见本节顶部，元数据模型的部署推理成本仍待测量。`[verified: metadata-contract.json；metadata-data-audit.json；audit_patch_metadata.py；metadata-integration.json；opinion: 待测范围]`
 
 3906图patch准备已完成，循环1684.91秒／进程1687.78秒；统一清单组装64.13／67.60秒，20832patch完整Dataset检查113.73／116.98秒。此范围仍为partial，旧11批目标哈希保持，6批新增目标单列；成本含重验与并发，不用于部署加速比。`[verified: unity-patch-batches3906.json；unity-patch-assembly3906.json；unity-assembly3906-dataset-audit.json；native3906-assembly-verification.json process_costs；opinion: 成本边界]`
 
