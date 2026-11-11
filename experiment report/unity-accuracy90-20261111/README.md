@@ -15,17 +15,17 @@
 
 ## 已完成与当前状态
 
-- [Unity分批patch准备](unity-patch-batches.md)通过64train／2validation检查，781／13个patch；2370图冻结子集已启动，进度见[逐批结果](unity-patch-batches2370.json)。保留首次大小写身份检查失败、修复及已生成语料；42项测试和独立复查通过。`[verified: unity-patch-batches-smoke-v2.json；unity-patch-batches2370.json；pytest与review输出]`
+- [Unity分批patch准备](unity-patch-batches.md)通过64train／2validation检查，781／13个patch；2370图冻结子集已完成，2368／2图、15619patch，并已[合并统一清单](unity-patch-assembly.md)；逐批证据见[逐批结果](unity-patch-batches2370.json)。保留首次大小写身份检查失败、修复及已生成语料；42项测试和独立复查通过。`[verified: unity-patch-batches-smoke-v2.json；unity-patch-batches2370.json；pytest与review输出]`
 
 - [Unity原生RGBA Dataset](unity-dataset.md)完成260张真实开发图的输入、20候选逐通道目标和原生PSNR重建检查；19项测试通过。最终复核包含重复patch监督冲突修复，进程13.22秒；Unity模型训练与独立测试仍未完成。`[verified: unity-dataset260-v2.json；jobs/unity-dataset260-v2/receipt.json；pytest 19 passed；opinion: 完成边界]`
 
-- [同图patch聚合损失](patch-fixed-capacity/bag-loss.md)完成CPU组件与10000训练图抽样核验，14项新检查通过；配对配置隔离采样变化与新增loss。尚未接入训练器或启动CUDA训练，继续等待正在运行的资产组对照。新增冻结预测诊断显示，246张单patch验证图上scratch／pretrained准确率为79.27%／89.02%，聚合实验不能预设解决全部误差。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；本轮pytest；opinion: 结果与执行边界]`
+- [同图patch聚合损失](patch-fixed-capacity/bag-loss.md)完成CPU组件与10000训练图抽样核验，14项新检查通过；配对配置隔离采样变化与新增loss。后续已接入训练器，两组CUDA检查及重载通过，正式成对训练串行运行。新增冻结预测诊断显示，246张单patch验证图上scratch／pretrained准确率为79.27%／89.02%，聚合实验不能预设解决全部误差。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；scratch-bag4-smoke-summary.json；scratch-bag4-summary.json；opinion: 结果与执行边界]`
 
 - [Unity 原搜索规则重放](unity-policy-replay.md)完成260张开发图，块大小、preset、选择原因和候选尝试次数均与原搜索一致；其中严格质量通过233张，大图放宽25张、最高PSNR回退2张。去掉非PSNR分支时仅207张块大小一致，这是实测质量的规则诊断，未运行Unity模型。绑定原采集缓存的正式审计进程3.646秒，首次来源绑定不足的记录保留。`[verified: unity-policy260-bound-v2.json；unity-policy260-analysis.json；对应job receipt；opinion: 验收范围]`
 
 - [Unity原生监督与法线恢复](unity-patch-targets.md)新增完成：258图5160候选的RGBA通道SSE重建PSNR最大差3.74e-6dB；两张多级评价法线40候选补测与单独patch提取通过。原队列因mip0-only限制失败的记录保持，新候选队列重新核验已有578图并继续；质量分支建模和Unity生产验收仍未完成。`[verified: unity-patches-train256.json；unity-normal-multimip2.json；unity-patches-multimip2.json；unity-candidate-queue-multimip-v2.json；opinion: 验收范围]`
 
-- Unity串行参考采集已核验train1088／validation2。256图候选补测全部完成，5120次编码新增3688组覆盖，原1432组指标与256个winner一致，进程609.70秒；[连续队列](unity-supplement.md#连续补测队列与训练清单)的258图实跑及最终源码复核通过，完整45批另行运行。原标签／基线保持，去maxpool CUDA对照已完成15轮，为74.6%／2.5459dB，低于标准stem；末轮EMA重估为78.6%／2.1127dB，资产组限权的下一项单因素CUDA训练已启动；完整Unity验收尚未完成。`[verified: unity-reference-series.json counts；unity-candidates-train256-audit.json；unity-candidate-queue-smoke.json；scratch-stem2-lr0003-result.json；normalization-scratch-stem2-lr0003.json；scratch-group512-summary.json；对应job receipts；opinion: 验收边界]`
+- Unity串行参考采集已核验train1088／validation2。256图候选补测全部完成，5120次编码新增3688组覆盖，原1432组指标与256个winner一致，进程609.70秒；[连续队列](unity-supplement.md#连续补测队列与训练清单)的258图实跑及最终源码复核通过，完整45批另行运行。原标签／基线保持，去maxpool CUDA对照已完成15轮，为74.6%／2.5459dB，低于标准stem；末轮EMA重估为78.6%／2.1127dB，资产组限权的后续对照已完成，为84.5%／1.3869dB（固定参数量、单seed）；完整Unity验收尚未完成。`[verified: unity-reference-series.json counts；unity-candidates-train256-audit.json；unity-candidate-queue-smoke.json；scratch-stem2-lr0003-result.json；normalization-scratch-stem2-lr0003.json；scratch-group512-summary.json；对应job receipts；opinion: 验收边界]`
 
 - 新Unity两图参考采集通过，源文件与运行时规则核对通过，meta恢复0冲突。前两次启动失败及恢复记录保留在 [progress.json](progress.json)；成功记录见 [probe.json](probe.json)。已有64图归档另见 [data-readiness.json](data-readiness.json)。`[verified: 对应JSON记录]`
 - [PSNR矩阵复核](psnr-matrix-audit.json)核对train10000／validation1000的receipt哈希和矩阵顺序，均与35 dB规则及回退一致。独立高斯噪声σ0.75 dB、5个seed的训练标签命中率平均90.116%；它是决策敏感性模拟。`[verified: psnr-matrix-audit.json results]`

@@ -37,6 +37,8 @@ def main() -> None:
     train.add_argument("--batch-size", type=int, default=32)
     train.add_argument("--patches-per-image", type=int, default=4)
     train.add_argument("--group-image-cap", type=int, default=0)
+    train.add_argument("--bag-size", type=int, default=1)
+    train.add_argument("--aggregate-loss-weight", type=float, default=0.0)
     train.add_argument("--learning-rate", type=float, default=0.001)
     train.add_argument("--weight-decay", type=float, default=0.05)
     train.add_argument("--warmup-epochs", type=int, default=2)

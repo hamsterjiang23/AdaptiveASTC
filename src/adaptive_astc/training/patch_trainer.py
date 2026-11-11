@@ -15,10 +15,12 @@ from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
 from torch.utils.data import DataLoader, WeightedRandomSampler
 
 from adaptive_astc.config import JsonDict
+from adaptive_astc.data.patch_bags import ImagePatchBatchSampler
 from adaptive_astc.data.patch_dataset import NativePatchDataset
 from adaptive_astc.data.patch_sampling import PatchSampling
 from adaptive_astc.evaluation.patch_metrics import PatchRegressionMetrics
 from adaptive_astc.models.patch_regressor import ASTCPatchRegressor
+from adaptive_astc.training.patch_loss import PatchRegressionLoss
 from adaptive_astc.utils.artifacts import ArtifactStore
 from adaptive_astc.utils.runtime import ExperimentRuntime
 
@@ -43,6 +45,8 @@ class PatchTrainConfig:
     ema_decay: float = 0.0
     patience: int = 0
     group_image_cap: int = 0
+    bag_size: int = 1
+    aggregate_loss_weight: float = 0.0
 
     def validate(self) -> None:
         if min(self.epochs, self.batch_size, self.patches_per_image) < 1:
@@ -59,12 +63,49 @@ class PatchTrainConfig:
             raise ValueError("Weight decay must be finite and nonnegative")
         if not 0 <= self.ema_decay < 1 or self.patience < 0:
             raise ValueError("EMA decay must be in [0,1), patience nonnegative")
+        PatchRegressionLoss(self.bag_size, self.aggregate_loss_weight)
+        if self.batch_size % self.bag_size:
+            raise ValueError("Batch size must contain complete patch bags")
 
 
 class PatchTrainer:
     def __init__(self, config: PatchTrainConfig) -> None:
         config.validate()
         self.config = config
+
+    def training_batches(self, train: NativePatchDataset) -> DataLoader:
+        config = self.config
+        generator = torch.Generator().manual_seed(config.seed)
+        count = len(train.rows) * config.patches_per_image
+        if config.bag_size > 1:
+            return DataLoader(
+                train,
+                batch_sampler=ImagePatchBatchSampler(
+                    train.rows,
+                    train.image_ids,
+                    batch_size=config.batch_size,
+                    bag_size=config.bag_size,
+                    num_samples=count,
+                    generator=generator,
+                    group_image_cap=config.group_image_cap,
+                ),
+                num_workers=config.workers,
+                pin_memory=True,
+                persistent_workers=config.workers > 0,
+            )
+        return DataLoader(
+            train,
+            batch_size=config.batch_size,
+            sampler=WeightedRandomSampler(
+                PatchSampling.weights(train.rows, train.image_ids, config.group_image_cap).tolist(),
+                count,
+                replacement=True,
+                generator=generator,
+            ),
+            num_workers=config.workers,
+            pin_memory=True,
+            persistent_workers=config.workers > 0,
+        )
 
     def fit(self) -> JsonDict:
         config = self.config
@@ -96,21 +137,8 @@ class PatchTrainer:
             model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay
         )
         scaler = GradScaler("cuda")
-        generator = torch.Generator().manual_seed(config.seed)
-        sampler = WeightedRandomSampler(
-            PatchSampling.weights(train.rows, train.image_ids, config.group_image_cap).tolist(),
-            len(train.rows) * config.patches_per_image,
-            replacement=True,
-            generator=generator,
-        )
-        batches = DataLoader(
-            train,
-            batch_size=config.batch_size,
-            sampler=sampler,
-            num_workers=config.workers,
-            pin_memory=True,
-            persistent_workers=config.workers > 0,
-        )
+        batches = self.training_batches(train)
+        criterion = PatchRegressionLoss(config.bag_size, config.aggregate_loss_weight)
         validation_batches = DataLoader(
             validation,
             batch_size=config.batch_size,
@@ -137,6 +165,15 @@ class PatchTrainer:
                     else "equal expected image weight; uniform patch within image; replacement"
                 ),
                 "targets_clipped": False,
+                "patch_bag": {
+                    "size": config.bag_size,
+                    "aggregate_loss_weight": config.aggregate_loss_weight,
+                    "sampling": "same-image patches with replacement"
+                    if config.bag_size > 1
+                    else "independent patch draws",
+                    "target_scope": "sampled bag, not full image",
+                    "aggregation": "valid-pixel-weighted MSE, inference clipping and epsilon",
+                },
                 "augmentations": [],
                 "ema": "parameters and buffers after each applied optimizer update"
                 if ema
@@ -151,6 +188,8 @@ class PatchTrainer:
                         Path(__file__).parents[1] / "models/patch_regressor.py",
                         Path(__file__).parents[1] / "data/patch_dataset.py",
                         Path(__file__).parents[1] / "data/patch_sampling.py",
+                        Path(__file__).parents[1] / "data/patch_bags.py",
+                        Path(__file__).with_name("patch_loss.py"),
                         Path(__file__).parents[1] / "evaluation/patch_metrics.py",
                         Path(__file__).parents[1] / "data/patch_targets.py",
                     ]
@@ -189,17 +228,19 @@ class PatchTrainer:
                     group["lr"] = config.learning_rate * factor
                 model.train()
                 samples, attempts, loss_sum = 0, 0, 0.0
+                patch_loss_sum, aggregate_loss_sum = 0.0, 0.0
                 before_updates = applied_updates
-                for images, targets, _ in batches:
+                for images, targets, indexes in batches:
                     images, targets = images.to(device), targets.to(device)
                     optimizer.zero_grad(set_to_none=True)
                     with torch.autocast("cuda", dtype=torch.float16):
                         prediction = model(images)
-                    weights = 1 + 2 * torch.exp(-torch.abs(-10 * targets - 35) / 3)
-                    losses = nn.functional.huber_loss(
-                        prediction.float(), targets, delta=0.1, reduction="none"
+                    loss, patch_loss, aggregate_loss = criterion(
+                        prediction,
+                        targets,
+                        torch.from_numpy(train.pixel_counts[indexes.numpy()]).to(device),
+                        torch.from_numpy(train.image_ids[indexes.numpy()]),
                     )
-                    loss = (losses * weights).mean()
                     if not torch.isfinite(loss):
                         raise ValueError("Non-finite regression loss")
                     scaler.scale(loss).backward()
@@ -208,6 +249,8 @@ class PatchTrainer:
                     scaler.step(optimizer)
                     scaler.update()
                     loss_sum += float(loss.detach()) * len(images)
+                    patch_loss_sum += float(patch_loss.detach()) * len(images)
+                    aggregate_loss_sum += float(aggregate_loss.detach()) * len(images)
                     samples += len(images)
                     attempts += 1
                     if attempts % 25 == 0:
@@ -240,6 +283,8 @@ class PatchTrainer:
                 row = {
                     "epoch": epoch + 1,
                     "train_loss": loss_sum / samples,
+                    "train_patch_loss": patch_loss_sum / samples,
+                    "train_aggregate_loss": aggregate_loss_sum / samples,
                     "samples": samples,
                     "step_attempts": attempts,
                     "optimizer_updates": updates,

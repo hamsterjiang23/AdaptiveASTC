@@ -36,11 +36,13 @@
 
 ## 实现与实验
 
+- 原生patch统一清单使用[组装入口](script/assemble_unity_patch_corpus.py)，只接收passed准备报告及外部SHA，按冻结源清单恢复顺序。保留单批来源和原标签，拒绝重复／跨划分／held-out资产；目录、corpus和报告均不可覆盖。完整覆盖需实际counts等于源开发划分；2370图结果仍为partial，不能代替完整Unity训练验收。`[verified: patch_assembly.py run L60–80、L152–155；unity-patch-assembly2370.json；test_unity_patch_assembly.py；opinion: 使用与验收要求]`
+
 - 原生patch批次准备见[分批目标报告](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)。只读取冻结快照中已发布的候选批次，重新验证原始参考／选择及候选归档；已完成单批语料绑定配置、报告、corpus哈希后复用。原计划为selected或仅选择部分批次时保留partial；coverage只表示所选范围，完整准备完成须同时满足status=passed、coverage=complete与实际counts等于完整源划分。Windows资产身份统一分隔符及大小写比较，原始文件哈希约束不变。`[verified: patch_batches.py select_batches、coverage、prepare_shard、prepare末段；unity_patch_dataset.py original_selection比较；opinion: 使用要求]`
 
 - Unity训练输入使用[原生RGBA Dataset](<experiment report/unity-accuracy90-20261111/unity-dataset.md>)的独立接口，外部配置绑定corpus SHA，保留20×4通道误差与精确零误差目标、有效区域mask和8项输入属性。实测质量与原策略选择仅作监督，不进入输入属性；MS-SSIM／法线角度保持整图监督。跨语料合并同时检查划分和目标文件SHA／patch尺寸，不能只比较整图SSE。260图数据检查通过，生产模型尚未训练。`[verified: unity_patch_dataset.py；dataset_audit.py；unity-dataset260-v2.json；opinion: 使用边界]`
 
-- 同图patch聚合实验的准备见[成组损失报告](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)。`ImagePatchBatchSampler`每组只抽同图patch、保留有效像素数；`PatchRegressionLoss`先加权MSE再取log，目标只对实际抽样组精确。权重0／1配对隔离loss，另比较成组采样本身；不能把期望权重一致称为每轮图覆盖一致。CPU检查和训练集抽样核验通过，未接入训练器或启动CUDA实验；已有运行的源码及检查点身份保持。`[verified: patch_bags.py；patch_loss.py；bag-sampling-analysis.json；opinion: 对照与运行边界]`
+- 同图patch聚合实验的准备见[成组损失报告](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)。`ImagePatchBatchSampler`每组只抽同图patch、保留有效像素数；`PatchRegressionLoss`先加权MSE再取log，目标只对实际抽样组精确。权重0／1配对隔离loss，另比较成组采样本身；不能把期望权重一致称为每轮图覆盖一致。已接入训练器，默认独立采样与旧损失保持；两组CUDA小样本检查及权重重载通过，正式配对实验串行执行。运行中不修改其绑定源码，历史源码及检查点身份保持。`[verified: patch_bags.py；patch_loss.py；bag-sampling-analysis.json；scratch-bag4-smoke-summary.json；patch_trainer.py training_batches、fit；opinion: 对照与运行边界]`
 
 - 当前goal以用户的[V1原分辨率patch误差回归计划](<experiment plan/V1/README.md>)和[evidence.json](<experiment plan/V1/evidence.json>)为准，实际状态见[执行记录](<experiment report/unity-accuracy90-20261111/README.md>)。按patch目标／编码核验、分类对照、scratch／pretrained回归、按错误分布改进的顺序执行，训练使用CUDA。GDC train／validation用于开发，最终在Unity导入后参考像素与同次原始搜索标签的独立测试上验收Top-1≥90%。`[verified: 用户本轮V1与重新创建goal要求；V1“目标与开发数据”“实验步骤”]`
 - V1分类五组最高验证Top-1为68.6%；正式随机初始化／预训练patch回归各14轮完成，最佳Top-1为76.0%／88.8%，阈值附近RMSE为1.7681／0.9736dB，两组最佳权重重载通过。各11,178,564参数，继续固定容量诊断；V1开发联合晋级条件及最终Unity90%均未达到。详见[回归状态](<experiment report/unity-accuracy90-20261111/patch-v1/README.md>)。`[verified: classification-controls/comparison.json；patch-v1/summary.json；scratch-result.json；pretrained-result.json；opinion: 后续顺序]`

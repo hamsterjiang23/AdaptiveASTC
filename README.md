@@ -52,7 +52,7 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
-固定容量阶段新增[同图patch聚合损失的准备与诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)，成组采样及聚合数学检查通过；“成组采样＋原损失”和“相同采样＋聚合损失”分别配置。当前尚未接入训练器和启动新CUDA实验，资产组训练继续；新模块没有改变网络参数。`[verified: patch_bags.py；patch_loss.py；scratch-bag4-suite.json；opinion: 执行状态边界]`
+固定容量资产组限权训练完成26轮，选中epoch21 raw，验证84.5%／近阈值RMSE1.3869dB，比同LR标准采样提高3.8个百分点，10×10召回提高16.41个百分点，参数量不变。下一项[同图patch聚合损失对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)已接入训练器，两组CUDA小样本检查通过，正式成对训练串行运行。`[verified: scratch-group512-result.json；scratch-bag4-smoke-summary.json；scratch-bag4-summary.json；opinion: 结果边界]`
 
 新增 [Unity 原搜索规则重放](<experiment report/unity-accuracy90-20261111/unity-policy-replay.md>)：260 张开发图的块大小、preset、选择分支和候选尝试次数全部复现。只保留真实 PSNR 的诊断仅命中 207 张块大小，表明迁移必须保留 MS-SSIM／法线等原规则信息；该结果不是模型准确率。Unity 模型训练与独立测试 90% 仍待完成。`[verified: unity-policy260-bound-v2.json matching_fields、mismatches、psnr_only_footprint_matches；opinion: 迁移要求与验收边界]`
 
@@ -64,7 +64,7 @@ V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预�
 
 独立[BN统计量诊断](<experiment report/unity-accuracy90-20261111/normalization.md>)两组均完成：随机初始化／预训练末轮EMA仅用训练patch重估统计量后达到76.7%／89.2%，近阈值RMSE为1.6467／0.9512dB，学习参数未变。原训练最佳模型与这次后处理结果分开记录；当前仍未达到V1／Unity验收。`[verified: normalization-scratch.json、normalization-pretrained.json rows与optimizer_updates；opinion: 记录边界]`
 
-已完成[固定容量学习率对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)：随机初始化lr1e-3→3e-4，其他正式设置不变，12轮早停、最佳权重重载通过；验证准确率80.7%、近阈值RMSE1.6040dB，比原scratch提高4.7个百分点，10×10召回下降4.69个百分点。同容量去maxpool对照后续完成15轮，最佳74.6%／同权重RMSE2.5459dB，下降6.1个百分点，参数量仍为11,178,564；末轮EMA经BN重估为78.6%／2.1127dB，仍低于标准stem；资产组cap512的单因素CUDA训练已在小样本检查后启动。`[verified: scratch-lr0003-result.json、scratch-lr0003-audit.json、scratch-stem2-lr0003-result.json；normalization-scratch-stem2-lr0003.json；scratch-group512-smoke-summary.json、scratch-group512-suite.json；opinion: 记录范围]`
+已完成[固定容量学习率对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)：随机初始化lr1e-3→3e-4，其他正式设置不变，12轮早停、最佳权重重载通过；验证准确率80.7%、近阈值RMSE1.6040dB，比原scratch提高4.7个百分点，10×10召回下降4.69个百分点。同容量去maxpool对照后续完成15轮，最佳74.6%／同权重RMSE2.5459dB，下降6.1个百分点，参数量仍为11,178,564；末轮EMA经BN重估为78.6%／2.1127dB，仍低于标准stem；资产组cap512后续完成26轮，最佳84.5%／1.3869dB，详情见同一报告。`[verified: scratch-lr0003-result.json、scratch-lr0003-audit.json、scratch-stem2-lr0003-result.json；normalization-scratch-stem2-lr0003.json；scratch-group512-result.json；opinion: 记录范围]`
 
 [Unity参考像素全量队列](<experiment report/unity-accuracy90-20261111/unity-reference-series.md>)已启动，冻结45批覆盖train10000／validation1000，原搜索策略与标签保留。已完成320张train、2张validation；66张已有归档的实际合并检查通过，剩余批次串行采集。每批核对像素、实际编码参数、来源哈希和恢复记录；候选补测及生产训练另行验收。实时状态见[队列报告](<experiment report/unity-accuracy90-20261111/unity-reference-series.json>)。`[verified: unity-reference-series-plan.json；unity-reference-series-smoke.json；unity-reference-series.json counts/current_batch；opinion: 验收范围]`
 
@@ -89,7 +89,7 @@ V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预�
 
 ## 当前状态
 
-原生数据准备继续扩展：[分批目标入口](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)已通过64训练图／2验证图检查，随后启动冻结的2370图部分语料构建；实际完成数量见对应JSON报告。独立语料复用、Windows路径身份和partial覆盖检查已落实，完整Unity训练仍待完成。`[verified: unity-patch-batches-smoke-v2.json；unity-patch-batches2370.json；opinion: 完成边界]`
+[Unity原生语料合并](<experiment report/unity-accuracy90-20261111/unity-patch-assembly.md>)已完成冻结2370图子集：2368训练图／2验证图、15619patch、47400候选，原生PSNR重建最大差3.772e-6dB。单批与合并语料保持SHA绑定及原始划分，partial状态保留；完整开发集和Unity生产训练仍待完成。`[verified: unity-patch-batches2370.json；unity-patch-assembly2370.json counts、candidate_count、coverage；opinion: 完成范围]`
 
 Unity迁移新增[原生RGBA Dataset](<experiment report/unity-accuracy90-20261111/unity-dataset.md>)：258训练图／2验证图的20候选逐通道监督、有效像素掩码及输入属性检查通过，原生PSNR重建最大差3.74e-6dB。该结果验证数据接入，Unity模型训练与独立测试90%仍待完成。`[verified: unity-dataset260-v2.json unique_images、corpora、training_updates；opinion: 验收边界]`
 

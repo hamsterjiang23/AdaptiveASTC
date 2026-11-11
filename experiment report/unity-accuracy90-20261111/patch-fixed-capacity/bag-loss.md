@@ -1,6 +1,10 @@
 # 同图 patch 成组采样与聚合损失
 
-已实现同图成组采样和按有效像素聚合 MSE 的损失组件，完成 CPU 检查与冻结训练集上的采样核验。当前资产组 cap512 CUDA 训练仍在运行，因此尚未修改其使用的训练器；两份新配置处于准备状态，需接入训练器并通过 CUDA 小样本检查后才能启动正式实验。`[verified: patch_bags.py ImagePatchBatchSampler；patch_loss.py PatchRegressionLoss；bag-sampling-analysis.json；scratch-group512.json status；opinion: 执行门槛]`
+同图成组采样与有效像素加权MSE损失已接入训练器，两组CUDA小样本检查及最佳权重重载通过，正式成对训练已串行启动。资产组cap512训练先结束并归档其原始源码，再修改训练器；旧检查点与结果保持原身份。正式进度见[训练汇总](scratch-bag4-summary.json)，当前不能据小样本检查声明准确率收益。`[verified: scratch-bag4-smoke-summary.json；scratch-bag4-summary.json；jobs/scratch-group512/receipt.json；pre-bag-training-source归档；opinion: 结果边界]`
+
+接入后默认bag_size=1、aggregate_loss_weight=0保持旧抽样序列与损失；bag_size=4采用同图成组DataLoader，按返回的patch索引读取有效像素数和图身份。历史日志新增局部／聚合损失分项，配置记录采样、目标范围和loss源码SHA。集成检查覆盖成对采样完全一致、像素索引映射、有限梯度、非法配置与完整组预算。`[verified: patch_trainer.py training_batches、fit；test_patch_training_bags.py；opinion: 记录要求]`
+
+小语料两组均使用48训练图／16验证图，各2轮、4次实际更新，参数11,178,564不变，峰值分配显存约2.12GB；完整suite29.52秒。权重0的聚合分项为0，权重1的两轮聚合损失分别0.10687／0.09386，输出有限、权重重载一致；只证明执行链路可用。`[verified: scratch-bag4-smoke-loss0.json、scratch-bag4-smoke-loss1.json history、peak_vram_bytes；scratch-bag4-smoke-summary.json；opinion: 小样本检查范围]`
 
 ## 假设与对照
 

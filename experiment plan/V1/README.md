@@ -99,11 +99,15 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- 固定容量资产组限权对照完成26轮，最佳84.5%／同权重近阈值RMSE1.3869dB，10×10召回71.09%；相对标准采样提高3.8个百分点但仍未过联合门槛。后续[成组损失对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)已完成两组CUDA检查并启动正式串行训练。`[verified: scratch-group512-result.json；scratch-bag4-smoke-summary.json；scratch-bag4-summary.json；opinion: 验收边界]`
+
+- [Unity原生patch统一语料](<../../experiment report/unity-accuracy90-20261111/unity-patch-assembly.md>)完成2370图部分覆盖的提取及合并，2368／2图、15619patch、47400候选，原生PSNR重建最大差3.772e-6dB。完整11000图准备、Unity模型和独立测试90%仍待完成，evidence.json保持原SHA。`[verified: unity-patch-batches2370.json；unity-patch-assembly2370.json；evidence.json SHA核对；opinion: 后续范围]`
+
 - Unity原生数据开始[按已完成批次准备patch目标](<../../experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)：64训练图／2验证图检查通过，2370图冻结子集已启动。修复真实Unity日志大小写路径差异，以及小型selected计划被误标完整覆盖的问题；42项检查通过。所有原始数据与失败记录保留，完整训练语料和生产验收尚未完成。`[verified: unity-patch-batches-smoke-v2.json；unity-patch-batches2370-config.json；pytest 42 passed；opinion: 后续范围]`
 
 - Unity迁移的[原生RGBA Dataset](<../../experiment report/unity-accuracy90-20261111/unity-dataset.md>)已通过258训练图／2验证图检查，保留20×4通道误差、零误差目标、有效像素mask和输入属性。跨语料重复判定补强为精确patch目标一致；19项测试及真实260图复核通过。此次尚未训练Unity模型，图级非PSNR质量分支与最终90%验收继续保留。`[verified: unity-dataset260-v2.json；test_unity_patch_dataset.py；opinion: 后续范围]`
 
-- 固定容量阶段准备[同图patch聚合损失对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)：成组采样和损失组件CPU检查通过，10000训练图上核对40000次patch抽样及MSE聚合；权重0／1使用相同采样作成对控制。当前资产组训练尚未结束，新组件未接入训练器、尚未启动CUDA实验。冻结验证预测的分组诊断显示单patch图仍有较大误差，因此聚合只作为一项假设，输入／元数据等后续改动依实际结果安排。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；test_patch_bags.py；scratch-group512.json status；opinion: 归因与后续范围]`
+- 固定容量阶段准备[同图patch聚合损失对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)：成组采样和损失组件CPU检查通过，10000训练图上核对40000次patch抽样及MSE聚合；权重0／1使用相同采样作成对控制。该准备阶段未接入训练器；后续接入和CUDA执行结果见本节顶部。冻结验证预测的分组诊断显示单patch图仍有较大误差，因此聚合只作为一项假设，输入／元数据等后续改动依实际结果安排。`[verified: bag-sampling-analysis.json；patch-coverage-diagnosis.json；test_patch_bags.py；scratch-bag4-smoke-summary.json；opinion: 归因与后续范围]`
 
 - Unity迁移的原规则重放通过260张开发图，四项比较（块大小、preset、选择原因、候选次数）全部一致；去掉非PSNR质量分支时，块大小仅207／260一致。该诊断要求Unity路径继续保留MS-SSIM、法线角度、黑像素和大图分支，四个medium候选的GDC PSNR回归维持原开发协议。质量分支预测／聚合与最终Unity90%验收尚待完成，详见[规则重放报告](<../../experiment report/unity-accuracy90-20261111/unity-policy-replay.md>)。`[verified: unity-policy260-bound-v2.json matching_fields、mismatches、psnr_only_footprint_matches；opinion: 迁移要求与待办]`
 
@@ -116,7 +120,7 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 - 独立编码检查通过：20张训练图、80个四候选patch，单独编码解码像素均与整图对应区域一致。这是固定astcenc3.3 medium的抽样核验。[检查记录](<../../experiment report/unity-accuracy90-20261111/patch-equivalence20.json>)同时记录320次含变换编码。`[verified: patch-equivalence20.json independent_patch_matches、independent_patch_comparisons、scope]`
 - 变换的最大绝对PSNR变化为水平翻转0.84 dB、垂直翻转1.02 dB、90°旋转6.60 dB。首批实验关闭这些增强，后续如启用则重新编码生成对应监督。`[verified: patch-equivalence20.json rows；opinion: 增强决定]`
 - 抽样真实编码先保留为独立成本／质量对照，主路径保持预测后一次最终编码。Unity采用原搜索与补测分离的采集方式，保留原策略标签和计时，另补块大小×preset的缺失候选、解码图及各原生质量分支。`[opinion: 本轮执行决定]`
-- 当前6次CUDA更新仅为执行探针。独立输出／单调结构、标准stem／去maxpool、EMA及组采样均按配置和对照记录，正式分类对照、回归训练与Unity验收尚未完成。`[verified: patch-training-smoke.json；执行记录“实施差异与对照”]`
+- 先期6次CUDA更新仅为执行探针。独立输出／单调结构、标准stem／去maxpool、EMA及组采样均按配置和对照记录，当时正式分类对照、回归训练与Unity验收均未完成；后续结果分项记录。`[verified: patch-training-smoke.json；执行记录“实施差异与对照”]`
 - 后续分类五组已完成，验证Top-1从原配置66.3%提高至最高68.6%，中间类别与质量指标仍不足；详见[分类报告](<../../experiment report/unity-accuracy90-20261111/classification-controls/README.md>)。`[verified: classification-controls/comparison.json；opinion: 指标判断]`
 - 单调输出、标准stem、EMA0.999与batch128的新增CUDA探针完成6次更新，权重重载与保存预测核验通过；正式随机初始化／预训练回归队列已启动，见[回归报告](<../../experiment report/unity-accuracy90-20261111/patch-v1/README.md>)。增强继续关闭，组权重及图级loss留待错误分析后逐项比较。`[verified: patch-v1-smoke.json、patch-v1-smoke-audit.json、patch-v1/summary.json；opinion: 后续对照]`
 - Unity原搜索与补测分离的两图核验通过：40候选、24新增覆盖，原选中payload／解码一致，原16项质量按两位小数精度吻合。采用原样提取的引擎PSNR／MS-SSIM函数，原DLL通过采集协议锁绑定；真实法线／HDR、直接回调参数与全量数据仍未验收，见[补测报告](<../../experiment report/unity-accuracy90-20261111/unity-supplement.md>)。`[verified: unity-supplement2-bound.json；unity-quality-probe.json]`

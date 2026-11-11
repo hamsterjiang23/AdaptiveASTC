@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "config": {
+    "schema": "unity-rgba-channel-sse-v1",
+    "patch_size": 240,
+    "assembly": {
+      "prepared_report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-patch-batches-smoke-v2.json",
+      "prepared_report_sha256": "e10d365748c39fe50c6060059827555985bc5387ce9dfe78ea6ca15f8b844a91",
+      "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-assembled66",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-patch-assembly66.json"
+    },
+    "reference_plan_sha256": "519df9a08a326067bd5a6467a3be355b648acf92709afb21539e596feff004b8",
+    "source_manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+    "assembler_sha256": "4fb909eb4f171bffdb1b9d184cc2949957404e1f1243ea301dba257456ba3040",
+    "dataset_validator_sha256": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008"
+  },
+  "binding": "aa7a38ed285056d45043eb55972c5e647c1dcda6799166ed8e70aa37ad077478",
+  "counts": {
+    "train": 64,
+    "validation": 2
+  },
+  "patch_counts": {
+    "train": 781,
+    "validation": 13
+  },
+  "expected_full_counts": {
+    "train": 10000,
+    "validation": 1000
+  },
+  "coverage": "partial",
+  "sources": [
+    {
+      "run_id": "unity-actual-options64-20261111",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-actual-options64-20261111\\corpus.json",
+      "sha256": "ea7a05966acc3b3a0db1dd56944e281089b594e1a28b5a1c4dbc09c07da40e5f"
+    },
+    {
+      "run_id": "unity-validation2-20261111",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-validation2-20261111\\corpus.json",
+      "sha256": "7fafcb29b28d85cc97ca2ddbd0343afe1c3629a2c86908b7020be53139f32811"
+    }
+  ],
+  "candidate_count": 1320,
+  "max_psnr_reconstruction_error_db": 1.9056693361108046e-06,
+  "test_opened": false,
+  "training_updates": 0,
+  "scope": "Native development corpus assembly; shared frozen targets, no model training",
+  "fingerprint": "02542d193fefee63bf5382732ce34ae54cb74e25e4562cab395e4d5eb4ee79e1",
+  "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-assembled66\\corpus.json",
+  "corpus_sha256": "6d35ca90cb42f1aef14a5a2dc06f15d9b2a24ddd97c0f299b0f5ffbbb678a41a",
+  "wall_seconds": 3.301184600000852
+}
