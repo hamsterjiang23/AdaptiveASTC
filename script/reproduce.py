@@ -52,13 +52,14 @@ def main() -> None:
             "nah2022_psnr_search",
             "nah2023_adaptive_astcenc",
             "texnn",
+            "gdc2023",
         ],
         default="unity_search_baseline",
     )
     parser.add_argument("--engine", type=Path, default=Path("E:/hamster_unity/unity20190433"))
     parser.add_argument("--no-upm", action="store_true")
     parser.add_argument("--run-id")
-    parser.add_argument("--input-set", choices=["probe", "smoke"], default="probe")
+    parser.add_argument("--input-set", choices=["probe", "smoke", "full"], default="probe")
     parser.add_argument("--target", type=float)
     parser.add_argument("--initial", default="6x6")
     parser.add_argument(
@@ -102,6 +103,34 @@ def main() -> None:
         / "experiment report/.local/gdc-lite-rgb-resnet18-seed20261109/coverage-v2/manifest.json",
     )
     args = parser.parse_args()
+    if args.method == "gdc2023":
+        from reproductions.gdc2023.dataset import GDCMeasuredDataset
+
+        if not args.run_id or Path(args.run_id).name != args.run_id or args.run_id in {".", ".."}:
+            parser.error("GDC preparation requires a single-directory --run-id")
+        directory = ROOT / "experiment report/.local/reproduction-runs/gdc2023" / args.run_id
+        dataset = GDCMeasuredDataset(ROOT, args.project, args.manifest, directory)
+        if args.action == "dataset":
+            counts = {
+                "probe": {"train": 2, "validation": 2, "calibration": 2, "test": 2},
+                "smoke": {"train": 32, "validation": 8, "calibration": 8, "test": 16},
+                "full": {"train": 10000, "validation": 1000, "calibration": 1000, "test": 2000},
+            }
+            result = dataset.collect(
+                counts[args.input_set],
+                target=35.0 if args.target is None else args.target,
+                workers=args.workers,
+            )
+            if result["status"] != "passed":
+                print(json.dumps(result, ensure_ascii=False, indent=2))
+                raise SystemExit(1)
+            result = dataset.assemble()
+        elif args.action == "assemble":
+            result = dataset.assemble()
+        else:
+            parser.error("GDC preparation supports dataset and assemble actions")
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return
     if args.method == "texnn":
         if args.action == "report":
             from reproductions.texnn.reporting import TexNNReport
@@ -242,6 +271,8 @@ def main() -> None:
         print(json.dumps(result, indent=2))
         return
     if args.method != "unity_search_baseline":
+        if args.input_set == "full":
+            parser.error("--input-set full is currently supported only by the GDC label pipeline")
         if args.action == "report":
             if args.run_id is None:
                 parser.error("A literature report requires an explicit --run-id")

@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "scope": "project_source_rgb_training_patches",
+  "source_images": 1024,
+  "patch_size": 64,
+  "seed": 20261111,
+  "source_manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+  "protocol_sha256": "6901159db63a6fcd22356bbd8c581ace844e1de5a7a5567d7fd8fd5534b1ab93",
+  "collection_sha256": "e8eb380fb48bf40c35fee137c0424a87043656bdba7c6802d591312929046bd4",
+  "encoder_commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+  "binaries": {
+    "reference": "dbf2456b6c33d8e2c41265aa6b7f789d0f67bfa53abc22da4ec8a154812f6187",
+    "labels": "db4d785e8c72695608120cfc0f4d47e94d0cceda1f44fd67934a69512179a677"
+  },
+  "workers": 4,
+  "collection_wall_seconds": 836.3881861000009,
+  "timing_context": "Collection overlapped source preparation, code review, static checks and pytest; this is data preparation cost, not an encoder speed benchmark",
+  "footprints": {
+    "4": {
+      "samples": 186141,
+      "train_samples": 158220,
+      "validation_samples": 27921,
+      "fingerprint": "5b706ef88f576e77d851a9b5d340f3efd3fec218fcc9a9a3e7a9f329e302651a",
+      "observed_joint_labels": 1172,
+      "partition_labels": 1088
+    },
+    "6": {
+      "samples": 75758,
+      "train_samples": 64395,
+      "validation_samples": 11363,
+      "fingerprint": "a20e244ef13bb437028c7624db51e48b84b8b6fc2472f6f27a5a41c3c63572b6",
+      "observed_joint_labels": 2058,
+      "partition_labels": 1160
+    },
+    "8": {
+      "samples": 48456,
+      "train_samples": 41188,
+      "validation_samples": 7268,
+      "fingerprint": "c0b8d618f2a8fdb85f96f4b518d473ac06983638bdf7f51b199084301b1f0264",
+      "observed_joint_labels": 2561,
+      "partition_labels": 1642
+    }
+  },
+  "training_status": "running",
+  "learned_encoder_evaluation_status": "pending"
+}

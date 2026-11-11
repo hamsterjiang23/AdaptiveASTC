@@ -1,5 +1,20 @@
 # Implementation notes
 
+## GDC measured-label source preparation, 2026-11-11
+
+### Deviations
+
+- Prepared a new source-RGB35/astcenc3.3-medium label path using the existing four-square classes and ResNet trainer. Complete talk candidate set, codec preset/version and fallback are unavailable; four-square scope and best-PSNR infeasible fallback are explicit project reconstructions. Existing historical LITE labels and checkpoints remain separate. `[verified: gdc2023/dataset.py collect protocol; GDCLabelSelection.choose; gdc2023/README.md]`
+
+### Discovered edge cases
+
+- Strict `>` excludes a candidate exactly at 35 dB. Minimum actual payload can tie on small images, so ties prefer larger footprint area. An infeasible result remains a recorded quality violation. Separate tests exercise those cases, lossless inputs and invalid metrics. `[verified: tests/test_gdc_labels.py]`
+- Source splits and RGB224 cache hashes are reused, while all new candidates carry original source MD4, artifact SHA-256 and native build identity. Assembly verifies candidate artifacts, receipt/source identities, cache containment and cross-split hash/group isolation before creating a new training fingerprint. `[verified: gdc2023/dataset.py _collect_one/assemble]`
+
+### Questions for review
+
+- Only source preparation and unit/static checks have run at this checkpoint. GDC native experiments and training remain pending behind the active TexNN work. `[verified: this stage's command history]`
+
 ## TexNN learned-encoder project adaptation, 2026-11-11
 
 ### Deviations

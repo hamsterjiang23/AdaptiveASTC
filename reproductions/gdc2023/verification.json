@@ -1,0 +1,15 @@
+{
+  "status": "passed_source_preparation_only",
+  "checks": {
+    "pytest": "75 passed in 44.49s; includes 11 GDC selector, receipt admission and CLI checks",
+    "ruff": "uv run --frozen ruff check src script tests reproductions: passed",
+    "basedpyright": "uv run --frozen basedpyright: zero errors/warnings",
+    "code_review": "C1/C2 resolved; final No bugs found"
+  },
+  "native_gdc_experiments": "not_run",
+  "source_sha256": {
+    "reproductions\\gdc2023\\dataset.py": "9387619ed6c2008b0ba75fe93cf01717cdb68c2d5a04a31c538e070e448ef893",
+    "tests\\test_gdc_labels.py": "b22afc1be678df570aa72b2432812546f2c4e2e473c3d4f5555a9ed3780e33b6",
+    "script\\reproduce.py": "bf9c77c9ecd667b77ab249049ff59daa914956cc2bc00f65d8d9e98f17dd4c0e"
+  }
+}
