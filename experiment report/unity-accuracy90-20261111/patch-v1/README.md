@@ -11,6 +11,12 @@
 
 预训练最佳权重的零余量准确率88.8%、质量达标88.3%、payload89,546,480字节；余量0.5dB时分别85.0%、90.8%、94,416,752字节。质量达标率超过90%不等于标签准确率超过90%。EMA本组最高81.4%，后续用冻结权重的训练集BatchNorm重估诊断统计量影响。`[verified: pretrained-result.json metrics.margins、best_ema_accuracy；opinion: 诊断安排]`
 
+后续[统计量诊断](../normalization.md)完成两组末轮对照：同一EMA权重只重估BN统计量，随机初始化为76.7%／1.6467dB，预训练为89.2%／0.9512dB，分别比训练中原选出的最佳raw高0.7／0.4个百分点。该诊断没有更新学习参数，作为独立后处理实验保留，质量和成本另列；两组仍未达V1联合判据。`[verified: normalization-scratch.json rows；normalization-pretrained.json rows；scratch-result.json；pretrained-result.json；opinion: 记录边界]`
+
+[冻结预测的错误分层](error-strata.json)未执行新forward或读取test。预训练最佳模型112个错误中，67个来自距离候选门槛不足0.5dB的203张图；这组准确率67.00%，而距门槛至少1dB的604张图准确率96.36%。6×6候选在阈值±3dB内的预测平均偏高0.563dB、RMSE1.539dB；8／10／12候选对应RMSE为1.037／0.770／0.828dB。下一步需要针对近阈值误差，不能把全部剩余问题归为分类配比。`[verified: error-strata.json trials[1]；opinion: 改进方向]`
+
+按整图有效像素／输入patch面积分层，预训练模型在有效面积<5%、5%–25%、25%–75%、≥75%的准确率分别85.19%、92.21%、88.48%、91.11%，各组样本27／77／851／45张，类别构成不同。该结果不支持直接断言边缘填充就是主要原因，后续输入对照仍需独立实验。`[verified: error-strata.json trials[1].padding_strata；opinion: 证据边界]`
+
 ![预训练回归的验证曲线、逐类召回及决策余量](pretrained-validation.png)
 
 随机初始化最终选中第9轮raw权重：验证1000图Top-1为76.0%，balanced accuracy为69.54%，阈值附近PSNR RMSE为1.7681dB。第14轮触发RMSE patience5早停，总训练流程2787.39秒。相同验证集上，比原RGB224分类66.3%高9.7个百分点，比最佳分类对照68.6%高7.4个百分点；这是输入、目标及训练配方一起改变后的结果。未达到V1的90%／0.75dB晋级判据，不能作为Unity独立验收。`[verified: scratch-result.json；scratch-monotone-ema-audit.json；opinion: 归因边界]`

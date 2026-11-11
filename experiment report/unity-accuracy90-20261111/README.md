@@ -62,3 +62,7 @@ GPU实验串行，CPU静态检查可与训练同时发生。当前所有时长�
 [颜色扩展](unity-color8.json)完成8图160候选，新覆盖108组，原52组及winner一致。[法线审计](unity-normal20-policy.json)对真实4096² NormalMap的20个原ASTC重新解码、复测角度指标，通过原记录精度核验；新编码0次，原最高PSNR回退仍判为角度不达标。具体范围、浮点阈值修正和成本见[补测报告](unity-supplement.md)。`[verified: 对应JSON rows、encoded_candidates、quality_passing_candidates]`
 
 预训练回归现已完成14轮，选中epoch9 raw，验证Top-1为88.8%、balanced accuracy85.81%、阈值附近RMSE0.9736dB，最佳权重重载通过。两组均未达到V1的90%／0.75dB，下一步固定容量先检验BN统计量，再按错误分布安排单项训练对照。`[verified: patch-v1/pretrained-result.json、pretrained-monotone-ema-audit.json；opinion: 下一步]`
+
+[BN诊断](normalization.md)两组均完成：固定末轮EMA权重，训练集重估统计量后，随机初始化为76.7%／1.6467dB，预训练为89.2%／0.9512dB，0次优化器更新，test未打开。该结果按训练后处理单列；最高开发准确率89.2%，Unity90%独立验收仍未完成。`[verified: normalization-scratch.json；normalization-pretrained.json；opinion: 实验身份]`
+
+新的[固定容量学习率对照](patch-fixed-capacity/README.md)已通过小样本及权重重载检查，正式CUDA训练启动。相对原scratch配方仅lr1e-3→3e-4，其他正式设置不变，继续按验证结果与完整成本评价。`[verified: scratch-lr0003-smoke-summary.json；scratch-lr0003-summary.json；两份suite字段比较；opinion: 对照目的]`

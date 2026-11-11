@@ -30,7 +30,7 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### Unity导入结果与训练数据准备
 
-**面向 Unity 生产选参的训练与评估必须使用 Unity 导入处理完成后、进入 ASTC 搜索前的参考像素。** 继续使用 LITE 资源时，从引擎的第一个 image／mip0 导出 RGBA32 参考图（调试产物 `original.png`），再从该图生成模型输入。模型按现有协议转换为 RGB 并缩放至 224×224，压缩质量测量以原尺寸的导入后参考像素为准。磁盘原图仅用于源资产核验、原图对照及明确标注的历史／文献复现实验。缺少参考图时补采或标记缺失。 `[verified: 用户本次确认；ImageOperations.cpp L2947–2964；ASTCCompressor.cpp L1999–2010、L2675–2694；LITE 训练协议 L21]`
+**面向 Unity 生产选参的训练与评估必须使用 Unity 导入处理完成后、进入 ASTC 搜索前的参考像素。** 继续使用 LITE 资源时，从引擎的第一个 image／mip0 导出 RGBA32 参考图（调试产物 `original.png`），再从该图生成模型输入。历史分类协议采用RGB224，当前V1开发回归采用原分辨率240patch；Unity迁移还需保留RGBA、用途和原生质量分支。压缩质量测量以原尺寸导入后参考像素为准。磁盘原图用于源资产核验、原图对照及明确标注的历史／文献复现实验；缺少参考图时补采或标记缺失。 `[verified: 用户本次确认；ImageOperations.cpp L2947–2964；ASTCCompressor.cpp L1999–2010、L2675–2694；LITE训练协议 L21；experiment plan/V1/README.md“输入与数据”“限制与待核实”；opinion: 迁移要求]`
 
 以同一次 Unity 导入和搜索产生的参考图与选中块大小作为监督样本。清单记录资产路径、源文件 MD4、参考图 SHA-256、导入平台及有效配置、实际尺寸、颜色空间、用途、Alpha、mip、Editor／DLL 版本和选参协议。历史 LITE 模型仍按其原图输入协议解释，全量生产输入切换按实际采集和训练结果记录。 `[verified: 用户本次确认；源码导航“导出、标签与缓存产物”；LITE 训练协议 L5–7、L21]`
 
@@ -58,20 +58,24 @@ V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预�
 
 两组patch回归都在14轮后按RMSE早停，随机初始化／预训练最佳阈值附近RMSE分别1.7681／0.9736dB；两者都保留11,178,564参数，下一步按错误分布进行固定容量诊断。Unity两图实际参数绑定后40候选重放通过；64图采集另记录558次回调，RGBA哈希吻合，源码和导入设置恢复通过。`[verified: patch-v1/scratch-result.json、pretrained-result.json；unity-supplement2-actual.json；unity-actual-options64.json；smoke1-receipt.json；opinion: 下一步]`
 
+独立[BN统计量诊断](<experiment report/unity-accuracy90-20261111/normalization.md>)两组均完成：随机初始化／预训练末轮EMA仅用训练patch重估统计量后达到76.7%／89.2%，近阈值RMSE为1.6467／0.9512dB，学习参数未变。原训练最佳模型与这次后处理结果分开记录；当前仍未达到V1／Unity验收。`[verified: normalization-scratch.json、normalization-pretrained.json rows与optimizer_updates；opinion: 记录边界]`
+
+当前运行[固定容量学习率对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)：随机初始化lr1e-3→3e-4，其他正式设置不变，小样本CUDA／重载检查通过，正式训练已启动。`[verified: scratch-lr0003-smoke-summary.json；scratch-lr0003-summary.json；suite配置差异]`
+
 [Unity离线补测](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)已扩展到8张不同尺寸颜色图160候选，原52组指标和8个winner复核一致，新增108组。真实4096²法线样本的20组原ASTC重新解码及原生角度评价通过，全部未过角度门槛，原结果为最高PSNR回退；该审计没有重新编码法线。全量采集、HDR和多mip法线仍待验证。`[verified: unity-color8.json rows；unity-normal20-policy.json rows、encoded_candidates、quality_passing_candidates]`
 
 分类准确率提升的完整调研见[分类准确率与压缩全流程优化报告](<experiment report/classification-accuracy-research-20261111/README.md>)，覆盖35项一手资料、当前中间类别召回诊断、有效batch／学习率入口核对，以及Unity导入、编码、部署和分阶段实验预算。建议值在报告中按待实验记录。`[verified: sources.json primary_source_count；diagnostics.json per_class_recall；该报告“导入、编码与部署的全流程因素”“分阶段预算”]`
 
 执行顺序更新为Unity搜索耗时baseline、Nah 2023作者代码、Nah 2022论文重实现、TexNN论文重实现、GDC压缩闭环复现，再研究新模型与校准。复现入口与实际状态见[reproductions](reproductions/README.md)。Unity主基线采用LITE配置且关闭RDO，文献原始配置与项目适配配置分别记录。`[verified: 用户2026-11-10确认的实施计划]`
 
-优先研究原始块大小分类模型上的calibration，先评估分类方案能达到的质量与体积权衡。分类校准方案经实验仍达不到项目目标时，再研究多候选质量预测及其calibration。当前确定的是研究顺序，方法效果待实验验证。`[verified: 用户研究决策（2026-11-09）“在最原本的分类上进行calibration”“先研究这个，如果不行，在研究预测质量的calibration”]`
+先期研究顺序（2026-11-09）为分类calibration优先、质量预测作为备选；用户后续确认的V1已将主线改为原分辨率patch质量回归与规则决策。分类与校准产物保留原实验身份，当前执行顺序采用上面的V1。`[verified: 用户研究决策（2026-11-09）；用户V1与重建goal要求；experiment plan/V1/README.md]`
 
 - **分类基线**。保留以ResNet等网络输出块大小类别的方案，并保存完整logits／类别概率，作为后处理输入。训练标签按候选压缩质量和项目质量标准生成。`[opinion: 分类优先路线的实验设计]`
 - **概率校准**。先以temperature scaling作为后处理基线，在独立校准集上拟合温度，检查置信度与标签正确率的一致性。该方法对所有logits使用同一个正温度缩放，类别排序与argmax预测保持一致。`[verified: Guo等，On Calibration of Modern Neural Networks，§4.2，公式9及其后说明；opinion: 本项目方法选择]` [论文](https://proceedings.mlr.press/v70/guo17a.html)、[方法原文第6页](https://proceedings.mlr.press/v70/guo17a/guo17a.pdf#page=6)
 - **选参决策校准**。研究如何利用校准后的概率、置信度阈值或类别相关代价，确定最终块大小。保持生产阶段选定参数后只执行一次最终编码，决策规则及其保守程度通过离线数据确定。`[opinion: 决策层校准方案]`
 - **评价对象**。分别记录“预测是否命中最优块大小标签”和“最终压缩质量是否达标”。例如选择了质量达标但体积较大的候选，应计入体积损失。离线数据保留各候选的实测质量、达标状态与字节数，用于评价决策结果。`[opinion: 标签与质量可行性的评价定义]`
 - **校准与生产指标**。概率层记录NLL、Brier score、ECE和可靠性图，生产层记录质量违规率、相对固定8×8的字节变化、相对穷举可行最优结果的差距，以及推理与最终编码耗时。temperature scaling后继续argmax选参时，最终候选和相应质量结果与原分类基线一致，需单独检验使用校准输出的决策规则。`[verified: Guo等§4.2的argmax性质；opinion: 评价指标及其对本流程的含义]` [方法原文第6页](https://proceedings.mlr.press/v70/guo17a/guo17a.pdf#page=6)
-- **实验划分与切换条件**。按资产或项目划分训练、模型验证、校准和最终测试数据，近重复资产归入同一划分。可接受的质量违规上限、最低体积收益与处理成本预算，在小样本实验前明确。以独立测试中的质量／体积权衡判断分类校准路线是否满足目标，再决定是否启用质量回归校准备选。`[opinion: 验证协议与备选路线启用条件]`
+- **实验划分与切换条件**。按资产或项目划分训练、模型验证、校准和最终测试数据，检查近重复资产泄漏。当前方法筛选遵循V1的验证Top-1／阈值附近RMSE联合条件，最终在Unity独立测试上验收90%并单列质量、体积与处理成本。质量违规、回退和无可行候选分别报告。`[verified: experiment plan/V1/README.md“目标与开发数据”“实验步骤”；opinion: 验证协议]`
 
 ## 当前状态
 
@@ -827,7 +831,7 @@ Std的统计定义、MB计量口径、mip是否计入、逐贴图质量分布及
 
 ## 后续研究方向
 
-- 优先研究块大小分类模型的概率校准与选参决策校准，按“研究顺序与分类校准”中的独立测试和生产指标评估，质量预测回归及其校准作为后续备选。`[verified: 用户研究决策（2026-11-09）“先研究这个，如果不行，在研究预测质量的calibration”]`
+- 当前主线采用V1的原分辨率patch质量回归，固定容量下逐项改进，再按独立Unity数据和生产指标验收；先期分类概率校准与决策校准产物保留为对照。`[verified: 用户V1及重建goal要求；experiment plan/V1/README.md“实验步骤”]`
 - 以项目当前固定8×8为生产基线，补充固定6×6、固定12×12与按质量目标穷举的标签对照，冻结编码器版本、质量preset、颜色空间、贴图通道、mip和尺寸取整规则。`[verified: 用户需求说明（2026-11-09）“目前项目全都是统一使用8*8”；opinion: 实验对照设计]`
 - 小样本检查压缩、解压、质量测量和真实字节统计，再扩大到有标签的分类数据集。报告失败样本和不满足质量目标的比例。`[opinion]`
 - 比较模型预测与穷举标签的体积差、质量违规率及处理成本，分别统计数据集生成、训练、推理和最终ASTC编码。`[opinion]`
@@ -907,7 +911,7 @@ In-hyuk Jeong、Jae-Ho Nah，*An Analytical Survey of ASTC Encoding Techniques*�
 
 GDC 2023演讲提供另一条学习式路径，离线尝试多个footprint并按质量／体积目标生成标签，再用ResNet预测整图块大小。这与上述质量搜索工作可以按共同问题对照，演讲与这些论文之间的直接技术承继仍需作者资料支持。`[verified: 演讲10:00、11:00–12:28；演讲阅读笔记“标签生成”“分类网络与训练信息”]` `[opinion]` [演讲笔记](<notes/GDC2023 ASTC贴图压缩参数选择 阅读笔记.md>)
 
-本项目在学习式选参上优先研究分类calibration。需要检验的具体问题是，置信度是否能支持更好的质量／字节决策。统一正温度的temperature scaling保持argmax，继续按argmax选参时，最终候选保持一致。因此概率校准指标与质量违规率、字节损失应分别报告，并单独评价使用校准概率的决策规则。`[verified: 本文“研究顺序与分类校准”；Guo等§4.2]` `[opinion]` [校准方法原文](https://proceedings.mlr.press/v70/guo17a/guo17a.pdf#page=6)
+本项目先期分类calibration分支检验置信度能否支持更好的质量／字节决策，当前实验主线已切换至V1质量回归。统一正温度的temperature scaling保持argmax，继续按argmax选参时，最终候选保持一致。因此概率校准指标与质量违规率、字节损失应分别报告，并单独评价使用校准概率的决策规则。`[verified: 本文“研究顺序与分类校准”；Guo等§4.2]` `[opinion]` [校准方法原文](https://proceedings.mlr.press/v70/guo17a/guo17a.pdf#page=6)
 
 #### 质量评价，从贴图误差到渲染可见性
 

@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T14:06:52.964263+00:00",
+  "updated_utc": "2026-11-11T14:19:30.778232+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -61,7 +61,7 @@
     }
   ],
   "next": [
-    "Complete raw/EMA normalization audit, then choose fixed-capacity controls",
+    "Measure scratch LR0.0003 single-factor control; preserve original V1 recipes",
     "Validate normal re-encoding and broader Unity quality branches separately",
     "Prepare split-aware Unity reference corpus; keep independent final test sealed"
   ],
@@ -374,34 +374,79 @@
       "observed_processes": []
     },
     {
-      "status": "running",
+      "status": "passed",
       "started_utc": "2026-11-11T14:00:27.646410+00:00",
+      "ended_utc": "2026-11-11T14:07:07.706225+00:00",
+      "wall_seconds": 400.03175230000124,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T14:06:58.020857+00:00",
+      "name": "normalization-scratch",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-scratch\\receipt.json",
+      "sha256": "e0c391519ca073bc2ce7fb2680351b3e81e1c8be1dddd99ccd7b41a3cb6d2a43",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T14:07:08.546310+00:00",
+      "ended_utc": "2026-11-11T14:14:18.364204+00:00",
+      "wall_seconds": 429.8155186999975,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T14:14:08.773165+00:00",
+      "name": "normalization-pretrained",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-pretrained\\receipt.json",
+      "sha256": "4070105f90b35da23030208f987f26acf90e19e4e0e477cc0f22fef5e80f3cff",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T14:17:12.221687+00:00",
+      "ended_utc": "2026-11-11T14:17:32.892425+00:00",
+      "wall_seconds": 20.668841499998962,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "scratch-lr0003-smoke",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-lr0003-smoke\\receipt.json",
+      "sha256": "ae97e7bd7288595740dafa2ac801233aa68a5bcad0822ae53e2786591e0b8c92",
+      "observed_processes": []
+    },
+    {
+      "status": "running",
+      "started_utc": "2026-11-11T14:18:02.170096+00:00",
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T14:06:27.887849+00:00",
-      "name": "normalization-scratch",
-      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-scratch\\receipt.json",
-      "sha256": "070678f3cc5b5f4d8cb61ae1b46fa729daa7787d2b60db8ecdc8ec4cfbf66010",
+      "last_observed_alive_utc": "2026-11-11T14:19:02.202010+00:00",
+      "name": "scratch-lr0003",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-lr0003\\receipt.json",
+      "sha256": "197b2f9ee94a594250e5ec2b3012029b4691e194608bccf2f88a7b5e49015be2",
       "observed_processes": [
         {
-          "pid": 19816,
+          "pid": 57636,
           "name": "python.exe",
-          "create_time": 1794405627.556232
+          "create_time": 1794406682.075241
         },
         {
-          "pid": 60940,
+          "pid": 58436,
           "name": "python.exe",
-          "create_time": 1794405627.6763413
+          "create_time": 1794406682.1766236
         }
       ]
     }
   ],
   "normalization_diagnostics": {
+    "status": "passed",
     "scope": "fixed learned weights; train-only BN statistics; development validation",
     "optimizer_updates": 0,
     "reports": [
-      "normalization-smoke.json"
+      "normalization-smoke.json",
+      "normalization-scratch.json",
+      "normalization-pretrained.json"
     ]
+  },
+  "fixed_capacity_control": {
+    "summary": "patch-fixed-capacity/scratch-lr0003-summary.json",
+    "changed_factor": "scratch learning_rate 0.001 -> 0.0003",
+    "development_best_accuracy_so_far": 0.892,
+    "production_acceptance": "not evaluated"
   }
 }

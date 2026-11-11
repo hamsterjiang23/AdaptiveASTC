@@ -5,14 +5,14 @@
 - 本文件适用于 `E:\ASTC_Compression` 全目录，执行任务时同时遵循用户提供的全局规则。`[opinion]`
 - 当前研究主题为ASTC纹理压缩块大小自动选择，关注质量、真实字节数与处理成本的权衡。`[verified: README.md“当前状态”“已核实的方法与待核实问题”]`
 - 以固定8×8为当前生产基线，研究机器学习预测参数后执行一次最终压缩。PSNR 35 dB按项目经验判据记录，法线与MSAK贴图的标准和Unity导入后训练数据的获取方式按待明确事项处理。`[verified: README.md“项目需求与优化目标”]`
-- 优先研究原始块大小分类上的calibration，分类校准路线经实验仍达不到项目目标时，再研究质量预测回归的calibration。分别评价概率校准、标签正确率和最终压缩质量违规率。`[verified: README.md“研究顺序与分类校准”]`
+- 当前执行用户确认的V1原分辨率patch误差回归计划，分类对照保留为基线；按固定容量诊断、单项训练改进、必要时扩大网络的顺序推进。分别评价标签正确率、质量指标和完整成本，最终采用Unity导入后参考像素与同次原搜索标签验收。`[verified: experiment plan/V1/README.md“目标与开发数据”“实验步骤”；当前active goal objective]`
 - 开始任务先读 [README.md](README.md)，按任务需要读取对应资料和检查记录。研究题目、算法路线与新增实验范围以用户确认的内容为准。`[opinion]`
 
 ## 文献发展路线与研究定位
 
 - 完整问题链见[README的发展路线](README.md#文献发展路线与问题演进)，每项工作按“已有问题 → 方法改进 → 剩余限制”阅读和维护。`[verified: README.md“文献发展路线与问题演进”]` `[opinion]`
 - **编码加速路线**。昂贵配置搜索 → FasTC／SegTC的结构近似和Web ASTC的启发式 → TexNN的块内部配置预测；Pruned ASTC另以配置裁剪和下游重训练换取低延迟。记录格式、质量损失和任务用途。`[verified: README.md“编码器加速，从昂贵搜索到近似与学习”]` `[opinion]`
-- **自动选参路线**。固定参数与人工设置 → 2022年目标PSNR搜索 → 2023年astcenc内部集成。GDC 2023另展示离线试压缩标签与ResNet整图选参，本项目优先研究该分类路线的calibration。VBTC作为图内可变分配的系统分支记录。`[verified: README.md“自动选参，从统一配置到质量约束与学习式决策”“研究顺序与分类校准”]`
+- **自动选参路线**。固定参数与人工设置 → 2022年目标PSNR搜索 → 2023年astcenc内部集成。GDC 2023另展示离线试压缩标签与ResNet整图选参；本项目保留分类基线，当前以V1的质量预测和规则决策推进。VBTC作为图内可变分配的系统分支记录。`[verified: README.md“自动选参，从统一配置到质量约束与学习式决策”“研究顺序与分类校准”；experiment plan/V1/README.md]`
 - **质量评价路线**。贴图误差 → 多视点渲染比较 → diffuse／normal掩蔽的主观实验、任务专用可见性指标与FLIP误差图。分别记录纹理指标、渲染指标、观看条件和人类接受标准。`[verified: README.md“质量评价，从贴图误差到渲染可见性”]` `[opinion]`
 - **表示与部署路线**。NTC联合材质通道与mip，后续分别研究BC特征／NBC的表示、DBC的任务损失、cooperative vectors的硬件加速、hypernetwork的逐材质优化成本及共享解码器的执行分歧。NTBC加载重建、高斯、JPEG和TexF分支分别保留其存储、采样与运行时条件。`[verified: README.md“神经纹理，从联合表示到硬件、训练与解码效率”“其他表示与系统分支”]`
 - 直接继承关系以作者明确表述为依据，跨论文的问题链标为综述归纳。Multi-output ASTC归入解码电路，ASTC Encoding Survey作为技术地图；本项目的新颖性与质量／字节收益以进一步文献核实和独立实验评价。`[verified: README.md对应路线及“AdaptiveASTC在这些路线中的位置”]` `[opinion]`
@@ -41,6 +41,8 @@
 - Unity回归采集保留原搜索提前停止、标签及baseline计时，另行补测块大小×preset缺失候选并记录解码图及原生质量分支。抽样真实编码先作为独立成本／质量对照，主路径保持预测后一次最终编码。方案差异、未完成配置和实际测量分别写入执行记录。`[verified: V1“待决定事项”；opinion: 本轮执行决定]`
 - 实际编码参数采集入口为`script/capture_unity_options.py`，通过临时受保护的managed回调记录Alpha、profile、normal pack及输入RGBA哈希，结束后恢复源码。两图实际参数绑定的40候选补测通过，64图采集另记录558回调，包含63 Default和1 NormalMap，恢复无冲突。NormalMap样本的normal-pack实际为false，用途与pack标志分别记录；法线重新编码／HDR补测与最终Unity90%均未验收。`[verified: unity-supplement2-actual.json；unity-actual-options64.json；smoke1-receipt.json；metadata.py；unity-normal20-policy.json encoded_candidates]`
 - 颜色补测已扩展到8图160候选，原52组指标和8个winner复核一致；真实4096² NormalMap的20原候选重新解码和原生角度评价通过，但新编码为0、只覆盖mip0。法线20组均未过角度门槛，保留最高PSNR回退身份。门槛取真实tableConfig并按float32还原，报告状态允许Valid后附BEST标记；HDR／多mip及全量采集未验收。成本和读写依赖见[实验成本表](references/task-costs.md)。`[verified: unity-color8.json；unity-normal20-policy.json；tests/test_unity_normal_audit.py]`
+- 冻结末轮权重的BN诊断入口为`script/patch_normalization.py`，只用train抽样patch重估统计量，再评价validation；参数不更新，保留独立权重和成本。两组完成，随机初始化／预训练EMA为76.7%／89.2%，近阈值RMSE1.6467／0.9512dB；这是末轮后处理对照，与训练中最佳raw的76.0%／88.8%分别记录，仍未达V1／Unity验收。`[verified: normalization-scratch.json；normalization-pretrained.json；scratch-result.json；pretrained-result.json；PatchNormalizationAudit.run]`
+- 当前固定容量单项对照仅将原scratch学习率1e-3改为3e-4，其余正式配置保持。两轮小语料CUDA和重载检查通过，正式训练状态见[学习率对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)；原V1与BN诊断保留独立身份，test不参与选模。`[verified: patch-fixed-capacity/scratch-lr0003-suite.json、scratch-lr0003-smoke-summary.json、scratch-lr0003-summary.json]`
 - 持续记录该目标的实验进展，统一入口为计划目录progress.json。保存配置差异与调整原因、逐epoch训练／验证指标、实际更新数、失败重试和耗时。运行中日志与heartbeat保存在.local，阶段结果同步仓库。`[verified: 用户本轮“时刻记录实验进展”；ReproductionJob.run与Trainer.fit；opinion: 进展入口]`
 - 当前执行顺序为Unity搜索baseline、Nah 2023、Nah 2022、TexNN、GDC，再研究新模型与校准。新增方法代码集中在`reproductions/`，启动入口仍放`script/`。先完成10,000张训练图的真实搜索计时报告，再启动正式文献实验。缺作者代码时允许论文重实现，原文设置、补全假设和实际完成状态分别记录。`[verified: 用户2026-11-10实施请求及复现标准选择]`
 - 正式文献实验通过`BaselineGate`检查10,000张覆盖、原生搜索记录、源图哈希核验、退出码与metadata恢复。Unity基线按实际进入ASTC的目标格式测量，临时Android覆盖与恢复、参数缓存隔离和计时区间见[复现入口](reproductions/README.md)。`[verified: reproductions/common/upstream.py BaselineGate；reproductions/unity_search_baseline/benchmark.py]`

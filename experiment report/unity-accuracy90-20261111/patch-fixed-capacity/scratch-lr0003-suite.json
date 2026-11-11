@@ -1,0 +1,27 @@
+{
+  "trials": [
+    {
+      "config": {
+        "epochs": 30,
+        "batch_size": 128,
+        "patches_per_image": 4,
+        "weight_decay": 0.05,
+        "warmup_epochs": 1,
+        "workers": 2,
+        "seed": 20261111,
+        "remove_maxpool": false,
+        "monotone": true,
+        "ema_decay": 0.999,
+        "patience": 5,
+        "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-full",
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-lr0003",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-lr0003.json",
+        "initialization": "scratch",
+        "learning_rate": 0.0003
+      },
+      "name": "scratch-lr0003"
+    }
+  ],
+  "summary": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-lr0003-summary.json",
+  "scope": "V1 fixed-capacity single-factor scratch LR control: 0.001 to 0.0003, all other formal recipe settings retained; no test"
+}

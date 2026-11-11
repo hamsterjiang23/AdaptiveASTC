@@ -1,0 +1,288 @@
+{
+  "test_opened": false,
+  "new_forward_passes": 0,
+  "trials": [
+    {
+      "trial": "scratch-monotone-ema",
+      "accuracy": 0.76,
+      "padding_strata": {
+        "valid_area_below5percent": {
+          "count": 27,
+          "errors": 9,
+          "accuracy": 0.6666666666666666,
+          "class_counts": [
+            7,
+            7,
+            3,
+            10
+          ],
+          "class_errors": [
+            1,
+            4,
+            3,
+            1
+          ]
+        },
+        "valid_area_5to25percent": {
+          "count": 77,
+          "errors": 14,
+          "accuracy": 0.8181818181818182,
+          "class_counts": [
+            48,
+            9,
+            2,
+            18
+          ],
+          "class_errors": [
+            4,
+            7,
+            2,
+            1
+          ]
+        },
+        "valid_area_25to75percent": {
+          "count": 851,
+          "errors": 209,
+          "accuracy": 0.754406580493537,
+          "class_counts": [
+            158,
+            170,
+            117,
+            406
+          ],
+          "class_errors": [
+            62,
+            66,
+            45,
+            36
+          ]
+        },
+        "valid_area_atleast75percent": {
+          "count": 45,
+          "errors": 8,
+          "accuracy": 0.8222222222222222,
+          "class_counts": [
+            5,
+            6,
+            6,
+            28
+          ],
+          "class_errors": [
+            1,
+            2,
+            2,
+            3
+          ]
+        }
+      },
+      "near_threshold_residuals": [
+        {
+          "block": "6x6",
+          "count": 132,
+          "bias_db": 1.6137023287911476,
+          "rmse_db": 2.9343030928924527
+        },
+        {
+          "block": "8x8",
+          "count": 305,
+          "bias_db": 0.6654274934539188,
+          "rmse_db": 1.904508372244544
+        },
+        {
+          "block": "10x10",
+          "count": 361,
+          "bias_db": 0.1822215432332975,
+          "rmse_db": 1.4072894721667661
+        },
+        {
+          "block": "12x12",
+          "count": 373,
+          "bias_db": -0.1165358168348952,
+          "rmse_db": 1.372641017687048
+        }
+      ],
+      "margin_below0_5db": {
+        "count": 203,
+        "errors": 96,
+        "accuracy": 0.5270935960591133,
+        "class_counts": [
+          47,
+          63,
+          59,
+          34
+        ],
+        "class_errors": [
+          26,
+          28,
+          26,
+          16
+        ]
+      },
+      "margin_atleast1db": {
+        "count": 604,
+        "errors": 72,
+        "accuracy": 0.8807947019867549,
+        "class_counts": [
+          124,
+          72,
+          14,
+          394
+        ],
+        "class_errors": [
+          23,
+          29,
+          7,
+          13
+        ]
+      },
+      "input_sha256": {
+        "experiment report\\unity-accuracy90-20261111\\patch-v1\\scratch-monotone-ema.json": "679c27dc253c4f4aee012f8e7f04b1fb45ff488a3723af15665fc9d36a62649c",
+        "experiment report\\unity-accuracy90-20261111\\patch-v1\\scratch-monotone-ema-audit.json": "caa8b4d0bfa0d100fb8eca62fefeac502f9808b3b2df2fc3b16e8f26cbcb9e4c",
+        "experiment report\\.local\\unity-accuracy90-20261111\\patch-v1\\scratch-monotone-ema\\best-validation.npz": "0537ce6a11cbbda3ffbffd0b0c9cd974573b5d8a46105c4688bbf79257847b9a",
+        "experiment report\\.local\\unity-accuracy90-20261111\\patch-full\\corpus.json": "c1c1208bbb17fbd49cae1bc244b8ff67f0bf3c7342741be8134c054c5e752a95"
+      }
+    },
+    {
+      "trial": "pretrained-monotone-ema",
+      "accuracy": 0.888,
+      "padding_strata": {
+        "valid_area_below5percent": {
+          "count": 27,
+          "errors": 4,
+          "accuracy": 0.8518518518518519,
+          "class_counts": [
+            7,
+            7,
+            3,
+            10
+          ],
+          "class_errors": [
+            0,
+            2,
+            1,
+            1
+          ]
+        },
+        "valid_area_5to25percent": {
+          "count": 77,
+          "errors": 6,
+          "accuracy": 0.922077922077922,
+          "class_counts": [
+            48,
+            9,
+            2,
+            18
+          ],
+          "class_errors": [
+            0,
+            5,
+            0,
+            1
+          ]
+        },
+        "valid_area_25to75percent": {
+          "count": 851,
+          "errors": 98,
+          "accuracy": 0.8848413631022327,
+          "class_counts": [
+            158,
+            170,
+            117,
+            406
+          ],
+          "class_errors": [
+            18,
+            27,
+            29,
+            24
+          ]
+        },
+        "valid_area_atleast75percent": {
+          "count": 45,
+          "errors": 4,
+          "accuracy": 0.9111111111111111,
+          "class_counts": [
+            5,
+            6,
+            6,
+            28
+          ],
+          "class_errors": [
+            0,
+            1,
+            1,
+            2
+          ]
+        }
+      },
+      "near_threshold_residuals": [
+        {
+          "block": "6x6",
+          "count": 132,
+          "bias_db": 0.5634373653009435,
+          "rmse_db": 1.5385079287933452
+        },
+        {
+          "block": "8x8",
+          "count": 305,
+          "bias_db": 0.07760229529536211,
+          "rmse_db": 1.0368132247763384
+        },
+        {
+          "block": "10x10",
+          "count": 361,
+          "bias_db": -0.10822758032027133,
+          "rmse_db": 0.7697718489690196
+        },
+        {
+          "block": "12x12",
+          "count": 373,
+          "bias_db": -0.17012150509857535,
+          "rmse_db": 0.8279142014561509
+        }
+      ],
+      "margin_below0_5db": {
+        "count": 203,
+        "errors": 67,
+        "accuracy": 0.6699507389162561,
+        "class_counts": [
+          47,
+          63,
+          59,
+          34
+        ],
+        "class_errors": [
+          11,
+          18,
+          21,
+          17
+        ]
+      },
+      "margin_atleast1db": {
+        "count": 604,
+        "errors": 22,
+        "accuracy": 0.9635761589403974,
+        "class_counts": [
+          124,
+          72,
+          14,
+          394
+        ],
+        "class_errors": [
+          4,
+          9,
+          4,
+          5
+        ]
+      },
+      "input_sha256": {
+        "experiment report\\unity-accuracy90-20261111\\patch-v1\\pretrained-monotone-ema.json": "37354eb0308781f9af75a24b07eab77b3a2121fc33c17578834d7537eed587ed",
+        "experiment report\\unity-accuracy90-20261111\\patch-v1\\pretrained-monotone-ema-audit.json": "f29e909610b0b774b5ee1f3c56056d2d730606019e553046a54a39c28af6e599",
+        "experiment report\\.local\\unity-accuracy90-20261111\\patch-v1\\pretrained-monotone-ema\\best-validation.npz": "0915c2b6221878031fbef508564352d402bc0c66356b85d44a4a2c718ce7d5ef",
+        "experiment report\\.local\\unity-accuracy90-20261111\\patch-full\\corpus.json": "c1c1208bbb17fbd49cae1bc244b8ff67f0bf3c7342741be8134c054c5e752a95"
+      }
+    }
+  ],
+  "status": "passed",
+  "source_sha256": "29a56cd965a0d8780c32c036279e2fb1c9d02dbcaed25cb79934a701a4dc0feb"
+}
