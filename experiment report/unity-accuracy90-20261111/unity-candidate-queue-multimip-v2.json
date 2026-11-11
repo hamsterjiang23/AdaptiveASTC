@@ -10,7 +10,7 @@
   },
   "coverage": "complete",
   "counts": {
-    "train": 576,
+    "train": 832,
     "validation": 2
   },
   "batches": [
@@ -137,12 +137,43 @@
         "decode_seconds": 39.75428479987022,
         "quality_seconds": 70.38679589983803
       }
+    },
+    {
+      "run_id": "unity-v1-train-002-20261111",
+      "source_split": "train",
+      "reference": {
+        "run_id": "unity-v1-train-002-20261111",
+        "source_split": "train",
+        "images": 256,
+        "callbacks": 1611,
+        "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-002-20261111\\options-receipt.json",
+        "options_sha256": "ad283c8d0494208ad2b83103a7e4d7afc6847a31b5149661f7f5dea2f3e35e92",
+        "reference_receipt_sha256": "e7784ef610af5ce2b1f3146fe24f7aa055d287820d320cc391dba927aa0cc368",
+        "phase_receipt_sha256": "0b8bd17a9ea6db0ee47cf2b5954a90b8d158899cc4e5d4f229f44fc8085bd7fe",
+        "editor_process_seconds": 1129.460142
+      },
+      "prior_attempts": [],
+      "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+      "images": 256,
+      "candidates": 5120,
+      "new_candidates": 3509,
+      "original_candidates": 1611,
+      "normal_images": 28,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2\\reports\\unity-v1-train-002-20261111.json",
+      "report_sha256": "f2ea059b2acab55a0bc34ec248e179ed24bc87cf762404843059b8bcc8f02344",
+      "raw_receipt_sha256": "4b5338ad9102844fbf5c135e4cdcb5647b1b179c6008430aefe0d9f890fc3f13",
+      "wall_seconds": 706.0770264999956,
+      "cost": {
+        "encode_seconds": 401.2264196000324,
+        "decode_seconds": 41.53511349968903,
+        "quality_seconds": 77.80552980009088
+      }
     }
   ],
   "test_opened": false,
   "invocation_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2\\invocations\\02529dfaed964d438220ab772717dcdd\\receipt.json",
   "scope": "native20 candidate targets paired to original imported references and search choices",
-  "current_batch": "unity-v1-train-002-20261111",
-  "updated_utc": "2026-11-11T16:42:47.471619+00:00",
-  "wall_seconds": 106.54827379999915
+  "current_batch": "unity-v1-train-003-20261111",
+  "updated_utc": "2026-11-11T16:55:21.024069+00:00",
+  "wall_seconds": 860.100602999999
 }
