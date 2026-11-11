@@ -1,0 +1,825 @@
+{
+  "status": "passed",
+  "scope": "reference label export and six Appendix-sized network shape probes",
+  "source": {
+    "title": "TexNN: Fast Texture Encoding Using Neural Networks",
+    "doi": "10.1111/cgf.13534",
+    "implementation_kind": "paper_reimplementation",
+    "local_pdf": "D:\\wechat\\xwechat_files\\wxid_3s871eyvg4ci22_cf89\\msg\\file\\2026-11\\Computer Graphics Forum - 2018 - Pratapa - TexNN  Fast Texture Encoding Using Neural Networks.pdf",
+    "pdf_sha256": "3c4612b705faee35fda1739ee0fd19336cf3f2b99a8566609377db04e2e98d4e",
+    "pdf_pages": 12,
+    "supporting_tables": "Main paper S1/S2 are labelled Table 1 and Table 2 on Appendix page 1",
+    "status": "reference_labels_probed",
+    "archived_pdf": "materials/paper.pdf",
+    "local_appendix": "E:/Downloads/cgf13534-sup-0001-appendix.pdf",
+    "archived_appendix": "materials/appendix.pdf",
+    "appendix_sha256": "beb6457e1aedb9c53028af812a3058fdc9560ff834e6b513b7dd828dcd2e0bf9",
+    "appendix_pages": 13,
+    "appendix_url": "https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fcgf.13534&file=cgf13534-sup-0001-Appendix.pdf",
+    "encoder_repository": "https://github.com/ARM-software/astc-encoder.git",
+    "encoder_commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+    "encoder_license": "reference-license.txt",
+    "encoder_revision_provenance": "Reconstruction using latest upstream main commit at the paper's reference access date, 2017-06-20. The authors did not publish an exact commit."
+  },
+  "build": {
+    "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "E:\\ASTC_Compression\\reproductions\\texnn",
+        "-B",
+        "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-binaries\\texnn\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64"
+      ],
+      [
+        "cmake",
+        "--build",
+        "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-binaries\\texnn\\build",
+        "--config",
+        "Release",
+        "--parallel",
+        "4"
+      ]
+    ],
+    "executable": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-binaries\\texnn\\build\\Release\\texnn-reference.exe",
+    "sha256": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+    "labels_executable": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-binaries\\texnn\\build\\Release\\texnn-labels.exe",
+    "labels_sha256": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6",
+    "generated_toplevel_sha256": "52a86bc76224f402b53f72415c86fd6532405a93ca9aa558a563de99fba5d93a",
+    "labels_source_sha256": "772a3e6f8772787c59132b575c5ec7029a6354ce4615120b44e617bbe133669a",
+    "cmake_sha256": "4fc54c9b1d95b3bab84fac14e50e738f5a8ea83311704cf9daa4019182af9e69"
+  },
+  "native_runs": [
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "E:\\ASTC_Compression\\experiment report\\.local\\texnn-source\\probe-rgb-11x13.png",
+      "source_sha256": "3b5e608b66e0bdc990792328b9fbd84b7b7fac31d27571b343e60aa052693321",
+      "footprint": [
+        4,
+        4
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.1434911999999713,
+      "reference_encode_seconds": 0.09022540000000845,
+      "verification_decode_seconds": 0.016211699999985285,
+      "observer_byte_identical": true,
+      "rgb_psnr": 21.258071587224098,
+      "lossless": false,
+      "payload_bytes": 192,
+      "counts": {
+        "blocks": 12,
+        "constant_blocks": 0,
+        "partition_counts": {
+          "3": 4,
+          "2": 8
+        },
+        "valid_partition_labels": 1088,
+        "valid_block_modes": 145
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "3b5e608b66e0bdc990792328b9fbd84b7b7fac31d27571b343e60aa052693321",
+        "teacher.astc": "5b6b1aeb3d57917e97e9e94b1e38353a5849d59a508f79d052c0c8da12140cca",
+        "teacher.tga": "74423b4021ecb1d7e399b4744bf4f26253ce9d9b981378c8833e9da42288baa1",
+        "reference.astc": "5b6b1aeb3d57917e97e9e94b1e38353a5849d59a508f79d052c0c8da12140cca",
+        "labels.jsonl": "aefc02ea882070b40fdf59550bf50a936cec6e13e14285adb3475895d8ee9d49",
+        "catalog.json": "fecb8f25aa0fbb7f436ad12bd6d3343fc5319322ddb99caa0b269ebda6ea7ad7"
+      },
+      "run_id": "label-catalog-probe-4x4",
+      "post_collection_pixel_check": {
+        "blocks": 12,
+        "constant_blocks": 0,
+        "partition_counts": {
+          "3": 4,
+          "2": 8
+        },
+        "valid_partition_labels": 1088,
+        "valid_block_modes": 145
+      },
+      "receipt_sha256": "dcc99bb107f37fe9ebe039cbf36c2ef990970e41a6e9e338aee6044988cbb6df"
+    },
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "E:\\ASTC_Compression\\experiment report\\.local\\texnn-source\\probe-rgb-11x13.png",
+      "source_sha256": "3b5e608b66e0bdc990792328b9fbd84b7b7fac31d27571b343e60aa052693321",
+      "footprint": [
+        6,
+        6
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.062227400000210764,
+      "reference_encode_seconds": 0.07205829999998059,
+      "verification_decode_seconds": 0.020885000000134823,
+      "observer_byte_identical": true,
+      "rgb_psnr": 14.946876531625586,
+      "lossless": false,
+      "payload_bytes": 96,
+      "counts": {
+        "blocks": 6,
+        "constant_blocks": 0,
+        "partition_counts": {
+          "2": 3,
+          "3": 3
+        },
+        "valid_partition_labels": 1160,
+        "valid_block_modes": 370
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "3b5e608b66e0bdc990792328b9fbd84b7b7fac31d27571b343e60aa052693321",
+        "teacher.astc": "3ad33b7dddd18a001829b9247d8b5a234d510d2a69fdde8b59af186256eaad7c",
+        "teacher.tga": "fafd1b795b5f20d2beda4ca562e60d155a78af78d02839b5db1a6bd0fe2875e3",
+        "reference.astc": "3ad33b7dddd18a001829b9247d8b5a234d510d2a69fdde8b59af186256eaad7c",
+        "labels.jsonl": "f134a2b711bc685dad037036d62e6dd3acfec968c8341b5309c2cdf8aebec9f2",
+        "catalog.json": "46187ec06da6e7d207b7f5678ff1cc7f025b2051517a82904af0d3d313b64c9a"
+      },
+      "run_id": "label-catalog-probe-6x6",
+      "post_collection_pixel_check": {
+        "blocks": 6,
+        "constant_blocks": 0,
+        "partition_counts": {
+          "2": 3,
+          "3": 3
+        },
+        "valid_partition_labels": 1160,
+        "valid_block_modes": 370
+      },
+      "receipt_sha256": "572e67aa95e6da7624866073fd9b7064bfdda7da58ad3104768113aea599e8ae"
+    },
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "E:\\ASTC_Compression\\experiment report\\.local\\texnn-source\\probe-rgb-11x13.png",
+      "source_sha256": "3b5e608b66e0bdc990792328b9fbd84b7b7fac31d27571b343e60aa052693321",
+      "footprint": [
+        8,
+        8
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.06696599999986574,
+      "reference_encode_seconds": 0.06621689999997216,
+      "verification_decode_seconds": 0.018167199999879813,
+      "observer_byte_identical": true,
+      "rgb_psnr": 13.730774622091124,
+      "lossless": false,
+      "payload_bytes": 64,
+      "counts": {
+        "blocks": 4,
+        "constant_blocks": 0,
+        "partition_counts": {
+          "2": 3,
+          "3": 1
+        },
+        "valid_partition_labels": 1642,
+        "valid_block_modes": 555
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "3b5e608b66e0bdc990792328b9fbd84b7b7fac31d27571b343e60aa052693321",
+        "teacher.astc": "c40b7719e4574457e7e743b27f53cc4eaeeba46d4363ba619c7b9794a5ab4d19",
+        "teacher.tga": "80f8c8256264878b9e9e6fa8b874c6013049c02942d45fb97f5ad172814adcdd",
+        "reference.astc": "c40b7719e4574457e7e743b27f53cc4eaeeba46d4363ba619c7b9794a5ab4d19",
+        "labels.jsonl": "1dddc778b0260efa7853398852db1c707bf0ccaacd41010588fc3b15f709a439",
+        "catalog.json": "e52caf29b938d6ac508d8a653af01ab92121a38b750335fa3ba05c27c2a75308"
+      },
+      "run_id": "label-catalog-probe-8x8",
+      "post_collection_pixel_check": {
+        "blocks": 4,
+        "constant_blocks": 0,
+        "partition_counts": {
+          "2": 3,
+          "3": 1
+        },
+        "valid_partition_labels": 1642,
+        "valid_block_modes": 555
+      },
+      "receipt_sha256": "464a620053cee2b34944b9e9aec988200a80d81782e7e7f8a78f9cd7612b38a1"
+    },
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "E:\\ASTC_Compression\\experiment report\\.local\\texnn-source\\probe-constant-11x13.png",
+      "source_sha256": "470abd37361f18b00651542c708158b5aedc8a37f96c278aba0b7ae927ea66ba",
+      "footprint": [
+        4,
+        4
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.07474560000014208,
+      "reference_encode_seconds": 0.05315110000015011,
+      "verification_decode_seconds": 0.01551629999994475,
+      "observer_byte_identical": true,
+      "rgb_psnr": null,
+      "lossless": true,
+      "payload_bytes": 192,
+      "counts": {
+        "blocks": 12,
+        "constant_blocks": 12,
+        "partition_counts": {
+          "0": 12
+        },
+        "valid_partition_labels": 1088,
+        "valid_block_modes": 145
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "470abd37361f18b00651542c708158b5aedc8a37f96c278aba0b7ae927ea66ba",
+        "teacher.astc": "90394530961f12d5c234526d72b7c9975900f828977101fd29f4a9e4a65cf188",
+        "teacher.tga": "ad17e136e45954d8467e040c26bb0eb603d008cb43ae6d59d8242eb97c9f1d73",
+        "reference.astc": "90394530961f12d5c234526d72b7c9975900f828977101fd29f4a9e4a65cf188",
+        "labels.jsonl": "d5621623b52442fd66860cbcde3892506304d5ccb442d90074952a9b2ef424f4",
+        "catalog.json": "fecb8f25aa0fbb7f436ad12bd6d3343fc5319322ddb99caa0b269ebda6ea7ad7"
+      },
+      "run_id": "label-catalog-constant-4x4",
+      "post_collection_pixel_check": {
+        "blocks": 12,
+        "constant_blocks": 12,
+        "partition_counts": {
+          "0": 12
+        },
+        "valid_partition_labels": 1088,
+        "valid_block_modes": 145
+      },
+      "receipt_sha256": "14c1b9bf9de8d7acdf658703ed5427eaff927ef0570c6b0a6a49e4863f3062e8"
+    },
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\UI\\UITexture\\Common_Atlas\\PublicAtlas\\Atlas_MainUI\\icon_point01.png",
+      "source_sha256": "cd59cc611add7b303684c6bf1e338095a31e2793cb98616cb6bbff8fb6c279d2",
+      "footprint": [
+        4,
+        4
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "native_origin": "bottom-left, historical stb loader y_flip=1",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.09043459999975312,
+      "reference_encode_seconds": 0.07041720000006535,
+      "verification_decode_seconds": 0.01751509999985501,
+      "observer_byte_identical": true,
+      "rgb_psnr": 56.0018645390448,
+      "lossless": false,
+      "payload_bytes": 256,
+      "counts": {
+        "blocks": 16,
+        "constant_blocks": 8,
+        "partition_counts": {
+          "0": 8,
+          "1": 6,
+          "2": 2
+        },
+        "valid_partition_labels": 1088,
+        "valid_block_modes": 145
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "69c0ba8194a2cdf1899634844539cf00d98ca947c4b4f7e3ded4c6d872f2b515",
+        "teacher.astc": "4e4703d3de72d3e9a1c9d7e227b53b2b22310d60e718edf5dcdd3a684dd7177f",
+        "teacher.tga": "744e232dd5c66f97cc37a27fd55b802d92dba374dce721d6d18e87b0481f5ad7",
+        "reference.astc": "4e4703d3de72d3e9a1c9d7e227b53b2b22310d60e718edf5dcdd3a684dd7177f",
+        "labels.jsonl": "294da9122f0dd7e829658bc9b8f7a0c5a9e5b67efbf6798b4b918a5133c08472",
+        "catalog.json": "fecb8f25aa0fbb7f436ad12bd6d3343fc5319322ddb99caa0b269ebda6ea7ad7"
+      },
+      "run_id": "asset0-label-4x4",
+      "post_collection_pixel_check": {
+        "blocks": 16,
+        "constant_blocks": 8,
+        "partition_counts": {
+          "0": 8,
+          "1": 6,
+          "2": 2
+        },
+        "valid_partition_labels": 1088,
+        "valid_block_modes": 145
+      },
+      "receipt_sha256": "8c6abf6eafbff897ca525497405563c74d1497988e6572d44ef2e32a0831d57f"
+    },
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\UI\\UITexture\\Common_Atlas\\PublicAtlas\\Atlas_MainUI\\icon_point01.png",
+      "source_sha256": "cd59cc611add7b303684c6bf1e338095a31e2793cb98616cb6bbff8fb6c279d2",
+      "footprint": [
+        6,
+        6
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "native_origin": "bottom-left, historical stb loader y_flip=1",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.04512350000004517,
+      "reference_encode_seconds": 0.039854299999660725,
+      "verification_decode_seconds": 0.014693000000079337,
+      "observer_byte_identical": true,
+      "rgb_psnr": 47.22119680373055,
+      "lossless": false,
+      "payload_bytes": 144,
+      "counts": {
+        "blocks": 9,
+        "constant_blocks": 5,
+        "partition_counts": {
+          "2": 1,
+          "1": 3,
+          "0": 5
+        },
+        "valid_partition_labels": 1160,
+        "valid_block_modes": 370
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "69c0ba8194a2cdf1899634844539cf00d98ca947c4b4f7e3ded4c6d872f2b515",
+        "teacher.astc": "ddfa3e985aa7c4f0a24ca0d4a923dcd0dd48efa0f9e8fc9da339b2c64fc57d2b",
+        "teacher.tga": "c262f7b6b1171d66308c756ec623968ea9f7578e110600afd419098a4ad76961",
+        "reference.astc": "ddfa3e985aa7c4f0a24ca0d4a923dcd0dd48efa0f9e8fc9da339b2c64fc57d2b",
+        "labels.jsonl": "66bfbeb5e1efd28ac92760ae11f14791649c2eee3070c9defe202a225012d279",
+        "catalog.json": "46187ec06da6e7d207b7f5678ff1cc7f025b2051517a82904af0d3d313b64c9a"
+      },
+      "run_id": "asset0-label-6x6",
+      "post_collection_pixel_check": {
+        "blocks": 9,
+        "constant_blocks": 5,
+        "partition_counts": {
+          "2": 1,
+          "1": 3,
+          "0": 5
+        },
+        "valid_partition_labels": 1160,
+        "valid_block_modes": 370
+      },
+      "receipt_sha256": "80580d0483e64fe6decd5a7b17b26b86f7d865c8fb7b298ef45c9107b69cecbe"
+    },
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\UI\\UITexture\\Common_Atlas\\PublicAtlas\\Atlas_MainUI\\icon_point01.png",
+      "source_sha256": "cd59cc611add7b303684c6bf1e338095a31e2793cb98616cb6bbff8fb6c279d2",
+      "footprint": [
+        8,
+        8
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "native_origin": "bottom-left, historical stb loader y_flip=1",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.06154359999982262,
+      "reference_encode_seconds": 0.058965299999726994,
+      "verification_decode_seconds": 0.017036300000199844,
+      "observer_byte_identical": true,
+      "rgb_psnr": 41.74896837457687,
+      "lossless": false,
+      "payload_bytes": 64,
+      "counts": {
+        "blocks": 4,
+        "constant_blocks": 0,
+        "partition_counts": {
+          "2": 2,
+          "1": 2
+        },
+        "valid_partition_labels": 1642,
+        "valid_block_modes": 555
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "69c0ba8194a2cdf1899634844539cf00d98ca947c4b4f7e3ded4c6d872f2b515",
+        "teacher.astc": "789f5296d925364132f33cf65486c67a7c315b0e118880cd202b0353bbac47b8",
+        "teacher.tga": "571c04d1af09f0123504d8db7bc78a3a87102f5852a1532c25ced05843e3591d",
+        "reference.astc": "789f5296d925364132f33cf65486c67a7c315b0e118880cd202b0353bbac47b8",
+        "labels.jsonl": "c5a9a2b7e8b08efb68ce51d25209d42a5a9cae3e00a8afdeb307defb4af27d3f",
+        "catalog.json": "e52caf29b938d6ac508d8a653af01ab92121a38b750335fa3ba05c27c2a75308"
+      },
+      "run_id": "asset0-label-8x8",
+      "post_collection_pixel_check": {
+        "blocks": 4,
+        "constant_blocks": 0,
+        "partition_counts": {
+          "2": 2,
+          "1": 2
+        },
+        "valid_partition_labels": 1642,
+        "valid_block_modes": 555
+      },
+      "receipt_sha256": "d0d39bea405f0c4c0245d6d98847d0669f34ca0ff7a71d7eecbbc198e81d81d6"
+    },
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\RuledAssets\\System_MapInfo\\UI\\UITexture\\Atlas_add\\Atlas_MapInfoPlus_add\\New13.png",
+      "source_sha256": "e91efc54be5b2c83b53b0f588c94f1c3559044c1a76e686ad7954e7810422712",
+      "footprint": [
+        4,
+        4
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "native_origin": "bottom-left, historical stb loader y_flip=1",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.03090969999993831,
+      "reference_encode_seconds": 0.025243800000225747,
+      "verification_decode_seconds": 0.015527600000041275,
+      "observer_byte_identical": true,
+      "rgb_psnr": null,
+      "lossless": true,
+      "payload_bytes": 576,
+      "counts": {
+        "blocks": 36,
+        "constant_blocks": 29,
+        "partition_counts": {
+          "0": 29,
+          "1": 7
+        },
+        "valid_partition_labels": 1088,
+        "valid_block_modes": 145
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "59b1c9d932c5a86d57469ffa4b6c796b84c98337fbf3dd1e59f7dbdc1cceef5f",
+        "teacher.astc": "b80a9760af8efd365521ff88c7a30d6dd57adb8c705e94209bdee5b62f1e1cd3",
+        "teacher.tga": "572891ec0b4c612e4031514bba03ea308678c35bb423451a8f8ddde772000cb8",
+        "reference.astc": "b80a9760af8efd365521ff88c7a30d6dd57adb8c705e94209bdee5b62f1e1cd3",
+        "labels.jsonl": "def04c3016e8850c6dd7c984fd69a0f6fc017603ff3dc3e6611143ec24a931bb",
+        "catalog.json": "fecb8f25aa0fbb7f436ad12bd6d3343fc5319322ddb99caa0b269ebda6ea7ad7"
+      },
+      "run_id": "asset1-label-4x4",
+      "post_collection_pixel_check": {
+        "blocks": 36,
+        "constant_blocks": 29,
+        "partition_counts": {
+          "0": 29,
+          "1": 7
+        },
+        "valid_partition_labels": 1088,
+        "valid_block_modes": 145
+      },
+      "receipt_sha256": "58d5859c6629c197696606f20fb86e22068f5af78a180ea4b52273cdcd0f8a4f"
+    },
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\RuledAssets\\System_MapInfo\\UI\\UITexture\\Atlas_add\\Atlas_MapInfoPlus_add\\New13.png",
+      "source_sha256": "e91efc54be5b2c83b53b0f588c94f1c3559044c1a76e686ad7954e7810422712",
+      "footprint": [
+        6,
+        6
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "native_origin": "bottom-left, historical stb loader y_flip=1",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.03989929999988817,
+      "reference_encode_seconds": 0.11901110000007975,
+      "verification_decode_seconds": 0.015024100000118779,
+      "observer_byte_identical": true,
+      "rgb_psnr": null,
+      "lossless": true,
+      "payload_bytes": 256,
+      "counts": {
+        "blocks": 16,
+        "constant_blocks": 8,
+        "partition_counts": {
+          "0": 8,
+          "1": 8
+        },
+        "valid_partition_labels": 1160,
+        "valid_block_modes": 370
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "59b1c9d932c5a86d57469ffa4b6c796b84c98337fbf3dd1e59f7dbdc1cceef5f",
+        "teacher.astc": "8f3601017d4919358f369a4a1a64f2d8a0879f0fe13ad9fd151545746c2f11f5",
+        "teacher.tga": "572891ec0b4c612e4031514bba03ea308678c35bb423451a8f8ddde772000cb8",
+        "reference.astc": "8f3601017d4919358f369a4a1a64f2d8a0879f0fe13ad9fd151545746c2f11f5",
+        "labels.jsonl": "c4237985a5143f5f326c26ff3de298f5c1e36b3c4601cef765e7eced6fd3564f",
+        "catalog.json": "46187ec06da6e7d207b7f5678ff1cc7f025b2051517a82904af0d3d313b64c9a"
+      },
+      "run_id": "asset1-label-6x6",
+      "post_collection_pixel_check": {
+        "blocks": 16,
+        "constant_blocks": 8,
+        "partition_counts": {
+          "0": 8,
+          "1": 8
+        },
+        "valid_partition_labels": 1160,
+        "valid_block_modes": 370
+      },
+      "receipt_sha256": "2ed32690569fd73507cec5e399694077b3803078a96542ff03808a189fab07f0"
+    },
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\RuledAssets\\System_MapInfo\\UI\\UITexture\\Atlas_add\\Atlas_MapInfoPlus_add\\New13.png",
+      "source_sha256": "e91efc54be5b2c83b53b0f588c94f1c3559044c1a76e686ad7954e7810422712",
+      "footprint": [
+        8,
+        8
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "native_origin": "bottom-left, historical stb loader y_flip=1",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.06633259999989605,
+      "reference_encode_seconds": 0.04783629999974437,
+      "verification_decode_seconds": 0.015393099999982951,
+      "observer_byte_identical": true,
+      "rgb_psnr": null,
+      "lossless": true,
+      "payload_bytes": 144,
+      "counts": {
+        "blocks": 9,
+        "constant_blocks": 1,
+        "partition_counts": {
+          "1": 8,
+          "0": 1
+        },
+        "valid_partition_labels": 1642,
+        "valid_block_modes": 555
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "59b1c9d932c5a86d57469ffa4b6c796b84c98337fbf3dd1e59f7dbdc1cceef5f",
+        "teacher.astc": "3917106774110cb16246cbc99edaec909458c94d60f358873b804c0dfc195814",
+        "teacher.tga": "572891ec0b4c612e4031514bba03ea308678c35bb423451a8f8ddde772000cb8",
+        "reference.astc": "3917106774110cb16246cbc99edaec909458c94d60f358873b804c0dfc195814",
+        "labels.jsonl": "1c7d769ea786888135b2af3c1b1368868f7227013c135b3c43e7d1456617eafb",
+        "catalog.json": "e52caf29b938d6ac508d8a653af01ab92121a38b750335fa3ba05c27c2a75308"
+      },
+      "run_id": "asset1-label-8x8",
+      "post_collection_pixel_check": {
+        "blocks": 9,
+        "constant_blocks": 1,
+        "partition_counts": {
+          "1": 8,
+          "0": 1
+        },
+        "valid_partition_labels": 1642,
+        "valid_block_modes": 555
+      },
+      "receipt_sha256": "dd9f502a64ebfcf34ca95f9e1e6e1715ef85f3d3973563cc7d08698187e26bb8"
+    },
+    {
+      "status": "passed",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "source": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\UI\\UITexture\\Common_Atlas\\PublicAtlas\\Atlas_MainUI\\icon_point01.png",
+      "source_sha256": "cd59cc611add7b303684c6bf1e338095a31e2793cb98616cb6bbff8fb6c279d2",
+      "footprint": [
+        4,
+        4
+      ],
+      "preset": "exhaustive",
+      "reference_pixels": "source converted to RGB8 at original resolution",
+      "color_profile": "Linear LDR",
+      "native_origin": "bottom-left, historical stb loader y_flip=1",
+      "threads": 1,
+      "mipmaps": false,
+      "label_export_seconds": 0.03682829999979731,
+      "reference_encode_seconds": 0.030407799999920826,
+      "verification_decode_seconds": 0.013363899999603746,
+      "observer_byte_identical": true,
+      "rgb_psnr": 56.0018645390448,
+      "lossless": false,
+      "payload_bytes": 256,
+      "counts": {
+        "blocks": 16,
+        "constant_blocks": 8,
+        "partition_counts": {
+          "0": 8,
+          "1": 6,
+          "2": 2
+        },
+        "valid_partition_labels": 1088,
+        "valid_block_modes": 145
+      },
+      "binaries": {
+        "reference": "71016388a466ad4ea8ac0820088cc648a6870761a312be6a52236eaa386b0f37",
+        "labels": "c2962c833cd01f3cec2c4c9c7edd7c6b8c04f74a39c8e7b702357bbb2330e5c6"
+      },
+      "artifacts_sha256": {
+        "input.png": "69c0ba8194a2cdf1899634844539cf00d98ca947c4b4f7e3ded4c6d872f2b515",
+        "teacher.astc": "4e4703d3de72d3e9a1c9d7e227b53b2b22310d60e718edf5dcdd3a684dd7177f",
+        "teacher.tga": "744e232dd5c66f97cc37a27fd55b802d92dba374dce721d6d18e87b0481f5ad7",
+        "reference.astc": "4e4703d3de72d3e9a1c9d7e227b53b2b22310d60e718edf5dcdd3a684dd7177f",
+        "labels.jsonl": "294da9122f0dd7e829658bc9b8f7a0c5a9e5b67efbf6798b4b918a5133c08472",
+        "catalog.json": "fecb8f25aa0fbb7f436ad12bd6d3343fc5319322ddb99caa0b269ebda6ea7ad7"
+      },
+      "run_id": "collector-final-check-4x4",
+      "post_collection_pixel_check": {
+        "blocks": 16,
+        "constant_blocks": 8,
+        "partition_counts": {
+          "0": 8,
+          "1": 6,
+          "2": 2
+        },
+        "valid_partition_labels": 1088,
+        "valid_block_modes": 145
+      },
+      "receipt_sha256": "ea4849167b65a0b941a743d043877367bc07d70ee7b7af5d62ffb0c7a29424f9"
+    }
+  ],
+  "verified_native_blocks": 140,
+  "networks": [
+    {
+      "footprint": [
+        4,
+        4
+      ],
+      "network": "pnn",
+      "layers": [
+        256,
+        512,
+        1024,
+        2048,
+        3069
+      ],
+      "input_features": 48,
+      "output_shape": [
+        2,
+        3069
+      ],
+      "parameters": 9057021
+    },
+    {
+      "footprint": [
+        4,
+        4
+      ],
+      "network": "demnn",
+      "layers": [
+        128,
+        256,
+        512,
+        1024,
+        1314
+      ],
+      "input_features": 72,
+      "output_shape": [
+        2,
+        1314
+      ],
+      "parameters": 2046114
+    },
+    {
+      "footprint": [
+        6,
+        6
+      ],
+      "network": "pnn",
+      "layers": [
+        256,
+        512,
+        512,
+        1024,
+        2048,
+        3069
+      ],
+      "input_features": 108,
+      "output_shape": [
+        2,
+        3069
+      ],
+      "parameters": 9335037
+    },
+    {
+      "footprint": [
+        6,
+        6
+      ],
+      "network": "demnn",
+      "layers": [
+        128,
+        256,
+        512,
+        1024,
+        2048,
+        3650
+      ],
+      "input_features": 132,
+      "output_shape": [
+        2,
+        3650
+      ],
+      "parameters": 10284994
+    },
+    {
+      "footprint": [
+        8,
+        8
+      ],
+      "network": "pnn",
+      "layers": [
+        256,
+        512,
+        512,
+        1024,
+        1024,
+        2048,
+        3069
+      ],
+      "input_features": 192,
+      "output_shape": [
+        2,
+        3069
+      ],
+      "parameters": 10406141
+    },
+    {
+      "footprint": [
+        8,
+        8
+      ],
+      "network": "demnn",
+      "layers": [
+        128,
+        256,
+        512,
+        1024,
+        2048,
+        4096,
+        7154
+      ],
+      "input_features": 216,
+      "output_shape": [
+        2,
+        7154
+      ],
+      "parameters": 40519538
+    }
+  ],
+  "implementation_sha256": {
+    "reproductions/texnn/models.py": "f61862f1492aecc771533476730e45dca6e0c8bc805252f8b606daf518b14233",
+    "reproductions/texnn/reference.py": "b4fc84ad44ef20341b8721c31910c0f0fb65e08c5a7590a5ef80826889db7795",
+    "reproductions/texnn/data.py": "1a37c8953d20692eb143d632042eb8f64f055251021cf05c0b78ec657dcc6a61",
+    "reproductions/texnn/CMakeLists.txt": "4fc54c9b1d95b3bab84fac14e50e738f5a8ea83311704cf9daa4019182af9e69",
+    "reproductions/texnn/native/labels.cpp": "772a3e6f8772787c59132b575c5ec7029a6354ce4615120b44e617bbe133669a",
+    "reproductions/texnn/native/labels.h": "53133b4cb6cb9b8dfa461e56892faee07225c1cc622418019910fcaf0fd0c704",
+    "reproductions/texnn/architectures.json": "e9a1fc79e55e0f75c6b3145ac898c766623edd04e9c5ae845ebe302bf6d9010b",
+    "reproductions/common/encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "script/reproduce.py": "0486e21e8f94d6615c7199c45c166a32d2d0cd67c37607982e73cefd2b565470"
+  }
+}

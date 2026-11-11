@@ -42,7 +42,7 @@
 - Nah 项目适配实验使用固定训练子集的源图 RGB8、原始尺寸、Linear LDR、无 mip 和单编码线程。Nah 2022 按完整 RGBA PSNR 搜索，Nah 2023 保留作者的随机块抽样 RGBA 估计。报告分别复查全图 RGB、RGBA 质量，保留原始 receipt，并通过 `report --method ... --run-id ...` 生成结果。`[verified: reproductions/common/nah_experiment.py protocol/_measure；common/reporting.py write；script/reproduce.py main]`
 - Nah 2022／2023 已完成各 64 张项目适配闭环，公开报告保留质量达标率和同方法固定 8×8 控制。两者的原文设置、Unity 导入像素及当前源图适配分别记录。Nah 2022 本轮计时期间存在同机检查活动。后续性能结论按明确输入、计时范围和运行背景解释。`[verified: experiment report/nah2022_psnr_search/source-rgb64-game/summary.json；experiment report/nah2023_adaptive_astcenc/source-rgb64-target40/summary.json；reproductions/README.md]`
 - 阶段结果形成后提交并推送仓库，原始逐图日志、图片和二进制按 `.local/` 忽略规则保存，公开报告保留来源标识与原始记录 SHA-256。`[verified: 用户要求“记得有进展同步仓库”；reproductions/common/reporting.py quality_audit；.gitignore]`
-- TexNN已取得用户提供的主文，精确网络结构等待用户补充单独的Appendix Tables S1/S2。主文归档、SHA-256与当前状态保留在`reproductions/texnn/`。`[verified: reproductions/texnn/source.json；用户回复“暂时没有等我补充”]`
+- TexNN 主文及用户补充的 13 页 Appendix 已归档，六个网络层尺寸取自 Appendix 第1页 Tables 1–2，并保存于 `architectures.json`。历史参考编码器固定到 `ddadf547770ddbe8261cfd854b2a5f21b3a9074c`，该版本选择按论文引用的访问日期补全。数据收集入口为 `collect --method texnn`，核对原生块数据、坐标与源码的 PNG Y 翻转，完整训练及预测配置回填按实际结果验收。`[verified: reproductions/texnn/source.json、architectures.json、data.py；script/reproduce.py TexNN 分支]`
 - 实验协议、数据、训练、校准、成本及验证报告统一保存在`experiment report/`，逐图清单、缓存、原始日志、预测和检查点保存在该目录的`.local/`并Git忽略。`[verified: 用户确认的GDC复现计划及报告目录要求]`
 - Python环境和依赖统一使用uv，提交`pyproject.toml`、`uv.lock`与`.python-version`；安装使用`uv sync --frozen`，实验和检查使用`uv run`。`[verified: 用户要求“仓库里使用uv进行python依赖管理”；pyproject.toml]`
 - 实施前检查已有文件、工具和入口，采用完成任务所需的最小修改，保留用户已有工作。Git状态在实际操作前重新查询。`[opinion]`

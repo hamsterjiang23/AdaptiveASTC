@@ -11,15 +11,15 @@ tags: [paper-note, texture-compression, astc, neural-network]
 type: literature-note
 status: skim
 created: 2026-11-09
-read_scope: "出版社在线摘要及可检索正文§3.2–3.4、§4和Tables 1–3；PDF访问失败"
-pdf_file: null
+read_scope: "出版社正文、用户提供主文§3.4–3.6及独立Appendix第1页网络尺寸表"
+pdf_file: "../reproductions/texnn/materials/paper.pdf"
 ---
 
 # TexNN
 
 ## 来源与阅读范围
 
-简读出版社在线原文摘要、方法和实验段落。正式卷期为2019年，在线首发为2018年8月9日。PDF下载返回403，故未保存原文PDF。`[verified: 出版社页面“First published”“How to cite”及§3–4；本次PDF访问输出]` [论文原文入口](https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.13534)
+正式卷期为2019年，在线首发为2018年8月9日。用户提供的12页主文和13页Appendix现已归档，网络层尺寸取自Appendix第1页Tables 1–2，复现代码、固定版本和实际状态见复现目录。`[verified: 出版社页面“First published”“How to cite”；reproductions/texnn/source.json；Appendix第1页]` [论文原文入口](https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.13534) · [复现入口](../reproductions/texnn/README.md)
 
 ## 核心方法
 

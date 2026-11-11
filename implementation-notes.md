@@ -1,5 +1,21 @@
 # Implementation notes
 
+## TexNN source and reference integration, 2026-11-11
+
+### Deviations
+
+- The user supplied the 13-page Appendix, resolving the network-width dependency. Its p.1 Tables 1/2 are the main paper's S1/S2. Layer sequences are used verbatim, while input endpoint padding, ReLU, Gaussian scale 0.01 and hidden-layer dropout placement are recorded local reconstruction choices. `[verified: archived appendix.pdf p.1; source.json; architectures.json; models.py]`
+- The historical encoder snapshot is the last upstream main commit before the paper's cited access date, ddadf547770ddbe8261cfd854b2a5f21b3a9074c. The exact author-used revision is unspecified. Clean original source is retained, and generated hook sources plus binary hashes are recorded separately. `[verified: upstream git log; reference.py; build-receipt.json]`
+
+### Discovered edge cases
+
+- Modern MSVC required _USE_MATH_DEFINES for historical M_PI references. Its modern cmath declarations conflict with the legacy fmin/fmax functions, so the observer checks finite floats through cfloat bounds. Initial build logs are retained. `[verified: build-initial-math-defines.log; build-labels-cmath.log; CMakeLists.txt; native/labels.cpp]`
+- Native PNG loading uses y_flip=1, so RGB label coordinates are bottom-left and partial blocks repeat border texels. Pixel pairing is checked in addition to each physical ASTC block and the original-codec byte comparison. `[verified: upstream astc_stb_tga.cpp L31/L76; data.py verify_labels; 34-block pixel probe and six actual-project collection receipts]`
+
+### Questions for review
+
+- DEM joint-label enumeration and predicted configurations must preserve partition-dependent endpoint modes and dual-plane metadata. Current probes establish teacher export and dimensions, with training and learned-encoder validation still to execute. `[opinion]`
+
 ## Reproduction implementation, 2026-11-10
 
 ### Deviations
@@ -24,7 +40,7 @@
 - Prepared configurations are immutable and receipts bind to a protocol hash. The first two smoke receipts received an explicit post-run native-cache audit, covering source MD4, LITE policy and the measured Editor binary. `[verified: protocol-lock.json; smoke1/smoke2-receipt.json provenance_binding]`
 - All 10,000 sources passed a pre-run MD4 check, reading 10,061,490,379 bytes in 24.29 seconds. Two additional Cubemap imports passed native search and exact metadata restoration. The first nine imports of the initial full launch were archived after stopping the owned Editor to add the metadata revisit guard. Restoration reported zero conflicts before the fresh full launch. `[verified: source-preflight.json; unity-search-baseline-cubemap-probe/probe-receipt.json; attempts/full-before-metadata-revisit-guard/full-receipt.json]`
 - Warmup overlaps the first two measured images. Their importer settings at measurement entry can include the warmup override. The current runner names these fields pre_import_android_*, while original bytes remain in the metadata backups. `[verified: BenchmarkRunner.cs Run/ImportOne; smoke1 first two import records]`
-- The supplied TexNN main paper omits the separately referenced architecture Appendix. The user will supply that later, and exact network implementation waits for it. `[verified: supplied PDF p.12; user reply “暂时没有等我补充”]`
+- The initially supplied TexNN main paper references a separate architecture Appendix. The user subsequently supplied it, and the current integration is recorded above. `[verified: main PDF p.12; archived materials/appendix.pdf]`
 - The native observer measures the original search, parameter-cache hits and mip payload reuse. Empty native logs reject a run even if import returns successfully. `[verified: ASTCBenchmark.h; benchmark.py summarize; test_reproduction_baseline.py]`
 - Original source hashes are ccc8eea44b6bff44b8976389d7ecce96e9ce7f6831f149578f91fc54fb2dd209 and 442fc8fbbb57f78077ee3bd7f79e0ba6357cd8ce7733a53fb78206ba0eaeb9aa. Source navigation earlier in this document refers to that uninstrumented revision. `[verified: engine-originals/original_hashes.json]`
 - The supplied TexNN PDF has 12 pages and SHA-256 3c4612b705faee35fda1739ee0fd19336cf3f2b99a8566609377db04e2e98d4e. Its separate Appendix Tables S1/S2 remain referenced artifacts. `[verified: reproductions/texnn/source.json; supplied PDF p.12]`

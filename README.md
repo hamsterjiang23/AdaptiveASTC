@@ -58,7 +58,7 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 | Unity 搜索基线 | 10,000 张已完成，包含 32 张技术失败补测，状态为 passed_with_retries。搜索合计 4,060.47 秒，选参及编码合计 4,163.31 秒，详见[基线报告](<experiment report/unity-search-baseline-lite-rdo-off/README.md>)。源图哈希与实际搜索选择通过核验，metadata 恢复无冲突。`[verified: 基线报告 summary.json phases.full]` |
 | Nah 2023 作者代码 | 固定版本的 64 张项目源图适配完成压缩、解码与全图质量复查。40 dB 下 RGBA 达标 46/64，RGB 达标 26/64，搜索及最终编码 73.248 秒。[实测报告](<experiment report/nah2023_adaptive_astcenc/source-rgb64-target40/README.md>)保留随机抽样实现与同方法固定 8×8 对照。`[verified: 对应 summary.json quality_audit/search_and_final_encode_seconds]` |
 | Nah 2022 论文重实现 | astcenc 3.3 的 64 张项目源图适配完成压缩、解码。采用 Game 目标 37.3873 dB，RGBA 达标 64/64，RGB 达标 62/64，搜索及最终编码 546.329 秒。[实测报告](<experiment report/nah2022_psnr_search/source-rgb64-game/README.md>)记录初始 6×6 的补全来源及测量范围。`[verified: 对应 receipt.json/summary.json]` |
-| TexNN 与新 GDC 复现 | TexNN 主文已归档，精确网络结构等待用户补充独立 Appendix Tables S1/S2。新 GDC 压缩闭环按确认顺序排在 TexNN 之后。`[verified: reproductions/texnn/source.json；用户回复“暂时没有等我补充”；用户确认的实施顺序]` |
+| TexNN 与新 GDC 复现 | TexNN 主文及 13 页 Appendix 已归档，六个网络尺寸已实现并通过前向检查。历史编码器的 4×4、6×6、8×8 标签导出已通过原生 ASTC、像素及字节一致性核验，见[探针报告](<experiment report/texnn/reference-probe-20261111/README.md>)。数据集、训练与预测配置回填继续执行，新 GDC 压缩闭环随后开展。`[verified: reproductions/texnn/source.json；探针报告；用户确认的实施顺序]` |
 | 资料归档 | 视频、中英文网站字幕、19张每分钟截图、10张关键页补充截图已保存。`[verified: materials/gdc2023-astc-parameter-selection/；verification.json]` |
 | 全文整理 | 中英文字幕各328条，校订稿按40段覆盖全部条目，逐条原文另存对照稿。音轨独立ASR转写状态为未运行。`[verified: source/material-metadata.json；transcripts/完整字幕对照.md]` |
 | 方法核实 | 正文展示有标签数据集、块大小分类和ResNet。官网简介另提到强化学习，具体对应关系待作者材料确认。`[verified: 视频10:00、11:28、12:28；官方简介Overview]` |

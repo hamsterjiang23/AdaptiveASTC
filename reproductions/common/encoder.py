@@ -55,6 +55,8 @@ class ASTCEncoder:
         preset: str,
         srgb: bool = False,
         target_psnr: float | None = None,
+        *,
+        environment: dict[str, str] | None = None,
     ) -> tuple[ASTCFile, float, str]:
         output.parent.mkdir(parents=True, exist_ok=True)
         if output.exists():
@@ -72,7 +74,9 @@ class ASTCEncoder:
         if target_psnr is not None:
             command.extend(["-dbtarget", str(target_psnr)])
         started = time.perf_counter()
-        result = subprocess.run(command, capture_output=True, text=True, check=True)
+        result = subprocess.run(
+            command, capture_output=True, text=True, check=True, env=environment
+        )
         elapsed = time.perf_counter() - started
         return ASTCFile.read(output), elapsed, result.stdout
 

@@ -13,6 +13,8 @@ sys.path.insert(0, str(ROOT))
 from reproductions.common.nah_experiment import NahExperiment  # noqa: E402
 from reproductions.common.reporting import NahReport  # noqa: E402
 from reproductions.common.upstream import EncoderSource  # noqa: E402
+from reproductions.texnn.data import TexNNLabelCollector  # noqa: E402
+from reproductions.texnn.reference import TexNNReference  # noqa: E402
 from reproductions.unity_search_baseline.benchmark import UnitySearchBaseline  # noqa: E402
 from reproductions.unity_search_baseline.engine_patch import EngineTimingPatch  # noqa: E402
 from reproductions.unity_search_baseline.recovery import BaselineRecovery  # noqa: E402
@@ -34,11 +36,17 @@ def main() -> None:
             "report",
             "repair",
             "assemble",
+            "collect",
         ],
     )
     parser.add_argument(
         "--method",
-        choices=["unity_search_baseline", "nah2022_psnr_search", "nah2023_adaptive_astcenc"],
+        choices=[
+            "unity_search_baseline",
+            "nah2022_psnr_search",
+            "nah2023_adaptive_astcenc",
+            "texnn",
+        ],
         default="unity_search_baseline",
     )
     parser.add_argument("--engine", type=Path, default=Path("E:/hamster_unity/unity20190433"))
@@ -51,6 +59,9 @@ def main() -> None:
         "--category", choices=["photos", "game", "gis", "synthesized", "captured"], default="game"
     )
     parser.add_argument("--encoder-threads", type=int, default=1)
+    parser.add_argument("--source", type=Path)
+    parser.add_argument("--footprint", choices=["4x4", "6x6", "8x8"], default="4x4")
+    parser.add_argument("--preset", default="exhaustive")
     parser.add_argument(
         "--phase", choices=["probe", "smoke1", "smoke2", "smoke3", "full"], default="probe"
     )
@@ -69,6 +80,35 @@ def main() -> None:
         / "experiment report/.local/gdc-lite-rgb-resnet18-seed20261109/coverage-v2/manifest.json",
     )
     args = parser.parse_args()
+    if args.method == "texnn":
+        if args.action == "collect":
+            if args.source is None or args.run_id is None:
+                parser.error("TexNN collection requires --source and an explicit --run-id")
+            if (
+                not args.run_id
+                or Path(args.run_id).name != args.run_id
+                or args.run_id in {".", ".."}
+            ):
+                parser.error("--run-id must be one directory name")
+            size = int(args.footprint.split("x")[0])
+            result = TexNNLabelCollector(ROOT).collect(
+                args.source,
+                ROOT / "experiment report/.local/reproduction-runs/texnn" / args.run_id,
+                (size, size),
+                args.preset,
+            )
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return
+        if args.action not in {"fetch", "build"}:
+            parser.error("TexNN currently supports fetch, build and collect actions")
+        reference = TexNNReference(ROOT)
+        result = (
+            {"commit": reference.fetch()}
+            if args.action == "fetch"
+            else {"executable": str(reference.build())}
+        )
+        print(json.dumps(result, indent=2))
+        return
     if args.method != "unity_search_baseline":
         if args.action == "report":
             if args.run_id is None:
