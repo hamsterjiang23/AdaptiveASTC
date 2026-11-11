@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T18:40:01.292232+00:00",
+  "updated_utc": "2026-11-11T19:04:02.167015+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -513,10 +513,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T18:39:58.968397+00:00",
+      "last_observed_alive_utc": "2026-11-11T19:03:59.529580+00:00",
       "name": "unity-reference-series-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\receipt.json",
-      "sha256": "35e332ad3ccbf8bb387c9dcc91271cb0ad8211580bd31016160c78c8bc461332",
+      "sha256": "ad293fea53a1db7da1d79e16f3741267098f9902f35b5cf9b11060f0cf926520",
       "observed_processes": [
         {
           "pid": 51744,
@@ -680,10 +680,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T18:39:34.234729+00:00",
+      "last_observed_alive_utc": "2026-11-11T19:03:34.873564+00:00",
       "name": "unity-candidate-queue-multimip-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\receipt.json",
-      "sha256": "32d9f0dbeb4326ab41b66d4c465aa6c634f1999c3b4b088fe4127b3fdc4d594e",
+      "sha256": "11b2c5c0544c8107ce6459db320fc39eda15ad813a83a3bee374be9b195481ba",
       "observed_processes": [
         {
           "pid": 25096,
@@ -875,7 +875,13 @@
       "name": "unity-patch-assembly2370",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-patch-assembly2370\\receipt.json",
       "sha256": "17c9eaa83d5dc60e82d94c981bb7269a2b65594ce2ec2aa12ba4de4aaaabade2",
-      "observed_processes": []
+      "observed_processes": [
+        {
+          "pid": 38088,
+          "name": "pwsh.exe",
+          "create_time": 1794423841.5531666
+        }
+      ]
     },
     {
       "status": "passed",
@@ -907,10 +913,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T18:39:44.656172+00:00",
+      "last_observed_alive_utc": "2026-11-11T19:03:45.204874+00:00",
       "name": "scratch-bag4",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-bag4\\receipt.json",
-      "sha256": "58abc4468318d4ee85b0c578d93cf2aca76c9af13e782a4d3143df231539a4c5",
+      "sha256": "fd922c0ff902063c8bcf413428924cbe650d8deb3692308ce34cef0c496f4453",
       "observed_processes": [
         {
           "pid": 16412,
@@ -923,6 +929,42 @@
           "create_time": 1794422204.59156
         }
       ]
+    },
+    {
+      "status": "failed",
+      "started_utc": "2026-11-11T18:54:14.843225+00:00",
+      "ended_utc": "2026-11-11T18:54:21.957004+00:00",
+      "wall_seconds": 7.111373499996262,
+      "process_exit_code": 1,
+      "last_observed_alive_utc": null,
+      "name": "unity-prediction-interface66",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-prediction-interface66\\receipt.json",
+      "sha256": "b873320b249168527a7acee430cffca501115ad0175035e21b3ef9ebf94c4552",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T18:56:03.906867+00:00",
+      "ended_utc": "2026-11-11T18:56:11.054275+00:00",
+      "wall_seconds": 7.145509899994067,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-prediction-interface66-v2",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-prediction-interface66-v2\\receipt.json",
+      "sha256": "5db84a8fff1bc2b59aa6aeb802f89c4afd1872aa6afdfcb212106d49910d0c14",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T18:58:12.385038+00:00",
+      "ended_utc": "2026-11-11T18:58:37.946098+00:00",
+      "wall_seconds": 25.558018199997605,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-prediction-interface2370",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-prediction-interface2370\\receipt.json",
+      "sha256": "6de3037d9f28ed77090ab85a25fa0addac910c44ce874e4f5b3da8e5109221cd",
+      "observed_processes": []
     }
   ],
   "normalization_diagnostics": {
@@ -953,17 +995,17 @@
   "unity_reference_series": {
     "status": "running",
     "counts": {
-      "train": 3136,
+      "train": 3392,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-012-20261111",
+    "current_batch": "unity-v1-train-013-20261111",
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "2f7108202df1af69dca26ac53009ca19ff8a45e8b888f2b7827471251c5da270",
+    "report_sha256": "a322a801edb7c5ba0326cf1b5750e1329638b3246331e8d3c09201b5ac5119eb",
     "scope": "original imported references/choices only; supplemental targets pending"
   },
   "fixed_capacity_stem": {
@@ -982,19 +1024,19 @@
     "scope": "complete20candidate archived colors and mip0 normals; original choices retained"
   },
   "unity_candidate_queue": {
-    "status": "running",
+    "status": "waiting_references",
     "counts": {
-      "train": 2880,
+      "train": 3392,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-011-20261111",
+    "current_batch": null,
     "test_opened": false,
     "report": "unity-candidate-queue-multimip-v2.json",
-    "report_sha256": "546aaf55bd5c3b87b4b24e790cbd5409c81589ada40ff0fb70bc28bd7170dc7d",
+    "report_sha256": "c4d08a820558cd41d027d05ffbab08f66b653ca925a85b51ea25dd0198773ade",
     "prior_failure_report": "unity-candidate-queue-full.json",
     "prior_failure_counts": {
       "train": 576,
@@ -1160,9 +1202,17 @@
   },
   "fixed_capacity_bag_training": {
     "status": "running",
-    "current_trial": "scratch-bag4-loss0",
+    "current_trial": "scratch-bag4-loss1",
     "test_opened": false,
     "report": "patch-fixed-capacity/scratch-bag4-summary.json",
-    "report_sha256": "77f1ad49db2b011f294d6127db98c7b6ab89dcb48c6a33d56e9b43b933163481"
+    "report_sha256": "45bd10fe56d065ca288794d81d6e6a0039f2fe2e898c26ccdc81aebc4f8f7a00"
+  },
+  "unity_native_model": {
+    "status": "cpu_contract_passed_cuda_training_pending",
+    "model_contract": "unity-native-model-contract.json",
+    "interface_audit": "unity-prediction-interface2370.json",
+    "model_accuracy": null,
+    "training_updates": 0,
+    "test_opened": false
   }
 }

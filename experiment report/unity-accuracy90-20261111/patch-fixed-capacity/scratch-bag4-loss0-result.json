@@ -1,0 +1,49 @@
+{
+  "status": "completed_arm",
+  "suite_status_at_observation": "running",
+  "scope": "GDC development sampling control; paired aggregate-loss arm remains running",
+  "selected_epoch": 1,
+  "selected_variant": "raw",
+  "completed_epochs": 10,
+  "metrics": {
+    "accuracy": 0.712,
+    "balanced_accuracy": 0.6181092595764327,
+    "near_threshold_rmse_db": 3.5647068910829303,
+    "per_class": {
+      "6x6": {
+        "precision": 0.8020304568527918,
+        "recall": 0.7247706422018348,
+        "f1": 0.7614457831325301,
+        "support": 218
+      },
+      "8x8": {
+        "precision": 0.49206349206349204,
+        "recall": 0.484375,
+        "f1": 0.4881889763779528,
+        "support": 192
+      },
+      "10x10": {
+        "precision": 0.3357142857142857,
+        "recall": 0.3671875,
+        "f1": 0.35074626865671643,
+        "support": 128
+      },
+      "12x12": {
+        "precision": 0.8734177215189873,
+        "recall": 0.8961038961038961,
+        "f1": 0.8846153846153846,
+        "support": 462
+      }
+    },
+    "quality_pass_rate": 0.764,
+    "payload_bytes": 91806608
+  },
+  "training_wall_seconds": 1080.9062387999948,
+  "parameters": 11178564,
+  "checkpoint_sha256": "f3ceedcfa8ffc912700b8075c39775fbebac260dfe6883507bcef776529703f3",
+  "test_opened": false,
+  "inputs_sha256": {
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-loss0.json": "ec14ed4a47f67addd2cccc51a590789ff711b442ea00fa36e8dc51b64de3e91d",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-bag4-loss0-audit.json": "d8eb69645c1a818a4a29c61e7ebb4479c044eaa64d7edd2f2451891ed724ec12"
+  }
+}

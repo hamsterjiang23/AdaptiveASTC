@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- Unity原生模型接口见[模型适配报告](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)。patch误差先在MSE域聚合，零通道与Alpha条件按原生规则处理；MS-SSIM／角度由整图特征头预测，不取patch分数平均。导入属性必须影响patch误差与整图预测，测得质量及原选择只进监督／评价。原型CPU检查通过、CUDA训练待执行；实际参数与GDC四输出模型分别记录。`[verified: models/unity_quality.py encode、predict_images；training/unity_quality_loss.py；evaluation/unity_quality.py；unity-native-model-contract.json；opinion: 接入与验收要求]`
+
 - 原生patch统一清单使用[组装入口](script/assemble_unity_patch_corpus.py)，只接收passed准备报告及外部SHA，按冻结源清单恢复顺序。保留单批来源和原标签，拒绝重复／跨划分／held-out资产；目录、corpus和报告均不可覆盖。完整覆盖需实际counts等于源开发划分；2370图结果仍为partial，不能代替完整Unity训练验收。`[verified: patch_assembly.py run L60–80、L152–155；unity-patch-assembly2370.json；test_unity_patch_assembly.py；opinion: 使用与验收要求]`
 
 - 原生patch批次准备见[分批目标报告](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)。只读取冻结快照中已发布的候选批次，重新验证原始参考／选择及候选归档；已完成单批语料绑定配置、报告、corpus哈希后复用。原计划为selected或仅选择部分批次时保留partial；coverage只表示所选范围，完整准备完成须同时满足status=passed、coverage=complete与实际counts等于完整源划分。Windows资产身份统一分隔符及大小写比较，原始文件哈希约束不变。`[verified: patch_batches.py select_batches、coverage、prepare_shard、prepare末段；unity_patch_dataset.py original_selection比较；opinion: 使用要求]`

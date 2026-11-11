@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-11T19:05:00.784203+00:00",
+  "unit_tests": 18,
+  "local_links": 240,
+  "static_checks": [
+    "ruff format --check",
+    "ruff check",
+    "basedpyright"
+  ],
+  "real_interface_images": 2370,
+  "model_training_updates": 0,
+  "model_accuracy": null,
+  "test_opened": false,
+  "gdc_running_source_unchanged": true,
+  "v1_evidence_sha256_unchanged": true,
+  "inputs_sha256": {
+    "experiment report\\unity-accuracy90-20261111\\unity-native-model-contract.json": "e8bd8347174e15114927955d838aa131abfe11ff952219ce3af0e6b35a272eef",
+    "experiment report\\unity-accuracy90-20261111\\unity-prediction-interface66-v2.json": "5574299ac40bab7797b55d1613ee89f5af6ea9aa7d7bf40f7a51c19eb2683a8b",
+    "experiment report\\unity-accuracy90-20261111\\unity-prediction-interface2370.json": "85695513098e8aff57cbb91941cfa86b8c5c8f6fd54fad42eab977d6bf69d154",
+    "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-prediction-interface66\\receipt.json": "b873320b249168527a7acee430cffca501115ad0175035e21b3ef9ebf94c4552",
+    "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-prediction-interface66-v2\\receipt.json": "5db84a8fff1bc2b59aa6aeb802f89c4afd1872aa6afdfcb212106d49910d0c14",
+    "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-prediction-interface2370\\receipt.json": "6de3037d9f28ed77090ab85a25fa0addac910c44ce874e4f5b3da8e5109221cd"
+  },
+  "scope": "Native CPU model/loss contracts and exact-target decision audit; no native CUDA or production accuracy claim"
+}

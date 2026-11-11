@@ -99,6 +99,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- Unity迁移新增[原生模型接口](<../../experiment report/unity-accuracy90-20261111/unity-native-model.md>)：RGBA＋mask＋导入属性，20候选通道误差、整图零通道和非PSNR质量头，18项CPU检查通过。2370图精确目标全部重建原块大小／preset，尚无模型准确率；原型11,377,660参数，与GDC四输出模型的容量差异明确单列，后续CUDA训练和独立测试验收仍待完成。`[verified: unity-native-model-contract.json；unity-prediction-interface2370.json；opinion: 迁移范围]`
+
 - 固定容量资产组限权对照完成26轮，最佳84.5%／同权重近阈值RMSE1.3869dB，10×10召回71.09%；相对标准采样提高3.8个百分点但仍未过联合门槛。后续[成组损失对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)已完成两组CUDA检查并启动正式串行训练。`[verified: scratch-group512-result.json；scratch-bag4-smoke-summary.json；scratch-bag4-summary.json；opinion: 验收边界]`
 
 - [Unity原生patch统一语料](<../../experiment report/unity-accuracy90-20261111/unity-patch-assembly.md>)完成2370图部分覆盖的提取及合并，2368／2图、15619patch、47400候选，原生PSNR重建最大差3.772e-6dB。完整11000图准备、Unity模型和独立测试90%仍待完成，evidence.json保持原SHA。`[verified: unity-patch-batches2370.json；unity-patch-assembly2370.json；evidence.json SHA核对；opinion: 后续范围]`

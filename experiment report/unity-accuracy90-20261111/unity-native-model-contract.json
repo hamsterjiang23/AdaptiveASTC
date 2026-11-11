@@ -1,0 +1,48 @@
+{
+  "status": "passed_cpu_contract",
+  "verified_utc": "2026-11-11T19:01:36.840910+00:00",
+  "parameters": 11377660,
+  "fp32_parameter_bytes": 45510640,
+  "gdc_parameters_reference": 11178564,
+  "backbone": "scratch ResNet18, standard stem with maxpool",
+  "input": [
+    "RGBA240 native patch",
+    "valid mask",
+    "8 input-only import metadata"
+  ],
+  "outputs": {
+    "features": [
+      2,
+      512
+    ],
+    "channel_log_mse": [
+      2,
+      20,
+      4
+    ],
+    "channel_zero_logits": [
+      2,
+      20,
+      4
+    ],
+    "image_quality": [
+      2,
+      20,
+      3
+    ]
+  },
+  "zero_channel_decision": "Whole-image logits; probability threshold remains a future validation choice",
+  "nonadditive_quality": "Image heads from pixel-weighted mean and max patch features; no averaging SSIM or angles",
+  "training_updates": 0,
+  "model_accuracy": null,
+  "cuda_validation": "pending; existing GDC bag suite currently owns the training lane",
+  "source_sha256": {
+    "src/adaptive_astc/models/unity_quality.py": "8bf6b36441d052e1f1733c09a5983c22ff7f9c09a5836f6171a052dd443f014c",
+    "src/adaptive_astc/training/unity_quality_loss.py": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+    "src/adaptive_astc/evaluation/unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "reproductions/unity_search_baseline/prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "script/audit_unity_predictions.py": "078ffc2a199060ea2123d96524cc6efaba134426941366fecd2b28bf1647d497",
+    "tests/test_unity_quality.py": "ef9ebee19ff08c27b8b19b7e54ac4ed3cb10b03944d4e2e8759196a6d32b473e"
+  },
+  "unit_tests": 18
+}

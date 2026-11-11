@@ -6,6 +6,8 @@
 
 小语料两组均使用48训练图／16验证图，各2轮、4次实际更新，参数11,178,564不变，峰值分配显存约2.12GB；完整suite29.52秒。权重0的聚合分项为0，权重1的两轮聚合损失分别0.10687／0.09386，输出有限、权重重载一致；只证明执行链路可用。`[verified: scratch-bag4-smoke-loss0.json、scratch-bag4-smoke-loss1.json history、peak_vram_bytes；scratch-bag4-smoke-summary.json；opinion: 小样本检查范围]`
 
+同图成组、聚合权重0的控制组随后完成10轮，按近阈值RMSE早停，最佳准确率权重为epoch1 raw：验证71.2%、同权重RMSE3.5647dB，低于历史独立采样80.7%／1.6040dB；训练1080.91秒，重载审计通过。权重1仍在运行，这项结果只说明当前成组采样配方出现退步，不能当作新增聚合损失的结论。`[verified: scratch-bag4-loss0-result.json；scratch-bag4-summary.json；opinion: 单项控制范围]`
+
 ## 假设与对照
 
 现有训练对各 patch 的 log-MSE 单独计算 Huber，验证时先按实际像素数平均 MSE，再转成整图 PSNR。新增损失检验在同图几个 patch 上直接约束聚合 MSE 是否改善最终决策；它不增加网络参数，不预设改善幅度。`[verified: patch_trainer.py fit；patch_dataset.py aggregate；patch_loss.py forward；opinion: 实验假设]`

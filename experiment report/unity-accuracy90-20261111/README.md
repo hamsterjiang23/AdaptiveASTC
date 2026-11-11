@@ -2,6 +2,8 @@
 
 当前方案以用户提供的 [V1：原分辨率 patch 误差回归](<../../experiment plan/V1/README.md>) 为准，诊断依据见 [V1 evidence.json](<../../experiment plan/V1/evidence.json>)。用户清除旧goal后，已按V1重新创建active goal。原来的树模型优先实验和24组SGD搜索不再作为当前执行顺序。`[verified: 用户本轮V1与重建goal要求；create_goal返回active]`
 
+- [Unity原生质量模型与接口](unity-native-model.md)完成18项CPU检查，2370图精确目标的原搜索配置全部重建通过。5通道输入、导入属性调节、20候选误差和整图质量头共11,377,660参数；尚未CUDA训练，model_accuracy为null。GDC聚合实验和Unity采集继续运行。`[verified: unity-native-model-contract.json；unity-prediction-interface2370.json；opinion: 完成边界]`
+
 ## 验收与执行顺序
 
 主验收保持Unity导入后参考像素与同次原始搜索标签，独立测试块大小Top-1≥90%。GDC源RGB train10000／validation1000用于开发，test2000保持已观察身份，不参与新选模。训练全部使用CUDA，随机初始化为主线，预训练为独立对照。`[verified: 用户既有数据口径确认、CUDA和初始化要求；V1“目标与开发数据”]`

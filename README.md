@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[Unity原生质量模型接口](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)已实现RGBA／mask／导入属性输入、20候选通道误差及整图质量输出，18项CPU检查和2370图精确目标规则重建通过。原型实际11,377,660参数，尚未开始Unity CUDA训练，没有原生模型准确率。`[verified: unity-native-model-contract.json；unity-prediction-interface2370.json；opinion: 完成边界]`
+
 固定容量资产组限权训练完成26轮，选中epoch21 raw，验证84.5%／近阈值RMSE1.3869dB，比同LR标准采样提高3.8个百分点，10×10召回提高16.41个百分点，参数量不变。下一项[同图patch聚合损失对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)已接入训练器，两组CUDA小样本检查通过，正式成对训练串行运行。`[verified: scratch-group512-result.json；scratch-bag4-smoke-summary.json；scratch-bag4-summary.json；opinion: 结果边界]`
 
 新增 [Unity 原搜索规则重放](<experiment report/unity-accuracy90-20261111/unity-policy-replay.md>)：260 张开发图的块大小、preset、选择分支和候选尝试次数全部复现。只保留真实 PSNR 的诊断仅命中 207 张块大小，表明迁移必须保留 MS-SSIM／法线等原规则信息；该结果不是模型准确率。Unity 模型训练与独立测试 90% 仍待完成。`[verified: unity-policy260-bound-v2.json matching_fields、mismatches、psnr_only_footprint_matches；opinion: 迁移要求与验收边界]`
