@@ -41,6 +41,7 @@ def main() -> None:
     train.add_argument("--aggregate-loss-weight", type=float, default=0.0)
     train.add_argument("--pixel-weighted-sampling", action="store_true")
     train.add_argument("--valid-area-pooling", action="store_true")
+    train.add_argument("--size-metadata", action="store_true")
     train.add_argument("--learning-rate", type=float, default=0.001)
     train.add_argument("--weight-decay", type=float, default=0.05)
     train.add_argument("--warmup-epochs", type=int, default=2)

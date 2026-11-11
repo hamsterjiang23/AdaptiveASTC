@@ -60,9 +60,10 @@ def test_training_source_binding_rejects_outside_project_and_empty(tmp_path: Pat
 
 def test_execution_bindings_include_current_inference_and_cli() -> None:
     sources = PatchNormalizationAudit.execution_sources()
-    assert len(sources) == 14
+    assert len(sources) == 16
     assert any(path.endswith("patch_normalization.py") for path in sources)
     assert any(path.endswith("masked_patch_regressor.py") for path in sources)
+    assert any(path.endswith("metadata_patch_regressor.py") for path in sources)
     for name, sha in sources.items():
         assert ArtifactStore.sha256_file(Path(name)) == sha
 

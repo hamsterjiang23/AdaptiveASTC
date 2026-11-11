@@ -58,8 +58,10 @@ class PatchNormalizationAudit:
             package / "training/patch_loss.py",
             package / "models/patch_regressor.py",
             package / "models/masked_patch_regressor.py",
+            package / "models/metadata_patch_regressor.py",
             package / "data/patch_dataset.py",
             package / "data/patch_geometry.py",
+            package / "data/patch_metadata.py",
             package / "data/patch_sampling.py",
             package / "data/patch_bags.py",
             package / "data/patch_targets.py",
@@ -217,6 +219,7 @@ class PatchNormalizationAudit:
                     settings["remove_maxpool"],
                     settings["monotone"],
                     settings.get("valid_area_pooling", False),
+                    settings.get("size_metadata", False),
                 ).to(device)
                 model.load_state_dict(weights, strict=True)
                 for recalibrated in [False, True]:

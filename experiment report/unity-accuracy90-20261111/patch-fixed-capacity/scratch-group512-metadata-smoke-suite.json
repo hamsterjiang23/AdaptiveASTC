@@ -1,0 +1,41 @@
+{
+  "trials": [
+    {
+      "name": "scratch-group512-metadata-smoke",
+      "config": {
+        "epochs": 2,
+        "batch_size": 128,
+        "patches_per_image": 4,
+        "weight_decay": 0.05,
+        "warmup_epochs": 1,
+        "workers": 2,
+        "seed": 20261111,
+        "remove_maxpool": false,
+        "monotone": true,
+        "ema_decay": 0.999,
+        "patience": 5,
+        "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-smoke64",
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-metadata-smoke",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-metadata-smoke.json",
+        "initialization": "scratch",
+        "learning_rate": 0.0003,
+        "group_image_cap": 2,
+        "size_metadata": true
+      }
+    }
+  ],
+  "summary": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-metadata-smoke-summary.json",
+  "scope": "Four input-size features; original scratch cap512 recipe and uniform patch/global pooling;16 added parameters; CUDA only, no test",
+  "baseline": {
+    "suite": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-smoke-suite.json",
+    "sha256": "23ba3fa96711f89031b4663d176c892248e76a9ea1e69a0d3c4274e233df1fb4",
+    "changed_configuration": {
+      "size_metadata": [
+        false,
+        true
+      ]
+    },
+    "result": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-result.json",
+    "result_sha256": "a2002693cbc57d2a413c6fd257be494b46697a9c914e3544b3e21ed10bcd0463"
+  }
+}

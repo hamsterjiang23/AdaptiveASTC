@@ -1,8 +1,10 @@
 # 实验成本与读写依赖
 
+尺寸元数据训练接入的46项CPU检查5.49秒，CUDA48train／16validation检查两轮4次更新、进程20.45秒、峰值分配显存2,118,428,672字节；后续BN路径检查10.51秒。正式启动前RAM空闲26.93GiB、GPU1172／12282MiB，batch128、workers2、单GPU，与Unity采集／补测并行，读冻结GDC语料并写独立训练目录。按既有10–30轮成本估计40–140分钟，实际早停轮数与完整成本待结束记录；旧15份源码预先归档，运行冻结12份训练源码。`[verified: metadata-integration.json；对应jobs receipts、launch-preflight.json；opinion: 预算与调度范围]`
+
 组均衡cap512末轮BN诊断已完成，raw／EMA分别使用16384训练patch重估并各验证前后状态，0次优化器更新；内部424.57秒、完整进程429.16秒，观察到进程树RSS约2571MiB、GPU总占用2116MiB，非峰值。启动前RAM空闲27.37GiB，沿用单GPU串行、与Unity采集并行；原checkpoint及归档源码只读，写独立诊断目录。先期CUDA小样本进程10.52秒，原／当前执行源码分开绑定。`[verified: normalization-group512.json；对应job receipt及launch-preflight.json；本轮psutil/nvidia-smi观测；opinion: 资源与计时范围]`
 
-尺寸元数据组件12项CPU检查4.40秒；完整11000图133140patch尺寸特征审计4.91秒，读取corpus及目标NPZ并核验SHA，不加载图片或运行模型。新增16参数的CUDA训练与推理成本尚未测量。`[verified: metadata-contract.json；metadata-data-audit.json；audit_patch_metadata.py；opinion: 待测范围]`
+尺寸元数据组件12项CPU检查4.40秒；完整11000图133140patch尺寸特征审计4.91秒，读取corpus及目标NPZ并核验SHA，不加载图片或运行模型。以上为先期组件检查成本，CUDA小样本成本见本节顶部；正式完整训练与部署推理成本尚待测量。`[verified: metadata-contract.json；metadata-data-audit.json；audit_patch_metadata.py；metadata-integration.json；opinion: 待测范围]`
 
 3906图patch准备已完成，循环1684.91秒／进程1687.78秒；统一清单组装64.13／67.60秒，20832patch完整Dataset检查113.73／116.98秒。此范围仍为partial，旧11批目标哈希保持，6批新增目标单列；成本含重验与并发，不用于部署加速比。`[verified: unity-patch-batches3906.json；unity-patch-assembly3906.json；unity-assembly3906-dataset-audit.json；native3906-assembly-verification.json process_costs；opinion: 成本边界]`
 

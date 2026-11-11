@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T21:30:29.592542+00:00",
+  "updated_utc": "2026-11-11T21:53:23.429463+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -57,7 +57,7 @@
     }
   ],
   "next": [
-    "Integrate four input-size features; CUDA smoke then fixed-backbone metadata control",
+    "Finish metadata CUDA control; audit selected checkpoint and compare original cap512",
     "Finish serial original-reference/label collection for train10000/validation1000",
     "Follow published reference batches to build all20candidate training targets",
     "4674 targets completed; queued full pipeline prepares/audits11000 after upstream success",
@@ -310,13 +310,7 @@
       "name": "unity-options2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-options2\\receipt.json",
       "sha256": "b414489ee1857ea0580fdac6893558da89175529f938eb9ea7e9fe3045d3786f",
-      "observed_processes": [
-        {
-          "pid": 50296,
-          "name": "conhost.exe",
-          "create_time": 1794432349.70091
-        }
-      ]
+      "observed_processes": []
     },
     {
       "status": "passed",
@@ -540,10 +534,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T21:30:03.412535+00:00",
+      "last_observed_alive_utc": "2026-11-11T21:53:04.044550+00:00",
       "name": "unity-reference-series-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\receipt.json",
-      "sha256": "f6cd4d1ed74545fca0b1a6ad386f1f5d3152b738d21cd5355caf66fd8921fc0b",
+      "sha256": "d67459fe9f4029d9df8a06a48d4cab735f0511f9ff97715576f789240fef35d2",
       "observed_processes": [
         {
           "pid": 51744,
@@ -707,10 +701,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T21:30:08.516326+00:00",
+      "last_observed_alive_utc": "2026-11-11T21:53:09.049984+00:00",
       "name": "unity-candidate-queue-multimip-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\receipt.json",
-      "sha256": "7156e2849fad847e113aa97513db216712c29ed5cbab2e391796f5ce17d5cd10",
+      "sha256": "0ebcc7d169e2b3aed28e6bebab69960e9432246284979f4f7df6bcd372b4cfc6",
       "observed_processes": [
         {
           "pid": 25096,
@@ -854,13 +848,7 @@
       "name": "unity-patch-batches2370",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-patch-batches2370\\receipt.json",
       "sha256": "529f97b0ee851249e86ebbefee575f7046b4b7208086ada64caea7024a88914f",
-      "observed_processes": [
-        {
-          "pid": 34196,
-          "name": "svchost.exe",
-          "create_time": 1794432312.7742994
-        }
-      ]
+      "observed_processes": []
     },
     {
       "status": "passed",
@@ -1102,10 +1090,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T21:30:05.802729+00:00",
+      "last_observed_alive_utc": "2026-11-11T21:53:06.358411+00:00",
       "name": "unity-native-pipeline-full-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v2\\receipt.json",
-      "sha256": "9f33bd0dfde84a0ba590d5889ea8f1f6c0bc8cd018df0c8fa791c939a681bd51",
+      "sha256": "37654b4d26a59727f5303c63ba9ce45504fdb0a7728d1e70ad589dd2e705f7ef",
       "observed_processes": [
         {
           "pid": 30076,
@@ -1178,6 +1166,59 @@
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-validpool\\receipt.json",
       "sha256": "5638c1784e734a7c24f7361664b86f8f0607b107c6b0fe2784a20f51a33f6f3c",
       "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T21:37:47.868285+00:00",
+      "ended_utc": "2026-11-11T21:38:08.322282+00:00",
+      "wall_seconds": 20.451341100000718,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "scratch-group512-metadata-smoke",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-metadata-smoke\\receipt.json",
+      "sha256": "74d9517e3b15cda50b1ed463811b4840c485b04b4ee331dd60f2df2c9a6a811b",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T21:39:13.251032+00:00",
+      "ended_utc": "2026-11-11T21:39:23.769857+00:00",
+      "wall_seconds": 10.51423700000305,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "normalization-metadata-smoke",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-metadata-smoke\\receipt.json",
+      "sha256": "30d4424ec9d982d42204667c02adba0886ff4dd2176222020a6fa168a8043cd1",
+      "observed_processes": [
+        {
+          "pid": 25292,
+          "name": "svchost.exe",
+          "create_time": 1794433989.7178845
+        }
+      ]
+    },
+    {
+      "status": "running",
+      "started_utc": "2026-11-11T21:41:19.009773+00:00",
+      "ended_utc": null,
+      "wall_seconds": null,
+      "process_exit_code": null,
+      "last_observed_alive_utc": "2026-11-11T21:53:19.283138+00:00",
+      "name": "scratch-group512-metadata",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-metadata\\receipt.json",
+      "sha256": "6a289a932424d123ac088fc358c559cb152fe4ec49c19754813525a957cee02c",
+      "observed_processes": [
+        {
+          "pid": 67328,
+          "name": "python.exe",
+          "create_time": 1794433278.9023373
+        },
+        {
+          "pid": 48048,
+          "name": "python.exe",
+          "create_time": 1794433279.013654
+        }
+      ]
     }
   ],
   "normalization_diagnostics": {
@@ -1191,7 +1232,8 @@
       "normalization-scratch-lr0003.json",
       "normalization-scratch-stem2-lr0003.json",
       "normalization-group512-archive-smoke.json",
-      "normalization-group512.json"
+      "normalization-group512.json",
+      "normalization-metadata-smoke.json"
     ]
   },
   "fixed_capacity_control": {
@@ -1210,17 +1252,17 @@
   "unity_reference_series": {
     "status": "running",
     "counts": {
-      "train": 5696,
+      "train": 5952,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-022-20261111",
+    "current_batch": "unity-v1-train-023-20261111",
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "860857d521e692ab4089b23de7f131c189020b8677b89555ff9bd724bba215a3",
+    "report_sha256": "b5a69638177547bd8e9ca0cf9673238b67aa762cf9b87c87a4c4810f2b876a33",
     "scope": "original imported references/choices only; supplemental targets pending"
   },
   "fixed_capacity_stem": {
@@ -1241,7 +1283,7 @@
   "unity_candidate_queue": {
     "status": "waiting_references",
     "counts": {
-      "train": 5696,
+      "train": 5952,
       "validation": 2
     },
     "expected_counts": {
@@ -1251,7 +1293,7 @@
     "current_batch": null,
     "test_opened": false,
     "report": "unity-candidate-queue-multimip-v2.json",
-    "report_sha256": "02f65658ff8286549568b3d6ab24bea7c62e7ddcc3ff3725c249a348e20e3d95",
+    "report_sha256": "b241451d7aaab09507e5a26423ad053d82388d57a7af91e439957fc421c50e21",
     "prior_failure_report": "unity-candidate-queue-full.json",
     "prior_failure_counts": {
       "train": 576,
@@ -1594,18 +1636,22 @@
     "training_updates": 0,
     "test_opened": false,
     "report": "unity-native-pipeline-full-v2.json",
-    "report_sha256": "62f4da8483fbb2a99dcd28ae9dd8d3c98f0dbc429c01d2d7654dd04e4ff528da",
+    "report_sha256": "62b6503da29005c5c81062ba896af83bc14f57dc01de56199f6958cb945e21be",
     "final_smoke": "unity-native-pipeline-smoke66-v3.json"
   },
   "fixed_capacity_metadata": {
-    "status": "component_and_data_checks_passed",
+    "status": "cuda_smoke_passed_formal_running",
     "parameters": 11178580,
     "added_parameters": 16,
-    "trainers_integrated": false,
+    "trainers_integrated": true,
     "cuda_training_completed": false,
     "model_accuracy": null,
     "test_opened": false,
-    "report": "patch-fixed-capacity\\metadata-contract.json",
-    "report_sha256": "a9bc2afb5dc69f2b0478d9c08dbc278fece3dba5c14d4b0d94a75d9236f68b2f"
+    "report": "patch-fixed-capacity\\metadata-integration.json",
+    "report_sha256": "eea95d9f5440df608af5b8b5b1bafd38c25aecb8f79e2f1e6963e5f8c6ecc11d",
+    "formal_status": "running",
+    "formal_summary": "patch-fixed-capacity\\scratch-group512-metadata-summary.json",
+    "formal_summary_sha256": "5d1af3a0a98cdedc3ee808e997d24aa255c175df3b70666f1142555fa0c8aa43",
+    "formal_completed_trials": 0
   }
 }

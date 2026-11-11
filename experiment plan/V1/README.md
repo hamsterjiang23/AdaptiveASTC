@@ -72,7 +72,7 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 实验步骤
 
-尺寸元数据对照已完成[组件与全量几何检查](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/metadata.md>)：新增16个零初始化参数，总11,178,580，使用整图尺寸和patch有效比例；12项CPU检查通过。当前仅为组件准备，训练接入、CUDA小样本和完整效果对照尚待完成。`[verified: metadata-contract.json；metadata-data-audit.json；opinion: 执行边界]`
+尺寸元数据对照已完成[训练与CUDA接入](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/metadata.md>)：新增16个零初始化参数，总11,178,580；46项CPU检查、两轮4次CUDA更新、最佳权重重载和BN路径检查通过。完整对照已启动，只改变尺寸特征输入，保留原cap512配方；完整效果与成本尚待验收。`[verified: metadata-integration.json；scratch-group512-metadata-suite.json；normalization-metadata-smoke.json；opinion: 执行边界]`
 
 组均衡cap512的[末轮BN诊断](<../../experiment report/unity-accuracy90-20261111/normalization.md>)也已完成，重估EMA为84.4%／近阈值RMSE1.4284dB，未超过原最佳84.5%／1.3869dB，后续继续采用原权重作为对照。重估使用16384训练patch、0次优化器更新，独立计入429.16秒进程成本；当前仍未满足V1联合晋级或Unity最终验收。`[verified: normalization-group512.json；对应job receipt；scratch-group512-result.json；opinion: 选模与验收边界]`
 

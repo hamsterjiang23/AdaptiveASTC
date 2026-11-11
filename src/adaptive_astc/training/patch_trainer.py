@@ -18,9 +18,11 @@ from adaptive_astc.config import JsonDict
 from adaptive_astc.data.patch_bags import ImagePatchBatchSampler
 from adaptive_astc.data.patch_dataset import NativePatchDataset
 from adaptive_astc.data.patch_geometry import PatchGeometry
+from adaptive_astc.data.patch_metadata import PatchMetadata
 from adaptive_astc.data.patch_sampling import PatchSampling
 from adaptive_astc.evaluation.patch_metrics import PatchRegressionMetrics
 from adaptive_astc.models.masked_patch_regressor import MaskedPatchRegressor
+from adaptive_astc.models.metadata_patch_regressor import MetadataPatchRegressor
 from adaptive_astc.models.patch_regressor import ASTCPatchRegressor
 from adaptive_astc.training.patch_loss import PatchRegressionLoss
 from adaptive_astc.utils.artifacts import ArtifactStore
@@ -51,6 +53,7 @@ class PatchTrainConfig:
     aggregate_loss_weight: float = 0.0
     pixel_weighted_sampling: bool = False
     valid_area_pooling: bool = False
+    size_metadata: bool = False
 
     def validate(self) -> None:
         if min(self.epochs, self.batch_size, self.patches_per_image) < 1:
@@ -76,6 +79,10 @@ class PatchTrainConfig:
             raise ValueError("Pixel-weighted sampling is an independent-patch control")
         if type(self.valid_area_pooling) is not bool:
             raise ValueError("Valid-area pooling must be boolean")
+        if type(self.size_metadata) is not bool:
+            raise ValueError("Size metadata must be boolean")
+        if self.size_metadata and self.valid_area_pooling:
+            raise ValueError("Size metadata and valid-area pooling are separate controls")
 
 
 class PatchTrainer:
@@ -85,8 +92,16 @@ class PatchTrainer:
 
     @staticmethod
     def build_model(
-        initialization: str, remove_maxpool: bool, monotone: bool, valid_area_pooling: bool = False
+        initialization: str,
+        remove_maxpool: bool,
+        monotone: bool,
+        valid_area_pooling: bool = False,
+        size_metadata: bool = False,
     ) -> ASTCPatchRegressor:
+        if size_metadata and valid_area_pooling:
+            raise ValueError("Size metadata and valid-area pooling are separate controls")
+        if size_metadata:
+            return MetadataPatchRegressor(initialization, remove_maxpool, monotone)
         model_class = MaskedPatchRegressor if valid_area_pooling else ASTCPatchRegressor
         return model_class(initialization, remove_maxpool, monotone)
 
@@ -95,6 +110,18 @@ class PatchTrainer:
         model: nn.Module, images: torch.Tensor, indexes: torch.Tensor, dataset: NativePatchDataset
     ) -> tuple[torch.Tensor, ...]:
         underlying = model.module if isinstance(model, AveragedModel) else model
+        if isinstance(underlying, MetadataPatchRegressor):
+            patch_indexes = indexes.cpu().numpy()
+            sizes = torch.tensor(
+                [
+                    [dataset.rows[int(image_id)]["width"], dataset.rows[int(image_id)]["height"]]
+                    for image_id in dataset.image_ids[patch_indexes]
+                ],
+                dtype=torch.int64,
+            )
+            valid_sizes = torch.from_numpy(dataset.boxes[patch_indexes, 2:])
+            metadata = PatchMetadata.encode(sizes, valid_sizes, dataset.patch_size)
+            return images, metadata.to(images.device, non_blocking=True)
         if not isinstance(underlying, MaskedPatchRegressor):
             return (images,)
         boxes = torch.from_numpy(dataset.boxes[indexes.cpu().numpy()]).to(images.device)
@@ -153,7 +180,11 @@ class PatchTrainer:
         if train.fingerprint != validation.fingerprint:
             raise ValueError("Training and validation corpus identities differ")
         model = self.build_model(
-            config.initialization, config.remove_maxpool, config.monotone, config.valid_area_pooling
+            config.initialization,
+            config.remove_maxpool,
+            config.monotone,
+            config.valid_area_pooling,
+            config.size_metadata,
         ).to(device)
         ema = (
             AveragedModel(
@@ -214,6 +245,9 @@ class PatchTrainer:
                 "feature_pooling": "valid-area coverage-weighted final feature mean"
                 if config.valid_area_pooling
                 else "global average",
+                "size_metadata_features": list(PatchMetadata.FEATURE_NAMES)
+                if config.size_metadata
+                else [],
                 "ema": "parameters and buffers after each applied optimizer update"
                 if ema
                 else False,
@@ -226,8 +260,10 @@ class PatchTrainer:
                         Path(__file__),
                         Path(__file__).parents[1] / "models/patch_regressor.py",
                         Path(__file__).parents[1] / "models/masked_patch_regressor.py",
+                        Path(__file__).parents[1] / "models/metadata_patch_regressor.py",
                         Path(__file__).parents[1] / "data/patch_dataset.py",
                         Path(__file__).parents[1] / "data/patch_geometry.py",
+                        Path(__file__).parents[1] / "data/patch_metadata.py",
                         Path(__file__).parents[1] / "data/patch_sampling.py",
                         Path(__file__).parents[1] / "data/patch_bags.py",
                         Path(__file__).with_name("patch_loss.py"),
@@ -448,6 +484,7 @@ class PatchTrainer:
             settings["remove_maxpool"],
             settings["monotone"],
             settings.get("valid_area_pooling", False),
+            settings.get("size_metadata", False),
         ).to(device)
         model.load_state_dict(checkpoint["model"], strict=True)
         batches = DataLoader(validation, batch_size=settings["batch_size"], num_workers=0)
