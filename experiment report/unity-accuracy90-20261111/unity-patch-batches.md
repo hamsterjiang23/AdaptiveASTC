@@ -1,5 +1,7 @@
 # Unity 分批原生 patch 目标准备
 
+后续已启动[3906图扩展](unity-patch-batches3906-config.json)：冻结17个已发布候选批次，目标3904 train／2 validation，复用已完成的2370图目标，并为另外1536张图提取监督。[扩展状态](unity-patch-batches3906.json)仍在运行，新的统一清单和完整Dataset遍历尚待本批完成；不把已选范围计为已完成范围。`[verified: unity-patch-batches3906-config.json run_ids、previous_completed_report；jobs/unity-patch-batches3906/launch-preflight.json frozen_counts、additional_images；unity-patch-batches3906.json status；opinion: 状态口径]`
+
 已通过64张训练图与2张验证图的分批准备检查，生成781／13个patch，并核对已有训练目标的SHA未变。随后完成冻结快照中的11个已发布批次，实际2368 train／2 validation、15606／13patch；最终记录见[扩展记录](unity-patch-batches2370.json)。这只是完整10000／1000开发集的部分覆盖。`[verified: unity-patch-batches-smoke-v2.json counts、patch_counts；unity-patch-batches2370-config.json run_ids；jobs/unity-patch-batches2370/launch-preflight.json；opinion: 覆盖范围]`
 
 ## 来源与复用

@@ -99,6 +99,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- Unity原生patch启动[3906图扩展](<../../experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)：冻结17个候选批次，复用2370图目标并提取新增1536图，完整开发语料和Unity训练仍未完成。同时核对GDC源RGB cap512模型的155个验证错误，其中83个距最近35dB候选阈值≤0.5dB；单patch图近阈值RMSE仍为2.1655dB。后续继续检查有效区域信息，几何分层的相关性不作为根因结论。`[verified: unity-patch-batches3906-config.json；group512-geometry-diagnosis.json paired_group_cap_change、models.scratch_group512.strata；opinion: 后续判断]`
+
 - 固定容量下一项为[按有效像素抽样](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)：相对84.5%的cap512方案，只改变图内patch概率。训练清单中小于四分之一面积的期望抽样占比从38.82%降至20.67%，每图／组总权重不变；两轮4次CUDA更新及重载通过，正式对照已启动。另核对单调目标投影后10000张训练图标签全不变，作为排查证据，不是模型准确率上限。`[verified: patch-pixel-sampling-analysis.json；patch-monotonicity.json；scratch-group512-pixels各suite／smoke-summary；opinion: 对照范围]`
 
 - 原生模型的[CUDA训练链路](<../../experiment report/unity-accuracy90-20261111/unity-native-training.md>)检查通过：随机初始化、8训练图／2验证图、两轮4次实际更新、0次AMP跳步，权重重载一致，完整进程23.81秒。35项CPU检查通过；正式训练要求完整train10000／validation1000，本次不作为生产准确率。`[verified: unity-native-smoke8-v1-result.json；unity-native-training-verification.json；opinion: 验收边界]`

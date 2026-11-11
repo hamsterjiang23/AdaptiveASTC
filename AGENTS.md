@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- 原生patch扩展使用独立[3906图配置](<experiment report/unity-accuracy90-20261111/unity-patch-batches3906-config.json>)和冻结17批快照，目标3904训练图／2验证图，复用2370图不可变目标。准备仍在运行，结束后才以实际passed报告绑定新的组装与Dataset检查；完整训练门槛不随部分覆盖降低。冻结预测的几何／阈值分层只作描述性诊断，不把相关性归因为填充或采样。`[verified: unity-patch-batches3906-config.json；group512-geometry-diagnosis.json limits；unity_quality_trainer.py validate_coverage；opinion: 使用与验收边界]`
+
 - GDC原尺寸patch支持[按有效像素抽样](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)：`pixel_weighted_sampling`默认false保持旧序列，开启后只改变图内分配，每图／资产组总权重保持。该项仅支持独立patch抽样，和bag模式组合显式拒绝；不改图级标签或loss。26项检查与两轮CUDA小样本通过，正式cap512对照已启动，期间冻结绑定源码；完整指标和Unity验收分别记录。`[verified: patch_sampling.py weights；patch_trainer.py validate、training_batches；scratch-group512-pixels-smoke-summary.json；opinion: 使用边界]`
 
 - Unity原生模型接口见[模型适配报告](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)。patch误差先在MSE域聚合，零通道与Alpha条件按原生规则处理；MS-SSIM／角度由整图特征头预测，不取patch分数平均。导入属性必须影响patch误差与整图预测，测得质量及原选择只进监督／评价。原型35项CPU检查及8训练图／2验证图的CUDA闭环通过；完整训练及独立测试另行验收，实际参数与GDC四输出模型分别记录。`[verified: models/unity_quality.py encode、predict_images；training/unity_quality_loss.py；evaluation/unity_quality.py；unity-native-smoke8-v1-result.json；unity-native-training-verification.json；opinion: 接入与验收要求]`

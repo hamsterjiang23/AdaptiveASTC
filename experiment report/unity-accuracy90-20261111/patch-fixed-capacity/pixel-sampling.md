@@ -24,6 +24,19 @@
 
 ![有效像素面积的期望抽样占比](pixel-sampling-distribution.png)
 
+## cap512模型的剩余错误
+
+新增[冻结预测的分层诊断](group512-geometry-diagnosis.json)，对照原scratch、资产组cap512和预训练模型，全部只读取原GDC源RGB validation预测。cap512相对未限权模型修正93张、退步55张，净增38张正确；剩余155个错误中，83个来自距35dB最近候选不足或等于0.5dB的203张图。距离按四候选中最小绝对差计算，没有重新拟合阈值或访问test。`[verified: group512-geometry-diagnosis.json paired_group_cap_change、models.scratch_group512.strata.nearest_threshold_distance_db；diagnose_group512_geometry.py main]`
+
+| cap512验证分层 | 图数 | 块大小准确率 | 近阈值PSNR RMSE |
+|---|---:|---:|---:|
+| 整图只有1个patch | 246 | 82.52% | 2.1655dB。`[verified: group512-geometry-diagnosis.json models.scratch_group512.strata.patch_count.one]` |
+| 整图2–4个patch | 184 | 77.72% | 1.5376dB。`[verified: group512-geometry-diagnosis.json models.scratch_group512.strata.patch_count.two_to_four]` |
+| 整图5–16个patch | 265 | 86.79% | 0.9646dB。`[verified: group512-geometry-diagnosis.json models.scratch_group512.strata.patch_count.five_to_sixteen]` |
+| 整图超过16个patch | 305 | 88.20% | 0.8198dB。`[verified: group512-geometry-diagnosis.json models.scratch_group512.strata.patch_count.over_sixteen]` |
+
+平均有效面积比例≤四分之一的104张图，近阈值RMSE为2.9791dB；比例超过四分之三的45张图为0.7107dB。这里的比例为整图有效像素数除以所有240²输入patch面积，并非抽样概率。各组标签、资产和阈值距离分布不同，这个相关性不能证明填充导致错误；它支持继续检查有效区域信息，不能替代正在运行的采样对照。`[verified: group512-geometry-diagnosis.json area_fraction_definition、models.scratch_group512.strata.mean_valid_area_fraction、limits；opinion: 后续排查方向]`
+
 ## 配置、检查与成本
 
 正式配置见[scratch-group512-pixels-suite.json](scratch-group512-pixels-suite.json)，逐字段核对语义变化只有`pixel_weighted_sampling=false→true`；基准仍为[scratch-group512](scratch-group512-result.json)的84.5%／同权重近阈值RMSE1.3869dB。两者都使用scratch、标准stem、单调输出、lr0.0003、WD0.05、EMA0.999、batch128、每轮40000次patch抽样、最多30轮和近阈值RMSE patience5，参数11,178,564不变。`[verified: 两份suite；scratch-group512-result.json；launch-preflight.json semantic_change]`
