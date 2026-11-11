@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import math
 import os
@@ -12,6 +11,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+from adaptive_astc.utils.artifacts import ArtifactStore
 from reproductions.common.encoder import ASTCEncoder, ASTCFile
 from reproductions.common.upstream import BaselineGate
 from reproductions.texnn.reference import TexNNReference
@@ -20,11 +20,12 @@ from reproductions.texnn.reference import TexNNReference
 class TexNNLabelCollector:
     def __init__(self, root: Path) -> None:
         self.root = root.resolve()
+        self._baseline_verified = False
+        self._commit: str | None = None
 
     @staticmethod
     def sha256(path: Path) -> str:
-        with path.open("rb") as stream:
-            return hashlib.file_digest(stream, "sha256").hexdigest()
+        return ArtifactStore.sha256_file(path)
 
     def collect(
         self,
@@ -37,12 +38,16 @@ class TexNNLabelCollector:
             raise ValueError("TexNN uses 4x4, 6x6 or 8x8 blocks")
         if preset not in {"veryfast", "fast", "medium", "thorough", "exhaustive"}:
             raise ValueError("Unsupported historical reference preset")
-        BaselineGate.require(
-            self.root
-            / "experiment report/.local/unity-search-baseline-lite-rdo-off/full-receipt.json"
-        )
+        if not self._baseline_verified:
+            BaselineGate.require(
+                self.root
+                / "experiment report/.local/unity-search-baseline-lite-rdo-off/full-receipt.json"
+            )
+            self._baseline_verified = True
         reference = TexNNReference(self.root)
-        commit = reference.verify()
+        if self._commit is None:
+            self._commit = reference.verify()
+        commit = self._commit
         build = json.loads(
             (reference.artifact_dir / "build-receipt.json").read_text(encoding="utf-8")
         )
@@ -103,6 +108,7 @@ class TexNNLabelCollector:
             "reference_pixels": "source converted to RGB8 at original resolution",
             "color_profile": "Linear LDR",
             "native_origin": "bottom-left, historical stb loader y_flip=1",
+            "feature_protocol": "partition_single_plane_rgb24_v2",
             "threads": 1,
             "mipmaps": False,
             "label_export_seconds": label_seconds,

@@ -1,5 +1,6 @@
 # 实验报告
 
+- [TexNN 原生编码闭环项目适配](texnn/source-rgb64-patch64-v2/README.md)记录 64 源图的六网络训练、独立 validation 8 图的 48 次预测编码、质量损失、完整耗时及 96 次重新解码核验，原文训练规模与性能尚未复现。`[verified: 对应 validation8-patch128.json training、groups、audit、limits]`
 - [脚本启动与SwanLab接入](script-swanlab-20261110/README.md)记录共享TOML、训练配置、指标上传、历史导入、离线试跑与云端核对。`[verified: 对应源码及verification.json]`
 - [Class架构重构与兼容性检查](class-refactor-20261110/README.md)记录模型、数据、训练、校准、评估和报告的独立class，以及数值对照与CLI检查。`[verified: 对应源码类定义；class-refactor-20261110/verification.json]`
 - [GDC分类复现与独立校准](gdc-lite-rgb-resnet18-seed20261109/protocol.md)使用现有LITE标签与源图，两组ResNet18各完成30轮及温度拟合。结果见[训练报告](gdc-lite-rgb-resnet18-seed20261109/training_report.md)、[数据报告](gdc-lite-rgb-resnet18-seed20261109/data_report.md)和[验证记录](gdc-lite-rgb-resnet18-seed20261109/verification.json)。`[verified: 对应运行报告及验证记录]`

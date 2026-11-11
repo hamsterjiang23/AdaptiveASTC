@@ -7,7 +7,6 @@ set(REFERENCE_FILES
     astc_block_sizes2.cpp
     astc_color_quantize.cpp
     astc_color_unquantize.cpp
-    astc_compress_symbolic.cpp
     astc_decompress_symbolic.cpp
     astc_encoding_choice_error.cpp
     astc_find_best_partitioning.cpp
@@ -32,10 +31,15 @@ set(REFERENCE_FILES
 list(TRANSFORM REFERENCE_FILES PREPEND "${REFERENCE_SOURCE}/")
 add_library(texnn-codec OBJECT ${REFERENCE_FILES})
 add_executable(texnn-reference "${REFERENCE_SOURCE}/astc_toplevel.cpp"
+    "${REFERENCE_SOURCE}/astc_compress_symbolic.cpp"
     $<TARGET_OBJECTS:texnn-codec>)
 add_executable(texnn-labels "${CMAKE_CURRENT_BINARY_DIR}/generated/astc_toplevel.cpp"
+    "${REFERENCE_SOURCE}/astc_compress_symbolic.cpp"
     native/labels.cpp $<TARGET_OBJECTS:texnn-codec>)
-foreach(target texnn-codec texnn-reference texnn-labels)
+add_executable(texnn-predict "${CMAKE_CURRENT_BINARY_DIR}/generated/astc_predict_toplevel.cpp"
+    "${CMAKE_CURRENT_BINARY_DIR}/generated/astc_predict_compress.cpp"
+    native/prediction.cpp native/labels.cpp $<TARGET_OBJECTS:texnn-codec>)
+foreach(target texnn-codec texnn-reference texnn-labels texnn-predict)
     target_include_directories(${target} PRIVATE "${REFERENCE_SOURCE}"
         "${CMAKE_CURRENT_SOURCE_DIR}/native")
     target_compile_features(${target} PRIVATE cxx_std_11)

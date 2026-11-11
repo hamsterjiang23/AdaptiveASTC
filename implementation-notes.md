@@ -1,5 +1,23 @@
 # Implementation notes
 
+## TexNN learned-encoder project adaptation, 2026-11-11
+
+### Deviations
+
+- Kept all six Appendix widths, but reconstructed class identities, ReLU/Gaussian scale, Adam, endpoint padding and early stopping. The first measured adaptation uses 64 source-image crops and independent validation 8-image crops, rather than claiming the paper's 2050-image or million-block training results. `[verified: texnn/corpus.py prepare; training.py train; public validation8-patch128.json training/protocol/limits]`
+- P-NN and DEM-NN use a two-pass native file interface. All preprocessing, features, neural inference, file exchange, CLI starts, predicted encoding and fallback encoding are counted in the model pipeline. Model loading, data preparation, training and verification are reported separately. Ideal weights for all grids remain computed by the backend, leaving an explicit acceleration limit. `[verified: inference.py predict; evaluation.py evaluate; native/solver.inc]`
+
+### Discovered edge cases
+
+- Corrected teacher-dependent endpoint features before training. The previous observer used the selected dual-plane metadata; v2 fits endpoints from pixels and partition alone, shared with inference. Old v1 evidence remains archived and is rejected as training input. Native oracle tests check identical features when all unknown DEM fields are removed. `[verified: native/labels.cpp texnn_ideal_endpoints; corpus.py rows; test_texnn_runtime.py]`
+- Physical packing may change delta endpoint families, so canonical labels use base endpoint packing families and repeat-last padding. Native feasibility checks guard partition, dual-plane, endpoint classes and bit budgets. Oracle configurations reproduce reference pixels for 4/6/8, and empty candidates exercise original-search fallback. `[verified: runtime.py from_teacher; native/prediction.cpp and solver.inc; test_texnn_runtime.py]`
+- Frozen prepared data rejects another split seed. Validation uses the training corpus's frozen source manifest, whose hashes are bound through collection and prepared fingerprints. Raw and masked classification accuracies are distinguished because Appendix output widths include unused local class IDs. `[verified: corpus.py prepare; inference.py __init__; evaluation.py run; training.py epoch]`
+- Each native rebuild archives the prior binaries and receipt. Resume archives previous trained checkpoints and preserves RNG/optimizer/data identity, including interrupted runs without a completion receipt. The first two-epoch pipeline-smoke P-NN was resumed once before checkpoint archival was added; that older smoke evaluation retains hashes but its original P-NN file was replaced. The independent 64-image report uses unchanged completed models. `[verified: reference.py _archive_previous_build; training.py train; pipeline-smoke-v2 raw evaluations; public validation8-patch128.json training]`
+
+### Questions for review
+
+- The eight validation crops show a speed/quality tradeoff, with top3×10 losing about 1.82/2.70/2.46 dB at 4/6/8. These are project-adapted, single-run results and provide no equal-quality production speedup or direct comparison with Unity/Nah. Larger training and original paper-scale results remain unverified. `[verified: public validation8-patch128.json groups and limits]`
+
 ## TexNN source and reference integration, 2026-11-11
 
 ### Deviations

@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checks": {
+    "pytest": "64 passed in 37.60s",
+    "ruff": "uv run --frozen ruff check src script tests reproductions: passed",
+    "basedpyright": "uv run --frozen basedpyright: 0 errors, 0 warnings",
+    "native_oracle": "4x4/6x6/8x8 exact reference decoded pixels and feature independence: passed",
+    "native_edge_cases": "constant, empty-candidate fallback, wrong-image prediction rejection: passed",
+    "resume": "interrupted four-epoch resume and content-hashed previous checkpoint archive: passed, legacy elapsed unknown",
+    "prepared_seed": "changed seed rejected",
+    "actual_chain": "48 passed encoding pairs, 96 exact re-decoded hashes",
+    "changed_evaluation_manifest": "rejected before creating evaluation outputs",
+    "documentation": "6 documents, 144 local links passed",
+    "code_review": "C1-C5 resolved, final review: No bugs found"
+  },
+  "raw_summary_sha256": "0eb4a3736fc9c9c1b33be3045cea78fb43074dea512f30e2126306a66d0c329d"
+}

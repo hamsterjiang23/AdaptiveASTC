@@ -43,6 +43,8 @@
 - Nah 2022／2023 已完成各 64 张项目适配闭环，公开报告保留质量达标率和同方法固定 8×8 控制。两者的原文设置、Unity 导入像素及当前源图适配分别记录。Nah 2022 本轮计时期间存在同机检查活动。后续性能结论按明确输入、计时范围和运行背景解释。`[verified: experiment report/nah2022_psnr_search/source-rgb64-game/summary.json；experiment report/nah2023_adaptive_astcenc/source-rgb64-target40/summary.json；reproductions/README.md]`
 - 阶段结果形成后提交并推送仓库，原始逐图日志、图片和二进制按 `.local/` 忽略规则保存，公开报告保留来源标识与原始记录 SHA-256。`[verified: 用户要求“记得有进展同步仓库”；reproductions/common/reporting.py quality_audit；.gitignore]`
 - TexNN 主文及用户补充的 13 页 Appendix 已归档，六个网络层尺寸取自 Appendix 第1页 Tables 1–2，并保存于 `architectures.json`。历史参考编码器固定到 `ddadf547770ddbe8261cfd854b2a5f21b3a9074c`，该版本选择按论文引用的访问日期补全。数据收集入口为 `collect --method texnn`，核对原生块数据、坐标与源码的 PNG Y 翻转，完整训练及预测配置回填按实际结果验收。`[verified: reproductions/texnn/source.json、architectures.json、data.py；script/reproduce.py TexNN 分支]`
+- TexNN 项目适配已完成 64 源图块标签、六网络训练及独立 validation 8 图／48 次编码的闭环，报告保留质量损失和全部阶段耗时。训练 DEM 特征固定 `partition_single_plane_rgb24_v2`，只用像素与分区拟合端点，禁止采用教师尚未预测的双平面／编码模式生成推理特征。早期 v1 探针只作标签配对证据。`[verified: reproductions/texnn/native/labels.cpp texnn_ideal_endpoints；corpus.py rows；实测 validation8-patch128.json]`
+- TexNN 的 `dataset`、`train`、`evaluate`、`benchmark`、`report` 入口统一在 `script/reproduce.py`。P-NN 和 DEM-NN 的 top-k 配置进入真实历史编码器，非法组合回退原始搜索并计时；恒色块走原始快速路径。原文百万块数据规模及论文性能复现仍未完成，当前项目适配不能作为等质量生产收益。`[verified: script/reproduce.py TexNN 分支；native/prediction.cpp texnn_process_block；实测报告 limits、groups]`
 - 实验协议、数据、训练、校准、成本及验证报告统一保存在`experiment report/`，逐图清单、缓存、原始日志、预测和检查点保存在该目录的`.local/`并Git忽略。`[verified: 用户确认的GDC复现计划及报告目录要求]`
 - Python环境和依赖统一使用uv，提交`pyproject.toml`、`uv.lock`与`.python-version`；安装使用`uv sync --frozen`，实验和检查使用`uv run`。`[verified: 用户要求“仓库里使用uv进行python依赖管理”；pyproject.toml]`
 - 实施前检查已有文件、工具和入口，采用完成任务所需的最小修改，保留用户已有工作。Git状态在实际操作前重新查询。`[opinion]`

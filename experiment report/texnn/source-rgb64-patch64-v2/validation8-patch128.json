@@ -1,0 +1,2797 @@
+{
+  "status": "passed",
+  "run_id": "source-rgb64-patch64-v2",
+  "evaluation_id": "validation8-patch128",
+  "scope": "paper_reimplementation_project_adaptation",
+  "protocol": {
+    "scope": "project_validation_crops",
+    "split": "validation",
+    "images": 8,
+    "patch_size": 128,
+    "crop": "center crop without resizing, RGB8",
+    "footprints": [
+      4,
+      6,
+      8
+    ],
+    "topk_settings": [
+      [
+        1,
+        1
+      ],
+      [
+        3,
+        10
+      ]
+    ],
+    "preset": "exhaustive",
+    "device": "cpu",
+    "threads": 1,
+    "mipmaps": false,
+    "manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+    "inputs": [
+      {
+        "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+        "fileHash": "30e4065ac961da24ae9354ba01cf7b34"
+      },
+      {
+        "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour02/bane_skin06_pbs_Colour02_m2.png",
+        "fileHash": "fc0fdcb371ca69c18cf4564a9892cbd2"
+      },
+      {
+        "path": "Assets/Art/Characters/11_bane/3.0Battle/skin02next/bane_skin02_pbs_s.png",
+        "fileHash": "d05f50d0e74432885815c896b532c876"
+      },
+      {
+        "path": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour01/Bane_skin06_high_hair_Colour01_g.tga",
+        "fileHash": "1f383a7363b1594a4a35d00d74fcf333"
+      },
+      {
+        "path": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_body_Colour02_g.tga",
+        "fileHash": "a40a01d93ef4e85a5dcbac5deb639aa9"
+      },
+      {
+        "path": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_gem_Colour02_em.tga",
+        "fileHash": "c7430d6e8328217fc44d5436c1273151"
+      },
+      {
+        "path": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_g.tga",
+        "fileHash": "087ced6d071e73189d55d4f4a762885a"
+      },
+      {
+        "path": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_n5x5.tga",
+        "fileHash": "d0892a7fe181a43c0614fb1334d1c911"
+      }
+    ]
+  },
+  "raw_receipt_sha256": "f3f2332bc08867a8c089c91921ee5984b3d3fdf19511c30c0fab06433bf0474d",
+  "groups": {
+    "4x4-top1x1": {
+      "images": 8,
+      "counts": {
+        "blocks": 8192,
+        "constant": 2263,
+        "predicted": 5929,
+        "fallback": 0
+      },
+      "fallback_rate_nonconstant": 0.0,
+      "learned_pipeline_seconds": 1.9995484000000943,
+      "reference_pipeline_seconds": 13.197319900000366,
+      "aggregate_relative_time": 0.15151170200852968,
+      "mean_psnr_delta_db": -11.654854469503803,
+      "finite_psnr_pairs": 8,
+      "lossless": 0,
+      "payload_bytes": 131072
+    },
+    "4x4-top3x10": {
+      "images": 8,
+      "counts": {
+        "blocks": 8192,
+        "constant": 2263,
+        "predicted": 5929,
+        "fallback": 0
+      },
+      "fallback_rate_nonconstant": 0.0,
+      "learned_pipeline_seconds": 9.07663010000033,
+      "reference_pipeline_seconds": 12.88683890000084,
+      "aggregate_relative_time": 0.7043333256846828,
+      "mean_psnr_delta_db": -1.8206314330490585,
+      "finite_psnr_pairs": 8,
+      "lossless": 0,
+      "payload_bytes": 131072
+    },
+    "6x6-top1x1": {
+      "images": 8,
+      "counts": {
+        "blocks": 3872,
+        "constant": 984,
+        "predicted": 2888,
+        "fallback": 0
+      },
+      "fallback_rate_nonconstant": 0.0,
+      "learned_pipeline_seconds": 1.7304959999992207,
+      "reference_pipeline_seconds": 15.608003800000006,
+      "aggregate_relative_time": 0.11087234614840497,
+      "mean_psnr_delta_db": -6.4701808607228575,
+      "finite_psnr_pairs": 8,
+      "lossless": 0,
+      "payload_bytes": 61952
+    },
+    "6x6-top3x10": {
+      "images": 8,
+      "counts": {
+        "blocks": 3872,
+        "constant": 984,
+        "predicted": 2888,
+        "fallback": 0
+      },
+      "fallback_rate_nonconstant": 0.0,
+      "learned_pipeline_seconds": 10.552902399996128,
+      "reference_pipeline_seconds": 15.602184999995188,
+      "aggregate_relative_time": 0.6763733669354249,
+      "mean_psnr_delta_db": -2.6977885961814083,
+      "finite_psnr_pairs": 8,
+      "lossless": 0,
+      "payload_bytes": 61952
+    },
+    "8x8-top1x1": {
+      "images": 8,
+      "counts": {
+        "blocks": 2048,
+        "constant": 455,
+        "predicted": 1593,
+        "fallback": 0
+      },
+      "fallback_rate_nonconstant": 0.0,
+      "learned_pipeline_seconds": 2.0114058000035584,
+      "reference_pipeline_seconds": 16.59611540000151,
+      "aggregate_relative_time": 0.1211973857450627,
+      "mean_psnr_delta_db": -6.806791017380078,
+      "finite_psnr_pairs": 8,
+      "lossless": 0,
+      "payload_bytes": 32768
+    },
+    "8x8-top3x10": {
+      "images": 8,
+      "counts": {
+        "blocks": 2048,
+        "constant": 455,
+        "predicted": 1593,
+        "fallback": 0
+      },
+      "fallback_rate_nonconstant": 0.0,
+      "learned_pipeline_seconds": 12.748219899997821,
+      "reference_pipeline_seconds": 16.758791299998848,
+      "aggregate_relative_time": 0.7606885050235512,
+      "mean_psnr_delta_db": -2.4555128728751354,
+      "finite_psnr_pairs": 8,
+      "lossless": 0,
+      "payload_bytes": 32768
+    }
+  },
+  "training": [
+    {
+      "size": 4,
+      "network": "pnn",
+      "samples": 8377,
+      "train_samples": 7121,
+      "validation_samples": 1256,
+      "observed_joint_labels": 535,
+      "partition_catalog_labels": 1088,
+      "data_fingerprint": "64db5fd41d5e39fd38ae182ecd6b5333c88ce270ecf07314149204fd30e3561f",
+      "completed_epochs": 52,
+      "best_epoch": 44,
+      "validation": {
+        "samples": 1256,
+        "loss": 2.039710952977466,
+        "accuracy1": 0.7245222929936306,
+        "accuracy10": 0.8049363057324841,
+        "seconds": 0.015092300000105752
+      },
+      "attempt_training_seconds": 18.8208039000001,
+      "total_training_seconds": null,
+      "cumulative_training_seconds_known": false,
+      "total_attempt_seconds": 19.912248999999974,
+      "best_sha256": "0f1050ac186bcea90ee4caab917390a6d6ab43d7e6d62d4e346c098a27186a94",
+      "receipt_sha256": "c1fbe2703a9f395df386711982cc0049e73063557dafdad818d8233658dfc7f2",
+      "config": {
+        "network": "pnn",
+        "seed": 20261111,
+        "batch_size": 128,
+        "learning_rate": 0.0001,
+        "optimizer": "Adam",
+        "patience": 8,
+        "model_config": {
+          "dropout": 0.6,
+          "activation": "relu",
+          "initialization_std": 0.01
+        },
+        "architecture_sha256": "e9a1fc79e55e0f75c6b3145ac898c766623edd04e9c5ae845ebe302bf6d9010b",
+        "epochs": 100,
+        "device": "cuda",
+        "data_fingerprint": "64db5fd41d5e39fd38ae182ecd6b5333c88ce270ecf07314149204fd30e3561f",
+        "size": 4,
+        "environment": {
+          "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+          "platform": "Windows-10-10.0.19044-SP0",
+          "pid": 27364,
+          "rss_mib": 600.15625,
+          "available_ram_gib": 36.36005783081055,
+          "uv_lock_sha256": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+          "argv": [
+            "script/reproduce.py",
+            "train",
+            "--method",
+            "texnn",
+            "--run-id",
+            "source-rgb64-patch64-v2",
+            "--all-footprints",
+            "--epochs",
+            "100",
+            "--patience",
+            "8"
+          ]
+        },
+        "torch_version": "2.8.0+cu128"
+      }
+    },
+    {
+      "size": 4,
+      "network": "demnn",
+      "samples": 8377,
+      "train_samples": 7121,
+      "validation_samples": 1256,
+      "observed_joint_labels": 535,
+      "partition_catalog_labels": 1088,
+      "data_fingerprint": "64db5fd41d5e39fd38ae182ecd6b5333c88ce270ecf07314149204fd30e3561f",
+      "completed_epochs": 100,
+      "best_epoch": 98,
+      "validation": {
+        "samples": 1256,
+        "loss": 4.590700623336112,
+        "accuracy1": 0.09713375796178345,
+        "accuracy10": 0.39888535031847133,
+        "seconds": 0.018210500000350294
+      },
+      "attempt_training_seconds": 22.309627600000567,
+      "total_training_seconds": null,
+      "cumulative_training_seconds_known": false,
+      "total_attempt_seconds": 22.34940109999934,
+      "best_sha256": "c332b782b5f03662707da3d0687b88b200307a5e1fd8a56afcee36b14ab99dac",
+      "receipt_sha256": "df2334c830568d98caa72a46886bcb3d37d7a68066e5f3d735db3fd9784687a2",
+      "config": {
+        "network": "demnn",
+        "seed": 20261111,
+        "batch_size": 128,
+        "learning_rate": 0.0001,
+        "optimizer": "Adam",
+        "patience": 8,
+        "model_config": {
+          "dropout": 0.6,
+          "activation": "relu",
+          "initialization_std": 0.01
+        },
+        "architecture_sha256": "e9a1fc79e55e0f75c6b3145ac898c766623edd04e9c5ae845ebe302bf6d9010b",
+        "epochs": 100,
+        "device": "cuda",
+        "data_fingerprint": "64db5fd41d5e39fd38ae182ecd6b5333c88ce270ecf07314149204fd30e3561f",
+        "size": 4,
+        "environment": {
+          "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+          "platform": "Windows-10-10.0.19044-SP0",
+          "pid": 27364,
+          "rss_mib": 1001.64453125,
+          "available_ram_gib": 35.516624450683594,
+          "uv_lock_sha256": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+          "argv": [
+            "script/reproduce.py",
+            "train",
+            "--method",
+            "texnn",
+            "--run-id",
+            "source-rgb64-patch64-v2",
+            "--all-footprints",
+            "--epochs",
+            "100",
+            "--patience",
+            "8"
+          ]
+        },
+        "torch_version": "2.8.0+cu128"
+      }
+    },
+    {
+      "size": 6,
+      "network": "pnn",
+      "samples": 3724,
+      "train_samples": 3166,
+      "validation_samples": 558,
+      "observed_joint_labels": 780,
+      "partition_catalog_labels": 1160,
+      "data_fingerprint": "77a4d9a7c9832818feeb0542ed6e0daa24f655f326ed77e6f08a716444a13426",
+      "completed_epochs": 29,
+      "best_epoch": 21,
+      "validation": {
+        "samples": 558,
+        "loss": 2.389571956408921,
+        "accuracy1": 0.7204301075268817,
+        "accuracy10": 0.7491039426523297,
+        "seconds": 0.007586800000353833
+      },
+      "attempt_training_seconds": 7.576406000000134,
+      "total_training_seconds": null,
+      "cumulative_training_seconds_known": false,
+      "total_attempt_seconds": 7.653944700000466,
+      "best_sha256": "b21bf5f6b60de12a5508420f8ef81003c27f305a82291f0e7b72524f172a8278",
+      "receipt_sha256": "a5bbd5999474c4aaf45a55516357557291c8d24d2f43fd0e33eaa717f09109de",
+      "config": {
+        "network": "pnn",
+        "seed": 20261111,
+        "batch_size": 128,
+        "learning_rate": 0.0001,
+        "optimizer": "Adam",
+        "patience": 8,
+        "model_config": {
+          "dropout": 0.6,
+          "activation": "relu",
+          "initialization_std": 0.01
+        },
+        "architecture_sha256": "e9a1fc79e55e0f75c6b3145ac898c766623edd04e9c5ae845ebe302bf6d9010b",
+        "epochs": 100,
+        "device": "cuda",
+        "data_fingerprint": "77a4d9a7c9832818feeb0542ed6e0daa24f655f326ed77e6f08a716444a13426",
+        "size": 6,
+        "environment": {
+          "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+          "platform": "Windows-10-10.0.19044-SP0",
+          "pid": 27364,
+          "rss_mib": 1009.95703125,
+          "available_ram_gib": 36.15618896484375,
+          "uv_lock_sha256": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+          "argv": [
+            "script/reproduce.py",
+            "train",
+            "--method",
+            "texnn",
+            "--run-id",
+            "source-rgb64-patch64-v2",
+            "--all-footprints",
+            "--epochs",
+            "100",
+            "--patience",
+            "8"
+          ]
+        },
+        "torch_version": "2.8.0+cu128"
+      }
+    },
+    {
+      "size": 6,
+      "network": "demnn",
+      "samples": 3724,
+      "train_samples": 3166,
+      "validation_samples": 558,
+      "observed_joint_labels": 780,
+      "partition_catalog_labels": 1160,
+      "data_fingerprint": "77a4d9a7c9832818feeb0542ed6e0daa24f655f326ed77e6f08a716444a13426",
+      "completed_epochs": 18,
+      "best_epoch": 10,
+      "validation": {
+        "samples": 558,
+        "loss": 6.341378148738628,
+        "accuracy1": 0.03942652329749104,
+        "accuracy10": 0.1953405017921147,
+        "seconds": 0.009002599999803351
+      },
+      "attempt_training_seconds": 5.115356899999824,
+      "total_training_seconds": null,
+      "cumulative_training_seconds_known": false,
+      "total_attempt_seconds": 5.1989933000004385,
+      "best_sha256": "3525c6f1cfd6be9de8967790606103820535216debaec1ff5d167d0fd205fc1b",
+      "receipt_sha256": "299ec39cf8d9d87cb11f018c4ea26d6e39b0a9159fe547be9824a58654cb84e6",
+      "config": {
+        "network": "demnn",
+        "seed": 20261111,
+        "batch_size": 128,
+        "learning_rate": 0.0001,
+        "optimizer": "Adam",
+        "patience": 8,
+        "model_config": {
+          "dropout": 0.6,
+          "activation": "relu",
+          "initialization_std": 0.01
+        },
+        "architecture_sha256": "e9a1fc79e55e0f75c6b3145ac898c766623edd04e9c5ae845ebe302bf6d9010b",
+        "epochs": 100,
+        "device": "cuda",
+        "data_fingerprint": "77a4d9a7c9832818feeb0542ed6e0daa24f655f326ed77e6f08a716444a13426",
+        "size": 6,
+        "environment": {
+          "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+          "platform": "Windows-10-10.0.19044-SP0",
+          "pid": 27364,
+          "rss_mib": 1012.20703125,
+          "available_ram_gib": 36.13743209838867,
+          "uv_lock_sha256": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+          "argv": [
+            "script/reproduce.py",
+            "train",
+            "--method",
+            "texnn",
+            "--run-id",
+            "source-rgb64-patch64-v2",
+            "--all-footprints",
+            "--epochs",
+            "100",
+            "--patience",
+            "8"
+          ]
+        },
+        "torch_version": "2.8.0+cu128"
+      }
+    },
+    {
+      "size": 8,
+      "network": "pnn",
+      "samples": 2340,
+      "train_samples": 1989,
+      "validation_samples": 351,
+      "observed_joint_labels": 799,
+      "partition_catalog_labels": 1642,
+      "data_fingerprint": "ca762d537246269852f0aaaaed5b175bdace705c1daa5a200224fa95e6f13f80",
+      "completed_epochs": 16,
+      "best_epoch": 8,
+      "validation": {
+        "samples": 351,
+        "loss": 2.978806708273385,
+        "accuracy1": 0.6780626780626781,
+        "accuracy10": 0.7150997150997151,
+        "seconds": 0.005327699999725155
+      },
+      "attempt_training_seconds": 3.7392351999997118,
+      "total_training_seconds": null,
+      "cumulative_training_seconds_known": false,
+      "total_attempt_seconds": 3.8226439999998547,
+      "best_sha256": "1242371be4a5b43ba7dd3bdb744e1fee1fce23cb546d9ce9eff7f381ffefbd80",
+      "receipt_sha256": "aee180fbd9a63d887d84f0251760173a5ad10ea841ae4396d045ea76dad33961",
+      "config": {
+        "network": "pnn",
+        "seed": 20261111,
+        "batch_size": 128,
+        "learning_rate": 0.0001,
+        "optimizer": "Adam",
+        "patience": 8,
+        "model_config": {
+          "dropout": 0.6,
+          "activation": "relu",
+          "initialization_std": 0.01
+        },
+        "architecture_sha256": "e9a1fc79e55e0f75c6b3145ac898c766623edd04e9c5ae845ebe302bf6d9010b",
+        "epochs": 100,
+        "device": "cuda",
+        "data_fingerprint": "ca762d537246269852f0aaaaed5b175bdace705c1daa5a200224fa95e6f13f80",
+        "size": 8,
+        "environment": {
+          "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+          "platform": "Windows-10-10.0.19044-SP0",
+          "pid": 27364,
+          "rss_mib": 1018.5859375,
+          "available_ram_gib": 35.58528137207031,
+          "uv_lock_sha256": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+          "argv": [
+            "script/reproduce.py",
+            "train",
+            "--method",
+            "texnn",
+            "--run-id",
+            "source-rgb64-patch64-v2",
+            "--all-footprints",
+            "--epochs",
+            "100",
+            "--patience",
+            "8"
+          ]
+        },
+        "torch_version": "2.8.0+cu128"
+      }
+    },
+    {
+      "size": 8,
+      "network": "demnn",
+      "samples": 2340,
+      "train_samples": 1989,
+      "validation_samples": 351,
+      "observed_joint_labels": 799,
+      "partition_catalog_labels": 1642,
+      "data_fingerprint": "ca762d537246269852f0aaaaed5b175bdace705c1daa5a200224fa95e6f13f80",
+      "completed_epochs": 15,
+      "best_epoch": 7,
+      "validation": {
+        "samples": 351,
+        "loss": 6.997832133899047,
+        "accuracy1": 0.011396011396011397,
+        "accuracy10": 0.1452991452991453,
+        "seconds": 0.0066945999997187755
+      },
+      "attempt_training_seconds": 11.94497229999979,
+      "total_training_seconds": null,
+      "cumulative_training_seconds_known": false,
+      "total_attempt_seconds": 12.194570800000292,
+      "best_sha256": "199366e9a1c64c85c47975b30257d9b92958c761d1982bbbd83a09c67bbcc2b3",
+      "receipt_sha256": "80715b8e0c598a14be7d45d3c71c5a76448db4737e94ac84b6b46e3948636d08",
+      "config": {
+        "network": "demnn",
+        "seed": 20261111,
+        "batch_size": 128,
+        "learning_rate": 0.0001,
+        "optimizer": "Adam",
+        "patience": 8,
+        "model_config": {
+          "dropout": 0.6,
+          "activation": "relu",
+          "initialization_std": 0.01
+        },
+        "architecture_sha256": "e9a1fc79e55e0f75c6b3145ac898c766623edd04e9c5ae845ebe302bf6d9010b",
+        "epochs": 100,
+        "device": "cuda",
+        "data_fingerprint": "ca762d537246269852f0aaaaed5b175bdace705c1daa5a200224fa95e6f13f80",
+        "size": 8,
+        "environment": {
+          "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+          "platform": "Windows-10-10.0.19044-SP0",
+          "pid": 27364,
+          "rss_mib": 1128.140625,
+          "available_ram_gib": 35.782291412353516,
+          "uv_lock_sha256": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+          "argv": [
+            "script/reproduce.py",
+            "train",
+            "--method",
+            "texnn",
+            "--run-id",
+            "source-rgb64-patch64-v2",
+            "--all-footprints",
+            "--epochs",
+            "100",
+            "--patience",
+            "8"
+          ]
+        },
+        "torch_version": "2.8.0+cu128"
+      }
+    }
+  ],
+  "data_collection": {
+    "protocol": {
+      "manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+      "inputs": [
+        {
+          "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+          "fileHash": "c3336b803c8a71f37f5c127863261ac5"
+        },
+        {
+          "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+          "fileHash": "e3b8f77c45bb1b9970089d8dfd2fa78d"
+        },
+        {
+          "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Common_UI_MC/common_btn_increase.png",
+          "fileHash": "7815e0182d6f9cf84faed67276c30871"
+        },
+        {
+          "path": "Assets/UI/UITexture/Common_Atlas/Atlas_SkillIcon2/yz_buff2.png",
+          "fileHash": "6d321da5af55f9b30731ad6a9e56eba1"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/SD/Special_ZC_0106.png",
+          "fileHash": "445a3efc0414d62f4601d3b4e30d13a5"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Trail/SD/Trail_SD_WB_LX_011.png",
+          "fileHash": "05244914abf69d3deda79cf86171d7b6"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/SD/Special_SD_WZA_0002.png",
+          "fileHash": "977b7129fcc97acc64ccdb6136bb9a25"
+        },
+        {
+          "path": "Assets/UI/Image_add/HeroSkin/Hero45214.png",
+          "fileHash": "b2fbd42eb14351108e6a2691d6d4e333"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_nsl_0169.png",
+          "fileHash": "b9c2600fb3f65fa9f506627db216bc9d"
+        },
+        {
+          "path": "Assets/Art/Characters/magneticmage/Materials/skin04_high/magnetic_skin04_high_03_e.jpg",
+          "fileHash": "fa9f708926b5d31375626303ffc1b598"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_LHX_0028.png",
+          "fileHash": "d2ec46307a110e27ed47c92be62c9b1c"
+        },
+        {
+          "path": "Assets/Art/Characters/Blackdragon/Materials/skin06_high/95_Blackdragon_skin06_high_hair_e.tga",
+          "fileHash": "e2fc27607688ae384607106f905ce7f3"
+        },
+        {
+          "path": "Assets/UI/Image_add/HeroSkin/Tower323.png",
+          "fileHash": "52cb76e59f046d801f96942153fa62c9"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/SD/Special_SD_WMD_2564.png",
+          "fileHash": "e3efd12767b2d1013ca748d82b395da2"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Smoke/FHD/Smoke_FHD_JLP_0010.png",
+          "fileHash": "9b45f249e0ed8f3cd2cdfb85d3bc5f82"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/FHD/Special_FHD_zgs_0026.png",
+          "fileHash": "906759c69280514b440a91ecb5d44e52"
+        },
+        {
+          "path": "Assets/RuledAssets/System_RankLevel_CN/UI/UITexture/Atlas_add/Atlas_RankLevelShow_CN_add/Line_Yellow.png",
+          "fileHash": "edd4d9c46d94b834f3193949603356c6"
+        },
+        {
+          "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/CommonLine.png",
+          "fileHash": "31068d139c8b855d9f2e5f83405b17dd"
+        },
+        {
+          "path": "Assets/RuledAssets/Act_HelloKitty/UI/UITexture/Atlas_add/Atlas_HaloKitty03Main_add/HK_line.png",
+          "fileHash": "51aa9d2467d3bb392f72d0f623e13eb0"
+        },
+        {
+          "path": "Assets/UI/UITexture/Common_Atlas/BattleAtlas/Atlas_BattleSystem/Vote01.png",
+          "fileHash": "fc6fac771ba8d7267cf475f2f247a1f4"
+        },
+        {
+          "path": "Assets/RuledAssets/Act_LaylasWorkshop/UI/UITexture/Atlas_add/Atlas_Activity_CoCreat_add/gc_btn_tybtydi.png",
+          "fileHash": "eac98bb4c9327de771decf3f9a126ae2"
+        },
+        {
+          "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattlePass_bg11_MC/ThreePoint.png",
+          "fileHash": "efceea939e0e2ee93e68b47cf3f8d30d"
+        },
+        {
+          "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_CommonBg_MC/common_btn_special_light_9G.png",
+          "fileHash": "a7bf3a17bc1a70523516b2e5d77876a5"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Trail/SD/Trail_SD_54_YM_02.tga",
+          "fileHash": "cb2b7d03e4474d5f791243c24cda6266"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Noise/SD/Noise_SD_cjp_0111.png",
+          "fileHash": "7929e7ba4fec39703f19e69e4848015d"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Smoke/SD/Smoke_SD_LYQ_103_cnnew.png",
+          "fileHash": "a9fba642ab3108cae8ef493a888c7786"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Trail/SD/Trail_wshy_04.png",
+          "fileHash": "5634f7748847e7aa67c71f5cecba99f8"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_LNX_002.png",
+          "fileHash": "6c3934e39b5757c114c024e048c79fbb"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Noise/HD/Grid1_cnnew.png",
+          "fileHash": "b7455e9e51147b1b0f7db3c6c61ed77f"
+        },
+        {
+          "path": "Assets/RuledAssets/Act_SPD_Draw/Art/Effects/Texture/Ui/FHD/Ui_FHD_CLWH_0028.png",
+          "fileHash": "cd7591904513553d5d2e3c25e58ed066"
+        },
+        {
+          "path": "Assets/Art/Characters/balancemagic/Materials/skin03_high/balancemagic_skin03_high_weapon_s.jpg",
+          "fileHash": "f2ff923278599492338b905483c60fe1"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_CJQ_0108.png",
+          "fileHash": "3e915d74e3a8868958efc91763e7f304"
+        },
+        {
+          "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900331_MC/Map1900331_M.png",
+          "fileHash": "f85ed5545997b2453cfabe9bc85601e7"
+        },
+        {
+          "path": "Assets/UI/Image_add/HeroSkin/Tower931.png",
+          "fileHash": "9784d15f83675b388dc1fe6b0ca4d1e6"
+        },
+        {
+          "path": "Assets/Art/Environment/PVP_050_S4_add/Textures/ML_5v5_S4_redbuff_rock_01_D.jpg",
+          "fileHash": "7ecd7c39d8f6f09643760bbbf76fe614"
+        },
+        {
+          "path": "Assets/Art/Environment/PVP_049_ob/Textures/DynamicReplace/ML_049_Limittest_ob_8.tga",
+          "fileHash": "2cb9c55e9ff1301f43a7964f0ee29484"
+        },
+        {
+          "path": "Assets/CustomMode/EasyGameCreator/EGCArts/Environment/Textures/Ground/S5/EGC_ground_patterm_island_s5_020_D.tga",
+          "fileHash": "ecd53dc050cdfe3a4feecfeff0a730f6"
+        },
+        {
+          "path": "Assets/RuledAssets/Act_SurpriseCard_AS/Art/TAEft/Texture/BangBangcard_03_4k.png",
+          "fileHash": "47d3ab2e41545314d3ad88e147ec5dc0"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/FHD/Special_FHD_wmd_0513.png",
+          "fileHash": "ad7355cee8c9f69392a781af627f38e6"
+        },
+        {
+          "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/gg02.png",
+          "fileHash": "3fe5398eba72a51593a067446857a232"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Noise/SD/noise_SD_113_skin05_ym_002.png",
+          "fileHash": "3f9227891ae8ef16aa24d51f6472ed6d"
+        },
+        {
+          "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_AdvertisementNew2_MC/mojing.png",
+          "fileHash": "772866e98bc56864db4a70a4437b60f4"
+        },
+        {
+          "path": "Assets/RuledAssets/System_Live/UI/UITexture/Atlas_add/Atlas_AudienceLevel_add/73.png",
+          "fileHash": "f21ef53ce49ce852b2ac11a5f7f17011"
+        },
+        {
+          "path": "Assets/UI/UITexture/Common_Atlas/BattleAtlas/Atlas_BattleGround/UI_YX0003.png",
+          "fileHash": "e0064dcb33c6d81d831adf1e58ce10fc"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/SD/Special_XX_86_0010.png",
+          "fileHash": "b896bfd013b2e9678e310ddaccb240ad"
+        },
+        {
+          "path": "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon09_add/SkinHead020_06.png",
+          "fileHash": "93ebd985e39544ab7fc52a07a84f7df2"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Ui/SD/Ui_SD_CLWH_0108.png",
+          "fileHash": "e8835e69d1ba6b3c118d9bc66374a830"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Ui/SD/Ui_SD_CLWH_0028.png",
+          "fileHash": "b647f583b48f8922f9d97f971c1a3223"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_nsl_0072.png",
+          "fileHash": "2b37464adb09a757e49a2ff7ada53083"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_wmd_0682.png",
+          "fileHash": "c4a4c06c4b181cac78ac7ad95de13141"
+        },
+        {
+          "path": "Assets/Art/Characters/5_nana/Show/skin10_high/5_nana_skin10_high_hair03_m11.tga",
+          "fileHash": "b7025a8d30c884e366a1384b55d7cc24"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Special/SD/Special_HD_cjp_0045.png",
+          "fileHash": "ff85715ea3222d94d2bcbe5411168622"
+        },
+        {
+          "path": "Assets/Art/Characters/29_xiaohongmao/Show/skin09_high/29_Ruby_skin08_high_body02_g.tga",
+          "fileHash": "1f1ceedf828382864bcacd1390042be7"
+        },
+        {
+          "path": "Assets/Art/Characters/129_wuzetian/Show/skin01_high/wuzetian_skin01_high_bantou_d.tga",
+          "fileHash": "6baff835c9ffe4fff5a1cbaeffb1797a"
+        },
+        {
+          "path": "Assets/Art/Characters/01_gongjianshou/Show/skin_high_cnnew/gongjianshou_skin00_high_e.tga",
+          "fileHash": "a97a82bad7454aa6dfd4e9c4928d7a4d"
+        },
+        {
+          "path": "Assets/Art/Characters/Guinevere/Materials/skin09_high/guinevere_Skin09_body_d_CN.tga",
+          "fileHash": "8b944e4192dbdad7f3c464b8cebf0586"
+        },
+        {
+          "path": "Assets/Scenes/temp/Environment/PVP_SPD_add/Textures/dimo/ML_067_S5_bluebuff_01_N.tga",
+          "fileHash": "ab62ed039c4317dc58948523da2e4360"
+        },
+        {
+          "path": "Assets/RuledAssets/Act_themelotteryHero/UI/UITexture/Atlas_add/Atlas_ActivityThemeLotteryHero_add/pic_o.png",
+          "fileHash": "9ffaaf6e6f1e897c481b0733df0892cb"
+        },
+        {
+          "path": "Assets/CustomMode/EasyGameCreator/Editor/EGCStateScript/MonkeyScriptEditor/UI/Texture/ms_qianjin.png",
+          "fileHash": "f73fb9fd29f3c58423c232eaeff277aa"
+        },
+        {
+          "path": "Assets/RuledAssets/System_Live/UI/UITexture/Atlas_add/Atlas_AudienceLevel_add/11.png",
+          "fileHash": "8797abf5119f2c3159018890ad28f19c"
+        },
+        {
+          "path": "Assets/RuledAssets/Act_Race/UI/UITexture/Atlas_add/Atlas_Race_New1_add/FBTeam.png",
+          "fileHash": "bdd94fbb81a79f765241b4eb790e3170"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Ui/SD/Ui_SD_WS_0233.png",
+          "fileHash": "e24fee490d2a149a3afb246e9e600f97"
+        },
+        {
+          "path": "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_Item03_add/Itemadd340.png",
+          "fileHash": "c10e527e3806b5f81f8d31b8ee80aff4"
+        },
+        {
+          "path": "Assets/Art/Effects/Texture/Common/Flipbook/SD/Flipbook_syj_009.PNG",
+          "fileHash": "83d2edd01f1f3138ef6c49cf467246f8"
+        }
+      ],
+      "patch_size": 64,
+      "seed": 20261111,
+      "footprints": [
+        4,
+        6,
+        8
+      ],
+      "preset": "exhaustive",
+      "commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+      "binaries": {
+        "reference": "dbf2456b6c33d8e2c41265aa6b7f789d0f67bfa53abc22da4ec8a154812f6187",
+        "labels": "db4d785e8c72695608120cfc0f4d47e94d0cceda1f44fd67934a69512179a677"
+      },
+      "feature_protocol": "partition_single_plane_rgb24_v2",
+      "source_scope": "training split, one block-aligned source crop per image/footprint"
+    },
+    "receipt_sha256": "5d50201d26038617020b783283c133a53a2124fd183761644ecb93b571c1a5ab",
+    "expected_assets": 64,
+    "wall_seconds": 77.46759939999993
+  },
+  "reference_commit": "ddadf547770ddbe8261cfd854b2a5f21b3a9074c",
+  "native_sources_sha256": {
+    "labels.cpp": "7b284cb2ae4e809d80d31c4ffe415b4bc6f975a301f587c6d3c1b52bb1905051",
+    "labels.h": "c93e1be46cd869880b33cf20c397a34309112a8a749cf9e400bcdfc25fd8563c",
+    "prediction.cpp": "472ca3e24153efae102eb5fbf47372955b47fb68ebd48eabfcb63e2e4b6b0768",
+    "prediction.h": "17a257f9ea5503d17f6f357220be3f6e5bb74d7564279ed3d145f5f73f27c23f",
+    "solver.inc": "feac86d8bde120a67cd82d88e67af8966a388e4751d828f75f2abb288ca60c0d"
+  },
+  "per_image": [
+    {
+      "index": 0,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+      "group": "4x4-top1x1",
+      "source_md4": "30e4065ac961da24ae9354ba01cf7b34",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top1x1/0000/receipt.json",
+      "receipt_sha256": "4457f777c444afb1ce87610ca3a315c54e9d04b54ae6b9e3e49ab186b9853cb6",
+      "rgb_psnr": 43.6801512390128,
+      "reference_rgb_psnr": 70.91321790802057,
+      "psnr_delta_db": -27.23306666900777,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 893,
+        "predicted": 131,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0014764000006834976,
+        "pixel_preparation_seconds": 0.0012526000000434578,
+        "pnn_seconds": 0.022801900000558817,
+        "native_feature_seconds": 0.1355105000002368,
+        "demnn_with_feature_io_seconds": 0.0077277000000322005,
+        "prediction_pipeline_seconds": 0.17255889999978535,
+        "final_encode_seconds": 0.03327820000049542,
+        "learned_pipeline_seconds": 0.20731350000096427,
+        "reference_encode_seconds": 0.39096239999980753,
+        "reference_pipeline_seconds": 0.39243880000049103,
+        "relative_time": 0.5282696308334061,
+        "selected_decode_seconds": 0.01762220000000525,
+        "reference_decode_seconds": 0.015523000000030152,
+        "verification_seconds": 0.04179569999996602
+      }
+    },
+    {
+      "index": 1,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour02/bane_skin06_pbs_Colour02_m2.png",
+      "group": "4x4-top1x1",
+      "source_md4": "fc0fdcb371ca69c18cf4564a9892cbd2",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top1x1/0001/receipt.json",
+      "receipt_sha256": "68a8ecdab9f81aa53f8c4a05501a9982db8ca1e2d417b285b73d192d713368b2",
+      "rgb_psnr": 43.6801512390128,
+      "reference_rgb_psnr": 70.91321790802057,
+      "psnr_delta_db": -27.23306666900777,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 893,
+        "predicted": 131,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.001435000000128639,
+        "pixel_preparation_seconds": 0.001239999999597785,
+        "pnn_seconds": 0.018328699999983655,
+        "native_feature_seconds": 0.02470140000059473,
+        "demnn_with_feature_io_seconds": 0.006441800000175135,
+        "prediction_pipeline_seconds": 0.0561504999996032,
+        "final_encode_seconds": 0.032285700000102224,
+        "learned_pipeline_seconds": 0.08987119999983406,
+        "reference_encode_seconds": 0.2850511999995433,
+        "reference_pipeline_seconds": 0.28648619999967195,
+        "relative_time": 0.3137016721920182,
+        "selected_decode_seconds": 0.017333799999505572,
+        "reference_decode_seconds": 0.016489099999489554,
+        "verification_seconds": 0.042349100000137696
+      }
+    },
+    {
+      "index": 2,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/skin02next/bane_skin02_pbs_s.png",
+      "group": "4x4-top1x1",
+      "source_md4": "d05f50d0e74432885815c896b532c876",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top1x1/0002/receipt.json",
+      "receipt_sha256": "2a6ea0a08186d6d1e14368ea8bc57de9b6d33af0c5dbc4d977be8faec735767a",
+      "rgb_psnr": 42.3940030867235,
+      "reference_rgb_psnr": 47.1880785796239,
+      "psnr_delta_db": -4.794075492900397,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 0,
+        "predicted": 1024,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0057059999999182764,
+        "pixel_preparation_seconds": 0.001532900000711379,
+        "pnn_seconds": 0.14034449999962817,
+        "native_feature_seconds": 0.028650300000663265,
+        "demnn_with_feature_io_seconds": 0.04084450000027573,
+        "prediction_pipeline_seconds": 0.21701780000057624,
+        "final_encode_seconds": 0.08014060000004974,
+        "learned_pipeline_seconds": 0.30286440000054426,
+        "reference_encode_seconds": 2.553534900000159,
+        "reference_pipeline_seconds": 2.559240900000077,
+        "relative_time": 0.11834149727778075,
+        "selected_decode_seconds": 0.017489300000306685,
+        "reference_decode_seconds": 0.01735129999997298,
+        "verification_seconds": 0.043891500000427186
+      }
+    },
+    {
+      "index": 3,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour01/Bane_skin06_high_hair_Colour01_g.tga",
+      "group": "4x4-top1x1",
+      "source_md4": "1f383a7363b1594a4a35d00d74fcf333",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top1x1/0003/receipt.json",
+      "receipt_sha256": "0c715ddf3ee9d171e9b6b89e4c983012abdfc73d3fea7a4d6bafb78344329173",
+      "rgb_psnr": 54.390791843641715,
+      "reference_rgb_psnr": 59.47114352977651,
+      "psnr_delta_db": -5.080351686134797,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 57,
+        "predicted": 967,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.02612819999922067,
+        "pixel_preparation_seconds": 0.001307999999880849,
+        "pnn_seconds": 0.12608739999996033,
+        "native_feature_seconds": 0.0295310999999856,
+        "demnn_with_feature_io_seconds": 0.03752009999971051,
+        "prediction_pipeline_seconds": 0.20044379999944795,
+        "final_encode_seconds": 0.06826989999990474,
+        "learned_pipeline_seconds": 0.29484189999857335,
+        "reference_encode_seconds": 1.8786003000004712,
+        "reference_pipeline_seconds": 1.9047284999996918,
+        "relative_time": 0.15479471221154145,
+        "selected_decode_seconds": 0.020621000000573986,
+        "reference_decode_seconds": 0.018819200000507408,
+        "verification_seconds": 0.04799939999975322
+      }
+    },
+    {
+      "index": 4,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_body_Colour02_g.tga",
+      "group": "4x4-top1x1",
+      "source_md4": "a40a01d93ef4e85a5dcbac5deb639aa9",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top1x1/0004/receipt.json",
+      "receipt_sha256": "2bfe1cd698eb75e128dbc9f1b6f69cea4e0746f5c10d6c427173ae0b43619684",
+      "rgb_psnr": 49.74191319039547,
+      "reference_rgb_psnr": 55.53235460003017,
+      "psnr_delta_db": -5.7904414096346954,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 1,
+        "predicted": 1023,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.005176000000574277,
+        "pixel_preparation_seconds": 0.0013934999997218256,
+        "pnn_seconds": 0.1321741000001566,
+        "native_feature_seconds": 0.030627799999820127,
+        "demnn_with_feature_io_seconds": 0.039708299999801966,
+        "prediction_pipeline_seconds": 0.21025439999993978,
+        "final_encode_seconds": 0.07005250000020169,
+        "learned_pipeline_seconds": 0.28548290000071574,
+        "reference_encode_seconds": 2.1540853999995306,
+        "reference_pipeline_seconds": 2.159261400000105,
+        "relative_time": 0.13221321883524703,
+        "selected_decode_seconds": 0.01670520000061515,
+        "reference_decode_seconds": 0.01492099999995844,
+        "verification_seconds": 0.04025550000005751
+      }
+    },
+    {
+      "index": 5,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_gem_Colour02_em.tga",
+      "group": "4x4-top1x1",
+      "source_md4": "c7430d6e8328217fc44d5436c1273151",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top1x1/0005/receipt.json",
+      "receipt_sha256": "1ab469eb283dad5144302d069c34a33dea4637bffc24442b3a06332c90899e5e",
+      "rgb_psnr": 41.71236758796664,
+      "reference_rgb_psnr": 52.9318061930464,
+      "psnr_delta_db": -11.219438605079759,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 406,
+        "predicted": 618,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0047156999999060645,
+        "pixel_preparation_seconds": 0.0013548999995691702,
+        "pnn_seconds": 0.08151030000044557,
+        "native_feature_seconds": 0.025547999999616877,
+        "demnn_with_feature_io_seconds": 0.024760299999798008,
+        "prediction_pipeline_seconds": 0.13861120000001392,
+        "final_encode_seconds": 0.06798859999980778,
+        "learned_pipeline_seconds": 0.21131549999972776,
+        "reference_encode_seconds": 1.228669699999955,
+        "reference_pipeline_seconds": 1.233385399999861,
+        "relative_time": 0.1713296590017618,
+        "selected_decode_seconds": 0.019912800000383868,
+        "reference_decode_seconds": 0.01603499999964697,
+        "verification_seconds": 0.04534899999998743
+      }
+    },
+    {
+      "index": 6,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_g.tga",
+      "group": "4x4-top1x1",
+      "source_md4": "087ced6d071e73189d55d4f4a762885a",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top1x1/0006/receipt.json",
+      "receipt_sha256": "da561a7542addbb64061e232fa73869722d5fdf44e6ff52d2a6eae583e37142e",
+      "rgb_psnr": 50.69414451642562,
+      "reference_rgb_psnr": 56.363886864608446,
+      "psnr_delta_db": -5.6697423481828295,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 1,
+        "predicted": 1023,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.005236199999671953,
+        "pixel_preparation_seconds": 0.002428600000712322,
+        "pnn_seconds": 0.12994380000054662,
+        "native_feature_seconds": 0.029940500000520842,
+        "demnn_with_feature_io_seconds": 0.038935200000196346,
+        "prediction_pipeline_seconds": 0.20743340000080934,
+        "final_encode_seconds": 0.07588979999945877,
+        "learned_pipeline_seconds": 0.28855939999994007,
+        "reference_encode_seconds": 2.2110546000003524,
+        "reference_pipeline_seconds": 2.2162908000000243,
+        "relative_time": 0.1301992500261865,
+        "selected_decode_seconds": 0.016233000000283937,
+        "reference_decode_seconds": 0.01589010000043345,
+        "verification_seconds": 0.04079879999972036
+      }
+    },
+    {
+      "index": 7,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_n5x5.tga",
+      "group": "4x4-top1x1",
+      "source_md4": "d0892a7fe181a43c0614fb1334d1c911",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top1x1/0007/receipt.json",
+      "receipt_sha256": "8c1ec00e2ab03fd229d2d1b2258d707c13036f4e3b245267fe0f010851ed8158",
+      "rgb_psnr": 37.674686845566306,
+      "reference_rgb_psnr": 43.893339721648715,
+      "psnr_delta_db": -6.218652876082409,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 12,
+        "predicted": 1012,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.003682200000184821,
+        "pixel_preparation_seconds": 0.0021341000001484645,
+        "pnn_seconds": 0.12935270000070886,
+        "native_feature_seconds": 0.03052549999938492,
+        "demnn_with_feature_io_seconds": 0.046759999999267166,
+        "prediction_pipeline_seconds": 0.21582760000001144,
+        "final_encode_seconds": 0.09978979999959847,
+        "learned_pipeline_seconds": 0.31929959999979474,
+        "reference_encode_seconds": 2.441805700000259,
+        "reference_pipeline_seconds": 2.445487900000444,
+        "relative_time": 0.13056682881143544,
+        "selected_decode_seconds": 0.01665529999991122,
+        "reference_decode_seconds": 0.015789000000040687,
+        "verification_seconds": 0.041255899999669055
+      }
+    },
+    {
+      "index": 0,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+      "group": "4x4-top3x10",
+      "source_md4": "30e4065ac961da24ae9354ba01cf7b34",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top3x10/0000/receipt.json",
+      "receipt_sha256": "0f78b2ca2f0c947095aadabcdf8c9bc079e4f6e7789a65c3ffa45579591650cb",
+      "rgb_psnr": 71.31709551913202,
+      "reference_rgb_psnr": 70.91321790802057,
+      "psnr_delta_db": 0.40387761111145437,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 893,
+        "predicted": 131,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.001961900000424066,
+        "pixel_preparation_seconds": 0.001042300000335672,
+        "pnn_seconds": 0.01835800000026211,
+        "native_feature_seconds": 0.02623479999965639,
+        "demnn_with_feature_io_seconds": 0.021867399999791814,
+        "prediction_pipeline_seconds": 0.07354820000000473,
+        "final_encode_seconds": 0.18143330000020796,
+        "learned_pipeline_seconds": 0.25694340000063676,
+        "reference_encode_seconds": 0.2817395000001852,
+        "reference_pipeline_seconds": 0.2837014000006093,
+        "relative_time": 0.9056825239497759,
+        "selected_decode_seconds": 0.017466799999965588,
+        "reference_decode_seconds": 0.01604700000007142,
+        "verification_seconds": 0.042180999999800406
+      }
+    },
+    {
+      "index": 1,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour02/bane_skin06_pbs_Colour02_m2.png",
+      "group": "4x4-top3x10",
+      "source_md4": "fc0fdcb371ca69c18cf4564a9892cbd2",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top3x10/0001/receipt.json",
+      "receipt_sha256": "88b9ee4e291e2a1dc104c400e5f089b2112239ed35265939711c503da79b0eb8",
+      "rgb_psnr": 71.31709551913202,
+      "reference_rgb_psnr": 70.91321790802057,
+      "psnr_delta_db": 0.40387761111145437,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 893,
+        "predicted": 131,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.001209200000630517,
+        "pixel_preparation_seconds": 0.0010537999996813596,
+        "pnn_seconds": 0.018155100000512903,
+        "native_feature_seconds": 0.02507340000011027,
+        "demnn_with_feature_io_seconds": 0.04400239999995392,
+        "prediction_pipeline_seconds": 0.09464430000025459,
+        "final_encode_seconds": 0.1648989999994228,
+        "learned_pipeline_seconds": 0.2607525000003079,
+        "reference_encode_seconds": 0.28453089999948133,
+        "reference_pipeline_seconds": 0.28574010000011185,
+        "relative_time": 0.9125513009906759,
+        "selected_decode_seconds": 0.016093599999294383,
+        "reference_decode_seconds": 0.01540969999950903,
+        "verification_seconds": 0.04000050000013289
+      }
+    },
+    {
+      "index": 2,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/skin02next/bane_skin02_pbs_s.png",
+      "group": "4x4-top3x10",
+      "source_md4": "d05f50d0e74432885815c896b532c876",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top3x10/0002/receipt.json",
+      "receipt_sha256": "dde887c648d6ab41e902937cf67b10a5e375afc01b2cd976f9afd27cbc213ef3",
+      "rgb_psnr": 44.91868667392094,
+      "reference_rgb_psnr": 47.1880785796239,
+      "psnr_delta_db": -2.2693919057029603,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 0,
+        "predicted": 1024,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.002855200000340119,
+        "pixel_preparation_seconds": 0.0014492000000245753,
+        "pnn_seconds": 0.13689880000038102,
+        "native_feature_seconds": 0.04004169999916485,
+        "demnn_with_feature_io_seconds": 0.1451881000002686,
+        "prediction_pipeline_seconds": 0.33855060000041703,
+        "final_encode_seconds": 1.1747958999994808,
+        "learned_pipeline_seconds": 1.516201700000238,
+        "reference_encode_seconds": 2.541067699999985,
+        "reference_pipeline_seconds": 2.543922900000325,
+        "relative_time": 0.5960092972943654,
+        "selected_decode_seconds": 0.01622899999983929,
+        "reference_decode_seconds": 0.015601000000060594,
+        "verification_seconds": 0.04057419999935519
+      }
+    },
+    {
+      "index": 3,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour01/Bane_skin06_high_hair_Colour01_g.tga",
+      "group": "4x4-top3x10",
+      "source_md4": "1f383a7363b1594a4a35d00d74fcf333",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top3x10/0003/receipt.json",
+      "receipt_sha256": "b2fff005135a655af6ddd8c6129105f84b8434f600345936765e1af1a7ba73c0",
+      "rgb_psnr": 58.32431303695057,
+      "reference_rgb_psnr": 59.47114352977651,
+      "psnr_delta_db": -1.1468304928259414,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 57,
+        "predicted": 967,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0061751000002914225,
+        "pixel_preparation_seconds": 0.0021110999996380997,
+        "pnn_seconds": 0.14346449999993638,
+        "native_feature_seconds": 0.03865909999967698,
+        "demnn_with_feature_io_seconds": 0.15910499999972672,
+        "prediction_pipeline_seconds": 0.35885119999966264,
+        "final_encode_seconds": 1.1324981999996453,
+        "learned_pipeline_seconds": 1.4975244999995994,
+        "reference_encode_seconds": 1.8383823000003758,
+        "reference_pipeline_seconds": 1.8445574000006673,
+        "relative_time": 0.8118611543338567,
+        "selected_decode_seconds": 0.01682639999944513,
+        "reference_decode_seconds": 0.016070599999693513,
+        "verification_seconds": 0.04100410000046395
+      }
+    },
+    {
+      "index": 4,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_body_Colour02_g.tga",
+      "group": "4x4-top3x10",
+      "source_md4": "a40a01d93ef4e85a5dcbac5deb639aa9",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top3x10/0004/receipt.json",
+      "receipt_sha256": "eefcac22947eab21fda1b74fbfe7f197315242380aa950c866ba93ff65eb8f21",
+      "rgb_psnr": 53.43463262677127,
+      "reference_rgb_psnr": 55.53235460003017,
+      "psnr_delta_db": -2.097721973258899,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 1,
+        "predicted": 1023,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.006320399999822257,
+        "pixel_preparation_seconds": 0.0013025999996898463,
+        "pnn_seconds": 0.13182879999931174,
+        "native_feature_seconds": 0.03799850000086735,
+        "demnn_with_feature_io_seconds": 0.16651679999995395,
+        "prediction_pipeline_seconds": 0.3509389999999257,
+        "final_encode_seconds": 1.1023181000000477,
+        "learned_pipeline_seconds": 1.4595774999997957,
+        "reference_encode_seconds": 2.169918999999936,
+        "reference_pipeline_seconds": 2.1762393999997585,
+        "relative_time": 0.670687930748776,
+        "selected_decode_seconds": 0.016563700000006065,
+        "reference_decode_seconds": 0.015007699999841861,
+        "verification_seconds": 0.040056999999251275
+      }
+    },
+    {
+      "index": 5,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_gem_Colour02_em.tga",
+      "group": "4x4-top3x10",
+      "source_md4": "c7430d6e8328217fc44d5436c1273151",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top3x10/0005/receipt.json",
+      "receipt_sha256": "f49dd6e51cd398a7493fe0bc5b46bdecdad793762ddff2a9f9c75698df888aed",
+      "rgb_psnr": 47.94707416018488,
+      "reference_rgb_psnr": 52.9318061930464,
+      "psnr_delta_db": -4.9847320328615154,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 406,
+        "predicted": 618,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.004716499999631196,
+        "pixel_preparation_seconds": 0.001272399999834306,
+        "pnn_seconds": 0.08025379999980942,
+        "native_feature_seconds": 0.030535399999280344,
+        "demnn_with_feature_io_seconds": 0.08863939999991999,
+        "prediction_pipeline_seconds": 0.2111512000001312,
+        "final_encode_seconds": 0.7484397999996872,
+        "learned_pipeline_seconds": 0.9643074999994496,
+        "reference_encode_seconds": 1.1888551000001826,
+        "reference_pipeline_seconds": 1.1935715999998138,
+        "relative_time": 0.8079175979049771,
+        "selected_decode_seconds": 0.020403400000759575,
+        "reference_decode_seconds": 0.016437199999927543,
+        "verification_seconds": 0.045051799999782816
+      }
+    },
+    {
+      "index": 6,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_g.tga",
+      "group": "4x4-top3x10",
+      "source_md4": "087ced6d071e73189d55d4f4a762885a",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top3x10/0006/receipt.json",
+      "receipt_sha256": "f86691cb4649f76422b9bee6328bc8d4698aafcd7700e49f50f525003107628a",
+      "rgb_psnr": 54.858794591209275,
+      "reference_rgb_psnr": 56.363886864608446,
+      "psnr_delta_db": -1.5050922733991712,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 1,
+        "predicted": 1023,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.002341399999750138,
+        "pixel_preparation_seconds": 0.0012370000004011672,
+        "pnn_seconds": 0.13028200000007928,
+        "native_feature_seconds": 0.038687400000526395,
+        "demnn_with_feature_io_seconds": 0.1703402000002825,
+        "prediction_pipeline_seconds": 0.3553805999999895,
+        "final_encode_seconds": 1.1105839000001652,
+        "learned_pipeline_seconds": 1.4683058999999048,
+        "reference_encode_seconds": 2.1752190999995946,
+        "reference_pipeline_seconds": 2.1775604999993448,
+        "relative_time": 0.674289371064706,
+        "selected_decode_seconds": 0.01668320000044332,
+        "reference_decode_seconds": 0.016404299999521754,
+        "verification_seconds": 0.04198759999962931
+      }
+    },
+    {
+      "index": 7,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_n5x5.tga",
+      "group": "4x4-top3x10",
+      "source_md4": "d0892a7fe181a43c0614fb1334d1c911",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/4x4/top3x10/0007/receipt.json",
+      "receipt_sha256": "1f959cfdce17377516d322af7125499b42909c97b83fc5f804e7d36a47c25ed6",
+      "rgb_psnr": 40.524301713081826,
+      "reference_rgb_psnr": 43.893339721648715,
+      "psnr_delta_db": -3.369038008566889,
+      "payload_bytes": 16384,
+      "native_decisions": {
+        "blocks": 1024,
+        "constant": 12,
+        "predicted": 1012,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0037080000001878943,
+        "pixel_preparation_seconds": 0.002477099999850907,
+        "pnn_seconds": 0.1377050999999483,
+        "native_feature_seconds": 0.040720900000451365,
+        "demnn_with_feature_io_seconds": 0.1637194000004456,
+        "prediction_pipeline_seconds": 0.3582919000000402,
+        "final_encode_seconds": 1.2910172000001694,
+        "learned_pipeline_seconds": 1.6530171000003975,
+        "reference_encode_seconds": 2.3778376000000208,
+        "reference_pipeline_seconds": 2.3815456000002087,
+        "relative_time": 0.69409424703027,
+        "selected_decode_seconds": 0.015307399999983318,
+        "reference_decode_seconds": 0.01556559999971796,
+        "verification_seconds": 0.039526099999420694
+      }
+    },
+    {
+      "index": 0,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+      "group": "6x6-top1x1",
+      "source_md4": "30e4065ac961da24ae9354ba01cf7b34",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top1x1/0000/receipt.json",
+      "receipt_sha256": "9904b22316d535d6b013f379289edd6608fba07229998aac865a434030182662",
+      "rgb_psnr": 49.056341834092194,
+      "reference_rgb_psnr": 57.35170375481272,
+      "psnr_delta_db": -8.295361920720524,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 412,
+        "predicted": 72,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.001407199999448494,
+        "pixel_preparation_seconds": 0.001010399999358924,
+        "pnn_seconds": 0.011568400000214751,
+        "native_feature_seconds": 0.020922900000186928,
+        "demnn_with_feature_io_seconds": 0.012959500000761182,
+        "prediction_pipeline_seconds": 0.05188369999996212,
+        "final_encode_seconds": 0.10234870000022056,
+        "learned_pipeline_seconds": 0.15563959999963117,
+        "reference_encode_seconds": 0.37922750000052474,
+        "reference_pipeline_seconds": 0.38063469999997324,
+        "relative_time": 0.4088949325945378,
+        "selected_decode_seconds": 0.015441500000633823,
+        "reference_decode_seconds": 0.015332699999817123,
+        "verification_seconds": 0.037306100000023434
+      }
+    },
+    {
+      "index": 1,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour02/bane_skin06_pbs_Colour02_m2.png",
+      "group": "6x6-top1x1",
+      "source_md4": "fc0fdcb371ca69c18cf4564a9892cbd2",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top1x1/0001/receipt.json",
+      "receipt_sha256": "1a2c665c57b79db82daee6f5612843d0c32041a47c0d97453093a2e0eb2dc4ad",
+      "rgb_psnr": 49.056341834092194,
+      "reference_rgb_psnr": 57.35170375481272,
+      "psnr_delta_db": -8.295361920720524,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 412,
+        "predicted": 72,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0012633999995159684,
+        "pixel_preparation_seconds": 0.001058700000612589,
+        "pnn_seconds": 0.011116599999695609,
+        "native_feature_seconds": 0.0228423999997176,
+        "demnn_with_feature_io_seconds": 0.012971699999980046,
+        "prediction_pipeline_seconds": 0.05302250000022468,
+        "final_encode_seconds": 0.03126299999985349,
+        "learned_pipeline_seconds": 0.08554889999959414,
+        "reference_encode_seconds": 0.3904286000006323,
+        "reference_pipeline_seconds": 0.39169200000014825,
+        "relative_time": 0.21840859654923195,
+        "selected_decode_seconds": 0.01638379999985773,
+        "reference_decode_seconds": 0.015256600000611797,
+        "verification_seconds": 0.03822110000055545
+      }
+    },
+    {
+      "index": 2,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/skin02next/bane_skin02_pbs_s.png",
+      "group": "6x6-top1x1",
+      "source_md4": "d05f50d0e74432885815c896b532c876",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top1x1/0002/receipt.json",
+      "receipt_sha256": "8b2691c76bb53940fe9f0843e7e331b0d3406cb01730f00f125958d6b237c42b",
+      "rgb_psnr": 37.47607599919053,
+      "reference_rgb_psnr": 42.5547947591642,
+      "psnr_delta_db": -5.078718759973675,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 0,
+        "predicted": 484,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.005510500000127649,
+        "pixel_preparation_seconds": 0.0013927999998486484,
+        "pnn_seconds": 0.06508920000032958,
+        "native_feature_seconds": 0.025430900000174006,
+        "demnn_with_feature_io_seconds": 0.07968549999986863,
+        "prediction_pipeline_seconds": 0.17799329999979818,
+        "final_encode_seconds": 0.08364269999947282,
+        "learned_pipeline_seconds": 0.26714649999939866,
+        "reference_encode_seconds": 2.9307794999995167,
+        "reference_pipeline_seconds": 2.9362899999996444,
+        "relative_time": 0.09098096577634737,
+        "selected_decode_seconds": 0.01705260000017006,
+        "reference_decode_seconds": 0.016407000000072003,
+        "verification_seconds": 0.04120179999972606
+      }
+    },
+    {
+      "index": 3,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour01/Bane_skin06_high_hair_Colour01_g.tga",
+      "group": "6x6-top1x1",
+      "source_md4": "1f383a7363b1594a4a35d00d74fcf333",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top1x1/0003/receipt.json",
+      "receipt_sha256": "cdbc76389724bff50a4a23f21ad16ad99835d0715e1d3a2cad2a3a473b78ecc1",
+      "rgb_psnr": 44.951281665957694,
+      "reference_rgb_psnr": 52.27792249539921,
+      "psnr_delta_db": -7.326640829441516,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 18,
+        "predicted": 466,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.005200900000090769,
+        "pixel_preparation_seconds": 0.0011803999996118364,
+        "pnn_seconds": 0.06547310000041762,
+        "native_feature_seconds": 0.02477580000049784,
+        "demnn_with_feature_io_seconds": 0.07146800000009534,
+        "prediction_pipeline_seconds": 0.16928619999998773,
+        "final_encode_seconds": 0.07650980000016716,
+        "learned_pipeline_seconds": 0.25099690000024566,
+        "reference_encode_seconds": 2.341832600000089,
+        "reference_pipeline_seconds": 2.3470335000001796,
+        "relative_time": 0.10694218893774905,
+        "selected_decode_seconds": 0.017101800000091316,
+        "reference_decode_seconds": 0.016327799999999115,
+        "verification_seconds": 0.04044290000001638
+      }
+    },
+    {
+      "index": 4,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_body_Colour02_g.tga",
+      "group": "6x6-top1x1",
+      "source_md4": "a40a01d93ef4e85a5dcbac5deb639aa9",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top1x1/0004/receipt.json",
+      "receipt_sha256": "3313bff1e80202b1ee3259f92ecddc365a0a5a96212528bf09fed29ce8526305",
+      "rgb_psnr": 39.683801114489576,
+      "reference_rgb_psnr": 45.23333119513933,
+      "psnr_delta_db": -5.5495300806497525,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 0,
+        "predicted": 484,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.005285600000206614,
+        "pixel_preparation_seconds": 0.0021309000003384426,
+        "pnn_seconds": 0.07026159999986703,
+        "native_feature_seconds": 0.024850299999343406,
+        "demnn_with_feature_io_seconds": 0.07549240000025748,
+        "prediction_pipeline_seconds": 0.17839230000026873,
+        "final_encode_seconds": 0.07580270000016753,
+        "learned_pipeline_seconds": 0.2594806000006429,
+        "reference_encode_seconds": 2.5014995999999883,
+        "reference_pipeline_seconds": 2.506785200000195,
+        "relative_time": 0.10351130204559318,
+        "selected_decode_seconds": 0.018299000000297383,
+        "reference_decode_seconds": 0.01598580000063521,
+        "verification_seconds": 0.041388899999219575
+      }
+    },
+    {
+      "index": 5,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_gem_Colour02_em.tga",
+      "group": "6x6-top1x1",
+      "source_md4": "c7430d6e8328217fc44d5436c1273151",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top1x1/0005/receipt.json",
+      "receipt_sha256": "5762176d08c99a39b3f372a2d779dec8b776c5f887d2da091ff22c2671f45d9d",
+      "rgb_psnr": 39.79181525295172,
+      "reference_rgb_psnr": 46.21937672042436,
+      "psnr_delta_db": -6.427561467472636,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 139,
+        "predicted": 345,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.004717700000583136,
+        "pixel_preparation_seconds": 0.0011653000001388136,
+        "pnn_seconds": 0.04876899999999296,
+        "native_feature_seconds": 0.0230928999999378,
+        "demnn_with_feature_io_seconds": 0.05498479999914707,
+        "prediction_pipeline_seconds": 0.13377349999973376,
+        "final_encode_seconds": 0.06368839999959164,
+        "learned_pipeline_seconds": 0.20217959999990853,
+        "reference_encode_seconds": 1.7201521999995748,
+        "reference_pipeline_seconds": 1.724869900000158,
+        "relative_time": 0.11721440556177021,
+        "selected_decode_seconds": 0.01698980000037409,
+        "reference_decode_seconds": 0.016114299999571813,
+        "verification_seconds": 0.04009390000010171
+      }
+    },
+    {
+      "index": 6,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_g.tga",
+      "group": "6x6-top1x1",
+      "source_md4": "087ced6d071e73189d55d4f4a762885a",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top1x1/0006/receipt.json",
+      "receipt_sha256": "16a81a5f7ffff8d71cff41bea3b4b893bc76e1c0cc9569980afd9021d4cdd5cb",
+      "rgb_psnr": 40.122565397866275,
+      "reference_rgb_psnr": 45.66522318184304,
+      "psnr_delta_db": -5.542657783976765,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 0,
+        "predicted": 484,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.005571500000769447,
+        "pixel_preparation_seconds": 0.0014021999995748047,
+        "pnn_seconds": 0.06500730000061594,
+        "native_feature_seconds": 0.024581700000453566,
+        "demnn_with_feature_io_seconds": 0.07595109999965644,
+        "prediction_pipeline_seconds": 0.1727430999999342,
+        "final_encode_seconds": 0.07640229999924486,
+        "learned_pipeline_seconds": 0.2547168999999485,
+        "reference_encode_seconds": 2.5243108999993638,
+        "reference_pipeline_seconds": 2.529882400000133,
+        "relative_time": 0.10068329658324636,
+        "selected_decode_seconds": 0.01820800000041345,
+        "reference_decode_seconds": 0.017025699999976496,
+        "verification_seconds": 0.04326379999929486
+      }
+    },
+    {
+      "index": 7,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_n5x5.tga",
+      "group": "6x6-top1x1",
+      "source_md4": "d0892a7fe181a43c0614fb1334d1c911",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top1x1/0007/receipt.json",
+      "receipt_sha256": "c8da558b09d984b024bf1259b699a2f8bf6229a75fccfdc7931e05ac587c3c30",
+      "rgb_psnr": 32.110855380400885,
+      "reference_rgb_psnr": 37.356469503228354,
+      "psnr_delta_db": -5.245614122827469,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 3,
+        "predicted": 481,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0025446999998166575,
+        "pixel_preparation_seconds": 0.001629999999749998,
+        "pnn_seconds": 0.06622129999959725,
+        "native_feature_seconds": 0.024329899999429472,
+        "demnn_with_feature_io_seconds": 0.07607709999956569,
+        "prediction_pipeline_seconds": 0.17356560000007448,
+        "final_encode_seconds": 0.07867669999995996,
+        "learned_pipeline_seconds": 0.2547869999998511,
+        "reference_encode_seconds": 2.7882713999997577,
+        "reference_pipeline_seconds": 2.7908160999995744,
+        "relative_time": 0.09129480082900839,
+        "selected_decode_seconds": 0.01796860000013112,
+        "reference_decode_seconds": 0.016693800000211922,
+        "verification_seconds": 0.04227790000004461
+      }
+    },
+    {
+      "index": 0,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+      "group": "6x6-top3x10",
+      "source_md4": "30e4065ac961da24ae9354ba01cf7b34",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top3x10/0000/receipt.json",
+      "receipt_sha256": "e749788bc1b60450c9a44826d2f96ed4651389aaf0d681daccaae3a412ed5ad7",
+      "rgb_psnr": 55.471100434288296,
+      "reference_rgb_psnr": 57.35170375481272,
+      "psnr_delta_db": -1.880603320524422,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 412,
+        "predicted": 72,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0020007999992230907,
+        "pixel_preparation_seconds": 0.001627800000278512,
+        "pnn_seconds": 0.01167890000033367,
+        "native_feature_seconds": 0.0446591999998418,
+        "demnn_with_feature_io_seconds": 0.03514499999982945,
+        "prediction_pipeline_seconds": 0.09889550000025338,
+        "final_encode_seconds": 0.23576849999972183,
+        "learned_pipeline_seconds": 0.3366647999991983,
+        "reference_encode_seconds": 0.3845191000000341,
+        "reference_pipeline_seconds": 0.3865198999992572,
+        "relative_time": 0.8710154380145636,
+        "selected_decode_seconds": 0.016082099999948696,
+        "reference_decode_seconds": 0.015074800000547839,
+        "verification_seconds": 0.03776170000037382
+      }
+    },
+    {
+      "index": 1,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour02/bane_skin06_pbs_Colour02_m2.png",
+      "group": "6x6-top3x10",
+      "source_md4": "fc0fdcb371ca69c18cf4564a9892cbd2",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top3x10/0001/receipt.json",
+      "receipt_sha256": "bc70ef2779aa898bf3ece90fd9cd701a9e4b90510ff72218cc4161f3d7ec6037",
+      "rgb_psnr": 55.471100434288296,
+      "reference_rgb_psnr": 57.35170375481272,
+      "psnr_delta_db": -1.880603320524422,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 412,
+        "predicted": 72,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0014612999993914855,
+        "pixel_preparation_seconds": 0.0010157999995499267,
+        "pnn_seconds": 0.011284000000159722,
+        "native_feature_seconds": 0.02755220000017289,
+        "demnn_with_feature_io_seconds": 0.03550509999968199,
+        "prediction_pipeline_seconds": 0.08085940000000846,
+        "final_encode_seconds": 0.23839789999965433,
+        "learned_pipeline_seconds": 0.3207185999990543,
+        "reference_encode_seconds": 0.39151509999919654,
+        "reference_pipeline_seconds": 0.392976399998588,
+        "relative_time": 0.8161268717414243,
+        "selected_decode_seconds": 0.016703499999493943,
+        "reference_decode_seconds": 0.016306900000017777,
+        "verification_seconds": 0.04012070000044332
+      }
+    },
+    {
+      "index": 2,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/skin02next/bane_skin02_pbs_s.png",
+      "group": "6x6-top3x10",
+      "source_md4": "d05f50d0e74432885815c896b532c876",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top3x10/0002/receipt.json",
+      "receipt_sha256": "fc0216bf6cb7033c98e66b7df16d6bba0f2ac5aa231bf799171a8614fca18db5",
+      "rgb_psnr": 39.33839351972967,
+      "reference_rgb_psnr": 42.5547947591642,
+      "psnr_delta_db": -3.216401239434532,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 0,
+        "predicted": 484,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0066009999991365476,
+        "pixel_preparation_seconds": 0.001797199999600707,
+        "pnn_seconds": 0.0678502999999182,
+        "native_feature_seconds": 0.029884999999922,
+        "demnn_with_feature_io_seconds": 0.23989910000000236,
+        "prediction_pipeline_seconds": 0.34974510000029113,
+        "final_encode_seconds": 1.4324187000001984,
+        "learned_pipeline_seconds": 1.7887647999996261,
+        "reference_encode_seconds": 2.935753300000215,
+        "reference_pipeline_seconds": 2.9423542999993515,
+        "relative_time": 0.6079365765027075,
+        "selected_decode_seconds": 0.0165406999994957,
+        "reference_decode_seconds": 0.018936399999802234,
+        "verification_seconds": 0.04309279999961291
+      }
+    },
+    {
+      "index": 3,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour01/Bane_skin06_high_hair_Colour01_g.tga",
+      "group": "6x6-top3x10",
+      "source_md4": "1f383a7363b1594a4a35d00d74fcf333",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top3x10/0003/receipt.json",
+      "receipt_sha256": "bcbf720313c8f55ae7bc811b1468e8dd14c3ef27f40179552b68a5432157a0e6",
+      "rgb_psnr": 49.52744791750337,
+      "reference_rgb_psnr": 52.27792249539921,
+      "psnr_delta_db": -2.7504745778958366,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 18,
+        "predicted": 466,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0022134000000733067,
+        "pixel_preparation_seconds": 0.0011991999999736436,
+        "pnn_seconds": 0.06453370000053837,
+        "native_feature_seconds": 0.027809000000161177,
+        "demnn_with_feature_io_seconds": 0.2276825999997527,
+        "prediction_pipeline_seconds": 0.3326901000000362,
+        "final_encode_seconds": 1.3289536000002045,
+        "learned_pipeline_seconds": 1.663857100000314,
+        "reference_encode_seconds": 2.331395199999861,
+        "reference_pipeline_seconds": 2.333608599999934,
+        "relative_time": 0.7129975009521138,
+        "selected_decode_seconds": 0.018961400000080175,
+        "reference_decode_seconds": 0.017625299999963318,
+        "verification_seconds": 0.04422769999928278
+      }
+    },
+    {
+      "index": 4,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_body_Colour02_g.tga",
+      "group": "6x6-top3x10",
+      "source_md4": "a40a01d93ef4e85a5dcbac5deb639aa9",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top3x10/0004/receipt.json",
+      "receipt_sha256": "fddd49e18d219b6fe8db1b98f95e0e3beb8fb91b648e5dbdbd2fcdf162af7ab7",
+      "rgb_psnr": 42.82402076058258,
+      "reference_rgb_psnr": 45.23333119513933,
+      "psnr_delta_db": -2.409310434556751,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 0,
+        "predicted": 484,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.005788299999949231,
+        "pixel_preparation_seconds": 0.0018064000005324488,
+        "pnn_seconds": 0.0720459000003757,
+        "native_feature_seconds": 0.03200300000025891,
+        "demnn_with_feature_io_seconds": 0.2619051000001491,
+        "prediction_pipeline_seconds": 0.3811628000003111,
+        "final_encode_seconds": 1.3452423999997336,
+        "learned_pipeline_seconds": 1.732193499999994,
+        "reference_encode_seconds": 2.5972384999995484,
+        "reference_pipeline_seconds": 2.6030267999994976,
+        "relative_time": 0.6654535788875966,
+        "selected_decode_seconds": 0.016854699999385048,
+        "reference_decode_seconds": 0.015808600000127626,
+        "verification_seconds": 0.0397199000008186
+      }
+    },
+    {
+      "index": 5,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_gem_Colour02_em.tga",
+      "group": "6x6-top3x10",
+      "source_md4": "c7430d6e8328217fc44d5436c1273151",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top3x10/0005/receipt.json",
+      "receipt_sha256": "d14ddd60486f1a719b2b9d28b30e0825a56a79729602135dc26375ebfc6883da",
+      "rgb_psnr": 42.36734417037087,
+      "reference_rgb_psnr": 46.21937672042436,
+      "psnr_delta_db": -3.8520325500534867,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 139,
+        "predicted": 345,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0020005999995191814,
+        "pixel_preparation_seconds": 0.0011418000003686757,
+        "pnn_seconds": 0.04835280000042985,
+        "native_feature_seconds": 0.026542000000517874,
+        "demnn_with_feature_io_seconds": 0.16916529999980412,
+        "prediction_pipeline_seconds": 0.2553371000003608,
+        "final_encode_seconds": 0.996894599999905,
+        "learned_pipeline_seconds": 1.254232299999785,
+        "reference_encode_seconds": 1.6903862999997727,
+        "reference_pipeline_seconds": 1.692386899999292,
+        "relative_time": 0.7411025812125523,
+        "selected_decode_seconds": 0.01585960000011255,
+        "reference_decode_seconds": 0.015778400000272086,
+        "verification_seconds": 0.03856309999991936
+      }
+    },
+    {
+      "index": 6,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_g.tga",
+      "group": "6x6-top3x10",
+      "source_md4": "087ced6d071e73189d55d4f4a762885a",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top3x10/0006/receipt.json",
+      "receipt_sha256": "6799fe67cd7d239d6e7bcd6bb01b1cf85c46f862b58bd36a805576f587ec830f",
+      "rgb_psnr": 43.30105294322465,
+      "reference_rgb_psnr": 45.66522318184304,
+      "psnr_delta_db": -2.3641702386183923,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 0,
+        "predicted": 484,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.005185500000152388,
+        "pixel_preparation_seconds": 0.0015084999995451653,
+        "pnn_seconds": 0.06540600000062113,
+        "native_feature_seconds": 0.02869580000060523,
+        "demnn_with_feature_io_seconds": 0.24080359999970824,
+        "prediction_pipeline_seconds": 0.3478326999993442,
+        "final_encode_seconds": 1.374795599999743,
+        "learned_pipeline_seconds": 1.7278137999992396,
+        "reference_encode_seconds": 2.4822873999992225,
+        "reference_pipeline_seconds": 2.487472899999375,
+        "relative_time": 0.694606079929423,
+        "selected_decode_seconds": 0.0170429999998305,
+        "reference_decode_seconds": 0.01662899999973888,
+        "verification_seconds": 0.04180819999965024
+      }
+    },
+    {
+      "index": 7,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_n5x5.tga",
+      "group": "6x6-top3x10",
+      "source_md4": "d0892a7fe181a43c0614fb1334d1c911",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/6x6/top3x10/0007/receipt.json",
+      "receipt_sha256": "967ee7ee528ece28a4f49015ab9f239892a64b433e4012df7afdd22be7b171f7",
+      "rgb_psnr": 34.12775641538493,
+      "reference_rgb_psnr": 37.356469503228354,
+      "psnr_delta_db": -3.228713087843424,
+      "payload_bytes": 7744,
+      "native_decisions": {
+        "blocks": 484,
+        "constant": 3,
+        "predicted": 481,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.002533199999561475,
+        "pixel_preparation_seconds": 0.0014992999995229184,
+        "pnn_seconds": 0.06678110000029847,
+        "native_feature_seconds": 0.029327199999897857,
+        "demnn_with_feature_io_seconds": 0.23132429999986925,
+        "prediction_pipeline_seconds": 0.3405120999996143,
+        "final_encode_seconds": 1.3856121999997413,
+        "learned_pipeline_seconds": 1.728657499998917,
+        "reference_encode_seconds": 2.7613060000003316,
+        "reference_pipeline_seconds": 2.763839199999893,
+        "relative_time": 0.6254551639614142,
+        "selected_decode_seconds": 0.01669159999983094,
+        "reference_decode_seconds": 0.019329499999912514,
+        "verification_seconds": 0.04460399999970832
+      }
+    },
+    {
+      "index": 0,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+      "group": "8x8-top1x1",
+      "source_md4": "30e4065ac961da24ae9354ba01cf7b34",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top1x1/0000/receipt.json",
+      "receipt_sha256": "29311f3b2a9a281a6cd331c9044410222fa2b952c819058a0d5b00f436a4e626",
+      "rgb_psnr": 44.37770320550183,
+      "reference_rgb_psnr": 52.84775168858949,
+      "psnr_delta_db": -8.470048483087659,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 204,
+        "predicted": 52,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.002078500000607164,
+        "pixel_preparation_seconds": 0.0009676999998191604,
+        "pnn_seconds": 0.009301899999627494,
+        "native_feature_seconds": 0.02611689999957889,
+        "demnn_with_feature_io_seconds": 0.03630929999962973,
+        "prediction_pipeline_seconds": 0.07805710000047839,
+        "final_encode_seconds": 0.04518759999973554,
+        "learned_pipeline_seconds": 0.1253232000008211,
+        "reference_encode_seconds": 0.4804972000001726,
+        "reference_pipeline_seconds": 0.48257570000077976,
+        "relative_time": 0.2596964579870445,
+        "selected_decode_seconds": 0.023123999999370426,
+        "reference_decode_seconds": 0.017435000000659784,
+        "verification_seconds": 0.04684429999997519
+      }
+    },
+    {
+      "index": 1,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour02/bane_skin06_pbs_Colour02_m2.png",
+      "group": "8x8-top1x1",
+      "source_md4": "fc0fdcb371ca69c18cf4564a9892cbd2",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top1x1/0001/receipt.json",
+      "receipt_sha256": "d4dab6ef37521e8c0d42ea126ada6b6ea840ebb644004e82469bb56c6e7c4aca",
+      "rgb_psnr": 44.37770320550183,
+      "reference_rgb_psnr": 52.84775168858949,
+      "psnr_delta_db": -8.470048483087659,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 204,
+        "predicted": 52,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0017871000000013737,
+        "pixel_preparation_seconds": 0.0010959999999613501,
+        "pnn_seconds": 0.00979289999941102,
+        "native_feature_seconds": 0.021292299999913666,
+        "demnn_with_feature_io_seconds": 0.037607399999615154,
+        "prediction_pipeline_seconds": 0.07541800000035437,
+        "final_encode_seconds": 0.0336739000003945,
+        "learned_pipeline_seconds": 0.11087900000075024,
+        "reference_encode_seconds": 0.5037825999997949,
+        "reference_pipeline_seconds": 0.5055696999997963,
+        "relative_time": 0.21931496290381902,
+        "selected_decode_seconds": 0.018162299999858078,
+        "reference_decode_seconds": 0.017646899999817833,
+        "verification_seconds": 0.04214419999971142
+      }
+    },
+    {
+      "index": 2,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/skin02next/bane_skin02_pbs_s.png",
+      "group": "8x8-top1x1",
+      "source_md4": "d05f50d0e74432885815c896b532c876",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top1x1/0002/receipt.json",
+      "receipt_sha256": "0116d8617a29d83d72c3b633fa78f3d08c0e67de8c277f1464b5030da3acf2fa",
+      "rgb_psnr": 34.35819951346517,
+      "reference_rgb_psnr": 39.98185528018204,
+      "psnr_delta_db": -5.623655766716865,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 0,
+        "predicted": 256,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.006597900000087975,
+        "pixel_preparation_seconds": 0.0018156000005546957,
+        "pnn_seconds": 0.038743199999771605,
+        "native_feature_seconds": 0.02693120000003546,
+        "demnn_with_feature_io_seconds": 0.1653675999996267,
+        "prediction_pipeline_seconds": 0.23922350000066217,
+        "final_encode_seconds": 0.0751485999999204,
+        "learned_pipeline_seconds": 0.32097000000067055,
+        "reference_encode_seconds": 2.858038999999735,
+        "reference_pipeline_seconds": 2.864636899999823,
+        "relative_time": 0.11204561387891442,
+        "selected_decode_seconds": 0.018577300000288233,
+        "reference_decode_seconds": 0.018560299999990093,
+        "verification_seconds": 0.045235800000227755
+      }
+    },
+    {
+      "index": 3,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour01/Bane_skin06_high_hair_Colour01_g.tga",
+      "group": "8x8-top1x1",
+      "source_md4": "1f383a7363b1594a4a35d00d74fcf333",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top1x1/0003/receipt.json",
+      "receipt_sha256": "e60b52120e1e02c84b5e1cf6288f74b66ca57980498675ad7ebf23cd4e822e8e",
+      "rgb_psnr": 39.56940362057044,
+      "reference_rgb_psnr": 48.1530381457275,
+      "psnr_delta_db": -8.58363452515706,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 2,
+        "predicted": 254,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0062373000000661705,
+        "pixel_preparation_seconds": 0.0019471000005069072,
+        "pnn_seconds": 0.038664699999571894,
+        "native_feature_seconds": 0.02304199999980483,
+        "demnn_with_feature_io_seconds": 0.14509449999968638,
+        "prediction_pipeline_seconds": 0.21409010000024864,
+        "final_encode_seconds": 0.07536210000034771,
+        "learned_pipeline_seconds": 0.2956895000006625,
+        "reference_encode_seconds": 2.6373216000001776,
+        "reference_pipeline_seconds": 2.6435589000002437,
+        "relative_time": 0.11185281326647772,
+        "selected_decode_seconds": 0.018148999999539228,
+        "reference_decode_seconds": 0.0692962000002808,
+        "verification_seconds": 0.09527999999954773
+      }
+    },
+    {
+      "index": 4,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_body_Colour02_g.tga",
+      "group": "8x8-top1x1",
+      "source_md4": "a40a01d93ef4e85a5dcbac5deb639aa9",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top1x1/0004/receipt.json",
+      "receipt_sha256": "7eb0cf35b6864c65ebfa2d4ec3d15b380cedf26e25c2c8307447cbd899bd48ed",
+      "rgb_psnr": 35.227997776915004,
+      "reference_rgb_psnr": 41.077547098219,
+      "psnr_delta_db": -5.849549321303996,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 0,
+        "predicted": 256,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.00256820000049629,
+        "pixel_preparation_seconds": 0.0012282000006962335,
+        "pnn_seconds": 0.03864960000009887,
+        "native_feature_seconds": 0.024124399999891466,
+        "demnn_with_feature_io_seconds": 0.14400539999951434,
+        "prediction_pipeline_seconds": 0.21319280000079743,
+        "final_encode_seconds": 0.07382070000039676,
+        "learned_pipeline_seconds": 0.2895817000016905,
+        "reference_encode_seconds": 2.548461100000168,
+        "reference_pipeline_seconds": 2.551029300000664,
+        "relative_time": 0.11351563073055064,
+        "selected_decode_seconds": 0.018891700000494893,
+        "reference_decode_seconds": 0.04123210000034305,
+        "verification_seconds": 0.06712610000067798
+      }
+    },
+    {
+      "index": 5,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_gem_Colour02_em.tga",
+      "group": "8x8-top1x1",
+      "source_md4": "c7430d6e8328217fc44d5436c1273151",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top1x1/0005/receipt.json",
+      "receipt_sha256": "4a1f7f9f9cb207fafd299d3c37b993383baecec8605d688c6bf91e1daaac8ef4",
+      "rgb_psnr": 35.26866407245984,
+      "reference_rgb_psnr": 42.10786285424662,
+      "psnr_delta_db": -6.839198781786777,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 44,
+        "predicted": 212,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0020293000006859074,
+        "pixel_preparation_seconds": 0.001713499999823398,
+        "pnn_seconds": 0.035114100000100734,
+        "native_feature_seconds": 0.023322799999732524,
+        "demnn_with_feature_io_seconds": 0.12188249999962864,
+        "prediction_pipeline_seconds": 0.18785899999966205,
+        "final_encode_seconds": 0.07232639999983803,
+        "learned_pipeline_seconds": 0.262214700000186,
+        "reference_encode_seconds": 2.1381663000001936,
+        "reference_pipeline_seconds": 2.1401956000008795,
+        "relative_time": 0.12251903517607374,
+        "selected_decode_seconds": 0.02075280000008206,
+        "reference_decode_seconds": 0.020616099999642756,
+        "verification_seconds": 0.047928500000125496
+      }
+    },
+    {
+      "index": 6,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_g.tga",
+      "group": "8x8-top1x1",
+      "source_md4": "087ced6d071e73189d55d4f4a762885a",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top1x1/0006/receipt.json",
+      "receipt_sha256": "cae5fb022e825f1f7938c125abc0789d3fc9969eb9929a57709f6ea23b17415d",
+      "rgb_psnr": 35.75210804200912,
+      "reference_rgb_psnr": 41.544821237435876,
+      "psnr_delta_db": -5.792713195426757,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 0,
+        "predicted": 256,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0024619999994683894,
+        "pixel_preparation_seconds": 0.0012065000000802684,
+        "pnn_seconds": 0.037808299999596784,
+        "native_feature_seconds": 0.02736709999953746,
+        "demnn_with_feature_io_seconds": 0.14350309999917954,
+        "prediction_pipeline_seconds": 0.21549299999969662,
+        "final_encode_seconds": 0.07504700000026787,
+        "learned_pipeline_seconds": 0.2930019999994329,
+        "reference_encode_seconds": 2.507387600000584,
+        "reference_pipeline_seconds": 2.5098496000000523,
+        "relative_time": 0.11674085969112523,
+        "selected_decode_seconds": 0.01924940000026254,
+        "reference_decode_seconds": 0.017865599999822734,
+        "verification_seconds": 0.04422459999932471
+      }
+    },
+    {
+      "index": 7,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_n5x5.tga",
+      "group": "8x8-top1x1",
+      "source_md4": "d0892a7fe181a43c0614fb1334d1c911",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top1x1/0007/receipt.json",
+      "receipt_sha256": "57cf4a97df53594b552476236ccd369c67294989b0e64c2956d9290b0dc3f5f7",
+      "rgb_psnr": 29.179557242676065,
+      "reference_rgb_psnr": 34.005036825149915,
+      "psnr_delta_db": -4.82547958247385,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 1,
+        "predicted": 255,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.003941899999517773,
+        "pixel_preparation_seconds": 0.0023909999999887077,
+        "pnn_seconds": 0.043840900000759575,
+        "native_feature_seconds": 0.022386900000128662,
+        "demnn_with_feature_io_seconds": 0.15948930000013206,
+        "prediction_pipeline_seconds": 0.23335779999979422,
+        "final_encode_seconds": 0.07644600000003265,
+        "learned_pipeline_seconds": 0.31374569999934465,
+        "reference_encode_seconds": 2.894757799999752,
+        "reference_pipeline_seconds": 2.89869969999927,
+        "relative_time": 0.10823670351206911,
+        "selected_decode_seconds": 0.017348800000036135,
+        "reference_decode_seconds": 0.01759089999995922,
+        "verification_seconds": 0.04205550000006042
+      }
+    },
+    {
+      "index": 0,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+      "group": "8x8-top3x10",
+      "source_md4": "30e4065ac961da24ae9354ba01cf7b34",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top3x10/0000/receipt.json",
+      "receipt_sha256": "582cb862dbb610b6aad30a288e3e9acccd3f683ef51e2f99435363c96f28c7c2",
+      "rgb_psnr": 50.40385444670281,
+      "reference_rgb_psnr": 52.84775168858949,
+      "psnr_delta_db": -2.443897241886681,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 204,
+        "predicted": 52,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0013925999992352445,
+        "pixel_preparation_seconds": 0.0011447000006228336,
+        "pnn_seconds": 0.010253000000375323,
+        "native_feature_seconds": 0.02440200000000914,
+        "demnn_with_feature_io_seconds": 0.09131200000047102,
+        "prediction_pipeline_seconds": 0.1324789000000237,
+        "final_encode_seconds": 0.3117209999991246,
+        "learned_pipeline_seconds": 0.4455924999983836,
+        "reference_encode_seconds": 0.4773537999999462,
+        "reference_pipeline_seconds": 0.47874639999918145,
+        "relative_time": 0.9307485131985231,
+        "selected_decode_seconds": 0.0183735999999044,
+        "reference_decode_seconds": 0.01681670000016311,
+        "verification_seconds": 0.04127619999962917
+      }
+    },
+    {
+      "index": 1,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour02/bane_skin06_pbs_Colour02_m2.png",
+      "group": "8x8-top3x10",
+      "source_md4": "fc0fdcb371ca69c18cf4564a9892cbd2",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top3x10/0001/receipt.json",
+      "receipt_sha256": "063872eb2e851e2d19718d1dff4a0f971e4ca155b1b86ae1634f9e0d04f9b7fe",
+      "rgb_psnr": 50.40385444670281,
+      "reference_rgb_psnr": 52.84775168858949,
+      "psnr_delta_db": -2.443897241886681,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 204,
+        "predicted": 52,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.001302399999985937,
+        "pixel_preparation_seconds": 0.0009762999998201849,
+        "pnn_seconds": 0.009886999999253021,
+        "native_feature_seconds": 0.02362780000021303,
+        "demnn_with_feature_io_seconds": 0.09311930000058055,
+        "prediction_pipeline_seconds": 0.1331289999998262,
+        "final_encode_seconds": 0.3207513999996081,
+        "learned_pipeline_seconds": 0.45518279999942024,
+        "reference_encode_seconds": 0.47943820000000414,
+        "reference_pipeline_seconds": 0.4807405999999901,
+        "relative_time": 0.9468366100126131,
+        "selected_decode_seconds": 0.016774900000200432,
+        "reference_decode_seconds": 0.01695060000020021,
+        "verification_seconds": 0.03992999999991298
+      }
+    },
+    {
+      "index": 2,
+      "asset": "Assets/Art/Characters/11_bane/3.0Battle/skin02next/bane_skin02_pbs_s.png",
+      "group": "8x8-top3x10",
+      "source_md4": "d05f50d0e74432885815c896b532c876",
+      "crop_box": [
+        192,
+        192,
+        320,
+        320
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top3x10/0002/receipt.json",
+      "receipt_sha256": "20d8f386850a4caa1a2563cdd05f317cdf42e72902566c85e1f08ec6a0c06cb6",
+      "rgb_psnr": 36.99215177945047,
+      "reference_rgb_psnr": 39.98185528018204,
+      "psnr_delta_db": -2.989703500731572,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 0,
+        "predicted": 256,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.00267950000034034,
+        "pixel_preparation_seconds": 0.0013390000003710156,
+        "pnn_seconds": 0.052054199999474804,
+        "native_feature_seconds": 0.030496800000037183,
+        "demnn_with_feature_io_seconds": 0.4345898000001398,
+        "prediction_pipeline_seconds": 0.529637399999956,
+        "final_encode_seconds": 1.5130915999998251,
+        "learned_pipeline_seconds": 2.0454085000001214,
+        "reference_encode_seconds": 2.8736476000003677,
+        "reference_pipeline_seconds": 2.876327100000708,
+        "relative_time": 0.7111181826293741,
+        "selected_decode_seconds": 0.01780479999979434,
+        "reference_decode_seconds": 0.017866700000013225,
+        "verification_seconds": 0.042609600000105274
+      }
+    },
+    {
+      "index": 3,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour01/Bane_skin06_high_hair_Colour01_g.tga",
+      "group": "8x8-top3x10",
+      "source_md4": "1f383a7363b1594a4a35d00d74fcf333",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top3x10/0003/receipt.json",
+      "receipt_sha256": "abd82840852c58820806bc57b62618448b6c335b4eb1014cb088383d1c071a1e",
+      "rgb_psnr": 46.04314521444855,
+      "reference_rgb_psnr": 48.1530381457275,
+      "psnr_delta_db": -2.1098929312789494,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 2,
+        "predicted": 254,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0025218999999196967,
+        "pixel_preparation_seconds": 0.0019224999996367842,
+        "pnn_seconds": 0.04016830000000482,
+        "native_feature_seconds": 0.02590090000012424,
+        "demnn_with_feature_io_seconds": 0.457399599999917,
+        "prediction_pipeline_seconds": 0.5375654999998005,
+        "final_encode_seconds": 1.5479863000000478,
+        "learned_pipeline_seconds": 2.088073699999768,
+        "reference_encode_seconds": 2.743644499999391,
+        "reference_pipeline_seconds": 2.7461663999993107,
+        "relative_time": 0.760359496059777,
+        "selected_decode_seconds": 0.01972939999996015,
+        "reference_decode_seconds": 0.018355399999563815,
+        "verification_seconds": 0.044723099999828264
+      }
+    },
+    {
+      "index": 4,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_body_Colour02_g.tga",
+      "group": "8x8-top3x10",
+      "source_md4": "a40a01d93ef4e85a5dcbac5deb639aa9",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top3x10/0004/receipt.json",
+      "receipt_sha256": "fc81feae903553a98953af46edbec63c3492880a97a09673d56873a599ff91be",
+      "rgb_psnr": 39.07944204654378,
+      "reference_rgb_psnr": 41.077547098219,
+      "psnr_delta_db": -1.9981050516752177,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 0,
+        "predicted": 256,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.005236799999693176,
+        "pixel_preparation_seconds": 0.002085799999804294,
+        "pnn_seconds": 0.05196650000016234,
+        "native_feature_seconds": 0.0285810000004858,
+        "demnn_with_feature_io_seconds": 0.4472371000001658,
+        "prediction_pipeline_seconds": 0.537833800000044,
+        "final_encode_seconds": 1.4738690000003771,
+        "learned_pipeline_seconds": 2.0169396000001143,
+        "reference_encode_seconds": 2.5586542999999438,
+        "reference_pipeline_seconds": 2.563891099999637,
+        "relative_time": 0.7866713215707172,
+        "selected_decode_seconds": 0.019205099999453523,
+        "reference_decode_seconds": 0.018262399999912304,
+        "verification_seconds": 0.045280499999535095
+      }
+    },
+    {
+      "index": 5,
+      "asset": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_gem_Colour02_em.tga",
+      "group": "8x8-top3x10",
+      "source_md4": "c7430d6e8328217fc44d5436c1273151",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top3x10/0005/receipt.json",
+      "receipt_sha256": "18f0e7a20fcbebb6e446fd36d8fdc8ac62a616093e26dcbfb403527edd2a273d",
+      "rgb_psnr": 38.812471643327555,
+      "reference_rgb_psnr": 42.10786285424662,
+      "psnr_delta_db": -3.295391210919064,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 44,
+        "predicted": 212,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.003082199999880686,
+        "pixel_preparation_seconds": 0.00180129999989731,
+        "pnn_seconds": 0.03593300000011368,
+        "native_feature_seconds": 0.02433519999976852,
+        "demnn_with_feature_io_seconds": 0.36649729999953706,
+        "prediction_pipeline_seconds": 0.4384429000001546,
+        "final_encode_seconds": 1.2401257000001351,
+        "learned_pipeline_seconds": 1.6816508000001704,
+        "reference_encode_seconds": 2.1155252999997174,
+        "reference_pipeline_seconds": 2.118607499999598,
+        "relative_time": 0.7937528777749014,
+        "selected_decode_seconds": 0.017602500000066357,
+        "reference_decode_seconds": 0.017658400000073016,
+        "verification_seconds": 0.041833000000224274
+      }
+    },
+    {
+      "index": 6,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_g.tga",
+      "group": "8x8-top3x10",
+      "source_md4": "087ced6d071e73189d55d4f4a762885a",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top3x10/0006/receipt.json",
+      "receipt_sha256": "b0cfda7a6b2b4f82f491f561aa0329c156ff0671bc33237f37f404795c179963",
+      "rgb_psnr": 39.657450765924644,
+      "reference_rgb_psnr": 41.544821237435876,
+      "psnr_delta_db": -1.8873704715112325,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 0,
+        "predicted": 256,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.005499200000485871,
+        "pixel_preparation_seconds": 0.0012314999994487152,
+        "pnn_seconds": 0.038410099999964586,
+        "native_feature_seconds": 0.025632400000176858,
+        "demnn_with_feature_io_seconds": 0.44463809999979276,
+        "prediction_pipeline_seconds": 0.5211934999997538,
+        "final_encode_seconds": 1.4792680999998993,
+        "learned_pipeline_seconds": 2.005960800000139,
+        "reference_encode_seconds": 2.599767100000463,
+        "reference_pipeline_seconds": 2.605266300000949,
+        "relative_time": 0.7699638228918896,
+        "selected_decode_seconds": 0.017092199999751756,
+        "reference_decode_seconds": 0.016758699999627424,
+        "verification_seconds": 0.04042870000012044
+      }
+    },
+    {
+      "index": 7,
+      "asset": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_n5x5.tga",
+      "group": "8x8-top3x10",
+      "source_md4": "d0892a7fe181a43c0614fb1334d1c911",
+      "crop_box": [
+        448,
+        448,
+        576,
+        576
+      ],
+      "receipt": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/8x8/top3x10/0007/receipt.json",
+      "receipt_sha256": "5aba07579a158121dd07cbb847fcf92c7d35f1b7ea3b425db138d176be466970",
+      "rgb_psnr": 31.52919149203823,
+      "reference_rgb_psnr": 34.005036825149915,
+      "psnr_delta_db": -2.4758453331116854,
+      "payload_bytes": 4096,
+      "native_decisions": {
+        "blocks": 256,
+        "constant": 1,
+        "predicted": 255,
+        "fallback": 0
+      },
+      "timings": {
+        "source_rgb_preparation_seconds": 0.0023641999996470986,
+        "pixel_preparation_seconds": 0.0012768999995387276,
+        "pnn_seconds": 0.038550899999791,
+        "native_feature_seconds": 0.02700959999947372,
+        "demnn_with_feature_io_seconds": 0.4668600000004517,
+        "prediction_pipeline_seconds": 0.5443606999997428,
+        "final_encode_seconds": 1.462686300000314,
+        "learned_pipeline_seconds": 2.009411199999704,
+        "reference_encode_seconds": 2.8866816999998264,
+        "reference_pipeline_seconds": 2.8890458999994735,
+        "relative_time": 0.6955276134588482,
+        "selected_decode_seconds": 0.018321600000490434,
+        "reference_decode_seconds": 0.017990800000006857,
+        "verification_seconds": 0.043060699999841745
+      }
+    }
+  ],
+  "audit": {
+    "fresh_decodes": 96,
+    "exact_reconstruction_hash_match": true,
+    "source": "experiment report/.local/reproduction-runs/texnn/source-rgb64-patch64-v2/evaluations/validation8-patch128/audits/473c7f798ec648f3a0c8fff44c3704b9"
+  },
+  "costs": {
+    "crop_preparation_seconds": 0.11755099999936647,
+    "model_setup_seconds": {
+      "4": 0.2678436000005604,
+      "6": 0.37142669999957434,
+      "8": 0.8065973000002487
+    },
+    "batch_wall_seconds": 133.63564570000017
+  },
+  "limits": [
+    "Bounded project training patches differ from the original 2050-texture corpus",
+    "Training uses an 85/15 block split; evaluation uses separate validation images",
+    "Snapshot, class mapping, endpoint padding, Gaussian scale, Adam and patience are reconstructed",
+    "CLI, file exchange and debug decision logging remain timed overheads",
+    "Model loading is separate from inference; Unity/Nah times are not comparable",
+    "Published performance and million-block training scale are not reproduced"
+  ]
+}

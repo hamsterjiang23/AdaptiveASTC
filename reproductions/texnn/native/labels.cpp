@@ -74,6 +74,36 @@ void write_float(FILE* output, float value)
 }
 }
 
+void texnn_ideal_endpoints(const astc_codec_image* image, int block_x, int block_y, int block_z,
+    const error_weighting_params* parameters, const imageblock* pixels,
+    int partition_count, int partition_index, float output[24])
+{
+    for (int index = 0; index < 24; ++index)
+    {
+        output[index] = 0;
+    }
+    const partition_info* partition = get_partition_table(
+        block_x, block_y, block_z, partition_count) + partition_index;
+    error_weight_block errors;
+    error_weight_block_orig original_errors;
+    prepare_error_weight_block(image, block_x, block_y, block_z, parameters, pixels,
+        &errors, &original_errors);
+    endpoints_and_weights ideal;
+    compute_endpoints_and_ideal_weights_1_plane(block_x, block_y, block_z,
+        partition, pixels, &errors, &ideal);
+    for (int index = 0; index < partition_count; ++index)
+    {
+        const float4 points[2] = {ideal.ep.endpt0[index], ideal.ep.endpt1[index]};
+        for (int endpoint = 0; endpoint < 2; ++endpoint)
+        {
+            const float4& point = points[endpoint];
+            output[index * 6 + endpoint * 3] = point.x / 65535.0f;
+            output[index * 6 + endpoint * 3 + 1] = point.y / 65535.0f;
+            output[index * 6 + endpoint * 3 + 2] = point.z / 65535.0f;
+        }
+    }
+}
+
 void texnn_export_block(const astc_codec_image* image, int block_x, int block_y, int block_z,
     const error_weighting_params* parameters, const imageblock* pixels,
     const symbolic_compressed_block* encoded)
@@ -106,48 +136,11 @@ void texnn_export_block(const astc_codec_image* image, int block_x, int block_y,
         decimation_mode = mode.decimation_mode;
         weight_quantization = mode.quantization_mode;
         dual_component = mode.is_dual_plane ? encoded->plane2_color_component : -1;
-        const partition_info* partition = get_partition_table(
-            block_x, block_y, block_z, encoded->partition_count) + encoded->partition_index;
-        error_weight_block errors;
-        error_weight_block_orig original_errors;
-        prepare_error_weight_block(image, block_x, block_y, block_z, parameters, pixels,
-            &errors, &original_errors);
-        endpoints_and_weights first;
-        endpoints_and_weights second;
-        if (mode.is_dual_plane)
-        {
-            compute_endpoints_and_ideal_weights_2_planes(block_x, block_y, block_z,
-                partition, pixels, &errors, dual_component, &first, &second);
-        }
-        else
-        {
-            compute_endpoints_and_ideal_weights_1_plane(block_x, block_y, block_z,
-                partition, pixels, &errors, &first);
-        }
-        for (int index = 0; index < encoded->partition_count; ++index)
-        {
-            const float4 points[2] = {first.ep.endpt0[index], first.ep.endpt1[index]};
-            for (int endpoint = 0; endpoint < 2; ++endpoint)
-            {
-                const float4& point = points[endpoint];
-                const float rgb[3] = {point.x, point.y, point.z};
-                for (int channel = 0; channel < 3; ++channel)
-                {
-                    float value = rgb[channel];
-                    if (channel == dual_component)
-                    {
-                        const float4& alternate = endpoint == 0 ? second.ep.endpt0[index]
-                            : second.ep.endpt1[index];
-                        const float alternate_rgb[3] = {alternate.x, alternate.y, alternate.z};
-                        value = alternate_rgb[channel];
-                    }
-                    ideal_endpoints[index * 6 + endpoint * 3 + channel] = value / 65535.0f;
-                }
-            }
-        }
+        texnn_ideal_endpoints(image, block_x, block_y, block_z, parameters, pixels,
+            partition_count, partition_index, ideal_endpoints);
     }
 
-    std::fprintf(output, "{\"x\":%d,\"y\":%d,\"z\":%d,\"width\":%d,\"height\":%d,"
+    std::fprintf(output, "{\"feature_protocol\":2,\"x\":%d,\"y\":%d,\"z\":%d,\"width\":%d,\"height\":%d,"
         "\"block_x\":%d,\"block_y\":%d,\"constant\":%s,\"error\":%s,"
         "\"partition_count\":%d,\"partition_index\":%d,\"block_mode\":%d,"
         "\"decimation_mode\":%d,\"weight_quantization\":%d,\"dual_component\":%d,"
