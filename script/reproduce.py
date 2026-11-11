@@ -58,6 +58,7 @@ def main() -> None:
     )
     parser.add_argument("--engine", type=Path, default=Path("E:/hamster_unity/unity20190433"))
     parser.add_argument("--no-upm", action="store_true")
+    parser.add_argument("--capture-references", action="store_true")
     parser.add_argument("--run-id")
     parser.add_argument("--input-set", choices=["probe", "smoke", "full"], default="probe")
     parser.add_argument("--target", type=float)
@@ -88,6 +89,7 @@ def main() -> None:
     parser.add_argument("--initialization", choices=["pretrained", "scratch"], default="pretrained")
     parser.add_argument("--split", choices=["train", "validation", "test"], default="test")
     parser.add_argument("--cohort", choices=["unity64"])
+    parser.add_argument("--reference-capture", type=Path)
     parser.add_argument("--micro-batch", type=int, choices=[16, 32, 64], default=64)
     parser.add_argument(
         "--phase", choices=["probe", "smoke1", "smoke2", "smoke3", "full"], default="probe"
@@ -109,6 +111,13 @@ def main() -> None:
     args = parser.parse_args()
     if args.cohort is not None and (args.method != "gdc2023" or args.action != "evaluate"):
         parser.error("--cohort is supported only by GDC compression evaluation")
+    if args.reference_capture is not None and (
+        args.method != "gdc2023"
+        or args.action != "evaluate"
+        or args.cohort is not None
+        or args.split != "train"
+    ):
+        parser.error("--reference-capture requires GDC evaluation with its captured input cohort")
     if args.method == "gdc2023":
         from reproductions.gdc2023.dataset import GDCMeasuredDataset
 
@@ -151,12 +160,17 @@ def main() -> None:
                 paths, _ = EvaluationCohort.unity64(
                     ROOT / "experiment report/.local/unity-search-baseline-lite-rdo-off"
                 )
-            result = GDCCompressionEvaluation(ROOT, directory, args.initialization).evaluate(
-                directory / "evaluations" / args.evaluation_id / args.initialization,
-                args.split,
-                paths,
-                args.cohort,
-            )
+            output = directory / "evaluations" / args.evaluation_id / args.initialization
+            if args.reference_capture is not None:
+                from reproductions.gdc2023.reference_evaluation import GDCReferenceEvaluation
+
+                result = GDCReferenceEvaluation(
+                    ROOT, directory, args.initialization
+                ).evaluate_reference(args.reference_capture, output, args.images)
+            else:
+                result = GDCCompressionEvaluation(ROOT, directory, args.initialization).evaluate(
+                    output, args.split, paths, args.cohort, resume=args.resume
+                )
         elif args.action == "train":
             from reproductions.gdc2023.training import GDCTraining
 
@@ -178,10 +192,19 @@ def main() -> None:
                 or args.evaluation_id in {".", ".."}
             ):
                 parser.error("GDC report requires a single-directory --evaluation-id")
-            result = GDCReport(
+            reporter = GDCReport
+            raw = directory / "evaluations" / args.evaluation_id / args.initialization
+            if (
+                json.loads((raw / "receipt.json").read_text(encoding="utf-8")).get("schema")
+                == "gdc_unity_reference_v1"
+            ):
+                from reproductions.gdc2023.reference_reporting import GDCReferenceReport
+
+                reporter = GDCReferenceReport
+            result = reporter(
                 ROOT,
                 directory,
-                directory / "evaluations" / args.evaluation_id / args.initialization,
+                raw,
                 ROOT / "experiment report/gdc2023" / args.run_id / args.evaluation_id,
             ).write()
         else:
@@ -376,6 +399,7 @@ def main() -> None:
         args.editor,
         args.manifest,
         run_id=args.run_id or "unity-search-baseline-lite-rdo-off",
+        capture_references=args.capture_references,
     )
     if args.action == "instrument":
         result = EngineTimingPatch(args.engine, baseline.run_dir / "engine-originals").apply()
@@ -395,6 +419,10 @@ def main() -> None:
         result = BaselineRecovery(baseline).run()
     elif args.action == "assemble":
         result = BaselineRecovery(baseline).assemble()
+    elif args.action == "collect":
+        from reproductions.common.unity_reference import UnityReferenceCapture
+
+        result = UnityReferenceCapture(baseline).collect(args.phase)
     else:
         result = baseline.summarize(args.phase)
     print(json.dumps(result, ensure_ascii=False, indent=2))

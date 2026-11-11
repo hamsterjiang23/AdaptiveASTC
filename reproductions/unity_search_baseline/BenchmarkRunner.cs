@@ -21,6 +21,7 @@ namespace ASTCReproduction
             public string backupDirectory;
             public string cacheDirectory;
             public string runId;
+            public bool captureReferences;
         }
         [Serializable] public sealed class ImportResult
         {
@@ -38,7 +39,10 @@ namespace ASTCReproduction
             public int height;
             public string format;
             public string texture_dimension;
+            public string reference_directory;
         }
+
+        private static bool s_CaptureReferences;
 
         private const ImportAssetOptions ReimportOptions = ImportAssetOptions.ForceUpdate
             | ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.DontDownloadFromCacheServer;
@@ -58,7 +62,7 @@ namespace ASTCReproduction
             Required("SetAstcBlackPixelPsnrPolicy", 0.4f, 35f, 0.8f, 37f);
             Required("SetAstcSizeFirstMinSideForLargeTexture", 512);
             Required("SetAstcRdoRefineMinPsnrMarginDb", 0f);
-            Required("SetAstcDebugEnabled", false);
+            Required("SetAstcDebugEnabled", s_CaptureReferences);
         }
 
         private static void ImportOptions(string path, ref int useThirdParty, ref int packNormal)
@@ -128,9 +132,25 @@ namespace ASTCReproduction
                 importer.SetPlatformTextureSettings(android);
                 AssetDatabase.WriteImportSettingsIfDirty(asset.path);
                 File.WriteAllText(backup + ".expected.sha256", HashFile(meta));
+                var importStartedUtc = DateTime.UtcNow;
                 timer.Start();
                 AssetDatabase.ImportAsset(asset.path, ReimportOptions);
                 timer.Stop();
+                if (s_CaptureReferences)
+                {
+                    string matched = null;
+                    foreach (var directory in Directory.GetDirectories("ASTC_Cache"))
+                    {
+                        string original = Path.Combine(directory, "original.png");
+                        if (!File.Exists(original) || File.GetLastWriteTimeUtc(original) < importStartedUtc)
+                            continue;
+                        if (matched != null)
+                            throw new IOException("More than one reference image was exported for " + asset.path);
+                        matched = Path.GetFullPath(directory);
+                    }
+                    if (matched == null) throw new IOException("No reference image was exported for " + asset.path);
+                    row.reference_directory = matched;
+                }
                 var texture = AssetDatabase.LoadAssetAtPath<Texture>(asset.path);
                 if (texture == null) throw new InvalidOperationException("No imported Texture");
                 row.width = texture.width;
@@ -159,6 +179,7 @@ namespace ASTCReproduction
             try
             {
                 var config = JsonUtility.FromJson<RunConfig>(File.ReadAllText(Environment.GetEnvironmentVariable("ASTC_BENCHMARK_CONFIG")));
+                s_CaptureReferences = false;
                 if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
                     throw new InvalidOperationException("Benchmark requires Android");
                 if (Directory.Exists(config.cacheDirectory)) throw new IOException("Cache namespace already exists");
@@ -174,6 +195,7 @@ namespace ASTCReproduction
                 foreach (var asset in config.warmup)
                     if (!ImportOne(config, asset).success) throw new InvalidOperationException("Warmup import failed: " + asset.path);
                 Required("SetAstcParameterCacheTableDirectory", config.cacheDirectory);
+                s_CaptureReferences = config.captureReferences;
                 string nativeLog = Environment.GetEnvironmentVariable("ASTC_BENCHMARK_LOG");
                 if (File.Exists(nativeLog)) File.Delete(nativeLog);
                 using (var writer = new StreamWriter(config.output, false))

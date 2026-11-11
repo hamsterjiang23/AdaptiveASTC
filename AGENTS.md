@@ -48,9 +48,12 @@
 - TexNN 已扩展到 1,024 张源图，三种 footprint 共 310,355 个非恒色块，六网络训练总计 1,865.59 秒。扩展报告使用与先期相同的 validation 8 图裁剪协议，保留 48 次编码及 96 次重新解码。按实际输入规模和单个项目 validation 子集解释结果。`[verified: experiment report/texnn/source-rgb1024-patch64-v2/data.json、validation8-patch128.json]`
 - 新 GDC 路径使用源 RGB8、原始尺寸、Linear LDR、无 mip／RDO、固定 astcenc 3.3 medium，候选为 6／8／10／12 四种方块；完整演讲候选与编码设置未公开，这些是项目重建设置。标签严格 PSNR >35 dB、最小实际 payload，同字节取更大 footprint，无可行候选则保留最高 PSNR 并标记违规。`[verified: reproductions/gdc2023/dataset.py GDCLabelSelection、collect protocol；gdc2023/source.json]`
 - GDC 的 `dataset／assemble／train／evaluate／report --method gdc2023` 共用冻结源划分。缓存与组装校验四候选、实际 ASTC 和重建质量，训练核对 RGB224 缓存及标签；评估核对完成状态，在首次 test forward 前通过 `EvaluationSeal` 绑定模型。概率评估保留原 arms／temperature，压缩评估扩展 compression_models。`[verified: gdc2023/dataset.py、training.py、evaluation.py；utils/evaluation_seal.py；evaluation/evaluator.py]`
-- 训练记录区分梯度累积后的 step 尝试、实际 optimizer_updates 与 amp_skipped_steps；scheduler 及 best 选择要求本轮实际更新。GDC 训练计时绑定 checkpoint／完成记录，未记账的恢复前史保留未知。smoke32 训练／test16 编码已跑通，正式 14k 标签正在生成，正式训练和完整对照尚待完成。`[verified: training/trainer.py train_epoch/fit；gdc2023/training.py；source-rgb35-medium-smoke/test16/pretrained-test.json；本轮正式运行日志]`
+- 训练记录区分梯度累积后的 step 尝试、实际 optimizer_updates 与 amp_skipped_steps；scheduler 及 best 选择要求本轮实际更新。正式 14k 标签及组装通过，10k 图 30 轮 CUDA 训练已完成，2k 图压缩评价正在执行。GDC 训练计时绑定 checkpoint／完成记录，未记账的恢复前史保留未知。`[verified: training/trainer.py train_epoch/fit；gdc2023/training.py；正式 training_complete.json、wall-clock.json、evaluate-test2000 job receipt]`
+- 模型训练使用 CUDA，GDC Trainer 与 TexNN 训练入口均检查 CUDA 设备。正式 ResNet18 使用 RTX4070、CUDA12.8 和 FP16 AMP。`[verified: 用户本轮要求“训练优先用CUDA，不要用CPU”；training/trainer.py fit；texnn/training.py train；正式 pretrained/config.json]`
 - GDC 报告保留固定 6／8／10／12 的离线候选质量、真实 payload 与原采集计时；部署延迟以单独实测的 fixed8 配对流程为对照。共享 Unity64 属于训练集诊断，冻结 config 经 protocol-lock 与 baseline receipt 双层哈希核验，名称／配置 SHA／路径顺序写入 binding；独立 test2000 用于泛化评价。Nah/GDC 源 RGB 输入逐图核对，Unity 导入像素和 mip 范围分别保留，不据此声称等质量加速。`[verified: common/cohort.py；common/comparison.py；gdc2023/reporting.py；gdc2023/README.md]`
 - GDC 的 collection 计时覆盖候选采集，完整数据准备成本另由进程启动／退出时刻覆盖清单验证与缓存组装。`preparation-process.json` 的完整记录经评估 SHA 绑定，报告核对协议、collection 和 manifest。缺失或不完整的可选计时保留未知成本。`[verified: gdc2023/costs.py；evaluation.py；reporting.py；正式运行的 preparation-process.json]`
+- 进程与重启恢复保留原始失败日志，RGB224 缓存异常副本先归档，再校验可写临时文件、fsync 并原子替换。长任务由 `script/run_reproduction_job.py` 记录命令、存活心跳和退出码。原始进程的未知部分耗时与已测成功／失败阶段分别记录。`[verified: gdc2023/dataset.py copy_classifier_cache；common/jobs.py；classifier-cache-recovery.json；preparation-process.json]`
+- Unity 参考图采集使用 `--capture-references`，预热后开启原生导出，完整成功及 metadata 恢复后通过 `collect` 归档。原生解码 PNG 垂直翻转后与参考图统一方向，缓存复查包含镜像 PNG。已测固定 64 图中 38 图源 RGB 完全相同、26 图不同，全部选参配置与原基线一致。`[verified: common/unity_reference.py；BenchmarkRunner.cs；experiment report/unity-reference64-lite-rdo-off/summary.json]`
 - 实验协议、数据、训练、校准、成本及验证报告统一保存在`experiment report/`，逐图清单、缓存、原始日志、预测和检查点保存在该目录的`.local/`并Git忽略。`[verified: 用户确认的GDC复现计划及报告目录要求]`
 - Python环境和依赖统一使用uv，提交`pyproject.toml`、`uv.lock`与`.python-version`；安装使用`uv sync --frozen`，实验和检查使用`uv run`。`[verified: 用户要求“仓库里使用uv进行python依赖管理”；pyproject.toml]`
 - 实施前检查已有文件、工具和入口，采用完成任务所需的最小修改，保留用户已有工作。Git状态在实际操作前重新查询。`[opinion]`
@@ -63,6 +66,8 @@
 
 ## Unity训练数据采集与源码定位
 
+- 面向 Unity 生产选参的训练与评估使用导入处理完成后、进入 ASTC 搜索前的第一个 image／mip0 参考图。模型从该图生成 RGB 224×224 输入，质量测量使用原尺寸的导入后参考像素。参考图与同一次导入和搜索产生的块大小标签配对。缺图时补采或标记缺失。原图用于来源核验、对照及明确标注的历史／文献复现。 `[verified: 用户本次确认；README“Unity导入结果与训练数据准备”；LITE 训练协议 L21]`
+- LITE／RDO 关闭的 64 张实测配对中，19 张尺寸变化（例如 4096×4096 → 128×128、240×390 → 256×512），7 张同尺寸但 RGB 变化，38 张尺寸和 RGB 相同。7 张中有 5 张只在两侧均完全透明的像素改变 RGB，另 2 张是原因待核实的 JPEG。当前模型只读取 RGB，透明区域的差异也会进入模型。按这批样本解释差异，Alpha 等价性和全量比例分别核实。详见[README 实测差异](README.md#导入前后的实测差异)。 `[verified: 64 张配对图尺寸和 RGBA 逐像素复查；LITE 训练协议 L21]`
 - 训练数据导出任务先读[README源码导航](README.md#unity训练数据导出与源码导航)，再核对本机引擎文件哈希、函数和行号。README保存完整位置表、调用链、字段与采集条件。`[verified: 用户要求“全部整理到readme和agent里面”；README对应小节]` `[opinion]`
 - 输入取自`ImageOperations.cpp`的`CompressTextureWithMultipleImages`取得的第一个image／mip0，经`PrepareOriginalImageData`转换／绑定为RGBA32。参考图采集从`SetupTestEnvironment → ExportImageToPNG`读取，源图与参考像素的等价性按样本实测。`[verified: ImageOperations.cpp L2947–2964；ASTCCompressor.cpp L2675–2694、L1999–2010]` `[opinion]`
 - 主链为`FindOptimalASTCFormat → FindOptimalParameters → TestAllParameterCombinations → SelectBestParameter → SaveBestParametersToCache → SaveCacheEntryToFile`，分别定位到`ASTCCompressor.cpp`的L3738、L3435、L2958、L3364、L1935、L1836。`[verified: ASTCCompressor.cpp L3767、L3499–3522、L1975]`
@@ -188,6 +193,8 @@ if (useSizeFirstOnLargeTexture && !selectedBySizeFirst && lockedBlockSizeValue >
 - 遇到连续3–5次无收敛的排查，汇总已观察的输出与剩余未知项，再调整方法。`[verified: 用户提供的全局规则“Bound investigation”]`
 
 ## 修改后验证与交付
+
+- GDC压缩评估使用`--resume`核验同一binding和逐图原始产物后续跑。已有progress中的receipt SHA必须匹配，缺失进度文件时单独核验源图、候选payload、解码图、质量与计时。技术失败及未知历史耗时保留在报告中。JSON写入采用唯一临时文件、fsync和Windows替换重试。`[verified: reproductions/gdc2023/recovery.py、evaluation.py、costs.py；src/adaptive_astc/utils/artifacts.py]`
 
 - Markdown修改后检查本地链接、内部锚点、书目编号及新增内容的来源定位。外部URL格式检查与网络可访问性检查分别报告。`[opinion]`
 - 修改原始资料或处理流程时，按影响范围复查哈希、字幕覆盖、截图时间点和元数据一致性。修改代码时先运行对应的小规模入口与相关检查。`[opinion]`

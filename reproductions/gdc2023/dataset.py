@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import os
 import shutil
 import time
 import uuid
@@ -50,6 +51,36 @@ class GDCMeasuredDataset:
     def __init__(self, root: Path, project: Path, source_manifest: Path, output: Path) -> None:
         self.root, self.project = root.resolve(), project.resolve()
         self.source_manifest, self.output = source_manifest.resolve(), output.resolve()
+
+    def copy_classifier_cache(self, source: Path, destination: Path, expected: str) -> None:
+        if not destination.resolve().is_relative_to(self.output):
+            raise ValueError("Classifier cache destination escaped the run directory")
+        if ArtifactStore.sha256_file(source) != expected:
+            raise ValueError("Frozen RGB224 classifier input cache changed")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        if destination.exists():
+            observed = ArtifactStore.sha256_file(destination)
+            if observed == expected:
+                return
+            archive = self.output / "attempts" / f"cache-corrupt-{uuid.uuid4().hex}.npy"
+            archive.parent.mkdir(exist_ok=True)
+            destination.replace(archive)
+            ArtifactStore.write_json(
+                archive.with_suffix(".json"),
+                {
+                    "cache": str(destination.relative_to(self.output)),
+                    "expected_sha256": expected,
+                    "observed_sha256": observed,
+                },
+            )
+        temporary = destination.with_name(f".{destination.name}.{uuid.uuid4().hex}.copying")
+        shutil.copyfile(source, temporary)
+        with temporary.open("r+b") as stream:
+            stream.flush()
+            os.fsync(stream.fileno())
+        if ArtifactStore.sha256_file(temporary) != expected:
+            raise ValueError("Copied GDC classifier cache differs from frozen input")
+        temporary.replace(destination)
 
     @staticmethod
     def validate_receipt(
@@ -346,13 +377,7 @@ class GDCMeasuredDataset:
                 self.source_manifest.parent
             ) or not cache.is_relative_to(self.output):
                 raise ValueError("Classifier cache path escaped its dataset root")
-            if ArtifactStore.sha256_file(source_cache) != row["cache_sha256"]:
-                raise ValueError("Frozen RGB224 classifier input cache changed")
-            cache.parent.mkdir(parents=True, exist_ok=True)
-            if not cache.exists():
-                shutil.copy2(source_cache, cache)
-            if ArtifactStore.sha256_file(cache) != row["cache_sha256"]:
-                raise ValueError("Copied GDC classifier cache differs from frozen input")
+            self.copy_classifier_cache(source_cache, cache, row["cache_sha256"])
             selected = measured["selected"]
             for key in [
                 "psnr",

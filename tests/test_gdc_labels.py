@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import copy
+import shutil
+import stat
 import subprocess
 import sys
 from pathlib import Path
@@ -14,6 +16,47 @@ from PIL import Image
 from adaptive_astc.config import CLASSES
 from adaptive_astc.utils.artifacts import ArtifactStore
 from reproductions.gdc2023.dataset import GDCLabelSelection, GDCMeasuredDataset
+
+
+def test_interrupted_classifier_copy_is_archived_and_retried_atomically(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    source = tmp_path / "source.npy"
+    source.write_bytes(b"frozen original cache")
+    run = tmp_path / "run"
+    cache = run / "cache/a.npy"
+    cache.parent.mkdir(parents=True)
+    cache.write_bytes(b"interrupted copy")
+    dataset = GDCMeasuredDataset(tmp_path, tmp_path, tmp_path / "unused.json", run)
+    expected = ArtifactStore.sha256_file(source)
+
+    def partial_copy(src: Path, dst: Path) -> None:
+        dst.write_bytes(b"partial")
+        raise OSError("injected interrupted copy")
+
+    with monkeypatch.context() as context:
+        context.setattr(shutil, "copyfile", partial_copy)
+        with pytest.raises(OSError, match="interrupted copy"):
+            dataset.copy_classifier_cache(source, cache, expected)
+    assert not cache.exists()
+    assert next((run / "attempts").glob("cache-corrupt-*.npy")).read_bytes() == b"interrupted copy"
+    dataset.copy_classifier_cache(source, cache, expected)
+    assert cache.read_bytes() == source.read_bytes() == b"frozen original cache"
+
+
+def test_read_only_frozen_cache_can_be_copied(tmp_path: Path) -> None:
+    source = tmp_path / "read-only.npy"
+    source.write_bytes(b"frozen cache")
+    source.chmod(stat.S_IREAD)
+    run = tmp_path / "run"
+    dataset = GDCMeasuredDataset(tmp_path, tmp_path, tmp_path / "unused.json", run)
+    try:
+        dataset.copy_classifier_cache(
+            source, run / "cache/a.npy", ArtifactStore.sha256_file(source)
+        )
+        assert (run / "cache/a.npy").read_bytes() == b"frozen cache"
+    finally:
+        source.chmod(stat.S_IREAD | stat.S_IWRITE)
 
 
 def candidate(size: int, payload: int, psnr: float | None) -> dict[str, Any]:

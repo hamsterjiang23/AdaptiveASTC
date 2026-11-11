@@ -11,14 +11,17 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from reproductions.common.comparison import ReproductionComparison  # noqa: E402
+from reproductions.common.reference_comparison import ReferenceComparison  # noqa: E402
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--gdc-report", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--unity-reference", action="store_true")
     args = parser.parse_args()
-    result = ReproductionComparison(ROOT).write(args.gdc_report, args.output)
+    comparison = ReferenceComparison(ROOT) if args.unity_reference else ReproductionComparison(ROOT)
+    result = comparison.write(args.gdc_report, args.output)
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

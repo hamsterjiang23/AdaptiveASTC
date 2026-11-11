@@ -30,9 +30,21 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### Unity导入结果与训练数据准备
 
-用户指出，很多图片的训练需要使用Unity导入后的结果，而原图与Unity实际导入后的图存在差异。获取导入后的训练数据、建立源图与导入结果的对应关系，是当前认为较麻烦的工程问题。`[verified: 用户需求说明（2026-11-09）“很多图片需要unity导入后的结果做训练”“原题和unity导入后的图是不太一样的”]`
+**面向 Unity 生产选参的训练与评估必须使用 Unity 导入处理完成后、进入 ASTC 搜索前的参考像素。** 继续使用 LITE 资源时，从引擎的第一个 image／mip0 导出 RGBA32 参考图（调试产物 `original.png`），再从该图生成模型输入。模型按现有协议转换为 RGB 并缩放至 224×224，压缩质量测量以原尺寸的导入后参考像素为准。磁盘原图仅用于源资产核验、原图对照及明确标注的历史／文献复现实验。缺少参考图时补采或标记缺失。 `[verified: 用户本次确认；ImageOperations.cpp L2947–2964；ASTCCompressor.cpp L1999–2010、L2675–2694；LITE 训练协议 L21]`
 
-数据方案需要明确模型读取哪个阶段的纹理、质量测量使用哪个阶段的参考图，以及如何复现对应的Unity导入配置。采集输入、导入结果、候选压缩结果与质量标签时保留可追溯对应关系，并分别统计Unity数据获取和训练数据构建耗时。具体导入差异及其影响通过项目资产样本核实。`[opinion: 由Unity导入差异引出的数据接口与验证要求]`
+以同一次 Unity 导入和搜索产生的参考图与选中块大小作为监督样本。清单记录资产路径、源文件 MD4、参考图 SHA-256、导入平台及有效配置、实际尺寸、颜色空间、用途、Alpha、mip、Editor／DLL 版本和选参协议。历史 LITE 模型仍按其原图输入协议解释，全量生产输入切换按实际采集和训练结果记录。 `[verified: 用户本次确认；源码导航“导出、标签与缓存产物”；LITE 训练协议 L5–7、L21]`
+
+#### 导入前后的实测差异
+
+在 LITE／RDO 关闭的 64 张配对样本中，逐张比较磁盘原图与 Unity 压缩前参考图的尺寸，并在同尺寸时逐像素比较 RGB。下表为该批样本结果，全量差异比例尚待测量。 `[verified: experiment report/unity-reference64-lite-rdo-off/summary.json 的 images、source_rgb_equal 和 rows；64 张配对图逐像素复查]`
+
+| 观察结果 | 数量 | 实测例子 |
+| --- | ---: | --- |
+| 尺寸变化 | 19 | `Special_FHD_zgs_0026.png` 从 4096×4096 缩到 128×128，该资产的 Android 导入上限为 128。另有 `Hero45214.png` 从 240×390 变为 256×512。 `[verified: 配对图尺寸及前者的 Android .meta]` |
+| 尺寸相同，RGB 变化 | 7 | 5 张图的 RGB 变化仅出现在两侧均完全透明的像素，其中 `Special_ZC_0106.png` 有 1,773 个此类像素。另有 2 张同尺寸 JPEG 的 RGB 发生变化，原因尚未单独核实。 `[verified: 7 张同尺寸差异样本的 RGBA 逐像素复查]` |
+| 尺寸和 RGB 相同 | 38 | 此项按 RGB 统计，Alpha 等价性单独核对。 `[verified: 64 张配对图逐像素复查]` |
+
+导入时缩小会改变模型输入可用的细节。例如原图直接缩到 224×224，与先经 Unity 缩到 128×128、再放大到 224×224，可能保留不同的边缘细节。完全透明区的 RGB 差异在按 Alpha 显示时不可见，但当前模型只读取 RGB，因此这些差异会进入模型输入。 `[verified: 64 张配对图可视化；LITE 训练协议 L21]` `[opinion]`
 
 现有参数快照与图片位置已完成[实际数据调查](notes/实际数据位置与训练可用性调查.md)。附件183,051条记录在`F:\MLBB_Test\haijiangli1_HAMSTERMLBB`中匹配177,184张图片及对应meta，64张分层样本MD4一致。附件采用LITE基础PSNR 30配置，主包代码常量为35；本项目的研究质量目标与历史策略标签需分别记录。`[verified: notes/实际数据调查统计.json的baseline、path_coverage/image_project、md4_sample；报告“LITE与主包质量配置”]` `[opinion]`
 
@@ -59,8 +71,9 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 | Nah 2023 作者代码 | 固定版本的 64 张项目源图适配完成压缩、解码与全图质量复查。40 dB 下 RGBA 达标 46/64，RGB 达标 26/64，搜索及最终编码 73.248 秒。[实测报告](<experiment report/nah2023_adaptive_astcenc/source-rgb64-target40/README.md>)保留随机抽样实现与同方法固定 8×8 对照。`[verified: 对应 summary.json quality_audit/search_and_final_encode_seconds]` |
 | Nah 2022 论文重实现 | astcenc 3.3 的 64 张项目源图适配完成压缩、解码。采用 Game 目标 37.3873 dB，RGBA 达标 64/64，RGB 达标 62/64，搜索及最终编码 546.329 秒。[实测报告](<experiment report/nah2022_psnr_search/source-rgb64-game/README.md>)记录初始 6×6 的补全来源及测量范围。`[verified: 对应 receipt.json/summary.json]` |
 | TexNN 复现 | 六网络已扩展到 1,024 张源图的块标签训练，在独立 validation 8 张裁剪图上完成 48 次编码对照和 96 次重新解码核验。top3×10 的平均 PSNR 损失为 1.07／1.63／2.36 dB，完整耗时比为 0.678／0.702／0.796，分别对应 4×4／6×6／8×8，见[扩展实测](<experiment report/texnn/source-rgb1024-patch64-v2/README.md>)。保留[64 图先期结果](<experiment report/texnn/source-rgb64-patch64-v2/README.md>)；原文数据规模与性能仍未复现。`[verified: 扩展 validation8-patch128.json groups、training、audit、limits]` |
-| 新 GDC 压缩闭环 | 64 图 smoke 数据已完成标签生成、32 图训练 10 轮及 16 张测试图的真实预测压缩／解码。严格 35 dB 达标 5/16，质量违规保留，见[闭环报告](<experiment report/gdc2023/source-rgb35-medium-smoke/test16/README.md>)。正式 14,000 张标签生成正在执行，后续为 10,000 图训练 30 轮及 2,000 图评估。`[verified: 闭环 pretrained-test.json quality、costs；正式数据运行日志；已接受计划]` |
-| 对照口径 | GDC smoke 报告已补固定 6／8／10／12 的质量与 payload。共享 Unity64 的冻结输入、实测 GDC 诊断与比较入口见[GDC 复现说明](reproductions/gdc2023/README.md#shared-unity64-diagnostic)。两份 Nah 的共同 RGB 输入及统一 PSNR 复算预检通过；GDC 共同对照等待正式模型。该 64 图属于训练集诊断，Unity 导入像素与完整 mip 范围单独记录。`[verified: smoke pretrained-test.json offline_fixed_footprints；.local/reproduction-shared64-preflight.json；common/comparison.py]` |
+| 新 GDC 压缩闭环 | 正式 14,000 张候选标签与清单组装通过，10,000 图 CUDA 训练完成 30 轮，耗时 689.862 秒，最佳验证权重取第 2 轮。固定 2,000 图测试压缩正在执行。保留[先期 smoke 报告](<experiment report/gdc2023/source-rgb35-medium-smoke/test16/README.md>)。`[verified: 正式 manifest.json；pretrained/training_complete.json、wall-clock.json；evaluate-test2000 job receipt]` |
+| 对照口径 | GDC smoke 报告已补固定 6／8／10／12 的质量与 payload。共享 Unity64 的冻结输入与比较入口见[GDC 复现说明](reproductions/gdc2023/README.md#shared-unity64-diagnostic)。正式模型已完成训练，源图共同对照尚待执行。Unity 参考像素路径已完成两图编码／报告试跑，64 图属于训练集诊断。`[verified: smoke pretrained-test.json offline_fixed_footprints；正式 training_complete.json；unity-reference2/pretrained-unity-reference.json]` |
+| Unity 参考像素 | 固定 64 图已完成原生参考图与选中 payload 导出。38 张与源 RGB 完全相同，26 张存在差异，64 张选中参数均与原基线一致。源图与导入后像素的共同对照使用[参考像素采集报告](<experiment report/unity-reference64-lite-rdo-off/README.md>)。`[verified: 对应 summary.json source_rgb_equal、baseline_choice_differences、rows]` |
 | 资料归档 | 视频、中英文网站字幕、19张每分钟截图、10张关键页补充截图已保存。`[verified: materials/gdc2023-astc-parameter-selection/；verification.json]` |
 | 全文整理 | 中英文字幕各328条，校订稿按40段覆盖全部条目，逐条原文另存对照稿。音轨独立ASR转写状态为未运行。`[verified: source/material-metadata.json；transcripts/完整字幕对照.md]` |
 | 方法核实 | 正文展示有标签数据集、块大小分类和ResNet。官网简介另提到强化学习，具体对应关系待作者材料确认。`[verified: 视频10:00、11:28、12:28；官方简介Overview]` |
@@ -69,7 +82,7 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ## Unity训练数据导出与源码导航
 
-当前引擎具备“压缩前参考图采集、候选试压缩与质量测量、参数选择、最终参数写表和调试产物导出”的采集基础。训练样本可按“参考图＋blockSize标签＋编码及导入协议”组织，批量采集、稳定配对和训练集封装按待实施工作记录。`[verified: ASTCCompressor.cpp L1982–2021、L2958–3422、L3435–3539]` `[opinion]`
+当前引擎具备“压缩前参考图采集、候选试压缩与质量测量、参数选择、最终参数写表和调试产物导出”的采集基础。训练样本可按“参考图＋blockSize标签＋编码及导入协议”组织，64 张参考图已完成导出与配对验证，全量采集与训练集封装按实际运行记录。`[verified: ASTCCompressor.cpp L1982–2021、L2958–3422、L3435–3539]` `[opinion]`
 
 ### 压缩参数与图像术语
 

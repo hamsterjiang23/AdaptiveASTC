@@ -1,0 +1,75 @@
+{
+  "status": "passed_after_cache_recovery",
+  "sizes": {
+    "train": 10000,
+    "validation": 1000,
+    "calibration": 1000,
+    "test": 2000
+  },
+  "fingerprint": "0265a4d5759e1a4c8822d0ba8153af12ba0e151e531951f6f8daea9a42b4bc6b",
+  "candidate_encodings": 56000,
+  "classes": [
+    "6x6",
+    "8x8",
+    "10x10",
+    "12x12"
+  ],
+  "class_counts": {
+    "train": {
+      "6x6": 2593,
+      "12x12": 4276,
+      "8x8": 1816,
+      "10x10": 1315
+    },
+    "validation": {
+      "12x12": 462,
+      "8x8": 192,
+      "10x10": 128,
+      "6x6": 218
+    },
+    "calibration": {
+      "8x8": 191,
+      "12x12": 478,
+      "6x6": 198,
+      "10x10": 133
+    },
+    "test": {
+      "8x8": 294,
+      "10x10": 203,
+      "12x12": 1008,
+      "6x6": 495
+    }
+  },
+  "preparation": {
+    "status": "passed",
+    "scope": "complete admission and cache assembly retry after the original process was interrupted",
+    "start_utc": "2026-11-11T07:52:39.101806+00:00",
+    "end_utc": "2026-11-11T08:20:25.243019+00:00",
+    "wall_seconds": 1666.141213,
+    "process_exit_code": 0,
+    "assembly_command_monotonic_seconds": 1666.1366229,
+    "protocol_sha256": "23a1eb40c151d0062c0794d9c0eb66c88e32de1b27dc8779caf42f83f44789cf",
+    "collection_sha256": "7ed1f29c71a1b8dbdc7a9005c6aeb5cf2eae1f82e6dcf90fa0ddfb21eccbbb85",
+    "manifest_sha256": "89139795be8374df3d363dec3b046effb3709c9deba44983785c106bf828de45",
+    "job_receipt_sha256": "eab0753289636883a92817215140c6bc8049a63d693b64651df8988f61b2de4b",
+    "known_components": {
+      "candidate_collection_seconds": 5263.5312225,
+      "successful_assembly_retry_seconds": 1666.1366229,
+      "failed_assembly_retry_seconds": 325.6041523000001,
+      "sum_seconds": 7255.2719977
+    },
+    "prior_interrupted_process_sha256": "90aba844602d354b2d82324bc728b30e6ad76913eba45a4b86dd807e2389bab5",
+    "unmeasured_original_startup_and_partial_assembly_seconds": null,
+    "all_attempts_wall_seconds": null,
+    "timing_context": "Candidate collection and assembly overlapped code review, QA and native Unity reference capture"
+  },
+  "recovered_cache_copies": 15,
+  "raw_receipts_sha256": {
+    "protocol.json": "23a1eb40c151d0062c0794d9c0eb66c88e32de1b27dc8779caf42f83f44789cf",
+    "collection.json": "7ed1f29c71a1b8dbdc7a9005c6aeb5cf2eae1f82e6dcf90fa0ddfb21eccbbb85",
+    "manifest.json": "89139795be8374df3d363dec3b046effb3709c9deba44983785c106bf828de45",
+    "classifier-cache-recovery.json": "659f2b8a9a0630cf0a7b7af0758829600d27ecf61f93b6e85433ac53e183506b",
+    "jobs/assemble-retry1/receipt.json": "61c9668e54760f360a838cb413a0cf1a9698805595cd5f72713f82177593df89",
+    "jobs/assemble-retry2/receipt.json": "eab0753289636883a92817215140c6bc8049a63d693b64651df8988f61b2de4b"
+  }
+}

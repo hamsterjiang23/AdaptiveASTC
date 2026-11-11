@@ -27,6 +27,7 @@ class UnitySearchBaseline:
         manifest: Path,
         *,
         run_id: str = "unity-search-baseline-lite-rdo-off",
+        capture_references: bool = False,
     ) -> None:
         if not run_id or Path(run_id).name != run_id or run_id in {".", ".."}:
             raise ValueError("run_id must be one directory name")
@@ -35,6 +36,7 @@ class UnitySearchBaseline:
         self.editor = editor.resolve()
         self.manifest = manifest.resolve()
         self.run_dir = self.root / "experiment report/.local" / run_id
+        self.capture_references = capture_references
 
     def prepare(self) -> dict[str, object]:
         document = json.loads(self.manifest.read_text(encoding="utf-8"))
@@ -90,6 +92,8 @@ class UnitySearchBaseline:
                 for name in ["astcenc-avx2-shared.dll", "astcenc-avx2-static.dll"]
             },
         }
+        if self.capture_references:
+            identity["reference_capture"] = "native disk debug exports enabled after warmup"
         self._write_frozen(self.run_dir / "identity.json", identity)
         for phase in ["probe", "smoke1", "smoke2", "smoke3", "full"]:
             rows = records if phase == "full" else selected[:2] if phase == "probe" else selected
@@ -101,6 +105,8 @@ class UnitySearchBaseline:
                 "cacheDirectory": f"ASTC_Cache/benchmark/{self.run_dir.name}/{phase}",
                 "runId": phase,
             }
+            if self.capture_references:
+                config["captureReferences"] = True
             self._write_frozen(self.run_dir / f"{phase}-config.json", config)
         lock = {
             path.name: hashlib.sha256(path.read_bytes()).hexdigest()

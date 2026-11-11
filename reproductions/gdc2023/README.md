@@ -18,7 +18,7 @@ uv run --frozen python script/reproduce.py dataset --method gdc2023 --run-id sou
 uv run --frozen python script/reproduce.py assemble --method gdc2023 --run-id source-rgb35-medium-full
 ```
 
-The full manifest keeps 10,000 training, 1,000 validation, 1,000 calibration and 2,000 test images from the source split. Probe and smoke identities use smaller counts and are marked as smoke data. The measured smoke chain generated 64-image labels, trained on 32 images for ten epochs, and encoded 16 test images with predicted footprints. It passed the real encoding/decode/hash checks; strict quality passed for 5/16. The [smoke report](<../../experiment report/gdc2023/source-rgb35-medium-smoke/test16/README.md>) preserves that violation rate. Formal 14k label generation is running, and formal training/evaluation remain pending. `[verified: smoke pretrained-test.json quality, costs and protocol; current full label-run output]`
+The full manifest keeps 10,000 training, 1,000 validation, 1,000 calibration and 2,000 test images from the source split. Formal label generation and full admission passed. CUDA training completed30epochs in689.862s with4709 applied updates and1AMP skip, using the best validation checkpoint at epoch2. Independent test2000 final encoding is running. The [smoke report](<../../experiment report/gdc2023/source-rgb35-medium-smoke/test16/README.md>) preserves the earlier32-train/16-test chain and5/16 strict quality passes. `[verified: formal manifest.json; training_complete.json; history.json; wall-clock.json; evaluate job receipt; smoke pretrained-test.json]`
 
 ## Training and measured final encoding
 
@@ -46,6 +46,32 @@ uv run --frozen python script/reproduce.py report --method gdc2023 --run-id sour
 uv run --frozen python script/compare_reproductions.py --gdc-report "experiment report/gdc2023/source-rgb35-medium-full/shared64/pretrained-train.json" --output "experiment report/reproduction-shared64"
 ```
 
-The comparison verifies identical source identities and full-resolution RGB PNG hashes across Nah/GDC and recomputes their RGB PSNR. Nah selected ASTCs are freshly decoded by each pinned binary. Unity retains its imported pixels, LITE quality branches and full mip/face compression scope; imported-reference equivalence is not established. Native targets, candidate sets and presets remain explicit, so the table is not an equal-quality speed ranking. These commands remain pending until formal label collection and training complete. `[verified: common/comparison.py nah/write; active formal collection; accepted execution order]`
+The source64 comparison verifies source identities and identical RGB PNG hashes across Nah/GDC and recomputes RGB PSNR. Nah selected ASTCs are freshly decoded by each pinned binary. Native capture measured38/64 source-equal RGB references and26 changed references. Method targets, presets, import processing and mip/face scopes are retained in the report. Source64 evaluation remains pending while test2000 runs. `[verified: common/comparison.py nah/write; reference capture summary.json; current evaluate-test2000 job receipt]`
+
+## Captured Unity reference inputs
+
+Native export measured38/64 source-equal RGB inputs and26 changed inputs. [The capture report](<../../experiment report/unity-reference64-lite-rdo-off/README.md>) records dimensions, hashes, selected ASTCs and vertical row-origin normalization. Nah and GDC can consume these exported RGB pixels for common-input quality measurement. Unity retains its import Alpha and texture-usage policy. `[verified: capture summary.json; common/unity_reference.py; reference evaluator]`
+
+```powershell
+uv run --frozen python script/reproduce.py prepare --run-id unity-reference64-lite-rdo-off --capture-references
+uv run --frozen python script/reproduce.py run --phase probe --run-id unity-reference64-lite-rdo-off --capture-references
+uv run --frozen python script/reproduce.py run --phase smoke1 --run-id unity-reference64-lite-rdo-off --capture-references
+uv run --frozen python script/reproduce.py collect --phase smoke1 --run-id unity-reference64-lite-rdo-off --capture-references
+uv run --frozen python script/reproduce.py evaluate --method gdc2023 --run-id source-rgb35-medium-full --evaluation-id unity-reference64 --split train --reference-capture "experiment report/.local/unity-reference64-lite-rdo-off-retry1/references/normalized-smoke1" --images 64
+uv run --frozen python script/reproduce.py report --method gdc2023 --run-id source-rgb35-medium-full --evaluation-id unity-reference64
+```
+
+The normal `report` action recognizes the reference schema and verifies model/capture identities, per-image receipts, input bytes, native output hashes and recomputed RGB quality. The two-image real evaluation/report smoke passed. Model training requires CUDA in both GDC and TexNN entry points. `[verified: reference_reporting.py; script/reproduce.py report dispatch; unity-reference2 public report; training/trainer.py and texnn/training.py]`
+
+## Interrupted evaluation recovery
+
+The formal test evaluation encountered a Windows progress-file replacement failure after218 complete image receipts. A new process identity continues the same evaluation with `--resume`, the same sealed model and unchanged data binding. Completed images pass source/candidate/artifact, ASTC header, RGB quality and timing checks before reuse. Earlier valid progress entries additionally bind receipt hashes. Partial image attempts are archived. `[verified: evaluate-test2000 job receipt and stderr.log; evaluation.py; recovery.py]`
+
+```powershell
+uv run --frozen python script/reproduce.py evaluate --method gdc2023 --run-id source-rgb35-medium-full --evaluation-id test2000 --split test --resume
+uv run --frozen python script/compare_reproductions.py --unity-reference --gdc-report "experiment report/gdc2023/source-rgb35-medium-full/unity-reference64/pretrained-unity-reference.json" --output "experiment report/reproduction-unity-reference64"
+```
+
+Public costs include each matching broker job, its command/configuration and log hashes, failed attempts and known wall time. A missing historical process duration leaves the cumulative duration unknown. Per-image pipeline totals retain each admitted measurement once. `[verified: costs.py EvaluationProcessCost; reporting.py costs; evaluation.py receipt fields]`
 
 Training distinguishes step attempts from actual optimizer calls through a post-step hook. Scheduler advancement and best-checkpoint selection require an applied update. The first two-image, one-epoch probe skipped its sole update under AMP and is retained as a diagnostic. The 32-image smoke applied ten optimizer updates without skips. This behavior is covered by CPU GradScaler overflow and normal-update tests. `[verified: training/trainer.py train_epoch/fit; source-rgb35-medium-smoke history.json; tests/test_amp_step_accounting.py]` [PyTorch 2.8 AMP example](https://docs.pytorch.org/docs/2.8/notes/amp_examples.html#typical-mixed-precision-training), [optimizer post-step hook](https://docs.pytorch.org/docs/2.8/generated/torch.optim.Optimizer.register_step_post_hook.html).

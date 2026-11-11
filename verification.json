@@ -232,5 +232,25 @@
   "research_experiments": "not_run",
   "markdown_files_checked": 7,
   "existing_local_markdown_targets": 80,
-  "broken_local_markdown_targets": 0
+  "broken_local_markdown_targets": 0,
+  "cuda_and_recovery_checkpoint_20261111": {
+    "status": "passed",
+    "checks": {
+      "ruff": "uv run --frozen ruff check src script tests reproductions: passed",
+      "basedpyright": "uv run --frozen basedpyright: 0 errors, 0 warnings",
+      "recovery_tests": "31 passed in 2.41s across jobs, Unity references, GDC labels/recovery and atomic JSON",
+      "comparison_evidence_test": "1 passed in 1.36s; source report retained on audit failure",
+      "reference_smoke": "actual two-image GDC encode/decode and report passed",
+      "links": {
+        "status": "passed",
+        "files": 8,
+        "local_file_links": 142,
+        "errors": [],
+        "scope": "local file existence including code :line targets; external URLs and anchors excluded"
+      },
+      "review": "C8-C11 resolved; no remaining findings"
+    },
+    "formal_test2000": "running with validated218-image reuse; full suite deferred until timed evaluation ends",
+    "scope": "checkpoint checks; prior full-suite records retain historical scope"
+  }
 }

@@ -127,6 +127,8 @@ class TexNNTrainer:
 
     def train(self) -> dict[str, Any]:
         attempt_started = time.perf_counter()
+        if self.device.type != "cuda":
+            raise RuntimeError("TexNN model training requires CUDA")
         manifest = TexNNBlockCorpus.validate(self.prepared)
         if self.device.type == "cuda" and not torch.cuda.is_available():
             raise RuntimeError("CUDA is unavailable for TexNN training")

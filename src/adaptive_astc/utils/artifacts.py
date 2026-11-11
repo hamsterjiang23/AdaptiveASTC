@@ -2,6 +2,9 @@
 
 import hashlib
 import json
+import os
+import time
+import uuid
 from pathlib import Path
 
 from adaptive_astc.config import JsonDict
@@ -12,18 +15,25 @@ class ArtifactStore:
 
     @staticmethod
     def read_json(path: Path) -> JsonDict:
-        with path.open(encoding="utf-8-sig") as stream:
-            return json.load(stream)
+        content = path.read_text(encoding="utf-8-sig")
+        return json.loads(content)
 
     @staticmethod
     def write_json(path: Path, value: object) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
-        temporary = path.with_suffix(path.suffix + ".tmp")
-        temporary.write_text(
-            json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
-            encoding="utf-8",
-        )
-        temporary.replace(path)
+        temporary = path.with_name(f".{path.name}.{uuid.uuid4().hex}.tmp")
+        with temporary.open("w", encoding="utf-8") as stream:
+            stream.write(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        for attempt in range(12):
+            try:
+                temporary.replace(path)
+                return
+            except PermissionError:
+                if attempt == 11:
+                    raise
+                time.sleep(min(0.02 * (attempt + 1), 0.2))
 
     @staticmethod
     def sha256_file(path: Path) -> str:

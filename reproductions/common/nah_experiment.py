@@ -74,9 +74,10 @@ class NahExperiment:
             raise ValueError("Encoder binary differs from the build receipt")
         encoder = ASTCEncoder(executable, self.threads)
         config = json.loads((baseline_dir / "smoke1-config.json").read_text(encoding="utf-8"))
+        source_document = json.loads(self.manifest.read_text(encoding="utf-8"))
         known = {
             row["path"].casefold(): row
-            for row in json.loads(self.manifest.read_text(encoding="utf-8"))["splits"]["train"]
+            for row in source_document["splits"]["train"]
         }
         paths = config["assets"][:2] if self.input_set == "probe" else config["assets"]
         rows = [known[row["path"].casefold()] for row in paths]
@@ -92,7 +93,9 @@ class NahExperiment:
             ).hexdigest(),
             "manifest_sha256": hashlib.sha256(self.manifest.read_bytes()).hexdigest(),
             "inputs": [{"path": row["path"], "fileHash": row["fileHash"]} for row in rows],
-            "reference_pixels": "source image converted to RGB8, original resolution",
+            "reference_pixels": "Unity imported mip0 reference converted to RGB8"
+            if "reference_capture" in source_document
+            else "source image converted to RGB8, original resolution",
             "color_profile": "linear LDR byte-domain RGB",
             "mipmaps": False,
             "alpha": "discarded by explicit RGB adaptation",

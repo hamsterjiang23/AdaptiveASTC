@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "expected": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "target_met": 0,
+  "reference_target_met": 0,
+  "wall_seconds": 7.103147199999967,
+  "selected_payload_bytes": 128,
+  "fixed8_payload_bytes": 208,
+  "preprocess_seconds": 0.014543000000230677,
+  "search_and_final_encode_seconds": 3.886667600000692,
+  "fixed8_encode_seconds": 0.05255139999962921,
+  "protocol": {
+    "method": "nah2023_adaptive_astcenc",
+    "implementation_kind": "author_code",
+    "commit": "4a3a3a61b2f961efe63e00c913876576315872fb",
+    "executable_sha256": "eeff85f4871e6e51d5d1cfa386aa54aba66df9e2ad0d7df9ceaf4fa3e041f92c",
+    "baseline_receipt_sha256": "d6b9859334407535ce6a259067d2687eae6dcb2b2b7897533f4b451d0dd2f99b",
+    "manifest_sha256": "e367ca8f531787335a1276e0c010c76233b98fab1164ae40debef14c106caa4e",
+    "inputs": [
+      {
+        "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+        "fileHash": "152e817af0ff637c777cc54a863631a0"
+      },
+      {
+        "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+        "fileHash": "fdf59ccb244239510c8546a19a82cc8f"
+      }
+    ],
+    "reference_pixels": "Unity imported mip0 reference converted to RGB8",
+    "color_profile": "linear LDR byte-domain RGB",
+    "mipmaps": false,
+    "alpha": "discarded by explicit RGB adaptation",
+    "target_psnr": 40.0,
+    "target_provenance": "40 dB from the Nah 2023 author example",
+    "target_metric": "upstream sampled RGBA PSNR estimate",
+    "project_quality_metric": "full-image RGB byte-domain PSNR",
+    "initial_footprint": [
+      6,
+      6
+    ],
+    "initial_provenance": "reconstructed 6x6 default from the Nah 2023 author example",
+    "category": "game",
+    "threads": 1,
+    "final_preset": "medium",
+    "author_2023_randomness": "unmodified upstream srand(time(NULL)) sampling",
+    "comparison_scope": "source-RGB project adaptation, separate from Unity import timing"
+  }
+}

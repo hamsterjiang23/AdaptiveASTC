@@ -11,7 +11,7 @@ from adaptive_astc.config import CLASSES
 from adaptive_astc.utils.artifacts import ArtifactStore
 from reproductions.common.cohort import EvaluationCohort
 from reproductions.common.encoder import ASTCEncoder, ASTCFile
-from reproductions.gdc2023.costs import PreparationCost
+from reproductions.gdc2023.costs import EvaluationProcessCost, PreparationCost
 from reproductions.gdc2023.dataset import GDCMeasuredDataset
 
 
@@ -284,6 +284,11 @@ class GDCReport:
                 "training": costs,
                 "evaluation_setup_seconds": batch["setup_seconds"],
                 "evaluation_wall_seconds": batch["wall_seconds"],
+                "evaluation_process_attempts": EvaluationProcessCost.load(
+                    self.run, self.evaluation
+                ),
+                "evaluation_reused_images": batch.get("reused_images", 0),
+                "evaluation_newly_encoded_images": batch.get("newly_encoded_images", len(rows)),
                 "source_rgb_seconds": sum(row["timings"]["source_rgb_seconds"] for row in rows),
                 "classifier_preprocessing_seconds": sum(
                     row["timings"]["classifier_preprocessing_seconds"] for row in rows

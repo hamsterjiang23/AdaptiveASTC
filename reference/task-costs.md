@@ -12,6 +12,8 @@
 | TexNN expanded 1,024-source adaptation | Moderate | Four-worker collection 836.39 s; six CUDA training loops total 1,865.59 s; independent 48-pair validation 135.06 s. `[verified: source-rgb1024-patch64-v2 data.json and validation8-patch128.json]` |
 | GDC smoke compression loop | Light | 64-image label generation 49.90 s with two workers; 32-image ten-epoch training 2.59 s; 16-image model pipeline 8.54 s and complete evaluation wall 22.33 s. `[verified: source-rgb35-medium-smoke/test16/pretrained-test.json costs]` |
 | GDC formal 14k candidate labels | Heavy | Running with four workers over 6.793 billion source pixels. Preflight available RAM 41.8 GiB, free disk 983 GiB and CPU load 7.5%; largest source 8,870×5,014. Whole-image float64 RGB quality checks determine conservative memory headroom. `[verified: full manifest/resource preflight and running command]` |
+| GDC full data admission and training | Moderate after collection | Candidate collection5,263.53s, successful assembly retry1,666.14s, failed retry325.60s. Original partial assembly duration is unknown. CUDA training10000x30 took689.862s with peak allocation910.25MiB. `[verified: full preparation-process.json; pretrained/wall-clock.json and history.json]` |
+| Unity64 reference export | Moderate | Complete retry command695.63s including Editor startup, debug exports and metadata recovery.64 references passed, first interrupted attempt retained56 outputs. `[verified: reference64 summary.json capture_job and limits; interrupted artifact receipt]` |
 
 ## I/O dependencies
 

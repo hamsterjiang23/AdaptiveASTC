@@ -1,0 +1,195 @@
+{
+  "schema": "gdc_unity_reference_v1",
+  "status": "passed",
+  "scope": "Unity mip0 RGB training-cohort diagnostic",
+  "images": 2,
+  "binding": {
+    "capture_sha256": "ef4c3ddc977e2579081f04bd6aebb918272b3d074b81e3cc486a18e3c3f325ee",
+    "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-reference64-lite-rdo-off-retry1\\references\\normalized-smoke1",
+    "cohort": {
+      "name": "unity64",
+      "config_sha256": "f7a6ef9c475ae81f29ee1402752423102f6dd00f2d41472c6e0ccfa8df6ac799"
+    },
+    "data_fingerprint": "0265a4d5759e1a4c8822d0ba8153af12ba0e151e531951f6f8daea9a42b4bc6b",
+    "checkpoint_sha256": "748a9c013b4fbf301b7ecb7b5c0fa5ecec67ddb580e20671be57fc8825a9b222",
+    "training_files_sha256": {
+      "training_complete.json": "fadcdb6d83bc4f44734af82f53f2f6cad4639c29c8690d941af9cba1c4f45c65",
+      "config.json": "0c003452c031d80c22be5a857a2b1b8bb97af13093c835f3b567b4bd07725edc",
+      "history.json": "af2bd9a137e769e38a00f8961a44e64dd45061ef5fabb6636ebdcaf434885098",
+      "last.pt": "298051b88f31e6e08a528bfc6434510462ccc388f86e45fcb06053a59b8aa15a",
+      "wall-clock.json": "801d40a1050734c9d38ec0f52c27d262744bb3b3a2f35d22811d6c36274f7999"
+    },
+    "initialization": "pretrained",
+    "encoder_sha256": "9fc8bc5b971d3b4a4587518525e978ee20f79a65a452a83595b610e8595e1a2a"
+  },
+  "setup_seconds": 0.9965017999993506,
+  "wall_seconds": 2.5113367000003564,
+  "per_image": [
+    {
+      "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+      "source_md4": "c3336b803c8a71f37f5c127863261ac5",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -8.5234375,
+        -3.177734375,
+        1.650390625,
+        6.3359375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 35.17139449140312,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 41.157383152624504,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 64,
+      "fixed8_payload_bytes": 64,
+      "timings": {
+        "preprocessing_seconds": 0.02201859999968292,
+        "source_rgb_seconds": 0.0068676000000778,
+        "inference_seconds": 0.0063304999994215905,
+        "final_encode_seconds": 1.9315472999996928,
+        "model_pipeline_seconds": 1.966763999998875,
+        "fixed8_pipeline_seconds": 0.2590842999998131,
+        "verification_seconds": 0.055732499999976426
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "81e80a04f3ffa3f534c0389e32d73f31a7a1a2bcc3a8aa8c11db2faa229bb55d",
+        "fixed8.png": "986137565b1fb28c904b9dfa46534e7d715cf2f634e529e844a85779174306a3",
+        "fixed8.txt": "8293a3b75be350d5e7cccd929008482f8517ee05d47e9ef1662cefa37d059515",
+        "input.png": "69c0ba8194a2cdf1899634844539cf00d98ca947c4b4f7e3ded4c6d872f2b515",
+        "selected.astc": "99dc23bb647e86e7d953651498a8889cdf64da03409d03a54668dbeb1af55766",
+        "selected.png": "32f1efaabef57c427149112ffef44aec9abe614a01476f09997df876f56063de",
+        "selected.txt": "6d8913a981634189296f7d9a8e9aa579d57d3caa3dd20fc619c280456e26f855"
+      },
+      "receipt_sha256": "fe2187f473301f64baf8e2e58f92c8a4725dbb51c6ecc3bb997f9277e443ed0c",
+      "unity_rgb_psnr": 34.55417713488967,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 64
+    },
+    {
+      "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+      "source_md4": "e3b8f77c45bb1b9970089d8dfd2fa78d",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        -0.037353515625,
+        -0.148193359375,
+        -0.056671142578125,
+        -0.267578125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 55.24284821620941,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 256,
+      "fixed8_payload_bytes": 144,
+      "timings": {
+        "preprocessing_seconds": 0.0010695999999370542,
+        "source_rgb_seconds": 0.0011574000000109663,
+        "inference_seconds": 0.004078300000401214,
+        "final_encode_seconds": 0.02558210000006511,
+        "model_pipeline_seconds": 0.031887400000414345,
+        "fixed8_pipeline_seconds": 0.02373899999929563,
+        "verification_seconds": 0.04907509999975446
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "fa782a113844d7e3bdbf6bb140e1078cdcae76b7c13b369fcda0c930891714ab",
+        "fixed8.png": "6b073efb4a162faaedff58ef9847876538a8dd676af80a5783156a36c938eb1a",
+        "fixed8.txt": "76a4324c7253866744cf58043e7a4f9b297fd155c877529d8373d73822cb6661",
+        "input.png": "59b1c9d932c5a86d57469ffa4b6c796b84c98337fbf3dd1e59f7dbdc1cceef5f",
+        "selected.astc": "c16709653232454dd18a3e17d5865545523b7fbc982e444ad2913f7fff5336b5",
+        "selected.png": "4c8fca5c5ef5d5254b05f4a5d8802957f45c1e9937e3e8c396d017d6d8adc10c",
+        "selected.txt": "08bb8218805295cc6d709ee368f5ab143157207dea9b9189f1ef5803b74fca5f"
+      },
+      "receipt_sha256": "8e5451dee07ef193ca28c04c75f3ce1b17ed63b90be22653eab5c3a7d2300d12",
+      "unity_rgb_psnr": 33.318816634996985,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 144
+    }
+  ],
+  "profile": "Linear LDR RGB8, one encoding thread, no mip/RDO",
+  "encoder_preset": "medium",
+  "model_target_psnr": 35.0,
+  "evaluation_target_psnr": 35.0,
+  "quality": {
+    "target_psnr": 35.0,
+    "comparison": ">",
+    "model_target_met": 2,
+    "fixed8_target_met": 2,
+    "unity_target_met": 0
+  },
+  "payload": {
+    "model_bytes": 320,
+    "fixed8_bytes": 208,
+    "unity_bytes": 208
+  },
+  "costs": {
+    "source_rgb_seconds": 0.008025000000088767,
+    "preprocessing_seconds": 0.023088199999619974,
+    "inference_seconds": 0.010408799999822804,
+    "final_encode_seconds": 1.9571293999997579,
+    "model_pipeline_seconds": 1.9986513999992894,
+    "fixed8_pipeline_seconds": 0.2828232999991087,
+    "verification_seconds": 0.10480759999973088,
+    "setup_seconds": 0.9965017999993506,
+    "wall_seconds": 2.5113367000003564
+  },
+  "protocol": {
+    "implementation": "talk_reimplementation_project_four_square",
+    "manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+    "encoder_commit": "954af82d2832aa2707d936c5aa5522c76ecd4426",
+    "encoder_sha256": "9fc8bc5b971d3b4a4587518525e978ee20f79a65a452a83595b610e8595e1a2a",
+    "footprints": [
+      "6x6",
+      "8x8",
+      "10x10",
+      "12x12"
+    ],
+    "preset": "medium",
+    "threads_per_encoder": 1,
+    "decode_threads": "astcenc CLI default",
+    "target_psnr": 35.0,
+    "comparison": ">",
+    "metric": "full-image byte-domain RGB MSE PSNR",
+    "input": "source RGB8, original dimensions, Linear LDR, no mip, no RDO",
+    "sizes": {
+      "train": 10000,
+      "validation": 1000,
+      "calibration": 1000,
+      "test": 2000
+    },
+    "fallback": "highest measured RGB PSNR, then smallest payload",
+    "equal_payload": "largest footprint area",
+    "candidate_coverage": "all four candidates",
+    "missing_original_settings": [
+      "full footprint set",
+      "encoder version/preset",
+      "original corpus"
+    ]
+  },
+  "protocol_sha256": "23a1eb40c151d0062c0794d9c0eb66c88e32de1b27dc8779caf42f83f44789cf",
+  "evaluation_receipt_sha256": "2a089e9a600f260c5ab1e519a5f80656447d3c9e34f4de96a76fd46641fbb449"
+}

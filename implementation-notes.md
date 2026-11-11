@@ -1,5 +1,22 @@
 # Implementation notes
 
+## Formal GDC training and Unity pixel capture, 2026-11-11
+
+### Deviations
+
+- Formal 14k collection passed in5,263.53s. OS reboot at15:11 interrupted assembly and the first64 reference export. After metadata recovery with0 conflicts, 56 exports and the truncated native log were retained. The isolated64 retry passed with38 source-equal RGB inputs and26 changed inputs, and all64 choices matched the baseline. `[verified: collection.json; OS LastBootUpTime; partial archive receipt; reference summary.json]`
+- Assembly found15 all-zero RGB224 copies with valid frozen source caches. They were archived and repaired. Successful assembly retry took1,666.14s, failed retry325.60s, known preparation components total7,255.27s. Original startup and partial assembly duration remain unknown. `[verified: classifier-cache-recovery.json; preparation-process.json; assembly job receipts]`
+- Formal ResNet18 completed10000images x30epochs on RTX4070/CUDA12.8/FP16 in689.862s, with4709 applied optimizer updates and1AMP skip. Best validation checkpoint is epoch2. Independent test2000 encoding is running. `[verified: training_complete.json; wall-clock.json; history.json; evaluate job receipt]`
+
+### Discovered edge cases
+
+- Cache copies now use writable temporary files, content SHA checks, fsync and atomic replacement. Source read-only attributes remain usable. Job records distinguish live children from terminal outcomes when observation is interrupted. `[verified: dataset.py copy_classifier_cache; jobs.py; cache/lifecycle regression tests]`
+- Native debug PNGs require a Y flip relative to Unity's reference export. The normalized capture keeps raw images and cropped RGB output. Complete import coverage, restored metadata and mirrored source hashes are required for a passed archive. `[verified: Astc3rdDecompress y_flip=false; common/unity_reference.py; actual2-image probe and cache regressions]`
+
+### Questions for review
+
+- Final test2000, shared64 inference, matched Unity-reference comparison and final delivery checks remain pending. The reference evaluator/report path passed a two-image real encode/decode/report smoke. `[verified: current job state; unity-reference2/pretrained-unity-reference.json]`
+
 ## GDC fixed controls and shared-cohort comparison, 2026-11-11
 
 ### Deviations
@@ -66,6 +83,12 @@
 ### Questions for review
 
 - The eight validation crops show a speed/quality tradeoff, with top3×10 losing about 1.82/2.70/2.46 dB at 4/6/8. These are project-adapted, single-run results and provide no equal-quality production speedup or direct comparison with Unity/Nah. Larger training and original paper-scale results remain unverified. `[verified: public validation8-patch128.json groups and limits]`
+
+## Evaluation recovery and immutable measurements, 2026-11-11
+
+- The first formal test2000 process stopped after218 complete image receipts when Windows refused replacement of progress.json. Its failed process receipt retains600.132646s and exit1. The retry uses the same sealed checkpoint and validates source identity, frozen candidate hashes, actual ASTC headers, reconstructed RGB quality and timing totals before reusing a completed image. Prior valid progress hashes additionally anchor cached receipts. `[verified: jobs/evaluate-test2000 receipt.json and stderr.log; gdc2023/recovery.py; evaluation.py]`
+- JSON writes use a unique temporary file, flush/fsync and bounded replacement retries. Invalid partial image folders are archived under the evaluation's own attempts directory. Interrupted process durations remain unknown, while known process costs and failed attempts stay in the public cost ledger. `[verified: utils/artifacts.py; gdc2023/recovery.py and costs.py; test_artifact_atomic_write.py and test_gdc_recovery.py]`
+- Native reference comparison now has a dedicated report schema and CLI entry. Its64-image comparison is prepared for completion after the held-out evaluation, with per-method targets, presets and timing scopes retained. `[verified: common/reference_comparison.py; script/compare_reproductions.py --unity-reference; gdc2023/reference_reporting.py]`
 
 ## TexNN source and reference integration, 2026-11-11
 

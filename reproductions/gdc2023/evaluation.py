@@ -24,6 +24,7 @@ from reproductions.common.encoder import ASTCEncoder
 from reproductions.common.upstream import BaselineGate
 from reproductions.gdc2023.costs import PreparationCost
 from reproductions.gdc2023.dataset import GDCMeasuredDataset
+from reproductions.gdc2023.recovery import EvaluationRecovery
 
 
 class GDCCompressionEvaluation:
@@ -105,8 +106,9 @@ class GDCCompressionEvaluation:
         split: str = "test",
         cohort_paths: list[str] | None = None,
         cohort_name: str | None = None,
+        resume: bool = False,
     ) -> dict[str, Any]:
-        if output.exists():
+        if output.exists() and not resume:
             raise FileExistsError(output)
         BaselineGate.require(
             self.root
@@ -193,17 +195,36 @@ class GDCCompressionEvaluation:
         verified_inputs = self.preflight_inputs(
             manifest, protocol, split, indices, protocol_fingerprint, selected_rows
         )
-        output.mkdir(parents=True, exist_ok=False)
-        ArtifactStore.write_json(output / "binding.json", binding)
+        EvaluationRecovery.prepare(output, binding, resume)
         setup_seconds = time.perf_counter() - setup_started
         mean = torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)
         std = torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
         started = time.perf_counter()
         results = []
+        reused = 0
+        anchors = EvaluationRecovery.anchors(output) if resume else {}
+        if split == "test":
+            EvaluationSeal.compression(
+                self.run, fingerprint, self.initialization, checkpoint_sha256
+            )
         for index, row in enumerate(selected_rows):
             sample = output / f"{index:05d}"
-            sample.mkdir()
             source, label = verified_inputs[index]
+            if resume and EvaluationRecovery.reuse(
+                output, index, row, label, protocol["target_psnr"], anchors.get(index)
+            ):
+                reused += 1
+                results.append(
+                    {
+                        "index": index,
+                        "receipt_sha256": ArtifactStore.sha256_file(sample / "receipt.json"),
+                    }
+                )
+                print(
+                    f"GDC validated cached compression {index + 1}/{len(selected_rows)}", flush=True
+                )
+                continue
+            sample.mkdir()
             rgb_started = time.perf_counter()
             pixels = sample / "input.png"
             with Image.open(source) as image:
@@ -219,10 +240,6 @@ class GDCCompressionEvaluation:
             features = torch.from_numpy(resized).permute(2, 0, 1).float().div_(255)
             features = ((features - mean) / std).unsqueeze(0)
             prepare_seconds = time.perf_counter() - prepare_started
-            if split == "test" and index == 0:
-                EvaluationSeal.compression(
-                    self.run, fingerprint, self.initialization, checkpoint_sha256
-                )
             prediction_started = time.perf_counter()
             with (
                 torch.inference_mode(),
@@ -345,6 +362,10 @@ class GDCCompressionEvaluation:
             "scope": "source RGB project four-square talk reconstruction",
             "data_use": "training diagnostic" if split == "train" else "held-out " + split,
             "quality_audit_excluded_from_model_time": True,
+            "resume": resume,
+            "reused_images": reused,
+            "newly_encoded_images": len(results) - reused,
+            "wall_scope": "current attempt only; per-image timings retain original measurements",
         }
         ArtifactStore.write_json(output / "receipt.json", receipt)
         return receipt
