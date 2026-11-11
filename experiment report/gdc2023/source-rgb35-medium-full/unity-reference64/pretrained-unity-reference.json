@@ -1,0 +1,3419 @@
+{
+  "schema": "gdc_unity_reference_v1",
+  "status": "passed",
+  "scope": "Unity mip0 RGB training-cohort diagnostic",
+  "images": 64,
+  "binding": {
+    "capture_sha256": "ef4c3ddc977e2579081f04bd6aebb918272b3d074b81e3cc486a18e3c3f325ee",
+    "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-reference64-lite-rdo-off-retry1\\references\\normalized-smoke1",
+    "cohort": {
+      "name": "unity64",
+      "config_sha256": "f7a6ef9c475ae81f29ee1402752423102f6dd00f2d41472c6e0ccfa8df6ac799"
+    },
+    "data_fingerprint": "0265a4d5759e1a4c8822d0ba8153af12ba0e151e531951f6f8daea9a42b4bc6b",
+    "checkpoint_sha256": "748a9c013b4fbf301b7ecb7b5c0fa5ecec67ddb580e20671be57fc8825a9b222",
+    "training_files_sha256": {
+      "training_complete.json": "fadcdb6d83bc4f44734af82f53f2f6cad4639c29c8690d941af9cba1c4f45c65",
+      "config.json": "0c003452c031d80c22be5a857a2b1b8bb97af13093c835f3b567b4bd07725edc",
+      "history.json": "af2bd9a137e769e38a00f8961a44e64dd45061ef5fabb6636ebdcaf434885098",
+      "last.pt": "298051b88f31e6e08a528bfc6434510462ccc388f86e45fcb06053a59b8aa15a",
+      "wall-clock.json": "801d40a1050734c9d38ec0f52c27d262744bb3b3a2f35d22811d6c36274f7999"
+    },
+    "initialization": "pretrained",
+    "encoder_sha256": "9fc8bc5b971d3b4a4587518525e978ee20f79a65a452a83595b610e8595e1a2a"
+  },
+  "setup_seconds": 1.1318754000003537,
+  "wall_seconds": 125.55419040000015,
+  "per_image": [
+    {
+      "path": "Assets/UI/UITexture/Common_Atlas/PublicAtlas/Atlas_MainUI/icon_point01.png",
+      "source_md4": "c3336b803c8a71f37f5c127863261ac5",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -8.5234375,
+        -3.177734375,
+        1.650390625,
+        6.3359375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 35.17139449140312,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 41.157383152624504,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 64,
+      "fixed8_payload_bytes": 64,
+      "timings": {
+        "preprocessing_seconds": 0.01150699999925564,
+        "source_rgb_seconds": 0.006476799999290961,
+        "inference_seconds": 0.0021742999997513834,
+        "final_encode_seconds": 0.0812937000009697,
+        "model_pipeline_seconds": 0.10145179999926768,
+        "fixed8_pipeline_seconds": 0.02771019999818236,
+        "verification_seconds": 0.047503099998721154
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "81e80a04f3ffa3f534c0389e32d73f31a7a1a2bcc3a8aa8c11db2faa229bb55d",
+        "fixed8.png": "986137565b1fb28c904b9dfa46534e7d715cf2f634e529e844a85779174306a3",
+        "fixed8.txt": "e9a32c1c44f8eedca867dc6c3053b2094cb7bde234535ac0480c8c09ec3df35d",
+        "input.png": "69c0ba8194a2cdf1899634844539cf00d98ca947c4b4f7e3ded4c6d872f2b515",
+        "selected.astc": "99dc23bb647e86e7d953651498a8889cdf64da03409d03a54668dbeb1af55766",
+        "selected.png": "32f1efaabef57c427149112ffef44aec9abe614a01476f09997df876f56063de",
+        "selected.txt": "8014e9b464cb351361bc5c8a42c244db5acc064cf32211ac4c4fedb61b419f2d"
+      },
+      "receipt_sha256": "1f9aeb3b58d998523ca5846d6beaf1d7ec445c87e355e5337b3385183319f587",
+      "unity_rgb_psnr": 34.55417713488967,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 64
+    },
+    {
+      "path": "Assets/RuledAssets/System_MapInfo/UI/UITexture/Atlas_add/Atlas_MapInfoPlus_add/New13.png",
+      "source_md4": "e3b8f77c45bb1b9970089d8dfd2fa78d",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        -0.037353515625,
+        -0.148193359375,
+        -0.056671142578125,
+        -0.267578125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 55.24284821620941,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 256,
+      "fixed8_payload_bytes": 144,
+      "timings": {
+        "preprocessing_seconds": 0.0011408999998820946,
+        "source_rgb_seconds": 0.0010465000013937242,
+        "inference_seconds": 0.00422190000062983,
+        "final_encode_seconds": 0.015331999999034451,
+        "model_pipeline_seconds": 0.0217413000009401,
+        "fixed8_pipeline_seconds": 0.018024300001343363,
+        "verification_seconds": 0.03690869999991264
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "fa782a113844d7e3bdbf6bb140e1078cdcae76b7c13b369fcda0c930891714ab",
+        "fixed8.png": "6b073efb4a162faaedff58ef9847876538a8dd676af80a5783156a36c938eb1a",
+        "fixed8.txt": "e03b02e619ccb8fb396bdf92cccb3bf64f09caf19b0ae6e862d6b8726d58d571",
+        "input.png": "59b1c9d932c5a86d57469ffa4b6c796b84c98337fbf3dd1e59f7dbdc1cceef5f",
+        "selected.astc": "c16709653232454dd18a3e17d5865545523b7fbc982e444ad2913f7fff5336b5",
+        "selected.png": "4c8fca5c5ef5d5254b05f4a5d8802957f45c1e9937e3e8c396d017d6d8adc10c",
+        "selected.txt": "85eb8026823e9696365fde6240dc6040f4fabd74426252bfb43c4044aa9ea005"
+      },
+      "receipt_sha256": "00fdecee956285d15ee495024f3b020302a244831dacd9b5f69b82eefffa4b49",
+      "unity_rgb_psnr": 33.318816634996985,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 144
+    },
+    {
+      "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Common_UI_MC/common_btn_increase.png",
+      "source_md4": "7815e0182d6f9cf84faed67276c30871",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        -0.07147216796875,
+        -0.0841064453125,
+        -0.0775146484375,
+        -0.328369140625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 41.43833297468498,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 37.534176017256165,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 1024,
+      "fixed8_payload_bytes": 576,
+      "timings": {
+        "preprocessing_seconds": 0.000990199998341268,
+        "source_rgb_seconds": 0.0012793000005331123,
+        "inference_seconds": 0.0018975000002683373,
+        "final_encode_seconds": 0.016264399999272428,
+        "model_pipeline_seconds": 0.020431399998415145,
+        "fixed8_pipeline_seconds": 0.020671000000220374,
+        "verification_seconds": 0.03769780000038736
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "4335799e89edbd09c1bc89ac6aabaff2006cdda54bad6405021426b574ea10bf",
+        "fixed8.png": "3b71d291a4ae086ab583ea1cd8e3b46b0a696aa59ecd53e603add48de36dba31",
+        "fixed8.txt": "cf0909890317c2312d32ccf1449130006ba1966828dc27f8326e58caf01a1862",
+        "input.png": "fce8e42ea40677ce2f1294ca9ac06868a865b7c480045c6f50962ee96e261ad3",
+        "selected.astc": "5fc3ddda4f8b5affff3be82538e479e67d3081575e450c66e52ff719017a82b9",
+        "selected.png": "9e4e9b21be7fc754d5d241f65464ecb2968fb8439fe62268c5990609f787cf69",
+        "selected.txt": "468b92b4cf9dae2399c949db6506c210f442fad49620a650056ccd1fdcb15875"
+      },
+      "receipt_sha256": "2a288ffce72d685db25305d77010baaa7cf29b71d9044122a590eb09f50839f7",
+      "unity_rgb_psnr": 31.883150703913095,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 400
+    },
+    {
+      "path": "Assets/UI/UITexture/Common_Atlas/Atlas_SkillIcon2/yz_buff2.png",
+      "source_md4": "6d321da5af55f9b30731ad6a9e56eba1",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        4.4140625,
+        -0.50634765625,
+        -1.5380859375,
+        -3.056640625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 39.448278850284844,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 33.469396430289166,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 4624,
+      "fixed8_payload_bytes": 2704,
+      "timings": {
+        "preprocessing_seconds": 0.0014613000003009802,
+        "source_rgb_seconds": 0.0019333999989612494,
+        "inference_seconds": 0.003955700000005891,
+        "final_encode_seconds": 0.027441099999123253,
+        "model_pipeline_seconds": 0.03479149999839137,
+        "fixed8_pipeline_seconds": 0.03839960000004794,
+        "verification_seconds": 0.03973430000041844
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "618794f1bb4115c317e491d22db301205fc4035c9c8b8e35729dea323a551878",
+        "fixed8.png": "28367d68fc024ac06ef68837afbd5d5018e19fe9ec3eaa9878d31d34b5e8cffd",
+        "fixed8.txt": "390690c052a58a238100453f7bc7df1a7ca4b06d041c204d22aad932f9c2b7b0",
+        "input.png": "fc7e035b3aec46606710ef3856612a9337cd9947e77b492cc3c325b9ebede505",
+        "selected.astc": "b4773d7fc946b7eaa5d7d9d2a1be4618b69d04f4511d953eb8c9871b40821833",
+        "selected.png": "c72e8c8cbf61dfc50d0fcf620c9f60f51f7d33f97c6ecdd32205dea8f9abae87",
+        "selected.txt": "c1125be9cbd38e969fd53ddda8c1fc169290e502937521490f3a342a9164eab3"
+      },
+      "receipt_sha256": "53fb870791a5ceaf48cbf1ddb0a83e717362884baf6eca08ab3663b55447a103",
+      "unity_rgb_psnr": 30.35769559178388,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 1600
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/SD/Special_ZC_0106.png",
+      "source_md4": "445a3efc0414d62f4601d3b4e30d13a5",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -0.138671875,
+        -0.2568359375,
+        -0.086669921875,
+        -0.055572509765625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 33.213255119302225,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 37.63756953183334,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 576,
+      "fixed8_payload_bytes": 1024,
+      "timings": {
+        "preprocessing_seconds": 0.001036999999996624,
+        "source_rgb_seconds": 0.001175699999294011,
+        "inference_seconds": 0.003019200001290301,
+        "final_encode_seconds": 0.024793200000203797,
+        "model_pipeline_seconds": 0.030025100000784732,
+        "fixed8_pipeline_seconds": 0.021534499999688705,
+        "verification_seconds": 0.04607229999965057
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "46e513654383e009d15072a591d101595330f23dbdacaefd444c6fe07701975c",
+        "fixed8.png": "a3cdbefab0b2a94b898ed2199d8e1cb2ef928fc9543b1987835c393205d23087",
+        "fixed8.txt": "97de92e46d1b3bdfe58aff140864978b92d1b533124365f1cc0cdac0c471fc6a",
+        "input.png": "f33b22b2a80fb2d00236bf8834b6cb6248d08629ca2d56b6b3930a84f076393f",
+        "selected.astc": "932cb971d5b058f32195f92db445265ce6ceef2f8ee26a382d60fa98402fc3aa",
+        "selected.png": "c56da3788cbcd60e466017cd7782220d227d4337849c91edf015189f5f4849dd",
+        "selected.txt": "99003eadeaf44c8869e311bbff9b1d047b08f7566861ccd4b65bb3186757d8d6"
+      },
+      "receipt_sha256": "64ec0a538d9e5207f4cef8e4cf2844a87d192b57a57834b555baa856833d4718",
+      "unity_rgb_psnr": 34.388686050287,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 784
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Trail/SD/Trail_SD_WB_LX_011.png",
+      "source_md4": "05244914abf69d3deda79cf86171d7b6",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        2.140625,
+        -0.0282135009765625,
+        -0.65380859375,
+        -2.5703125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 38.53423039561641,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 33.812014839235886,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 7744,
+      "fixed8_payload_bytes": 4096,
+      "timings": {
+        "preprocessing_seconds": 0.001189999999041902,
+        "source_rgb_seconds": 0.0022926000001461944,
+        "inference_seconds": 0.002692399999432382,
+        "final_encode_seconds": 0.027788299999883748,
+        "model_pipeline_seconds": 0.033963299998504226,
+        "fixed8_pipeline_seconds": 0.03794729999935953,
+        "verification_seconds": 0.04554989999815007
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "b2da98340c3846ff1da93faa31fd28fe9d491344c05d4aeaec2390507f8307de",
+        "fixed8.png": "1dffd857469d214b0490740653f3d3d2654f198a25b4c289a6d9181d3f607e51",
+        "fixed8.txt": "22028f55cc0b78c3db9de57be1c05b18a83f96f59d430ae42e1a3922495b0f82",
+        "input.png": "3a4e149757eee6124ec42c04f9f7e607689348e19277905885c786036b62a53d",
+        "selected.astc": "ee1f573ae8ae8c1e3caf8ee877ceca91d8066cfaaffa82262b53dfd9bb974887",
+        "selected.png": "8c34af1369824a30bd09ab9b8d13e090de739b7a8eb6acd98efde9196a05aa1c",
+        "selected.txt": "3284236fad15068e681572d560cfd17edf0f542e64f136ac0d5bdbdf205cb2e3"
+      },
+      "receipt_sha256": "6799b3d2242e8d498c97099e92cb5c31840e05b247c2f48bd60af18df512b9d1",
+      "unity_rgb_psnr": 30.568291416239823,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 2704
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/SD/Special_SD_WZA_0002.png",
+      "source_md4": "977b7129fcc97acc64ccdb6136bb9a25",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -4.953125,
+        -0.97265625,
+        1.134765625,
+        3.806640625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 40.69972824641386,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 45.46301403612092,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 1936,
+      "fixed8_payload_bytes": 4096,
+      "timings": {
+        "preprocessing_seconds": 0.0010966999998345273,
+        "source_rgb_seconds": 0.0015065999996295432,
+        "inference_seconds": 0.002085300000544521,
+        "final_encode_seconds": 0.02408869999999297,
+        "model_pipeline_seconds": 0.02877730000000156,
+        "fixed8_pipeline_seconds": 0.021115300000019488,
+        "verification_seconds": 0.04771040000014182
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "fb18f42628157750eb8f5364ba8ce742761610ffa5ee5564fc58dc5ddd1abd96",
+        "fixed8.png": "2c94779142926956f96683c14a10d027ee8938dcb740767569e16663b880fe80",
+        "fixed8.txt": "5501a58b5006ba6796cc390ca10eb805e71dfd14ff509f5fb99459565b1de66c",
+        "input.png": "e72a97c82192618c8a1787b07136017c7957b5852251df5d461ab85bde2e4dfd",
+        "selected.astc": "b98c4e45a5066f46b6db109607cb245eccccf490c237c75e9759df2b3bf5a2ed",
+        "selected.png": "e7aa37d8cb79a1fbb6e8474f4479eea4c611e64500efa7c77f25edcbca5b18c0",
+        "selected.txt": "33ad8b06469db8d510b112e33547b12c1bef7683e5323dd8d746ae7c359dd924"
+      },
+      "receipt_sha256": "a864fc0b4d557a2eaac3b376dc20c61c79c69e042721c846797381da59dd6c75",
+      "unity_rgb_psnr": 40.206678651164026,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 2704
+    },
+    {
+      "path": "Assets/UI/Image_add/HeroSkin/Hero45214.png",
+      "source_md4": "b2fbd42eb14351108e6a2691d6d4e333",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        0.7998046875,
+        0.146240234375,
+        -0.2105712890625,
+        -1.291015625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 38.29027758850677,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 34.887562204475714,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 59168,
+      "fixed8_payload_bytes": 32768,
+      "timings": {
+        "preprocessing_seconds": 0.001155200001448975,
+        "source_rgb_seconds": 0.013189199999033008,
+        "inference_seconds": 0.0017855000005511101,
+        "final_encode_seconds": 0.21508079999875918,
+        "model_pipeline_seconds": 0.23121069999979227,
+        "fixed8_pipeline_seconds": 0.24329770000076678,
+        "verification_seconds": 0.10056260000237671
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "a42464609a770988b86db6dff16fa0c253d95cad41f987deea27f64a2394cf34",
+        "fixed8.png": "b72dd8d46ea3cbc1a1ac1e32de17420cad4dcfb235c8d4ce8a315116dc4bb9a9",
+        "fixed8.txt": "641cf192ae6192462d024583d954c493d8ef474d9184790c4db0c85328732485",
+        "input.png": "251ff2ae00859daa72b56aef40bcdbd07c166619c34fbf33e9fce9a18de4b04b",
+        "selected.astc": "afcb3cb739a75ef368fc033bac59d02f0bb4f4e28b072a262eff49126ada8acc",
+        "selected.png": "b376a56f027227e66da8664cb02d9e3c2d917a79ac7270cd9fe8f8b70ca71c96",
+        "selected.txt": "a6b6efd1ec5c85b83c835243ec72350b5809146daabc11b5e8affbdc4461048f"
+      },
+      "receipt_sha256": "35e798427c786752ab5309e5e4f26b9c4cd8b4323fed05b6c7b795ede1ef4b42",
+      "unity_rgb_psnr": 33.092024509118154,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 21632
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_nsl_0169.png",
+      "source_md4": "b9c2600fb3f65fa9f506627db216bc9d",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        0.108154296875,
+        -0.163818359375,
+        -0.331298828125,
+        -0.119873046875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 40.23445963402871,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 36.30586147583911,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 29584,
+      "fixed8_payload_bytes": 16384,
+      "timings": {
+        "preprocessing_seconds": 0.0015260000000125729,
+        "source_rgb_seconds": 0.013422499998341664,
+        "inference_seconds": 0.0022824999996373663,
+        "final_encode_seconds": 0.05821330000071612,
+        "model_pipeline_seconds": 0.07544429999870772,
+        "fixed8_pipeline_seconds": 0.08314999999856809,
+        "verification_seconds": 0.05362089999835007
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "2149fc5a56be6e68006c5517d70582b97e59b510f98d275168e4cd4b525fce22",
+        "fixed8.png": "f66ae51bf22bde53e70f15430411c2f1934c58a32ec20eaffe0e44c829e02762",
+        "fixed8.txt": "8dab4d1b406a1914c58418072307171d70f9551c17b852dabc3578e4173e58ce",
+        "input.png": "4c1e4983b41dee30c6c623df1d72b5a678189920d9149407ccdf76c714e45462",
+        "selected.astc": "359dc83401b3935ee1cd399cbe8b434c5ae977d1fec18a9769c7d07154deefb8",
+        "selected.png": "e4ed096a636258dd8d4a2d2d3a8baa81fe3310e1e746eaa20d001de4044a039f",
+        "selected.txt": "e19df600e5aaceea4afdfda532fe064e8fc8963a5d9878fe7e249a1ac01fc69b"
+      },
+      "receipt_sha256": "affca34654eebb23059e800c5c46075a6a3f8ebc2897f337ee4ca5761820241f",
+      "unity_rgb_psnr": 34.29342643189271,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 10816
+    },
+    {
+      "path": "Assets/Art/Characters/magneticmage/Materials/skin04_high/magnetic_skin04_high_03_e.jpg",
+      "source_md4": "fa9f708926b5d31375626303ffc1b598",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -4.9453125,
+        -0.68212890625,
+        1.4560546875,
+        4.12109375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 35.79270232941772,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 40.65262804165832,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 29584,
+      "fixed8_payload_bytes": 65536,
+      "timings": {
+        "preprocessing_seconds": 0.0021051000003353693,
+        "source_rgb_seconds": 0.03090379999957804,
+        "inference_seconds": 0.003315799998745206,
+        "final_encode_seconds": 0.11377470000115864,
+        "model_pipeline_seconds": 0.15009939999981725,
+        "fixed8_pipeline_seconds": 0.15878989999873738,
+        "verification_seconds": 0.11110199999893666
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "5c8bde0f81479256e5934dc76f53514a44a1eee03e194406b6f1e2c9dc0f5944",
+        "fixed8.png": "9f00131ff458081ae068badf70ab524969ee1494a22d5f9eccfb95660e0c9c25",
+        "fixed8.txt": "4ed3ae9d9070aca9b4b7222be223e6a24e19a7c8a819ab2ccc1fbf4a04082e00",
+        "input.png": "97a2755adc139cc8002a1ef2edd5d6caa8af0f304f20fe7ec83dd5cecc5cdc70",
+        "selected.astc": "70011008500530eadca2b411964312add498cb654e809aa9802d10ba779439cb",
+        "selected.png": "841178d2de3d143aba2b182825e7eff41fe5b319ba4715724da6f55c042448f3",
+        "selected.txt": "f30926722526b77d38332603643ab50f1d352ff26fc3b2cd4345e6d83b92b3c3"
+      },
+      "receipt_sha256": "d668b6b6060c701482fe37d131ab61e386692f40ee3d75ca6b675393a99b3de5",
+      "unity_rgb_psnr": 35.97939714409611,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 29584
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_LHX_0028.png",
+      "source_md4": "d2ec46307a110e27ed47c92be62c9b1c",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -3.326171875,
+        -0.312744140625,
+        0.65869140625,
+        2.3203125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 36.67496221654926,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 41.45420434876131,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 7744,
+      "fixed8_payload_bytes": 16384,
+      "timings": {
+        "preprocessing_seconds": 0.001136499999120133,
+        "source_rgb_seconds": 0.002780299999358249,
+        "inference_seconds": 0.0019514999985403847,
+        "final_encode_seconds": 0.039213399999425747,
+        "model_pipeline_seconds": 0.04508169999644451,
+        "fixed8_pipeline_seconds": 0.040772099999230704,
+        "verification_seconds": 0.05533770000147342
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "07abf0d984e1113d9785b80203ab5c3d1aa383016a82012b4ba4e37886f33596",
+        "fixed8.png": "e15d7de93bd1ad2cf170a0028896b94f68751c3bcb375e1becf447151167d6aa",
+        "fixed8.txt": "6afeabca75a4af06ad69824beec14158e265ef487c853a68810f06918102457d",
+        "input.png": "2d58c2850722d3147fe117a2f4f221c5cd772da5137372653755265502f2affc",
+        "selected.astc": "cbd3cd55068c3fbb7b667d9f5937ccc18f07f15e6baa3e4de1d065532afdd61c",
+        "selected.png": "63f8cb41cf48b018bfef427d2c9347d22868bac5c3efd4d1c5d1db3ad2926acc",
+        "selected.txt": "b6ff51723ef924ecbc6395c70046907632028fbb23f95e03c688a75cc16391d4"
+      },
+      "receipt_sha256": "f74c5812e0b829292c74a7482d628efe7b042d28c9914294e20484a833f88d2a",
+      "unity_rgb_psnr": 35.46918992054409,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 10816
+    },
+    {
+      "path": "Assets/Art/Characters/Blackdragon/Materials/skin06_high/95_Blackdragon_skin06_high_hair_e.tga",
+      "source_md4": "e2fc27607688ae384607106f905ce7f3",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -3.087890625,
+        -0.68359375,
+        0.62158203125,
+        2.0703125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 38.52235952456584,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 42.816684967050634,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 1936,
+      "fixed8_payload_bytes": 4096,
+      "timings": {
+        "preprocessing_seconds": 0.0013254999994387617,
+        "source_rgb_seconds": 0.002545800000007148,
+        "inference_seconds": 0.0019522000002325512,
+        "final_encode_seconds": 0.024740099999689846,
+        "model_pipeline_seconds": 0.030563599999368307,
+        "fixed8_pipeline_seconds": 0.02314680000017688,
+        "verification_seconds": 0.0492169000008289
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "005c7b07ccd0c10a3d78c40dd4a88f6ee5de1587c92ac97228f6a7cf5df56230",
+        "fixed8.png": "bccfe666bae5e1a274f3226855a5f129e39cc5935b65523b415f67137d691268",
+        "fixed8.txt": "090603557ae9ea86bcd4dc5a9aed38a5d3fb9ec180b2b6b3c9df07d084ea805c",
+        "input.png": "70f4c5954daa686e7dd14956bcaedd0d804d04202f58eefb210a1d2031a33099",
+        "selected.astc": "37894259cc38cc3a20c76925435e3b344ade5e4b0f8aa43256267010c9d29d92",
+        "selected.png": "f7ab38a7e7215820de113b53853d8841e60b30ec56f1f26f38b43cbb543e6277",
+        "selected.txt": "939caf26bb57f5a1fffa6475de6243d9e247d31bf2d16a04d4c15b27104c582b"
+      },
+      "receipt_sha256": "ec877993e6229100a1f53ddfb59443b72e389b4501d3e8bd29682f9c9b4b4625",
+      "unity_rgb_psnr": 42.229701558727896,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 2704
+    },
+    {
+      "path": "Assets/UI/Image_add/HeroSkin/Tower323.png",
+      "source_md4": "52cb76e59f046d801f96942153fa62c9",
+      "predicted_class": 2,
+      "footprint": [
+        10,
+        10
+      ],
+      "logits": [
+        -0.31787109375,
+        0.0634765625,
+        0.11767578125,
+        -0.147216796875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 32.97861738447505,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 35.44492984446817,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 21632,
+      "fixed8_payload_bytes": 32768,
+      "timings": {
+        "preprocessing_seconds": 0.0011444000010669697,
+        "source_rgb_seconds": 0.013523300000088057,
+        "inference_seconds": 0.0021159999996598344,
+        "final_encode_seconds": 0.14742010000009032,
+        "model_pipeline_seconds": 0.16420380000090518,
+        "fixed8_pipeline_seconds": 0.16417839999849093,
+        "verification_seconds": 0.0892031000003044
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "54ca1f37bd3c9525e66563386cdc67a98fdfbef957ac80b104d0ff706ee847f5",
+        "fixed8.png": "0e24fd3f29399f866daa2c454534ae3b014b1946dbf0dae0112a561d7a7d722d",
+        "fixed8.txt": "17668aae609700dccd9c224f72b914bd222d9d9bc710dfd8d28f928970fded40",
+        "input.png": "284698070638615833db6aec55844b39006da9c579ff98bb4c84f5e80ef2fe78",
+        "selected.astc": "99bf3576ae637a43de06e8c630150a6812d608ef489a853ac0fac2ccb8ffba37",
+        "selected.png": "7b45143763667e9f71c1d3fa080ca3dc3df9cea9b1b29ec365c0330cf0505c7b",
+        "selected.txt": "5855d4842410d6131c1c7874fd26b793427d4d2c8e2ab246f80c86a731ca4ec9"
+      },
+      "receipt_sha256": "ffebf7b6b170e68f39ec885db903ea7c65192599e6db79d58f88ecfeacaba684",
+      "unity_rgb_psnr": 33.52341506521617,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 21632
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/SD/Special_SD_WMD_2564.png",
+      "source_md4": "e3efd12767b2d1013ca748d82b395da2",
+      "predicted_class": 1,
+      "footprint": [
+        8,
+        8
+      ],
+      "logits": [
+        -0.309814453125,
+        0.2034912109375,
+        0.1282958984375,
+        -0.31103515625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 36.408349018192496,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 36.408349018192496,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 4096,
+      "fixed8_payload_bytes": 4096,
+      "timings": {
+        "preprocessing_seconds": 0.0011080999993282603,
+        "source_rgb_seconds": 0.0017805999996198807,
+        "inference_seconds": 0.002844500000719563,
+        "final_encode_seconds": 0.03268970000135596,
+        "model_pipeline_seconds": 0.03842290000102366,
+        "fixed8_pipeline_seconds": 0.035330599999724654,
+        "verification_seconds": 0.04332739999881596
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "6beed6d801b1d000ef6e83ffaf641b9461e5476c945bde66a309b1eca0d5865f",
+        "fixed8.png": "a4529a3379e2e49359b2b502d39c3c8caecd9aa23fda7ecef0d45551c8cdb625",
+        "fixed8.txt": "996ce4ddef829eb58da2b6c1c44aaeb0aedab60cd290067748353605638aac36",
+        "input.png": "6819c598df59f36056f8f9e3267fb0c319e758c0fa400f6a055753ed3ba2639a",
+        "selected.astc": "6beed6d801b1d000ef6e83ffaf641b9461e5476c945bde66a309b1eca0d5865f",
+        "selected.png": "a4529a3379e2e49359b2b502d39c3c8caecd9aa23fda7ecef0d45551c8cdb625",
+        "selected.txt": "3c7caef885e103a628677ad9f7bc1bb7e2b8e7938c70c22e4c5d5612e86e29fb"
+      },
+      "receipt_sha256": "897d92f042f071a067c40d393828159f006b08d25e6e71ee6f46bed64e3a60ea",
+      "unity_rgb_psnr": 35.32669272044224,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 2704
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Smoke/FHD/Smoke_FHD_JLP_0010.png",
+      "source_md4": "9b45f249e0ed8f3cd2cdfb85d3bc5f82",
+      "predicted_class": 1,
+      "footprint": [
+        8,
+        8
+      ],
+      "logits": [
+        0.52392578125,
+        0.5693359375,
+        -0.201904296875,
+        -0.9453125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 33.40457851734577,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 33.40457851734577,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 16384,
+      "fixed8_payload_bytes": 16384,
+      "timings": {
+        "preprocessing_seconds": 0.0010795000016514678,
+        "source_rgb_seconds": 0.0073502000013832,
+        "inference_seconds": 0.002536800000598305,
+        "final_encode_seconds": 0.08155170000100043,
+        "model_pipeline_seconds": 0.0925182000046334,
+        "fixed8_pipeline_seconds": 0.08682910000243282,
+        "verification_seconds": 0.06266519999917364
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "a62ec860d9c1788c06f6f9e078960e2bc900733eda9a89aa049233cf161ba60b",
+        "fixed8.png": "9288022df19669f6f4d1bd17cef0620407445454a861afc5b0002fe014fe3c9e",
+        "fixed8.txt": "999ac894aa026c3df53e828d8012d72b57a3a1554ec8ebffa6e6432c9b2c6af7",
+        "input.png": "87b8c6c6b88ed862289c3141edacbc3de615977488babb1dbca7d9745c2ac8f2",
+        "selected.astc": "a62ec860d9c1788c06f6f9e078960e2bc900733eda9a89aa049233cf161ba60b",
+        "selected.png": "9288022df19669f6f4d1bd17cef0620407445454a861afc5b0002fe014fe3c9e",
+        "selected.txt": "2e79c062caed943f2b9021684e375baba271c1a2ccd980b5833d7b9ceb28bf24"
+      },
+      "receipt_sha256": "32bc3f42d73629726c5dd6aec2ea3cefc5fd234349aaa72f59e9c5626ea3ef6f",
+      "unity_rgb_psnr": 30.97285981864337,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 10816
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/FHD/Special_FHD_zgs_0026.png",
+      "source_md4": "906759c69280514b440a91ecb5d44e52",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -0.2166748046875,
+        -0.568359375,
+        -0.1812744140625,
+        0.439453125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 32.0223758748956,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 36.067460522381765,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 1936,
+      "fixed8_payload_bytes": 4096,
+      "timings": {
+        "preprocessing_seconds": 0.001057800000126008,
+        "source_rgb_seconds": 0.00242679999973916,
+        "inference_seconds": 0.0018375999989075353,
+        "final_encode_seconds": 0.03439609999986715,
+        "model_pipeline_seconds": 0.03971829999863985,
+        "fixed8_pipeline_seconds": 0.042884499998763204,
+        "verification_seconds": 0.05083569999987958
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "dc97f11dd7212bc8a466caf97c123dd7aa569495b35818bb97b9cc346e5b7f20",
+        "fixed8.png": "23990b64af97f8a4b155b89fb6cedf3b4242a174888232abca99b3253b169a8c",
+        "fixed8.txt": "9accaa9bc353475ba02f0876c8bd26f22760b5e157a0f927b9fa0ad3094048e0",
+        "input.png": "10970e6de93660628817d8cac8fcf8ea15fed6bfa2add97fa28de0167829e887",
+        "selected.astc": "6bbbc0cc687d42f52ebe47d75b840547e1aae5fcb3daddc2f4851bc2d5232307",
+        "selected.png": "ebc8dce7a276b62348af97023e5f2c6a4649da4389b4af50642c3ca491eae97a",
+        "selected.txt": "bdab3e6e440c1a36d3d0f42a92c241234f328b1b53e890ddf4d3871c7beb4e28"
+      },
+      "receipt_sha256": "0c727be6537a13e82fae3d9be1639f824162116efbaf8c87ff6cc3ed059a4354",
+      "unity_rgb_psnr": 33.89520847947456,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 2704
+    },
+    {
+      "path": "Assets/RuledAssets/System_RankLevel_CN/UI/UITexture/Atlas_add/Atlas_RankLevelShow_CN_add/Line_Yellow.png",
+      "source_md4": "edd4d9c46d94b834f3193949603356c6",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -10.6015625,
+        -4.4375,
+        2.078125,
+        7.62109375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 16,
+      "fixed8_payload_bytes": 16,
+      "timings": {
+        "preprocessing_seconds": 0.0010958999991999008,
+        "source_rgb_seconds": 0.0010694000011426397,
+        "inference_seconds": 0.0020206000008329283,
+        "final_encode_seconds": 0.022180899999511894,
+        "model_pipeline_seconds": 0.026366800000687363,
+        "fixed8_pipeline_seconds": 0.017956400002731243,
+        "verification_seconds": 0.04706119999900693
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "a7e9d809ec74eb697de64dd8687395c986b3b2d638e109f9ecc8855b6017ab5a",
+        "fixed8.png": "65297ae31772aeadfb87bdf2c1ff094ecb702550c1ea32515c6f503c3a2f7716",
+        "fixed8.txt": "7ab80220f9902e4d6b13d2669a8f02879a23e2fb77840a242d96d1fd10820607",
+        "input.png": "6902659f59dae660495c95b76e76013848ab9f70ab634978c68c6bc14ec9b3b8",
+        "selected.astc": "35adf66576e2388c6114f4a617f9a03149eb26d42d441816a78932b7acd7cb33",
+        "selected.png": "65297ae31772aeadfb87bdf2c1ff094ecb702550c1ea32515c6f503c3a2f7716",
+        "selected.txt": "de6f4213c57311b83ca2a51386517b733154f550d8b635a5ec0bd4ff03b66c4b"
+      },
+      "receipt_sha256": "10445d167626dca6f467663bda2d4635c16777b0e70ec45bd1b390a49c2d044c",
+      "unity_rgb_psnr": null,
+      "unity_lossless": true,
+      "unity_target_met": true,
+      "unity_payload_bytes": 16
+    },
+    {
+      "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/CommonLine.png",
+      "source_md4": "31068d139c8b855d9f2e5f83405b17dd",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -13.828125,
+        -7.2265625,
+        2.857421875,
+        10.9609375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 16,
+      "fixed8_payload_bytes": 16,
+      "timings": {
+        "preprocessing_seconds": 0.0009044000016729115,
+        "source_rgb_seconds": 0.0010689999999158317,
+        "inference_seconds": 0.003174199999193661,
+        "final_encode_seconds": 0.02168129999881785,
+        "model_pipeline_seconds": 0.026828899999600253,
+        "fixed8_pipeline_seconds": 0.017828600000939332,
+        "verification_seconds": 0.045642499999303254
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "ca4f10718a7963153ec3e9f14ddea2ca465b5eb67029bbf6beb7855c2bde6f74",
+        "fixed8.png": "96f3beb5f9ea4af75979706ef911c53c0fc128887b0d3279c97288a9afb1e9f5",
+        "fixed8.txt": "d13caf2ae5eaaf958b7ac0d8dd0342b43d7bb27d95596d5d6531dbe8a64417a9",
+        "input.png": "ca19aa09e201431aa0b0bb4d32508a5604425beb89cd7e588d2aa5431aeb6238",
+        "selected.astc": "2e3e5ea38a00e515518eab3a33a0fd4952b62054a7bd5a73baa70d4acf0179a6",
+        "selected.png": "96f3beb5f9ea4af75979706ef911c53c0fc128887b0d3279c97288a9afb1e9f5",
+        "selected.txt": "7d470e81168da0af190517fbfda43c85c38c0606fba879c5ccf19becfa38b192"
+      },
+      "receipt_sha256": "f5d6b2534581644c61fc79512c708690322ac51f2d625374a22ec3629ce52992",
+      "unity_rgb_psnr": null,
+      "unity_lossless": true,
+      "unity_target_met": true,
+      "unity_payload_bytes": 16
+    },
+    {
+      "path": "Assets/RuledAssets/Act_HelloKitty/UI/UITexture/Atlas_add/Atlas_HaloKitty03Main_add/HK_line.png",
+      "source_md4": "51aa9d2467d3bb392f72d0f623e13eb0",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -10.3515625,
+        -4.5546875,
+        2.51953125,
+        8.515625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 16,
+      "fixed8_payload_bytes": 16,
+      "timings": {
+        "preprocessing_seconds": 0.0012104999987059273,
+        "source_rgb_seconds": 0.0013108000002830522,
+        "inference_seconds": 0.001885599998786347,
+        "final_encode_seconds": 0.02229809999880672,
+        "model_pipeline_seconds": 0.026704999996582046,
+        "fixed8_pipeline_seconds": 0.017813299999033916,
+        "verification_seconds": 0.04497619999892777
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "b4481b23951e263b143ebc1ea6ac0bb97d73b085c80b59b6530664e76c6e8df7",
+        "fixed8.png": "6e38e2cdcd34b658abef9780c839c3a904df8edb8f315a7a54c2d6ba2f2640ad",
+        "fixed8.txt": "dde057113d8718a7547b87ec660f5944943dbb642d28ab3fa7bd6aad9126211e",
+        "input.png": "a0a81acbd9dae54b79f6288b76c6af5f5b78977458af2804c5326ab5183f0b0f",
+        "selected.astc": "de0c1199236155537d148379e3065523e40a57d07124d0aec94e21690560b648",
+        "selected.png": "6e38e2cdcd34b658abef9780c839c3a904df8edb8f315a7a54c2d6ba2f2640ad",
+        "selected.txt": "8a271c0b598f1553b0d81160ddb50e32493694544c28a5daf953678aea2ce95c"
+      },
+      "receipt_sha256": "667324fe0d9b8d57a88cf190ebf1398b302d3d559fc2cfb5b822e718e433ea49",
+      "unity_rgb_psnr": null,
+      "unity_lossless": true,
+      "unity_target_met": true,
+      "unity_payload_bytes": 16
+    },
+    {
+      "path": "Assets/UI/UITexture/Common_Atlas/BattleAtlas/Atlas_BattleSystem/Vote01.png",
+      "source_md4": "fc6fac771ba8d7267cf475f2f247a1f4",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -13.59375,
+        -6.48046875,
+        1.484375,
+        11.328125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 32,
+      "fixed8_payload_bytes": 64,
+      "timings": {
+        "preprocessing_seconds": 0.0009470000004512258,
+        "source_rgb_seconds": 0.0009759000004123664,
+        "inference_seconds": 0.0018698000003496418,
+        "final_encode_seconds": 0.02188380000006873,
+        "model_pipeline_seconds": 0.025676500001281966,
+        "fixed8_pipeline_seconds": 0.017733100001350977,
+        "verification_seconds": 0.04505109999990964
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "9ce741845a2d9bcfa1bc517494bbdd204c13ad50034f52568582f14868d5dfbc",
+        "fixed8.png": "c8b002757a4910e84b2b86961f617969169417ba15596d00b2d5d6642ced824e",
+        "fixed8.txt": "f7ccb0039928a5c307bd1b20039a1bba4dc07797f4f054037547d28aaf96de14",
+        "input.png": "c45b74d8ac0b754543beca22bf46176ad4102b49954b7f8858b49112a651b2fc",
+        "selected.astc": "0af1c8ee60b837b1714b3ec33f4baa46064f5be3f3c17ccf93dedda888b0466b",
+        "selected.png": "c8b002757a4910e84b2b86961f617969169417ba15596d00b2d5d6642ced824e",
+        "selected.txt": "ac97f96e2d3b9a27d9d3bff829eaa31162bfd6ce8981f51fdef0146124642730"
+      },
+      "receipt_sha256": "056e9a11301f31fae705ca7c39418aafa14ff7c0672c058d6082889046bdc830",
+      "unity_rgb_psnr": null,
+      "unity_lossless": true,
+      "unity_target_met": true,
+      "unity_payload_bytes": 32
+    },
+    {
+      "path": "Assets/RuledAssets/Act_LaylasWorkshop/UI/UITexture/Atlas_add/Atlas_Activity_CoCreat_add/gc_btn_tybtydi.png",
+      "source_md4": "eac98bb4c9327de771decf3f9a126ae2",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -9.171875,
+        -3.232421875,
+        1.7548828125,
+        6.62890625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 16,
+      "fixed8_payload_bytes": 16,
+      "timings": {
+        "preprocessing_seconds": 0.0010478999993210891,
+        "source_rgb_seconds": 0.001023900000291178,
+        "inference_seconds": 0.0018665999996301252,
+        "final_encode_seconds": 0.022901199999978417,
+        "model_pipeline_seconds": 0.02683959999922081,
+        "fixed8_pipeline_seconds": 0.01766490000045451,
+        "verification_seconds": 0.04571419999956561
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "0c91c6bc16b62055de75fcd2707c882b287474e193ec1b074ad1d445c12c5a00",
+        "fixed8.png": "b5913196e47187030679903e0bdb0798dd68d642418477e0628ac04ad7a60e21",
+        "fixed8.txt": "a784ec1bff127ea09fde6b10eec236d7c463252d5053a58f32b27170bcc5bd0d",
+        "input.png": "c39aad741e99e7e20e5a41cbf94919a9ba60c437151059bb7f55041547676191",
+        "selected.astc": "1e38753718497f8e86bb8d04ec7fd4171e047debf774af7b29b9317349186f32",
+        "selected.png": "b5913196e47187030679903e0bdb0798dd68d642418477e0628ac04ad7a60e21",
+        "selected.txt": "f7f6855dc575c9ee3525674f1925d2e4479cdf7489b5a8d49fe81ca665f13813"
+      },
+      "receipt_sha256": "3920afa9e918fca0d16a8ee9698de44d34179b4d118ebd3366e508ad6b3332eb",
+      "unity_rgb_psnr": null,
+      "unity_lossless": true,
+      "unity_target_met": true,
+      "unity_payload_bytes": 16
+    },
+    {
+      "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattlePass_bg11_MC/ThreePoint.png",
+      "source_md4": "efceea939e0e2ee93e68b47cf3f8d30d",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -9.609375,
+        -3.333984375,
+        1.568359375,
+        7.15234375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 48,
+      "fixed8_payload_bytes": 64,
+      "timings": {
+        "preprocessing_seconds": 0.0011402999989513773,
+        "source_rgb_seconds": 0.00097999999888998,
+        "inference_seconds": 0.004061600000568433,
+        "final_encode_seconds": 0.021817700000610785,
+        "model_pipeline_seconds": 0.027999599999020575,
+        "fixed8_pipeline_seconds": 0.01753389999794308,
+        "verification_seconds": 0.04552479999983916
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "dff60ef48a062bb3eab6bc93a451e1820d91ca8d83e1d70768e72526b9a3e873",
+        "fixed8.png": "b68f7688745261b951f0b41d4a02bb75bc54ec47d89f7da0d63d7ad2dab92226",
+        "fixed8.txt": "51db1de0cbdbdd658d22a78c603a5bdfa4f7d609cc4c7aefb9f791a82cac541e",
+        "input.png": "42514339d615a8c13b3ee74b82cfa9394bd9e4d870e31b8a71df514dcdd4ecbc",
+        "selected.astc": "348f129e70012b8c16fe8e477b40bd0085375a18c3c1b866dcc9ff10533b5677",
+        "selected.png": "b68f7688745261b951f0b41d4a02bb75bc54ec47d89f7da0d63d7ad2dab92226",
+        "selected.txt": "b715202db24449677cbe4a244afac8df092b10d33fbd0527d1b73f42ec2af57d"
+      },
+      "receipt_sha256": "c8098b7734f680d69945d6661eed06ede5392ea3677a460ed34912aa5095d2f4",
+      "unity_rgb_psnr": 51.04565038625661,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 48
+    },
+    {
+      "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_CommonBg_MC/common_btn_special_light_9G.png",
+      "source_md4": "a7bf3a17bc1a70523516b2e5d77876a5",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -6.64453125,
+        -2.7265625,
+        1.7431640625,
+        4.7109375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 33.73106569065697,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 45.73285751318892,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 96,
+      "fixed8_payload_bytes": 192,
+      "timings": {
+        "preprocessing_seconds": 0.0009647000006225426,
+        "source_rgb_seconds": 0.0011856000000989297,
+        "inference_seconds": 0.0018820000004780013,
+        "final_encode_seconds": 0.022754399999030284,
+        "model_pipeline_seconds": 0.026786700000229757,
+        "fixed8_pipeline_seconds": 0.018536300000050687,
+        "verification_seconds": 0.04617839999809803
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "49b0d49d0b8009f0ff6b87bbf0e26beb1be4a3d136342087b84016a9de412b18",
+        "fixed8.png": "7aab31c14febe2a914c1f46ae0999bf44d44fb63f9f8c4d338f86eb763d309c8",
+        "fixed8.txt": "92f85ac13a465a5ca458833424e268c2d60ce5c4f2cc6bb1c083ca97993386f7",
+        "input.png": "204b5c5045d6f362480a7e381fc3f4391c9266c1ced89f9ffb9f6c2460ef7737",
+        "selected.astc": "7d2a6cd1b9d04244b889e361e07003cf3a0eec8ff3f7d9f809a35d18dfce51f4",
+        "selected.png": "4bed837f1074c31774aa29f02a5598d9604163d9f97303df197dc5226df943d8",
+        "selected.txt": "5d1a7936dd3a945147fc2f4d319e4b6304f83cd5ac36e5384e66040db8175346"
+      },
+      "receipt_sha256": "a23451797b3cee50ad8a6cafc3ca537c79bcfa2ef775733439a802fdcb8f9416",
+      "unity_rgb_psnr": 40.770575524177694,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 96
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Trail/SD/Trail_SD_54_YM_02.tga",
+      "source_md4": "cb2b7d03e4474d5f791243c24cda6266",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -5.15234375,
+        -1.3056640625,
+        0.91650390625,
+        3.8984375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 32.23493608142047,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 37.24356101896829,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 144,
+      "fixed8_payload_bytes": 256,
+      "timings": {
+        "preprocessing_seconds": 0.0008914999998523854,
+        "source_rgb_seconds": 0.0012258000006113434,
+        "inference_seconds": 0.002015199999732431,
+        "final_encode_seconds": 0.02375499999834574,
+        "model_pipeline_seconds": 0.027887499998541898,
+        "fixed8_pipeline_seconds": 0.019344000002092798,
+        "verification_seconds": 0.047214899999744375
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "09957d270813b1701c69d150aaba4c33a49fd5e947bb578d3d487d46ac915fc6",
+        "fixed8.png": "3ed84cca60b51646581ba7dee5f543b4a771f2a11ccfd20ec12c1025757c250b",
+        "fixed8.txt": "855d11932fd5559936cff43bcd37710fce162796ab2bce584b2dadddb90c9b0a",
+        "input.png": "b55f4894038e324b6f4dba5979dd5a82bf0500e1f50f1e7ef6d68e8f938567f1",
+        "selected.astc": "570140164536ba586c4231aa43a4b8172981423d48b002212bbf0940d8ec826b",
+        "selected.png": "b88b829c4c79e5ee6ed704140eb8b400da92c70ad84fe33f36bb328c1a089030",
+        "selected.txt": "7980ec89611be7938a454c069b26a31895bd030b6ba3b2551ff4bb8b29c3e2e5"
+      },
+      "receipt_sha256": "97f950dd23a5f69cdab83e0aead97a61fd8e42d47aad8b8af1fed1cef539f2b6",
+      "unity_rgb_psnr": 31.872034592745724,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 144
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Noise/SD/Noise_SD_cjp_0111.png",
+      "source_md4": "7929e7ba4fec39703f19e69e4848015d",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -8.9921875,
+        -2.35546875,
+        2.0078125,
+        5.72265625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 37.55503892526987,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 43.78841103180025,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 576,
+      "fixed8_payload_bytes": 1024,
+      "timings": {
+        "preprocessing_seconds": 0.0010610999997879844,
+        "source_rgb_seconds": 0.00131379999947967,
+        "inference_seconds": 0.0018371000005572569,
+        "final_encode_seconds": 0.02268769999864162,
+        "model_pipeline_seconds": 0.02689969999846653,
+        "fixed8_pipeline_seconds": 0.020267399999283953,
+        "verification_seconds": 0.04729840000072727
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "cbc47dff79788b2533ba75d5c71ea6cf5c5a194412cdc5e1dc2c0b8b8c7204b0",
+        "fixed8.png": "a81a535bda8e95c1d4e1796d16618cd871e2277e9c0a639fd44b12f3e521da18",
+        "fixed8.txt": "3ecc078def7d746521e92584c69e645fe59eef0d90bd38dd9445af1b2b21d639",
+        "input.png": "fa3a161b18a35e8ddbae29714149f3c1118272e02390949832964db1ed0ad726",
+        "selected.astc": "d2e9537b424579acd6fa796a6af9d408b826a8b6585026f08ae47b5c3e693ba7",
+        "selected.png": "1949024b570d283222b2ce2e2951f11c855f15f0d23e992966517c660425a6c5",
+        "selected.txt": "c77b159f3278ae17edf770f43e174468dd1da0ac223859463e4323e8f7aab90c"
+      },
+      "receipt_sha256": "a30d59f501d9da2959a68105bf0241dce3aeac5d7dbe0cf856adf826102e850b",
+      "unity_rgb_psnr": 49.48463843076158,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 576
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Smoke/SD/Smoke_SD_LYQ_103_cnnew.png",
+      "source_md4": "a9fba642ab3108cae8ef493a888c7786",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -7.8359375,
+        -3.21875,
+        1.6376953125,
+        6.73828125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 36.92395595383121,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 42.55589606974186,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 576,
+      "fixed8_payload_bytes": 1024,
+      "timings": {
+        "preprocessing_seconds": 0.0010273000007146038,
+        "source_rgb_seconds": 0.0013073999998596264,
+        "inference_seconds": 0.0038729000007151626,
+        "final_encode_seconds": 0.026138900000660215,
+        "model_pipeline_seconds": 0.03234650000194961,
+        "fixed8_pipeline_seconds": 0.020753200000399374,
+        "verification_seconds": 0.04588960000000952
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "730f20e9883898839145eb83c36ee3d956724c91f26d55330a21b6fa551e8e5b",
+        "fixed8.png": "82904f1c68dac53e9655f2a1220a2c0008ed8f18cd444909e554b044db495599",
+        "fixed8.txt": "5f9a5805b287a66eb43cd151ee08e7e5d5a0ed64e47d03ec1d1d39a32aabed1f",
+        "input.png": "e497f2aef52b9f80b214876f6a8c477afd4c120199d354f2c14855b07a2afd1c",
+        "selected.astc": "964b4f7a45f0b8ca8d97bb13e6fc2a5d6dc2ea905332eff04c91528ce62a0ae8",
+        "selected.png": "56e37c5491f6917f8417458af80d201e4ea1961460bee2b55cbb8c133831c62d",
+        "selected.txt": "ed3077d771eeb33b011751a091deda395f4bb92f7c2ddf7b8373359d62898e1c"
+      },
+      "receipt_sha256": "b462c9249d9f228d41615e364fa162ca85a1c7cbeec00019b771ecafd6c85606",
+      "unity_rgb_psnr": 33.53591426948232,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 576
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Trail/SD/Trail_wshy_04.png",
+      "source_md4": "5634f7748847e7aa67c71f5cecba99f8",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -2.5703125,
+        -1.013671875,
+        0.52001953125,
+        2.1875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 35.14024775582077,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 39.897963142954474,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 1936,
+      "fixed8_payload_bytes": 4096,
+      "timings": {
+        "preprocessing_seconds": 0.001145800000813324,
+        "source_rgb_seconds": 0.00207109999973909,
+        "inference_seconds": 0.0018873999997595092,
+        "final_encode_seconds": 0.02884509999967122,
+        "model_pipeline_seconds": 0.03394939999998314,
+        "fixed8_pipeline_seconds": 0.0278918000003614,
+        "verification_seconds": 0.050273000000743195
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "c843c58c8f638c807c6a63c7f22af9125c4ef5bb261fe27250159c756156a9f0",
+        "fixed8.png": "8137a4e2733fcdc0706c1888219df59fea941b9d0df2bfc86f5308e756eacb51",
+        "fixed8.txt": "b39f22ddc514afa1f1d12fe1fce307b5959ad0df332f84425668e5d863d5eb06",
+        "input.png": "d0de127fb7627157fb08b4a0737b653445561cdd1ca99d29ec74c0eb8c382bdf",
+        "selected.astc": "ecf9b8c4e221b7357f47a6e61237dacd12a77c3947cbfa9289dcdf18bf67fff1",
+        "selected.png": "685175c4360b736e37eec08c1a6c5b3c8747794a88428db898bfaf33fe5357f0",
+        "selected.txt": "573bad57eb9da2d79c0f91a2dd95c13ede81dc88b60b3aefc509df1c3c6efa69"
+      },
+      "receipt_sha256": "a32d93aade113d04c4b10c95933ec130ccb33dbba1b067480b6dbaf3bd92bfc5",
+      "unity_rgb_psnr": 36.70703473771197,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 1936
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_LNX_002.png",
+      "source_md4": "6c3934e39b5757c114c024e048c79fbb",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -8.484375,
+        -3.021484375,
+        1.1171875,
+        6.296875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 1056,
+      "fixed8_payload_bytes": 2048,
+      "timings": {
+        "preprocessing_seconds": 0.0009595000010449439,
+        "source_rgb_seconds": 0.0011134999986097682,
+        "inference_seconds": 0.0018605000004754402,
+        "final_encode_seconds": 0.021992199999658624,
+        "model_pipeline_seconds": 0.025925699999788776,
+        "fixed8_pipeline_seconds": 0.018136999999114778,
+        "verification_seconds": 0.04532160000053409
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "1f18d6cafa90cc74d88a6da9a1d6a152ccaeeffc77e94a073ceced2aaadd34db",
+        "fixed8.png": "6d1af1a88eff1a76ce2b801754f5699f06ecb13123baa7618c76eae0c6519fe8",
+        "fixed8.txt": "13ba232d417b7270100da9fa22b6f482457fde9a4683dd7d85bc93d1ff868166",
+        "input.png": "b27f03b1259cf94a80025abdfddbfe50e7667597c5dc7a2690f6971ea9e20845",
+        "selected.astc": "70b00a1deea2c619a6c12f984d62a295523bcb8d5c35025773777c5296ccf68c",
+        "selected.png": "6d1af1a88eff1a76ce2b801754f5699f06ecb13123baa7618c76eae0c6519fe8",
+        "selected.txt": "3f7fa1cdc2f9cade136914f6278b615cce371954e918bbba0332e537fddc435d"
+      },
+      "receipt_sha256": "f7389431532d6711abcafe91f2e8f0e17e80c007930e7a0911d767c6544af2b9",
+      "unity_rgb_psnr": null,
+      "unity_lossless": true,
+      "unity_target_met": true,
+      "unity_payload_bytes": 1056
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Noise/HD/Grid1_cnnew.png",
+      "source_md4": "b7455e9e51147b1b0f7db3c6c61ed77f",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        1.8095703125,
+        -0.06781005859375,
+        -0.6796875,
+        -1.328125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 42.73325309046981,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 36.940864471392004,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 29584,
+      "fixed8_payload_bytes": 16384,
+      "timings": {
+        "preprocessing_seconds": 0.0011577999994187849,
+        "source_rgb_seconds": 0.003199600001607905,
+        "inference_seconds": 0.0018292999993718695,
+        "final_encode_seconds": 0.04702489999908721,
+        "model_pipeline_seconds": 0.05321159999948577,
+        "fixed8_pipeline_seconds": 0.06817710000177613,
+        "verification_seconds": 0.05541189999712515
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "f61c6965ae5795699aece1619b1749f1b4685038545c16d922913c9dbb2ff930",
+        "fixed8.png": "5f4eed8cfb3f7832229f323ce196585baad7d852cc5e35d3e80c4401c1baf04d",
+        "fixed8.txt": "a2fbc575ec6895ee788d969701e1f56130def4934716645551ad2487e04a23e8",
+        "input.png": "bc4f4f8e6a33f224b57600f43a32aa927b96c385f303eca41e790c5d524d82a7",
+        "selected.astc": "a0afff1dbccb37bf1b6f14ab65337e24efadb856dd56233c9e5783e6769028a6",
+        "selected.png": "8787763f8783c4fd0fa15c45e1af59a1b25d0f2ea36e6a439c59f910a6959115",
+        "selected.txt": "35d616229a79418e848d1abb40538f59ac36a6919553d138d5bc437ba1f24e5e"
+      },
+      "receipt_sha256": "308ec9dd4cf981cba96a7b259883097676f70b20231473c3927a93a62f01c37a",
+      "unity_rgb_psnr": 30.697781501418234,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 7744
+    },
+    {
+      "path": "Assets/RuledAssets/Act_SPD_Draw/Art/Effects/Texture/Ui/FHD/Ui_FHD_CLWH_0028.png",
+      "source_md4": "cd7591904513553d5d2e3c25e58ed066",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -2.7890625,
+        -0.353515625,
+        1.240234375,
+        1.482421875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 39.27607971955724,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 45.09849225642203,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 7744,
+      "fixed8_payload_bytes": 16384,
+      "timings": {
+        "preprocessing_seconds": 0.0012265999994269805,
+        "source_rgb_seconds": 0.002937900000688387,
+        "inference_seconds": 0.0019391999994695652,
+        "final_encode_seconds": 0.033921900001587346,
+        "model_pipeline_seconds": 0.04002560000117228,
+        "fixed8_pipeline_seconds": 0.030871000000843196,
+        "verification_seconds": 0.05856599999970058
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "863ffe6bd32bd39a1596b23e02156917c9bd40a8ece98fb0099ffc29398f5b4c",
+        "fixed8.png": "44e4e6fb12cf75b63bd98b8b15f464b2bcc6224ff1b6674dedebbfce9490a3f7",
+        "fixed8.txt": "f60a76da7e96b0d2584a8c7448452e8050138aad889454a0cb0bddf93670cdd4",
+        "input.png": "6db7d39aa283126807f819ccfb02e67d8308dda2e4a2632454ae4b6548625fb5",
+        "selected.astc": "e5a8404cb0b290854af7df18df90218ed00f20685e8e7dd91dc0d472a3ea4f24",
+        "selected.png": "b55204110f5647038c7851d55aa0143949ed8bca0b5f5522ea8c7912cc8c5f7d",
+        "selected.txt": "538f720b3363fe52f076a7eb4e17da19ee9223cb0dc8960aa22fd7b32b7865d4"
+      },
+      "receipt_sha256": "e086aa4542c6e3be8606bdc5b93dd779651668c88f63a7c8ce36f0c4049b1deb",
+      "unity_rgb_psnr": 36.899669988074734,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 7744
+    },
+    {
+      "path": "Assets/Art/Characters/balancemagic/Materials/skin03_high/balancemagic_skin03_high_weapon_s.jpg",
+      "source_md4": "f2ff923278599492338b905483c60fe1",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -2.853515625,
+        -0.189697265625,
+        0.72705078125,
+        2.169921875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 32.5358415892864,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 36.37908365516647,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 29584,
+      "fixed8_payload_bytes": 65536,
+      "timings": {
+        "preprocessing_seconds": 0.001359500000035041,
+        "source_rgb_seconds": 0.022297399998933543,
+        "inference_seconds": 0.0019405999992159195,
+        "final_encode_seconds": 0.20282919999954174,
+        "model_pipeline_seconds": 0.22842669999772625,
+        "fixed8_pipeline_seconds": 0.21766679999927874,
+        "verification_seconds": 0.12233539999942877
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "812cda527e79040f6b737e4f06e2ebda14a3a3cd100019eb600ad4a2639ca3c5",
+        "fixed8.png": "af67078ebd4557fbd91da1fb8fe5ee21370d53335fe6a504c6db2a761850fc85",
+        "fixed8.txt": "b79cc236a0cacc0f972bd1c0d46254257039b195a77f60930a37fed3f7e7fa6e",
+        "input.png": "5ce63c7af686f97bccf99eb6c6547565470c194b7d3f5c2b7577940705355063",
+        "selected.astc": "6121d53dc075042875ccc343b3a7924b67938a310472a9c3cb2747c3df07ff66",
+        "selected.png": "e6ab618b5aca1d3cbe9589e23daec953b4e497b3002abeedf5a568a9dbafd3bb",
+        "selected.txt": "69397f8bc7344922f767de9eb41dd07afabd9ba56d47dc038786235151a2c257"
+      },
+      "receipt_sha256": "854812e2bb7cc88837d1b45d709bd819a140977d704ebe75731acbbfad420738",
+      "unity_rgb_psnr": 33.521613808665556,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 29584
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_CJQ_0108.png",
+      "source_md4": "3e915d74e3a8868958efc91763e7f304",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -1.09765625,
+        0.0560302734375,
+        0.4033203125,
+        0.609375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 37.0778661912373,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 42.805160048895736,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 7744,
+      "fixed8_payload_bytes": 16384,
+      "timings": {
+        "preprocessing_seconds": 0.001081000000340282,
+        "source_rgb_seconds": 0.002352999999857275,
+        "inference_seconds": 0.002487400000973139,
+        "final_encode_seconds": 0.036818200000197976,
+        "model_pipeline_seconds": 0.04273960000136867,
+        "fixed8_pipeline_seconds": 0.033404899999368354,
+        "verification_seconds": 0.054398000000219326
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "a53edddc30dd31b24cda30f95f7539f2c0f65aa0d0d3f4a3bee40b26f8f324e7",
+        "fixed8.png": "4ed1debc73f3ff00af31cc83bce4fc100c787a991c997badb90ab0116a388cbf",
+        "fixed8.txt": "8ed4e62cfe7a5bc2124f0f18287257db5232918add712fe14963bac160f80c35",
+        "input.png": "a17479a98daa443bde533403716055f89cb11dfc5335087c371be4bd9f3c7329",
+        "selected.astc": "9b07aefd7a2a9c70200fe54adcd5a41d5bf4530193b185bf2f48cc62d934ff8b",
+        "selected.png": "2adcbe97e798d758efb600ea49d8d9e8cdc0b977ccbf7e26ad3564475de90759",
+        "selected.txt": "28cc2f93d6335c8e2654070a8b75fed272eee00cc715b7af3449cb1b9d22fa76"
+      },
+      "receipt_sha256": "72ce935f91878beb1f45c9c26ed8f704ad7ba4572e7bf6dc212f4795d414e5e5",
+      "unity_rgb_psnr": 34.9792131349852,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 7744
+    },
+    {
+      "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900331_MC/Map1900331_M.png",
+      "source_md4": "f85ed5545997b2453cfabe9bc85601e7",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        0.280029296875,
+        0.2237548828125,
+        -0.0462646484375,
+        -0.64794921875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 38.4909814889551,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 35.20741217758527,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 279072,
+      "fixed8_payload_bytes": 155648,
+      "timings": {
+        "preprocessing_seconds": 0.0019578999999794178,
+        "source_rgb_seconds": 0.06123409999963769,
+        "inference_seconds": 0.0017692999990686076,
+        "final_encode_seconds": 0.8225383000008151,
+        "model_pipeline_seconds": 0.8874995999995008,
+        "fixed8_pipeline_seconds": 0.8938164999981382,
+        "verification_seconds": 0.2940857000012329
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "68b76d932814816946021d71915fe7c23e0e6794f766fd49e55803fccf8a2f40",
+        "fixed8.png": "f6051807e36ae9b6df7ce21e829076f0ec421d96a84ac624fc5a766da5ae7a26",
+        "fixed8.txt": "0aa5fb50b86a8dbc5941e06aac03de241423234e5587da701d1a85321e8c9238",
+        "input.png": "a148ad26801898824bd7ab9f2415ffe984ef538721f4b1d6bc44326d5567a79a",
+        "selected.astc": "313d7f1e678730e0cc1318534bcd1bc749f8eb6761f9d47e23b850e937089c9d",
+        "selected.png": "ec777541be981d173430f17bb612f669edc45f3caf24ce480ea6a323d5441944",
+        "selected.txt": "6a7733333b919df52515fd800a5fbf4274f01fa2ef1e22bfbf45236bc274aa74"
+      },
+      "receipt_sha256": "b7170a75e9b810c67771f5ee149dfaafd42050f8711a9a27d9ebb68582fb62cc",
+      "unity_rgb_psnr": 32.161900071871074,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 70176
+    },
+    {
+      "path": "Assets/UI/Image_add/HeroSkin/Tower931.png",
+      "source_md4": "9784d15f83675b388dc1fe6b0ca4d1e6",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        0.495361328125,
+        -0.056732177734375,
+        0.09136962890625,
+        -1.134765625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 39.944030584556394,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 35.972183237690196,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 59168,
+      "fixed8_payload_bytes": 32768,
+      "timings": {
+        "preprocessing_seconds": 0.0014534999991155928,
+        "source_rgb_seconds": 0.013901099999202415,
+        "inference_seconds": 0.00668749999931606,
+        "final_encode_seconds": 0.12731999999959953,
+        "model_pipeline_seconds": 0.1493620999972336,
+        "fixed8_pipeline_seconds": 0.17159349999928963,
+        "verification_seconds": 0.08931050000137475
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "98750cf45b03ed831031ce2b429b4d05882c90e7a0b2003c9640367bec49ae0f",
+        "fixed8.png": "4c54f2e39afce09754492c426861a739342b2236428641a3dfd96b3b3ab10d16",
+        "fixed8.txt": "9c101225569cb5c8a86bb2eaefcd3a679a7711b7d035e8dbc9c246a8386d472a",
+        "input.png": "259efa3fac36996b3c83cc0de13b31a64d73105e64c19e2a98029e8964a9cd20",
+        "selected.astc": "787c0d76b9bb6b0b760b45ca188e5dc57c6ae4beae1e38eb072f3b27b82b2da1",
+        "selected.png": "8695820c082201b3aa9a98315027917e3f2795be83770800b88097f0113347f8",
+        "selected.txt": "b16fd3b0c95ebfea8724504a69b35134596fdcc29fa04b1afa6e6bb79aa77156"
+      },
+      "receipt_sha256": "3c14ef6cd8100fb75b3264495c958a4921508b3bdae5bfd33f8c25798b49086b",
+      "unity_rgb_psnr": 32.34989633778336,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 15136
+    },
+    {
+      "path": "Assets/Art/Environment/PVP_050_S4_add/Textures/ML_5v5_S4_redbuff_rock_01_D.jpg",
+      "source_md4": "7ecd7c39d8f6f09643760bbbf76fe614",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -4.22265625,
+        -0.609375,
+        1.0263671875,
+        3.65625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 40.29193499711091,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 44.0081922315897,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "preprocessing_seconds": 0.002642299999934039,
+        "source_rgb_seconds": 0.11151900000004389,
+        "inference_seconds": 0.014747600000191596,
+        "final_encode_seconds": 0.11236129999997502,
+        "model_pipeline_seconds": 0.24127020000014454,
+        "fixed8_pipeline_seconds": 0.3130660999995598,
+        "verification_seconds": 0.3821272000004683
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "95836a54562bf950c0bea4e6b2a0397a6208572d17e950a72f9521c80ffc898f",
+        "fixed8.png": "10ee2a8250fc09d4ca862de694b83f4e2e261793f0d69689a6dfbf2b01f2a5c5",
+        "fixed8.txt": "5bc55952dd0a308ff748ec9ceb2ca3b89416ceb4e133ee0d75b9c630f4681c16",
+        "input.png": "66f111d1d7903ec186464477f3c485d7682cac3f97cbaac22a508b3e88e55ad4",
+        "selected.astc": "c37ba896eb125c685d87c39470ef4afa730432ca66fb02586c8ff4d9eb7043cd",
+        "selected.png": "8c8f406d92f6d025cdae107041cb82ccf22b51ace59ec38ad59298dc1078da30",
+        "selected.txt": "7dc44a6c0b75befb43411888890d73296ff51a266e883016a73cbe3c37d69cae"
+      },
+      "receipt_sha256": "71099a755b1ae2f42a8cff6a819f15dc5b2f8991021075f94fd180998dc7d2a7",
+      "unity_rgb_psnr": 40.6809160811655,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 118336
+    },
+    {
+      "path": "Assets/Art/Environment/PVP_049_ob/Textures/DynamicReplace/ML_049_Limittest_ob_8.tga",
+      "source_md4": "2cb9c55e9ff1301f43a7964f0ee29484",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -2.12890625,
+        -0.587890625,
+        0.31787109375,
+        2.236328125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 37.50499493062281,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 40.89505936136867,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 467856,
+      "fixed8_payload_bytes": 1048576,
+      "timings": {
+        "preprocessing_seconds": 0.007755900000120164,
+        "source_rgb_seconds": 0.32234930000049644,
+        "inference_seconds": 0.011425099999541999,
+        "final_encode_seconds": 0.7837956999992457,
+        "model_pipeline_seconds": 1.1253259999994043,
+        "fixed8_pipeline_seconds": 1.826196699999855,
+        "verification_seconds": 1.435251099999732
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "c3232e8cc6ebcb2a3b1f8b337ff0610bea24c777d3517e37b42f12226f3242e7",
+        "fixed8.png": "f2eabbf25f9b9b338032cc90c0f225274c9fcc477fbda68f2fb3f25008bd20b9",
+        "fixed8.txt": "e62a586098b87e19a3e91c46b2af1c87a52fe2f032621ecd20fa2f5ce5a78933",
+        "input.png": "fc744b2cc012821b7c1074eae6d581fd9fcb6f6ca9650177e938f0edc9b0b35b",
+        "selected.astc": "7354fd41ab72b68e133d5cf736d39edd2118d6031118670e8f3e33753a72ff2d",
+        "selected.png": "1210061a3668186ff669effdb3d0772c56f4208c02891264ffa572077df08209",
+        "selected.txt": "fdb4385d392b21d32187aa97f2056e447665dbcee99f2c9abb7aea2ee9fa1533"
+      },
+      "receipt_sha256": "3303afa8ba0f1407cf55b8db8f24ce35b3483d48a0ad322574b2c3e3027a303f",
+      "unity_rgb_psnr": 38.551907539195085,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 467856
+    },
+    {
+      "path": "Assets/CustomMode/EasyGameCreator/EGCArts/Environment/Textures/Ground/S5/EGC_ground_patterm_island_s5_020_D.tga",
+      "source_md4": "ecd53dc050cdfe3a4feecfeff0a730f6",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -10.2265625,
+        -3.029296875,
+        1.6796875,
+        9.6640625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 42.70000696674401,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 45.57898362539988,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 467856,
+      "fixed8_payload_bytes": 1048576,
+      "timings": {
+        "preprocessing_seconds": 0.007806400000845315,
+        "source_rgb_seconds": 0.3513262999986182,
+        "inference_seconds": 0.011473699998532538,
+        "final_encode_seconds": 0.2885757999993075,
+        "model_pipeline_seconds": 0.6591821999973035,
+        "fixed8_pipeline_seconds": 0.8569932999998855,
+        "verification_seconds": 1.3362191999985953
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "ef764089bb3eea21a6645078dfed903fe387b21b18b0cb7e83203d1f7dea6e73",
+        "fixed8.png": "da77fc1c6c99acfc9d43fcc47e85de9ba11e962145f8f627f53996c884c11844",
+        "fixed8.txt": "b5ee4b8becc5a899286199439d4ea07b2e1abc0c5d5751aff5abe8a776887793",
+        "input.png": "2fffe881ae23b153515a01faa8558cab4efaea9095956e90113297a279051918",
+        "selected.astc": "7e9456c01fc148a9f5694852d109da081daeff2fa5648805249dc1ef484d5251",
+        "selected.png": "0eb181a7a6eacc8baf9ba369c5b9103a388d9585cb7dafa7060cea897aad2e93",
+        "selected.txt": "3d7e3a81d2781f6d2970ce8a5130aa82f4d243653d6ffa7bc3f51182c0a1892b"
+      },
+      "receipt_sha256": "537800f164fe23502869b3dcdb1d3757d60f39af07e017087c076f54b4fd6e80",
+      "unity_rgb_psnr": 42.82672287906428,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 467856
+    },
+    {
+      "path": "Assets/RuledAssets/Act_SurpriseCard_AS/Art/TAEft/Texture/BangBangcard_03_4k.png",
+      "source_md4": "47d3ab2e41545314d3ad88e147ec5dc0",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        6.79296875,
+        -2.0859375,
+        -1.0087890625,
+        -4.28125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 43.088837989713646,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 39.32959958260904,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 1871424,
+      "fixed8_payload_bytes": 1048576,
+      "timings": {
+        "preprocessing_seconds": 0.007569999999759602,
+        "source_rgb_seconds": 0.32762580000053276,
+        "inference_seconds": 0.015053699999043602,
+        "final_encode_seconds": 1.9259899000007863,
+        "model_pipeline_seconds": 2.2762394000001223,
+        "fixed8_pipeline_seconds": 2.6537523999995756,
+        "verification_seconds": 1.3758256000000983
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "0463a88241ff52a884b74d3c7a43d6f161b6594629d6b8d3ac24e40ac9244d5a",
+        "fixed8.png": "fb5244e1b93bd8483dded04019db900acdc00e9f437b847ddff15e407bf3055d",
+        "fixed8.txt": "aeeb461407ba59032c2fa0faa26be6927eaa48d4d2db9d7eb3dad4c8990fc987",
+        "input.png": "d8e6faf3bbfa1e4c3da4d03406f16541c477f5585bb3b0d371b246e184699fff",
+        "selected.astc": "0512a9605717d4f73ae019cc21e55fc5f824a87996cb49e512bf5e684acac464",
+        "selected.png": "be38cedab56efc086a3a365480febd9a237f55f18cb68311388519b78b1a775d",
+        "selected.txt": "71dad46d31208b856f948a182781e0592504eef71eec4766039100d52ef3d67e"
+      },
+      "receipt_sha256": "e30921f1039326e2411fcb92727566ef5c6b24e96c512025b7f362afa1e055c5",
+      "unity_rgb_psnr": 34.51749393211861,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 467856
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/FHD/Special_FHD_wmd_0513.png",
+      "source_md4": "ad7355cee8c9f69392a781af627f38e6",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -2.845703125,
+        -1.08984375,
+        0.79052734375,
+        2.849609375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 37.82852043014815,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 41.76443343578811,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 15136,
+      "fixed8_payload_bytes": 32768,
+      "timings": {
+        "preprocessing_seconds": 0.001577200000610901,
+        "source_rgb_seconds": 0.02090929999940272,
+        "inference_seconds": 0.020317800001066644,
+        "final_encode_seconds": 0.047437299999728566,
+        "model_pipeline_seconds": 0.09024160000080883,
+        "fixed8_pipeline_seconds": 0.08405799999854935,
+        "verification_seconds": 0.09034369999972114
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "141e77d07169902d52bb20cda15ed6359ca3eede91edebc2cf4e12b788f15123",
+        "fixed8.png": "c9377c8e1be057bd58cb37d2166e1fbc47bbc8600497dea9f0d1541bc5516da6",
+        "fixed8.txt": "4ba5b1158d632f78175a601f0c2de6e015bcdd42f29bebc545a5e7f92505fea8",
+        "input.png": "a27c0358ced5b53e45c7823cf8f82ab272124f19ebb4e435348dd8b5e70b52b8",
+        "selected.astc": "9be729df5172ddf45fabb037a183a747c720e74d9dc964e74eafcb5050c24497",
+        "selected.png": "ad4831c6a17ef16e4d44ef3c8cecf276f689f420783144b5d6cd324bbbd38065",
+        "selected.txt": "0263c02e6bfd053d91afc2116c871d24c9b093694b501bc50787d93eca4fe21e"
+      },
+      "receipt_sha256": "773a78a877fc41ece8ce6fec86fb84d19abc14fcd774e85031051a0757743479",
+      "unity_rgb_psnr": 39.372221088067455,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 15136
+    },
+    {
+      "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI02_MC/gg02.png",
+      "source_md4": "3fe5398eba72a51593a067446857a232",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -3.23046875,
+        -0.5205078125,
+        0.4130859375,
+        2.74609375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 20.878571184340853,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 51.83746284673286,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 16,
+      "fixed8_payload_bytes": 32,
+      "timings": {
+        "preprocessing_seconds": 0.001335099999778322,
+        "source_rgb_seconds": 0.0011261999989073956,
+        "inference_seconds": 0.02006919999985257,
+        "final_encode_seconds": 0.02292920000036247,
+        "model_pipeline_seconds": 0.04545969999890076,
+        "fixed8_pipeline_seconds": 0.01842929999838816,
+        "verification_seconds": 0.044282300001214026
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "b68e61ff972fdb89ddd658414723c9071cb6e2178af37f9889256531be850757",
+        "fixed8.png": "4e09db9693df7a262b097f8e6d979312f05045cd5c466eb50dfea544171f9d26",
+        "fixed8.txt": "4e18b81d60dd11761add0cfb9777a0c64d26673c3d61b928e1d7bc21e2ace9e9",
+        "input.png": "91cd5e2a40794bd9d3891a5d8293934eacebe5339dc807a10b5bd534e570aabb",
+        "selected.astc": "0e9a01f508e5f110892a03c8210adfb7c509c848dce33de55763098d8675011e",
+        "selected.png": "da6145ef8426c11db6152717ea192468330bcb08cee8ef233db3e1c7d1ea914d",
+        "selected.txt": "310a1285a53d7f392d94392c29ef3bb31a9ac1f565f7011aeca676a6d5ca453d"
+      },
+      "receipt_sha256": "b676fcaa50c57bce3f41a3acc860e650eb1b91f85c59e0d208b75e1ded174cdc",
+      "unity_rgb_psnr": 40.593980233182904,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 64
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Noise/SD/noise_SD_113_skin05_ym_002.png",
+      "source_md4": "3f9227891ae8ef16aa24d51f6472ed6d",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -0.8779296875,
+        -0.609375,
+        0.207763671875,
+        0.83642578125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 20.654925692440184,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 24.584742775939162,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 64,
+      "fixed8_payload_bytes": 64,
+      "timings": {
+        "preprocessing_seconds": 0.0010763000009319512,
+        "source_rgb_seconds": 0.0010196000002906658,
+        "inference_seconds": 0.018882300000768737,
+        "final_encode_seconds": 0.0247562000004109,
+        "model_pipeline_seconds": 0.04573440000240225,
+        "fixed8_pipeline_seconds": 0.019296400001621805,
+        "verification_seconds": 0.04438370000025316
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "ce7a8cfeb6d9122c5344d5ac04d27903dafef7d5580d6f3a16b91cbee383b2ef",
+        "fixed8.png": "c8ed0e86f82b4221d86706f9d52da619443fc42ff8170c668fc27aedb5f68854",
+        "fixed8.txt": "b563092290445b34c8f5bcefc1df0b30a75afa9504caa0069edde1b6571d484c",
+        "input.png": "26d35114ef8e80dee90b8f163127281110c8a6158e3e0ed184a210a326ab1459",
+        "selected.astc": "2682e8b6027d418031478b1d13a5a113e05d9b3013ca36fb60c478c95c63941e",
+        "selected.png": "8d03e67b6448562c6cc377aa9912b593afe82a50094d16d14e72c2b4ab5cfb3d",
+        "selected.txt": "05a4764126385c006f85cb82f53984d593282e853c9a670410e210372d21a806"
+      },
+      "receipt_sha256": "baf3bb972087a55292ee974f799ba776abfa658befd5f795551e29122ca9be83",
+      "unity_rgb_psnr": 30.289201558196304,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 144
+    },
+    {
+      "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_AdvertisementNew2_MC/mojing.png",
+      "source_md4": "772866e98bc56864db4a70a4437b60f4",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -9.5078125,
+        -3.326171875,
+        1.5302734375,
+        6.87109375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 38.916588386273745,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 42.89598847299412,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 64,
+      "fixed8_payload_bytes": 96,
+      "timings": {
+        "preprocessing_seconds": 0.0011620000004768372,
+        "source_rgb_seconds": 0.0011063000001740875,
+        "inference_seconds": 0.01766489999863552,
+        "final_encode_seconds": 0.022459400001025642,
+        "model_pipeline_seconds": 0.042392600000312086,
+        "fixed8_pipeline_seconds": 0.018576200000097742,
+        "verification_seconds": 0.047526999998808606
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "ef37adf881eb27c1b69ada96814e3301ceb516b56fcc7eb6fdb8e0f1a14ecf00",
+        "fixed8.png": "8af03ea0f219d3be3eeadeb81d305a0b625d1ff786e9cc320889f264820b5e8f",
+        "fixed8.txt": "f116806d12200620e197a8daf8f507a60f22eca7a9a6ec09f142b81f068a33f5",
+        "input.png": "95b88aff295392267d1890fb7e1017a5b409bce998f623afb1639020aa2be780",
+        "selected.astc": "7df7e18ca832500ff6afebdb4ff7d2cc8655a9160cc92ce94d5b59486fdc5c09",
+        "selected.png": "02d1d1cfcae17eeeb97c44ef420385024d3052283d8a34a3b4aeefbd2f3a6dcb",
+        "selected.txt": "3127e773d7bd33807276dfc31de4055019f2d747cd3075713f3f3b4faa36faf0"
+      },
+      "receipt_sha256": "807a5fb643807d29dca25ccc8b347cc1692d069d41844a1d6d06dc509c56b4b6",
+      "unity_rgb_psnr": 31.06605580274198,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 144
+    },
+    {
+      "path": "Assets/RuledAssets/System_Live/UI/UITexture/Atlas_add/Atlas_AudienceLevel_add/73.png",
+      "source_md4": "f21ef53ce49ce852b2ac11a5f7f17011",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        4.11328125,
+        -0.64599609375,
+        -1.2294921875,
+        -3.478515625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 34.43875170021654,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 28.167870129913666,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 480,
+      "fixed8_payload_bytes": 256,
+      "timings": {
+        "preprocessing_seconds": 0.0011945000005653128,
+        "source_rgb_seconds": 0.001208200001201476,
+        "inference_seconds": 0.016656100000545848,
+        "final_encode_seconds": 0.016013099999327096,
+        "model_pipeline_seconds": 0.03507190000163973,
+        "fixed8_pipeline_seconds": 0.02198070000122243,
+        "verification_seconds": 0.039768000000549364
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "812a8e2e04656adf4c48bf176005c7adc471b65fbf492aaad0284e40eb07156a",
+        "fixed8.png": "d9a0971d0bfaba7c8564b1fabd6a7a12661791a07c7ac339b42686e7f04beb35",
+        "fixed8.txt": "705bde561d86e06861ad56d753a8766c9dbd92b9560880763b6a04668bdc25d6",
+        "input.png": "435f18dcce19d488f82e92ae03f8d3732ecbe8b69d2a04fa8fd500ac5362860a",
+        "selected.astc": "e3246fe1b388a630105a300ede5b0f672d8a0999ea0f868337a08c6951e81645",
+        "selected.png": "a02b6ff294557ab991de394947d1b7fe0bbdd8a704ab48875dce79aff5f83a5e",
+        "selected.txt": "d0b20e9f883744a35db0315c3b5b28cb5b3408bc28a0172828f029cd9c54d22c"
+      },
+      "receipt_sha256": "6f75d211bb68fcd9f3c904433e1d7b5893fdd2bd425474f727aefd72446f60b1",
+      "unity_rgb_psnr": 33.721735396285936,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 480
+    },
+    {
+      "path": "Assets/UI/UITexture/Common_Atlas/BattleAtlas/Atlas_BattleGround/UI_YX0003.png",
+      "source_md4": "e0064dcb33c6d81d831adf1e58ce10fc",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        2.83203125,
+        -0.72607421875,
+        -0.9052734375,
+        -2.5078125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 40.70922792173746,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 31.230903159384276,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 1600,
+      "fixed8_payload_bytes": 1024,
+      "timings": {
+        "preprocessing_seconds": 0.0009415999993507285,
+        "source_rgb_seconds": 0.0014271999989432516,
+        "inference_seconds": 0.027056499999162043,
+        "final_encode_seconds": 0.031887699999060715,
+        "model_pipeline_seconds": 0.06131299999651674,
+        "fixed8_pipeline_seconds": 0.0294088999980886,
+        "verification_seconds": 0.040334199999051634
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "48a3ce200ef03dbd29c09767d73dc179a6400d0eaa6dabde6bab51a1cfbe77de",
+        "fixed8.png": "0f2c2f348d2253e1db4e169960c8902fbdb2d74e83c3b9253d08ace2a36a98ee",
+        "fixed8.txt": "d72fea99f4a2c70e5f5a187dfcc2f40a662ef953411a171e3064b5171a540dd5",
+        "input.png": "183ca86ba6961be9b1d7c4902fff273de01647cebc1453c8ee08a76f4764b31f",
+        "selected.astc": "3d1eaa42a1e1973672fe58449a83419c37c8e68ac6758da7b26632e27739c7c1",
+        "selected.png": "1df434715b9470a73af6c05ba4696381574f1a84407c4f9cf9171564b77c998a",
+        "selected.txt": "1123f1bd315c6ee9a335dad4868df07d1d124e17ef4835365ce0080f43c177c1"
+      },
+      "receipt_sha256": "9e664ff5c08edf473388f56d767702f9f8517c6e283e94ee4f429574324b0d2e",
+      "unity_rgb_psnr": 32.388539725449775,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 1600
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/SD/Special_XX_86_0010.png",
+      "source_md4": "b896bfd013b2e9678e310ddaccb240ad",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        4.640625,
+        -1.3662109375,
+        -1.1044921875,
+        -3.916015625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 35.920169349183915,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 29.537154974620883,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 1936,
+      "fixed8_payload_bytes": 1024,
+      "timings": {
+        "preprocessing_seconds": 0.0009088000006158836,
+        "source_rgb_seconds": 0.0013552999989769887,
+        "inference_seconds": 0.013121500000124797,
+        "final_encode_seconds": 0.017774000001736567,
+        "model_pipeline_seconds": 0.03315960000145424,
+        "fixed8_pipeline_seconds": 0.022957399998631445,
+        "verification_seconds": 0.03865339999902062
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "6c2e282009851285063e623858a8425ddf32496c578e8934489061f70d5bd55b",
+        "fixed8.png": "b637b5730e0dc3acfd862338f67fad3c7934094a106a6c8bdcb453b346ef92e0",
+        "fixed8.txt": "a4d577176d3e2c24d3aae3807f3d74457a89e09998089f7dc39204aabcc3c0d4",
+        "input.png": "08cc3ca875cfc7734603d69ca9fb9b340a14da5ee86ae0e30a677b6f70c9e3f0",
+        "selected.astc": "0fc91facf33c3045e61f0c0b7063ae3ef13d58220031ef50e0f861f6e3738688",
+        "selected.png": "e75fe966dd45894e3699c2b342ecc05a85865b34eb6c1d317f294dd93c1d4664",
+        "selected.txt": "009b7f59afd7316b0093be5d157f755c17b00cf0bc1f3728c4ce5bc097ffaae5"
+      },
+      "receipt_sha256": "b9e391ea3855fb27a07dbd778a42952c7a87058c066ea23ce42cb7b60be3d0f6",
+      "unity_rgb_psnr": 35.638342184207005,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 1936
+    },
+    {
+      "path": "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon09_add/SkinHead020_06.png",
+      "source_md4": "93ebd985e39544ab7fc52a07a84f7df2",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        8.640625,
+        -3.564453125,
+        -2.662109375,
+        -4.1015625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 32.78009142999729,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 29.516481138214637,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 4624,
+      "fixed8_payload_bytes": 2704,
+      "timings": {
+        "preprocessing_seconds": 0.0009389999995619291,
+        "source_rgb_seconds": 0.0019790000005741604,
+        "inference_seconds": 0.018570399999589426,
+        "final_encode_seconds": 0.043370499999582535,
+        "model_pipeline_seconds": 0.06485889999930805,
+        "fixed8_pipeline_seconds": 0.051768100000117556,
+        "verification_seconds": 0.04569730000184791
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "1a4c5aaa2283b5475dd3770a14ad370fa6b68a4f092be3515f1dbd3da3784786",
+        "fixed8.png": "57e18bb4627278348721ba14f68be2683d838fe7e3a2d9a2bcbf901621f7f52b",
+        "fixed8.txt": "236988a17e783caf8690b3432ae2c14eeeed01afe030480db879a0f71bf1388e",
+        "input.png": "5c859aeb1885d04ff3cca022cb435e042ff49328888f23d0b5c35f8016e44edf",
+        "selected.astc": "e65f60384950acb53f6ab2c2e990422e79b42f2c0b8cc1583813c47e31324d85",
+        "selected.png": "a7a9ecadd2904fa79382ba37005f3233cef78e6a65bc0e683dff445a9ad1bacd",
+        "selected.txt": "a12003c73ae1b9cfba91064888eaa3d35d3545c1242d102dce53ababd721547f"
+      },
+      "receipt_sha256": "403806e8875810d19f9894861ee6e4fe2e7dda080509196c2e849d0118bc6b9d",
+      "unity_rgb_psnr": 30.09075714819305,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 4624
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Ui/SD/Ui_SD_CLWH_0108.png",
+      "source_md4": "e8835e69d1ba6b3c118d9bc66374a830",
+      "predicted_class": 1,
+      "footprint": [
+        8,
+        8
+      ],
+      "logits": [
+        0.135498046875,
+        0.1976318359375,
+        -0.313232421875,
+        -0.7353515625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 35.10449631335425,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 35.10449631335425,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 4096,
+      "fixed8_payload_bytes": 4096,
+      "timings": {
+        "preprocessing_seconds": 0.0010712000002968125,
+        "source_rgb_seconds": 0.001263199999812059,
+        "inference_seconds": 0.017474899999797344,
+        "final_encode_seconds": 0.026315699999031494,
+        "model_pipeline_seconds": 0.04612499999893771,
+        "fixed8_pipeline_seconds": 0.028188199999931385,
+        "verification_seconds": 0.044347600000037346
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "55455ef4e8eead85d8f0aed74444c69b26fd0880709547973c824816716943bf",
+        "fixed8.png": "4d027ffcf2c8a02fd81ef97c97390373dca20aa0c32cd79f9400919a5f7091b4",
+        "fixed8.txt": "ca52cb0201ba138d5617ce3c2194be81a64d76b52ff8092f6005eafc64658e38",
+        "input.png": "8e2b6aef02747f9a428abf8822141ae0bc08334ac1aa7719607226a2149c7fe8",
+        "selected.astc": "55455ef4e8eead85d8f0aed74444c69b26fd0880709547973c824816716943bf",
+        "selected.png": "4d027ffcf2c8a02fd81ef97c97390373dca20aa0c32cd79f9400919a5f7091b4",
+        "selected.txt": "488f6fe74f0ba1bd60a3048c4bed73d9b086465944075288e0f195e600a5296c"
+      },
+      "receipt_sha256": "e74124733539ff542c3f211a8a55b54df067d2ac5b066d9df8d6a993ad464310",
+      "unity_rgb_psnr": 41.553265393990614,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 7744
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Ui/SD/Ui_SD_CLWH_0028.png",
+      "source_md4": "b647f583b48f8922f9d97f971c1a3223",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        0.41748046875,
+        0.2100830078125,
+        -0.3564453125,
+        -0.85595703125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 39.15754012664456,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 31.809065228526304,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 7744,
+      "fixed8_payload_bytes": 4096,
+      "timings": {
+        "preprocessing_seconds": 0.001349399999526213,
+        "source_rgb_seconds": 0.0016072000016720267,
+        "inference_seconds": 0.019012900000234367,
+        "final_encode_seconds": 0.027034799999455572,
+        "model_pipeline_seconds": 0.04900430000088818,
+        "fixed8_pipeline_seconds": 0.040510200000426266,
+        "verification_seconds": 0.04106880000108504
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "f5f16a1357221a7622099930f830d9faafb565d9052ec022105ac72c41bb8c10",
+        "fixed8.png": "8cff080e4cdb0d48b86d5817d44af96fd609cd4866d3332e75a3bcc19c23cf23",
+        "fixed8.txt": "1c9afb2b858015ad1062a627cea93082e57f55809003827c4d90c5ec5bc03e49",
+        "input.png": "6523ba64f043f4cc95fdd74a081ad57760bf623f3e97fdde94bfdf75a9474086",
+        "selected.astc": "dde9679f95b82bedb371456252c57d8515467eb2042a4b0962a3179dc2764750",
+        "selected.png": "a605c3e8a8ee1e6af3e1f3c87d5679cfdef48b8b126196b4cf70589435942000",
+        "selected.txt": "dc106b6947f7e5e90d18f652adb3677f11364f5d42e3f5a3aee1d089a1aa8eef"
+      },
+      "receipt_sha256": "2a661cac13768535ac77909ed0a89e9e5d3739d1a9b628807dd887df11265651",
+      "unity_rgb_psnr": 32.18243013629718,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 7744
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_nsl_0072.png",
+      "source_md4": "2b37464adb09a757e49a2ff7ada53083",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -3.185546875,
+        -0.06573486328125,
+        0.488037109375,
+        1.818359375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 32.341056388324134,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 35.910292756794554,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 7744,
+      "fixed8_payload_bytes": 16384,
+      "timings": {
+        "preprocessing_seconds": 0.0009535999997751787,
+        "source_rgb_seconds": 0.002707199999349541,
+        "inference_seconds": 0.01659019999897282,
+        "final_encode_seconds": 0.05633499999930791,
+        "model_pipeline_seconds": 0.07658599999740545,
+        "fixed8_pipeline_seconds": 0.05137749999994412,
+        "verification_seconds": 0.06457920000138984
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "5d7680aed531c158e57f620d0e118c6fa8d2a6d03dbc40277a532f21e008253a",
+        "fixed8.png": "75e08b63f07edfe45074846ce218d1a08cd42351a41a973910f41d9714d52abe",
+        "fixed8.txt": "d2988e6e5db0144d4bb5c45b834a25f65fc726a1009ed113ffe216d683a0b31e",
+        "input.png": "aedccf1db09dd1352beb6b19d865f3506b19afeed2b06501df6ff6d41e9d88e2",
+        "selected.astc": "addd34172582c4f2da1d37e49ccdfea319a65b0ad0182c219b82287978a2a343",
+        "selected.png": "fbdaee35ab80627a3ae46bd0b2bb82a74d92778fd9164915846ac4f9c3a2f3c2",
+        "selected.txt": "394d0a6c81c7b6d7c2a5a43d8bdae5bd41ef3e211de5af221ccf69de66dce4ab"
+      },
+      "receipt_sha256": "8c5ba1af6f7a6e7ae96be8f33097b2b469c0ba836a7597f9645e932cd39bdbcf",
+      "unity_rgb_psnr": 38.561854270459335,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 29584
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/HD/Special_HD_wmd_0682.png",
+      "source_md4": "c4a4c06c4b181cac78ac7ad95de13141",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        6.64453125,
+        -2.23046875,
+        -2.828125,
+        -2.98828125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 33.688655101787916,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 28.354856137903013,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 29584,
+      "fixed8_payload_bytes": 16384,
+      "timings": {
+        "preprocessing_seconds": 0.001174400000309106,
+        "source_rgb_seconds": 0.004742300001453259,
+        "inference_seconds": 0.015507000000070548,
+        "final_encode_seconds": 0.11577550000038173,
+        "model_pipeline_seconds": 0.13719920000221464,
+        "fixed8_pipeline_seconds": 0.13515380000171717,
+        "verification_seconds": 0.058463200000915094
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "02cb3775941f91bde8f487f8404b619f0561d37368c7ff7c03bb2f3cb68d6554",
+        "fixed8.png": "d7fa82c15df25e3e0ab75ad5e4282d9cad108df475e3b219f204058f73748c8b",
+        "fixed8.txt": "184f233e78431a67c2d622a760d1121982d552ca253d8494e0809fa6dc66665b",
+        "input.png": "9d2c13b1486dea91fc68ad6b2bb85d3ed77add2c474ef41310b702fed8d28ded",
+        "selected.astc": "a097b2a91b282929d78bb1ccdc8f8d08de2745c40bd168d402e30ce2d57f428f",
+        "selected.png": "b3613f16935984317b087e2864f7a8290c5edc88b60d9d70777b324bad33bf35",
+        "selected.txt": "e598e1967efadf003739df2e6f3fe38b63f4c9d1571549229d3700286caa2513"
+      },
+      "receipt_sha256": "0137b0ba405649c7b22bcb81c90d372b17016262ede9e8fec407c4b1c7f8142e",
+      "unity_rgb_psnr": 29.92960409076213,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 29584
+    },
+    {
+      "path": "Assets/Art/Characters/5_nana/Show/skin10_high/5_nana_skin10_high_hair03_m11.tga",
+      "source_md4": "b7025a8d30c884e366a1384b55d7cc24",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        17.59375,
+        -7.77734375,
+        -5.51953125,
+        -8.796875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 30.96932578966481,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 26.943266829629188,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 65536,
+      "timings": {
+        "preprocessing_seconds": 0.0012771000001521315,
+        "source_rgb_seconds": 0.020608100001481944,
+        "inference_seconds": 0.013322300001163967,
+        "final_encode_seconds": 0.8939946999998938,
+        "model_pipeline_seconds": 0.9292022000026918,
+        "fixed8_pipeline_seconds": 0.9273688000012044,
+        "verification_seconds": 0.12402079999992566
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "3740d33ca4cc703fcbfdea3803745193b07099f936127604ce2c3568f1a954a3",
+        "fixed8.png": "16ef86cfac51a5f03485042f30031438e7be1d60a5f40a411629053f8dcf14b2",
+        "fixed8.txt": "cbe941ad24e3dd9315bbdfe5ab8551006e5ce0dc765033d888171a6980bee297",
+        "input.png": "6dc09b7ce10d48ee952642231ffe5925a1a01cca3a479d9bf5d195ca080ef513",
+        "selected.astc": "4389c67e40c5b5074d05ea0971603d9f7ce4d944162b75efbf78d46d44d64ddb",
+        "selected.png": "e059648dd854e72ddf1ee65322f3cc910fd1053ef34a4e2cf6764d484a1cf28b",
+        "selected.txt": "b6454256468aa31d8166c14fa2a3dd508b4e5aa477ab2637c29ba0dc874a1976"
+      },
+      "receipt_sha256": "c3c3939c7f004d024f5d2d125031cb09b37a13271506d3bf843e42c087bf09be",
+      "unity_rgb_psnr": 31.21476924367584,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 118336
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Special/SD/Special_HD_cjp_0045.png",
+      "source_md4": "ff85715ea3222d94d2bcbe5411168622",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        2.8046875,
+        0.05615234375,
+        -1.259765625,
+        -3.0078125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 38.09603314646371,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 30.924547805833402,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 7744,
+      "fixed8_payload_bytes": 4096,
+      "timings": {
+        "preprocessing_seconds": 0.0013593000003311317,
+        "source_rgb_seconds": 0.0017917999994097045,
+        "inference_seconds": 0.020592900000337977,
+        "final_encode_seconds": 0.026636900000085006,
+        "model_pipeline_seconds": 0.05038090000016382,
+        "fixed8_pipeline_seconds": 0.039584199999808334,
+        "verification_seconds": 0.040818000001308974
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "fdc0beee58a0aef97c3c0960da8549dcfe3967ba12b124b6028c326a2eac00a8",
+        "fixed8.png": "3578c3a59e8d022574cbdf0621f2770c39303f32bbe2a0662427f9a3989eed12",
+        "fixed8.txt": "28c065b676d5a01bee4ea2f5a67977020775a56c57ce6a778c4d85a7b090aca6",
+        "input.png": "fd680a8a55913efbccdd008b8d9dfc96f14785601d4c6d400ae2049a77e3c743",
+        "selected.astc": "cbd4f6c0a960f9393b5972c8ad55273bc3e54b75d2ee8dca831f0ab3de97ae4a",
+        "selected.png": "83e5b9a4e9894a381e3e4a46f84930c5836471b384e85b24f1e105eeaf1ab64c",
+        "selected.txt": "a7f7ee6620abd6450b930c22b89b44ff7cd1a8634913d2da46b297d03f2fbe7b"
+      },
+      "receipt_sha256": "a12d3e1caa2fcf177f2e20924b64268fd10651d2a87c02670675ad4158926321",
+      "unity_rgb_psnr": 34.78613601733338,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 7744
+    },
+    {
+      "path": "Assets/Art/Characters/29_xiaohongmao/Show/skin09_high/29_Ruby_skin08_high_body02_g.tga",
+      "source_md4": "1f1ceedf828382864bcacd1390042be7",
+      "predicted_class": 2,
+      "footprint": [
+        10,
+        10
+      ],
+      "logits": [
+        -0.362060546875,
+        0.1640625,
+        0.1832275390625,
+        -0.272216796875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 33.18016920063652,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 35.61866537669885,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 43264,
+      "fixed8_payload_bytes": 65536,
+      "timings": {
+        "preprocessing_seconds": 0.0012509000007412396,
+        "source_rgb_seconds": 0.021676800000932417,
+        "inference_seconds": 0.011472199999843724,
+        "final_encode_seconds": 0.3081758999996964,
+        "model_pipeline_seconds": 0.3425758000012138,
+        "fixed8_pipeline_seconds": 0.3869795000009617,
+        "verification_seconds": 0.13928990000022168
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "42059291a6a8536cecb858754b807370668bacdce7cfa3e5735ae96dd96a03b5",
+        "fixed8.png": "3d748fd9b1037a6818934b014b4e2558b0d8e81f800ac3994a51fed4a8539cb3",
+        "fixed8.txt": "f372a8081846dc03ce6f57f6609203d1518da02aa1ea663f111f2faecbaa7dc4",
+        "input.png": "061461943a9151dc27b5e3e5292dc03597766caaffa979dee6d4eb1fa726a5de",
+        "selected.astc": "996abf5187591efbe8ff09faf540f84b7c474d8c78d953e84b54a5a23b663e8c",
+        "selected.png": "bf5e147f4eeff04156d92400154158c44552e59d0d482203c603ad732d0fc2d2",
+        "selected.txt": "d579b8bf3091c4c0af8f71f1efab897cdeeb614d2dbd3f801447936d8a901a52"
+      },
+      "receipt_sha256": "715c7a1b32800b90c8f5b58d9a5bf49e3355a242c505096ab87312edaee35f8e",
+      "unity_rgb_psnr": 32.16708131612786,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 29584
+    },
+    {
+      "path": "Assets/Art/Characters/129_wuzetian/Show/skin01_high/wuzetian_skin01_high_bantou_d.tga",
+      "source_md4": "6baff835c9ffe4fff5a1cbaeffb1797a",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        0.3330078125,
+        -0.227783203125,
+        -0.1783447265625,
+        -0.52294921875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 39.754488344653474,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 36.44664246942243,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 118336,
+      "fixed8_payload_bytes": 65536,
+      "timings": {
+        "preprocessing_seconds": 0.0014900000005582115,
+        "source_rgb_seconds": 0.02541449999989709,
+        "inference_seconds": 0.017547299999932875,
+        "final_encode_seconds": 0.44503230000009353,
+        "model_pipeline_seconds": 0.4894841000004817,
+        "fixed8_pipeline_seconds": 0.43214609999995446,
+        "verification_seconds": 0.14698499999758496
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "72c3eeac8ce8a5c60b6bdba80e1cc39ebc6ee9c4818e920f16197fc437f7d619",
+        "fixed8.png": "870898b2a2a3f1216ea77e3930499bddcc8eb91266153c0852ca3f5c70a3a4cb",
+        "fixed8.txt": "c0b41b7ac1f7178668b080eff6e952f827b07ad968ab6994e47ada3718ced097",
+        "input.png": "6fe3cfc03111eddb240c2b176310e4db39255402cc5c5531499a124bd2f2fc58",
+        "selected.astc": "4712dd3ba04e257dfc2a85c829c36c8b180077af65aa90b9c832e56278b343e5",
+        "selected.png": "a32a0edd5ca27720e91ef05568aba2231f75c3c2ddf47eebc7b97bd0bfdcb541",
+        "selected.txt": "677583ad405ca71cda7266b93be328dd3dc017aebcfc8afe348e193f4ed78d74"
+      },
+      "receipt_sha256": "54c4058e22184f8756e963a033aebdf95a2f7c76bc443e35f15caa99dbca60a0",
+      "unity_rgb_psnr": 32.737998272096455,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 29584
+    },
+    {
+      "path": "Assets/Art/Characters/01_gongjianshou/Show/skin_high_cnnew/gongjianshou_skin00_high_e.tga",
+      "source_md4": "a97a82bad7454aa6dfd4e9c4928d7a4d",
+      "predicted_class": 2,
+      "footprint": [
+        10,
+        10
+      ],
+      "logits": [
+        -0.2027587890625,
+        -0.0242767333984375,
+        0.103271484375,
+        -0.1710205078125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 33.20633583488351,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 35.80794797648526,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 43264,
+      "fixed8_payload_bytes": 65536,
+      "timings": {
+        "preprocessing_seconds": 0.0016056999993452337,
+        "source_rgb_seconds": 0.024139899998772307,
+        "inference_seconds": 0.013727199999266304,
+        "final_encode_seconds": 0.35390519999964454,
+        "model_pipeline_seconds": 0.3933779999970284,
+        "fixed8_pipeline_seconds": 0.39614659999824653,
+        "verification_seconds": 0.16750760000104492
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "a4d775aa04845775f7f9371a285f28517f0c696e8332d943a4011e1ff4592454",
+        "fixed8.png": "b4e3e531f6c0ac9c217ccb6eacf73a8a251012fe73a46f6640429b952bf9e10e",
+        "fixed8.txt": "afadf0bb5ec26c6aa1832d5dfd8d7376b185902cb6fb8fd883ce7c3c105556a8",
+        "input.png": "403bc4b34aa421fd14911d68c1433da3d30791392fb2a3d9459acdce578756d0",
+        "selected.astc": "123a8cbc94f1000cccaaf7ef9c3249a2c7aa6c4c5a3c02cf752902a3dc1c1584",
+        "selected.png": "688dd1b2dde397d7b383224e0abf3c7bbaa9f2a5afeb875a00d35a7f674bfe5e",
+        "selected.txt": "e73392f39dfe7a8bc68cdb4bd748989e2478942e658978f19b8a43d8fb292d79"
+      },
+      "receipt_sha256": "68b32e5dc98e3de24e6dde8b4519eb4ed2d357b3f961de2aaae24780adf8f44a",
+      "unity_rgb_psnr": 32.38785337936679,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 29584
+    },
+    {
+      "path": "Assets/Art/Characters/Guinevere/Materials/skin09_high/guinevere_Skin09_body_d_CN.tga",
+      "source_md4": "8b944e4192dbdad7f3c464b8cebf0586",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        1.51953125,
+        0.359375,
+        -0.23681640625,
+        -2.076171875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 41.48304960019562,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 37.89788231184288,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 467856,
+      "fixed8_payload_bytes": 262144,
+      "timings": {
+        "preprocessing_seconds": 0.0028042000012646895,
+        "source_rgb_seconds": 0.09241870000005292,
+        "inference_seconds": 0.015533300000242889,
+        "final_encode_seconds": 0.6655086999999185,
+        "model_pipeline_seconds": 0.776264900001479,
+        "fixed8_pipeline_seconds": 0.8890272999997251,
+        "verification_seconds": 0.40978050000194344
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "3d8eaabae994fcc65e2e4fab8d4d05aab8d76d83276399af5ce11ea0ddc2c0e9",
+        "fixed8.png": "3f96fd62682444c93cd9f7be537af921497a92aa78e8a750a5e94a997c2cfd3c",
+        "fixed8.txt": "1e72d8c7a9b183c2132f024927aceec088933e8af76695da6886a6e8241fe937",
+        "input.png": "9459ef859dac9b15fd7f630cd8da450701d498963280b822331a58ed4202cebb",
+        "selected.astc": "6326eaf62537074c8a398d267e785ad20f3033f133b74f7305f25b2e7d865082",
+        "selected.png": "6ef6c5bde7720639a6776412b70e03631b9a89cf267670d7b009d29911c546d7",
+        "selected.txt": "f64d79dbb287f91e50b52dd278688389ace63ee346232a02a63df68de162bd59"
+      },
+      "receipt_sha256": "0de886455cfb23e3e699068e8f7b704d92416d8c21a1bf5edc52c17c5783da46",
+      "unity_rgb_psnr": 33.870957141938945,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 118336
+    },
+    {
+      "path": "Assets/Scenes/temp/Environment/PVP_SPD_add/Textures/dimo/ML_067_S5_bluebuff_01_N.tga",
+      "source_md4": "ab62ed039c4317dc58948523da2e4360",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        2.197265625,
+        -0.58251953125,
+        -0.39990234375,
+        -2.5625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 31.00591255310754,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 28.689321062851594,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 7463824,
+      "fixed8_payload_bytes": 4194304,
+      "timings": {
+        "preprocessing_seconds": 0.0245773000006011,
+        "source_rgb_seconds": 1.2194137999995291,
+        "inference_seconds": 0.017186900000524474,
+        "final_encode_seconds": 44.02486180000051,
+        "model_pipeline_seconds": 45.28603980000116,
+        "fixed8_pipeline_seconds": 43.62927420000051,
+        "verification_seconds": 6.602582599998641
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "b993a345cf80b12256878c106516aecc2c54cc9d30576a5d34ee47c914367426",
+        "fixed8.png": "974bf23a14171919847a63790c173afe8dedac8d5bc01f218c760db3a6eb6716",
+        "fixed8.txt": "8e39a908ee3539558771f376361812c114f01a7e3b52e536c7bfeaed4e7e743b",
+        "input.png": "5db5ef8a86526bf60332a92aef8fcd46eda06af161b1a406ccb1640cb76ab2cc",
+        "selected.astc": "7513397fa662cadb600cfd5bb2460b307754bdd20fb00cc3d2b8fc6bd3550028",
+        "selected.png": "627b7c6bc68a0f4843b083fc34a4b1e1f5110bab4e4f2cfcf3a9f8d5788595b1",
+        "selected.txt": "00fa2c79178c65036f76be4263fbd6e4c763d77fb8594412bfe537061846dcfa"
+      },
+      "receipt_sha256": "0da6abe11a99ffcd93f512659a889d8277d39c287faf407bda25f0b5296b70c9",
+      "unity_rgb_psnr": 31.320779823697737,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 7463824
+    },
+    {
+      "path": "Assets/RuledAssets/Act_themelotteryHero/UI/UITexture/Atlas_add/Atlas_ActivityThemeLotteryHero_add/pic_o.png",
+      "source_md4": "9ffaaf6e6f1e897c481b0733df0892cb",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        0.26806640625,
+        -0.10882568359375,
+        -0.279296875,
+        -0.499267578125
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": null,
+          "lossless": true,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 64,
+      "fixed8_payload_bytes": 64,
+      "timings": {
+        "preprocessing_seconds": 0.0012919000000692904,
+        "source_rgb_seconds": 0.010895199999140459,
+        "inference_seconds": 0.01893039999959001,
+        "final_encode_seconds": 0.016226100000494625,
+        "model_pipeline_seconds": 0.04734359999929438,
+        "fixed8_pipeline_seconds": 0.02972539999973378,
+        "verification_seconds": 0.06923480000114068
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "776369b6df4b0829750975b85d198c8df68661e948a8cbc8d96e71b271cf5b24",
+        "fixed8.png": "02f9b873a9514c014721031e848a2d82e518b25dcdb48e720a3105336960f683",
+        "fixed8.txt": "e0faa8e1d8f1ef8786d47e653242889ffd4fa162c6e0081b62b46af8b73d14e6",
+        "input.png": "70980e81df37a1209063ed71c0ff82eeb3a5a93a418ec28fb8eedc8a7db22fa7",
+        "selected.astc": "caff264e2fe9de39192c98f2a4df462b36333853ba7a999632e05d032c4f67d6",
+        "selected.png": "02f9b873a9514c014721031e848a2d82e518b25dcdb48e720a3105336960f683",
+        "selected.txt": "ca37f6cf5bfdd3074d8d111627046058add0dabb9fbf52ab22d60267dfd64730"
+      },
+      "receipt_sha256": "2d1bb8d166b6fca5a78decbb2476f44c8d0d9e0f57e805d264af0e8a46fbf0ef",
+      "unity_rgb_psnr": 26.056180461037957,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 64
+    },
+    {
+      "path": "Assets/CustomMode/EasyGameCreator/Editor/EGCStateScript/MonkeyScriptEditor/UI/Texture/ms_qianjin.png",
+      "source_md4": "f73fb9fd29f3c58423c232eaeff277aa",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -3.53515625,
+        -0.75830078125,
+        0.5751953125,
+        2.4609375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 36.57424130304736,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 42.501604903933,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 144,
+      "fixed8_payload_bytes": 256,
+      "timings": {
+        "preprocessing_seconds": 0.0013822999990225071,
+        "source_rgb_seconds": 0.0016047999997681472,
+        "inference_seconds": 0.013817299999573152,
+        "final_encode_seconds": 0.023046599999361206,
+        "model_pipeline_seconds": 0.03985099999772501,
+        "fixed8_pipeline_seconds": 0.020574699999997392,
+        "verification_seconds": 0.04606389999935345
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "4e10af3ea3b047b86c82dbc637b05c866acfee9f8ced608374b437d7ef3b435c",
+        "fixed8.png": "adba93d7fd63348bf386dfb8f17911e508a0a186fbd87af7d7abd8e6c7665218",
+        "fixed8.txt": "e6a7a37b0b060e9072c097fa6f4dc4b84ef5c303cdc6bc9f80693abcbaa7bc38",
+        "input.png": "2a9d14dc4569704077105a7b767f490ff25bf7971d4689d39c466398cabd850f",
+        "selected.astc": "f56eb045dee7c49340a24cdae98450209270b2146bbb769f4d443fa6b26d3ab5",
+        "selected.png": "7165a6ad5b4a1386b3a0a8c7add20141faa10626b2081287553196b6fd5f7390",
+        "selected.txt": "ac3768c3e145c77096557ed506ed40db87600afb0ce45df2a1d9e6f31cfbf9e5"
+      },
+      "receipt_sha256": "71aa1305ed8c8ec3ac99631eb8479cfd4cf6cbd7f99914dc139074ca9e15ac31",
+      "unity_rgb_psnr": 36.194503802630955,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 256
+    },
+    {
+      "path": "Assets/RuledAssets/System_Live/UI/UITexture/Atlas_add/Atlas_AudienceLevel_add/11.png",
+      "source_md4": "8797abf5119f2c3159018890ad28f19c",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        0.96484375,
+        -0.35888671875,
+        -0.2095947265625,
+        -1.0615234375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 38.92205451776965,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 33.76142423259448,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 480,
+      "fixed8_payload_bytes": 256,
+      "timings": {
+        "preprocessing_seconds": 0.001090799998564762,
+        "source_rgb_seconds": 0.0010908999993262114,
+        "inference_seconds": 0.016518300000825548,
+        "final_encode_seconds": 0.0161234000006516,
+        "model_pipeline_seconds": 0.03482339999936812,
+        "fixed8_pipeline_seconds": 0.020139099999141763,
+        "verification_seconds": 0.03753050000159419
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "44268b11d649bb3eeec6220b62b858fb39ffb0d17245dd64a472991091b3c825",
+        "fixed8.png": "9d83af6c4f7c658f090ddc261d234300803000e18401ec64b964cf1ddb3a668e",
+        "fixed8.txt": "0afa74274e7dd845cf5bf0419a6bd617fd393e3a6c61588faf6298e46ac57f59",
+        "input.png": "56a095f1fe71b4acb5d19407d3519595d140222dbf16cb809433f87f02a5d7ee",
+        "selected.astc": "2885250b7450e012a78482fcd3abd9bce20d6233dc4a096a37ee5f408367f0c4",
+        "selected.png": "8fd4f3ad9007d2822dd75a1085ab342a940aa25370eefd63cdeab1b6193d9e33",
+        "selected.txt": "bc3d5cf078bc83171bcbf7e17427f286f34b580f5a4016177c5e837ea1253bc6"
+      },
+      "receipt_sha256": "a2405689b19b580570e743f8cb8a151cfd9f2999b2f3970a72ba091781096487",
+      "unity_rgb_psnr": 31.97580779861287,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 256
+    },
+    {
+      "path": "Assets/RuledAssets/Act_Race/UI/UITexture/Atlas_add/Atlas_Race_New1_add/FBTeam.png",
+      "source_md4": "bdd94fbb81a79f765241b4eb790e3170",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        2.853515625,
+        0.322021484375,
+        -1.2421875,
+        -3.26171875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 38.48029253916379,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 32.813613708908875,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 1296,
+      "fixed8_payload_bytes": 784,
+      "timings": {
+        "preprocessing_seconds": 0.001012899998386274,
+        "source_rgb_seconds": 0.001153600000179722,
+        "inference_seconds": 0.018289200001163408,
+        "final_encode_seconds": 0.0175558999999339,
+        "model_pipeline_seconds": 0.038011599999663304,
+        "fixed8_pipeline_seconds": 0.0236337000005733,
+        "verification_seconds": 0.03791009999986272
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "3f3a97bfcfafc70a7bfb3eb79e6bb879d57d599b243607ef8049319594c54912",
+        "fixed8.png": "fd3147bea1b4360e6bff041851c9b1ad54c125d8f08ea29bfcae1964de807e9f",
+        "fixed8.txt": "42fb7fac8361cf1c6f7e31703a2decf5265397a283a9cfcb68e3e40abf583bdd",
+        "input.png": "cc526e3ee417f6acb69ab8d6a33cda2440b4037a0d7d8c84a509419bd70329de",
+        "selected.astc": "014df1dc57e5c971df1626bea68c2f95a0faaa0552af83c1d873c0d70f0236e1",
+        "selected.png": "d7b512f2ed3f552c66a92d93cfbd187ca4a4c90aaf07bf80432b5706e4ee92c1",
+        "selected.txt": "32657ef75bb425d7624187afad2301a58c7cd692b8d146fe8507c6482a90cf03"
+      },
+      "receipt_sha256": "c181061dfc64811ef5c1613951065aca603a4dc0cc420f9e45edfc2ca6afc5dc",
+      "unity_rgb_psnr": 30.856291167673525,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 784
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Ui/SD/Ui_SD_WS_0233.png",
+      "source_md4": "e24fee490d2a149a3afb246e9e600f97",
+      "predicted_class": 3,
+      "footprint": [
+        12,
+        12
+      ],
+      "logits": [
+        -1.08984375,
+        -0.30859375,
+        0.335693359375,
+        0.3857421875
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 30.21908003986251,
+          "lossless": false,
+          "target_met": false
+        },
+        "fixed8": {
+          "rgb_psnr": 37.68633242125237,
+          "lossless": false,
+          "target_met": true
+        }
+      },
+      "payload_bytes": 288,
+      "fixed8_payload_bytes": 512,
+      "timings": {
+        "preprocessing_seconds": 0.0010901999994530343,
+        "source_rgb_seconds": 0.0012614999996003462,
+        "inference_seconds": 0.018774099999063765,
+        "final_encode_seconds": 0.02517930000067281,
+        "model_pipeline_seconds": 0.046305099998789956,
+        "fixed8_pipeline_seconds": 0.019325600000229315,
+        "verification_seconds": 0.07208629999877303
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "e19f323a3a0308a7b3551f5e82bbda61672c76bd2f639239a73ef20b92c2d7d3",
+        "fixed8.png": "29c8c608349b39eb77d926fb175a0da07c569c1a8df5b1f694bd78e5d4eba9f9",
+        "fixed8.txt": "96ecb2d7bcdf000ce64d4e5b923a724ccccaed7a1e2321f4d46309ff413d6383",
+        "input.png": "ee93eb160ce6e53e2cd1a81113a8386f9b2fd04e4098f75e0d32ef366d3e5081",
+        "selected.astc": "dcb714249832b024ba963d4473baacec2aac00248e1f9c2e372f53244c1433c5",
+        "selected.png": "4e78a661990f1204aef1672c68655bbff7151abbaa377de7ae07787ef5121e57",
+        "selected.txt": "7b4e2032130c2998de0145adcb1c9c6b3aad254f331c7c1f3685b68f694c8ed4"
+      },
+      "receipt_sha256": "2e4d76ec24510cb8fd8988157b02d01f307f5944f292bb38a3b8a4ee628aa3aa",
+      "unity_rgb_psnr": 39.53034946426762,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 512
+    },
+    {
+      "path": "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_Item03_add/Itemadd340.png",
+      "source_md4": "c10e527e3806b5f81f8d31b8ee80aff4",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        9.125,
+        -2.85546875,
+        -2.595703125,
+        -5.37890625
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 36.40208997227168,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 31.201409546429982,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 4624,
+      "fixed8_payload_bytes": 2704,
+      "timings": {
+        "preprocessing_seconds": 0.0011154000003443798,
+        "source_rgb_seconds": 0.002339399999982561,
+        "inference_seconds": 0.012162299999545212,
+        "final_encode_seconds": 0.027899799999431707,
+        "model_pipeline_seconds": 0.04351689999930386,
+        "fixed8_pipeline_seconds": 0.03566829999908805,
+        "verification_seconds": 0.040919600000052014
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "a65fa64fae85aca62862a6b372910ea0ee0ec5d27340c8d29b0fda6cfa505018",
+        "fixed8.png": "efa764f99deb4aa5551f39410eeb357e43632b2d55218253802052a5d33b04b4",
+        "fixed8.txt": "c4ca5229c898e40b2649d5742df8477016d95d094fab8fec4d7b725156476110",
+        "input.png": "a59576b9c7c47d37365f0695fee2e689269ee15d8a92377125c89a5975752813",
+        "selected.astc": "497c960870980dbb738c98d1e8175ea7b706a2172db393d9649480edf41c8ef7",
+        "selected.png": "89247cf405cdf29e040a3faabce0207108c8cf4293d27666abf59a7e309c67d4",
+        "selected.txt": "715e27db96195e55254fde09e84d6726cf632b24e038a00465adc981d8ce2865"
+      },
+      "receipt_sha256": "a748ee842f1083f7bad310ace8e98c9367238eb705ea99d9c790a3c1b3bb3a44",
+      "unity_rgb_psnr": 29.554078002669023,
+      "unity_lossless": false,
+      "unity_target_met": false,
+      "unity_payload_bytes": 2704
+    },
+    {
+      "path": "Assets/Art/Effects/Texture/Common/Flipbook/SD/Flipbook_syj_009.PNG",
+      "source_md4": "83d2edd01f1f3138ef6c49cf467246f8",
+      "predicted_class": 0,
+      "footprint": [
+        6,
+        6
+      ],
+      "logits": [
+        0.475830078125,
+        -0.321533203125,
+        0.0899658203125,
+        -0.82177734375
+      ],
+      "quality": {
+        "selected": {
+          "rgb_psnr": 38.94084885231811,
+          "lossless": false,
+          "target_met": true
+        },
+        "fixed8": {
+          "rgb_psnr": 34.44516647837638,
+          "lossless": false,
+          "target_met": false
+        }
+      },
+      "payload_bytes": 7744,
+      "fixed8_payload_bytes": 4096,
+      "timings": {
+        "preprocessing_seconds": 0.0009356000009574927,
+        "source_rgb_seconds": 0.001958099999683327,
+        "inference_seconds": 0.017603199999939534,
+        "final_encode_seconds": 0.02053909999995085,
+        "model_pipeline_seconds": 0.0410360000005312,
+        "fixed8_pipeline_seconds": 0.02743000000009488,
+        "verification_seconds": 0.03980570000203443
+      },
+      "artifacts_sha256": {
+        "fixed8.astc": "89e37a043a96873937276272bd46a9de77f462904f4ae6220003f8a33eaa423d",
+        "fixed8.png": "f120b2f88f068693c70aa7165d167ae13fefb32efd834e4da8115fca4d5f949d",
+        "fixed8.txt": "93f31ea2fe8a8a3f2dd53718ba2ed142582f75cc956fbf2a843c0f896bab3569",
+        "input.png": "4e70867315b4ceaf8c4128b1cca12a14022baa0a766a767ef57e288de3838b58",
+        "selected.astc": "874d630153756404b6c6ec54e6b88c54f83ebc4a9de751a0d29a66e107b2fe3b",
+        "selected.png": "6a8e11c20004a7682b7b9e71ca29c24dc25f1fd3013231e1d6191dcb672c7b48",
+        "selected.txt": "5d3fc5ae238422421373e2b2e70ac806c5335d5278c37c55ec1b5468a10ba407"
+      },
+      "receipt_sha256": "a2e5c995eb5e3d93dd18fb402cd038515ec751bcd5fa1524c9a79a7071402584",
+      "unity_rgb_psnr": 35.01218329298665,
+      "unity_lossless": false,
+      "unity_target_met": true,
+      "unity_payload_bytes": 4096
+    }
+  ],
+  "profile": "Linear LDR RGB8, one encoding thread, no mip/RDO",
+  "encoder_preset": "medium",
+  "model_target_psnr": 35.0,
+  "evaluation_target_psnr": 35.0,
+  "quality": {
+    "target_psnr": 35.0,
+    "comparison": ">",
+    "model_target_met": 46,
+    "fixed8_target_met": 46,
+    "unity_target_met": 27
+  },
+  "payload": {
+    "model_bytes": 11881536,
+    "fixed8_bytes": 8735312,
+    "unity_bytes": 9690816
+  },
+  "costs": {
+    "source_rgb_seconds": 2.803241199993863,
+    "preprocessing_seconds": 0.13243470000088564,
+    "inference_seconds": 0.5846561999951518,
+    "final_encode_seconds": 52.94096689999424,
+    "model_pipeline_seconds": 56.46129899998414,
+    "fixed8_pipeline_seconds": 55.75950769999508,
+    "verification_seconds": 15.25070819999928,
+    "setup_seconds": 1.1318754000003537,
+    "wall_seconds": 125.55419040000015
+  },
+  "protocol": {
+    "implementation": "talk_reimplementation_project_four_square",
+    "manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+    "encoder_commit": "954af82d2832aa2707d936c5aa5522c76ecd4426",
+    "encoder_sha256": "9fc8bc5b971d3b4a4587518525e978ee20f79a65a452a83595b610e8595e1a2a",
+    "footprints": [
+      "6x6",
+      "8x8",
+      "10x10",
+      "12x12"
+    ],
+    "preset": "medium",
+    "threads_per_encoder": 1,
+    "decode_threads": "astcenc CLI default",
+    "target_psnr": 35.0,
+    "comparison": ">",
+    "metric": "full-image byte-domain RGB MSE PSNR",
+    "input": "source RGB8, original dimensions, Linear LDR, no mip, no RDO",
+    "sizes": {
+      "train": 10000,
+      "validation": 1000,
+      "calibration": 1000,
+      "test": 2000
+    },
+    "fallback": "highest measured RGB PSNR, then smallest payload",
+    "equal_payload": "largest footprint area",
+    "candidate_coverage": "all four candidates",
+    "missing_original_settings": [
+      "full footprint set",
+      "encoder version/preset",
+      "original corpus"
+    ]
+  },
+  "protocol_sha256": "23a1eb40c151d0062c0794d9c0eb66c88e32de1b27dc8779caf42f83f44789cf",
+  "evaluation_receipt_sha256": "6fd7a6e04c85f1b7a2766969855c2726ab58ee89c2d4dbdea607e16730c08912"
+}

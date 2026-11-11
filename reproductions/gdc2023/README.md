@@ -18,7 +18,7 @@ uv run --frozen python script/reproduce.py dataset --method gdc2023 --run-id sou
 uv run --frozen python script/reproduce.py assemble --method gdc2023 --run-id source-rgb35-medium-full
 ```
 
-The full manifest keeps 10,000 training, 1,000 validation, 1,000 calibration and 2,000 test images from the source split. Formal label generation and full admission passed. CUDA training completed30epochs in689.862s with4709 applied updates and1AMP skip, using the best validation checkpoint at epoch2. Independent test2000 final encoding is running. The [smoke report](<../../experiment report/gdc2023/source-rgb35-medium-smoke/test16/README.md>) preserves the earlier32-train/16-test chain and5/16 strict quality passes. `[verified: formal manifest.json; training_complete.json; history.json; wall-clock.json; evaluate job receipt; smoke pretrained-test.json]`
+The full manifest keeps10,000 training,1,000 validation,1,000 calibration and2,000 test images from the source split. Formal label generation and full admission passed. CUDA training completed30epochs in689.862s with4709 applied updates and1AMP skip, using the best validation checkpoint at epoch2. Independent [test2000](<../../experiment report/gdc2023/source-rgb35-medium-full/test2000/README.md>) passed final encoding and report audit. Strict RGB35 passed1540 images for the model,1505 for fixed8 and1782 for offline best labels. Quality violations are retained. The [smoke report](<../../experiment report/gdc2023/source-rgb35-medium-smoke/test16/README.md>) preserves the earlier32-train/16-test chain. `[verified: formal manifest.json; training_complete.json; history.json; wall-clock.json; test2000/pretrained-test.json quality]`
 
 ## Training and measured final encoding
 
@@ -34,7 +34,7 @@ The evaluator verifies current training completion and all sources/labels before
 
 The report also audits all four offline candidates on the evaluation inputs and publishes fixed6/8/10/12 quality and actual payload controls. Candidate encode times retain their parallel label-collection scope. The separately measured fixed8 pipeline is the paired deployment latency control. `[verified: reporting.py write offline_fixed_footprints; smoke/test16/pretrained-test.json]`
 
-The current formal preparation process has an OS process-time observer attached. Its `preparation-process.json` records process startup through candidate collection and manifest/cache assembly at process exit. Evaluation binds a complete timing record by SHA and the report checks its protocol, collection and manifest hashes. Missing or incomplete timing records retain unknown process cost. The collection-only timer remains available in `collection.json`. `[verified: current preparation-process.json; costs.py PreparationCost; evaluation.py and reporting.py preparation_process_sha256]`
+The original preparation observer was interrupted by an OS reboot. Its archived receipt retains unknown exit duration. The successful complete assembly retry is recorded in `preparation-process.json`, with candidate collection5263.531s, successful assembly1666.137s and failed assembly325.604s as separate known components. The original startup and partial assembly duration remains unknown. Evaluation binds timing metadata by SHA and the report verifies protocol, collection and manifest identities. `[verified: preparation-process.json known_components and prior_interrupted_process_sha256; costs.py PreparationCost; reporting.py]`
 
 ## Shared Unity64 diagnostic
 
@@ -46,7 +46,7 @@ uv run --frozen python script/reproduce.py report --method gdc2023 --run-id sour
 uv run --frozen python script/compare_reproductions.py --gdc-report "experiment report/gdc2023/source-rgb35-medium-full/shared64/pretrained-train.json" --output "experiment report/reproduction-shared64"
 ```
 
-The source64 comparison verifies source identities and identical RGB PNG hashes across Nah/GDC and recomputes RGB PSNR. Nah selected ASTCs are freshly decoded by each pinned binary. Native capture measured38/64 source-equal RGB references and26 changed references. Method targets, presets, import processing and mip/face scopes are retained in the report. Source64 evaluation remains pending while test2000 runs. `[verified: common/comparison.py nah/write; reference capture summary.json; current evaluate-test2000 job receipt]`
+The completed [source64 comparison](<../../experiment report/reproduction-shared64/README.md>) verifies source identities, identical RGB PNG hashes across Nah/GDC and recomputed RGB PSNR. Nah ASTCs are freshly decoded by each pinned binary. Native capture measured38/64 source-equal RGB references and26 changed references. The additional [captured-reference64 comparison](<../../experiment report/reproduction-unity-reference64/README.md>) gives all methods the same imported mip0 RGB inputs. Method targets, presets, import processing and timing scope remain explicit. `[verified: both comparison.json files; common/comparison.py and reference_comparison.py]`
 
 ## Captured Unity reference inputs
 
@@ -61,7 +61,7 @@ uv run --frozen python script/reproduce.py evaluate --method gdc2023 --run-id so
 uv run --frozen python script/reproduce.py report --method gdc2023 --run-id source-rgb35-medium-full --evaluation-id unity-reference64
 ```
 
-The normal `report` action recognizes the reference schema and verifies model/capture identities, per-image receipts, input bytes, native output hashes and recomputed RGB quality. The two-image real evaluation/report smoke passed. Model training requires CUDA in both GDC and TexNN entry points. `[verified: reference_reporting.py; script/reproduce.py report dispatch; unity-reference2 public report; training/trainer.py and texnn/training.py]`
+The normal `report` action recognizes the reference schema and verifies model/capture identities, per-image receipts, input bytes, native output hashes and recomputed RGB quality. The two-image smoke and complete64-image evaluation/report passed. On captured inputs the source-trained model and fixed8 each pass46/64 strict RGB35, with11,881,536 versus8,735,312 payload bytes. This is a training-cohort input-shift diagnostic. Model training requires CUDA in both GDC and TexNN entry points. `[verified: reference_reporting.py; unity-reference64/pretrained-unity-reference.json; training/trainer.py and texnn/training.py]`
 
 ## Interrupted evaluation recovery
 

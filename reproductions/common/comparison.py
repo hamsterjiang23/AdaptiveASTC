@@ -156,7 +156,8 @@ class ReproductionComparison:
             or raw_batch["binding"] != gdc["binding"]
             or raw_batch["status"] != "passed"
             or raw_batch["images"] != 64
-            or raw_batch["results"] != [
+            or raw_batch["results"]
+            != [
                 {"index": index, "receipt_sha256": row["receipt_sha256"]}
                 for index, row in enumerate(gdc["per_image"])
             ]
@@ -221,15 +222,33 @@ class ReproductionComparison:
             }
             for path in paths
         ]
+        equivalence: dict[str, Any] = {"status": "unknown_unmeasured_import_pixels"}
+        capture_path = self.root / "experiment report/unity-reference64-lite-rdo-off/summary.json"
+        if capture_path.exists():
+            capture = ArtifactStore.read_json(capture_path)
+            if (
+                capture["images"] != 64
+                or [row["path"] for row in capture["rows"]] != paths
+                or any(
+                    row["source_md4"] != identity["fileHash"]
+                    for row, identity in zip(capture["rows"], inputs, strict=True)
+                )
+            ):
+                raise ValueError("Unity import-equivalence report uses different source identities")
+            equivalence = {
+                "status": "measured_on_frozen_cohort",
+                "images": 64,
+                "source_rgb_equal": capture["source_rgb_equal"],
+                "source_rgb_changed": 64 - capture["source_rgb_equal"],
+                "reference_summary_sha256": ArtifactStore.sha256_file(capture_path),
+            }
         result = {
             "status": "passed",
             "scope": "shared source identities with method-native search protocols",
             "images": 64,
             "inputs": inputs,
             "source_rgb_png_hashes_equal": True,
-            "unity_reference_pixel_equivalence": (
-                "not measured; imported pixels and mip scope differ"
-            ),
+            "unity_reference_pixel_equivalence": equivalence,
             "unity": {
                 "search_seconds": sum(row["native"]["search_ms"] for row in unity_rows) / 1000,
                 "select_and_complete_encode_seconds": sum(
@@ -292,9 +311,8 @@ class ReproductionComparison:
         lines += [
             "",
             "GDC shared64 is a training diagnostic. Quality targets, presets and search scope "
-            "differ between methods, and Unity reference pixels are not verified equal. "
-            "These times do not "
-            "establish equal-quality speedup. TexNN remains in its fixed-footprint report. "
+            "differ between methods. The import-pixel audit is retained in "
+            "unity_reference_pixel_equivalence. TexNN remains in its fixed-footprint report. "
             "`[verified: comparison.json limits]`",
             "",
             "Full source identities, Unity native timings, protocols and per-image values "

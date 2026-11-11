@@ -252,5 +252,73 @@
     },
     "formal_test2000": "running with validated218-image reuse; full suite deferred until timed evaluation ends",
     "scope": "checkpoint checks; prior full-suite records retain historical scope"
+  },
+  "reproduction_measured_delivery_20261111": {
+    "status": "passed",
+    "scope": "Unity baseline and four method project-reconstruction loops, native output audit and scoped comparisons",
+    "checks": {
+      "pytest": {
+        "command": "uv run --frozen pytest -q",
+        "passed": 124,
+        "seconds": 55.17
+      },
+      "ruff": {
+        "command": "uv run --frozen ruff check src script tests reproductions",
+        "result": "passed"
+      },
+      "types": {
+        "command": "uv run --frozen basedpyright",
+        "errors": 0,
+        "warnings": 0
+      },
+      "markdown": {
+        "status": "passed",
+        "files": 15,
+        "local_links": 158,
+        "anchors": 17,
+        "errors": [],
+        "scope": "local files, code line targets and Markdown heading anchors; external availability excluded"
+      }
+    },
+    "cuda_training": {
+      "gdc": "RTX4070 CUDA12.8 FP16, 10000 images x30 epochs",
+      "texnn": "all six P-NN/DEM-NN training configs record cuda"
+    },
+    "actual_gdc_evaluations": {
+      "test": 2000,
+      "source_training_diagnostic": 64,
+      "unity_reference_training_diagnostic": 64
+    },
+    "frozen_original218_receipts": {
+      "status": "passed",
+      "original_completed_receipts": 218,
+      "changed_receipts": [],
+      "original_progress_sha256": "33ccb9c23410d4cfa38c8cb6e32be33ab8fa3887911a4490967aa841074894e5",
+      "scope": "original failed write temporary progress anchors all reused218 receipt hashes"
+    },
+    "reports_sha256": {
+      "experiment report/unity-search-baseline-lite-rdo-off/summary.json": "4757f42522ffd82f6419197de8efc2cd3822c4664e411130244f49ddfd0bf1f4",
+      "experiment report/nah2022_psnr_search/source-rgb64-game/summary.json": "f656640ec701b6a2b23792c1f59442ce832bd65c45b8206d7e5d7c5c866c8964",
+      "experiment report/nah2023_adaptive_astcenc/source-rgb64-target40/summary.json": "a765ae9854ef1fccdce31cc1315b79cb32027ed76796300db390c3655d51cddb",
+      "experiment report/texnn/source-rgb1024-patch64-v2/data.json": "13b58786d6ffb4fb26fb06968bc34b95dbff0acff0a0076f217f8f0ee15a275a",
+      "experiment report/texnn/source-rgb1024-patch64-v2/validation8-patch128.json": "e644f19da92ac1b5f3f48ce93867e0f96ba824186e30137a1f08a1e7dd390b5d",
+      "experiment report/gdc2023/source-rgb35-medium-full/preparation.json": "5cd384311c6d13ab4012972abf5ebcab6cd78dbd1d8eff4303d397c5636f4ab9",
+      "experiment report/gdc2023/source-rgb35-medium-full/pretrained_training.json": "92ad2fa708740e5299c2d49fa89c7c76b705a4c73801fa4e8685e3673440cb7f",
+      "experiment report/gdc2023/source-rgb35-medium-full/test2000/pretrained-test.json": "985199e2bd43c19184806ca823d6ab8cdac1edc3869fe4217abf7d40db40bb8c",
+      "experiment report/reproduction-shared64/comparison.json": "6d01a1f0a84d11524df94a7047ce5234a5f595aa9870d45502acf9f0a9b1cd3b",
+      "experiment report/reproduction-unity-reference64/comparison.json": "017b068d8bfbb6c7f304b42902c8319db9cbfabeacbbb69d4584774594163c2e"
+    },
+    "limits": [
+      "Paper-scale TexNN corpus and published performance remain unverified",
+      "GDC settings and absent Nah/TexNN details are project reconstructions",
+      "Formal GDC training uses source RGB; imported-reference64 is an input-shift diagnostic",
+      "Initial interrupted preparation startup/partial assembly duration remains unknown",
+      "Native objectives and timing scopes differ between publications and Unity",
+      "Periodic lightweight repository checks overlapped formal GDC test evaluation"
+    ],
+    "review": {
+      "status": "passed_after_documentation_fix",
+      "C12": "Updated stale Unity measurement paragraph to completed10k baseline and64native capture; remaining full production input scope explicit"
+    }
   }
 }

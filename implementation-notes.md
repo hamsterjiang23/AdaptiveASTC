@@ -6,7 +6,7 @@
 
 - Formal 14k collection passed in5,263.53s. OS reboot at15:11 interrupted assembly and the first64 reference export. After metadata recovery with0 conflicts, 56 exports and the truncated native log were retained. The isolated64 retry passed with38 source-equal RGB inputs and26 changed inputs, and all64 choices matched the baseline. `[verified: collection.json; OS LastBootUpTime; partial archive receipt; reference summary.json]`
 - Assembly found15 all-zero RGB224 copies with valid frozen source caches. They were archived and repaired. Successful assembly retry took1,666.14s, failed retry325.60s, known preparation components total7,255.27s. Original startup and partial assembly duration remain unknown. `[verified: classifier-cache-recovery.json; preparation-process.json; assembly job receipts]`
-- Formal ResNet18 completed10000images x30epochs on RTX4070/CUDA12.8/FP16 in689.862s, with4709 applied optimizer updates and1AMP skip. Best validation checkpoint is epoch2. Independent test2000 encoding is running. `[verified: training_complete.json; wall-clock.json; history.json; evaluate job receipt]`
+- Formal ResNet18 completed10000images x30epochs on RTX4070/CUDA12.8/FP16 in689.862s, with4709 applied optimizer updates and1AMP skip. Best validation checkpoint is epoch2. Independent test2000 passed final encode/decode and report audit, with1540 strict RGB35 passes and23% violations. Paired fixed8 passed1505, payload ratio0.987747 and pipeline time ratio0.973311. `[verified: training_complete.json; wall-clock.json; history.json; test2000/pretrained-test.json]`
 
 ### Discovered edge cases
 
@@ -15,7 +15,7 @@
 
 ### Questions for review
 
-- Final test2000, shared64 inference, matched Unity-reference comparison and final delivery checks remain pending. The reference evaluator/report path passed a two-image real encode/decode/report smoke. `[verified: current job state; unity-reference2/pretrained-unity-reference.json]`
+- Final test2000, source64 and matched Unity-reference64 comparisons are complete. Captured-reference common RGB35 passes are Unity27, Nah2022 64, Nah2023 62, GDC46 and fixed8 46 out of64. The source-trained GDC model produces11,881,536 bytes versus fixed8's8,735,312 on these imported inputs. Native goals and timing scopes stay explicit. `[verified: test2000/pretrained-test.json; reproduction-shared64/comparison.json; reproduction-unity-reference64/comparison.json]`
 
 ## GDC fixed controls and shared-cohort comparison, 2026-11-11
 

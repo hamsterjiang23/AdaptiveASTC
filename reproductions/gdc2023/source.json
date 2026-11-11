@@ -14,5 +14,14 @@
   ],
   "existing_experiment": "experiment report/gdc-lite-rgb-resnet18-seed20261109",
   "existing_experiment_scope": "historical LITE labels and source RGB classification, compression-loop evaluation pending",
-  "status": "formal_training_complete_test_encoding_running"
+  "status": "project_adaptation_measured_with_quality_violations",
+  "measured_runs": {
+    "formal": "source-rgb35-medium-full",
+    "independent_test_images": 2000,
+    "source_comparison_images": 64,
+    "unity_reference_comparison_images": 64,
+    "training_device": "cuda",
+    "training_input": "source RGB8 project reconstruction",
+    "production_input_protocol": "Unity pre-ASTC imported reference pixels"
+  }
 }

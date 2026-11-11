@@ -71,14 +71,16 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 | Nah 2023 作者代码 | 固定版本的 64 张项目源图适配完成压缩、解码与全图质量复查。40 dB 下 RGBA 达标 46/64，RGB 达标 26/64，搜索及最终编码 73.248 秒。[实测报告](<experiment report/nah2023_adaptive_astcenc/source-rgb64-target40/README.md>)保留随机抽样实现与同方法固定 8×8 对照。`[verified: 对应 summary.json quality_audit/search_and_final_encode_seconds]` |
 | Nah 2022 论文重实现 | astcenc 3.3 的 64 张项目源图适配完成压缩、解码。采用 Game 目标 37.3873 dB，RGBA 达标 64/64，RGB 达标 62/64，搜索及最终编码 546.329 秒。[实测报告](<experiment report/nah2022_psnr_search/source-rgb64-game/README.md>)记录初始 6×6 的补全来源及测量范围。`[verified: 对应 receipt.json/summary.json]` |
 | TexNN 复现 | 六网络已扩展到 1,024 张源图的块标签训练，在独立 validation 8 张裁剪图上完成 48 次编码对照和 96 次重新解码核验。top3×10 的平均 PSNR 损失为 1.07／1.63／2.36 dB，完整耗时比为 0.678／0.702／0.796，分别对应 4×4／6×6／8×8，见[扩展实测](<experiment report/texnn/source-rgb1024-patch64-v2/README.md>)。保留[64 图先期结果](<experiment report/texnn/source-rgb64-patch64-v2/README.md>)；原文数据规模与性能仍未复现。`[verified: 扩展 validation8-patch128.json groups、training、audit、limits]` |
-| 新 GDC 压缩闭环 | 正式 14,000 张候选标签与清单组装通过，10,000 图 CUDA 训练完成 30 轮，耗时 689.862 秒，最佳验证权重取第 2 轮。固定 2,000 图测试压缩正在执行。保留[先期 smoke 报告](<experiment report/gdc2023/source-rgb35-medium-smoke/test16/README.md>)。`[verified: 正式 manifest.json；pretrained/training_complete.json、wall-clock.json；evaluate-test2000 job receipt]` |
-| 对照口径 | GDC smoke 报告已补固定 6／8／10／12 的质量与 payload。共享 Unity64 的冻结输入与比较入口见[GDC 复现说明](reproductions/gdc2023/README.md#shared-unity64-diagnostic)。正式模型已完成训练，源图共同对照尚待执行。Unity 参考像素路径已完成两图编码／报告试跑，64 图属于训练集诊断。`[verified: smoke pretrained-test.json offline_fixed_footprints；正式 training_complete.json；unity-reference2/pretrained-unity-reference.json]` |
+| 新 GDC 压缩闭环 | 正式 14,000 张候选标签与清单组装通过，10,000 图 CUDA 训练完成 30 轮，耗时 689.862 秒，最佳验证权重取第 2 轮。独立 2,000 图完成真实编码与质量审计，模型 RGB >35 dB 达标 1,540/2,000，固定8×8达标1,505/2,000。payload比0.98775，完整部署耗时比0.97331。详见[正式测试报告](<experiment report/gdc2023/source-rgb35-medium-full/test2000/README.md>)，保留[先期 smoke](<experiment report/gdc2023/source-rgb35-medium-smoke/test16/README.md>)。`[verified: 正式 pretrained_training.json；test2000/pretrained-test.json quality、payload、costs]` |
+| 对照口径 | [源图64对照](<experiment report/reproduction-shared64/README.md>)与[Unity参考像素64对照](<experiment report/reproduction-unity-reference64/README.md>)均完成。后者逐图核验Nah／GDC的RGB PNG字节一致，统一测RGB>35dB和真实payload，各方法原生目标及计时范围分别保留。GDC两组64图均为训练集诊断，独立test2000提供泛化评价。`[verified: 两份comparison.json inputs／methods／limits；正式test2000报告]` |
 | Unity 参考像素 | 固定 64 图已完成原生参考图与选中 payload 导出。38 张与源 RGB 完全相同，26 张存在差异，64 张选中参数均与原基线一致。源图与导入后像素的共同对照使用[参考像素采集报告](<experiment report/unity-reference64-lite-rdo-off/README.md>)。`[verified: 对应 summary.json source_rgb_equal、baseline_choice_differences、rows]` |
 | 资料归档 | 视频、中英文网站字幕、19张每分钟截图、10张关键页补充截图已保存。`[verified: materials/gdc2023-astc-parameter-selection/；verification.json]` |
 | 全文整理 | 中英文字幕各328条，校订稿按40段覆盖全部条目，逐条原文另存对照稿。音轨独立ASR转写状态为未运行。`[verified: source/material-metadata.json；transcripts/完整字幕对照.md]` |
 | 方法核实 | 正文展示有标签数据集、块大小分类和ResNet。官网简介另提到强化学习，具体对应关系待作者材料确认。`[verified: 视频10:00、11:28、12:28；官方简介Overview]` |
 | 实验复现 | 已完成14,000张LITE源图划分、两组ResNet18各30轮及独立温度校准。测试准确率为67.50%／62.35%，中间块大小类别召回较低。[比例复核](<experiment report/gdc-lite-rgb-resnet18-seed20261109/数据集划分比例复核.md>)发现测试集中Mask单组占46.05%，详见[实验报告](<experiment report/gdc-lite-rgb-resnet18-seed20261109/training_report.md>)。质量与字节收益需候选压缩实测。`[verified: 实验metrics.json、data_summary.json、split_proportion_audit.json；opinion: 生产质量评价范围]` |
 | Git | 已初始化，分支为`main`，远端为`hamsterjiang23/AdaptiveASTC`，MP4视频通过Git LFS管理。`[verified: git init、git branch --show-current、git remote add origin输出；.gitattributes中的*.mp4规则]` |
+
+本轮 Nah、TexNN 和 GDC 文献复现保留源图 RGB 的项目适配协议。GDC 正式测试使用独立2,000张源图，Unity导入参考像素的64图用于共同输入诊断。面向Unity生产选参的模型输入按前文的压缩前参考图协议维护。各方法的质量目标、候选、preset、Alpha和计时范围随报告保存。`[verified: 各复现protocol；GDC正式test2000报告；本页“Unity导入结果与训练数据准备”]`
 
 ## Unity训练数据导出与源码导航
 
@@ -646,7 +648,7 @@ sharedResult.bestCompressedDataFromRdoRefine = true;
 - **冻结质量协议**。按本次运行读取tableConfig与有效阈值，保留黑色像素和大图策略。已有LITE快照与主包阈值差异见[配置调查](notes/实际数据位置与训练可用性调查.md#lite与主包质量配置)，新标签按确认的项目标准生成。`[verified: ASTCCompressor.cpp L1178–1205、L3166–3175；配置调查“LITE与主包质量配置”]` `[opinion]`
 - **分开保存候选表与最终表**。最终JSON／JSONL保存选中配置，候选指标位于allResults和调试报告。需要评价其他配置或oracle差距时，采集协议明确所需候选覆盖；法线角度指标、valid、earlyExit、回退与RDO尝试状态需追加到样本／候选清单。`[verified: ASTCCompressor.cpp L555–577、L645–671、L1873–1885、L2023–2178、L3238–3239]` `[opinion]`
 - **检查实际落盘**。参数记录可能因源文件缺失、哈希失败、锁获取失败或追加写失败而跳过，采集完成后核对输入清单、参考图、候选报告、JSONL和快照的一致性。快照与尚未合并的日志共同读取，并核实实际缓存目录。`[verified: ASTCCompressor.cpp L1937–1939、L3506–3523、L1854–1897、L1372–1397]` `[opinion]`
-- **先做小样本验收**。验证Unity导入阶段、参考像素一致性、候选测量复现、标签对应与真实字节数后再批量采集。本节验证深度为源码静态分析和文档检查，Unity实际导入／导出与编码实测按待运行记录。`[verified: 本次执行范围；用户“Smoke test first”要求]` `[opinion]`
+- **先做小样本验收**。验证Unity导入阶段、参考像素一致性、候选测量复现、标签对应与真实字节数后再批量采集。当前已完成64图原生参考像素及payload配对、共同输入编码对照和10,000图搜索基线。全量参考图采集与生产训练封装按后续实际结果记录。`[verified: Unity参考像素采集summary.json；reproduction-unity-reference64/comparison.json；Unity基线summary.json]` `[opinion]`
 
 ## 代码组织与Class规范
 
