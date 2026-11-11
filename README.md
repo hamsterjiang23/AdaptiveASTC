@@ -52,9 +52,11 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
-Unity原生patch已启动[3906图扩展](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)，冻结3904训练图／2验证图，复用旧2370图目标；本批提取与后续合并尚未完成。固定容量模型另完成[误差分层诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md#cap512模型的剩余错误>)，仅分析冻结验证预测；完整Unity训练仍要求10000／1000开发覆盖。`[verified: unity-patch-batches3906-config.json；group512-geometry-diagnosis.json scope；unity_quality_trainer.py validate_coverage；opinion: 完成边界]`
+新增[有效区域特征汇总对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)已完成训练／EMA／验证／重载接入，54项检查与两轮4次CUDA更新通过；参数11,178,564不变，正式对照运行中。完整结果尚待验收。`[verified: mask-pooling-integration.json；mask-pooling-data-audit.json；opinion: 完成边界]`
 
-新增[按有效像素抽样的固定容量对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)：保持每图／资产组总权重，只改变图内patch概率；小样本两轮4次CUDA更新和重载通过，正式train10000／validation1000已启动。26项检查通过，当前尚无完整效果结论；参数11,178,564不变。`[verified: scratch-group512-pixels-suite.json；scratch-group512-pixels-smoke-summary.json；pixel-sampling-verification.json；opinion: 结果边界]`
+Unity原生patch已完成[3906图扩展](<experiment report/unity-accuracy90-20261111/unity-patch-batches.md>)，3904训练图／2验证图的提取、合并和完整20832patch读取检查均通过，旧2370图目标保持；完整11000图仍未完成。固定容量模型另完成[误差分层诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md#cap512模型的剩余错误>)，仅分析冻结验证预测；完整Unity训练仍要求10000／1000开发覆盖。`[verified: unity-patch-assembly3906.json；unity-assembly3906-dataset-audit.json；group512-geometry-diagnosis.json scope；unity_quality_trainer.py validate_coverage；opinion: 完成边界]`
+
+已完成[按有效像素抽样的固定容量对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)：保持每图／资产组总权重，只改变图内patch概率；正式10轮结束并重载通过，最佳82.0%／同权重近阈值RMSE1.4580dB，比原cap512低2.5个百分点，按负结果保留；参数11,178,564不变。`[verified: scratch-group512-pixels-result.json；scratch-group512-pixels-audit.json；opinion: 结果边界]`
 
 [Unity原生质量模型接口](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)已完成[CUDA训练链路检查](<experiment report/unity-accuracy90-20261111/unity-native-training.md>)：8训练图／2验证图、2轮、4次实际更新，最佳权重重载通过，进程23.81秒；35项CPU检查通过。原型11,377,660参数，完整Unity训练与独立测试尚未完成，小样本不作生产准确率结论。`[verified: unity-native-smoke8-v1-result.json；unity-native-training-verification.json；opinion: 完成边界]`
 

@@ -17,8 +17,10 @@ from torch.utils.data import DataLoader, WeightedRandomSampler
 from adaptive_astc.config import JsonDict
 from adaptive_astc.data.patch_bags import ImagePatchBatchSampler
 from adaptive_astc.data.patch_dataset import NativePatchDataset
+from adaptive_astc.data.patch_geometry import PatchGeometry
 from adaptive_astc.data.patch_sampling import PatchSampling
 from adaptive_astc.evaluation.patch_metrics import PatchRegressionMetrics
+from adaptive_astc.models.masked_patch_regressor import MaskedPatchRegressor
 from adaptive_astc.models.patch_regressor import ASTCPatchRegressor
 from adaptive_astc.training.patch_loss import PatchRegressionLoss
 from adaptive_astc.utils.artifacts import ArtifactStore
@@ -48,6 +50,7 @@ class PatchTrainConfig:
     bag_size: int = 1
     aggregate_loss_weight: float = 0.0
     pixel_weighted_sampling: bool = False
+    valid_area_pooling: bool = False
 
     def validate(self) -> None:
         if min(self.epochs, self.batch_size, self.patches_per_image) < 1:
@@ -71,12 +74,31 @@ class PatchTrainConfig:
             raise ValueError("Pixel-weighted sampling must be boolean")
         if self.pixel_weighted_sampling and self.bag_size != 1:
             raise ValueError("Pixel-weighted sampling is an independent-patch control")
+        if type(self.valid_area_pooling) is not bool:
+            raise ValueError("Valid-area pooling must be boolean")
 
 
 class PatchTrainer:
     def __init__(self, config: PatchTrainConfig) -> None:
         config.validate()
         self.config = config
+
+    @staticmethod
+    def build_model(
+        initialization: str, remove_maxpool: bool, monotone: bool, valid_area_pooling: bool = False
+    ) -> ASTCPatchRegressor:
+        model_class = MaskedPatchRegressor if valid_area_pooling else ASTCPatchRegressor
+        return model_class(initialization, remove_maxpool, monotone)
+
+    @staticmethod
+    def model_inputs(
+        model: nn.Module, images: torch.Tensor, indexes: torch.Tensor, dataset: NativePatchDataset
+    ) -> tuple[torch.Tensor, ...]:
+        underlying = model.module if isinstance(model, AveragedModel) else model
+        if not isinstance(underlying, MaskedPatchRegressor):
+            return (images,)
+        boxes = torch.from_numpy(dataset.boxes[indexes.cpu().numpy()]).to(images.device)
+        return images, PatchGeometry.valid_mask(boxes, dataset.patch_size)
 
     def training_batches(self, train: NativePatchDataset) -> DataLoader:
         config = self.config
@@ -130,8 +152,8 @@ class PatchTrainer:
         validation = NativePatchDataset(config.corpus, "validation")
         if train.fingerprint != validation.fingerprint:
             raise ValueError("Training and validation corpus identities differ")
-        model = ASTCPatchRegressor(
-            config.initialization, config.remove_maxpool, config.monotone
+        model = self.build_model(
+            config.initialization, config.remove_maxpool, config.monotone, config.valid_area_pooling
         ).to(device)
         ema = (
             AveragedModel(
@@ -189,6 +211,9 @@ class PatchTrainer:
                     "aggregation": "valid-pixel-weighted MSE, inference clipping and epsilon",
                 },
                 "augmentations": [],
+                "feature_pooling": "valid-area coverage-weighted final feature mean"
+                if config.valid_area_pooling
+                else "global average",
                 "ema": "parameters and buffers after each applied optimizer update"
                 if ema
                 else False,
@@ -200,7 +225,9 @@ class PatchTrainer:
                     for path in [
                         Path(__file__),
                         Path(__file__).parents[1] / "models/patch_regressor.py",
+                        Path(__file__).parents[1] / "models/masked_patch_regressor.py",
                         Path(__file__).parents[1] / "data/patch_dataset.py",
+                        Path(__file__).parents[1] / "data/patch_geometry.py",
                         Path(__file__).parents[1] / "data/patch_sampling.py",
                         Path(__file__).parents[1] / "data/patch_bags.py",
                         Path(__file__).with_name("patch_loss.py"),
@@ -248,7 +275,7 @@ class PatchTrainer:
                     images, targets = images.to(device), targets.to(device)
                     optimizer.zero_grad(set_to_none=True)
                     with torch.autocast("cuda", dtype=torch.float16):
-                        prediction = model(images)
+                        prediction = model(*self.model_inputs(model, images, indexes, train))
                     loss, patch_loss, aggregate_loss = criterion(
                         prediction,
                         targets,
@@ -416,9 +443,12 @@ class PatchTrainer:
         validation = NativePatchDataset(Path(settings["corpus"]), "validation")
         if validation.fingerprint != settings["corpus_fingerprint"]:
             raise ValueError("Checkpoint corpus changed")
-        model = ASTCPatchRegressor("scratch", settings["remove_maxpool"], settings["monotone"]).to(
-            device
-        )
+        model = PatchTrainer.build_model(
+            "scratch",
+            settings["remove_maxpool"],
+            settings["monotone"],
+            settings.get("valid_area_pooling", False),
+        ).to(device)
         model.load_state_dict(checkpoint["model"], strict=True)
         batches = DataLoader(validation, batch_size=settings["batch_size"], num_workers=0)
         metrics, psnr = PatchTrainer.evaluate(model, batches, validation, device)
@@ -453,7 +483,10 @@ class PatchTrainer:
         with torch.inference_mode():
             for images, _, indexes in batches:
                 with torch.autocast("cuda", dtype=torch.float16):
-                    values = model(images.to(device, non_blocking=True))
+                    inputs = PatchTrainer.model_inputs(
+                        model, images.to(device, non_blocking=True), indexes, dataset
+                    )
+                    values = model(*inputs)
                 prediction[indexes.numpy()] = values.float().cpu().numpy()
         mse = dataset.aggregate(prediction)
         metrics, psnr = PatchRegressionMetrics.compute(mse, dataset.rows)

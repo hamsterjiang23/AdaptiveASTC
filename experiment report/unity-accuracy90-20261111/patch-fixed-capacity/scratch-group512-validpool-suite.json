@@ -1,0 +1,35 @@
+{
+  "trials": [
+    {
+      "name": "scratch-group512-validpool",
+      "config": {
+        "epochs": 30,
+        "batch_size": 128,
+        "patches_per_image": 4,
+        "weight_decay": 0.05,
+        "warmup_epochs": 1,
+        "workers": 2,
+        "seed": 20261111,
+        "remove_maxpool": false,
+        "monotone": true,
+        "ema_decay": 0.999,
+        "patience": 5,
+        "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-full",
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool.json",
+        "initialization": "scratch",
+        "learning_rate": 0.0003,
+        "group_image_cap": 512,
+        "valid_area_pooling": true
+      }
+    }
+  ],
+  "summary": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-validpool-summary.json",
+  "scope": "Train-only asset-group sampling control, scratch LR0.0003 and standard stem; cap2 for48image smoke, cap512 forfull; other settings unchanged; CUDA only, no test",
+  "baseline": {
+    "suite": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-suite.json",
+    "sha256": "fc3ad9151296cdbe15368448e9adee55b42ef0d0e69100e82c36d26d8d68bf91",
+    "change": "valid_area_pooling false -> true; keep original cap512 uniform patch sampling",
+    "prior_pixel_result_sha256": "7f19195596c857d61ab22e39f5bc23e60f98185c3938c7cb4b92a9b21eaaa3aa"
+  }
+}

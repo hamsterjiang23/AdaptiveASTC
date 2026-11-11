@@ -13,7 +13,6 @@ from torch.utils.data import DataLoader, WeightedRandomSampler
 
 from adaptive_astc.config import JsonDict
 from adaptive_astc.data.patch_dataset import NativePatchDataset
-from adaptive_astc.models.patch_regressor import ASTCPatchRegressor
 from adaptive_astc.training.patch_trainer import PatchTrainer
 from adaptive_astc.utils.artifacts import ArtifactStore
 from adaptive_astc.utils.runtime import ExperimentRuntime
@@ -36,7 +35,9 @@ class PatchNormalizationAudit:
         return bool(measured["accuracy"] == recorded["accuracy"] and rmse_matches)
 
     @staticmethod
-    def recalibrate(model: nn.Module, images: Iterable[Tensor], device: torch.device) -> int:
+    def recalibrate(
+        model: nn.Module, images: Iterable[Tensor | tuple[Tensor, ...]], device: torch.device
+    ) -> int:
         modes = {module: module.training for module in model.modules()}
         layers = [module for module in model.modules() if isinstance(module, nn.BatchNorm2d)]
         if not layers:
@@ -51,9 +52,12 @@ class PatchNormalizationAudit:
         try:
             with torch.no_grad():
                 for batch in images:
+                    arguments = (batch,) if isinstance(batch, Tensor) else batch
+                    if not arguments:
+                        raise ValueError("Normalization batches require model inputs")
                     with torch.autocast("cuda", dtype=torch.float16, enabled=device.type == "cuda"):
-                        model(batch.to(device, non_blocking=True))
-                    count += len(batch)
+                        model(*(value.to(device, non_blocking=True) for value in arguments))
+                    count += len(arguments[0])
             if count == 0:
                 raise ValueError("No training images for normalization")
         finally:
@@ -144,8 +148,11 @@ class PatchNormalizationAudit:
                         if key.startswith("module.")
                     }
                 )
-                model = ASTCPatchRegressor(
-                    "scratch", settings["remove_maxpool"], settings["monotone"]
+                model = PatchTrainer.build_model(
+                    "scratch",
+                    settings["remove_maxpool"],
+                    settings["monotone"],
+                    settings.get("valid_area_pooling", False),
                 ).to(device)
                 model.load_state_dict(weights, strict=True)
                 for recalibrated in [False, True]:
@@ -153,7 +160,12 @@ class PatchNormalizationAudit:
                     if recalibrated:
                         calibration_started = time.perf_counter()
                         count = PatchNormalizationAudit.recalibrate(
-                            model, (batch[0] for batch in train_batches), device
+                            model,
+                            (
+                                PatchTrainer.model_inputs(model, batch[0], batch[2], train)
+                                for batch in train_batches
+                            ),
+                            device,
                         )
                         torch.cuda.synchronize()
                         calibration_seconds = time.perf_counter() - calibration_started

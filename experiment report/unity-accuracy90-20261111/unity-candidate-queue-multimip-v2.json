@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "waiting_references",
   "started_utc": "2026-11-11T16:41:00.922705+00:00",
   "config_sha256": "54066e5194a684c81b2b8bc6168be1e1052495690ce348c18864d89d2b7c7ca5",
   "implementation_sha256": "aa4b6ffbd2e4822272dedcb71867d304529f84e13275752e4250e113adf4f932",
@@ -10,7 +10,7 @@
   },
   "coverage": "complete",
   "counts": {
-    "train": 4160,
+    "train": 4672,
     "validation": 2
   },
   "batches": [
@@ -571,12 +571,74 @@
         "decode_seconds": 37.145228700079315,
         "quality_seconds": 20.979273600176384
       }
+    },
+    {
+      "run_id": "unity-v1-train-016-20261111",
+      "source_split": "train",
+      "reference": {
+        "run_id": "unity-v1-train-016-20261111",
+        "source_split": "train",
+        "images": 256,
+        "callbacks": 1936,
+        "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-016-20261111\\options-receipt.json",
+        "options_sha256": "4e150d11f9c4347bf23947e4b192bc51ff3f4036d928f8723660edb76978d2cf",
+        "reference_receipt_sha256": "8260f893cb77b4f062b5d864f6d9c3e681b85612a1615eb27d4ae75a0219871a",
+        "phase_receipt_sha256": "e7f9a44eede75fe96dde785f7d42fefaec2626854a6319f199e822ad7772ceb5",
+        "editor_process_seconds": 905.5992064999955
+      },
+      "prior_attempts": [],
+      "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+      "images": 256,
+      "candidates": 5120,
+      "new_candidates": 3184,
+      "original_candidates": 1936,
+      "normal_images": 1,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2\\reports\\unity-v1-train-016-20261111.json",
+      "report_sha256": "c1119f3f7cccd1a4607280398ecc629bcc75d0e2d786bf2e6ebd9d4a8ef37085",
+      "raw_receipt_sha256": "91c6a339ca7706920ee2b9c34e0e2f581baa81982a10d2d16dba737a5bc7a5ed",
+      "wall_seconds": 302.10416460000124,
+      "cost": {
+        "encode_seconds": 134.14427990023978,
+        "decode_seconds": 38.47915620022104,
+        "quality_seconds": 22.353749700065237
+      }
+    },
+    {
+      "run_id": "unity-v1-train-017-20261111",
+      "source_split": "train",
+      "reference": {
+        "run_id": "unity-v1-train-017-20261111",
+        "source_split": "train",
+        "images": 256,
+        "callbacks": 2363,
+        "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-017-20261111\\options-receipt.json",
+        "options_sha256": "4cc3b78f5b43381529ec9885715c2be788b040656fe8e7ef3ec9fef2a939ac65",
+        "reference_receipt_sha256": "9690f14f840eb382d0395215d1d91d7d709552b0a89bdd4350148031aacee5f5",
+        "phase_receipt_sha256": "6961c81595de24f5905197abe774dce2a38b139ab639ecc9dcae47b046d62a58",
+        "editor_process_seconds": 927.3219575999974
+      },
+      "prior_attempts": [],
+      "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+      "images": 256,
+      "candidates": 5120,
+      "new_candidates": 2757,
+      "original_candidates": 2363,
+      "normal_images": 0,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2\\reports\\unity-v1-train-017-20261111.json",
+      "report_sha256": "19fc20d670010c88b34b72d36897e835640a8439d2fc498c8806984081099fd8",
+      "raw_receipt_sha256": "75d50c9794daae314173657004c3d16b79c6c85b9c3a3f9ffe0b23eb0bcb9756",
+      "wall_seconds": 223.30998779999936,
+      "cost": {
+        "encode_seconds": 89.3720800996889,
+        "decode_seconds": 35.23092539967911,
+        "quality_seconds": 10.09343529985199
+      }
     }
   ],
   "test_opened": false,
   "invocation_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2\\invocations\\02529dfaed964d438220ab772717dcdd\\receipt.json",
   "scope": "native20 candidate targets paired to original imported references and search choices",
-  "current_batch": "unity-v1-train-016-20261111",
-  "updated_utc": "2026-11-11T20:01:07.869179+00:00",
-  "wall_seconds": 12006.9453307
+  "current_batch": null,
+  "updated_utc": "2026-11-11T20:33:42.963542+00:00",
+  "wall_seconds": 13962.040373099997
 }

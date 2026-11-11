@@ -1,6 +1,12 @@
 # 实验成本与读写依赖
 
-3906图patch准备冻结17个已发布候选批次，复用2370图目标、提取新增1536图；只读已归档批次，持有共享shard独占锁。配置准备时空闲RAM24.57GiB／磁盘911.37GiB，实际启动前复查空闲RAM22.82GiB，每批20GiB内存门槛保持；进程耗时待结束后记录。与采集和CUDA训练重叠，不作为部署性能测量。`[verified: jobs/unity-patch-batches3906/launch-preflight.json；启动前psutil资源输出；unity-patch-batches3906-config.json；opinion: 成本范围]`
+3906图patch准备已完成，循环1684.91秒／进程1687.78秒；统一清单组装64.13／67.60秒，20832patch完整Dataset检查113.73／116.98秒。此范围仍为partial，旧11批目标哈希保持，6批新增目标单列；成本含重验与并发，不用于部署加速比。`[verified: unity-patch-batches3906.json；unity-patch-assembly3906.json；unity-assembly3906-dataset-audit.json；native3906-assembly-verification.json process_costs；opinion: 成本边界]`
+
+像素比例采样10轮训练2389.30秒／完整进程2419.23秒，最佳82.0%。下一项有效区域池化CUDA检查2轮4更新、进程21.21秒、峰值分配显存2,118,557,184字节；正式运行启动前RAM26.87GiB空闲、GPU1083／12282MiB，单GPU训练，与Unity采集并行。`[verified: scratch-group512-pixels-result.json；mask-pooling-integration.json；jobs/scratch-group512-validpool/launch-preflight.json；opinion: 调度口径]`
+
+有效区域mask的完整几何核对读取冻结GDC corpus及11000份目标NPZ，覆盖133140patch／986种宽高，CPU耗时55.73秒、2线程；不读取图片像素、不做训练。组件17项CPU测试8.76秒，后续CUDA检查成本见本节顶部，正式训练和推理成本另行测量。`[verified: patch-fixed-capacity/mask-pooling-data-audit.json；mask-pooling-contract.json unit_tests；opinion: 后续成本范围]`
+
+3906图patch准备冻结17个已发布候选批次，复用2370图目标、提取新增1536图；只读已归档批次，持有共享shard独占锁。配置准备时空闲RAM24.57GiB／磁盘911.37GiB，实际启动前复查空闲RAM22.82GiB，每批20GiB内存门槛保持；准备阶段资源观测保留，完成耗时见本节顶部。与采集和CUDA训练重叠，不作为部署性能测量。`[verified: jobs/unity-patch-batches3906/launch-preflight.json；启动前psutil资源输出；unity-patch-batches3906-config.json；opinion: 成本范围]`
 
 有效像素抽样对照的48train／16validation CUDA检查为2轮4次更新，进程21.54秒、峰值分配显存2,118,426,112字节。正式配置只改图内采样概率，仍单GPU、batch128、workers2；启动前RAM空闲28.87GiB、GPU1195／12282MiB。历史cap512进程7230.64秒仅为预算参照，新运行成本单列；只读冻结GDC语料，写独立.local训练目录，与Unity队列不共用写入。`[verified: scratch-group512-pixels-smoke.json；对应jobs/receipt和launch-preflight.json；opinion: 预算与并发边界]`
 

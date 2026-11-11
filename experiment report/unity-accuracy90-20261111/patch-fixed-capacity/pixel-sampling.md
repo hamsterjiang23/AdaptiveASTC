@@ -1,6 +1,16 @@
 # 按有效像素抽取原尺寸 patch
 
-随机初始化ResNet-18的下一项固定容量对照，只把图内patch抽样从等概率改为按有效像素数分配概率。资产组cap512、每图总权重、训练预算、网络、loss和选模规则保持不变；两轮CUDA小样本及最佳权重重载通过，正式train10000／validation1000已启动，效果尚待训练完成后判断。`[verified: scratch-group512-pixels-suite.json baseline；scratch-group512-pixels-smoke-summary.json；scratch-group512-pixels-smoke-audit.json；scratch-group512-pixels-summary.json；opinion: 效果边界]`
+按有效像素抽样的固定容量对照已完成10轮，选中epoch9 raw，最佳验证82.0%／同权重近阈值RMSE1.4580dB，比原cap512低2.5个百分点。质量达标率从84.8%降为80.0%，本次保留为负结果；下一项有效区域特征汇总沿用原图内均匀采样，只改变末端池化。`[verified: scratch-group512-pixels-result.json metrics、accuracy_change_pp；scratch-group512-result.json metrics；scratch-group512-validpool-suite.json；opinion: 后续基准]`
+
+| GDC源RGB validation1000 | cap512均匀patch | cap512按有效像素 |
+|---|---:|---:|
+| Top-1 | 84.5% | 82.0%。`[verified: 两份result.json metrics.accuracy]` |
+| 8×8召回 | 72.92% | 63.54%。`[verified: 两份result.json metrics.per_class.8x8.recall]` |
+| 10×10召回 | 71.09% | 52.34%。`[verified: 两份result.json metrics.per_class.10x10.recall]` |
+| 同权重近阈值RMSE | 1.3869dB | 1.4580dB。`[verified: 两份result.json metrics.near_threshold_rmse_db]` |
+| 质量达标率 | 84.8% | 80.0%。`[verified: 两份result.json metrics.quality_pass_rate]` |
+
+整个训练中的最低RMSE为1.4095dB，和准确率最优epoch9的1.4580dB分别记录。训练器2389.30秒、包含权重重载的进程2419.23秒；单seed、同机采集并行且早停轮数不同，不据此声称部署加速。汇总核对两次实际训练配置、SHA绑定的suite及旧结果来源，确认配置变化只有像素抽样开关。`[verified: scratch-group512-pixels-result.json；record_pixel_control.py；opinion: 比较范围]`
 
 ## 先核对单调约束
 
@@ -35,9 +45,19 @@
 | 整图5–16个patch | 265 | 86.79% | 0.9646dB。`[verified: group512-geometry-diagnosis.json models.scratch_group512.strata.patch_count.five_to_sixteen]` |
 | 整图超过16个patch | 305 | 88.20% | 0.8198dB。`[verified: group512-geometry-diagnosis.json models.scratch_group512.strata.patch_count.over_sixteen]` |
 
-平均有效面积比例≤四分之一的104张图，近阈值RMSE为2.9791dB；比例超过四分之三的45张图为0.7107dB。这里的比例为整图有效像素数除以所有240²输入patch面积，并非抽样概率。各组标签、资产和阈值距离分布不同，这个相关性不能证明填充导致错误；它支持继续检查有效区域信息，不能替代正在运行的采样对照。`[verified: group512-geometry-diagnosis.json area_fraction_definition、models.scratch_group512.strata.mean_valid_area_fraction、limits；opinion: 后续排查方向]`
+平均有效面积比例≤四分之一的104张图，近阈值RMSE为2.9791dB；比例超过四分之三的45张图为0.7107dB。这里的比例为整图有效像素数除以所有240²输入patch面积，并非抽样概率。各组标签、资产和阈值距离分布不同，这个相关性不能证明填充导致错误；它支持继续检查有效区域信息，不能替代实际采样对照结果。`[verified: group512-geometry-diagnosis.json area_fraction_definition、models.scratch_group512.strata.mean_valid_area_fraction、limits；opinion: 后续排查方向]`
 
-## 配置、检查与成本
+## 有效区域特征汇总对照
+
+已准备[MaskedPatchRegressor](../../../src/adaptive_astc/models/masked_patch_regressor.py)与[PatchGeometry](../../../src/adaptive_astc/data/patch_geometry.py)：保持RGB输入、复制边缘填充、卷积和四输出head，只将末端特征的全局平均改为按有效区域覆盖率加权。mask由输入patch的宽高生成，不读取PSNR、类别或其他监督。卷积感受野仍会读到填充像素，因此该改动只检验末端汇总，不能称为完全去除了填充影响。`[verified: masked_patch_regressor.py forward；patch_geometry.py valid_mask；opinion: 对照范围]`
+
+[先期组件记录](mask-pooling-contract.json)核对参数量仍为11,178,564，新增参数为0；权重键、同seed初始化和初始化后的随机数状态均相同，旧权重严格加载通过。完整mask的240输入输出与原模型一致，17项CPU检查和独立复查通过，覆盖部分区域权重、单像素区域及FP16池化；该记录保存接入训练器之前的状态。`[verified: mask-pooling-contract.json；test_masked_patch_regressor.py；baseline_code_review数值复查；opinion: 阶段边界]`
+
+后续[训练接入](mask-pooling-integration.json)统一了训练、raw／EMA验证、最佳权重重载和BN重估的mask参数；默认关闭仍走原输入路径。54项检查通过，48训练图／16验证图的两轮CUDA检查完成4次实际更新，权重重载通过；进程21.21秒，峰值分配显存2,118,557,184字节。[正式配置](scratch-group512-validpool-suite.json)只开启`valid_area_pooling`，沿用原cap512均匀采样；训练已启动，当前尚无完整效果结论。像素采样实验的原8份绑定源码及相关入口已预先归档；实验结束后才进行本次接入。`[verified: mask-pooling-integration.json；scratch-group512-validpool-smoke-summary.json；对应job receipt；pre-mask-pooling-source/sources.json；opinion: 正式效果边界]`
+
+[完整开发几何检查](mask-pooling-data-audit.json)覆盖train10000／validation1000的133,140个patch，逐文件核对目标SHA和网格，共986种有效宽高；mask像素数及缩到8×8后的权重和全部正确，CPU耗时55.73秒。该检查没有训练或读取test。后续训练、验证、EMA与最佳权重重载必须一致传入mask，并分别记录额外运算成本。`[verified: mask-pooling-data-audit.json splits、unique_valid_shapes、wall_seconds、test_opened；opinion: 接入要求]`
+
+## 像素抽样对照的配置、检查与成本
 
 正式配置见[scratch-group512-pixels-suite.json](scratch-group512-pixels-suite.json)，逐字段核对语义变化只有`pixel_weighted_sampling=false→true`；基准仍为[scratch-group512](scratch-group512-result.json)的84.5%／同权重近阈值RMSE1.3869dB。两者都使用scratch、标准stem、单调输出、lr0.0003、WD0.05、EMA0.999、batch128、每轮40000次patch抽样、最多30轮和近阈值RMSE patience5，参数11,178,564不变。`[verified: 两份suite；scratch-group512-result.json；launch-preflight.json semantic_change]`
 
@@ -45,4 +65,4 @@
 
 26项测试及独立代码审查通过：默认模式保持旧抽样序列，像素比例模式保持每图／组总权重、正确处理边缘面积，并拒绝不合法像素数和未支持的bag组合。已有成组loss实验的8份绑定源码在修改前归档，不改历史检查点和指标。正式运行期间冻结绑定源码，逐epoch结果见[训练报告](scratch-group512-pixels.json)，任务状态见[汇总](scratch-group512-pixels-summary.json)。`[verified: test_patch_sampling.py；test_patch_training_bags.py；pre-pixel-sampling-source/sources.json；pixel-sampling-verification.json；opinion: 运行约束]`
 
-入口继续使用`script/patch_regression.py suite --config ...`；单次train入口新增`--pixel-weighted-sampling`。只有正式验证结果与权重重载完成后才评价收益，最终Unity独立测试90%验收保持不变。`[verified: script/patch_regression.py；V1“目标与开发数据”；opinion: 完成要求]`
+入口继续使用`script/patch_regression.py suite --config ...`；单次train入口支持`--pixel-weighted-sampling`与`--valid-area-pooling`，每次按配置单项对照。最终Unity独立测试90%验收保持不变，GDC开发结果不代替生产验收。`[verified: script/patch_regression.py；V1“目标与开发数据”；opinion: 完成要求]`

@@ -6,9 +6,11 @@
 
 ## 验收与执行顺序
 
-原生patch准备新增[3906图冻结扩展](unity-patch-batches.md)，实际完成数以[运行记录](unity-patch-batches3906.json)为准；旧2370图已完成状态保留。新增[cap512错误分层](patch-fixed-capacity/pixel-sampling.md#cap512模型的剩余错误)只读取完成训练的冻结验证预测，未做新拟合或访问test。`[verified: unity-patch-batches3906-config.json；group512-geometry-diagnosis.json scope、test_opened；opinion: 状态边界]`
+后续有效区域汇总组件已通过17项CPU检查和完整133140patch几何核验，参数11,178,564不变；后续54项检查及两轮4次CUDA更新通过，正式对照运行中，详见[组件准备及边界](patch-fixed-capacity/pixel-sampling.md)。`[verified: patch-fixed-capacity/mask-pooling-integration.json、mask-pooling-data-audit.json；opinion: 状态边界]`
 
-固定容量实验新增[按有效像素抽样](patch-fixed-capacity/pixel-sampling.md)，两轮CUDA检查与重载通过，完整GDC开发集对照已启动；网络、资产组权重和其他设置沿用cap512基准，只有图内patch概率变化。效果待正式训练完成后记录。`[verified: scratch-group512-pixels-suite.json baseline；scratch-group512-pixels-smoke-summary.json；opinion: 结果边界]`
+原生patch准备新增[3906图冻结扩展](unity-patch-batches.md)，3904／2图的提取、合并及20832patch读取全部通过，见[完成记录](unity-patch-assembly3906.json)；旧2370图产物保持。新增[cap512错误分层](patch-fixed-capacity/pixel-sampling.md#cap512模型的剩余错误)只读取完成训练的冻结验证预测，未做新拟合或访问test。`[verified: unity-patch-batches3906-config.json；group512-geometry-diagnosis.json scope、test_opened；opinion: 状态边界]`
+
+固定容量实验新增[按有效像素抽样](patch-fixed-capacity/pixel-sampling.md)，两轮CUDA检查与重载通过，完整GDC开发集对照已完成；网络、资产组权重和其他设置沿用cap512基准，只有图内patch概率变化。正式10轮结束并重载通过，最佳82.0%／1.4580dB，较原cap512低2.5个百分点，后续保留原采样。`[verified: scratch-group512-pixels-result.json；opinion: 结果边界]`
 
 主验收保持Unity导入后参考像素与同次原始搜索标签，独立测试块大小Top-1≥90%。GDC源RGB train10000／validation1000用于开发，test2000保持已观察身份，不参与新选模。训练全部使用CUDA，随机初始化为主线，预训练为独立对照。`[verified: 用户既有数据口径确认、CUDA和初始化要求；V1“目标与开发数据”]`
 

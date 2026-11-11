@@ -1,0 +1,31 @@
+{
+  "status": "cuda_smoke_passed_formal_running",
+  "parameters": 11178564,
+  "added_parameters": 0,
+  "trainer_integrated": true,
+  "cuda_smoke_epochs": 2,
+  "cuda_smoke_updates": 4,
+  "cuda_smoke_amp_skips": 0,
+  "smoke_process_seconds": 21.205932400000165,
+  "smoke_peak_vram_bytes": 2118557184,
+  "checkpoint_audit": "passed",
+  "formal_config": "scratch-group512-validpool-suite.json",
+  "formal_config_sha256": "7911db8fbf3d3ceea394898157b7f957fc578e526a17ab70b92fd7d7a0f24ed2",
+  "semantic_change": "valid_area_pooling false->true, original cap512 sampling retained",
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\patch_trainer.py": "ba5213cfe6b74b5f016755c5d42761e65fbdce8a3dd27bda41502e643fcaf146",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\patch_regressor.py": "e5e6e5f2d8b9205e6a9b53e68953d1cf593658ce5d2bb4da3c1e9e291e8f4adc",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\masked_patch_regressor.py": "e76aeaf4807ca357b2a57ce11d91ce0fbef13948082a02f95570d01d162850b9",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_dataset.py": "3013a257aeca22f1b2d9cc192cfe6e5b10cf41c61178ed872c383f94ef5b7f09",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_geometry.py": "bc78a56fe483c658df9541a68f2d1b5ff3b47d5e04b75152bcd37bfa60c88619",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_sampling.py": "19fa199ba347b2394491524f7029210ec369b9288caa6952971a5720f4ba5658",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_bags.py": "39a8a75e19d848fad5b4ec0c99752f4905141dbc84de19c5103ca958a5a75fa6",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\patch_loss.py": "be9513750999e5227875ce68212f5f4cb7d8ec6fcf72f828dbf2f59b06fccbca",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\patch_metrics.py": "9e11b6d9e0b2fb519c70369f54615ebd610aeb685a3f0851ed39690773172e71",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+  },
+  "checks": "54 targeted tests passed; static checks and independent review passed",
+  "scope": "48train/16validation CUDA smoke; full control started, no final effect claim",
+  "production_accuracy": null,
+  "test_opened": false
+}

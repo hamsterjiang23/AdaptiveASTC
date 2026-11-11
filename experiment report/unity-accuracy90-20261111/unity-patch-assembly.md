@@ -1,5 +1,7 @@
 # Unity 原生 patch 语料合并
 
+后续[3906图扩展](unity-patch-assembly3906.json)完成：3904 train／2 validation，20819／13patch、78120候选，原生PSNR重建最大差3.8078e-6dB；全部20832patch的[CPU DataLoader检查](unity-assembly3906-dataset-audit.json)通过。旧11批corpus哈希保持，实际新增6批；完整11000图尚未齐备，coverage保持partial，0次模型训练更新。`[verified: unity-patch-assembly3906.json；unity-assembly3906-dataset-audit.json；native3906-assembly-verification.json previous_shards_preserved；opinion: 验收边界]`
+
 冻结的11个已发布批次已完成2370图目标提取及统一清单组装：2368张train、2张validation，共15619个patch、47400候选。20候选逐通道误差重建原生PSNR的最大差为3.772e-6dB；这些是数据验证，尚无Unity模型训练准确率。完整开发划分要求10000／1000，目前标记partial。`[verified: unity-patch-batches2370.json counts、patch_counts；unity-patch-assembly2370.json candidate_count、max_psnr_reconstruction_error_db、coverage、training_updates；opinion: 完成边界]`
 
 ## 实现与复跑
@@ -13,6 +15,8 @@ uv run --frozen python script/assemble_unity_patch_corpus.py --config "experimen
 现有输出不可覆盖；复跑须复制配置并使用新的output和report，输入SHA继续绑定相同冻结报告。合并只创建新清单，共享既有参考PNG与目标NPZ，保留原批次来源／绑定／行索引，按原始source manifest顺序重排。重复、跨划分、未知资产、held-out重叠和不完整准备报告均拒绝；只有真实计数等于完整源划分才能标记complete。`[verified: patch_assembly.py run L60–80、L152–155；test_unity_patch_assembly.py；opinion: 复跑要求]`
 
 ## 检查与成本
+
+3906图准备循环1684.91秒／进程1687.78秒，组装64.13／67.60秒，完整Dataset检查113.73／116.98秒。准备包含旧批次来源复核和目标复用；各项与其他实验并行，按数据准备成本保存。配置入口为[3906图组装配置](unity-patch-assembly3906-config.json)和[Dataset配置](unity-assembly3906-dataset-config.json)。`[verified: unity-patch-batches3906.json；unity-patch-assembly3906.json；unity-assembly3906-dataset-audit.json；native3906-assembly-verification.json process_costs；opinion: 成本范围]`
 
 先在64训练图／2验证图上完成合并与完整CPU DataLoader遍历，再扩展到2370图。并发审查发现两类覆盖风险：输出目录抢占、报告路径别名或并发覆盖；修复采用独占目录建立、暂存后无覆盖硬链接发布，并新增真实并发回归。15项合并测试通过，原小语料与两版源码归档保留。`[verified: unity-patch-assembly66.json；unity-assembly66-dataset-audit.json；unity-patch-assembly66-v2.json；test_unity_patch_assembly.py；review C1–C3复查]`
 

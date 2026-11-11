@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "passed",
   "config": {
     "candidate_queue_config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-candidate-queue-multimip-v2-config.json",
     "candidate_queue_config_sha256": "54066e5194a684c81b2b8bc6168be1e1052495690ce348c18864d89d2b7c7ca5",
@@ -58,11 +58,11 @@
   },
   "coverage": "partial",
   "counts": {
-    "train": 1600,
+    "train": 3904,
     "validation": 2
   },
   "patch_counts": {
-    "train": 11995,
+    "train": 20819,
     "validation": 13
   },
   "shards": [
@@ -345,10 +345,325 @@
       "fingerprint": "192cafbceb7541306642c976d34f24d74886a91d31c146a3bf9beef8769d9cb8",
       "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-005-20261111\\corpus.json",
       "corpus_sha256": "351e643707193412278fbf1e39e6064727231381cc593e89580684578de650a2"
+    },
+    {
+      "run_id": "unity-v1-train-006-20261111",
+      "source_split": "train",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-v1-train-006-20261111.json",
+        "candidate_manifest_sha256": "faf541657518e2e5f64c5579a97f934316d8788c698db72fe3b4b6eb2252adaf",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-006-20261111",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\reports\\unity-v1-train-006-20261111.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "adff9d03200e2a36141d6c47c4a62c9bba97260a9ee039be826d2f96b3c705dd",
+      "counts": {
+        "train": 256,
+        "validation": 0
+      },
+      "patch_counts": {
+        "train": 1946,
+        "validation": 0
+      },
+      "candidate_count": 5120,
+      "max_psnr_reconstruction_error_db": 3.5666386395405425e-06,
+      "normal_images": 43,
+      "multimip_normal_images": 4,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 37.31338179999875,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "84d0162bc80a2ee257fc0e1b77163051f5631402d52c201c237241faf66ca26d",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-006-20261111\\corpus.json",
+      "corpus_sha256": "2a96f65729796b719a2854ce9e2dba484fe77bc703750ffb5113abebd93ebb18"
+    },
+    {
+      "run_id": "unity-v1-train-007-20261111",
+      "source_split": "train",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-v1-train-007-20261111.json",
+        "candidate_manifest_sha256": "9ec5bd159c2f46fa25390eddae3efdec28d547c5c0108b6dfd1c9f3d2c15ee05",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-007-20261111",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\reports\\unity-v1-train-007-20261111.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "5f7b326299a3393b4263fbf28e4d5e7665aea2964fd96c441b45c1963381c9b0",
+      "counts": {
+        "train": 256,
+        "validation": 0
+      },
+      "patch_counts": {
+        "train": 1226,
+        "validation": 0
+      },
+      "candidate_count": 5120,
+      "max_psnr_reconstruction_error_db": 3.4995316866570647e-06,
+      "normal_images": 20,
+      "multimip_normal_images": 1,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 22.116032899997663,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "46da73d1515a79e9831ce29734fd297306d4fd055fbeb0f99bb1584b76eb7fac",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-007-20261111\\corpus.json",
+      "corpus_sha256": "46fbdfdf9bdf4604bb7a672a7953ac6768f43feba14b4f606f663e630b3d11f1"
+    },
+    {
+      "run_id": "unity-v1-train-008-20261111",
+      "source_split": "train",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-v1-train-008-20261111.json",
+        "candidate_manifest_sha256": "398950c1ba547b43b6715eeb13018f21c772b3b26289bd723bf8365c40b442fa",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-008-20261111",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\reports\\unity-v1-train-008-20261111.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "9634b353b2a58d9b6fc24618b9755fdc99274290a506c2177002b7bee1cb4619",
+      "counts": {
+        "train": 256,
+        "validation": 0
+      },
+      "patch_counts": {
+        "train": 439,
+        "validation": 0
+      },
+      "candidate_count": 5120,
+      "max_psnr_reconstruction_error_db": 3.1458609583978614e-06,
+      "normal_images": 0,
+      "multimip_normal_images": 0,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 8.89423550000356,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "8d9dea5a12b1819c0506b0a58ea121202b1146ebec4dc8cd2a7cf5ee96c712a2",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-008-20261111\\corpus.json",
+      "corpus_sha256": "65b83f062339a8e0628b03ad13a72353c4f7dd8a4dbeaf4cb06247ef1628ad24"
+    },
+    {
+      "run_id": "unity-v1-train-009-20261111",
+      "source_split": "train",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-v1-train-009-20261111.json",
+        "candidate_manifest_sha256": "7aa6caaed18525f7cac97ebb1f4b469ce75c1aed2669e392e9af0e40ceb67b4c",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-009-20261111",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\reports\\unity-v1-train-009-20261111.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "92fb4ea5c8ce5ddd9e5d1f5b366e5e440c15a564dfc8f5a03d4b3b1a885c40a0",
+      "counts": {
+        "train": 256,
+        "validation": 0
+      },
+      "patch_counts": {
+        "train": 611,
+        "validation": 0
+      },
+      "candidate_count": 5120,
+      "max_psnr_reconstruction_error_db": 1.9068893521989594e-06,
+      "normal_images": 0,
+      "multimip_normal_images": 0,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 11.662281600001734,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "9e02012a9841c8c2c126078355db1738a68353885aaf9484b5eb5dfe41fe55bd",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-009-20261111\\corpus.json",
+      "corpus_sha256": "015039cb7828cba3f233a16f6f3bbdd06cc9f7c9207217186eed03061146d42e"
+    },
+    {
+      "run_id": "unity-v1-train-010-20261111",
+      "source_split": "train",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-v1-train-010-20261111.json",
+        "candidate_manifest_sha256": "62b37349927f1429034dcbc7986945ad3799308e482dda827e4e6bbd0f0803cb",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-010-20261111",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\reports\\unity-v1-train-010-20261111.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "05e4fb849a7732a48bdc12a07a3084f52488d397e0d86f542f529beb807cdb11",
+      "counts": {
+        "train": 256,
+        "validation": 0
+      },
+      "patch_counts": {
+        "train": 607,
+        "validation": 0
+      },
+      "candidate_count": 5120,
+      "max_psnr_reconstruction_error_db": 1.9069276859795536e-06,
+      "normal_images": 0,
+      "multimip_normal_images": 0,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 11.691896099997393,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "d5c96b8094c2d7962d9fa39e37b864cf2da7ffb6618efa83f6fab8a6ba4c98a9",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-010-20261111\\corpus.json",
+      "corpus_sha256": "181c064780d0be7ffc7fa3c1a1d6998e5973873424eacef00ed96aeac76cace7"
+    },
+    {
+      "run_id": "unity-v1-train-011-20261111",
+      "source_split": "train",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-v1-train-011-20261111.json",
+        "candidate_manifest_sha256": "9d901b0ef5444be1f75c827e2ddec2a3450ea17ff3b94f43644e5ec0d4adbbde",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-011-20261111",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\reports\\unity-v1-train-011-20261111.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "5d1e4151a46cc77575499360ca1733e2cb9b2bc42e0deea9cf58227384eec3b6",
+      "counts": {
+        "train": 256,
+        "validation": 0
+      },
+      "patch_counts": {
+        "train": 405,
+        "validation": 0
+      },
+      "candidate_count": 5120,
+      "max_psnr_reconstruction_error_db": 3.2728005550097805e-06,
+      "normal_images": 0,
+      "multimip_normal_images": 0,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 10.007663999997021,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "271742c41b0d4f591248fa916e95b45fabd4348bb9a974d62626bfd469c5c9bb",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-011-20261111\\corpus.json",
+      "corpus_sha256": "4c9e8c43c01ccb20062871a9ef6627181aeef3f3b4ee6e7928be1a8572edcbfe"
+    },
+    {
+      "run_id": "unity-v1-train-012-20261111",
+      "source_split": "train",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-v1-train-012-20261111.json",
+        "candidate_manifest_sha256": "29285583c1e4df3627b77e112fc213c11ccfda8ec54d3cef848ba5c3f4a4a55d",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-012-20261111",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\reports\\unity-v1-train-012-20261111.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "a80a9f5bc1cc13867d6552f77e1f8f22a749e1116a43a6c9a1e86147bfc0788d",
+      "counts": {
+        "train": 256,
+        "validation": 0
+      },
+      "patch_counts": {
+        "train": 426,
+        "validation": 0
+      },
+      "candidate_count": 5120,
+      "max_psnr_reconstruction_error_db": 3.7818954297108576e-06,
+      "normal_images": 1,
+      "multimip_normal_images": 0,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 9.868492399997194,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "89a8b3e600795a54ea53a822c5b39a707205f9b88456da1265acfbc9858abb4f",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-012-20261111\\corpus.json",
+      "corpus_sha256": "aec955273b3161910b5d37b4fad0ea55ea7dc9a16c226cc34790cc7eee721e6e"
+    },
+    {
+      "run_id": "unity-v1-train-013-20261111",
+      "source_split": "train",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-v1-train-013-20261111.json",
+        "candidate_manifest_sha256": "e1731da12f0f5f72bb16c2f10ce8007999e0bbac7feafa38323806a4f3ec500a",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-013-20261111",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\reports\\unity-v1-train-013-20261111.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "b9318def26ec2c5a2d240f7707a3ee31cd4eaf0996dad36287c249ee44f8cc56",
+      "counts": {
+        "train": 256,
+        "validation": 0
+      },
+      "patch_counts": {
+        "train": 1097,
+        "validation": 0
+      },
+      "candidate_count": 5120,
+      "max_psnr_reconstruction_error_db": 3.8077622548371437e-06,
+      "normal_images": 1,
+      "multimip_normal_images": 0,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 21.59869289999915,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "b1a530a9204842c6a6c3338736ce4c1159d5bc95c10e4bb0243ff7990c96e86f",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-013-20261111\\corpus.json",
+      "corpus_sha256": "2a1afb173ce844e39298522a86759e09ca8341bec8c3c5a1d6cbedf665b367fa"
+    },
+    {
+      "run_id": "unity-v1-train-014-20261111",
+      "source_split": "train",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\manifests\\unity-v1-train-014-20261111.json",
+        "candidate_manifest_sha256": "6b392aa77d4db5ea9179c37a181d642db43cb65885c297e39bf1e838a9af4346",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-014-20261111",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\reports\\unity-v1-train-014-20261111.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "621a1cefe5e3302afd70b066559f9329609fd6b093cce230592f0aa79cebfbdc",
+      "counts": {
+        "train": 256,
+        "validation": 0
+      },
+      "patch_counts": {
+        "train": 2067,
+        "validation": 0
+      },
+      "candidate_count": 5120,
+      "max_psnr_reconstruction_error_db": 3.561147636332862e-06,
+      "normal_images": 1,
+      "multimip_normal_images": 1,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 38.40270739999687,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "e26aac4f858765b48c37261349a8ed53900b8247f11de3b54a65544f0af1d159",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-014-20261111\\corpus.json",
+      "corpus_sha256": "6165c81b9f9e05bd03d299c61018a623cb5c79816ac63009d6edb04b703722a7"
     }
   ],
   "test_opened": false,
   "training_updates": 0,
-  "current_batch": "unity-v1-train-006-20261111",
-  "wall_seconds": 623.3580684999979
+  "current_batch": null,
+  "wall_seconds": 1684.9123814999984
 }

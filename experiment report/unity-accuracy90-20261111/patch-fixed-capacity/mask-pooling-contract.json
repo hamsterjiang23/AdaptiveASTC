@@ -1,0 +1,47 @@
+{
+  "status": "cpu_component_verified",
+  "scope": "Prepared fixed-capacity control; not integrated into training yet",
+  "parameters": 11178564,
+  "added_parameters": 0,
+  "fp32_parameter_bytes": 44714256,
+  "same_checkpoint_keys": true,
+  "same_initial_parameters_and_rng_state": true,
+  "strict_checkpoint_load": "passed",
+  "full_mask_random240_cpu_max_output_difference": 0.0,
+  "geometry_source": "Input patch x,y,width,height only; no quality or labels",
+  "pooling": "FP32 valid-coverage-weighted final feature mean, cast to feature dtype",
+  "unchanged": [
+    "RGB input",
+    "edge padding",
+    "convolutions",
+    "four-output monotone head"
+  ],
+  "unit_tests": {
+    "command": "uv run --frozen pytest -q tests/test_patch_geometry.py tests/test_masked_patch_regressor.py",
+    "result": "17 passed in 8.76s"
+  },
+  "static_checks": [
+    "ruff format --check",
+    "ruff check",
+    "basedpyright"
+  ],
+  "independent_review": "No bugs; FP16 pooling/backward and RNG compatibility checked",
+  "trainer_integrated": false,
+  "cuda_smoke_completed": false,
+  "training_updates": 0,
+  "test_opened": false,
+  "production_accuracy": null,
+  "limitations": [
+    "Convolutional receptive fields still see padded input; padding influence remains",
+    "Mask affects final feature weighting; it is not an exact pixel error decomposition",
+    "Formal fixed-capacity comparison requires CUDA smoke, training and checkpoint audit"
+  ],
+  "sources_sha256": {
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\masked_patch_regressor.py": "e76aeaf4807ca357b2a57ce11d91ce0fbef13948082a02f95570d01d162850b9",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\patch_regressor.py": "e5e6e5f2d8b9205e6a9b53e68953d1cf593658ce5d2bb4da3c1e9e291e8f4adc",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_geometry.py": "bc78a56fe483c658df9541a68f2d1b5ff3b47d5e04b75152bcd37bfa60c88619",
+    "E:\\ASTC_Compression\\tests\\test_masked_patch_regressor.py": "133dea1ddd8ab59cf0be389123ac379a4882ecba400c617ef1683d1ca5ef49db",
+    "E:\\ASTC_Compression\\tests\\test_patch_geometry.py": "3d0167fac5d614910c040453cee4593aea1d5027010f2075733980c894abe7cd",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\record_mask_pooling_contract.py": "4b716fcb0df75bae4bd038c54668621bdb8cd9664a13ce93819e48e7100055ec"
+  }
+}
