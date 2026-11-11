@@ -47,6 +47,7 @@ class PatchTrainConfig:
     group_image_cap: int = 0
     bag_size: int = 1
     aggregate_loss_weight: float = 0.0
+    pixel_weighted_sampling: bool = False
 
     def validate(self) -> None:
         if min(self.epochs, self.batch_size, self.patches_per_image) < 1:
@@ -66,6 +67,10 @@ class PatchTrainConfig:
         PatchRegressionLoss(self.bag_size, self.aggregate_loss_weight)
         if self.batch_size % self.bag_size:
             raise ValueError("Batch size must contain complete patch bags")
+        if type(self.pixel_weighted_sampling) is not bool:
+            raise ValueError("Pixel-weighted sampling must be boolean")
+        if self.pixel_weighted_sampling and self.bag_size != 1:
+            raise ValueError("Pixel-weighted sampling is an independent-patch control")
 
 
 class PatchTrainer:
@@ -97,7 +102,12 @@ class PatchTrainer:
             train,
             batch_size=config.batch_size,
             sampler=WeightedRandomSampler(
-                PatchSampling.weights(train.rows, train.image_ids, config.group_image_cap).tolist(),
+                PatchSampling.weights(
+                    train.rows,
+                    train.image_ids,
+                    config.group_image_cap,
+                    train.pixel_counts if config.pixel_weighted_sampling else None,
+                ).tolist(),
                 count,
                 replacement=True,
                 generator=generator,
@@ -160,9 +170,13 @@ class PatchTrainer:
                 "threshold weight 1+2exp(-distance/3dB)",
                 "sampling": (
                     f"image weight min(1,{config.group_image_cap}/asset_group_images); "
-                    "uniform patch within image; replacement"
                     if config.group_image_cap
-                    else "equal expected image weight; uniform patch within image; replacement"
+                    else "equal expected image weight; "
+                )
+                + (
+                    "valid-pixel-proportional patch within image; replacement"
+                    if config.pixel_weighted_sampling
+                    else "uniform patch within image; replacement"
                 ),
                 "targets_clipped": False,
                 "patch_bag": {

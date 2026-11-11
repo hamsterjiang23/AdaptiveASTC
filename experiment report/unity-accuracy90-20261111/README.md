@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+固定容量实验新增[按有效像素抽样](patch-fixed-capacity/pixel-sampling.md)，两轮CUDA检查与重载通过，完整GDC开发集对照已启动；网络、资产组权重和其他设置沿用cap512基准，只有图内patch概率变化。效果待正式训练完成后记录。`[verified: scratch-group512-pixels-suite.json baseline；scratch-group512-pixels-smoke-summary.json；opinion: 结果边界]`
+
 主验收保持Unity导入后参考像素与同次原始搜索标签，独立测试块大小Top-1≥90%。GDC源RGB train10000／validation1000用于开发，test2000保持已观察身份，不参与新选模。训练全部使用CUDA，随机初始化为主线，预训练为独立对照。`[verified: 用户既有数据口径确认、CUDA和初始化要求；V1“目标与开发数据”]`
 
 | 顺序 | 当前工作 | 判据 |

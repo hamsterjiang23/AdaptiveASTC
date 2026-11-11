@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "scope": "Train-only geometry/sampling diagnostic; no training or validation selection",
+  "images": 10000,
+  "patches": 120276,
+  "partial_patches": 43409,
+  "below_quarter_patches": 18806,
+  "max_image_mass_difference": 4.6629367034256575e-15,
+  "scenarios": {
+    "uniform_within_image": {
+      "expected_partial_patch_share": 0.6965049621682285,
+      "expected_below_quarter_patch_share": 0.38816457423127554,
+      "drawn_mean_valid_fraction": 0.4329777664930555,
+      "drawn_distinct_images": 9298,
+      "drawn_distinct_patches": 23162,
+      "image_weight_sum": 7982.0
+    },
+    "pixel_proportional": {
+      "expected_partial_patch_share": 0.4742084287618862,
+      "expected_below_quarter_patch_share": 0.20666691351851793,
+      "drawn_mean_valid_fraction": 0.634351349826389,
+      "drawn_distinct_images": 9298,
+      "drawn_distinct_patches": 20564,
+      "image_weight_sum": 7982.0
+    }
+  },
+  "draw_budget": 40000,
+  "seed": 20261111,
+  "corpus_sha256": "c1c1208bbb17fbd49cae1bc244b8ff67f0bf3c7342741be8134c054c5e752a95",
+  "script_sha256": "df1733dfed4e7f5020a9b8d84b921b025d7e47c1d7d983fe723d2d008265c572",
+  "sampler_sha256": "19fa199ba347b2394491524f7029210ec369b9288caa6952971a5720f4ba5658",
+  "validation_opened": false,
+  "test_opened": false,
+  "wall_seconds": 4.203316300001461
+}

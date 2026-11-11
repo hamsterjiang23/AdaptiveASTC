@@ -99,6 +99,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- 固定容量下一项为[按有效像素抽样](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)：相对84.5%的cap512方案，只改变图内patch概率。训练清单中小于四分之一面积的期望抽样占比从38.82%降至20.67%，每图／组总权重不变；两轮4次CUDA更新及重载通过，正式对照已启动。另核对单调目标投影后10000张训练图标签全不变，作为排查证据，不是模型准确率上限。`[verified: patch-pixel-sampling-analysis.json；patch-monotonicity.json；scratch-group512-pixels各suite／smoke-summary；opinion: 对照范围]`
+
 - 原生模型的[CUDA训练链路](<../../experiment report/unity-accuracy90-20261111/unity-native-training.md>)检查通过：随机初始化、8训练图／2验证图、两轮4次实际更新、0次AMP跳步，权重重载一致，完整进程23.81秒。35项CPU检查通过；正式训练要求完整train10000／validation1000，本次不作为生产准确率。`[verified: unity-native-smoke8-v1-result.json；unity-native-training-verification.json；opinion: 验收边界]`
 
 - GDC成组损失的正式配对实验已全部完成：权重0／1为71.2%／71.7%，对应同权重近阈值RMSE3.5647／2.0188dB，低于历史独立采样80.7%。新增loss提高0.5个百分点，但没有挽回当前成组采样配方的退步；按负结果保留，不扩大参数量来掩盖该对照。`[verified: scratch-bag4-comparison.json；opinion: 实验判断]`

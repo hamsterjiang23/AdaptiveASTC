@@ -1,0 +1,2660 @@
+{
+  "status": "running",
+  "config": {
+    "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-full",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-pixels",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\scratch-group512-pixels.json",
+    "initialization": "scratch",
+    "epochs": 30,
+    "batch_size": 128,
+    "patches_per_image": 4,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.05,
+    "warmup_epochs": 1,
+    "workers": 2,
+    "seed": 20261111,
+    "max_steps": 0,
+    "remove_maxpool": false,
+    "monotone": true,
+    "ema_decay": 0.999,
+    "patience": 5,
+    "group_image_cap": 512,
+    "bag_size": 1,
+    "aggregate_loss_weight": 0.0,
+    "pixel_weighted_sampling": true,
+    "corpus_fingerprint": "45c879fa42839d8778af7b2224acaafa1209659bde11c8cb9302647343fd636f",
+    "model_parameters": 11178564,
+    "gpu": "NVIDIA GeForce RTX 4070",
+    "torch": "2.8.0+cu128",
+    "loss": "Huber log10(MSE+1e-10), delta0.1=1dB; threshold weight 1+2exp(-distance/3dB)",
+    "sampling": "image weight min(1,512/asset_group_images); valid-pixel-proportional patch within image; replacement",
+    "targets_clipped": false,
+    "patch_bag": {
+      "size": 1,
+      "aggregate_loss_weight": 0.0,
+      "sampling": "independent patch draws",
+      "target_scope": "sampled bag, not full image",
+      "aggregation": "valid-pixel-weighted MSE, inference clipping and epsilon"
+    },
+    "augmentations": [],
+    "ema": "parameters and buffers after each applied optimizer update",
+    "selection": "validation exact footprint accuracy at margin0, then near-threshold RMSE",
+    "scope": "source RGB GDC development; no test access; no Unity production claim",
+    "source_files_sha256": {
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\patch_trainer.py": "af1099720c733c6af4b6fb9cee926724843d1540af0ca69e2c31b0e1d4a36c71",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\patch_regressor.py": "e5e6e5f2d8b9205e6a9b53e68953d1cf593658ce5d2bb4da3c1e9e291e8f4adc",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_dataset.py": "3013a257aeca22f1b2d9cc192cfe6e5b10cf41c61178ed872c383f94ef5b7f09",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_sampling.py": "19fa199ba347b2394491524f7029210ec369b9288caa6952971a5720f4ba5658",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_bags.py": "39a8a75e19d848fad5b4ec0c99752f4905141dbc84de19c5103ca958a5a75fa6",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\patch_loss.py": "be9513750999e5227875ce68212f5f4cb7d8ec6fcf72f828dbf2f59b06fccbca",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\patch_metrics.py": "9e11b6d9e0b2fb519c70369f54615ebd610aeb685a3f0851ed39690773172e71",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.0630264829993248,
+      "train_patch_loss": 0.0630264829993248,
+      "train_aggregate_loss": 0.0,
+      "samples": 40000,
+      "step_attempts": 313,
+      "optimizer_updates": 313,
+      "amp_skipped_steps": 0,
+      "learning_rate": 0.0003,
+      "training_seconds": 194.67603899999813,
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.718,
+        "macro_f1": 0.6208971161821646,
+        "balanced_accuracy": 0.6103965916537591,
+        "confusion_matrix": [
+          [
+            134,
+            75,
+            6,
+            3
+          ],
+          [
+            21,
+            81,
+            63,
+            27
+          ],
+          [
+            0,
+            6,
+            56,
+            66
+          ],
+          [
+            0,
+            0,
+            15,
+            447
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "precision": 0.864516129032258,
+            "recall": 0.6146788990825688,
+            "f1": 0.7184986595174263,
+            "support": 218
+          },
+          "8x8": {
+            "precision": 0.5,
+            "recall": 0.421875,
+            "f1": 0.4576271186440678,
+            "support": 192
+          },
+          "10x10": {
+            "precision": 0.4,
+            "recall": 0.4375,
+            "f1": 0.417910447761194,
+            "support": 128
+          },
+          "12x12": {
+            "precision": 0.8232044198895028,
+            "recall": 0.9675324675324676,
+            "f1": 0.8895522388059701,
+            "support": 462
+          }
+        },
+        "near_threshold_rmse_db": 2.5605813209541624,
+        "near_threshold_evaluable": true,
+        "zero_predicted_mse_candidates": 3,
+        "zero_mse_diagnostic_psnr_db": 300.0,
+        "near_threshold_candidate_count": 1171,
+        "finite_candidate_rmse_db": 8.125397953787921,
+        "lossless_candidate_count": 83,
+        "quality_pass_rate": 0.689,
+        "payload_bytes": 79964224,
+        "fixed8_payload_bytes": 128132896,
+        "label_payload_bytes": 90264688,
+        "margins": [
+          {
+            "margin_db": 0.0,
+            "accuracy": 0.718,
+            "quality_pass_rate": 0.689,
+            "payload_bytes": 79964224
+          },
+          {
+            "margin_db": 0.25,
+            "accuracy": 0.738,
+            "quality_pass_rate": 0.719,
+            "payload_bytes": 82362576
+          },
+          {
+            "margin_db": 0.5,
+            "accuracy": 0.747,
+            "quality_pass_rate": 0.741,
+            "payload_bytes": 84633328
+          },
+          {
+            "margin_db": 0.75,
+            "accuracy": 0.758,
+            "quality_pass_rate": 0.769,
+            "payload_bytes": 87747296
+          },
+          {
+            "margin_db": 1.0,
+            "accuracy": 0.762,
+            "quality_pass_rate": 0.789,
+            "payload_bytes": 90519744
+          }
+        ],
+        "by_asset_group": {
+          "Assets/Art/Characters/11_bane": {
+            "count": 8,
+            "accuracy": 0.625
+          },
+          "Assets/Art/Characters/123_cici": {
+            "count": 11,
+            "accuracy": 0.8181818181818182
+          },
+          "Assets/Art/Characters/131_Cirrus": {
+            "count": 6,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/19_minotaur": {
+            "count": 3,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/35_Hilda": {
+            "count": 5,
+            "accuracy": 0.6
+          },
+          "Assets/Art/Characters/3_xixuegui": {
+            "count": 12,
+            "accuracy": 0.75
+          },
+          "Assets/Art/Characters/4046_odette": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/42_moshushi": {
+            "count": 4,
+            "accuracy": 0.75
+          },
+          "Assets/Art/Characters/4521_xiaoqiche": {
+            "count": 2,
+            "accuracy": 0.5
+          },
+          "Assets/Art/Characters/4522_xiaohuayao": {
+            "count": 2,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Characters/4524_xiaoshijiu": {
+            "count": 7,
+            "accuracy": 0.8571428571428571
+          },
+          "Assets/Art/Characters/4604_qishou_zhou": {
+            "count": 3,
+            "accuracy": 0.6666666666666666
+          },
+          "Assets/Art/Characters/48_digger": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/50_zhask": {
+            "count": 5,
+            "accuracy": 0.4
+          },
+          "Assets/Art/Characters/58_asura": {
+            "count": 11,
+            "accuracy": 0.6363636363636364
+          },
+          "Assets/Art/Characters/64_jubi": {
+            "count": 6,
+            "accuracy": 0.6666666666666666
+          },
+          "Assets/Art/Characters/84_zeo": {
+            "count": 12,
+            "accuracy": 0.5833333333333334
+          },
+          "Assets/Art/Characters/94_BBsheshou": {
+            "count": 4,
+            "accuracy": 0.75
+          },
+          "Assets/Art/Characters/95_BlackDragon": {
+            "count": 7,
+            "accuracy": 0.5714285714285714
+          },
+          "Assets/Art/Characters/Esmeralda": {
+            "count": 17,
+            "accuracy": 0.5294117647058824
+          },
+          "Assets/Art/Characters/alchemist": {
+            "count": 4,
+            "accuracy": 0.75
+          },
+          "Assets/Art/Characters/asura": {
+            "count": 8,
+            "accuracy": 0.75
+          },
+          "Assets/Art/Characters/budika": {
+            "count": 12,
+            "accuracy": 0.8333333333333334
+          },
+          "Assets/Art/Characters/dandan": {
+            "count": 3,
+            "accuracy": 0.6666666666666666
+          },
+          "Assets/Art/Characters/entropy": {
+            "count": 7,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/face_test": {
+            "count": 4,
+            "accuracy": 0.75
+          },
+          "Assets/Art/Characters/jiepai": {
+            "count": 10,
+            "accuracy": 0.8
+          },
+          "Assets/Art/Characters/jubi": {
+            "count": 13,
+            "accuracy": 0.6923076923076923
+          },
+          "Assets/Art/Characters/kongfu": {
+            "count": 12,
+            "accuracy": 0.5833333333333334
+          },
+          "Assets/Art/Characters/laoshu": {
+            "count": 3,
+            "accuracy": 0.3333333333333333
+          },
+          "Assets/Art/Characters/madierda": {
+            "count": 4,
+            "accuracy": 0.75
+          },
+          "Assets/Art/Characters/minotaur": {
+            "count": 11,
+            "accuracy": 0.8181818181818182
+          },
+          "Assets/Art/Characters/nana": {
+            "count": 21,
+            "accuracy": 0.7142857142857143
+          },
+          "Assets/Art/Characters/ninja": {
+            "count": 29,
+            "accuracy": 0.5862068965517241
+          },
+          "Assets/Art/Characters/pofa": {
+            "count": 22,
+            "accuracy": 0.7272727272727273
+          },
+          "Assets/Art/Characters/qiuyuan": {
+            "count": 8,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/werewolf": {
+            "count": 22,
+            "accuracy": 0.6363636363636364
+          },
+          "Assets/Art/Characters/xavier": {
+            "count": 11,
+            "accuracy": 0.8181818181818182
+          },
+          "Assets/Art/Characters/xiaoxiongmao": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/xiaoyang": {
+            "count": 3,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Characters/xiongmao": {
+            "count": 12,
+            "accuracy": 0.5833333333333334
+          },
+          "Assets/Art/Characters/xuebao": {
+            "count": 3,
+            "accuracy": 0.6666666666666666
+          },
+          "Assets/Art/Effects/TempTexture": {
+            "count": 50,
+            "accuracy": 0.74
+          },
+          "Assets/Art/Effects/TempTexture/Common/Decal": {
+            "count": 2,
+            "accuracy": 0.5
+          },
+          "Assets/Art/Effects/TempTexture/Rename/Clamp4": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Effects/Texture/Common/Decal": {
+            "count": 75,
+            "accuracy": 0.68
+          },
+          "Assets/Art/Effects/Texture/Common/Magic": {
+            "count": 51,
+            "accuracy": 0.6078431372549019
+          },
+          "Assets/Art/Effects/Texture/Common/Ring": {
+            "count": 116,
+            "accuracy": 0.6551724137931034
+          },
+          "Assets/Art/Effects/Texture/Common/Scene/120_skin03": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Effects/Texture/Common/Scene/125_skin04": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Effects/Texture/Common/Scene/21_skin10": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Effects/Texture/Common/Scene/25_Skin09": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Effects/Texture/Common/Scene/69_skin04": {
+            "count": 4,
+            "accuracy": 0.5
+          },
+          "Assets/Art/Environment/PVP_010": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Environment/PVP_019_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Environment/PVP_070_S2_add": {
+            "count": 2,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Environment/heroshow_scenes": {
+            "count": 150,
+            "accuracy": 0.8733333333333333
+          },
+          "Assets/Art/Environment/pvp_004_low": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/Art/Monster/Evo": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Monster/monster_pvpzhaiyue": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Monster/ta_duckjidi": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Prefabs/Effect/UI/guangquan/ALL/guangquan_Jiantou01Plus_MoveBack_add_cns": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Prefabs/Effect/UI/guangquan/ALL/guangquan_kuanjiantouDefault_jimiskill2_add_cns": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Art/Prefabs/res_version/IntestPrefabs/Effect/Hero/4015_nexteudora/tx": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/CustomRoomMode/UI/UITexture/Common_Atlas/Atlas_ModeCard01_CR": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/EasyGameCreator/EGCArts/Environment/Textures/Stone/S2": {
+            "count": 2,
+            "accuracy": 0.5
+          },
+          "Assets/CustomMode/MagicChess/Art/Characters/hero/MC_02_Balmond/Materias": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/CustomMode/MagicChess/Art/Characters/hero/MC_46_odette/Materials": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/CustomMode/MagicChess/Art/Characters/hero/MC_51_sdhunter/Materials": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/CustomMode/MagicChess/Art/Environment/MLBC_SceneShow_023/Textures": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/Art/Environment/MLBC_SceneShow_039/Textures": {
+            "count": 2,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/Art/Environment/MLBC_SceneShow_045/Textures": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/Art/Environment/PVP_MLBC_007_low/Textures": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/Art/Environment/PVP_MLBC_043/Textures": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BasicInformationbg_3_MC": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleEnd2_MC": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleEnd_MC": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI_MC": {
+            "count": 13,
+            "accuracy": 0.8461538461538461
+          },
+          "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_EquipIcon3_MC": {
+            "count": 2,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_GameLobby_MC": {
+            "count": 7,
+            "accuracy": 0.5714285714285714
+          },
+          "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Loading_MC": {
+            "count": 2,
+            "accuracy": 0.0
+          },
+          "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_MagicComptetionBg_MC": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900281_MC": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_McThemeLotteryHK02_MC": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/SurvivalMode/UI/UITexture/Common_Atlas/Atlas_SurvivalModeMatching_add": {
+            "count": 2,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/SurvivalMode/UI/UITexture/Common_Atlas/Atlas_SurvivalModeRankShow_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/CustomMode/TempRes/ArenaMode/UI/UITexture/Common_Atlas/Atlas_Commander_45161_AR": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/CustomMode/TempRes/HotHeroMode/UI/UITexture/Common_Atlas/Atlas_Room_HHM": {
+            "count": 3,
+            "accuracy": 0.6666666666666666
+          },
+          "Assets/RuledAssets/Act_24AnniversaryShare/UI/UITexture/Atlas_add/Atlas_Activity_24AnniversaryShareBg_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_24SummerMain/UI/UITexture/Atlas_add/Atlas_24SummerMain_03_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_25shangfenjie/UI/UITexture/Atlas_add/Atlas_Activity_25shangfenjie2_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_BlockSystem/UI/UITexture/Atlas_add/Atlas_Activity_BlockSystem03_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_BlockSystem/UI/UITexture/Atlas_add/Atlas_Activity_BlockSystem_Cus_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_BlockSystem/UI/UITexture/Atlas_add/Atlas_Spine_GoldenRamadan_LubiB1_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_Charge01/UI/UITexture/Atlas_add/Atlas_ActivitySaleAd_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_ChestFresh/UI/UITexture/Atlas_add/Atlas_Activity_ChestFresh01_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_ChestFresh_common/UI/UITexture/Atlas_add/Atlas_Activity_ChestFresh03_25AS_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_CollectorDraw/Art/Effects/Texture/Ui": {
+            "count": 2,
+            "accuracy": 0.5
+          },
+          "Assets/RuledAssets/Act_DoubleEleven/Art/Texture": {
+            "count": 2,
+            "accuracy": 0.5
+          },
+          "Assets/RuledAssets/Act_DoubleEleven/UI/UITexture/Atlas_add/Atlas_Activity_2022515Lottery03_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_DoubleEleven/UI/UITexture/Atlas_add/Atlas_Activity_Spine_ASallstar_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_Exocist3_Draw/UI/UITexture/Atlas_add/Atlas_Exocist3_Draw03_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_Exocist_EffectsDraw/Art/Effects/Texture/Ui": {
+            "count": 2,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_FishingActivity/UI/UITexture/Atlas_add/Atlas_Letsgofishing07_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_GameVote/UI/UITexture/Atlas_add/Atlas_Activity_GameVoteIcon_add": {
+            "count": 4,
+            "accuracy": 0.75
+          },
+          "Assets/RuledAssets/Act_LaylasWorkshop/UI/UITexture/Atlas_add/Atlas_Activity_LaylasWorkshop02_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_LiliyaPass/UI/UITexture/Atlas_add/Atlas_LiliyaPass02_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_M4/UI/UITexture/Atlas_add/Atlas_Activity_M7Main06_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_NewShowcase03/UI/UITexture/Atlas_add/Atlas_NewShowcase02_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_NewShowcase03/UI/UITexture/Atlas_add/Atlas_NewShowcase07_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_Newupdate801/UI/UITexture/Atlas_add/Atlas_ActivityNewupdate801_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_NormalTurntable/UI/UITexture/Atlas_add/Atlas_ActivityNormalTurntableDraw1_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_ProI/UI/UITexture/Atlas_add/Atlas_Activity_ProI09_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_ProQ/UI/UITexture/Atlas_add/Atlas_Activity_ProQ02_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_SPD_Draw/UI/UITexture/Atlas_add/Atlas_SPD_Draw02_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_StarWars/UI/UITexture/Atlas_add/Atlas_StarWars016_add": {
+            "count": 2,
+            "accuracy": 0.5
+          },
+          "Assets/RuledAssets/Act_ThemeLotteryAbyss/UI/UITexture/Atlas_add/Atlas_ActivityThemeLotteryAbyss03_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_ThemeLottery_Exo/UI/UITexture/Atlas_add/Atlas_ActivityThemeLottery11_add": {
+            "count": 3,
+            "accuracy": 0.3333333333333333
+          },
+          "Assets/RuledAssets/Act_ThemeLottery_Exo/UI/UITexture/Atlas_add/Atlas_ActivityThemeLottery8_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_Vip_CN/Art/Effects/Texture/Ui": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Act_Yanhuobinfen/UI/UITexture/Atlas_add/Atlas_Yanhuobinfen02_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_ZodiacDraw/UI/UITexture/Atlas_add/Atlas_LuckConstellation_new_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Act_themelotteryHero/UI/UITexture/Atlas_add/Atlas_ActivityThemeLotteryHero01_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/Newbie_LevelGrowth/UI/UITexture/Atlas_add/Atlas_Activity_LegendaryRoad_Four_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/Newbie_RankRoad/UI/UITexture/Atlas_add/Atlas_Newbie_RankRoad01_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_Achievement/UI/UITexture/Atlas_add/Atlas_AchievementIcon02_add": {
+            "count": 3,
+            "accuracy": 0.6666666666666666
+          },
+          "Assets/RuledAssets/System_AllplayerMatch/UI/UITexture/Atlas_add/Atlas_CitizensLeague_BigBG_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/System_AllplayerMatch/UI/UITexture/Atlas_add/Atlas_CitizensLeague_Candidate_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_AllplayerMatch/UI/UITexture/Atlas_add/Atlas_CitizensLeague_SeasonBegin03_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/System_BattleAchievement_Share/UI/UITexture/Atlas_add/Atlas_BattleAchievement_Share_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/System_Collection/UI/UITexture/Atlas_add/Atlas_CollectionLevelup_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_Collection/UI/UITexture/Atlas_add/Atlas_Collection_Bg01_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_Contest/UI/UITexture/Atlas_add/Atlas_League04_add": {
+            "count": 2,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_FlyVehicle/UI/UITexture/Atlas_add/Atlas_FlyVehicle01_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/System_Gift/UI/UITexture/Atlas_add/Atlas_GiftShow04_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/RuledAssets/System_HeroCultivate/UI/UITexture/Atlas_add/Atlas_RoadProficiency_Guide02": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_Map2026AS_BandEffect/UI/UITexture/Atlas_add/Atlas_Map2026AS_BandEffect_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_NewplayerEducation/UI/UITexture/Atlas_add/Atlas_NewPlayerLevel_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_RankSeason/UI/UITexture/Atlas_add/Atlas_RankMythRoadNew39_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_RankSeason/UI/UITexture/Atlas_add/Atlas_RankMythRoad_01_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_Team/UI/UITexture/Atlas_add/Atlas_ZhanDui_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/RuledAssets/System_WorldMap/UI/UITexture/Atlas_add/Atlas_Worldmap05_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Scenes/temp/Environment/PVP_027_add/Textures": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/Scenes/temp/Environment/pvp_033_low/Textures": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/Prefabs/res_version/IntestPrefabs/HeroCard": {
+            "count": 2,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_Activity_Benefit02_add": {
+            "count": 2,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_Activity_BenefitTest_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_Evolution05_Mode_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_GuideTips01_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_History_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_Instruction_OverLoadHero_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_Invite_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_ModeCollectionCard_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_ShareBackground22_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_ShareBackground35_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Atlas_ShareBackground66_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/BattleAtlasadd/Atlas_BattleEffect_Hero114_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas022_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas170_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas280_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas381_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas465_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas504_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/IconAtlasAdd_Break/Atlas_BattleAnimIcon_add": {
+            "count": 4,
+            "accuracy": 0.75
+          },
+          "Assets/UI/UITexture/Atlas_add/MaininterfaceAdd/Atlas_Activity_NovaLook_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber10_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber141_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber186_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber215_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber33_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber47_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber59_add": {
+            "count": 1,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber85_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_BattleAnim_add": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_NetworkDetection_add": {
+            "count": 2,
+            "accuracy": 0.5
+          },
+          "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_Performance16_add": {
+            "count": 2,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_Performance19_add": {
+            "count": 2,
+            "accuracy": 0.0
+          },
+          "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon04_add": {
+            "count": 7,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon05_add": {
+            "count": 6,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon08_add": {
+            "count": 6,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinSkill_add": {
+            "count": 6,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Common_Atlas/Atlas_Guide": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Common_Atlas/Atlas_Guide03": {
+            "count": 1,
+            "accuracy": 1.0
+          },
+          "Assets/UI/UITexture/Common_Atlas/Atlas_MainInterface_Fortificationsnew": {
+            "count": 1,
+            "accuracy": 0.0
+          }
+        },
+        "group_macro_accuracy": 0.7054579361572373,
+        "by_long_side": {
+          "at_most256": {
+            "count": 411,
+            "accuracy": 0.7007299270072993
+          },
+          "257_to1023": {
+            "count": 281,
+            "accuracy": 0.6832740213523132
+          },
+          "at_least1024": {
+            "count": 308,
+            "accuracy": 0.7727272727272727
+          }
+        },
+        "classes": [
+          "6x6",
+          "8x8",
+          "10x10",
+          "12x12"
+        ],
+        "seconds": 19.563796900001762
+      },
+      "validation_variants": {
+        "raw": {
+          "count": 1000,
+          "accuracy": 0.718,
+          "macro_f1": 0.6208971161821646,
+          "balanced_accuracy": 0.6103965916537591,
+          "confusion_matrix": [
+            [
+              134,
+              75,
+              6,
+              3
+            ],
+            [
+              21,
+              81,
+              63,
+              27
+            ],
+            [
+              0,
+              6,
+              56,
+              66
+            ],
+            [
+              0,
+              0,
+              15,
+              447
+            ]
+          ],
+          "per_class": {
+            "6x6": {
+              "precision": 0.864516129032258,
+              "recall": 0.6146788990825688,
+              "f1": 0.7184986595174263,
+              "support": 218
+            },
+            "8x8": {
+              "precision": 0.5,
+              "recall": 0.421875,
+              "f1": 0.4576271186440678,
+              "support": 192
+            },
+            "10x10": {
+              "precision": 0.4,
+              "recall": 0.4375,
+              "f1": 0.417910447761194,
+              "support": 128
+            },
+            "12x12": {
+              "precision": 0.8232044198895028,
+              "recall": 0.9675324675324676,
+              "f1": 0.8895522388059701,
+              "support": 462
+            }
+          },
+          "near_threshold_rmse_db": 2.5605813209541624,
+          "near_threshold_evaluable": true,
+          "zero_predicted_mse_candidates": 3,
+          "zero_mse_diagnostic_psnr_db": 300.0,
+          "near_threshold_candidate_count": 1171,
+          "finite_candidate_rmse_db": 8.125397953787921,
+          "lossless_candidate_count": 83,
+          "quality_pass_rate": 0.689,
+          "payload_bytes": 79964224,
+          "fixed8_payload_bytes": 128132896,
+          "label_payload_bytes": 90264688,
+          "margins": [
+            {
+              "margin_db": 0.0,
+              "accuracy": 0.718,
+              "quality_pass_rate": 0.689,
+              "payload_bytes": 79964224
+            },
+            {
+              "margin_db": 0.25,
+              "accuracy": 0.738,
+              "quality_pass_rate": 0.719,
+              "payload_bytes": 82362576
+            },
+            {
+              "margin_db": 0.5,
+              "accuracy": 0.747,
+              "quality_pass_rate": 0.741,
+              "payload_bytes": 84633328
+            },
+            {
+              "margin_db": 0.75,
+              "accuracy": 0.758,
+              "quality_pass_rate": 0.769,
+              "payload_bytes": 87747296
+            },
+            {
+              "margin_db": 1.0,
+              "accuracy": 0.762,
+              "quality_pass_rate": 0.789,
+              "payload_bytes": 90519744
+            }
+          ],
+          "by_asset_group": {
+            "Assets/Art/Characters/11_bane": {
+              "count": 8,
+              "accuracy": 0.625
+            },
+            "Assets/Art/Characters/123_cici": {
+              "count": 11,
+              "accuracy": 0.8181818181818182
+            },
+            "Assets/Art/Characters/131_Cirrus": {
+              "count": 6,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Characters/19_minotaur": {
+              "count": 3,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/35_Hilda": {
+              "count": 5,
+              "accuracy": 0.6
+            },
+            "Assets/Art/Characters/3_xixuegui": {
+              "count": 12,
+              "accuracy": 0.75
+            },
+            "Assets/Art/Characters/4046_odette": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/42_moshushi": {
+              "count": 4,
+              "accuracy": 0.75
+            },
+            "Assets/Art/Characters/4521_xiaoqiche": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/Art/Characters/4522_xiaohuayao": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/4524_xiaoshijiu": {
+              "count": 7,
+              "accuracy": 0.8571428571428571
+            },
+            "Assets/Art/Characters/4604_qishou_zhou": {
+              "count": 3,
+              "accuracy": 0.6666666666666666
+            },
+            "Assets/Art/Characters/48_digger": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Characters/50_zhask": {
+              "count": 5,
+              "accuracy": 0.4
+            },
+            "Assets/Art/Characters/58_asura": {
+              "count": 11,
+              "accuracy": 0.6363636363636364
+            },
+            "Assets/Art/Characters/64_jubi": {
+              "count": 6,
+              "accuracy": 0.6666666666666666
+            },
+            "Assets/Art/Characters/84_zeo": {
+              "count": 12,
+              "accuracy": 0.5833333333333334
+            },
+            "Assets/Art/Characters/94_BBsheshou": {
+              "count": 4,
+              "accuracy": 0.75
+            },
+            "Assets/Art/Characters/95_BlackDragon": {
+              "count": 7,
+              "accuracy": 0.5714285714285714
+            },
+            "Assets/Art/Characters/Esmeralda": {
+              "count": 17,
+              "accuracy": 0.5294117647058824
+            },
+            "Assets/Art/Characters/alchemist": {
+              "count": 4,
+              "accuracy": 0.75
+            },
+            "Assets/Art/Characters/asura": {
+              "count": 8,
+              "accuracy": 0.75
+            },
+            "Assets/Art/Characters/budika": {
+              "count": 12,
+              "accuracy": 0.8333333333333334
+            },
+            "Assets/Art/Characters/dandan": {
+              "count": 3,
+              "accuracy": 0.6666666666666666
+            },
+            "Assets/Art/Characters/entropy": {
+              "count": 7,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Characters/face_test": {
+              "count": 4,
+              "accuracy": 0.75
+            },
+            "Assets/Art/Characters/jiepai": {
+              "count": 10,
+              "accuracy": 0.8
+            },
+            "Assets/Art/Characters/jubi": {
+              "count": 13,
+              "accuracy": 0.6923076923076923
+            },
+            "Assets/Art/Characters/kongfu": {
+              "count": 12,
+              "accuracy": 0.5833333333333334
+            },
+            "Assets/Art/Characters/laoshu": {
+              "count": 3,
+              "accuracy": 0.3333333333333333
+            },
+            "Assets/Art/Characters/madierda": {
+              "count": 4,
+              "accuracy": 0.75
+            },
+            "Assets/Art/Characters/minotaur": {
+              "count": 11,
+              "accuracy": 0.8181818181818182
+            },
+            "Assets/Art/Characters/nana": {
+              "count": 21,
+              "accuracy": 0.7142857142857143
+            },
+            "Assets/Art/Characters/ninja": {
+              "count": 29,
+              "accuracy": 0.5862068965517241
+            },
+            "Assets/Art/Characters/pofa": {
+              "count": 22,
+              "accuracy": 0.7272727272727273
+            },
+            "Assets/Art/Characters/qiuyuan": {
+              "count": 8,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Characters/werewolf": {
+              "count": 22,
+              "accuracy": 0.6363636363636364
+            },
+            "Assets/Art/Characters/xavier": {
+              "count": 11,
+              "accuracy": 0.8181818181818182
+            },
+            "Assets/Art/Characters/xiaoxiongmao": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Characters/xiaoyang": {
+              "count": 3,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Characters/xiongmao": {
+              "count": 12,
+              "accuracy": 0.5833333333333334
+            },
+            "Assets/Art/Characters/xuebao": {
+              "count": 3,
+              "accuracy": 0.6666666666666666
+            },
+            "Assets/Art/Effects/TempTexture": {
+              "count": 50,
+              "accuracy": 0.74
+            },
+            "Assets/Art/Effects/TempTexture/Common/Decal": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/Art/Effects/TempTexture/Rename/Clamp4": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Effects/Texture/Common/Decal": {
+              "count": 75,
+              "accuracy": 0.68
+            },
+            "Assets/Art/Effects/Texture/Common/Magic": {
+              "count": 51,
+              "accuracy": 0.6078431372549019
+            },
+            "Assets/Art/Effects/Texture/Common/Ring": {
+              "count": 116,
+              "accuracy": 0.6551724137931034
+            },
+            "Assets/Art/Effects/Texture/Common/Scene/120_skin03": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Effects/Texture/Common/Scene/125_skin04": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Effects/Texture/Common/Scene/21_skin10": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Effects/Texture/Common/Scene/25_Skin09": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Effects/Texture/Common/Scene/69_skin04": {
+              "count": 4,
+              "accuracy": 0.5
+            },
+            "Assets/Art/Environment/PVP_010": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Environment/PVP_019_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Environment/PVP_070_S2_add": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Environment/heroshow_scenes": {
+              "count": 150,
+              "accuracy": 0.8733333333333333
+            },
+            "Assets/Art/Environment/pvp_004_low": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Monster/Evo": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Monster/monster_pvpzhaiyue": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Monster/ta_duckjidi": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Prefabs/Effect/UI/guangquan/ALL/guangquan_Jiantou01Plus_MoveBack_add_cns": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Prefabs/Effect/UI/guangquan/ALL/guangquan_kuanjiantouDefault_jimiskill2_add_cns": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Prefabs/res_version/IntestPrefabs/Effect/Hero/4015_nexteudora/tx": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/CustomRoomMode/UI/UITexture/Common_Atlas/Atlas_ModeCard01_CR": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/EasyGameCreator/EGCArts/Environment/Textures/Stone/S2": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/CustomMode/MagicChess/Art/Characters/hero/MC_02_Balmond/Materias": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Characters/hero/MC_46_odette/Materials": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Characters/hero/MC_51_sdhunter/Materials": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Environment/MLBC_SceneShow_023/Textures": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Environment/MLBC_SceneShow_039/Textures": {
+              "count": 2,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Environment/MLBC_SceneShow_045/Textures": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Environment/PVP_MLBC_007_low/Textures": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Environment/PVP_MLBC_043/Textures": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BasicInformationbg_3_MC": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleEnd2_MC": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleEnd_MC": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI_MC": {
+              "count": 13,
+              "accuracy": 0.8461538461538461
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_EquipIcon3_MC": {
+              "count": 2,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_GameLobby_MC": {
+              "count": 7,
+              "accuracy": 0.5714285714285714
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Loading_MC": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_MagicComptetionBg_MC": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900281_MC": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_McThemeLotteryHK02_MC": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/SurvivalMode/UI/UITexture/Common_Atlas/Atlas_SurvivalModeMatching_add": {
+              "count": 2,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/SurvivalMode/UI/UITexture/Common_Atlas/Atlas_SurvivalModeRankShow_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/TempRes/ArenaMode/UI/UITexture/Common_Atlas/Atlas_Commander_45161_AR": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/TempRes/HotHeroMode/UI/UITexture/Common_Atlas/Atlas_Room_HHM": {
+              "count": 3,
+              "accuracy": 0.6666666666666666
+            },
+            "Assets/RuledAssets/Act_24AnniversaryShare/UI/UITexture/Atlas_add/Atlas_Activity_24AnniversaryShareBg_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_24SummerMain/UI/UITexture/Atlas_add/Atlas_24SummerMain_03_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_25shangfenjie/UI/UITexture/Atlas_add/Atlas_Activity_25shangfenjie2_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_BlockSystem/UI/UITexture/Atlas_add/Atlas_Activity_BlockSystem03_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_BlockSystem/UI/UITexture/Atlas_add/Atlas_Activity_BlockSystem_Cus_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_BlockSystem/UI/UITexture/Atlas_add/Atlas_Spine_GoldenRamadan_LubiB1_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_Charge01/UI/UITexture/Atlas_add/Atlas_ActivitySaleAd_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_ChestFresh/UI/UITexture/Atlas_add/Atlas_Activity_ChestFresh01_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_ChestFresh_common/UI/UITexture/Atlas_add/Atlas_Activity_ChestFresh03_25AS_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_CollectorDraw/Art/Effects/Texture/Ui": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/RuledAssets/Act_DoubleEleven/Art/Texture": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/RuledAssets/Act_DoubleEleven/UI/UITexture/Atlas_add/Atlas_Activity_2022515Lottery03_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_DoubleEleven/UI/UITexture/Atlas_add/Atlas_Activity_Spine_ASallstar_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_Exocist3_Draw/UI/UITexture/Atlas_add/Atlas_Exocist3_Draw03_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_Exocist_EffectsDraw/Art/Effects/Texture/Ui": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_FishingActivity/UI/UITexture/Atlas_add/Atlas_Letsgofishing07_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_GameVote/UI/UITexture/Atlas_add/Atlas_Activity_GameVoteIcon_add": {
+              "count": 4,
+              "accuracy": 0.75
+            },
+            "Assets/RuledAssets/Act_LaylasWorkshop/UI/UITexture/Atlas_add/Atlas_Activity_LaylasWorkshop02_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_LiliyaPass/UI/UITexture/Atlas_add/Atlas_LiliyaPass02_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_M4/UI/UITexture/Atlas_add/Atlas_Activity_M7Main06_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_NewShowcase03/UI/UITexture/Atlas_add/Atlas_NewShowcase02_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_NewShowcase03/UI/UITexture/Atlas_add/Atlas_NewShowcase07_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_Newupdate801/UI/UITexture/Atlas_add/Atlas_ActivityNewupdate801_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_NormalTurntable/UI/UITexture/Atlas_add/Atlas_ActivityNormalTurntableDraw1_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_ProI/UI/UITexture/Atlas_add/Atlas_Activity_ProI09_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_ProQ/UI/UITexture/Atlas_add/Atlas_Activity_ProQ02_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_SPD_Draw/UI/UITexture/Atlas_add/Atlas_SPD_Draw02_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_StarWars/UI/UITexture/Atlas_add/Atlas_StarWars016_add": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/RuledAssets/Act_ThemeLotteryAbyss/UI/UITexture/Atlas_add/Atlas_ActivityThemeLotteryAbyss03_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_ThemeLottery_Exo/UI/UITexture/Atlas_add/Atlas_ActivityThemeLottery11_add": {
+              "count": 3,
+              "accuracy": 0.3333333333333333
+            },
+            "Assets/RuledAssets/Act_ThemeLottery_Exo/UI/UITexture/Atlas_add/Atlas_ActivityThemeLottery8_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_Vip_CN/Art/Effects/Texture/Ui": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_Yanhuobinfen/UI/UITexture/Atlas_add/Atlas_Yanhuobinfen02_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_ZodiacDraw/UI/UITexture/Atlas_add/Atlas_LuckConstellation_new_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_themelotteryHero/UI/UITexture/Atlas_add/Atlas_ActivityThemeLotteryHero01_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Newbie_LevelGrowth/UI/UITexture/Atlas_add/Atlas_Activity_LegendaryRoad_Four_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Newbie_RankRoad/UI/UITexture/Atlas_add/Atlas_Newbie_RankRoad01_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_Achievement/UI/UITexture/Atlas_add/Atlas_AchievementIcon02_add": {
+              "count": 3,
+              "accuracy": 0.6666666666666666
+            },
+            "Assets/RuledAssets/System_AllplayerMatch/UI/UITexture/Atlas_add/Atlas_CitizensLeague_BigBG_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_AllplayerMatch/UI/UITexture/Atlas_add/Atlas_CitizensLeague_Candidate_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_AllplayerMatch/UI/UITexture/Atlas_add/Atlas_CitizensLeague_SeasonBegin03_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_BattleAchievement_Share/UI/UITexture/Atlas_add/Atlas_BattleAchievement_Share_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_Collection/UI/UITexture/Atlas_add/Atlas_CollectionLevelup_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_Collection/UI/UITexture/Atlas_add/Atlas_Collection_Bg01_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_Contest/UI/UITexture/Atlas_add/Atlas_League04_add": {
+              "count": 2,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_FlyVehicle/UI/UITexture/Atlas_add/Atlas_FlyVehicle01_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_Gift/UI/UITexture/Atlas_add/Atlas_GiftShow04_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_HeroCultivate/UI/UITexture/Atlas_add/Atlas_RoadProficiency_Guide02": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_Map2026AS_BandEffect/UI/UITexture/Atlas_add/Atlas_Map2026AS_BandEffect_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_NewplayerEducation/UI/UITexture/Atlas_add/Atlas_NewPlayerLevel_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_RankSeason/UI/UITexture/Atlas_add/Atlas_RankMythRoadNew39_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_RankSeason/UI/UITexture/Atlas_add/Atlas_RankMythRoad_01_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_Team/UI/UITexture/Atlas_add/Atlas_ZhanDui_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_WorldMap/UI/UITexture/Atlas_add/Atlas_Worldmap05_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Scenes/temp/Environment/PVP_027_add/Textures": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Scenes/temp/Environment/pvp_033_low/Textures": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/Prefabs/res_version/IntestPrefabs/HeroCard": {
+              "count": 2,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_Activity_Benefit02_add": {
+              "count": 2,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_Activity_BenefitTest_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_Evolution05_Mode_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_GuideTips01_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_History_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_Instruction_OverLoadHero_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_Invite_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_ModeCollectionCard_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_ShareBackground22_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_ShareBackground35_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_ShareBackground66_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/BattleAtlasadd/Atlas_BattleEffect_Hero114_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas022_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas170_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas280_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas381_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas465_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas504_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/IconAtlasAdd_Break/Atlas_BattleAnimIcon_add": {
+              "count": 4,
+              "accuracy": 0.75
+            },
+            "Assets/UI/UITexture/Atlas_add/MaininterfaceAdd/Atlas_Activity_NovaLook_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber10_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber141_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber186_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber215_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber33_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber47_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber59_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber85_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_BattleAnim_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_NetworkDetection_add": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_Performance16_add": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_Performance19_add": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon04_add": {
+              "count": 7,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon05_add": {
+              "count": 6,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon08_add": {
+              "count": 6,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinSkill_add": {
+              "count": 6,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Common_Atlas/Atlas_Guide": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Common_Atlas/Atlas_Guide03": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Common_Atlas/Atlas_MainInterface_Fortificationsnew": {
+              "count": 1,
+              "accuracy": 0.0
+            }
+          },
+          "group_macro_accuracy": 0.7054579361572373,
+          "by_long_side": {
+            "at_most256": {
+              "count": 411,
+              "accuracy": 0.7007299270072993
+            },
+            "257_to1023": {
+              "count": 281,
+              "accuracy": 0.6832740213523132
+            },
+            "at_least1024": {
+              "count": 308,
+              "accuracy": 0.7727272727272727
+            }
+          },
+          "classes": [
+            "6x6",
+            "8x8",
+            "10x10",
+            "12x12"
+          ],
+          "seconds": 19.563796900001762
+        },
+        "ema": {
+          "count": 1000,
+          "accuracy": 0.209,
+          "macro_f1": 0.15531839872683392,
+          "balanced_accuracy": 0.2606436353211009,
+          "confusion_matrix": [
+            [
+              74,
+              144,
+              0,
+              0
+            ],
+            [
+              57,
+              135,
+              0,
+              0
+            ],
+            [
+              21,
+              107,
+              0,
+              0
+            ],
+            [
+              57,
+              405,
+              0,
+              0
+            ]
+          ],
+          "per_class": {
+            "6x6": {
+              "precision": 0.35406698564593303,
+              "recall": 0.3394495412844037,
+              "f1": 0.34660421545667447,
+              "support": 218
+            },
+            "8x8": {
+              "precision": 0.1706700379266751,
+              "recall": 0.703125,
+              "f1": 0.2746693794506612,
+              "support": 192
+            },
+            "10x10": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 128
+            },
+            "12x12": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 462
+            }
+          },
+          "near_threshold_rmse_db": 3.353433536595849,
+          "near_threshold_evaluable": true,
+          "zero_predicted_mse_candidates": 0,
+          "zero_mse_diagnostic_psnr_db": 300.0,
+          "near_threshold_candidate_count": 1171,
+          "finite_candidate_rmse_db": 8.108255052229039,
+          "lossless_candidate_count": 83,
+          "quality_pass_rate": 0.828,
+          "payload_bytes": 140904832,
+          "fixed8_payload_bytes": 128132896,
+          "label_payload_bytes": 90264688,
+          "margins": [
+            {
+              "margin_db": 0.0,
+              "accuracy": 0.209,
+              "quality_pass_rate": 0.828,
+              "payload_bytes": 140904832
+            },
+            {
+              "margin_db": 0.25,
+              "accuracy": 0.236,
+              "quality_pass_rate": 0.867,
+              "payload_bytes": 160799216
+            },
+            {
+              "margin_db": 0.5,
+              "accuracy": 0.232,
+              "quality_pass_rate": 0.921,
+              "payload_bytes": 206311424
+            },
+            {
+              "margin_db": 0.75,
+              "accuracy": 0.22,
+              "quality_pass_rate": 0.925,
+              "payload_bytes": 227062368
+            },
+            {
+              "margin_db": 1.0,
+              "accuracy": 0.218,
+              "quality_pass_rate": 0.925,
+              "payload_bytes": 229117968
+            }
+          ],
+          "by_asset_group": {
+            "Assets/Art/Characters/11_bane": {
+              "count": 8,
+              "accuracy": 0.375
+            },
+            "Assets/Art/Characters/123_cici": {
+              "count": 11,
+              "accuracy": 0.18181818181818182
+            },
+            "Assets/Art/Characters/131_Cirrus": {
+              "count": 6,
+              "accuracy": 0.16666666666666666
+            },
+            "Assets/Art/Characters/19_minotaur": {
+              "count": 3,
+              "accuracy": 0.6666666666666666
+            },
+            "Assets/Art/Characters/35_Hilda": {
+              "count": 5,
+              "accuracy": 0.8
+            },
+            "Assets/Art/Characters/3_xixuegui": {
+              "count": 12,
+              "accuracy": 0.16666666666666666
+            },
+            "Assets/Art/Characters/4046_odette": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/42_moshushi": {
+              "count": 4,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/4521_xiaoqiche": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/Art/Characters/4522_xiaohuayao": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/4524_xiaoshijiu": {
+              "count": 7,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/4604_qishou_zhou": {
+              "count": 3,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/48_digger": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/50_zhask": {
+              "count": 5,
+              "accuracy": 0.2
+            },
+            "Assets/Art/Characters/58_asura": {
+              "count": 11,
+              "accuracy": 0.09090909090909091
+            },
+            "Assets/Art/Characters/64_jubi": {
+              "count": 6,
+              "accuracy": 0.3333333333333333
+            },
+            "Assets/Art/Characters/84_zeo": {
+              "count": 12,
+              "accuracy": 0.08333333333333333
+            },
+            "Assets/Art/Characters/94_BBsheshou": {
+              "count": 4,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/95_BlackDragon": {
+              "count": 7,
+              "accuracy": 0.14285714285714285
+            },
+            "Assets/Art/Characters/Esmeralda": {
+              "count": 17,
+              "accuracy": 0.23529411764705882
+            },
+            "Assets/Art/Characters/alchemist": {
+              "count": 4,
+              "accuracy": 0.25
+            },
+            "Assets/Art/Characters/asura": {
+              "count": 8,
+              "accuracy": 0.25
+            },
+            "Assets/Art/Characters/budika": {
+              "count": 12,
+              "accuracy": 0.08333333333333333
+            },
+            "Assets/Art/Characters/dandan": {
+              "count": 3,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/entropy": {
+              "count": 7,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/face_test": {
+              "count": 4,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/jiepai": {
+              "count": 10,
+              "accuracy": 0.2
+            },
+            "Assets/Art/Characters/jubi": {
+              "count": 13,
+              "accuracy": 0.15384615384615385
+            },
+            "Assets/Art/Characters/kongfu": {
+              "count": 12,
+              "accuracy": 0.4166666666666667
+            },
+            "Assets/Art/Characters/laoshu": {
+              "count": 3,
+              "accuracy": 0.3333333333333333
+            },
+            "Assets/Art/Characters/madierda": {
+              "count": 4,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/minotaur": {
+              "count": 11,
+              "accuracy": 0.18181818181818182
+            },
+            "Assets/Art/Characters/nana": {
+              "count": 21,
+              "accuracy": 0.23809523809523808
+            },
+            "Assets/Art/Characters/ninja": {
+              "count": 29,
+              "accuracy": 0.1724137931034483
+            },
+            "Assets/Art/Characters/pofa": {
+              "count": 22,
+              "accuracy": 0.3181818181818182
+            },
+            "Assets/Art/Characters/qiuyuan": {
+              "count": 8,
+              "accuracy": 0.125
+            },
+            "Assets/Art/Characters/werewolf": {
+              "count": 22,
+              "accuracy": 0.45454545454545453
+            },
+            "Assets/Art/Characters/xavier": {
+              "count": 11,
+              "accuracy": 0.09090909090909091
+            },
+            "Assets/Art/Characters/xiaoxiongmao": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/xiaoyang": {
+              "count": 3,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Characters/xiongmao": {
+              "count": 12,
+              "accuracy": 0.3333333333333333
+            },
+            "Assets/Art/Characters/xuebao": {
+              "count": 3,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Effects/TempTexture": {
+              "count": 50,
+              "accuracy": 0.16
+            },
+            "Assets/Art/Effects/TempTexture/Common/Decal": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Effects/TempTexture/Rename/Clamp4": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Effects/Texture/Common/Decal": {
+              "count": 75,
+              "accuracy": 0.30666666666666664
+            },
+            "Assets/Art/Effects/Texture/Common/Magic": {
+              "count": 51,
+              "accuracy": 0.27450980392156865
+            },
+            "Assets/Art/Effects/Texture/Common/Ring": {
+              "count": 116,
+              "accuracy": 0.20689655172413793
+            },
+            "Assets/Art/Effects/Texture/Common/Scene/120_skin03": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Effects/Texture/Common/Scene/125_skin04": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Effects/Texture/Common/Scene/21_skin10": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Effects/Texture/Common/Scene/25_Skin09": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Effects/Texture/Common/Scene/69_skin04": {
+              "count": 4,
+              "accuracy": 0.25
+            },
+            "Assets/Art/Environment/PVP_010": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Environment/PVP_019_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Environment/PVP_070_S2_add": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/Art/Environment/heroshow_scenes": {
+              "count": 150,
+              "accuracy": 0.14
+            },
+            "Assets/Art/Environment/pvp_004_low": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/Art/Monster/Evo": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Monster/monster_pvpzhaiyue": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Monster/ta_duckjidi": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Prefabs/Effect/UI/guangquan/ALL/guangquan_Jiantou01Plus_MoveBack_add_cns": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Prefabs/Effect/UI/guangquan/ALL/guangquan_kuanjiantouDefault_jimiskill2_add_cns": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Art/Prefabs/res_version/IntestPrefabs/Effect/Hero/4015_nexteudora/tx": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/CustomRoomMode/UI/UITexture/Common_Atlas/Atlas_ModeCard01_CR": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/EasyGameCreator/EGCArts/Environment/Textures/Stone/S2": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/CustomMode/MagicChess/Art/Characters/hero/MC_02_Balmond/Materias": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Characters/hero/MC_46_odette/Materials": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Characters/hero/MC_51_sdhunter/Materials": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Environment/MLBC_SceneShow_023/Textures": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Environment/MLBC_SceneShow_039/Textures": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Environment/MLBC_SceneShow_045/Textures": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Environment/PVP_MLBC_007_low/Textures": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/Art/Environment/PVP_MLBC_043/Textures": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BasicInformationbg_3_MC": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleEnd2_MC": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleEnd_MC": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_BattleUI_MC": {
+              "count": 13,
+              "accuracy": 0.07692307692307693
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_EquipIcon3_MC": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_GameLobby_MC": {
+              "count": 7,
+              "accuracy": 0.42857142857142855
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Loading_MC": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_MagicComptetionBg_MC": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900281_MC": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_McThemeLotteryHK02_MC": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/SurvivalMode/UI/UITexture/Common_Atlas/Atlas_SurvivalModeMatching_add": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/SurvivalMode/UI/UITexture/Common_Atlas/Atlas_SurvivalModeRankShow_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/CustomMode/TempRes/ArenaMode/UI/UITexture/Common_Atlas/Atlas_Commander_45161_AR": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/CustomMode/TempRes/HotHeroMode/UI/UITexture/Common_Atlas/Atlas_Room_HHM": {
+              "count": 3,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_24AnniversaryShare/UI/UITexture/Atlas_add/Atlas_Activity_24AnniversaryShareBg_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_24SummerMain/UI/UITexture/Atlas_add/Atlas_24SummerMain_03_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_25shangfenjie/UI/UITexture/Atlas_add/Atlas_Activity_25shangfenjie2_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_BlockSystem/UI/UITexture/Atlas_add/Atlas_Activity_BlockSystem03_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_BlockSystem/UI/UITexture/Atlas_add/Atlas_Activity_BlockSystem_Cus_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_BlockSystem/UI/UITexture/Atlas_add/Atlas_Spine_GoldenRamadan_LubiB1_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_Charge01/UI/UITexture/Atlas_add/Atlas_ActivitySaleAd_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_ChestFresh/UI/UITexture/Atlas_add/Atlas_Activity_ChestFresh01_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_ChestFresh_common/UI/UITexture/Atlas_add/Atlas_Activity_ChestFresh03_25AS_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_CollectorDraw/Art/Effects/Texture/Ui": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_DoubleEleven/Art/Texture": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/RuledAssets/Act_DoubleEleven/UI/UITexture/Atlas_add/Atlas_Activity_2022515Lottery03_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_DoubleEleven/UI/UITexture/Atlas_add/Atlas_Activity_Spine_ASallstar_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_Exocist3_Draw/UI/UITexture/Atlas_add/Atlas_Exocist3_Draw03_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_Exocist_EffectsDraw/Art/Effects/Texture/Ui": {
+              "count": 2,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_FishingActivity/UI/UITexture/Atlas_add/Atlas_Letsgofishing07_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_GameVote/UI/UITexture/Atlas_add/Atlas_Activity_GameVoteIcon_add": {
+              "count": 4,
+              "accuracy": 0.25
+            },
+            "Assets/RuledAssets/Act_LaylasWorkshop/UI/UITexture/Atlas_add/Atlas_Activity_LaylasWorkshop02_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_LiliyaPass/UI/UITexture/Atlas_add/Atlas_LiliyaPass02_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_M4/UI/UITexture/Atlas_add/Atlas_Activity_M7Main06_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_NewShowcase03/UI/UITexture/Atlas_add/Atlas_NewShowcase02_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_NewShowcase03/UI/UITexture/Atlas_add/Atlas_NewShowcase07_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_Newupdate801/UI/UITexture/Atlas_add/Atlas_ActivityNewupdate801_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_NormalTurntable/UI/UITexture/Atlas_add/Atlas_ActivityNormalTurntableDraw1_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_ProI/UI/UITexture/Atlas_add/Atlas_Activity_ProI09_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_ProQ/UI/UITexture/Atlas_add/Atlas_Activity_ProQ02_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_SPD_Draw/UI/UITexture/Atlas_add/Atlas_SPD_Draw02_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_StarWars/UI/UITexture/Atlas_add/Atlas_StarWars016_add": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_ThemeLotteryAbyss/UI/UITexture/Atlas_add/Atlas_ActivityThemeLotteryAbyss03_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_ThemeLottery_Exo/UI/UITexture/Atlas_add/Atlas_ActivityThemeLottery11_add": {
+              "count": 3,
+              "accuracy": 0.3333333333333333
+            },
+            "Assets/RuledAssets/Act_ThemeLottery_Exo/UI/UITexture/Atlas_add/Atlas_ActivityThemeLottery8_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/Act_Vip_CN/Art/Effects/Texture/Ui": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_Yanhuobinfen/UI/UITexture/Atlas_add/Atlas_Yanhuobinfen02_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_ZodiacDraw/UI/UITexture/Atlas_add/Atlas_LuckConstellation_new_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Act_themelotteryHero/UI/UITexture/Atlas_add/Atlas_ActivityThemeLotteryHero01_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Newbie_LevelGrowth/UI/UITexture/Atlas_add/Atlas_Activity_LegendaryRoad_Four_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/Newbie_RankRoad/UI/UITexture/Atlas_add/Atlas_Newbie_RankRoad01_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_Achievement/UI/UITexture/Atlas_add/Atlas_AchievementIcon02_add": {
+              "count": 3,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_AllplayerMatch/UI/UITexture/Atlas_add/Atlas_CitizensLeague_BigBG_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_AllplayerMatch/UI/UITexture/Atlas_add/Atlas_CitizensLeague_Candidate_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_AllplayerMatch/UI/UITexture/Atlas_add/Atlas_CitizensLeague_SeasonBegin03_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_BattleAchievement_Share/UI/UITexture/Atlas_add/Atlas_BattleAchievement_Share_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_Collection/UI/UITexture/Atlas_add/Atlas_CollectionLevelup_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_Collection/UI/UITexture/Atlas_add/Atlas_Collection_Bg01_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_Contest/UI/UITexture/Atlas_add/Atlas_League04_add": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_FlyVehicle/UI/UITexture/Atlas_add/Atlas_FlyVehicle01_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_Gift/UI/UITexture/Atlas_add/Atlas_GiftShow04_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_HeroCultivate/UI/UITexture/Atlas_add/Atlas_RoadProficiency_Guide02": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_Map2026AS_BandEffect/UI/UITexture/Atlas_add/Atlas_Map2026AS_BandEffect_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_NewplayerEducation/UI/UITexture/Atlas_add/Atlas_NewPlayerLevel_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_RankSeason/UI/UITexture/Atlas_add/Atlas_RankMythRoadNew39_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_RankSeason/UI/UITexture/Atlas_add/Atlas_RankMythRoad_01_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/RuledAssets/System_Team/UI/UITexture/Atlas_add/Atlas_ZhanDui_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/RuledAssets/System_WorldMap/UI/UITexture/Atlas_add/Atlas_Worldmap05_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Scenes/temp/Environment/PVP_027_add/Textures": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/Scenes/temp/Environment/pvp_033_low/Textures": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/Prefabs/res_version/IntestPrefabs/HeroCard": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_Activity_Benefit02_add": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_Activity_BenefitTest_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_Evolution05_Mode_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_GuideTips01_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_History_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_Instruction_OverLoadHero_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_Invite_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_ModeCollectionCard_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_ShareBackground22_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_ShareBackground35_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Atlas_ShareBackground66_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/BattleAtlasadd/Atlas_BattleEffect_Hero114_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas022_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas170_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas280_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas381_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas465_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/HQHeroAtlas/Atlas_HQHeroAtlas504_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/IconAtlasAdd_Break/Atlas_BattleAnimIcon_add": {
+              "count": 4,
+              "accuracy": 0.5
+            },
+            "Assets/UI/UITexture/Atlas_add/MaininterfaceAdd/Atlas_Activity_NovaLook_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber10_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber141_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber186_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber215_add": {
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber33_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber47_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber59_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/Skincollect/Atlas_Saber85_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_BattleAnim_add": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_NetworkDetection_add": {
+              "count": 2,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_Performance16_add": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_Performance19_add": {
+              "count": 2,
+              "accuracy": 0.5
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon04_add": {
+              "count": 7,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon05_add": {
+              "count": 6,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinHeadIcon08_add": {
+              "count": 6,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Atlas_add/SpliteAtlas/Atlas_SkinSkill_add": {
+              "count": 6,
+              "accuracy": 0.3333333333333333
+            },
+            "Assets/UI/UITexture/Common_Atlas/Atlas_Guide": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Common_Atlas/Atlas_Guide03": {
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "Assets/UI/UITexture/Common_Atlas/Atlas_MainInterface_Fortificationsnew": {
+              "count": 1,
+              "accuracy": 0.0
+            }
+          },
+          "group_macro_accuracy": 0.21361008582357469,
+          "by_long_side": {
+            "at_most256": {
+              "count": 411,
+              "accuracy": 0.23357664233576642
+            },
+            "257_to1023": {
+              "count": 281,
+              "accuracy": 0.24199288256227758
+            },
+            "at_least1024": {
+              "count": 308,
+              "accuracy": 0.1461038961038961
+            }
+          },
+          "classes": [
+            "6x6",
+            "8x8",
+            "10x10",
+            "12x12"
+          ],
+          "seconds": 14.22399559999758
+        }
+      },
+      "ema_updates": 313,
+      "seconds": 228.4640259999942
+    }
+  ],
+  "best_validation_accuracy": 0.718,
+  "best_near_threshold_rmse_db": 2.5605813209541624,
+  "wall_seconds": 240.51767899999686,
+  "peak_vram_bytes": 2118426112,
+  "test_opened": false
+}

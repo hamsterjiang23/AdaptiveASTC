@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+有效像素抽样对照的48train／16validation CUDA检查为2轮4次更新，进程21.54秒、峰值分配显存2,118,426,112字节。正式配置只改图内采样概率，仍单GPU、batch128、workers2；启动前RAM空闲28.87GiB、GPU1195／12282MiB。历史cap512进程7230.64秒仅为预算参照，新运行成本单列；只读冻结GDC语料，写独立.local训练目录，与Unity队列不共用写入。`[verified: scratch-group512-pixels-smoke.json；对应jobs/receipt和launch-preflight.json；opinion: 预算与并发边界]`
+
 Unity原生CUDA训练链路的首次8train／2validation探针为2轮4次更新，准备17.07秒、训练器19.28秒、进程23.81秒；峰值分配显存446,280,192字节，image batch4、每图4patch、workers0。只读冻结2370图语料和已完成的原策略归档，写独立训练目录／公开报告；与参考采集及补测不共享写入，GPU训练串行。完整语料及更大batch资源成本须重新测量。`[verified: unity-native-smoke8-v1-result.json；unity-native-smoke8-v1-config.json；opinion: 规模与并发边界]`
 
 GDC bag4的权重0／1配对训练分别1080.91／728.25秒，含两次重载的串行进程1869.71秒；与CPU采集并行，不视为独占部署时延。`[verified: patch-fixed-capacity/scratch-bag4-loss0-result.json、scratch-bag4-loss1-result.json、scratch-bag4-comparison.json；opinion: 计时口径]`

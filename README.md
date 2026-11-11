@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+新增[按有效像素抽样的固定容量对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)：保持每图／资产组总权重，只改变图内patch概率；小样本两轮4次CUDA更新和重载通过，正式train10000／validation1000已启动。26项检查通过，当前尚无完整效果结论；参数11,178,564不变。`[verified: scratch-group512-pixels-suite.json；scratch-group512-pixels-smoke-summary.json；pixel-sampling-verification.json；opinion: 结果边界]`
+
 [Unity原生质量模型接口](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)已完成[CUDA训练链路检查](<experiment report/unity-accuracy90-20261111/unity-native-training.md>)：8训练图／2验证图、2轮、4次实际更新，最佳权重重载通过，进程23.81秒；35项CPU检查通过。原型11,377,660参数，完整Unity训练与独立测试尚未完成，小样本不作生产准确率结论。`[verified: unity-native-smoke8-v1-result.json；unity-native-training-verification.json；opinion: 完成边界]`
 
 固定容量资产组限权训练完成26轮，选中epoch21 raw，验证84.5%／近阈值RMSE1.3869dB，比同LR标准采样提高3.8个百分点，10×10召回提高16.41个百分点，参数量不变。后续[同图patch聚合损失对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)两组均完成：权重0／1为71.2%／71.7%，均低于历史独立采样80.7%，保留负结果和采样／loss的归因边界。`[verified: scratch-group512-result.json；scratch-bag4-comparison.json；opinion: 结果边界]`

@@ -43,3 +43,28 @@ def test_training_rejects_invalid_cap_before_loading_data(tmp_path: Path, cap: i
     config = PatchTrainConfig(tmp_path, tmp_path, tmp_path, group_image_cap=cap)
     with pytest.raises(ValueError, match="nonnegative integer"):
         config.validate()
+
+
+def test_valid_pixel_sampling_preserves_image_and_group_mass() -> None:
+    rows = [{"group": "a"}, {"group": "a"}, {"group": "b"}]
+    indexes = np.array([0, 1, 1, 2, 2, 2], dtype=np.int64)
+    pixels = np.array([16, 12, 4, 16, 16, 4], dtype=np.int64)
+    weights = PatchSampling.weights(rows, indexes, 1, pixels)
+    np.testing.assert_allclose(np.bincount(indexes, weights=weights), [0.5, 0.5, 1])
+    assert weights[1] / weights[2] == pytest.approx(3)
+    assert weights[3] / weights[5] == pytest.approx(4)
+
+
+def test_equal_size_patches_reproduce_uniform_sampling() -> None:
+    rows = [{"group": "a"}, {"group": "b"}]
+    indexes = np.array([0, 0, 1, 1, 1], dtype=np.int64)
+    pixels = np.array([16, 16, 12, 12, 12], dtype=np.int64)
+    np.testing.assert_array_equal(
+        PatchSampling.weights(rows, indexes, 0, pixels), PatchSampling.weights(rows, indexes)
+    )
+
+
+@pytest.mark.parametrize("pixels", [[1, 0], [1, -1], [1], [1.5, 2.0]])
+def test_invalid_pixel_counts_rejected(pixels: list[float]) -> None:
+    with pytest.raises(ValueError, match="positive integer valid-pixel"):
+        PatchSampling.weights([{"group": "a"}], np.array([0, 0]), pixel_counts=np.array(pixels))

@@ -11,7 +11,10 @@ from adaptive_astc.config import JsonDict
 class PatchSampling:
     @staticmethod
     def weights(
-        rows: list[JsonDict], image_ids: NDArray[np.int64], group_image_cap: int = 0
+        rows: list[JsonDict],
+        image_ids: NDArray[np.int64],
+        group_image_cap: int = 0,
+        pixel_counts: NDArray[np.int64] | None = None,
     ) -> NDArray[np.float64]:
         if type(group_image_cap) is not int or group_image_cap < 0:
             raise ValueError("Asset group cap must be a nonnegative integer; zero disables it")
@@ -28,6 +31,15 @@ class PatchSampling:
         if np.any(counts == 0):
             raise ValueError("Every training image must have at least one patch")
         weights = 1.0 / counts[image_ids]
+        if pixel_counts is not None:
+            if (
+                pixel_counts.shape != image_ids.shape
+                or not np.issubdtype(pixel_counts.dtype, np.integer)
+                or np.any(pixel_counts <= 0)
+            ):
+                raise ValueError("Each patch requires a positive integer valid-pixel count")
+            image_pixels = np.bincount(image_ids, weights=pixel_counts, minlength=len(rows))
+            weights = pixel_counts.astype(np.float64) / image_pixels[image_ids]
         if group_image_cap:
             groups = [row["group"] for row in rows]
             if any(not isinstance(group, str) or not group for group in groups):

@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- GDC原尺寸patch支持[按有效像素抽样](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/pixel-sampling.md>)：`pixel_weighted_sampling`默认false保持旧序列，开启后只改变图内分配，每图／资产组总权重保持。该项仅支持独立patch抽样，和bag模式组合显式拒绝；不改图级标签或loss。26项检查与两轮CUDA小样本通过，正式cap512对照已启动，期间冻结绑定源码；完整指标和Unity验收分别记录。`[verified: patch_sampling.py weights；patch_trainer.py validate、training_batches；scratch-group512-pixels-smoke-summary.json；opinion: 使用边界]`
+
 - Unity原生模型接口见[模型适配报告](<experiment report/unity-accuracy90-20261111/unity-native-model.md>)。patch误差先在MSE域聚合，零通道与Alpha条件按原生规则处理；MS-SSIM／角度由整图特征头预测，不取patch分数平均。导入属性必须影响patch误差与整图预测，测得质量及原选择只进监督／评价。原型35项CPU检查及8训练图／2验证图的CUDA闭环通过；完整训练及独立测试另行验收，实际参数与GDC四输出模型分别记录。`[verified: models/unity_quality.py encode、predict_images；training/unity_quality_loss.py；evaluation/unity_quality.py；unity-native-smoke8-v1-result.json；unity-native-training-verification.json；opinion: 接入与验收要求]`
 
 - 原生训练入口为[train_unity_quality.py](script/train_unity_quality.py)，协议见[训练报告](<experiment report/unity-accuracy90-20261111/unity-native-training.md>)。每轮各图一次、组内patch有放回；整图质量监督与抽样输入的差异明确记录。CUDA必需，正式训练拒绝部分语料；保存时绑定模型／预测／决策SHA，结束后重建冻结验证集、复核训练输入及原策略来源，失败时保留实际更新数。`[verified: unity_quality_trainer.py fit、validate_coverage、verify_input_files、audit_best；unity_image_bags.py；test_unity_quality_training.py；opinion: 使用与验收要求]`

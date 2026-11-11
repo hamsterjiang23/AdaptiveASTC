@@ -100,3 +100,21 @@ def test_sampling_budget_must_contain_complete_bags(tmp_path: Path) -> None:
     )
     with pytest.raises(ValueError, match="complete bags"):
         PatchTrainer(config).training_batches(TinyPatchDataset())
+
+
+def test_pixel_weighted_loader_uses_exact_pixel_probabilities(tmp_path: Path) -> None:
+    dataset = TinyPatchDataset()
+    config = PatchTrainConfig(
+        tmp_path, tmp_path, tmp_path, workers=0, pixel_weighted_sampling=True, group_image_cap=1
+    )
+    loader = PatchTrainer(config).training_batches(dataset)
+    assert isinstance(loader.sampler, WeightedRandomSampler)
+    expected = PatchSampling.weights(dataset.rows, dataset.image_ids, 1, dataset.pixel_counts)
+    np.testing.assert_array_equal(loader.sampler.weights.numpy(), expected)
+
+
+def test_pixel_weighted_mode_rejects_silently_unsupported_bags(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="independent-patch"):
+        PatchTrainConfig(
+            tmp_path, tmp_path, tmp_path, bag_size=4, pixel_weighted_sampling=True
+        ).validate()

@@ -1,5 +1,11 @@
 # Implementation notes
 
+## 2026-11-12 valid-pixel-proportional sampling control
+
+- Train-only diagnosis found3467/120276nonmonotone patches. Exact-target isotonic projection changed0/10000image labels and only0.05934dB near-threshold image RMSE; this is not a trained result or accuracy upper bound. Independent PAV comparison matched1003examples within2.22e-16. `[verified: patch-monotonicity.json; baseline_code_review probe; opinion: scope]`
+- The next fixed-capacity control changes only within-image patch probabilities, preserving capped image/group mass. Expected draws with less than one-quarter valid area fall38.82to20.67percent, while total image mass remains7982. Default sampling sequence stays unchanged; unsupported bag combination fails.26tests and independent review pass. `[verified: patch-pixel-sampling-analysis.json; test_patch_sampling.py; test_patch_training_bags.py]`
+- Two-epoch48train/16validation CUDA smoke completed4actual updates and best-checkpoint replay in21.54seconds. The formal10000/1000trial uses groupcap512 and the same11178564parameters; outcome remains pending. Completed bag-control sources were archived before modification. `[verified: scratch-group512-pixels-smoke-summary.json; jobs/scratch-group512-pixels-smoke/receipt.json; scratch-group512-pixels-suite.json; pre-pixel-sampling-source/sources.json; opinion: outcome boundary]`
+
 ## 2026-11-12 native CUDA training and completed bag controls
 
 - Added a CUDA-only native trainer with per-image patch bags, full-image quality targets, original-policy validation and frozen best-checkpoint replay. Formal admission requires the complete10000/1000 corpus; the8train/2validation smoke completed2epochs/4updates with0AMP skips and matching reloaded predictions. Total process23.81seconds, prototype11377660parameters; no production accuracy claim. `[verified: unity_quality_trainer.py; unity-native-smoke8-v1-result.json; opinion: scope]`

@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "scope": "Training targets only; exact-target isotonic projection is not a model or accuracy upper bound",
+  "images": 10000,
+  "patches": 120276,
+  "nonmonotone_patches": 3467,
+  "nonmonotone_patch_share": 0.028825368319531745,
+  "images_with_nonmonotone_patch": 1652,
+  "patches_by_max_adjacent_reversal_db": {
+    "0": 3467,
+    "0.1": 3112,
+    "0.5": 2078,
+    "1": 1481,
+    "3": 733
+  },
+  "projection_log_mse_rmse": 0.07452101965484689,
+  "projected_image_label_agreement": 1.0,
+  "projected_image_label_changes": 0,
+  "projected_image_near_threshold_rmse_db": 0.059341851596696076,
+  "train_class_agreement": {
+    "6x6": 1.0,
+    "8x8": 1.0,
+    "10x10": 1.0,
+    "12x12": 1.0
+  },
+  "corpus_sha256": "c1c1208bbb17fbd49cae1bc244b8ff67f0bf3c7342741be8134c054c5e752a95",
+  "corpus_fingerprint": "45c879fa42839d8778af7b2224acaafa1209659bde11c8cb9302647343fd636f",
+  "script_sha256": "89b6a762ccff2f52cd1372e4c91aa209e25f6cb2fe416e280accb058cff3e69d",
+  "script": "experiment report\\.local\\unity-accuracy90-20261111\\diagnose_patch_monotonicity.py",
+  "validation_opened": false,
+  "test_opened": false,
+  "model_training_updates": 0,
+  "wall_seconds": 6.16804069999489
+}
