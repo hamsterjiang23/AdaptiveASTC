@@ -1,0 +1,233 @@
+{
+  "status": "passed",
+  "config": {
+    "capture": "E:\\ASTC_Compression\\experiment report\\.local\\unity-train256-batch001-20261111\\references\\normalized-batch",
+    "capture_receipt_sha256": "d3669de077c53843e1dc594b39e4a280354e892303006347bac55bdab73b3060",
+    "capture_run": "E:\\ASTC_Compression\\experiment report\\.local\\unity-train256-batch001-20261111",
+    "capture_phase": "batch",
+    "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-train256-batch001-20261111\\options-receipt.json",
+    "options_receipt_sha256": "8442f7b4a3f0f35fa68df5b5e70da78ad3df2c3fc4b7a47295d42ef913ae97bf",
+    "imports_sha256": "62bb1a6d19dac0b86fd1c7a7eace17051e50b89781c27550143df9a4c03f3829",
+    "completion_source_sha256": "56546d463a7c013c53c86e1731b68ec156fb89f3c359900b3dc2193432f63c04",
+    "encoder_dll": "F:/MLBB_Test/haijiangli1_HAMSTERMLBB/Assets/Editor/Astc/Plugins/astcenc-avx2-shared.dll",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+    "quality_build_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-candidates-train256-smoke-v2",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-candidates-train256-smoke-v2.json",
+    "items": [
+      {
+        "index": 65,
+        "path": "Assets/Art/Characters/01_gongjianshou/Show/skin14_high/Miya_skin14_high_FX01_n5x5.tga",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": true,
+        "mip_count": 1,
+        "metadata_source": "Frozen actual callback, original imported reference and captured import log"
+      },
+      {
+        "index": 214,
+        "path": "Assets/Art/Characters/14_angel/show/skin_cnnew/angel_skin00_high_g.tga",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "mip_count": 1,
+        "metadata_source": "Frozen actual callback, original imported reference and captured import log"
+      },
+      {
+        "index": 64,
+        "path": "Assets/Art/Characters/01_gongjianshou/Show/skin14_high/Miya_skin14_high_FX01_d.tga",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "mip_count": 1,
+        "metadata_source": "Frozen actual callback, original imported reference and captured import log"
+      }
+    ],
+    "scope": "Imported training references, complete20candidate color/normal targets; original early-stop labels retained; overlaps Editor collection and CUDA training; no test"
+  },
+  "config_sha256": "e34d52b8379adb13ce7706f0400f6b52077ed91628db7b62ba40a604e2d72343",
+  "quality_build": {
+    "status": "passed",
+    "binding": {
+      "engine_source": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+      "engine_source_sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+      "engine_first_line": 2182,
+      "engine_last_line": 2675,
+      "extracted_sha256": "6c35c61f99982f22c2971bd8ed1b8cfa840c925a6dd73eb2d82b0517ec02ec31",
+      "wrapper_sha256": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+      "cmake_sha256": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+      "arithmetic": "MSVC fp:precise; unchanged engine functions; parity checked separately"
+    },
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native",
+        "-B",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64",
+        "-DMETRICS_SOURCE=E:/ASTC_Compression/experiment report/.local/unity-accuracy90-20261111/unity-quality-native-retry1/metrics.cpp"
+      ],
+      [
+        "cmake",
+        "--build",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "--config",
+        "Release",
+        "--parallel",
+        "1"
+      ]
+    ],
+    "dll": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+    "dll_sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+    "generated_sha256": "317966c31f0b8fda57a4e5cab7946d6b3f9118cdcda24d9683c0a99cca0de94a"
+  },
+  "capture_binding": {
+    "protocol_sha256": "4216d688f4f0003b8cba014bfed7ad234ebd7669f8dbaee1bc228fe06196f451",
+    "identity_sha256": "251d81e45da5ca258ca256eff759fb17025d9a9488fdeebd888ebf0ed67b4a71",
+    "phase_config_sha256": "11b24850bcf3f0d4dd3968c8af512fffcdf5f009bcfa4f0545fddeb3ed7e116e",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64"
+  },
+  "metadata_binding": {
+    "status": "verified_actual_callback",
+    "receipt_sha256": "8442f7b4a3f0f35fa68df5b5e70da78ad3df2c3fc4b7a47295d42ef913ae97bf",
+    "raw_options_sha256": "80eb69d5429f59847e843e61449fd5bc9ed8658b33eb3b82f80177c46d69d80f",
+    "audit_source_sha256": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+    "imports_sha256": "62bb1a6d19dac0b86fd1c7a7eace17051e50b89781c27550143df9a4c03f3829",
+    "completion_source_sha256": "56546d463a7c013c53c86e1731b68ec156fb89f3c359900b3dc2193432f63c04",
+    "normal_scope": "Linear RGBA8, normal_pack=false, mip0 only"
+  },
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03"
+  },
+  "rows": [
+    {
+      "index": 65,
+      "path": "Assets/Art/Characters/01_gongjianshou/Show/skin14_high/Miya_skin14_high_FX01_n5x5.tga",
+      "metadata": {
+        "index": 65,
+        "path": "Assets/Art/Characters/01_gongjianshou/Show/skin14_high/Miya_skin14_high_FX01_n5x5.tga",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": true,
+        "mip_count": 1,
+        "metadata_source": "Frozen actual callback, original imported reference and captured import log"
+      },
+      "original_selection": {
+        "asset": "Assets/Art/Characters/01_gongjianshou/Show/skin14_high/Miya_skin14_high_FX01_n5x5.tga",
+        "block_size": "12x12",
+        "preset": "medium",
+        "selection_reason": "first_valid",
+        "search_ms": 132.5769,
+        "format_ms": 140.7493,
+        "select_and_encode_ms": 140.7625,
+        "candidates_attempted": 3,
+        "candidates_measured": 3,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 3,
+      "new_candidates": 17,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 3,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.8070521999943594,
+        "decode_seconds": 0.1729001000021526,
+        "quality_seconds": 0.0680548999880557
+      },
+      "candidate_receipt_sha256": "4e498bd42f0fdeb62b9d60bcaf1d4824f82d70be90945b6df93f64dfc85b948e"
+    },
+    {
+      "index": 214,
+      "path": "Assets/Art/Characters/14_angel/show/skin_cnnew/angel_skin00_high_g.tga",
+      "metadata": {
+        "index": 214,
+        "path": "Assets/Art/Characters/14_angel/show/skin_cnnew/angel_skin00_high_g.tga",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "mip_count": 1,
+        "metadata_source": "Frozen actual callback, original imported reference and captured import log"
+      },
+      "original_selection": {
+        "asset": "Assets/Art/Characters/14_angel/show/skin_cnnew/angel_skin00_high_g.tga",
+        "block_size": "12x12",
+        "preset": "medium",
+        "selection_reason": "first_valid",
+        "search_ms": 1120.2859,
+        "format_ms": 1147.1832,
+        "select_and_encode_ms": 1147.2038,
+        "candidates_attempted": 3,
+        "candidates_measured": 3,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 3,
+      "new_candidates": 17,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 3,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 5.944673600006354,
+        "decode_seconds": 0.20501270000750083,
+        "quality_seconds": 0.045105499997589504
+      },
+      "candidate_receipt_sha256": "ec5571fdcd351febfea09d703b96bd33f157d9f0d233019d21f8840dae1bf106"
+    },
+    {
+      "index": 64,
+      "path": "Assets/Art/Characters/01_gongjianshou/Show/skin14_high/Miya_skin14_high_FX01_d.tga",
+      "metadata": {
+        "index": 64,
+        "path": "Assets/Art/Characters/01_gongjianshou/Show/skin14_high/Miya_skin14_high_FX01_d.tga",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "mip_count": 1,
+        "metadata_source": "Frozen actual callback, original imported reference and captured import log"
+      },
+      "original_selection": {
+        "asset": "Assets/Art/Characters/01_gongjianshou/Show/skin14_high/Miya_skin14_high_FX01_d.tga",
+        "block_size": "10x10",
+        "preset": "thorough",
+        "selection_reason": "first_valid",
+        "search_ms": 648.275,
+        "format_ms": 658.7669,
+        "select_and_encode_ms": 658.7809,
+        "candidates_attempted": 9,
+        "candidates_measured": 9,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 9,
+      "new_candidates": 11,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 9,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.8789189999988594,
+        "decode_seconds": 0.15922980001778342,
+        "quality_seconds": 0.12385880001602345
+      },
+      "candidate_receipt_sha256": "0d6bef2458891ecf0f84e4ad4a82c8cb37c35e1806968b69993b61b7d6997dc3"
+    }
+  ],
+  "test_opened": false,
+  "wall_seconds": 11.481509799999913,
+  "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-candidates-train256-smoke-v2\\receipt.json",
+  "raw_receipt_sha256": "d9b48daf8fa9207d2a986e2054a72ec71b36683b747c009d5b3b8bd8b389b239"
+}

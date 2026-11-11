@@ -66,6 +66,8 @@ V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预�
 
 [Unity离线补测](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)已扩展到8张不同尺寸颜色图160候选，原52组指标和8个winner复核一致，新增108组。真实4096²法线样本先完成20组原ASTC解码与原生角度审计，再实际重编码全部20组，压缩字节和解码像素均一致。全部候选未过角度门槛，原结果仍为最高PSNR回退。全量采集、HDR和多mip法线仍待验证。`[verified: unity-color8.json rows；unity-normal20-policy.json；unity-normal-replay20.json rows.reencoding、quality_passing_candidates]`
 
+后续已增加[提前停止法线的候选补齐](<experiment report/unity-accuracy90-20261111/unity-supplement.md#颜色与提前停止法线的统一补测>)：三张真实颜色／法线图的60候选通过，新增45组原搜索未测结果，原指标与winner一致；256图、5120候选正式补测已启动。Unity参考采集的下一训练批次也已通过，全量队列已核验train576／validation2，实时进展见队列报告。`[verified: unity-candidates-train256-smoke-v2.json；正式job receipt；unity-reference-series.json counts；opinion: 进度快照]`
+
 分类准确率提升的完整调研见[分类准确率与压缩全流程优化报告](<experiment report/classification-accuracy-research-20261111/README.md>)，覆盖35项一手资料、当前中间类别召回诊断、有效batch／学习率入口核对，以及Unity导入、编码、部署和分阶段实验预算。建议值在报告中按待实验记录。`[verified: sources.json primary_source_count；diagnostics.json per_class_recall；该报告“导入、编码与部署的全流程因素”“分阶段预算”]`
 
 执行顺序更新为Unity搜索耗时baseline、Nah 2023作者代码、Nah 2022论文重实现、TexNN论文重实现、GDC压缩闭环复现，再研究新模型与校准。复现入口与实际状态见[reproductions](reproductions/README.md)。Unity主基线采用LITE配置且关闭RDO，文献原始配置与项目适配配置分别记录。`[verified: 用户2026-11-10确认的实施计划]`

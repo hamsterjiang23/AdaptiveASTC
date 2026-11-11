@@ -14,6 +14,7 @@
 | 冻结权重BN诊断 | scratch末轮，整进程400.03秒 | raw／EMA各用16384训练patch重估，另有4次validation；学习参数未变，GPU串行，峰值内存未记录。`[verified: ../experiment report/unity-accuracy90-20261111/normalization-scratch.json；.local对应jobs/normalization-scratch/receipt.json]` |
 | 随机初始化低学习率对照 | 12轮训练2483.18秒，含最佳权重重载的进程2516.98秒 | 与原scratch仅lr不同；另行末轮BN诊断419.26秒，参数不变。时长为本机开发成本。`[verified: ../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/scratch-lr0003-result.json；normalization-scratch-lr0003.json；.local对应job receipts]` |
 | 256张训练图原生采集 | 1432回调，Editor阶段901.88秒／完整进程963.42秒 | 16张NormalMap；源码／meta恢复通过。45批队列逐批检查至少20GiB空闲RAM与相关卷40GiB磁盘，允许独立冻结GDC语料的CUDA训练。包含刷新／导出／哈希，不用于替换搜索基线。`[verified: ../experiment report/unity-accuracy90-20261111/unity-train256-batch001.json；unity-reference-series-plan.json；collection.py require_resources；opinion: 并发与计时范围]` |
+| 颜色／部分搜索法线补齐 | 三图60候选，进程11.89秒 | 新增45组覆盖；使用归档参考与实际参数，法线mip0-only。256图5120候选已启动，空闲RAM26.97GiB，与Editor采集和CUDA训练重叠，完整成本待结束记录。`[verified: ../experiment report/unity-accuracy90-20261111/unity-candidates-train256-smoke-v2.json；.local对应jobs/receipt、preflight.json；opinion: 计时范围]` |
 
 | 任务 | 读取 | 写入与互斥 |
 |---|---|---|

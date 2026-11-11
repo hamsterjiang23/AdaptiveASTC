@@ -80,6 +80,8 @@
 
 ## Unity训练数据采集与源码定位
 
+- 原搜索提前停止的颜色／mip0法线候选可用`script/complete_unity_candidates.py --config ...`统一补齐；扩展绑定实际needAlpha、Profile1、normal-pack=false、导入日志SHA和源码SHA。法线暂限Linear RGBA8、Tex2D、mipmaps=false，原PSNR／角度及winner完整ASTC／解码复核，原label保留。三图60候选探针通过，256图5120候选正在运行，详见[补测进展](<experiment report/unity-accuracy90-20261111/unity-supplement.md#颜色与提前停止法线的统一补测>)。多mip／HDR仍需独立验证。`[verified: candidate_completion.py；unity-candidates-train256-smoke-v2.json；unity-candidates-train256-config.json；opinion: 验收边界]`
+
 - 离线候选补测入口为`script/unity_supplement.py`，其质量函数从本机引擎原样提取到.local并编译，编码DLL沿原采集协议锁与identity核验。当前两张LDR Default开发图的40候选与原16项质量重放通过；needAlpha等仍是重放核验的推定设置，正式采集要记录实际回调参数。参见[补测报告](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)。`[verified: unity-supplement2-bound.json capture_binding、rows、config.items；quality.py]`
 
 - 面向 Unity 生产选参的训练与评估使用导入处理完成后、进入 ASTC 搜索前的第一个 image／mip0 参考图。RGB224限定为历史分类输入，当前V1开发回归使用原分辨率240patch；Unity迁移保留RGBA、用途及原生质量分支，质量测量使用原尺寸导入后参考像素。参考图与同次导入和原始搜索标签配对，缺图时补采或标记缺失；原图用于来源核验、对照及明确标注的历史／文献复现。`[verified: README“Unity导入结果与训练数据准备”；experiment plan/V1/README.md“输入与数据”；LITE训练协议L21；opinion: Unity迁移要求]`

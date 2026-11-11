@@ -98,3 +98,25 @@ uv run --frozen python script/capture_unity_options.py restore --journal <该批
 [两张validation图](unity-validation2.json)使用[固定配置](unity-validation2-config.json)完成7次原搜索回调，实际输入哈希吻合；归档manifest只包含validation，源码恢复SHA一致、meta恢复0冲突，进程370.06秒。第一张源RGB512²导入后为256²，第二张仍为512²，两图实际needAlpha分别false／true。`[verified: unity-validation2.json rows、managed_source_restoration；.local/unity-validation2-20261111/references/normalized-batch/manifest.json；batch-receipt.json；jobs/unity-validation2/receipt.json]`
 
 随后按实际参数[补测40候选](unity-validation2-supplement.json)，新增33组，原搜索已测7组指标与两个选中payload／解码一致；收集循环3.8977秒，与CUDA训练并行。该小样本验证了validation身份在导出和候选补测中的传递，不代表完整验证集或最终测试验收。下一批训练参考路径已冻结在[256图配置](unity-train256-batch001-config.json)，排除已采集actual64中的路径。`[verified: unity-validation2-supplement.json rows、wall_seconds；unity-train256-batch001-config.json capture_paths；opinion: 完成边界]`
+
+## 颜色与提前停止法线的统一补测
+
+新增`script/complete_unity_candidates.py`及`UnityCandidateCompletion`，继承既有颜色补测流程，增加原搜索提前停止后的法线候选补齐。读取已完成采集的归档参考图和选中ASTC，不依赖活动工程中的调试候选目录，也不打开Editor。原搜索label／提前停止／基线产物保持，补测单列计时。运行中的参考采集所依赖的原supplement／metadata／collection实现未修改。`[verified: candidate_completion.py、complete_unity_candidates.py；git diff及已冻结collection SHA；opinion: 运行边界]`
+
+法线范围明确为实际回调Profile1、normal-pack=false、RGBA8、Linear、Tex2D、mipmaps=false的mip0图；needAlpha按实际值。补测配置绑定导入日志SHA及扩展源码SHA；原搜索已测候选复核PSNR与mean／p95角度，选中候选完整ASTC与解码像素一致，ASTC header的footprint须与原label一致。多mip、HDR和normal-pack=true仍拒绝执行，不能用本次结果覆盖这些分支。`[verified: candidate_completion.py verify_normal_imports、verify_actual_options、collect_image；test_unity_candidate_completion.py；opinion: 验证范围]`
+
+| 真实三图探针 | 全部候选 | 原已测／新测 | 结果 |
+|---|---|---|---|
+| 256²法线图 | 20 | 3／17 | 原PSNR、角度及winner完整ASTC／解码一致。`[verified: unity-candidates-train256-smoke-v2.json rows[0]]` |
+| Linear颜色图 | 20 | 3／17 | 原指标及winner payload／解码一致。`[verified: unity-candidates-train256-smoke-v2.json rows[1]]` |
+| 带Alpha颜色图 | 20 | 9／11 | 原指标及winner payload／解码一致。`[verified: unity-candidates-train256-smoke-v2.json rows[2]]` |
+
+[最终探针配置](unity-candidates-train256-smoke-v2-config.json)与[结果](unity-candidates-train256-smoke-v2.json)保留60次真实编码，45个候选此前未测；进程11.89秒，与参考采集和CUDA训练重叠。此前不额外复核normal header的[先期探针](unity-candidates-train256-smoke.json)及其源码快照保留，正式运行绑定的是最终探针的扩展源码。`[verified: 两份smoke报告；.local对应jobs/unity-candidates-train256-smoke-v2/receipt.json、source快照；opinion: 成本边界]`
+
+[256图正式配置](unity-candidates-train256-config.json)已通过实际参数和导入范围检查，包含240张Default、16张NormalMap，共5120候选，正式进程已启动。每张图完成后写.local的`unity-candidates-train256/receipt.json`，完整成功才发布汇总；当前状态随[progress.json](progress.json)记录。已有原候选也重新编码以核验一致性，因此“新增覆盖数”与“实际编码次数”分别计量。`[verified: unity-candidates-train256-config.json items；preflight.json；job receipt；UnitySupplementalCapture.run；opinion: 状态与成本口径]`
+
+```powershell
+uv run --frozen python script/complete_unity_candidates.py --config "experiment report/unity-accuracy90-20261111/unity-candidates-train256-config.json"
+```
+
+上面的身份已启动，保留运行产物，不重复执行或覆盖；下一批使用新的配置／输出身份。四项扩展测试及既有原生指标测试分别核验重复／缺失角度行、导入SHA变化、多mip拒绝、源码身份与错误ASTC header拒绝。真实探针验证的是已列三图，不等于全部256图通过。`[verified: test_unity_candidate_completion.py；test_unity_supplement.py；实际smoke-v2；opinion: 运行约束]`

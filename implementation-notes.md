@@ -1,5 +1,11 @@
 # Implementation notes
 
+## V1 partial-search normal candidate completion, 2026-11-11
+
+- Added a subclass/independent CLI to complete archived color and mip0 normal grids. The original supplement, metadata and collection modules remain unchanged while the live reference series imports them. Normal targets require observed Profile1, normal-pack=false, captured mipmaps=false/Linear/Tex2D, and frozen import-log/source hashes. No live project candidate directory or Editor mutation is used. `[verified: candidate_completion.py; complete_unity_candidates.py; original module hashes]`
+- Three real images passed60encodes and45new measurements, including a normal whose original search stopped after3candidates. Original PSNR/angular metrics match at report precision; normal winner complete ASTC/header and decoded RGBA match. The final smoke process took11.89seconds. The earlier14.06second smoke and source snapshot remain archived; full256binds final SHA56546d463a7c013c53c86e1731b68ec156fb89f3c359900b3dc2193432f63c04. `[verified: unity-candidates-train256-smoke-v2.json; jobs/*smoke*/receipt.json; full config]`
+- Four extension regression tests cover malformed/duplicated metric tables, actual import hash/mip restrictions, source binding and inconsistent winner footprint. Read-only review found no bugs in the extension; the full-header guard was added afterwards and tested. Full256/5120candidate completion started after the final smoke and26.97GiB RAM preflight. Costs overlap Editor reference collection and CUDA training and are not deployment measurements. `[verified: pytest/test_unity_candidate_completion.py; readonly review; full job preflight; opinion: cost scope]`
+
 ## V1 completed LR control and serial reference corpus, 2026-11-11
 
 - Scratch LR0.0003 completed12epochs and best-checkpoint audit: selectedepoch7raw80.7%, balanced74.50%, nearRMSE1.6040dB,11178564parameters. The single formal change from original scratch is learning_rate; accuracy gains4.7points but10x10recall loses4.69points. Training2483.18seconds; process2516.98seconds including reload. Historical reports and checkpoint remain immutable. `[verified: patch-fixed-capacity/scratch-lr0003-result.json; scratch-lr0003-audit.json; jobs/scratch-lr0003/receipt.json]`
