@@ -103,6 +103,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- [完整Unity训练衔接](<../../experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)已通过55项CPU检查并启动等待；先在现有CUDA任务结束后执行32图正式batch预检，只有完整10000／1000语料及四项核验全部通过后才启动原生随机初始化训练。配置与23份源码冻结，当前没有新增训练结果，最终独立测试90%仍待验收。`[verified: unity-native-training-readiness.json；unity-native-training-full-v1.json；本轮pytest；opinion: 完成边界]`
+
 - [Unity同次预测与最终编码](<../../experiment report/unity-accuracy90-20261111/unity-deployment.md>)新增完整计时入口，47项CPU检查及两图四次真实编码核验通过；CUDA配对计时等待原训练／独立推理成功退出。每条路径每图编码一次，重复测量与预热分开，质量核验在计时外；尚无新增部署总耗时或生产准确率，完整Unity验收继续保留。`[verified: unity-deployment-encode4.json；unity-deployment-smoke2-v1.json；本轮pytest；opinion: 完成边界]`
 
 - [Unity独立输入与CUDA推理计时](<../../experiment report/unity-accuracy90-20261111/unity-inference.md>)已完成组件及51项CPU检查；两张实际验证图的13patch与训练输入逐张量完全一致。计时任务绑定原尺寸元数据训练成功退出后执行，当前等待，正式测量为一次预热／三次重复。无新增模型效果或端到端加速结论，完整Unity验收继续保留。`[verified: unity-inference-input-audit.json；unity-inference-smoke2-v1.json；本轮pytest；opinion: 完成边界]`

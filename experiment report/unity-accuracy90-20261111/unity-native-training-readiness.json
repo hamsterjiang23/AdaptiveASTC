@@ -1,0 +1,59 @@
+{
+  "status": "configuration_validated_waiting_runtime",
+  "test_opened": false,
+  "cuda_executed": false,
+  "formal_training_started": false,
+  "config_sha256": "81fd380809d59cde8dd21734cfbf8a16e582da50d3ca808c194d6457500e613c",
+  "smoke_config_sha256": "be79ba6a331e017b5ace2d4b773fba3d457017768246a59e4feb1457fffd248a",
+  "execution_sources": 23,
+  "preflight": {
+    "utc": "2026-11-11T22:52:15.681597+00:00",
+    "dependencies_observed": [
+      {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-metadata\\job.json",
+        "status": "running",
+        "pid": 48048,
+        "created": 1794433279.013654
+      },
+      {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-inference-smoke2-v1\\job.json",
+        "status": "running",
+        "pid": 63628,
+        "created": 1794435588.892778
+      },
+      {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-deployment-smoke2-v1\\job.json",
+        "status": "running",
+        "pid": 48404,
+        "created": 1794436498.5635917
+      },
+      {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v2\\job.json",
+        "status": "running",
+        "pid": 43872,
+        "created": 1794430895.0713837
+      }
+    ],
+    "free_ram_bytes": 23451652096,
+    "free_disk_bytes": 973013749760,
+    "gpu_training_waits_dependencies": true,
+    "minimum_free_ram_before_gpu_gib": 12,
+    "minimum_free_vram_before_gpu_gib": 6,
+    "maximum_gpu_utilization_before_start_percent": 20,
+    "smoke_train_images": 32,
+    "smoke_validation_images": 2,
+    "smoke_srgb_images": 29,
+    "smoke_normal_images": 2,
+    "smoke_multimip_normal_images": 1,
+    "smoke_need_alpha_images": 1,
+    "expected_smoke_optimizer_updates": 4,
+    "patch_microbatch": 64,
+    "estimated_smoke_seconds": "30-120; depends on Windows worker startup and source PNG reads",
+    "estimated_formal_hours": "1-4; max30 epochs, validation RMSE patience5; measure actual cost",
+    "reads": "Frozen partial corpus for smoke; completed audited10000/1000 corpus for formal",
+    "writes": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-training-full-v1",
+    "test_opened": false,
+    "prior_smoke_report_sha256": "0b6a61132de82f7b4d1dae2f32fe2a1a452392b3b6e32f7d712b90e8c8931014",
+    "script_sha256": "8455c09d78611ebe690d45877752b5557b91925fd9c334a011561d7fda69a5a1"
+  }
+}

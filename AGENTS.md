@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- [完整Unity训练衔接](<experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)使用`UnityTrainingQueue`及`script/queue_unity_training.py`，依赖已绑定CUDA进程成功退出，先做32图／两轮／正式batch预检，再等待完整数据四阶段核验后启动10000／1000正式训练。23份源码冻结，阶段目录严格分开，失败及重载证据保留；55项CPU检查通过，当前等待状态不算新训练完成。后续GPU任务须纳入串行调度，队列passed也不能代替独立测试90%验收。`[verified: training_queue.py；unity-native-training-full-v1-config.json；unity-native-training-full-v1.json；opinion: 调度与验收边界]`
+
 - [同次预测与编码计时](<experiment report/unity-accuracy90-20261111/unity-deployment.md>)使用`UnityDeploymentTrial`／`UnityDeploymentBenchmark`及`script/benchmark_unity_deployment.py`。计时输入只含参考像素和导入属性，原生压缩每图一次，fixed8独立配对；解码、质量、来源核验和写盘在计时外，模型／DLL加载单列。47项CPU检查和四次真实编码核验通过，CUDA任务等待已绑定上游成功退出；活动期间冻结22份源码，正式结果与完整Unity90%分别验收。`[verified: deployment.py；deployment_benchmark.py；unity-deployment-encode4.json；unity-deployment-smoke2-v1-config.json；opinion: 使用边界]`
 
 - [原生推理输入与计时](<experiment report/unity-accuracy90-20261111/unity-inference.md>)使用`UnityInferenceTexture`／`UnityInferenceInput`和`UnityQualityInference`，输入只来自参考PNG及导入属性，禁止读监督。实际13patch与训练输入零容差一致，51项CPU检查通过；CUDA小样本等待主训练成功退出。`benchmark_unity_inference.py`必须有非空绑定依赖，退出等待后及结束时复核配置／源码，使用显式同步、预热与重复分开的计时；来源核验和Dataset对照排除于推理区间。当前19份执行源码冻结，最终编码及完整端到端计时另行验收。`[verified: unity-inference-input-audit.json；inference_benchmark.py；unity-inference-smoke2-v1-config.json；opinion: 使用边界]`
