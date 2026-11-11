@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "started_utc": "2026-11-11T16:09:53.149840+00:00",
+  "config_sha256": "ba2845fa0485981077c1fb00f382792b6ce61af9e965554d6503a2b6f9948da9",
+  "implementation_sha256": "cde8600fe5c568ddec02f07106a462ce127592f07e0a7944f8c3921d5017e631",
+  "archive_verifier_sha256": "063bbe2199242eb47301c2fe9765cd003882b48b22857ba68fdec3525b631f96",
+  "expected_counts": {
+    "train": 256,
+    "validation": 2
+  },
+  "coverage": "selected",
+  "counts": {
+    "train": 256,
+    "validation": 2
+  },
+  "batches": [
+    {
+      "run_id": "unity-train256-batch001-20261111",
+      "source_split": "train",
+      "reference": {
+        "run_id": "unity-train256-batch001-20261111",
+        "source_split": "train",
+        "images": 256,
+        "callbacks": 1432,
+        "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-train256-batch001-20261111\\options-receipt.json",
+        "options_sha256": "8442f7b4a3f0f35fa68df5b5e70da78ad3df2c3fc4b7a47295d42ef913ae97bf",
+        "reference_receipt_sha256": "d3669de077c53843e1dc594b39e4a280354e892303006347bac55bdab73b3060",
+        "phase_receipt_sha256": "bb8889d5580619db6ad45f1821c5c7e92c43dc39396fb35d4667c239a4824a0a",
+        "editor_process_seconds": 901.8844552999981
+      },
+      "prior_attempts": [],
+      "images": 256,
+      "candidates": 5120,
+      "new_candidates": 3688,
+      "original_candidates": 1432,
+      "normal_images": 16,
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-candidates-train256.json",
+      "report_sha256": "cd1832b57f82a65a0cf86bd3e5ddfb59681915ac77bd3d014a777d877800c818",
+      "raw_receipt_sha256": "734f0d4a8b1967c0e7f5a84be8fd09061a8d60d29118cfa9a33cb4390f830660",
+      "wall_seconds": 609.3187605000021,
+      "cost": {
+        "encode_seconds": 326.06907110010434,
+        "decode_seconds": 41.24782490004873,
+        "quality_seconds": 63.72250659999918
+      }
+    },
+    {
+      "run_id": "unity-validation2-20261111",
+      "source_split": "validation",
+      "reference": {
+        "run_id": "unity-validation2-20261111",
+        "source_split": "validation",
+        "images": 2,
+        "callbacks": 7,
+        "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\options-receipt.json",
+        "options_sha256": "cf47bdfcc105d970f1efd871a4facd80c1d4d2ab822a5a42f040ed100c19cfd9",
+        "reference_receipt_sha256": "1028f3114a156e759c35d57fe7a4248292639ebc9db2b20ed39efdad401c6409",
+        "phase_receipt_sha256": "71ee8c1c0729a5db130a9c6144ef0048aa4cf44420c416a2e1a8dbba0c376c86",
+        "editor_process_seconds": 357.9717094000007
+      },
+      "prior_attempts": [],
+      "images": 2,
+      "candidates": 40,
+      "new_candidates": 33,
+      "original_candidates": 7,
+      "normal_images": 0,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-smoke\\reports\\unity-validation2-20261111.json",
+      "report_sha256": "066a7c18d1ebe13f012d68a82455513ab88e69491dc965149b2ae2ef4318b929",
+      "raw_receipt_sha256": "07d177cef0fcde2bae585d558cf95af8456d657dbcab74f387a60110226ede7f",
+      "wall_seconds": 4.23859309999898,
+      "cost": {
+        "encode_seconds": 2.2946319000111544,
+        "decode_seconds": 0.31594069998391205,
+        "quality_seconds": 0.47674750001897337
+      }
+    }
+  ],
+  "test_opened": false,
+  "invocation_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-smoke\\invocations\\52817ef24eba4f249359f6e1e47b9571\\receipt.json",
+  "scope": "native20 candidate targets paired to original imported references and search choices",
+  "current_batch": null,
+  "updated_utc": "2026-11-11T16:10:35.866447+00:00",
+  "wall_seconds": 42.715966700001445,
+  "manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-smoke\\manifest.json",
+  "manifest_sha256": "8ee8f2959a9f90880c3c1aca6f30b22c8e23d0748267279191f09e0ce9f3ea99"
+}

@@ -60,13 +60,13 @@ V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预�
 
 独立[BN统计量诊断](<experiment report/unity-accuracy90-20261111/normalization.md>)两组均完成：随机初始化／预训练末轮EMA仅用训练patch重估统计量后达到76.7%／89.2%，近阈值RMSE为1.6467／0.9512dB，学习参数未变。原训练最佳模型与这次后处理结果分开记录；当前仍未达到V1／Unity验收。`[verified: normalization-scratch.json、normalization-pretrained.json rows与optimizer_updates；opinion: 记录边界]`
 
-已完成[固定容量学习率对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)：随机初始化lr1e-3→3e-4，其他正式设置不变，12轮早停、最佳权重重载通过；验证准确率80.7%、近阈值RMSE1.6040dB，比原scratch提高4.7个百分点，10×10召回下降4.69个百分点。下一步同容量比较输入stem，参数量保持11,178,564。`[verified: scratch-lr0003-result.json、scratch-lr0003-audit.json；opinion: 下一步]`
+已完成[固定容量学习率对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)：随机初始化lr1e-3→3e-4，其他正式设置不变，12轮早停、最佳权重重载通过；验证准确率80.7%、近阈值RMSE1.6040dB，比原scratch提高4.7个百分点，10×10召回下降4.69个百分点。同容量去maxpool对照后续完成15轮，最佳74.6%／同权重RMSE2.5459dB，下降6.1个百分点，参数量仍为11,178,564；末轮BN诊断另行记录。`[verified: scratch-lr0003-result.json、scratch-lr0003-audit.json、scratch-stem2-lr0003-result.json；opinion: 记录范围]`
 
 [Unity参考像素全量队列](<experiment report/unity-accuracy90-20261111/unity-reference-series.md>)已启动，冻结45批覆盖train10000／validation1000，原搜索策略与标签保留。已完成320张train、2张validation；66张已有归档的实际合并检查通过，剩余批次串行采集。每批核对像素、实际编码参数、来源哈希和恢复记录；候选补测及生产训练另行验收。实时状态见[队列报告](<experiment report/unity-accuracy90-20261111/unity-reference-series.json>)。`[verified: unity-reference-series-plan.json；unity-reference-series-smoke.json；unity-reference-series.json counts/current_batch；opinion: 验收范围]`
 
 [Unity离线补测](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)已扩展到8张不同尺寸颜色图160候选，原52组指标和8个winner复核一致，新增108组。真实4096²法线样本先完成20组原ASTC解码与原生角度审计，再实际重编码全部20组，压缩字节和解码像素均一致。全部候选未过角度门槛，原结果仍为最高PSNR回退。全量采集、HDR和多mip法线仍待验证。`[verified: unity-color8.json rows；unity-normal20-policy.json；unity-normal-replay20.json rows.reencoding、quality_passing_candidates]`
 
-后续已增加[提前停止法线的候选补齐](<experiment report/unity-accuracy90-20261111/unity-supplement.md#颜色与提前停止法线的统一补测>)：三张真实颜色／法线图的60候选通过，新增45组原搜索未测结果，原指标与winner一致；256图、5120候选正式补测已启动。Unity参考采集的下一训练批次也已通过，全量队列已核验train576／validation2，实时进展见队列报告。`[verified: unity-candidates-train256-smoke-v2.json；正式job receipt；unity-reference-series.json counts；opinion: 进度快照]`
+后续已完成[颜色与提前停止法线的统一补测](<experiment report/unity-accuracy90-20261111/unity-supplement.md#颜色与提前停止法线的统一补测>)：256图5120次编码，补齐3688组原搜索未测候选，原1432组指标及256个winner复核通过，进程609.70秒。连续补测队列的258图实际检查通过，保持train／validation划分；全量参考采集已核验train1088／validation2，余下批次继续。候选准备与Unity90%模型验收分别记录。`[verified: unity-candidates-train256-audit.json；unity-candidate-queue-smoke.json；unity-reference-series.json counts；opinion: 验收范围]`
 
 分类准确率提升的完整调研见[分类准确率与压缩全流程优化报告](<experiment report/classification-accuracy-research-20261111/README.md>)，覆盖35项一手资料、当前中间类别召回诊断、有效batch／学习率入口核对，以及Unity导入、编码、部署和分阶段实验预算。建议值在报告中按待实验记录。`[verified: sources.json primary_source_count；diagnostics.json per_class_recall；该报告“导入、编码与部署的全流程因素”“分阶段预算”]`
 

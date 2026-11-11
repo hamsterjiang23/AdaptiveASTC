@@ -15,7 +15,7 @@
 
 ## 已完成与当前状态
 
-- Unity串行参考采集已核验train576／validation2，继续处理后续冻结批次；候选补测新支持提前停止的mip0法线，三图60候选核验通过，新增45组。256图5120候选正式补测已启动，原标签／基线保持，详见[统一候选补测](unity-supplement.md#颜色与提前停止法线的统一补测)。去maxpool的CUDA对照继续，阶段指标不作为最终结论。`[verified: unity-reference-series.json；unity-candidates-train256-smoke-v2.json；两个正式job receipts；opinion: 结果边界]`
+- Unity串行参考采集已核验train1088／validation2。256图候选补测全部完成，5120次编码新增3688组覆盖，原1432组指标与256个winner一致，进程609.70秒；[连续队列](unity-supplement.md#连续补测队列与训练清单)的258图实跑及最终源码复核通过，完整45批另行运行。原标签／基线保持，去maxpool CUDA对照已完成15轮，为74.6%／2.5459dB，低于标准stem；末轮BN诊断继续，完整Unity验收尚未完成。`[verified: unity-reference-series.json counts；unity-candidates-train256-audit.json；unity-candidate-queue-smoke.json；scratch-stem2-lr0003-result.json；对应job receipts；opinion: 验收边界]`
 
 - 新Unity两图参考采集通过，源文件与运行时规则核对通过，meta恢复0冲突。前两次启动失败及恢复记录保留在 [progress.json](progress.json)；成功记录见 [probe.json](probe.json)。已有64图归档另见 [data-readiness.json](data-readiness.json)。`[verified: 对应JSON记录]`
 - [PSNR矩阵复核](psnr-matrix-audit.json)核对train10000／validation1000的receipt哈希和矩阵顺序，均与35 dB规则及回退一致。独立高斯噪声σ0.75 dB、5个seed的训练标签命中率平均90.116%；它是决策敏感性模拟。`[verified: psnr-matrix-audit.json results]`

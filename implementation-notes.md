@@ -1,5 +1,11 @@
 # Implementation notes
 
+## 2026-11-12 native candidate corpus follower
+
+- Completed256images/5120encodes:3688new targets,1432original measurements and256winners match; process609.70seconds. Independent archive audit checks everyASTC/PNGhash, header, byte count and selected decode orientation. `[verified: unity-candidates-train256-audit.json; jobs/unity-candidates-train256/receipt.json]`
+- Added frozen45batch follower plus archive verifier. Real258image smoke passed in46.20seconds; final implementation replay passed in43.16seconds. New18tests cover missing/duplicate/reordered targets, corruption/orientation, changed labels, publication races, relative config paths, initial wait, preserved retry attempts and project locking. Full Unity training and90%acceptance remain pending. `[verified: unity-candidate-queue-smoke.json; jobs/*queue-smoke*/receipt.json; test_unity_candidate_archive.py; test_unity_candidate_queue.py; opinion: completion boundary]`
+
+
 ## V1 partial-search normal candidate completion, 2026-11-11
 
 - Added a subclass/independent CLI to complete archived color and mip0 normal grids. The original supplement, metadata and collection modules remain unchanged while the live reference series imports them. Normal targets require observed Profile1, normal-pack=false, captured mipmaps=false/Linear/Tex2D, and frozen import-log/source hashes. No live project candidate directory or Editor mutation is used. `[verified: candidate_completion.py; complete_unity_candidates.py; original module hashes]`

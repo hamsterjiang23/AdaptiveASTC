@@ -21,4 +21,17 @@
 
 后续保留两条独立身份：末轮raw／EMA的训练集BN统计量重估，以及只将remove_maxpool设为true的输入stem对照。后一组沿用lr0.0003、batch128和所有正式设置，[小样本配置](scratch-stem2-lr0003-smoke-suite.json)先检查CUDA更新及权重重载，[正式配置](scratch-stem2-lr0003-suite.json)在该检查通过后启动；移除无参数pool不改变参数数量，计算和显存成本另测。`[verified: 两份stem suite配置；ASTCPatchRegressor.__init__；opinion: 实验顺序与假设]`
 
-上述后处理已完成，epoch12 EMA经训练集BN重估为80.9%／1.3716dB，四种变体详见[诊断报告](../normalization.md#后续随机初始化lr00003的末轮诊断)。去maxpool的[两轮CUDA检查](scratch-stem2-lr0003-smoke-summary.json)及重载通过，峰值分配显存4,677,542,400字节，进程23.27秒。正式队列随后启动，状态见[stem训练汇总](scratch-stem2-lr0003-summary.json)；启动前逐字段确认只改变remove_maxpool，空闲RAM26.79GiB、GPU占用1234MiB／12282MiB。尚无正式结果时不把小样本准确率用作收益判断。`[verified: normalization-scratch-lr0003.json；scratch-stem2-lr0003-smoke.json；.local对应jobs/scratch-stem2-lr0003-smoke/receipt.json、jobs/scratch-stem2-lr0003/preflight.json；opinion: 结果边界]`
+上述后处理已完成，epoch12 EMA经训练集BN重估为80.9%／1.3716dB，四种变体详见[诊断报告](../normalization.md#后续随机初始化lr00003的末轮诊断)。去maxpool的[两轮CUDA检查](scratch-stem2-lr0003-smoke-summary.json)及重载通过，峰值分配显存4,677,542,400字节，进程23.27秒。正式队列随后启动，状态见[stem训练汇总](scratch-stem2-lr0003-summary.json)；启动前逐字段确认只改变remove_maxpool，空闲RAM26.79GiB、GPU占用1234MiB／12282MiB。当时仅用小样本核验执行路径，正式结果见下一节。`[verified: normalization-scratch-lr0003.json；scratch-stem2-lr0003-smoke.json；.local对应jobs/scratch-stem2-lr0003-smoke/receipt.json、jobs/scratch-stem2-lr0003/preflight.json；opinion: 结果边界]`
+
+## 去maxpool的正式对照
+
+正式训练已完成15轮，按既定近阈值RMSE patience5早停。最佳准确率权重为epoch14 raw，重载核验通过；验证Top-1为74.6%、同一权重的近阈值RMSE为2.5459dB，相比标准stem配方的80.7%／1.6040dB，准确率下降6.1个百分点，四类召回均下降。参数仍为11,178,564，完整训练3345.85秒、含重载的进程3385.97秒。[结果和来源哈希](scratch-stem2-lr0003-result.json)保留逐类指标与曲线。`[verified: scratch-stem2-lr0003-result.json；scratch-stem2-lr0003-audit.json；.local对应jobs/scratch-stem2-lr0003/receipt.json]`
+
+| 同LR0.0003、随机初始化 | 验证Top-1 | balanced accuracy | 同权重近阈值RMSE | 8×8／10×10召回 | 质量达标率 |
+|---|---|---|---|---|---|
+| 标准stem | 80.7% | 74.50% | 1.6040dB | 66.67%／54.69% | 84.6%。`[verified: scratch-lr0003-result.json metrics]` |
+| 去maxpool | 74.6% | 68.16% | 2.5459dB | 58.33%／47.66% | 81.3%。`[verified: scratch-stem2-lr0003-result.json metrics]` |
+
+训练过程的最低近阈值RMSE为2.3122dB，发生在epoch10，对应准确率74.0%；它与epoch14的最高准确率来自不同权重，不组合成一对模型指标。当前这次单seed实验不支持将去maxpool作为默认改进；后续保留标准stem配方，另对已冻结的末轮raw／EMA做相同train-only BN诊断，成本和结果单列。`[verified: scratch-stem2-lr0003.json history[9]；scratch-stem2-lr0003-result.json metric_pair_scope；opinion: 配方选择与范围]`
+
+![固定参数量的stem对照](scratch-stem-comparison.png)

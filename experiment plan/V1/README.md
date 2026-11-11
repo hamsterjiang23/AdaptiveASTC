@@ -99,9 +99,9 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
-- 原搜索提前停止的mip0法线已接入统一离线候选补齐。真实三图60候选通过，新增45组，原PSNR／角度与winner一致；256图5120候选正式运行，补测与原参考采集／策略标签保持独立。全量参考队列已核验train576／validation2，继续按冻结划分推进。多mip／HDR尚未被本次结果覆盖。`[verified: unity-candidates-train256-smoke-v2.json；unity-candidates-train256-config.json；unity-reference-series.json；opinion: 验收范围]`
+- 原搜索提前停止的mip0法线已接入统一离线候选补齐。256图5120候选全部完成，新增覆盖3688组，原指标与winner一致；进程609.70秒，补测与原参考采集／策略标签保持独立。连续补测队列258图检查通过；全量参考队列已核验train1088／validation2，继续按冻结划分推进。多mip／HDR及完整生产验收尚未完成。`[verified: unity-candidates-train256-audit.json；对应job receipt；unity-candidate-queue-smoke.json；unity-reference-series.json；opinion: 验收范围]`
 
-- 后续固定容量学习率对照完成12轮，选中epoch7 raw，验证80.7%／近阈值RMSE1.6040dB，比原scratch提高4.7个百分点，10×10召回下降4.69个百分点。末轮EMA经train-only BN重估达到80.9%／1.3716dB，单独记录419.26秒进程成本。接下来只改变remove_maxpool，先小样本再正式CUDA对照，不增加参数。详见[固定容量对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)和[BN记录](<../../experiment report/unity-accuracy90-20261111/normalization.md>)。`[verified: scratch-lr0003-result.json；normalization-scratch-lr0003.json；stem suite配置；opinion: 后续单项对照]`
+- 后续固定容量学习率对照完成12轮，选中epoch7 raw，验证80.7%／近阈值RMSE1.6040dB，比原scratch提高4.7个百分点，10×10召回下降4.69个百分点。末轮EMA经train-only BN重估达到80.9%／1.3716dB，单独记录419.26秒进程成本。随后只改变remove_maxpool的CUDA对照已完成15轮，最佳74.6%／同权重RMSE2.5459dB，比标准stem低6.1个百分点，参数量不变。详见[固定容量对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)和[BN记录](<../../experiment report/unity-accuracy90-20261111/normalization.md>)。`[verified: scratch-lr0003-result.json；normalization-scratch-lr0003.json；scratch-stem2-lr0003-result.json；opinion: 单项对照范围]`
 - [Unity串行全量采集](<../../experiment report/unity-accuracy90-20261111/unity-reference-series.md>)已启动，45批覆盖train10000／validation1000。先前320张train及2张validation已完成，66张真实归档合并检查通过；逐批核验原生参考像素、同次原标签和恢复记录。全量补测、生产训练及独立测试90%尚未完成。`[verified: unity-reference-series-plan.json；unity-reference-series-smoke.json；unity-reference-series.json counts/current_batch；opinion: 完成边界]`
 
 - 全量目标提取通过：train10000／validation1000生成120,276／12,864个非重叠240patch，44,000个整图候选PSNR重建最大差异1.42e-14 dB，耗时614.55秒。[提取记录](<../../experiment report/unity-accuracy90-20261111/patch-data-full.json>)保留身份与完整归档入口。`[verified: patch-data-full.json counts、patch_counts、wall_seconds]`

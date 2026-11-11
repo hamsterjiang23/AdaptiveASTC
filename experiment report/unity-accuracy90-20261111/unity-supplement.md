@@ -26,7 +26,7 @@
 - 第一次CMake配置失败，因为传入生成源码的Windows反斜杠被当成转义符；改为正斜杠后使用新目录重建。原build-0.log保留在.local/unity-quality-native，成功版本在unity-quality-native-retry1。`[verified: 两个build-0.log；quality.py build命令]`
 - 第一次指标对比采用1e-4dB容差，而原缓存仅保留两位小数。该失败比较已归档，当前结论明确为原记录精度内一致，未声称未舍入值完全一致。`[verified: unity-quality-probe.json prior_comparison、comparison]`
 - 复核后将payload复制移出解码计时，并补齐原采集协议锁→identity／phase→原DLL及完整路径顺序的自动核验。新身份`unity-supplement2-bound`重跑40候选通过；此前两次试跑及其计时保留，旧源码另有归档。`[verified: unity-supplement2-bound.json capture_binding、source_files_sha256；implementation-notes对应记录]`
-- 当前实图验证仅覆盖普通LDR Default颜色图。Alpha需求与非HDR属性是经原payload和指标重放核验的推定设置，正式采集仍需直接记录实际编码回调参数。法线分支只通过数学样本，真实法线、HDR、其他纹理类型和完整20候选生产覆盖均未验收。`[verified: unity-supplement2-bound.json config.items.metadata_source；supplement.py类型限制；tests/test_unity_supplement.py]`
+- 先期两图补测当时仅覆盖普通LDR Default颜色图。Alpha需求与非HDR属性是经原payload和指标重放核验的推定设置，正式采集仍需直接记录实际编码回调参数。该阶段法线分支只通过数学样本。后续真实法线补齐见[统一补测](#颜色与提前停止法线的统一补测)；HDR、多mip法线和完整生产语料仍未验收。`[verified: unity-supplement2-bound.json config.items.metadata_source；supplement.py类型限制；tests/test_unity_supplement.py]`
 - Unity训练还需RGBA输入及逐通道误差目标；其全图参与通道数、Alpha恒定判断、MS-SSIM与法线p95不能简单用局部PSNR的平均替代。应保留原始RGBA和完整候选解码结果，再按对应原生规则构造监督。`[verified: ASTCCompressor.cpp CalculatePSNR、CalculateMSSSIMDb_Luma、CalculateNormalAngularErrorMip0To3；opinion: 迁移设计]`
 
 ## 复跑入口
@@ -50,7 +50,7 @@ uv run --frozen python script/unity_supplement.py collect --config <新的补测
 
 固定[64张训练图采集](unity-actual-options64.json)通过，共558次回调，覆盖63 Default和1 NormalMap、63 sRGB和1 Linear；needAlpha为true／false的图数分别31／33。源码恢复哈希一致，meta恢复0冲突；进程637.63秒，其中输入SHA计算合计74.20秒，该数值不含全部日志与导出成本。`[verified: unity-actual-options64.json rows；jobs/unity-options64/receipt.json；smoke1-receipt.json]`
 
-NormalMap样本为4096²，实际normal-pack=false，不能将pack标志直接当作法线用途。采集完成只证明参数与参考像素覆盖；离线补测目前仍只接收LDR Default颜色图，真实法线／HDR补测与全量生产数据仍未验收。`[verified: unity-actual-options64.json NormalMap row；supplement.py collect_image；opinion: 完成边界]`
+NormalMap样本为4096²，实际normal-pack=false，不能将pack标志直接当作法线用途。采集完成只证明参数与参考像素覆盖；上述64图采集完成时，先期离线补测入口仍只接收LDR Default颜色图。后续mip0法线补测见[统一补测](#颜色与提前停止法线的统一补测)；当前未验收范围为HDR、多mip及完整生产语料。`[verified: unity-actual-options64.json NormalMap row；supplement.py collect_image；opinion: 完成边界]`
 
 ## 颜色覆盖扩展与真实法线审计
 
@@ -113,10 +113,26 @@ uv run --frozen python script/capture_unity_options.py restore --journal <该批
 
 [最终探针配置](unity-candidates-train256-smoke-v2-config.json)与[结果](unity-candidates-train256-smoke-v2.json)保留60次真实编码，45个候选此前未测；进程11.89秒，与参考采集和CUDA训练重叠。此前不额外复核normal header的[先期探针](unity-candidates-train256-smoke.json)及其源码快照保留，正式运行绑定的是最终探针的扩展源码。`[verified: 两份smoke报告；.local对应jobs/unity-candidates-train256-smoke-v2/receipt.json、source快照；opinion: 成本边界]`
 
-[256图正式配置](unity-candidates-train256-config.json)已通过实际参数和导入范围检查，包含240张Default、16张NormalMap，共5120候选，正式进程已启动。每张图完成后写.local的`unity-candidates-train256/receipt.json`，完整成功才发布汇总；当前状态随[progress.json](progress.json)记录。已有原候选也重新编码以核验一致性，因此“新增覆盖数”与“实际编码次数”分别计量。`[verified: unity-candidates-train256-config.json items；preflight.json；job receipt；UnitySupplementalCapture.run；opinion: 状态与成本口径]`
+[256图正式补测](unity-candidates-train256.json)已完成，包含240张Default、16张NormalMap，共5120次编码，补齐3688组原搜索未测候选；原1432组指标和256个winner一致。完整进程609.70秒，其中编码326.07秒、解码41.25秒、质量评价63.72秒。[归档审计](unity-candidates-train256-audit.json)另外核对全部ASTC／PNG哈希、尺寸、块大小、真实字节数及winner完整字节与像素，结果通过。计时与Editor采集和CUDA训练重叠，作为数据准备成本记录。`[verified: unity-candidates-train256.json rows；unity-candidates-train256-audit.json candidate_summary；.local对应jobs/unity-candidates-train256/receipt.json；opinion: 成本范围]`
 
 ```powershell
 uv run --frozen python script/complete_unity_candidates.py --config "experiment report/unity-accuracy90-20261111/unity-candidates-train256-config.json"
 ```
 
-上面的身份已启动，保留运行产物，不重复执行或覆盖；下一批使用新的配置／输出身份。四项扩展测试及既有原生指标测试分别核验重复／缺失角度行、导入SHA变化、多mip拒绝、源码身份与错误ASTC header拒绝。真实探针验证的是已列三图，不等于全部256图通过。`[verified: test_unity_candidate_completion.py；test_unity_supplement.py；实际smoke-v2；opinion: 运行约束]`
+上面的身份已经完成，保留运行产物；下一批使用新的配置／输出身份。四项扩展测试及既有原生指标测试分别核验重复／缺失角度行、导入SHA变化、多mip拒绝、源码身份与错误ASTC header拒绝。`[verified: test_unity_candidate_completion.py；test_unity_supplement.py；unity-candidates-train256.json status；opinion: 运行约束]`
+
+## 连续补测队列与训练清单
+
+入口`script/complete_unity_candidate_series.py`跟随冻结的参考采集计划。仅消费采集队列已发布的完整批次，重新核验参考图、同次原标签、实际编码参数和恢复记录，再补齐20候选。`UnityCandidateArchive`核对候选网格、文件哈希、真实字节数和原winner；完成的批次可复用，未完成尝试保留原目录并使用新retry身份，旧成本和错误写入后续配置。训练清单继续保留train／validation划分及原source顺序。`[verified: candidate_queue.py run、prepare_attempt、verify_capture_binding；candidate_archive.py verify]`
+
+[实际队列检查](unity-candidate-queue-smoke.json)覆盖256张train＋2张validation，5160组候选；首轮复用256图已有结果，另编码验证图40组，完整进程46.20秒。随后针对启动时报告尚未发布、相对路径及最后批次发布与进程退出的竞态补充保护和测试；最终源码再次复跑归档队列，历史进程与源码快照仍保留。子集结果显式标记`coverage=selected`，不代表完整11000图语料。`[verified: unity-candidate-queue-smoke.json counts、batches、coverage；jobs/unity-candidate-queue-smoke/receipt.json；test_unity_candidate_queue.py；opinion: 验收边界]`
+
+正式[队列配置](unity-candidate-queue-full-config.json)绑定原45批计划、原生指标构建及候选扩展源码，目标train10000／validation1000。独立项目锁禁止两个补测队列写同一工程；参考采集与补测使用不同锁，补测只读取已经归档的图片。每批前检查20GiB空闲RAM和40GiB输出磁盘，轮询间隔30秒；未支持的HDR／多mip法线仍明确失败，不跳过后伪称全量成功。`[verified: unity-candidate-queue-full-config.json；candidate_queue.py lock、require_resources、run；candidate_completion.py verify_normal_imports、verify_actual_options]`
+
+```powershell
+uv run --frozen python script/complete_unity_candidate_series.py --config "experiment report/unity-accuracy90-20261111/unity-candidate-queue-full-config.json" --follow
+```
+
+上述命令用于复跑入口记录；已有活动队列时不重复启动。完整语料、Unity模型训练与独立测试90%仍分别验收。`[opinion: 运行与验收范围]`
+
+正式队列已启动，实时[补测状态](unity-candidate-queue-full.json)与[参考采集状态](unity-reference-series.json)分开发布。启动前实测空闲RAM30.88GiB、输出盘928.79GiB，相关45项测试及静态检查通过；归档、启动与恢复的独立代码复核通过。工作进程每30秒记录心跳，未完成时保持running／waiting_references。`[verified: jobs/unity-candidate-queue-full/launch-preflight.json、receipt.json；pytest45passed；ruff／basedpyright输出；review回执；candidate_queue.py run]`
