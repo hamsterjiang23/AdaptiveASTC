@@ -80,6 +80,8 @@
 
 ## Unity训练数据采集与源码定位
 
+- Unity规则重放入口为`script/replay_unity_policy.py --config ...`，固定完整20候选顺序、float32阈值、黑像素分档、法线／MS-SSIM、大图锁组和回退；保留切组前已测候选的计数。缓存必须来自冻结原采集phase并重做LITE完整来源审计，不能仅信任调用者提供的SHA。260张开发图的块大小、preset、原因和尝试次数全部一致；PSNR-only诊断仅207张块大小一致，不作为模型准确率或上限。后续质量预测必须按完整规则单独验收，详见[规则重放报告](<experiment report/unity-accuracy90-20261111/unity-policy-replay.md>)。`[verified: policy.py select；policy_audit.py verify_policy_origin、run；unity-policy260-bound-v2.json；opinion: 模型验收要求]`
+
 - 原搜索提前停止的颜色／mip0法线候选可用`script/complete_unity_candidates.py --config ...`补齐，256图5120候选及原winner审计已通过。全量跟随入口为`script/complete_unity_candidate_series.py --config ... --follow`，仅消费已发布的参考批次；归档复核后复用已完成结果，部分失败使用新retry身份并保留原始成本，最终按原划分生成完整清单。258图实跑检查通过。法线限定Linear RGBA8、Profile1、normal-pack=false和Tex2D；角度评价层数按已归档mipmaps与尺寸推导并clamp1–4，每个原候选须复现原指标。两张mipmaps=true法线40候选实测通过；这仍是mip0编码，不是完整mip压缩链。HDR单独验证。详见[补测进展](<experiment report/unity-accuracy90-20261111/unity-supplement.md#连续补测队列与训练清单>)。`[verified: candidate_completion.py verify_actual_options、verify_normal_imports；candidate_queue.py run、prepare_attempt；candidate_archive.py verify；unity-candidates-train256-audit.json；unity-candidate-queue-smoke.json]`
 
 - Unity监督提取入口为`script/unity_patch_targets.py --config ...`，RGBA各通道SSE按240patch保存，整图聚合后排除零误差通道及不参与的Alpha；MS-SSIM和法线角度保留整图指标。258图5160候选重建检查通过，另两张四级法线评价数据通过；原标签不变，未开始Unity正式训练。数据身份及恢复要求见[原生监督报告](<experiment report/unity-accuracy90-20261111/unity-patch-targets.md>)。`[verified: patch_targets.py UnityChannelErrors、UnityPatchCorpus；unity-patches-train256.json；unity-patches-multimip2.json]`

@@ -1,5 +1,11 @@
 # Implementation notes
 
+## 2026-11-12 original Unity policy replay
+
+- Added a pure rule decoder for the complete20candidate RDO-off LDR grid. It preserves nativefloat32 gates, normal versus color branches, black thresholds, large-image locking, the already-measured next-block candidate and highest-PSNR fallback. All260development choices match the original block, preset, reason and attempted count. `[verified: policy.py select; unity-policy260-bound-v2.json matching_fields, mismatches]`
+- The first audit trusted a caller-supplied cache hash; review reproduced acceptance of a substituted near-identical policy. The bound-v2 audit derives the exact cache from frozen capture identity/phase, repeats the complete original LITE audit and retains the earlier result as limited history. The foreign-cache regression is rejected before report publication. `[verified: policy_audit.py verify_policy_origin; test_unity_policy_audit.py; bound-v2 config prior_audit]`
+- Exact measured-PSNR-only decisions match207/260footprints and110/260complete choices. This selected-development rule ablation is not a model accuracy ceiling. Unity migration retains MS-SSIM/angular supervision and original policy branches; learned whole-image aggregation remains pending. `[verified: unity-policy260-analysis.json; opinion: migration boundary]`
+
 ## 2026-11-12 native candidate corpus follower
 
 - Completed256images/5120encodes:3688new targets,1432original measurements and256winners match; process609.70seconds. Independent archive audit checks everyASTC/PNGhash, header, byte count and selected decode orientation. `[verified: unity-candidates-train256-audit.json; jobs/unity-candidates-train256/receipt.json]`

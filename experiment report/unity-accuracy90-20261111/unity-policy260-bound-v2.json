@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "config": {
+    "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\policy260-manifest.json",
+    "candidate_manifest_sha256": "292594a4790ee35b4671946010bd61b06a630e9da3bb5bc4a5f6c1e6adced93e",
+    "policy_caches": [
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-train256-batch001-20261111\\references\\normalized-batch",
+        "file": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\ASTC_Cache\\benchmark\\unity-train256-batch001-20261111\\batch\\parameter_cache_detail.jsonl",
+        "sha256": "f22e1efcee7b517f216dbe87e777fef760f379c674d4c0c381585feac8040857"
+      },
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-002-20261111\\references\\normalized-batch",
+        "file": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\ASTC_Cache\\benchmark\\unity-v1-train-002-20261111\\batch\\parameter_cache_detail.jsonl",
+        "sha256": "d1596e359d5b5d4bab504d29856177b0790391ef2a487aacf33c46acc1bcf32a"
+      },
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch",
+        "file": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\ASTC_Cache\\benchmark\\unity-validation2-20261111\\batch\\parameter_cache_detail.jsonl",
+        "sha256": "5d1cc96dddb5480fc42170e8344587e9645fc3acaaa2d184c35beed9ce5db47e"
+      }
+    ],
+    "engine_source": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+    "engine_source_sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\policy260-bound-v2",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-policy260-bound-v2.json",
+    "prior_audit": {
+      "config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-policy260-config.json",
+      "sha256": "fa29b54b1568f671c3f850814a1a2eca67e60f327c970000819040c461d3ac69",
+      "report_sha256": "3291e15715a89706ffd4cc0afd7e1d478e0a1bf607d673662a44eb2b09e59fc7",
+      "limitation": "Prior audit bound a supplied cache hash; this rerun additionally binds the exact original phase/cache and repeats original LITE provenance audit"
+    }
+  },
+  "config_sha256": "0e6ccf78c4fefefd3ca6a2d6e4c7cb1e2635decaeb51c124b52c2f40705e5d64",
+  "implementation_sha256": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+  "policy_source_sha256": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+  "policy_origin": [
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-train256-batch001-20261111\\references\\normalized-batch",
+      "cache_sha256": "f22e1efcee7b517f216dbe87e777fef760f379c674d4c0c381585feac8040857",
+      "protocol_sha256": "4216d688f4f0003b8cba014bfed7ad234ebd7669f8dbaee1bc228fe06196f451",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-002-20261111\\references\\normalized-batch",
+      "cache_sha256": "d1596e359d5b5d4bab504d29856177b0790391ef2a487aacf33c46acc1bcf32a",
+      "protocol_sha256": "d15bfbe62d59addad05ab24ad09dd20f6cf12a0c3d53c7f862cff055a5073576",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch",
+      "cache_sha256": "5d1cc96dddb5480fc42170e8344587e9645fc3acaaa2d184c35beed9ce5db47e",
+      "protocol_sha256": "d95e38874c500c578cd158012100659bd72c2ac9e49a9a836be5537f6425a81d",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 2,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    }
+  ],
+  "counts": {
+    "train": 258,
+    "validation": 2
+  },
+  "images": 260,
+  "mismatches": 0,
+  "matching_fields": [
+    "block_size",
+    "preset",
+    "selection_reason",
+    "candidates_measured"
+  ],
+  "branch_counts": {
+    "first_valid": 198,
+    "size_first_relaxed": 25,
+    "size_first_strict": 35,
+    "highest_psnr_fallback": 2
+  },
+  "normal_images": 18,
+  "strict_quality_passing_images": 233,
+  "psnr_only_footprint_matches": 207,
+  "psnr_only_full_choice_matches": 110,
+  "coverage": "selected",
+  "test_opened": false,
+  "wall_seconds": 0.9673700999992434,
+  "scope": "Measured-quality rule replay, not model prediction accuracy; PSNR-only ablation removes other gates and is diagnostic only",
+  "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\policy260-bound-v2\\receipt.json",
+  "raw_receipt_sha256": "838beea5e5b12fda239246704c07ef271bc7591e8242e0ade61fb289bef5b038",
+  "failed_rows": []
+}

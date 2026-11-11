@@ -99,6 +99,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- Unity迁移的原规则重放通过260张开发图，四项比较（块大小、preset、选择原因、候选次数）全部一致；去掉非PSNR质量分支时，块大小仅207／260一致。该诊断要求Unity路径继续保留MS-SSIM、法线角度、黑像素和大图分支，四个medium候选的GDC PSNR回归维持原开发协议。质量分支预测／聚合与最终Unity90%验收尚待完成，详见[规则重放报告](<../../experiment report/unity-accuracy90-20261111/unity-policy-replay.md>)。`[verified: unity-policy260-bound-v2.json matching_fields、mismatches、psnr_only_footprint_matches；opinion: 迁移要求与待办]`
+
 - 原搜索提前停止的mip0法线已接入统一离线候选补齐。256图5120候选全部完成，新增覆盖3688组，原指标与winner一致；进程609.70秒，补测与原参考采集／策略标签保持独立。连续补测队列258图检查通过；全量参考队列已核验train1088／validation2，继续按冻结划分推进。多mip／HDR及完整生产验收尚未完成。`[verified: unity-candidates-train256-audit.json；对应job receipt；unity-candidate-queue-smoke.json；unity-reference-series.json；opinion: 验收范围]`
 
 - 后续固定容量学习率对照完成12轮，选中epoch7 raw，验证80.7%／近阈值RMSE1.6040dB，比原scratch提高4.7个百分点，10×10召回下降4.69个百分点。末轮EMA经train-only BN重估达到80.9%／1.3716dB，单独记录419.26秒进程成本。随后只改变remove_maxpool的CUDA对照已完成15轮，最佳74.6%／同权重RMSE2.5459dB，比标准stem低6.1个百分点，参数量不变。详见[固定容量对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)和[BN记录](<../../experiment report/unity-accuracy90-20261111/normalization.md>)。`[verified: scratch-lr0003-result.json；normalization-scratch-lr0003.json；scratch-stem2-lr0003-result.json；opinion: 单项对照范围]`

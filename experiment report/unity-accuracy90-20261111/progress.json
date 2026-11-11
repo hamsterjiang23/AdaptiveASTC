@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T16:56:02.027295+00:00",
+  "updated_utc": "2026-11-11T17:24:04.073625+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -513,10 +513,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T16:55:55.748490+00:00",
+      "last_observed_alive_utc": "2026-11-11T17:23:56.936963+00:00",
       "name": "unity-reference-series-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\receipt.json",
-      "sha256": "997afbd771dfb51830fba30532dacebd843050f0ed34834e4cbba3f216801235",
+      "sha256": "eebd9ae56483fba480d51a170b7a1d72ba7badf06cd95d9f9cb0f68d23e42f75",
       "observed_processes": [
         {
           "pid": 51744,
@@ -656,10 +656,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T16:55:39.310731+00:00",
+      "last_observed_alive_utc": "2026-11-11T17:23:40.148341+00:00",
       "name": "scratch-group512",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512\\receipt.json",
-      "sha256": "bab7e732e4cf6b46616b615d6ac1a1af6a5839ddc2510e62681abfd71f76304d",
+      "sha256": "362a13ca11cc0c35f6187b67273aab5464b56d6be29b5b03aef7a9cad722390a",
       "observed_processes": [
         {
           "pid": 55564,
@@ -691,10 +691,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T16:56:00.940310+00:00",
+      "last_observed_alive_utc": "2026-11-11T17:24:01.892293+00:00",
       "name": "unity-candidate-queue-multimip-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\receipt.json",
-      "sha256": "7dcb0c3164c1bd3860bf258fa1ce1b096f746790e82a457b2e9a9e55152d3f87",
+      "sha256": "7bf60f664184f73b6bc14b23efd03e04eb56dbc5f65e6e79f8aa79072763e03e",
       "observed_processes": [
         {
           "pid": 25096,
@@ -730,7 +730,13 @@
       "name": "unity-patches-train256",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-patches-train256\\receipt.json",
       "sha256": "75b38043cf59d7160d9e0721d45e1cb930d3ebd83ad9d6c390f779c3e43e7503",
-      "observed_processes": []
+      "observed_processes": [
+        {
+          "pid": 50744,
+          "name": "svchost.exe",
+          "create_time": 1794417789.2847452
+        }
+      ]
     },
     {
       "status": "passed",
@@ -742,6 +748,30 @@
       "name": "unity-patches-multimip2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-patches-multimip2\\receipt.json",
       "sha256": "b054fbf32e06434070a52b88ea8962f74a364d2cb93fb907c4eddbeb4546a0f5",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T17:04:03.048849+00:00",
+      "ended_utc": "2026-11-11T17:04:07.203470+00:00",
+      "wall_seconds": 4.151993499996024,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-policy260",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-policy260\\receipt.json",
+      "sha256": "5a67f1f8c4430a8f5da74ffe016dbe65afc092a8c880d71a4bb224011db1cace",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T17:09:34.629254+00:00",
+      "ended_utc": "2026-11-11T17:09:38.277383+00:00",
+      "wall_seconds": 3.6459539999996196,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-policy260-bound-v2",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-policy260-bound-v2\\receipt.json",
+      "sha256": "bea08c199e02b61ffceefb8231039739685acc2ed0d94caa7a4b589ad501c418",
       "observed_processes": []
     }
   ],
@@ -773,17 +803,17 @@
   "unity_reference_series": {
     "status": "running",
     "counts": {
-      "train": 1600,
+      "train": 1856,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-006-20261111",
+    "current_batch": "unity-v1-train-007-20261111",
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "17951821b4191184fb1e221473c8987dfef7d14ff33858bdfefaa1bd472eb31e",
+    "report_sha256": "bf6021a2a7bc13f820722e26aedac83383e2a7bc4a49005ed9b1219b25d93214",
     "scope": "original imported references/choices only; supplemental targets pending"
   },
   "fixed_capacity_stem": {
@@ -804,17 +834,17 @@
   "unity_candidate_queue": {
     "status": "running",
     "counts": {
-      "train": 832,
+      "train": 1344,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-003-20261111",
+    "current_batch": "unity-v1-train-005-20261111",
     "test_opened": false,
     "report": "unity-candidate-queue-multimip-v2.json",
-    "report_sha256": "d1044a21d01829a925e2edf66a329c9c5fde737c34fce2a4f9440d0d70f4774d",
+    "report_sha256": "45b395f53f4c04fdaa63972fb3067f10708fd7c8a1342db6e01b68c58c4ca76a",
     "prior_failure_report": "unity-candidate-queue-full.json",
     "prior_failure_counts": {
       "train": 576,
@@ -827,9 +857,9 @@
     "summary_sha256": "cc384e1aa5ee98d3953761ff21289b1b9920531d2fb98cbe474a647d2a708ae0",
     "changed_factor": "group_image_cap 0 -> 512; standard stem scratch LR0.0003",
     "test_opened": false,
-    "completed_epochs": 5,
-    "best_validation_accuracy": 0.738,
-    "best_near_threshold_rmse_db": 2.0958250594418826
+    "completed_epochs": 11,
+    "best_validation_accuracy": 0.786,
+    "best_near_threshold_rmse_db": 1.652003337990339
   },
   "unity_rgba_patch_targets": [
     {
@@ -883,5 +913,28 @@
       "report": "unity-patches-multimip2.json",
       "report_sha256": "acc586c2ddc0860a73491eccf13bf93f95c27ccd93171f397469db834a35c973"
     }
-  ]
+  ],
+  "unity_policy_replay": {
+    "status": "passed",
+    "images": 260,
+    "counts": {
+      "train": 258,
+      "validation": 2
+    },
+    "mismatches": 0,
+    "matching_fields": [
+      "block_size",
+      "preset",
+      "selection_reason",
+      "candidates_measured"
+    ],
+    "strict_quality_passing_images": 233,
+    "psnr_only_footprint_matches": 207,
+    "psnr_only_full_choice_matches": 110,
+    "test_opened": false,
+    "scope": "Measured-quality rule replay, not model prediction accuracy; PSNR-only ablation removes other gates and is diagnostic only",
+    "report": "unity-policy260-bound-v2.json",
+    "report_sha256": "933ac344bfb4b5767557f6cbcb0943eb6eacfaeca86c3b0319ea5f297c90bc1f",
+    "model_accuracy": null
+  }
 }

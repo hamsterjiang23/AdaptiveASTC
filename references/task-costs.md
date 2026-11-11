@@ -4,6 +4,7 @@
 
 | 任务 | 已测规模与耗时 | 资源记录与限制 |
 |---|---|---|
+| Unity原搜索规则重放 | 260开发图，审计循环0.9674秒／完整进程3.6460秒 | 消费已测20候选质量，核对完整原采集规则；没有编码或训练，不计为模型部署加速。`[verified: ../experiment report/unity-accuracy90-20261111/unity-policy260-bound-v2.json；.local对应jobs/unity-policy260-bound-v2/receipt.json；opinion: 计时范围]` |
 | 原生patch目标提取 | train10000、validation1000，614.55秒 | 133140个patch，CPU／磁盘任务；峰值内存未记录。`[verified: ../experiment report/unity-accuracy90-20261111/patch-data-full.json]` |
 | CUDA patch训练 | scratch 14轮2787.39秒，含数据检查、验证和保存 | 标准stem batch128的启动探针峰值分配显存2,118,429,184字节；正式训练和系统占用另测。单GPU队列，不并行启动其他训练。`[verified: ../experiment report/unity-accuracy90-20261111/patch-v1/scratch-result.json；patch-v1-smoke.json peak_vram_bytes；opinion: 调度]` |
 | Unity实际参数采集 | 64训练图558回调，进程637.63秒 | 输入SHA耗时74.20秒；后续validation2启动刷新阶段观察Editor工作集11.08GiB，该次采样不是峰值。启动前按重内存任务检查余量，单工程串行。包含导出／编译／哈希，不是搜索baseline。`[verified: ../experiment report/unity-accuracy90-20261111/unity-actual-options64.json；.local对应jobs/unity-options64/receipt.json；2026-11-11 validation2进程33916 WorkingSetSize=11901513728；opinion: 调度]` |
