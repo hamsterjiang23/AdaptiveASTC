@@ -65,8 +65,10 @@ GPU实验串行，CPU静态检查可与训练同时发生。当前所有时长�
 
 [BN诊断](normalization.md)两组均完成：固定末轮EMA权重，训练集重估统计量后，随机初始化为76.7%／1.6467dB，预训练为89.2%／0.9512dB，0次优化器更新，test未打开。该结果按训练后处理单列；最高开发准确率89.2%，Unity90%独立验收仍未完成。`[verified: normalization-scratch.json；normalization-pretrained.json；opinion: 实验身份]`
 
-新的[固定容量学习率对照](patch-fixed-capacity/README.md)已通过小样本及权重重载检查，正式CUDA训练启动。相对原scratch配方仅lr1e-3→3e-4，其他正式设置不变，继续按验证结果与完整成本评价。`[verified: scratch-lr0003-smoke-summary.json；scratch-lr0003-summary.json；两份suite字段比较；opinion: 对照目的]`
+新的[固定容量学习率对照](patch-fixed-capacity/README.md)已完成12轮，选中epoch7 raw，验证Top-1为80.7%、近阈值RMSE1.6040dB，最佳权重重载通过。相对原scratch仅lr1e-3→3e-4，总准确率提高4.7个百分点，但10×10召回下降4.69个百分点；训练墙钟2483.18秒。后续同容量比较输入stem及BN后处理，仍未达到V1／Unity验收。`[verified: patch-fixed-capacity/scratch-lr0003-result.json、scratch-lr0003-audit.json；opinion: 后续安排]`
 
 [真实法线重编码](unity-normal-replay20.json)进一步完成同一4096²、mip0法线图的20候选：完整ASTC与解码RGBA逐字节一致，原角度不达标／最高PSNR回退身份不变。进程174.18秒，编码合计124.20秒，与CUDA训练并行；多mip／HDR仍未覆盖。`[verified: unity-normal-replay20.json rows.reencoding、quality_passing_candidates；.local/jobs/unity-normal-replay20/receipt.json]`
 
 新增训练／验证分批采集支持，每批显式冻结1至256个路径和原source_split，归档保留划分；测试／校准划分及跨划分重复资产会被拒绝。原10000张搜索baseline入口和门槛保留，分批采集只提供生产输入／标签。[两张验证图采集](unity-validation2.json)通过，7次回调吻合，源码／meta恢复通过；[补测](unity-validation2-supplement.json)完成40候选，新增33组、原winner一致，归档保持validation。第一张源图512²经导入变为256²，使用实际参考像素生成监督。`[verified: benchmark.py prepare/verify_protocol；unity_reference.py collect；tests/test_unity_reference_batches.py；unity-validation2.json；unity-validation2-supplement.json；normalized-batch/manifest.json]`
+
+[首批256张训练图](unity-train256-batch001.json)已完成，记录1432次实际编码回调，包含240张Default、16张NormalMap，源码与meta恢复通过；进程963.42秒。连同先前64张，共320张train、2张validation。已通过66张已有归档的[真实合并检查](unity-reference-series-smoke.json)，并启动45批全量[串行采集队列](unity-reference-series.md)，目标train10000／validation1000；当前为running，完整回归目标补测及最终Unity模型仍待完成。`[verified: unity-train256-batch001.json；.local对应jobs/unity-train256-batch001/receipt.json；unity-reference-series-smoke.json；unity-reference-series.json；opinion: 完成范围]`

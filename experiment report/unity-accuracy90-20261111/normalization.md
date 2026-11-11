@@ -1,6 +1,6 @@
 # 固定权重的BatchNorm统计量诊断
 
-随机初始化和预训练两组诊断均已完成。每组读取完成训练的末轮last.pt，不更新任何学习参数，仅对BatchNorm的running mean／variance及计数做训练集重估；原始检查点保留。它是独立的训练后处理实验，不能与训练中选出的最佳epoch混为一组。`[verified: normalization-scratch.json；normalization-pretrained.json；PatchNormalizationAudit.run/recalibrate；opinion: 比较边界]`
+原V1随机初始化、预训练及后续scratch低学习率三组诊断均已完成。每组读取完成训练的末轮last.pt，不更新任何学习参数，仅对BatchNorm的running mean／variance及计数做训练集重估；原始检查点保留。它是独立的训练后处理实验，不能与训练中选出的最佳epoch混为一组。`[verified: normalization-scratch.json；normalization-pretrained.json；normalization-scratch-lr0003.json；PatchNormalizationAudit.run/recalibrate；opinion: 比较边界]`
 
 每个变体用相同seed抽取16384个原生训练patch，按图等期望权重、图内均匀采样，共128批；本次覆盖8066张训练图。重估不使用验证像素或标签，评估使用冻结validation1000。参数逐项一致性检查通过，optimizer更新0次，test未打开。`[verified: normalization-scratch.json calibration_patches、unique_training_images、rows.parameters_unchanged、optimizer_updates、test_opened]`
 
@@ -33,3 +33,16 @@ uv run --frozen python script/patch_normalization.py --training <已完成训练
 ```
 
 此入口只接受已完成开发训练且有EMA的检查点，复核原训练代码／corpus身份，拒绝覆盖旧输出。报告中的last-epoch身份、训练参数不变与统计量重估成本必须随后续结果一起保留。`[verified: PatchNormalizationAudit.run；opinion: 后续记录要求]`
+
+## 后续随机初始化lr0.0003的末轮诊断
+
+[低学习率诊断](normalization-scratch-lr0003.json)使用已完成epoch12的last.pt、相同16384个训练patch／8066图。四种变体学习参数均未改变，0次优化器更新，test未打开；内部墙钟402.01秒，进程419.26秒。`[verified: normalization-scratch-lr0003.json calibration_patches、unique_training_images、rows.parameters_unchanged、optimizer_updates、wall_seconds；.local对应jobs/normalization-scratch-lr0003/receipt.json]`
+
+| epoch12变体 | 验证Top-1 | 阈值附近RMSE |
+|---|---|---|
+| raw，原统计量 | 71.3% | 2.1745dB。`[verified: normalization-scratch-lr0003.json rows[0].metrics]` |
+| raw，训练集重估 | 73.3% | 2.1017dB。`[verified: normalization-scratch-lr0003.json rows[1].metrics]` |
+| EMA，原统计量 | 49.6% | 4.7631dB。`[verified: normalization-scratch-lr0003.json rows[2].metrics]` |
+| EMA，训练集重估 | 80.9% | 1.3716dB。`[verified: normalization-scratch-lr0003.json rows[3].metrics]` |
+
+重估EMA的balanced accuracy为76.97%，四类召回88.99%／71.35%／60.94%／86.58%；质量达标率87.9%、payload95,148,832字节。相对本轮训练选中的epoch7 raw，准确率高0.2个百分点、10×10召回高6.25个百分点，但12×12召回更低，payload也更大。这是独立后处理结果，未达到V1的90%／0.75dB，不能代替Unity生产验收。`[verified: normalization-scratch-lr0003.json rows[3].metrics；patch-fixed-capacity/scratch-lr0003-result.json metrics；opinion: 比较范围]`

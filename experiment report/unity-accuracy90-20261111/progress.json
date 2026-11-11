@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T14:45:12.169745+00:00",
+  "updated_utc": "2026-11-11T15:20:43.957367+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -61,8 +61,8 @@
     }
   ],
   "next": [
-    "Measure scratch LR0.0003 single-factor control; preserve original V1 recipes",
-    "Collect bounded training reference batches after the passed validation smoke",
+    "Measure fixed-parameter scratch stem control after the passed CUDA smoke",
+    "Finish serial original-reference/label collection for train10000/validation1000",
     "Validate remaining Unity quality branches; keep independent final test sealed"
   ],
   "decisions": [
@@ -372,7 +372,13 @@
       "name": "normalization-smoke",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-smoke\\receipt.json",
       "sha256": "2a389011619220a0412e5f094525816f4925539e5126b66e84c41ac98e2e6b2d",
-      "observed_processes": []
+      "observed_processes": [
+        {
+          "pid": 49136,
+          "name": "Unity.exe",
+          "create_time": 1794409687.633002
+        }
+      ]
     },
     {
       "status": "passed",
@@ -411,27 +417,16 @@
       "observed_processes": []
     },
     {
-      "status": "running",
+      "status": "passed",
       "started_utc": "2026-11-11T14:18:02.170096+00:00",
-      "ended_utc": null,
-      "wall_seconds": null,
-      "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T14:45:02.987755+00:00",
+      "ended_utc": "2026-11-11T14:59:59.154346+00:00",
+      "wall_seconds": 2516.979217,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T14:59:33.511318+00:00",
       "name": "scratch-lr0003",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-lr0003\\receipt.json",
-      "sha256": "f53e3491108c26ae487105493cbeb27dca216fff9db548394b12c73aebec8ef2",
-      "observed_processes": [
-        {
-          "pid": 57636,
-          "name": "python.exe",
-          "create_time": 1794406682.075241
-        },
-        {
-          "pid": 58436,
-          "name": "python.exe",
-          "create_time": 1794406682.1766236
-        }
-      ]
+      "sha256": "cf1b0a7e102a440f1b947e310d342aa924184df6b52e10e4d06db58b0212dd8f",
+      "observed_processes": []
     },
     {
       "status": "passed",
@@ -482,25 +477,96 @@
       "observed_processes": []
     },
     {
-      "status": "running",
+      "status": "passed",
       "started_utc": "2026-11-11T14:44:42.949298+00:00",
+      "ended_utc": "2026-11-11T15:00:46.374526+00:00",
+      "wall_seconds": 963.4194416999999,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T15:00:43.445711+00:00",
+      "name": "unity-train256-batch001",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-train256-batch001\\receipt.json",
+      "sha256": "6fea3261df96059355b42d93ab2fe3321fc18b57ce98ef47c5694cbf857ca6d3",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T15:05:34.704135+00:00",
+      "ended_utc": "2026-11-11T15:12:33.973265+00:00",
+      "wall_seconds": 419.2644801000024,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T15:12:04.897831+00:00",
+      "name": "normalization-scratch-lr0003",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-scratch-lr0003\\receipt.json",
+      "sha256": "ee935d5268e8345b43486bad546c8db40d4aff766236cb05de6d37795a51464c",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T15:01:40.510964+00:00",
+      "ended_utc": "2026-11-11T15:01:50.213592+00:00",
+      "wall_seconds": 9.673934400001599,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-reference-series-smoke-v2",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-smoke-v2\\receipt.json",
+      "sha256": "390c0d7888e0985e370a2fc265e8cc9a3488cd624c9164f3d0c18546df9bfdf6",
+      "observed_processes": []
+    },
+    {
+      "status": "running",
+      "started_utc": "2026-11-11T15:07:22.517080+00:00",
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": null,
-      "name": "unity-train256-batch001",
-      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-train256-batch001\\receipt.json",
-      "sha256": "69b5f548a8b4d51e3c9189cd14a7c6832d5b8ac545ee3f26ac49a87ae1c4e222",
+      "last_observed_alive_utc": "2026-11-11T15:20:22.828391+00:00",
+      "name": "unity-reference-series-v2",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\receipt.json",
+      "sha256": "f4f085e5ba67ebefe47d948a271c78ec770fa259328f2565f0f961732dd70c2d",
       "observed_processes": [
         {
-          "pid": 62424,
+          "pid": 51744,
           "name": "python.exe",
-          "create_time": 1794408282.8436
+          "create_time": 1794409642.4236252
         },
         {
-          "pid": 44452,
+          "pid": 41024,
           "name": "python.exe",
-          "create_time": 1794408282.9567187
+          "create_time": 1794409642.5245771
+        }
+      ]
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T15:13:41.487580+00:00",
+      "ended_utc": "2026-11-11T15:14:04.764056+00:00",
+      "wall_seconds": 23.272459799998614,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "scratch-stem2-lr0003-smoke",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-stem2-lr0003-smoke\\receipt.json",
+      "sha256": "9bad2ddb811316582f855dd3c12ca0f19f7539c69ffda295a79f84f7ad447e12",
+      "observed_processes": []
+    },
+    {
+      "status": "running",
+      "started_utc": "2026-11-11T15:15:58.584689+00:00",
+      "ended_utc": null,
+      "wall_seconds": null,
+      "process_exit_code": null,
+      "last_observed_alive_utc": "2026-11-11T15:20:28.697838+00:00",
+      "name": "scratch-stem2-lr0003",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-stem2-lr0003\\receipt.json",
+      "sha256": "a10e391ff41648f99f544fecfb6b8be28adc3ff8ee84d0e339c1e82eee61965f",
+      "observed_processes": [
+        {
+          "pid": 50144,
+          "name": "python.exe",
+          "create_time": 1794410158.475006
+        },
+        {
+          "pid": 39812,
+          "name": "python.exe",
+          "create_time": 1794410158.5909655
         }
       ]
     }
@@ -512,7 +578,8 @@
     "reports": [
       "normalization-smoke.json",
       "normalization-scratch.json",
-      "normalization-pretrained.json"
+      "normalization-pretrained.json",
+      "normalization-scratch-lr0003.json"
     ]
   },
   "fixed_capacity_control": {
@@ -521,11 +588,33 @@
     "development_best_accuracy_so_far": 0.892,
     "production_acceptance": "not evaluated",
     "live_snapshot": {
-      "status": "running",
-      "completed_epochs": 7,
+      "status": "completed",
+      "completed_epochs": 12,
       "best_validation_accuracy": 0.807,
       "best_near_threshold_rmse_db": 1.6039511187382403,
-      "report_sha256": "4620a6978ba01da9e720fae53d36fc78f274d8015b4de3c62f6a0f40dd776cc9"
+      "report_sha256": "85b73ddd1a6b18b6cf00b8640d418891efbbe2f6ba7abb0655a018897ada72ce"
     }
+  },
+  "unity_reference_series": {
+    "status": "running",
+    "counts": {
+      "train": 320,
+      "validation": 2
+    },
+    "expected_counts": {
+      "train": 10000,
+      "validation": 1000
+    },
+    "current_batch": "unity-v1-train-001-20261111",
+    "test_opened": false,
+    "report": "unity-reference-series.json",
+    "report_sha256": "15158e5580c01e1ede95ffcd37d3e0afd4ce2fb69fbecbb061ed119ea7763d18",
+    "scope": "original imported references/choices only; supplemental targets pending"
+  },
+  "fixed_capacity_stem": {
+    "summary": "patch-fixed-capacity\\scratch-stem2-lr0003-summary.json",
+    "summary_sha256": "ad0df33745779838b45ee5e1acd092f302062b220f6ceadb0c13240b320e6899",
+    "status": "running",
+    "changed_factor": "remove_maxpool false -> true; LR0.0003 recipe unchanged"
   }
 }

@@ -12,6 +12,8 @@
 | 法线全候选重编码核验 | 一张4096²、20候选，进程174.18秒／循环170.15秒 | 纯编码124.20秒，20组压缩／解码字节一致。与CUDA训练重叠，峰值内存未测；不外推HDR／多mip或独立部署时延。`[verified: ../experiment report/unity-accuracy90-20261111/unity-normal-replay20.json；.local对应jobs/unity-normal-replay20/receipt.json]` |
 | validation分批采集探针 | 2图7回调，进程370.06秒；另40候选补测循环3.8977秒 | Editor刷新阶段观察工作集11.08GiB，原meta／源码恢复通过；一图512²导入为256²。成本以工程启动／刷新为主，批量外推单列估计。`[verified: ../experiment report/unity-accuracy90-20261111/unity-validation2.json；unity-validation2-supplement.json；.local对应jobs/unity-validation2/receipt.json、batch-editor.log；opinion: 成本外推]` |
 | 冻结权重BN诊断 | scratch末轮，整进程400.03秒 | raw／EMA各用16384训练patch重估，另有4次validation；学习参数未变，GPU串行，峰值内存未记录。`[verified: ../experiment report/unity-accuracy90-20261111/normalization-scratch.json；.local对应jobs/normalization-scratch/receipt.json]` |
+| 随机初始化低学习率对照 | 12轮训练2483.18秒，含最佳权重重载的进程2516.98秒 | 与原scratch仅lr不同；另行末轮BN诊断419.26秒，参数不变。时长为本机开发成本。`[verified: ../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/scratch-lr0003-result.json；normalization-scratch-lr0003.json；.local对应job receipts]` |
+| 256张训练图原生采集 | 1432回调，Editor阶段901.88秒／完整进程963.42秒 | 16张NormalMap；源码／meta恢复通过。45批队列逐批检查至少20GiB空闲RAM与相关卷40GiB磁盘，允许独立冻结GDC语料的CUDA训练。包含刷新／导出／哈希，不用于替换搜索基线。`[verified: ../experiment report/unity-accuracy90-20261111/unity-train256-batch001.json；unity-reference-series-plan.json；collection.py require_resources；opinion: 并发与计时范围]` |
 
 | 任务 | 读取 | 写入与互斥 |
 |---|---|---|

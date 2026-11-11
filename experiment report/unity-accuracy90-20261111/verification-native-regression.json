@@ -1,8 +1,10 @@
 {
   "status": "passed",
-  "local_links_and_anchors": 235,
+  "local_links_and_anchors": 255,
   "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
-  "managed_restored_sha256": "64dfbd63ce9baf390299ff70881b38fb6505bacab8d1ff42e0a8507447ef7265",
+  "completed_batch_restored_sha256": "64dfbd63ce9baf390299ff70881b38fb6505bacab8d1ff42e0a8507447ef7265",
+  "observed_current_managed_sha256": "f6578a1104eb3228687a9d7dc8bb2a6a50e55cc1a8ecc320773c9df35b559903",
+  "managed_source_verification_scope": "active series may instrument current source; completed batch restoration verified",
   "completed_training_trials": 2,
   "color_candidates": 160,
   "new_color_candidates": 108,
@@ -13,18 +15,27 @@
   "validation_supplement_candidates": 40,
   "scratch_normalization_variants": 4,
   "pretrained_normalization_variants": 4,
-  "documents_sha256": {
-    "README.md": "7743bda2427bb9e9c956bc15bf435a12bdf1ae1ae348c4385c2048451c736735",
-    "AGENTS.md": "aebee481b282c2da3ce7f5979acc629af097d983867abb6c3d7552f9d8773222",
-    "implementation-notes.md": "5f044c2279345c5d2c8c7bbd5367d76a1671f85ef40fd13c7de2b95301da0b59",
-    "experiment plan\\V1\\README.md": "284dd322f4e71014db12b23a57963b330dc4202f491724fd9b3ab1be7ba3e824",
-    "references\\task-costs.md": "78d1caa0bbb81bb73b118d624e2444a96aed2a57d78102afb274d2e472290276",
-    "experiment report\\unity-accuracy90-20261111\\README.md": "6014cb8e56b5964f8a677a84fb42f1f4042452195b95c1eff2f1616cb00a27cb",
-    "experiment report\\unity-accuracy90-20261111\\unity-supplement.md": "2ce4a42cc80d9eb751f28ccace0261d87638b87d1d0e4ba7fd685ae87365f1ac",
-    "experiment report\\unity-accuracy90-20261111\\normalization.md": "423ee8daac32479844a71b22a92c6455c65661f57288e37f4f52daadef9e3965",
-    "experiment report\\unity-accuracy90-20261111\\patch-v1\\README.md": "ea96c075a0ce195824ac768500ce8a6af105c23c998d3d2706f7c5a27ca8350b",
-    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\README.md": "1e3216b7e5ff2ec944429bd65d35179780449dff4756d8dff4f3298ba68c5cce"
+  "scratch_lr_normalization_variants": 4,
+  "completed_lr_epochs": 12,
+  "series_smoke_counts": {
+    "train": 64,
+    "validation": 2
   },
-  "script_sha256": "aed8e9a8594bcacabdf05826b6f93908d3369d04ff15f3ec4697159ab6406de6",
+  "train256_capture_status": "passed",
+  "stem_cuda_smoke_status": "completed",
+  "documents_sha256": {
+    "README.md": "606c9503b0f982fd2dc18c23245f48843feefea0927f854cd8363b796b283766",
+    "AGENTS.md": "5f9737e264900842f1ffc4e23d5967705ae3adb3c0b7bf3a41d13ab04aaac9b8",
+    "implementation-notes.md": "75d28e5d66dc024dae0bada38f695ffadd590680d8c0a180f8a07aeb154f6397",
+    "experiment plan\\V1\\README.md": "a05e222894f66154d4b0fe232be7264b0a0b7c3c92184b0b87a90216db363ef4",
+    "references\\task-costs.md": "218996c64cd5b5c8c5b07c7a566637538649229401ef395b99ed21290dd083e6",
+    "experiment report\\unity-accuracy90-20261111\\README.md": "4bbf03d289fbaf70e91dd23ede11cf7408df7309c435de070c541411418291b4",
+    "experiment report\\unity-accuracy90-20261111\\unity-supplement.md": "2ce4a42cc80d9eb751f28ccace0261d87638b87d1d0e4ba7fd685ae87365f1ac",
+    "experiment report\\unity-accuracy90-20261111\\unity-reference-series.md": "03f191d21e54a93f8ffe733d80c7121300902bc021915479b0d7aea568039dec",
+    "experiment report\\unity-accuracy90-20261111\\normalization.md": "2c7d77d8d0538af3898adc38e1a70748b21981d039df9301aabbcabcbd669073",
+    "experiment report\\unity-accuracy90-20261111\\patch-v1\\README.md": "ea96c075a0ce195824ac768500ce8a6af105c23c998d3d2706f7c5a27ca8350b",
+    "experiment report\\unity-accuracy90-20261111\\patch-fixed-capacity\\README.md": "78d4b82b7011a1c40e5f0581f43bad0883e3671883b338833acc88dad40b7b9d"
+  },
+  "script_sha256": "6ec773b8f3b6ce2cd9f42774b3e99d5c3fb0b65aec43a77aaed03a19cc44b743",
   "external_urls": "not requested or network-checked"
 }

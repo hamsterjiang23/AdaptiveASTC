@@ -99,6 +99,9 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- 后续固定容量学习率对照完成12轮，选中epoch7 raw，验证80.7%／近阈值RMSE1.6040dB，比原scratch提高4.7个百分点，10×10召回下降4.69个百分点。末轮EMA经train-only BN重估达到80.9%／1.3716dB，单独记录419.26秒进程成本。接下来只改变remove_maxpool，先小样本再正式CUDA对照，不增加参数。详见[固定容量对照](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)和[BN记录](<../../experiment report/unity-accuracy90-20261111/normalization.md>)。`[verified: scratch-lr0003-result.json；normalization-scratch-lr0003.json；stem suite配置；opinion: 后续单项对照]`
+- [Unity串行全量采集](<../../experiment report/unity-accuracy90-20261111/unity-reference-series.md>)已启动，45批覆盖train10000／validation1000。先前320张train及2张validation已完成，66张真实归档合并检查通过；逐批核验原生参考像素、同次原标签和恢复记录。全量补测、生产训练及独立测试90%尚未完成。`[verified: unity-reference-series-plan.json；unity-reference-series-smoke.json；unity-reference-series.json counts/current_batch；opinion: 完成边界]`
+
 - 全量目标提取通过：train10000／validation1000生成120,276／12,864个非重叠240patch，44,000个整图候选PSNR重建最大差异1.42e-14 dB，耗时614.55秒。[提取记录](<../../experiment report/unity-accuracy90-20261111/patch-data-full.json>)保留身份与完整归档入口。`[verified: patch-data-full.json counts、patch_counts、wall_seconds]`
 - 独立编码检查通过：20张训练图、80个四候选patch，单独编码解码像素均与整图对应区域一致。这是固定astcenc3.3 medium的抽样核验。[检查记录](<../../experiment report/unity-accuracy90-20261111/patch-equivalence20.json>)同时记录320次含变换编码。`[verified: patch-equivalence20.json independent_patch_matches、independent_patch_comparisons、scope]`
 - 变换的最大绝对PSNR变化为水平翻转0.84 dB、垂直翻转1.02 dB、90°旋转6.60 dB。首批实验关闭这些增强，后续如启用则重新编码生成对应监督。`[verified: patch-equivalence20.json rows；opinion: 增强决定]`
