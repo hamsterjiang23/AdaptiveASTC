@@ -48,7 +48,7 @@ class UnityReferenceCapture:
         }
         original = {
             row["path"].casefold(): row
-            for row in ArtifactStore.read_json(baseline.manifest)["splits"]["train"]
+            for row in ArtifactStore.read_json(baseline.manifest)["splits"][baseline.source_split]
         }
         output = baseline.run_dir / "references" / f"normalized-{phase}"
         receipt_path = output / "receipt.json"
@@ -57,7 +57,7 @@ class UnityReferenceCapture:
             if ArtifactStore.sha256_file(output / "manifest.json") != cached["manifest_sha256"]:
                 raise ValueError("Archived reference manifest changed")
             manifest = ArtifactStore.read_json(output / "manifest.json")
-            mirrored = manifest["splits"]["train"]
+            mirrored = manifest["splits"][baseline.source_split]
             if (
                 cached["status"] != "passed"
                 or cached["images"] != len(expected)
@@ -131,6 +131,7 @@ class UnityReferenceCapture:
                 {
                     "path": path,
                     "source_md4": original[path.casefold()]["fileHash"],
+                    "source_split": baseline.source_split,
                     "reference_rgb_sha256": hashlib.sha256(reference.tobytes()).hexdigest(),
                     "source_rgb_equal": equal,
                     "native_png_orientation": "bottom row first, normalized by vertical flip",
@@ -149,7 +150,7 @@ class UnityReferenceCapture:
                     },
                 }
             )
-        manifest = {"splits": {"train": adapted}, "reference_capture": rows}
+        manifest = {"splits": {baseline.source_split: adapted}, "reference_capture": rows}
         ArtifactStore.write_json(output / "manifest.json", manifest)
         result = {
             "status": "passed",

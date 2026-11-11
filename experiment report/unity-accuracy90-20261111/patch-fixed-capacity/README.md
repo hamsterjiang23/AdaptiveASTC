@@ -7,3 +7,5 @@
 先在48训练图／16验证图上完成[两轮小样本检查](scratch-lr0003-smoke-summary.json)，最佳权重重载通过。该检查完整遍历小语料，每轮2步、共4次更新；建配置时可选max_steps字段赋值未生效，最终显式采用epochs=2及小语料限制，实际配置保留在[smoke suite](scratch-lr0003-smoke-suite.json)，不将该小样本指标用于效果判断。`[verified: scratch-lr0003-smoke.json history、config；smoke-summary.json；配置生成工具输出；opinion: 证据范围]`
 
 正式训练状态见[scratch-lr0003-summary.json](scratch-lr0003-summary.json)。每轮与最终报告由现有训练入口写入，完成后自动进行最佳权重重载核验。日志和检查点保存在.local的同名目录；后续BN重估另立实验身份，不覆盖原训练选择结果。`[verified: PatchExperimentSuite.run；scratch-lr0003-suite.json；opinion: 后续记录]`
+
+第7轮阶段记录：验证Top-1为80.7%，阈值附近RMSE为1.6040dB；此前原scratch配方最佳为76.0%／1.7681dB。当前状态仍是running，最终早停、权重重载和完整成本尚未产生。逐轮记录见[scratch-lr0003.json](scratch-lr0003.json)，不能把阶段提升当作Unity独立验收。`[verified: scratch-lr0003.json history[6]、status；../patch-v1/scratch-result.json；opinion: 完成边界]`

@@ -62,7 +62,7 @@ V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预�
 
 当前运行[固定容量学习率对照](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md>)：随机初始化lr1e-3→3e-4，其他正式设置不变，小样本CUDA／重载检查通过，正式训练已启动。`[verified: scratch-lr0003-smoke-summary.json；scratch-lr0003-summary.json；suite配置差异]`
 
-[Unity离线补测](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)已扩展到8张不同尺寸颜色图160候选，原52组指标和8个winner复核一致，新增108组。真实4096²法线样本的20组原ASTC重新解码及原生角度评价通过，全部未过角度门槛，原结果为最高PSNR回退；该审计没有重新编码法线。全量采集、HDR和多mip法线仍待验证。`[verified: unity-color8.json rows；unity-normal20-policy.json rows、encoded_candidates、quality_passing_candidates]`
+[Unity离线补测](<experiment report/unity-accuracy90-20261111/unity-supplement.md>)已扩展到8张不同尺寸颜色图160候选，原52组指标和8个winner复核一致，新增108组。真实4096²法线样本先完成20组原ASTC解码与原生角度审计，再实际重编码全部20组，压缩字节和解码像素均一致。全部候选未过角度门槛，原结果仍为最高PSNR回退。全量采集、HDR和多mip法线仍待验证。`[verified: unity-color8.json rows；unity-normal20-policy.json；unity-normal-replay20.json rows.reencoding、quality_passing_candidates]`
 
 分类准确率提升的完整调研见[分类准确率与压缩全流程优化报告](<experiment report/classification-accuracy-research-20261111/README.md>)，覆盖35项一手资料、当前中间类别召回诊断、有效batch／学习率入口核对，以及Unity导入、编码、部署和分阶段实验预算。建议值在报告中按待实验记录。`[verified: sources.json primary_source_count；diagnostics.json per_class_recall；该报告“导入、编码与部署的全流程因素”“分阶段预算”]`
 

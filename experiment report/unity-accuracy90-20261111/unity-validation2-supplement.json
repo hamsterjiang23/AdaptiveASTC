@@ -1,0 +1,175 @@
+{
+  "status": "passed",
+  "config": {
+    "capture": "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch",
+    "capture_receipt_sha256": "1028f3114a156e759c35d57fe7a4248292639ebc9db2b20ed39efdad401c6409",
+    "encoder_dll": "F:/MLBB_Test/haijiangli1_HAMSTERMLBB/Assets/Editor/Astc/Plugins/astcenc-avx2-shared.dll",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+    "quality_build_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-validation2-supplement",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-validation2-supplement.json",
+    "scope": "Two frozen validation imported references; full20candidate supplemental encoding; unchanged original search labels, separate cost; no test access; overlaps CUDA training",
+    "items": [
+      {
+        "index": 0,
+        "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback options and input RGBA hash, bound to original validation capture"
+      },
+      {
+        "index": 1,
+        "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback options and input RGBA hash, bound to original validation capture"
+      }
+    ],
+    "capture_run": "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111",
+    "capture_phase": "batch",
+    "options_receipt": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-validation2.json",
+    "options_receipt_sha256": "cf47bdfcc105d970f1efd871a4facd80c1d4d2ab822a5a42f040ed100c19cfd9"
+  },
+  "config_sha256": "dceae35f2fca7f5d64ae5ba45236c5bfbbe041eda7e9736a2d2079b72ea1c7b9",
+  "quality_build": {
+    "status": "passed",
+    "binding": {
+      "engine_source": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+      "engine_source_sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+      "engine_first_line": 2182,
+      "engine_last_line": 2675,
+      "extracted_sha256": "6c35c61f99982f22c2971bd8ed1b8cfa840c925a6dd73eb2d82b0517ec02ec31",
+      "wrapper_sha256": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+      "cmake_sha256": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+      "arithmetic": "MSVC fp:precise; unchanged engine functions; parity checked separately"
+    },
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native",
+        "-B",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64",
+        "-DMETRICS_SOURCE=E:/ASTC_Compression/experiment report/.local/unity-accuracy90-20261111/unity-quality-native-retry1/metrics.cpp"
+      ],
+      [
+        "cmake",
+        "--build",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "--config",
+        "Release",
+        "--parallel",
+        "1"
+      ]
+    ],
+    "dll": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+    "dll_sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+    "generated_sha256": "317966c31f0b8fda57a4e5cab7946d6b3f9118cdcda24d9683c0a99cca0de94a"
+  },
+  "capture_binding": {
+    "protocol_sha256": "d95e38874c500c578cd158012100659bd72c2ac9e49a9a836be5537f6425a81d",
+    "identity_sha256": "5498e2fc6c11b268a53ef5f257681afa64276b05f43960261b598486c86b7a37",
+    "phase_config_sha256": "b09576ef8ded4b16e9074863080e996b47624c4c5630e2b566e92eeb695aca1d",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64"
+  },
+  "metadata_binding": {
+    "status": "verified_actual_callback",
+    "receipt_sha256": "cf47bdfcc105d970f1efd871a4facd80c1d4d2ab822a5a42f040ed100c19cfd9",
+    "raw_options_sha256": "c1fc88075832908a2ebdceb6a78865b08c8260f16efaec800a320e5dea0ae7c1",
+    "audit_source_sha256": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d"
+  },
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03"
+  },
+  "rows": [
+    {
+      "index": 0,
+      "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+      "metadata": {
+        "index": 0,
+        "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+        "need_alpha": false,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback options and input RGBA hash, bound to original validation capture"
+      },
+      "original_selection": {
+        "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+        "block_size": "12x12",
+        "preset": "fastest",
+        "selection_reason": "first_valid",
+        "search_ms": 47.8803,
+        "format_ms": 51.7249,
+        "select_and_encode_ms": 51.7383,
+        "candidates_attempted": 1,
+        "candidates_measured": 1,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 1,
+      "new_candidates": 19,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 1,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.28986519999671145,
+        "decode_seconds": 0.13712000001760316,
+        "quality_seconds": 0.09967910001068958
+      },
+      "candidate_receipt_sha256": "049b795737cde7cfd910370f92e7d539ad15dfa1a7b2a7a70effdaade1a031cc"
+    },
+    {
+      "index": 1,
+      "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+      "metadata": {
+        "index": 1,
+        "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "metadata_source": "actual callback options and input RGBA hash, bound to original validation capture"
+      },
+      "original_selection": {
+        "asset": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+        "block_size": "12x12",
+        "preset": "exhaustive",
+        "selection_reason": "size_first_relaxed",
+        "search_ms": 1171.7495,
+        "format_ms": 1175.8039,
+        "select_and_encode_ms": 1175.8192,
+        "candidates_attempted": 6,
+        "candidates_measured": 6,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 6,
+      "new_candidates": 14,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 6,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 1.8242508999974234,
+        "decode_seconds": 0.15440380000291043,
+        "quality_seconds": 0.37581809999755933
+      },
+      "candidate_receipt_sha256": "52f1436f891493725815c591f6c99d646e1994d59601497bb0e8e9f25641d4f9"
+    }
+  ],
+  "test_opened": false,
+  "wall_seconds": 3.8977047000007587,
+  "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-validation2-supplement\\receipt.json",
+  "raw_receipt_sha256": "47e1e3bdc3cf4c71672200b91fdbb2de5963cbaae44458dad339dbc56c0661dc"
+}

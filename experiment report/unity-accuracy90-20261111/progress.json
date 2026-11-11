@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T14:19:30.778232+00:00",
+  "updated_utc": "2026-11-11T14:43:52.592824+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -62,8 +62,8 @@
   ],
   "next": [
     "Measure scratch LR0.0003 single-factor control; preserve original V1 recipes",
-    "Validate normal re-encoding and broader Unity quality branches separately",
-    "Prepare split-aware Unity reference corpus; keep independent final test sealed"
+    "Collect bounded training reference batches after the passed validation smoke",
+    "Validate remaining Unity quality branches; keep independent final test sealed"
   ],
   "decisions": [
     "User confirmed Unity imported references as main acceptance data",
@@ -279,7 +279,8 @@
     "expanded_capture": "64 training images, 558 callbacks, exact reference hashes",
     "color_supplement": "unity-color8.json",
     "normal_decode_metric_audit": "unity-normal20-policy.json",
-    "limitations": "normal audit has zero new encodes and mip0 only; HDR/full corpus pending",
+    "normal_encoder_replay": "unity-normal-replay20.json",
+    "limitations": "normal replay covers one mip0 image; HDR/multi-mip/full corpus pending",
     "expanded_result": {
       "status": "passed",
       "images": 64,
@@ -415,10 +416,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T14:19:02.202010+00:00",
+      "last_observed_alive_utc": "2026-11-11T14:43:32.937920+00:00",
       "name": "scratch-lr0003",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-lr0003\\receipt.json",
-      "sha256": "197b2f9ee94a594250e5ec2b3012029b4691e194608bccf2f88a7b5e49015be2",
+      "sha256": "8d42a67171137b0e94cecd34f80dbb1f36ae9d431f561d27c73bf4dd3f2c476d",
       "observed_processes": [
         {
           "pid": 57636,
@@ -431,6 +432,54 @@
           "create_time": 1794406682.1766236
         }
       ]
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T14:22:53.856754+00:00",
+      "ended_utc": "2026-11-11T14:23:31.571638+00:00",
+      "wall_seconds": 37.71251929999926,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T14:23:23.870090+00:00",
+      "name": "unity-normal-replay-winner",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-normal-replay-winner\\receipt.json",
+      "sha256": "12dd0f1a743329d910efe6ac5f87a146961f9301341bcd799ec478dd252d0768",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T14:30:30.241738+00:00",
+      "ended_utc": "2026-11-11T14:33:24.451472+00:00",
+      "wall_seconds": 174.1804817000011,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T14:33:00.346993+00:00",
+      "name": "unity-normal-replay20",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-normal-replay20\\receipt.json",
+      "sha256": "cac400a256880b1e3b13985d7e626ba2e41e5e919aaaf9e4e743f919a2c57a64",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T14:33:47.216818+00:00",
+      "ended_utc": "2026-11-11T14:39:57.280159+00:00",
+      "wall_seconds": 370.05921820000003,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": "2026-11-11T14:39:47.412302+00:00",
+      "name": "unity-validation2",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-validation2\\receipt.json",
+      "sha256": "1cf20f965ec2ee7f8f3aa094bb99f9befd25aa07b8c984adc900f122ab0a806b",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-11T14:40:59.623112+00:00",
+      "ended_utc": "2026-11-11T14:41:03.853907+00:00",
+      "wall_seconds": 4.228869599999598,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-validation2-supplement",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-validation2-supplement\\receipt.json",
+      "sha256": "56b0e3e08ce2fd184f5cd45027242e01ba9a8a5e7aa3df893625c7e6c3a282dd",
+      "observed_processes": []
     }
   ],
   "normalization_diagnostics": {
@@ -447,6 +496,13 @@
     "summary": "patch-fixed-capacity/scratch-lr0003-summary.json",
     "changed_factor": "scratch learning_rate 0.001 -> 0.0003",
     "development_best_accuracy_so_far": 0.892,
-    "production_acceptance": "not evaluated"
+    "production_acceptance": "not evaluated",
+    "live_snapshot": {
+      "status": "running",
+      "completed_epochs": 7,
+      "best_validation_accuracy": 0.807,
+      "best_near_threshold_rmse_db": 1.6039511187382403,
+      "report_sha256": "4620a6978ba01da9e720fae53d36fc78f274d8015b4de3c62f6a0f40dd776cc9"
+    }
   }
 }

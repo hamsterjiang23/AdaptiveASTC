@@ -92,7 +92,7 @@ def main() -> None:
     parser.add_argument("--reference-capture", type=Path)
     parser.add_argument("--micro-batch", type=int, choices=[16, 32, 64], default=64)
     parser.add_argument(
-        "--phase", choices=["probe", "smoke1", "smoke2", "smoke3", "full"], default="probe"
+        "--phase", choices=["probe", "smoke1", "smoke2", "smoke3", "full", "batch"], default="probe"
     )
     parser.add_argument(
         "--project", type=Path, default=Path("F:/MLBB_Test/haijiangli1_HAMSTERMLBB")
@@ -109,6 +109,10 @@ def main() -> None:
         / "experiment report/.local/gdc-lite-rgb-resnet18-seed20261109/coverage-v2/manifest.json",
     )
     args = parser.parse_args()
+    if args.phase == "batch" and (
+        args.method != "unity_search_baseline" or args.action != "recover"
+    ):
+        parser.error("--phase batch is recovery-only here; collect with capture_unity_options.py")
     if args.cohort is not None and (args.method != "gdc2023" or args.action != "evaluate"):
         parser.error("--cohort is supported only by GDC compression evaluation")
     if args.reference_capture is not None and (
@@ -408,6 +412,21 @@ def main() -> None:
     elif args.action == "run":
         result = baseline.run(args.phase, no_upm=args.no_upm)
     elif args.action == "recover":
+        if args.phase == "batch":
+            identity = json.loads((baseline.run_dir / "identity.json").read_text(encoding="utf-8"))
+            if identity.get("capture_kind") != "reference_batch":
+                raise ValueError("Batch recovery requires a frozen reference-batch identity")
+            baseline = UnitySearchBaseline(
+                ROOT,
+                args.project,
+                args.editor,
+                args.manifest,
+                run_id=baseline.run_dir.name,
+                capture_references=True,
+                source_split=identity["source_split"],
+                capture_paths=identity["capture_paths"],
+            )
+            baseline.verify_protocol()
         config = json.loads(
             (baseline.run_dir / f"{args.phase}-config.json").read_text(encoding="utf-8")
         )

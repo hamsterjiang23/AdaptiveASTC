@@ -1,0 +1,849 @@
+{
+  "status": "passed",
+  "config": {
+    "capture": "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111\\references\\normalized-smoke1",
+    "capture_run": "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111",
+    "capture_phase": "smoke1",
+    "capture_receipt_sha256": "722b8c87790a71dac06785c476062061fe5482bdeb88b55d24f5272eea9641dc",
+    "encoder_dll": "F:/MLBB_Test/haijiangli1_HAMSTERMLBB/Assets/Editor/Astc/Plugins/astcenc-avx2-shared.dll",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+    "quality_build_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+    "options_receipt": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-actual-options64.json",
+    "options_receipt_sha256": "c382e972f80ab2e0065c1aebc0f0ea41e52c38c06a724460368ea84c60443409",
+    "index": 56,
+    "path": "Assets/Scenes/temp/Environment/PVP_SPD_add/Textures/dimo/ML_067_S5_bluebuff_01_N.tga",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-normal-replay-winner",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-normal-replay-winner.json",
+    "reencode": "winner"
+  },
+  "config_sha256": "3249c11bceaf05612ba12652e3cefa61dde9fbb9a86e5471d476a70f27b00906",
+  "capture_binding": {
+    "protocol_sha256": "a9c0678ce2cc279a2b2cb929efff8ed5fdd209fed824a68a7a57bead80b7fb22",
+    "identity_sha256": "f9dc86162654b1ea4b41257060563b3ae408337bc29d129df2b268a515a15aaa",
+    "phase_config_sha256": "8f5d866e0b3db9af085eda62cea4c882a8a4c6e703512fd497047e2175d475aa",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64"
+  },
+  "input_options": {
+    "index": 56,
+    "path": "Assets/Scenes/temp/Environment/PVP_SPD_add/Textures/dimo/ML_067_S5_bluebuff_01_N.tga",
+    "need_alpha": false,
+    "profile": 1,
+    "normal_pack": false,
+    "channel": 4,
+    "rgba_sha256": "b8263e21302f48ddd403c555751b8de128aacbc6ae07629134f77bcbbf80afec",
+    "width": 4096,
+    "height": 4096,
+    "srgb_importer": false,
+    "texture_type_importer": "NormalMap",
+    "candidates_recorded": 20,
+    "candidate_keys": [
+      [
+        "10x10",
+        "exhaustive"
+      ],
+      [
+        "10x10",
+        "fast"
+      ],
+      [
+        "10x10",
+        "fastest"
+      ],
+      [
+        "10x10",
+        "medium"
+      ],
+      [
+        "10x10",
+        "thorough"
+      ],
+      [
+        "12x12",
+        "exhaustive"
+      ],
+      [
+        "12x12",
+        "fast"
+      ],
+      [
+        "12x12",
+        "fastest"
+      ],
+      [
+        "12x12",
+        "medium"
+      ],
+      [
+        "12x12",
+        "thorough"
+      ],
+      [
+        "6x6",
+        "exhaustive"
+      ],
+      [
+        "6x6",
+        "fast"
+      ],
+      [
+        "6x6",
+        "fastest"
+      ],
+      [
+        "6x6",
+        "medium"
+      ],
+      [
+        "6x6",
+        "thorough"
+      ],
+      [
+        "8x8",
+        "exhaustive"
+      ],
+      [
+        "8x8",
+        "fast"
+      ],
+      [
+        "8x8",
+        "fastest"
+      ],
+      [
+        "8x8",
+        "medium"
+      ],
+      [
+        "8x8",
+        "thorough"
+      ]
+    ],
+    "input_hash_ms": 60519.4836,
+    "metadata_source": "actual optimized encoder callback; raw RGBA hash matches archived PNG"
+  },
+  "imports_sha256": "888bdc3a4cf8a8fa6535da8852e2f1be774d8fe7f2b43856620c41f431de86c7",
+  "quality_build": {
+    "status": "passed",
+    "binding": {
+      "engine_source": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+      "engine_source_sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+      "engine_first_line": 2182,
+      "engine_last_line": 2675,
+      "extracted_sha256": "6c35c61f99982f22c2971bd8ed1b8cfa840c925a6dd73eb2d82b0517ec02ec31",
+      "wrapper_sha256": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+      "cmake_sha256": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+      "arithmetic": "MSVC fp:precise; unchanged engine functions; parity checked separately"
+    },
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native",
+        "-B",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64",
+        "-DMETRICS_SOURCE=E:/ASTC_Compression/experiment report/.local/unity-accuracy90-20261111/unity-quality-native-retry1/metrics.cpp"
+      ],
+      [
+        "cmake",
+        "--build",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "--config",
+        "Release",
+        "--parallel",
+        "1"
+      ]
+    ],
+    "dll": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+    "dll_sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+    "generated_sha256": "317966c31f0b8fda57a4e5cab7946d6b3f9118cdcda24d9683c0a99cca0de94a"
+  },
+  "native_thresholds": {
+    "mean": 3.200000047683716,
+    "p95": 9.0
+  },
+  "native_policy_binding": {
+    "tableConfig": {
+      "schemaVersion": 2,
+      "astcOptimizerEnabled": true,
+      "targetPsnrDb": 30.0,
+      "targetMsSsimDb": 21.0,
+      "targetNormalMeanDeg": 3.2,
+      "targetNormalP95Deg": 9.0,
+      "blackPixelRatioMild": 0.4,
+      "blackElevatedPsnrMildDb": 35.0,
+      "blackPixelRatioStrong": 0.8,
+      "blackElevatedPsnrStrongDb": 37.0,
+      "sizeFirstMinSideLarge": 512,
+      "rdoRefineMarginDb": 0.0,
+      "rdoGlobalEnabled": false,
+      "rdoQualityScalar": 0.5,
+      "rdoLookback": 256
+    },
+    "source_sha256": {
+      "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\ASTC_Cache\\benchmark\\unity-actual-options64-20261111\\smoke1\\parameter_cache_detail.jsonl": "ed893750bfd494e44491776b5c261ca28d7ddbb72fd79f6c4ace37945e8795f4"
+    }
+  },
+  "native_mip_evidence": "import mipmaps=false; mip_count1 checked against original angular metrics",
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\normal_audit.py": "7e18cbdc33b26e0b3c1e62451c9c7918ef9c73eb936d7b117407927027d17fa9",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03"
+  },
+  "original_selection": {
+    "asset": "Assets/Scenes/temp/Environment/PVP_SPD_add/Textures/dimo/ML_067_S5_bluebuff_01_N.tga",
+    "block_size": "6x6",
+    "preset": "exhaustive",
+    "selection_reason": "highest_psnr_fallback",
+    "search_ms": 254221.7953,
+    "format_ms": 270419.791,
+    "select_and_encode_ms": 270426.9771,
+    "candidates_attempted": 20,
+    "candidates_measured": 20,
+    "payload_reuses": 1,
+    "cache_hit": false,
+    "search_executed": true,
+    "success": true
+  },
+  "rows": [
+    {
+      "block_size": "12x12",
+      "preset": "fastest",
+      "psnr": 26.03,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 6.38,
+      "normal_p95_deg": 21.92,
+      "payload_kib": 1827.56,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 26.025856018066406,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 6.383777618408203,
+        "normal_p95_deg": 21.918718338012695,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.004143981933594887,
+        "normal_mean_deg": 0.0037776184082032316,
+        "normal_p95_deg": 0.0012816619873063928
+      },
+      "valid": false,
+      "payload_bytes": 1871424,
+      "decode_seconds": 0.026131999999051914,
+      "quality_seconds": 0.3554072000006272,
+      "astc_sha256": "827c6003a120ebf99127747b067098f99fbf6fddec1bf8d4e12c835360f9aebb",
+      "native_png_sha256": "78156d2392ea6406932896eeed1ac0c0a85d70135308c55bdf20ca11ddd837e2",
+      "reencoding": null
+    },
+    {
+      "block_size": "12x12",
+      "preset": "fast",
+      "psnr": 26.08,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 6.34,
+      "normal_p95_deg": 21.75,
+      "payload_kib": 1827.56,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 26.081369400024414,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 6.33747673034668,
+        "normal_p95_deg": 21.751331329345703,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0013694000244157678,
+        "normal_mean_deg": 0.0025232696533201704,
+        "normal_p95_deg": 0.001331329345703125
+      },
+      "valid": false,
+      "payload_bytes": 1871424,
+      "decode_seconds": 0.02201210000202991,
+      "quality_seconds": 0.3754508000019996,
+      "astc_sha256": "81eaad1c1870a281dd5d85469fd5b6eda6409ef91c5955dfda77e4f58117507e",
+      "native_png_sha256": "c55e1fa3c2a181ce2a5321a844867850d38331d8f955c50b50aa58b1fa334148",
+      "reencoding": null
+    },
+    {
+      "block_size": "12x12",
+      "preset": "medium",
+      "psnr": 26.45,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 5.91,
+      "normal_p95_deg": 21.05,
+      "payload_kib": 1827.56,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 26.454776763916016,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 5.910974025726318,
+        "normal_p95_deg": 21.052221298217773,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0047767639160163355,
+        "normal_mean_deg": 0.0009740257263182173,
+        "normal_p95_deg": 0.002221298217772727
+      },
+      "valid": false,
+      "payload_bytes": 1871424,
+      "decode_seconds": 0.021619999999529682,
+      "quality_seconds": 0.34675810000044294,
+      "astc_sha256": "aed02e4d192b52ee3e30e51b11c3ad039a774a98664dda155d3cf965e8634279",
+      "native_png_sha256": "d8a2d23db5930af2729ce51bc50101ee229ea180601b72aeb16f7bbefdcf19a5",
+      "reencoding": null
+    },
+    {
+      "block_size": "12x12",
+      "preset": "thorough",
+      "psnr": 26.65,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 5.61,
+      "normal_p95_deg": 20.79,
+      "payload_kib": 1827.56,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 26.652372360229492,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 5.611702919006348,
+        "normal_p95_deg": 20.788284301757812,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0023723602294936086,
+        "normal_mean_deg": 0.0017029190063473365,
+        "normal_p95_deg": 0.0017156982421866473
+      },
+      "valid": false,
+      "payload_bytes": 1871424,
+      "decode_seconds": 0.02222530000290135,
+      "quality_seconds": 0.35696700000335113,
+      "astc_sha256": "dff91a7a1e1d5fbdf5f4cc4177b6aada3228109a27aa64190519f169c8386cd8",
+      "native_png_sha256": "c448ddf1413179176c87645cf07155cc55d6a9d71bf74781b935196eda6045c7",
+      "reencoding": null
+    },
+    {
+      "block_size": "12x12",
+      "preset": "exhaustive",
+      "psnr": 26.74,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 5.5,
+      "normal_p95_deg": 20.6,
+      "payload_kib": 1827.56,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 26.741899490356445,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 5.496370315551758,
+        "normal_p95_deg": 20.600086212158203,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0018994903564468757,
+        "normal_mean_deg": 0.0036296844482421875,
+        "normal_p95_deg": 8.621215820170391e-05
+      },
+      "valid": false,
+      "payload_bytes": 1871424,
+      "decode_seconds": 0.02233699999851524,
+      "quality_seconds": 0.355423899996822,
+      "astc_sha256": "f677d63d7e6cb022ddec0047a0a5686b839de48aec6e9ab2ba386ce10024f529",
+      "native_png_sha256": "466d80874e1dc37b0d145effef2c112b6d503269b9166ce83abd68f3c514148b",
+      "reencoding": null
+    },
+    {
+      "block_size": "10x10",
+      "preset": "fastest",
+      "psnr": 26.87,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 5.66,
+      "normal_p95_deg": 19.73,
+      "payload_kib": 2626.56,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 26.87493133544922,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 5.664019584655762,
+        "normal_p95_deg": 19.730010986328125,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.004931335449217755,
+        "normal_mean_deg": 0.004019584655761577,
+        "normal_p95_deg": 1.0986328124573674e-05
+      },
+      "valid": false,
+      "payload_bytes": 2689600,
+      "decode_seconds": 0.019903699998394586,
+      "quality_seconds": 0.36508689999755006,
+      "astc_sha256": "4e550aff5f13953fb1da01e3da1809618cdbc22844de9492b3e746738c2bcb59",
+      "native_png_sha256": "14e26f997c6750aefb3db7fa1e9e45689f8dd9e0f2e5b4db279d7581e0f93dc1",
+      "reencoding": null
+    },
+    {
+      "block_size": "10x10",
+      "preset": "fast",
+      "psnr": 26.93,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 5.63,
+      "normal_p95_deg": 19.6,
+      "payload_kib": 2626.56,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 26.926321029663086,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 5.630551338195801,
+        "normal_p95_deg": 19.60459327697754,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0036789703369137783,
+        "normal_mean_deg": 0.0005513381958008878,
+        "normal_p95_deg": 0.004593276977537641
+      },
+      "valid": false,
+      "payload_bytes": 2689600,
+      "decode_seconds": 0.02180690000022878,
+      "quality_seconds": 0.3398068999995303,
+      "astc_sha256": "6727e4b4e06cbd480fc02b51edd5191ad14737bd9db91c4e983e1263f111dff3",
+      "native_png_sha256": "96bddf716e7c73716cba783903454f38480220499e3eb19542ebb8f5d93c48c4",
+      "reencoding": null
+    },
+    {
+      "block_size": "10x10",
+      "preset": "medium",
+      "psnr": 27.28,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 5.24,
+      "normal_p95_deg": 19.1,
+      "payload_kib": 2626.56,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 27.27620506286621,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 5.236084938049316,
+        "normal_p95_deg": 19.100248336791992,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0037949371337901994,
+        "normal_mean_deg": 0.003915061950683807,
+        "normal_p95_deg": 0.0002483367919907664
+      },
+      "valid": false,
+      "payload_bytes": 2689600,
+      "decode_seconds": 0.032013299998652656,
+      "quality_seconds": 0.35516720000305213,
+      "astc_sha256": "9998e8cf5c2e116a2ea52ea86523d2452e8cf0e86e1c73b581dc812cb142cb9f",
+      "native_png_sha256": "b7a0a9fd13a2b8bcacc3cff9d017e12a118558f5930039dc1629175329688051",
+      "reencoding": null
+    },
+    {
+      "block_size": "10x10",
+      "preset": "thorough",
+      "psnr": 27.42,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 5.01,
+      "normal_p95_deg": 18.91,
+      "payload_kib": 2626.56,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 27.424243927001953,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 5.009650707244873,
+        "normal_p95_deg": 18.914979934692383,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.00424392700195142,
+        "normal_mean_deg": 0.00034929275512673996,
+        "normal_p95_deg": 0.00497993469238267
+      },
+      "valid": false,
+      "payload_bytes": 2689600,
+      "decode_seconds": 0.020660799997131107,
+      "quality_seconds": 0.3332862000024761,
+      "astc_sha256": "fc1b6ec4f3d62fab11a45dc0a294d5c9ce0b3ee8a5450c18907177555cdd197c",
+      "native_png_sha256": "f3fb703fae48976e1d6c64946ee828118dec8c3215846f1b61ef34eb5b9f3b86",
+      "reencoding": null
+    },
+    {
+      "block_size": "10x10",
+      "preset": "exhaustive",
+      "psnr": 27.52,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 4.92,
+      "normal_p95_deg": 18.73,
+      "payload_kib": 2626.56,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 27.5175838470459,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 4.918692588806152,
+        "normal_p95_deg": 18.734516143798828,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.002416152954101136,
+        "normal_mean_deg": 0.0013074111938475852,
+        "normal_p95_deg": 0.004516143798827699
+      },
+      "valid": false,
+      "payload_bytes": 2689600,
+      "decode_seconds": 0.019891699997970136,
+      "quality_seconds": 0.3467939000001934,
+      "astc_sha256": "89a7cda77a8a8a736e8bf1a87f202723f676f12be6c0c31720974558b71e6f14",
+      "native_png_sha256": "95bd14a1a03832bdcd3465ea8b782e2ea14bc4ee13797165042af23cf70ce956",
+      "reencoding": null
+    },
+    {
+      "block_size": "8x8",
+      "preset": "fastest",
+      "psnr": 28.35,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 4.69,
+      "normal_p95_deg": 16.56,
+      "payload_kib": 4096.0,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 28.349166870117188,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 4.686504364013672,
+        "normal_p95_deg": 16.562984466552734,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0008331298828139211,
+        "normal_mean_deg": 0.003495635986328516,
+        "normal_p95_deg": 0.002984466552735654
+      },
+      "valid": false,
+      "payload_bytes": 4194304,
+      "decode_seconds": 0.019262800000433344,
+      "quality_seconds": 0.3484774999997171,
+      "astc_sha256": "7a8e1fb709c4c4f644c9a90e7886d281491f5c5a78aa7132e961850b707747b9",
+      "native_png_sha256": "9260aa7d95b52ee99f24106df8987ed0029e4d05bf5b5a779c0c136663f1632d",
+      "reencoding": null
+    },
+    {
+      "block_size": "8x8",
+      "preset": "fast",
+      "psnr": 28.42,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 4.64,
+      "normal_p95_deg": 16.41,
+      "payload_kib": 4096.0,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 28.4237117767334,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 4.642437934875488,
+        "normal_p95_deg": 16.41201400756836,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.003711776733396732,
+        "normal_mean_deg": 0.002437934875488601,
+        "normal_p95_deg": 0.002014007568359233
+      },
+      "valid": false,
+      "payload_bytes": 4194304,
+      "decode_seconds": 0.023193799999717157,
+      "quality_seconds": 0.3758918999992602,
+      "astc_sha256": "6f603bf0a5c05362f46376f641aad16445fa01f0a828d57895ec021e222e6b55",
+      "native_png_sha256": "d7c887b71d220afdeabc73ceaf6bb68adbf27f0ed7d7f368a7692fa2829c4c03",
+      "reencoding": null
+    },
+    {
+      "block_size": "8x8",
+      "preset": "medium",
+      "psnr": 28.73,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 4.32,
+      "normal_p95_deg": 16.08,
+      "payload_kib": 4096.0,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 28.73381233215332,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 4.324352741241455,
+        "normal_p95_deg": 16.083999633789062,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.003812332153319886,
+        "normal_mean_deg": 0.004352741241454794,
+        "normal_p95_deg": 0.003999633789064205
+      },
+      "valid": false,
+      "payload_bytes": 4194304,
+      "decode_seconds": 0.019582200002332684,
+      "quality_seconds": 0.3385467999978573,
+      "astc_sha256": "1d0563033976be4f56b394300503f136598e8e6719ffae03fbf00d58f2667bdf",
+      "native_png_sha256": "4d315ab9fa8822036c0b5d801cc04aace7eec021229c5748ceaf3a8d79d58441",
+      "reencoding": null
+    },
+    {
+      "block_size": "8x8",
+      "preset": "thorough",
+      "psnr": 28.86,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 4.15,
+      "normal_p95_deg": 15.96,
+      "payload_kib": 4096.0,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 28.862337112426758,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 4.149531841278076,
+        "normal_p95_deg": 15.955771446228027,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.002337112426758381,
+        "normal_mean_deg": 0.0004681587219241834,
+        "normal_p95_deg": 0.004228553771973509
+      },
+      "valid": false,
+      "payload_bytes": 4194304,
+      "decode_seconds": 0.01935080000112066,
+      "quality_seconds": 0.3574666000022262,
+      "astc_sha256": "f1b39af8bc164c5c8a832bd15e018e8b4880c020c705e5f5bf5f96a59371e6b8",
+      "native_png_sha256": "cbba4e6bbd2d14e2f0aea374a61c7805b7a94a723814e0c88bd2d69ff0c1fe84",
+      "reencoding": null
+    },
+    {
+      "block_size": "8x8",
+      "preset": "exhaustive",
+      "psnr": 28.95,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 4.08,
+      "normal_p95_deg": 15.82,
+      "payload_kib": 4096.0,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 28.94786834716797,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 4.0841779708862305,
+        "normal_p95_deg": 15.820645332336426,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0021316528320305395,
+        "normal_mean_deg": 0.004177970886230398,
+        "normal_p95_deg": 0.000645332336425497
+      },
+      "valid": false,
+      "payload_bytes": 4194304,
+      "decode_seconds": 0.021640999999362975,
+      "quality_seconds": 0.3465991999983089,
+      "astc_sha256": "67396737b072d2757d6cb11f948e4c91325e2a112d17f59a7090aff0472b709c",
+      "native_png_sha256": "acda6ab8b4674160974705d78571fc3702ab79442144d6eaace2f29059a3ef78",
+      "reencoding": null
+    },
+    {
+      "block_size": "6x6",
+      "preset": "fastest",
+      "psnr": 30.5,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 3.43,
+      "normal_p95_deg": 12.45,
+      "payload_kib": 7288.89,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 30.4970760345459,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 3.433547019958496,
+        "normal_p95_deg": 12.450896263122559,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0029239654541015625,
+        "normal_mean_deg": 0.003547019958495934,
+        "normal_p95_deg": 0.0008962631225593043
+      },
+      "valid": false,
+      "payload_bytes": 7463824,
+      "decode_seconds": 0.01935070000035921,
+      "quality_seconds": 0.35396899999977904,
+      "astc_sha256": "11610a49f95f82650b907b60f023a48e36423b2d954f04858978378f0479ff04",
+      "native_png_sha256": "cc296801c35afb19685dde144dead4ce27a04e6e9f5e8eaa2d99376b6f6d0386",
+      "reencoding": null
+    },
+    {
+      "block_size": "6x6",
+      "preset": "fast",
+      "psnr": 30.73,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 3.36,
+      "normal_p95_deg": 12.15,
+      "payload_kib": 7288.89,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 30.725830078125,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 3.356973648071289,
+        "normal_p95_deg": 12.150798797607422,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.004169921875000426,
+        "normal_mean_deg": 0.003026351928710813,
+        "normal_p95_deg": 0.0007987976074215197
+      },
+      "valid": false,
+      "payload_bytes": 7463824,
+      "decode_seconds": 0.018370499998127343,
+      "quality_seconds": 0.3607640000009269,
+      "astc_sha256": "3124acde5d92069b5b65dfafd6a4af1b2f683a95ea56d20542f996ddc6ae612d",
+      "native_png_sha256": "6875e7bb1d57518a5e173cf99bbf114e2fadaf56f6dfb1a3cae1fe015d82cca1",
+      "reencoding": null
+    },
+    {
+      "block_size": "6x6",
+      "preset": "medium",
+      "psnr": 31.08,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 3.1,
+      "normal_p95_deg": 11.8,
+      "payload_kib": 7288.89,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 31.081329345703125,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 3.0974934101104736,
+        "normal_p95_deg": 11.797019958496094,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0013293457031267053,
+        "normal_mean_deg": 0.002506589889526456,
+        "normal_p95_deg": 0.0029800415039069605
+      },
+      "valid": false,
+      "payload_bytes": 7463824,
+      "decode_seconds": 0.019866800001182128,
+      "quality_seconds": 0.35690339999928256,
+      "astc_sha256": "4ddaebad4073fd774d7a66f69348ef7d3e25ed9240504cac6dab0de1549da0c3",
+      "native_png_sha256": "94c05f73783d86d6c165f470a06c54c9ffb59a9c7dac9820295490d4e67624ea",
+      "reencoding": null
+    },
+    {
+      "block_size": "6x6",
+      "preset": "thorough",
+      "psnr": 31.21,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 2.97,
+      "normal_p95_deg": 11.72,
+      "payload_kib": 7288.89,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 31.205978393554688,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 2.972912549972534,
+        "normal_p95_deg": 11.716535568237305,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.004021606445313353,
+        "normal_mean_deg": 0.0029125499725339843,
+        "normal_p95_deg": 0.003464431762695952
+      },
+      "valid": false,
+      "payload_bytes": 7463824,
+      "decode_seconds": 0.019305599998915568,
+      "quality_seconds": 0.34327359999952023,
+      "astc_sha256": "bfc7d17bbbc22b1223ca3ea4e91441746a81939a4ef285343bfec135c2ea166c",
+      "native_png_sha256": "ce5f7a12f95bbae75d7ab7f1abfcdce22fa2d83a3b2fbec130d3ab2088f8e61d",
+      "reencoding": null
+    },
+    {
+      "block_size": "6x6",
+      "preset": "exhaustive",
+      "psnr": 31.32,
+      "ms_ssim_db": 0.0,
+      "normal_mean_deg": 2.94,
+      "normal_p95_deg": 11.6,
+      "payload_kib": 7288.89,
+      "status": "Below Target",
+      "metrics": {
+        "psnr": 31.32077980041504,
+        "black_pixel_ratio": 0.0,
+        "ms_ssim_db": null,
+        "normal_mean_deg": 2.9363231658935547,
+        "normal_p95_deg": 11.599584579467773,
+        "mip_count": 1,
+        "need_alpha": false
+      },
+      "differences": {
+        "psnr": 0.0007798004150387783,
+        "normal_mean_deg": 0.003676834106445259,
+        "normal_p95_deg": 0.00041542053222620723
+      },
+      "valid": false,
+      "payload_bytes": 7463824,
+      "decode_seconds": 0.019269700002041645,
+      "quality_seconds": 0.3740570000009029,
+      "astc_sha256": "315be072d75ee72a75aa0bfccb5b7e41566b6c920e06f5d1220c4073d0845c7d",
+      "native_png_sha256": "f011563293188f46ebdc6017f843d864b7b09dddbf70b04fb56a821d5a6191cd",
+      "reencoding": {
+        "encode_seconds": 15.353036900000006,
+        "decode_seconds": 0.023065900000801776,
+        "payload_and_decode_match": true,
+        "astc_sha256": "315be072d75ee72a75aa0bfccb5b7e41566b6c920e06f5d1220c4073d0845c7d",
+        "decoded_png_sha256": "aedf21240b58d006b30cd0ea21d8eed540e3551d82f63b48ea166208c106a149",
+        "decoded_png_orientation": "top-left, aligned with exported original.png"
+      }
+    }
+  ],
+  "encoded_candidates": 1,
+  "encoding_attempts": 1,
+  "reencode_mode": "winner",
+  "scope": "Archive original normal candidates; fresh decode and native metrics; optional separately timed encoding replay; no search or label changes",
+  "test_opened": false,
+  "current_encoding": null,
+  "quality_passing_candidates": 0,
+  "wall_seconds": 32.88102819999767,
+  "raw_receipt_sha256": "41d4a2015061530c9f8a2fe383aeaf3fd0063070a552226ab80adab76b8c9a51"
+}

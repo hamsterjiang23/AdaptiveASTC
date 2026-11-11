@@ -74,4 +74,27 @@ uv run --frozen python script/capture_unity_options.py audit --config <采集配
 uv run --frozen python script/capture_unity_options.py restore --journal <managed-hook目录>
 ```
 
-采集配置包含project、editor、manifest、run_id、phase和report；当前phase限probe／smoke1／smoke2／smoke3，全量采集仍需另行通过覆盖与成本检查。独立restore要求项目关闭，只恢复原字节或本次补丁可识别的文件状态。`[verified: metadata.py UnityOptionCapture.run；capture_unity_options.py main]`
+采集配置包含project、editor、manifest、run_id、phase和report。原phase支持probe／smoke1／smoke2／smoke3；显式分批增加`phase=batch`、`source_split=train/validation`和1至256个`capture_paths`。每批路径须属于冻结划分且不可跨划分重复，参考manifest保留原划分，test／calibration不进入开发采集。独立restore要求项目关闭，只恢复原字节或本次补丁可识别的文件状态。`[verified: metadata.py UnityOptionCapture.run；benchmark.py prepare；unity_reference.py collect；capture_unity_options.py main]`
+
+## 真实法线重新编码
+
+先按[选中候选配置](unity-normal-replay-winner-config.json)重编码6×6/exhaustive，完整ASTC及RGBA解码逐字节一致；再按[全部候选配置](unity-normal-replay20-config.json)完成20次重编码，20组均一致。输入和实际needAlpha=false／Linear profile1／normal-pack=false、原DLL、原生指标及源码身份均由既有采集链绑定，结果见[完整重编码记录](unity-normal-replay20.json)。本轮只覆盖这一张4096²、mip0法线图。`[verified: unity-normal-replay-winner.json rows.reencoding；unity-normal-replay20.json input_options、rows.reencoding、native_mip_evidence]`
+
+20组纯编码合计124.1963秒、重编码后的解码0.4525秒，审计循环170.1485秒、全进程174.1805秒；循环还包含原候选归档、原解码／指标核验和输出写盘。这些成本与CUDA训练重叠，不能替换独立搜索baseline或作为部署加速结果。新ASTC与上行起点RGBA PNG保存在独立reencoded目录，原搜索产物保持原身份。`[verified: unity-normal-replay20.json rows.reencoding、wall_seconds；.local/jobs/unity-normal-replay20/receipt.json；normal_audit.py replay_candidate；opinion: 计时边界]`
+
+`audit-normal`配置的`reencode`可取none／winner／all，缺省none；记录尝试数、成功数与当前候选，失败时保留新产物和失败记录。重编码仍要求实际normal-pack=false，HDR和多mip不会被这次通过结果覆盖。`[verified: normal_audit.py run/replay_candidate]`
+
+## 分批采集的异常恢复
+
+正常结束与可捕获异常仍自动恢复meta和managed源码。若采集进程被强制终止，先确认该工程Editor已退出，再用以下入口分别恢复meta与源码；`recover --phase batch`会核对冻结批次身份、路径／划分和协议哈希，拒绝改变过的配置。它只开放恢复，不能绕过原baseline入口启动batch。`[verified: benchmark.py run/restore_metadata；metadata.py run；script/reproduce.py recover分支；test_unity_reference_batches.py CLI恢复与拒绝用例]`
+
+```powershell
+uv run --frozen python script/reproduce.py recover --phase batch --run-id <批次run_id> --project <原工程路径> --editor <原Editor路径> --manifest <原manifest路径>
+uv run --frozen python script/capture_unity_options.py restore --journal <该批次的managed-hook目录>
+```
+
+## 验证划分的真实采集闭环
+
+[两张validation图](unity-validation2.json)使用[固定配置](unity-validation2-config.json)完成7次原搜索回调，实际输入哈希吻合；归档manifest只包含validation，源码恢复SHA一致、meta恢复0冲突，进程370.06秒。第一张源RGB512²导入后为256²，第二张仍为512²，两图实际needAlpha分别false／true。`[verified: unity-validation2.json rows、managed_source_restoration；.local/unity-validation2-20261111/references/normalized-batch/manifest.json；batch-receipt.json；jobs/unity-validation2/receipt.json]`
+
+随后按实际参数[补测40候选](unity-validation2-supplement.json)，新增33组，原搜索已测7组指标与两个选中payload／解码一致；收集循环3.8977秒，与CUDA训练并行。该小样本验证了validation身份在导出和候选补测中的传递，不代表完整验证集或最终测试验收。下一批训练参考路径已冻结在[256图配置](unity-train256-batch001-config.json)，排除已采集actual64中的路径。`[verified: unity-validation2-supplement.json rows、wall_seconds；unity-train256-batch001-config.json capture_paths；opinion: 完成边界]`

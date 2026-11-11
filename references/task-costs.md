@@ -6,9 +6,11 @@
 |---|---|---|
 | 原生patch目标提取 | train10000、validation1000，614.55秒 | 133140个patch，CPU／磁盘任务；峰值内存未记录。`[verified: ../experiment report/unity-accuracy90-20261111/patch-data-full.json]` |
 | CUDA patch训练 | scratch 14轮2787.39秒，含数据检查、验证和保存 | 标准stem batch128的启动探针峰值分配显存2,118,429,184字节；正式训练和系统占用另测。单GPU队列，不并行启动其他训练。`[verified: ../experiment report/unity-accuracy90-20261111/patch-v1/scratch-result.json；patch-v1-smoke.json peak_vram_bytes；opinion: 调度]` |
-| Unity实际参数采集 | 64训练图558回调，进程637.63秒 | 输入SHA耗时74.20秒；峰值内存未记录。包含导出／编译／哈希，不是搜索baseline。`[verified: ../experiment report/unity-accuracy90-20261111/unity-actual-options64.json；.local对应jobs/unity-options64/receipt.json]` |
+| Unity实际参数采集 | 64训练图558回调，进程637.63秒 | 输入SHA耗时74.20秒；后续validation2启动刷新阶段观察Editor工作集11.08GiB，该次采样不是峰值。启动前按重内存任务检查余量，单工程串行。包含导出／编译／哈希，不是搜索baseline。`[verified: ../experiment report/unity-accuracy90-20261111/unity-actual-options64.json；.local对应jobs/unity-options64/receipt.json；2026-11-11 validation2进程33916 WorkingSetSize=11901513728；opinion: 调度]` |
 | 颜色图候选补测 | 8图160候选，进程52.79秒／收集循环52.43秒 | 尺寸1至2048，奇数边缘／Alpha／大图分支；CPU任务，峰值内存未测，与CUDA训练重叠。`[verified: ../experiment report/unity-accuracy90-20261111/unity-color8.json；.local对应jobs/unity-color8/receipt.json]` |
 | 法线候选解码与指标审计 | 一张4096²、20候选，进程21.40秒／循环15.93秒 | 0次新编码，复用原ASTC；峰值内存未测。mip0-only，不外推多mip。`[verified: ../experiment report/unity-accuracy90-20261111/unity-normal20-policy.json；.local对应jobs/unity-normal20-policy/receipt.json]` |
+| 法线全候选重编码核验 | 一张4096²、20候选，进程174.18秒／循环170.15秒 | 纯编码124.20秒，20组压缩／解码字节一致。与CUDA训练重叠，峰值内存未测；不外推HDR／多mip或独立部署时延。`[verified: ../experiment report/unity-accuracy90-20261111/unity-normal-replay20.json；.local对应jobs/unity-normal-replay20/receipt.json]` |
+| validation分批采集探针 | 2图7回调，进程370.06秒；另40候选补测循环3.8977秒 | Editor刷新阶段观察工作集11.08GiB，原meta／源码恢复通过；一图512²导入为256²。成本以工程启动／刷新为主，批量外推单列估计。`[verified: ../experiment report/unity-accuracy90-20261111/unity-validation2.json；unity-validation2-supplement.json；.local对应jobs/unity-validation2/receipt.json、batch-editor.log；opinion: 成本外推]` |
 | 冻结权重BN诊断 | scratch末轮，整进程400.03秒 | raw／EMA各用16384训练patch重估，另有4次validation；学习参数未变，GPU串行，峰值内存未记录。`[verified: ../experiment report/unity-accuracy90-20261111/normalization-scratch.json；.local对应jobs/normalization-scratch/receipt.json]` |
 
 | 任务 | 读取 | 写入与互斥 |

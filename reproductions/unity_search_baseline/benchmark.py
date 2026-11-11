@@ -28,6 +28,8 @@ class UnitySearchBaseline:
         *,
         run_id: str = "unity-search-baseline-lite-rdo-off",
         capture_references: bool = False,
+        source_split: str = "train",
+        capture_paths: list[str] | None = None,
     ) -> None:
         if not run_id or Path(run_id).name != run_id or run_id in {".", ".."}:
             raise ValueError("run_id must be one directory name")
@@ -37,11 +39,42 @@ class UnitySearchBaseline:
         self.manifest = manifest.resolve()
         self.run_dir = self.root / "experiment report/.local" / run_id
         self.capture_references = capture_references
+        if source_split not in {"train", "validation"}:
+            raise ValueError("Reference development collection excludes calibration and test")
+        if capture_paths is not None and (
+            not capture_references
+            or not isinstance(capture_paths, list)
+            or not 1 <= len(capture_paths) <= 256
+            or not all(isinstance(path, str) and path for path in capture_paths)
+            or len({self._asset_key(path) for path in capture_paths}) != len(capture_paths)
+        ):
+            raise ValueError("Reference batch requires 1..256 unique asset paths")
+        if source_split != "train" and capture_paths is None:
+            raise ValueError("Validation collection requires an explicit reference batch")
+        self.source_split = source_split
+        self.capture_paths = capture_paths
 
     def prepare(self) -> dict[str, object]:
         document = json.loads(self.manifest.read_text(encoding="utf-8"))
-        records = document["splits"]["train"]
-        if len(records) != 10_000:
+        source_records = document["splits"][self.source_split]
+        records = source_records
+        if self.capture_paths is not None:
+            by_path = {self._asset_key(row["path"]): row for row in source_records}
+            if len(by_path) != len(source_records):
+                raise ValueError("Duplicate assets in the frozen source split")
+            if any(self._asset_key(path) not in by_path for path in self.capture_paths):
+                raise ValueError("Requested batch asset is outside its frozen source split")
+            records = [by_path[self._asset_key(path)] for path in self.capture_paths]
+            selected_keys = {self._asset_key(row["path"]) for row in records}
+            other_keys = {
+                self._asset_key(row["path"])
+                for name, rows in document["splits"].items()
+                if name != self.source_split
+                for row in rows
+            }
+            if selected_keys & other_keys:
+                raise ValueError("Reference batch contains assets shared across source splits")
+        elif len(records) != 10_000:
             raise ValueError(f"Expected 10000 training images, got {len(records)}")
         buckets: dict[tuple[str, int, bool], list[dict[str, object]]] = defaultdict(list)
         for row in records:
@@ -58,9 +91,10 @@ class UnitySearchBaseline:
         for group in buckets.values():
             rng.shuffle(group)
         selected: list[dict[str, object]] = []
-        while len(selected) < 64:
+        smoke_count = min(64, len(records))
+        while len(selected) < smoke_count:
             for key in sorted(buckets):
-                if buckets[key] and len(selected) < 64:
+                if buckets[key] and len(selected) < smoke_count:
                     selected.append(buckets[key].pop())
         self.run_dir.mkdir(parents=True, exist_ok=True)
         identity = {
@@ -94,9 +128,29 @@ class UnitySearchBaseline:
         }
         if self.capture_references:
             identity["reference_capture"] = "native disk debug exports enabled after warmup"
+        if self.capture_paths is not None:
+            identity.pop("train_count")
+            identity.update(
+                capture_kind="reference_batch",
+                source_split=self.source_split,
+                source_split_count=len(source_records),
+                capture_paths=self.capture_paths,
+                selected_count=len(records),
+            )
         self._write_frozen(self.run_dir / "identity.json", identity)
-        for phase in ["probe", "smoke1", "smoke2", "smoke3", "full"]:
-            rows = records if phase == "full" else selected[:2] if phase == "probe" else selected
+        phases = (
+            ["batch"]
+            if self.capture_paths is not None
+            else ["probe", "smoke1", "smoke2", "smoke3", "full"]
+        )
+        for phase in phases:
+            rows = (
+                records
+                if phase in {"full", "batch"}
+                else selected[:2]
+                if phase == "probe"
+                else selected
+            )
             config = {
                 "assets": [{"path": row["path"]} for row in rows],
                 "warmup": [{"path": row["path"]} for row in selected[:2]],
@@ -148,6 +202,8 @@ class UnitySearchBaseline:
             or identity["editor"] != str(self.editor)
             or identity["manifest"] != str(self.manifest)
             or identity["manifest_sha256"] != hashlib.sha256(self.manifest.read_bytes()).hexdigest()
+            or identity.get("source_split", "train") != self.source_split
+            or identity.get("capture_paths") != self.capture_paths
         ):
             raise ValueError("Current paths or manifest differ from the prepared protocol")
         for name, expected in identity["encoder_dlls"].items():
@@ -162,7 +218,8 @@ class UnitySearchBaseline:
         config = json.loads((self.run_dir / f"{phase}-config.json").read_text(encoding="utf-8"))
         manifest = json.loads(self.manifest.read_text(encoding="utf-8"))
         known = {
-            self._asset_key(row["path"]): row["fileHash"] for row in manifest["splits"]["train"]
+            self._asset_key(row["path"]): row["fileHash"]
+            for row in manifest["splits"][self.source_split]
         }
         expected = {self._asset_key(row["path"]) for row in config["assets"]}
         assembly = self.run_dir / f"{phase}-assembly.json"

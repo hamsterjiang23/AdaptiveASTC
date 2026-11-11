@@ -14,8 +14,9 @@ from reproductions.common.unity_reference import UnityReferenceCapture
 from reproductions.unity_search_baseline.benchmark import UnitySearchBaseline
 
 
+@pytest.mark.parametrize("source_split", ["train", "validation"])
 def test_native_reference_rows_are_normalized_before_quality_measurement(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, source_split: str
 ) -> None:
     project = tmp_path / "project"
     source = project / "Assets/a.png"
@@ -28,13 +29,21 @@ def test_native_reference_rows_are_normalized_before_quality_measurement(
         manifest,
         {
             "splits": {
-                "train": [
+                source_split: [
                     {"path": "Assets/a.png", "fileHash": MD4.new(source.read_bytes()).hexdigest()}
                 ]
             }
         },
     )
-    baseline = UnitySearchBaseline(tmp_path, project, tmp_path / "unused-editor", manifest)
+    baseline = UnitySearchBaseline(
+        tmp_path,
+        project,
+        tmp_path / "unused-editor",
+        manifest,
+        capture_references=True,
+        source_split=source_split,
+        capture_paths=["Assets/a.png"] if source_split == "validation" else None,
+    )
     baseline.run_dir.mkdir(parents=True)
     debug = project / "ASTC_Cache/a_1"
     debug.mkdir(parents=True)
@@ -80,6 +89,11 @@ def test_native_reference_rows_are_normalized_before_quality_measurement(
     assert result["source_rgb_equal"] == 1
     assert result["rows"][0]["unity_lossless"]
     assert result["rows"][0]["unity_rgb_psnr"] is None
+    assert result["rows"][0]["source_split"] == source_split
+    archived_manifest = ArtifactStore.read_json(
+        baseline.run_dir / "references/normalized-probe/manifest.json"
+    )
+    assert list(archived_manifest["splits"]) == [source_split]
     assert capture.collect("probe") == result
     mirrored = baseline.run_dir / "references/normalized-probe/project/Assets/a.png"
     original_mirror = mirrored.read_bytes()

@@ -1,4 +1,4 @@
-"""Archive and remeasure already encoded Unity normal candidates without re-encoding."""
+"""Archive native normal candidates and optionally replay their original encoding."""
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ import time
 from pathlib import Path
 
 import numpy as np
+from numpy.typing import NDArray
 from PIL import Image
 
 from adaptive_astc.config import JsonDict
@@ -94,8 +95,42 @@ class UnityNormalCandidateAudit:
             result.append(threshold)
         return result[0], result[1]
 
+    @staticmethod
+    def replay_candidate(
+        backend: UnityASTCBackend,
+        original: NDArray[np.uint8],
+        decoded: NDArray[np.uint8],
+        astc_path: Path,
+        output: Path,
+        block: int,
+        preset: str,
+        need_alpha: bool,
+    ) -> JsonDict:
+        payload, reconstructed, costs = backend.encode_decode(
+            original, block, preset, srgb=False, need_alpha=need_alpha
+        )
+        height, width = original.shape[:2]
+        container = backend.container(payload, width, height, block)
+        output.mkdir(exist_ok=True)
+        encoded_path = output / astc_path.name
+        encoded_path.write_bytes(container)
+        png_path = encoded_path.with_suffix(".png")
+        Image.fromarray(reconstructed[::-1]).save(png_path)
+        if container != astc_path.read_bytes() or not np.array_equal(reconstructed, decoded):
+            raise ValueError("Re-encoded normal candidate differs from original payload/decode")
+        return {
+            **costs,
+            "payload_and_decode_match": True,
+            "astc_sha256": ArtifactStore.sha256_file(encoded_path),
+            "decoded_png_sha256": ArtifactStore.sha256_file(png_path),
+            "decoded_png_orientation": "top-left, aligned with exported original.png",
+        }
+
     def run(self) -> JsonDict:
         config = self.config
+        replay_mode = config.get("reencode", "none")
+        if replay_mode not in {"none", "winner", "all"}:
+            raise ValueError("Reencode must be none, winner or all")
         archive, capture = Path(config["capture"]), Path(config["capture_run"])
         receipt = ArtifactStore.read_json(archive / "receipt.json")
         if (
@@ -115,6 +150,8 @@ class UnityNormalCandidateAudit:
         if type(index) is not int or not 0 <= index < len(receipt["rows"]):
             raise ValueError("Normal audit index outside reference cohort")
         reference, observed = receipt["rows"][index], options["rows"][index]
+        if replay_mode != "none" and observed["normal_pack"]:
+            raise ValueError("Normal replay currently requires actual normal_pack=false")
         if (
             reference["path"] != config["path"]
             or reference["texture_type"] != "NormalMap"
@@ -216,9 +253,11 @@ class UnityNormalCandidateAudit:
             "original_selection": reference["selection"],
             "rows": [],
             "encoded_candidates": 0,
+            "encoding_attempts": 0,
+            "reencode_mode": replay_mode,
             "scope": (
-                "Archive original normal candidates; fresh decode and metrics only; "
-                "no search or label changes"
+                "Archive original normal candidates; fresh decode and native metrics; "
+                "optional separately timed encoding replay; no search or label changes"
             ),
             "test_opened": False,
         }
@@ -273,6 +312,28 @@ class UnityNormalCandidateAudit:
                 )
                 if self.native_status_valid(expected["status"]) != valid:
                     raise ValueError("Normal angular gate differs from native report")
+                replay = None
+                winner = reference["selection"]
+                if replay_mode == "all" or (
+                    replay_mode == "winner"
+                    and (expected["block_size"], expected["preset"])
+                    == (winner["block_size"], winner["preset"])
+                ):
+                    state["encoding_attempts"] += 1
+                    state["current_encoding"] = prefix
+                    ArtifactStore.write_json(output / "receipt.json", state)
+                    replay = self.replay_candidate(
+                        backend,
+                        original,
+                        decoded,
+                        astc_path,
+                        output / "reencoded",
+                        block,
+                        expected["preset"],
+                        observed["need_alpha"],
+                    )
+                    state["encoded_candidates"] += 1
+                    state["current_encoding"] = None
                 state["rows"].append(
                     {
                         **expected,
@@ -284,6 +345,7 @@ class UnityNormalCandidateAudit:
                         "quality_seconds": metric_seconds,
                         "astc_sha256": ArtifactStore.sha256_file(astc_path),
                         "native_png_sha256": ArtifactStore.sha256_file(png_path),
+                        "reencoding": replay,
                     }
                 )
                 ArtifactStore.write_json(output / "receipt.json", state)

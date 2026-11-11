@@ -134,6 +134,8 @@ class UnityOptionCapture:
             Path(config["manifest"]),
             run_id=config["run_id"],
             capture_references=True,
+            source_split=config.get("source_split", "train"),
+            capture_paths=config.get("capture_paths"),
         )
         baseline.require_project_closed()
         previous_path = baseline.run_dir / "options-receipt.json"
@@ -157,8 +159,10 @@ class UnityOptionCapture:
     def run(self) -> JsonDict:
         config = self.config
         phase = config["phase"]
-        if phase not in {"probe", "smoke1", "smoke2", "smoke3"}:
+        if phase not in {"probe", "smoke1", "smoke2", "smoke3", "batch"}:
             raise ValueError("Metadata pilot must pass before full collection")
+        if (phase == "batch") != (config.get("capture_paths") is not None):
+            raise ValueError("Explicit capture paths require batch phase")
         baseline = UnitySearchBaseline(
             self.root,
             Path(config["project"]),
@@ -166,6 +170,8 @@ class UnityOptionCapture:
             Path(config["manifest"]),
             run_id=config["run_id"],
             capture_references=True,
+            source_split=config.get("source_split", "train"),
+            capture_paths=config.get("capture_paths"),
         )
         if baseline.run_dir.exists() or Path(config["report"]).exists():
             raise FileExistsError("Use a new capture identity and report")
