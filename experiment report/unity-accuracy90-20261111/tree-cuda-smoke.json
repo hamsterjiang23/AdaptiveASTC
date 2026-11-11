@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "scope": "synthetic CUDA environment smoke,128 rows and4 boosting rounds; accuracy is outside the experiment evaluation",
+  "xgboost_version": "3.1.3",
+  "device": "cuda:0",
+  "build_info": {
+    "BUILTIN_PREFETCH_PRESENT": false,
+    "CUDA_VERSION": [
+      12,
+      5
+    ],
+    "DEBUG": false,
+    "MM_PREFETCH_PRESENT": true,
+    "THRUST_VERSION": [
+      2,
+      6,
+      1
+    ],
+    "USE_CUDA": true,
+    "USE_DLOPEN_NCCL": false,
+    "USE_FEDERATED": false,
+    "USE_NCCL": false,
+    "USE_NVCOMP": false,
+    "USE_OPENMP": true,
+    "USE_RMM": false,
+    "libxgboost": "E:\\ASTC_Compression\\.venv\\Lib\\site-packages\\xgboost\\lib\\xgboost.dll"
+  },
+  "prediction_shape": [
+    128,
+    4
+  ],
+  "history": {
+    "train": {
+      "mlogloss": [
+        1.3380962945520878,
+        1.293927132152021,
+        1.2528233928605914,
+        1.2147135487757623
+      ],
+      "merror": [
+        0.3359375,
+        0.34375,
+        0.3203125,
+        0.3046875
+      ]
+    }
+  }
+}

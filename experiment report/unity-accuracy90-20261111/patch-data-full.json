@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "config": {
+    "schema": "gdc-native-patch-sse-v1",
+    "manifest_sha256": "89139795be8374df3d363dec3b046effb3709c9deba44983785c106bf828de45",
+    "measured_root": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full",
+    "patch_size": 240,
+    "limits": {
+      "train": 0,
+      "validation": 0
+    },
+    "normalization": "SSE / (valid_width * valid_height * 3 * 255^2)",
+    "edge_targets": "real pixels only; no overlap; input edge replication at training",
+    "classes": [
+      "6x6",
+      "8x8",
+      "10x10",
+      "12x12"
+    ],
+    "source_code_sha256": "ea10d53a582635ce40e15b468380c7783a775f27c5ac883b57994f064b39e3b3"
+  },
+  "binding": "f94fca2c6eef617a63c03756c82f17377f60f8c9de8c09d3ad8b27b84beec7cd",
+  "counts": {
+    "train": 10000,
+    "validation": 1000
+  },
+  "patch_counts": {
+    "train": 120276,
+    "validation": 12864
+  },
+  "max_psnr_reconstruction_error_db": 1.4210854715202004e-14,
+  "wall_seconds": 614.5488447999996,
+  "test_opened": false,
+  "scope": "source RGB GDC development; not Unity production acceptance",
+  "fingerprint": "45c879fa42839d8778af7b2224acaafa1209659bde11c8cb9302647343fd636f",
+  "raw_corpus_sha256": "c1c1208bbb17fbd49cae1bc244b8ff67f0bf3c7342741be8134c054c5e752a95",
+  "archived_source": "experiment report/.local/unity-accuracy90-20261111/sources/patch_targets-v1.py"
+}

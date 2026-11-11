@@ -1,0 +1,78 @@
+{
+  "scope": "train and validation receipts only; no test analysis",
+  "provided_npz_sha256": "11197d20d741f68ccccde84359e6fd94832f0dd9fdd4efb563ce338c61a71792",
+  "manifest_sha256": "89139795be8374df3d363dec3b046effb3709c9deba44983785c106bf828de45",
+  "results": {
+    "train": {
+      "count": 10000,
+      "receipt_hashes_fingerprint": "68a465aff3b3802ae2dccd70c31256360297791a28faa3da6068d1bf971aea5d",
+      "provided_matrix_finite_values_match": true,
+      "lossless_entries": 1067,
+      "provided_lossless_sentinel_values": [
+        99.0
+      ],
+      "rule_accuracy": 1.0,
+      "nonmonotonic_images": 138,
+      "no_feasible_images": 1167,
+      "independent_gaussian_noise_simulation": [
+        {
+          "sigma_db": 0.5,
+          "mean_accuracy": 0.93284,
+          "seeds_0_to_4_accuracy": [
+            0.931,
+            0.9297,
+            0.9344,
+            0.9334,
+            0.9357
+          ]
+        },
+        {
+          "sigma_db": 0.75,
+          "mean_accuracy": 0.90116,
+          "seeds_0_to_4_accuracy": [
+            0.9001,
+            0.8963,
+            0.903,
+            0.9022,
+            0.9042
+          ]
+        },
+        {
+          "sigma_db": 1.0,
+          "mean_accuracy": 0.87212,
+          "seeds_0_to_4_accuracy": [
+            0.8695,
+            0.8681,
+            0.8739,
+            0.8736,
+            0.8755
+          ]
+        },
+        {
+          "sigma_db": 1.5,
+          "mean_accuracy": 0.8159000000000001,
+          "seeds_0_to_4_accuracy": [
+            0.816,
+            0.8131,
+            0.8142,
+            0.8166,
+            0.8196
+          ]
+        }
+      ]
+    },
+    "validation": {
+      "count": 1000,
+      "receipt_hashes_fingerprint": "a1d554ca3fec6f079216c9b9c9735e98241b84cfcf6dd924d0e3d54183040788",
+      "provided_matrix_finite_values_match": true,
+      "lossless_entries": 83,
+      "provided_lossless_sentinel_values": [
+        99.0
+      ],
+      "rule_accuracy": 1.0,
+      "nonmonotonic_images": 10,
+      "no_feasible_images": 75
+    }
+  },
+  "interpretation": "Independent unbiased Gaussian perturbations measure decision sensitivity; not an achievable regression error or accuracy guarantee. Lossless targets remain infinity."
+}

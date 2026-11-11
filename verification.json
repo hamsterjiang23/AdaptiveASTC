@@ -355,5 +355,62 @@
       "sources.json": "d4db689ed4f83dde6c12bc9edd62ab185284b5e65437486d9c07d0dd445a71ae",
       "training-and-errors.png": "8c9f5c4caf80d4a012288371e1d391fe0e98517b7f7c17c53234a81ce977ae02"
     }
+  },
+  "unity_accuracy90_v1_20261111": {
+    "status": "passed_scoped_checks",
+    "goal_status": "active",
+    "plan": "experiment plan/V1/README.md",
+    "checks": [
+      {
+        "command": "uv run --frozen pytest -q tests/test_patch_targets.py tests/test_unity_reference.py",
+        "result": "11 passed in 3.65s"
+      },
+      {
+        "command": "uv run --frozen ruff check src/adaptive_astc/data/patch_targets.py src/adaptive_astc/data/patch_dataset.py src/adaptive_astc/models/patch_regressor.py src/adaptive_astc/training/patch_trainer.py reproductions/gdc2023/patch_probe.py script/patch_regression.py tests/test_patch_targets.py",
+        "files": [
+          "src/adaptive_astc/data/patch_targets.py",
+          "src/adaptive_astc/data/patch_dataset.py",
+          "src/adaptive_astc/models/patch_regressor.py",
+          "src/adaptive_astc/training/patch_trainer.py",
+          "reproductions/gdc2023/patch_probe.py",
+          "script/patch_regression.py",
+          "tests/test_patch_targets.py"
+        ],
+        "result": "All checks passed"
+      },
+      {
+        "command": "uv run --frozen basedpyright src/adaptive_astc/data/patch_targets.py src/adaptive_astc/data/patch_dataset.py src/adaptive_astc/models/patch_regressor.py src/adaptive_astc/training/patch_trainer.py reproductions/gdc2023/patch_probe.py script/patch_regression.py tests/test_patch_targets.py",
+        "result": "0 errors,0 warnings"
+      },
+      {
+        "command": "git diff --check",
+        "result": "passed"
+      },
+      {
+        "command": "local Markdown target existence and JSON readback",
+        "result": "passed",
+        "local_links": 16
+      },
+      {
+        "command": "V1 evidence script/manifest/diagnostics/training_summary SHA256 verification",
+        "result": "all4matched"
+      },
+      {
+        "command": "NativePatchDataset(corpus, train/validation) full hash-validated load",
+        "result": "10000/1000 images;120276/12864 patches;matching corpus fingerprint45c879fa42839d8778af7b2224acaafa1209659bde11c8cb9302647343fd636f"
+      }
+    ],
+    "experiments": {
+      "native_capture": "probe.json",
+      "full_patch_targets": "patch-data-full.json",
+      "cuda_execution_smoke": "patch-training-smoke.json",
+      "independent_encoding": "patch-equivalence20.json"
+    },
+    "limits": [
+      "formal regression and classification control not yet trained",
+      "no new test2000 evaluation",
+      "Unity full reference/candidate dataset pending",
+      "90% production target not achieved"
+    ]
   }
 }

@@ -1,0 +1,264 @@
+{
+  "plan": "V1",
+  "status": "computed",
+  "scope": "descriptive analysis of the frozen GDC source-RGB train/validation labels and stored candidate decodes; test2000 values are copied from the existing post-hoc diagnostics",
+  "script": {
+    "path": "experiment report/.local/unity-accuracy90-20261111/plan_v1_analysis.py",
+    "sha256": "af3ba1168ebda28570cf6f6153a93da38c446693296c73546233ad32774dc5be"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "pillow": "12.3.0",
+    "platform": "Windows-10-10.0.19044-SP0"
+  },
+  "inputs": {
+    "manifest": {
+      "path": "experiment report/.local/reproduction-runs/gdc2023/source-rgb35-medium-full/manifest.json",
+      "sha256": "89139795be8374df3d363dec3b046effb3709c9deba44983785c106bf828de45"
+    },
+    "receipts": 14000,
+    "diagnostics": {
+      "path": "experiment report/classification-accuracy-research-20261111/diagnostics.json",
+      "sha256": "4d4e4ed55dc53ded10c95253b8afa8ae8d4e02ba79f1646be59947c4d529e49d"
+    },
+    "training_summary": {
+      "path": "experiment report/gdc2023/source-rgb35-medium-full/pretrained_training.json",
+      "sha256": "92ad2fa708740e5299c2d49fa89c7c76b705a4c73801fa4e8685e3673440cb7f"
+    }
+  },
+  "current_cnn": {
+    "architecture": "resnet18",
+    "initialization": "pretrained",
+    "input": "RGB224_bilinear_ImageNet_normalization",
+    "optimizer": {
+      "name": "SGD",
+      "lr": 0.01,
+      "momentum": 0.9,
+      "weight_decay": 0.0001
+    },
+    "scheduler": {
+      "name": "CosineAnnealingLR",
+      "T_max": 30,
+      "eta_min": 0
+    },
+    "effective_batch": 64,
+    "loss": "unweighted_cross_entropy",
+    "epochs": 30,
+    "best_validation": {
+      "epoch": 2,
+      "accuracy": 0.663,
+      "nll": 0.8283630204665946
+    },
+    "final_epoch": {
+      "train_accuracy": 0.9996,
+      "validation_accuracy": 0.64,
+      "validation_nll": 1.8718676705294748
+    },
+    "train_seconds_final_epoch": 14.97979149999992,
+    "test2000": {
+      "accuracy": 0.7355,
+      "balanced_accuracy": 0.5638,
+      "per_class_recall": {
+        "6x6": 0.8869,
+        "8x8": 0.2585,
+        "10x10": 0.202,
+        "12x12": 0.9077
+      }
+    }
+  },
+  "label_structure": {
+    "split": "train",
+    "images": 10000,
+    "rule": "largest footprint with RGB PSNR > 35 dB; otherwise highest PSNR",
+    "rule_reproduces_labels": 1.0,
+    "rule_reproduces_feasible_labels": 1.0,
+    "monotonic_psnr_share": 0.9862,
+    "median_psnr_drop_db": {
+      "6x6->8x8": 3.9357,
+      "8x8->10x10": 2.8327,
+      "10x10->12x12": 1.9791
+    },
+    "psnr_drop_iqr_db": {
+      "6x6->8x8": [
+        3.3439,
+        4.8822
+      ],
+      "8x8->10x10": [
+        2.3686,
+        3.6398
+      ],
+      "10x10->12x12": [
+        1.6236,
+        2.4223
+      ]
+    },
+    "middle_class_margins": {
+      "8x8": {
+        "images": 1816,
+        "median_margin_above_target_db": 1.8024,
+        "median_next_footprint_below_target_db": 1.5197,
+        "share_nearest_boundary_within_1db": 0.6112
+      },
+      "10x10": {
+        "images": 1315,
+        "median_margin_above_target_db": 1.099,
+        "median_next_footprint_below_target_db": 1.1241,
+        "share_nearest_boundary_within_1db": 0.8487
+      }
+    },
+    "infeasible_fallbacks": {
+      "images": 1167,
+      "labelled_6x6": 1167,
+      "all_6x6_labels": 2593
+    },
+    "long_side": {
+      "percentiles_10_25_50_75_90_99": [
+        100,
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "share_ge_1024": 0.2219,
+      "share_ge_2048": 0.0508,
+      "share_le_256": 0.5587,
+      "classifier_input": "whole image resized to 224x224 without preserving aspect ratio"
+    },
+    "per_class": {
+      "6x6": {
+        "images": 2593,
+        "median_long_side": 128,
+        "alpha_nonopaque_share": 0.6529
+      },
+      "8x8": {
+        "images": 1816,
+        "median_long_side": 256,
+        "alpha_nonopaque_share": 0.5578
+      },
+      "10x10": {
+        "images": 1315,
+        "median_long_side": 256,
+        "alpha_nonopaque_share": 0.4654
+      },
+      "12x12": {
+        "images": 4276,
+        "median_long_side": 512,
+        "alpha_nonopaque_share": 0.4186
+      }
+    },
+    "asset_groups": {
+      "groups": 1305,
+      "largest_group": "Assets/Art/Effects/Texture/Common/Special",
+      "largest_group_images": 2077
+    }
+  },
+  "precision_requirement": {
+    "method": "add Gaussian error to the four measured train PSNRs and re-apply the label rule",
+    "seed": 0,
+    "repeats": 5,
+    "results": [
+      {
+        "sigma_db": 0.25,
+        "shared_offset_accuracy": 0.9663,
+        "independent_accuracy": 0.9668
+      },
+      {
+        "sigma_db": 0.5,
+        "shared_offset_accuracy": 0.9341,
+        "independent_accuracy": 0.9333
+      },
+      {
+        "sigma_db": 0.75,
+        "shared_offset_accuracy": 0.9033,
+        "independent_accuracy": 0.9024
+      },
+      {
+        "sigma_db": 1.0,
+        "shared_offset_accuracy": 0.8715,
+        "independent_accuracy": 0.872
+      },
+      {
+        "sigma_db": 1.5,
+        "shared_offset_accuracy": 0.8196,
+        "independent_accuracy": 0.8174
+      },
+      {
+        "sigma_db": 2.0,
+        "shared_offset_accuracy": 0.7717,
+        "independent_accuracy": 0.7664
+      }
+    ]
+  },
+  "metadata_lookup": {
+    "features": "floor(log2(long side)), non-opaque alpha, non-square",
+    "fit_split": "train",
+    "evaluation_split": "validation",
+    "validation_accuracy": 0.493,
+    "majority_class": "12x12",
+    "majority_validation_accuracy": 0.462
+  },
+  "sampled_block_estimator": {
+    "method": "per-block squared RGB error of the stored full-image decode; sample blocks per footprint without replacement and convert the sampled mean squared error to PSNR",
+    "split": "train",
+    "images": 300,
+    "pool": "train images with long side <= 2048",
+    "pool_images": 9954,
+    "seed": 1,
+    "minimum_blocks_per_footprint": 64,
+    "full_psnr_reconstruction": {
+      "checked_candidates": 1200,
+      "mismatches_over_tolerance": 0,
+      "vertical_flips_needed": 0,
+      "tolerance_db": 0.001
+    },
+    "cost_basis": "sampled block fraction of each footprint times its recorded astcenc CLI encode seconds, relative to the encode seconds of the selected footprint; CLI timings include process overhead",
+    "assumption_not_verified_here": "blocks encoded alone reproduce their full-image encoding",
+    "results": [
+      {
+        "block_fraction": 0.01,
+        "psnr_error_rmse_db": 3.4185,
+        "psnr_abs_error_p95_db": 3.8372,
+        "label_accuracy": 0.87,
+        "label_accuracy_standard_error": 0.0194,
+        "extra_encode_over_final_median_per_image": 0.3548,
+        "extra_encode_over_final_aggregate": 0.2172
+      },
+      {
+        "block_fraction": 0.02,
+        "psnr_error_rmse_db": 3.4482,
+        "psnr_abs_error_p95_db": 2.7864,
+        "label_accuracy": 0.8867,
+        "label_accuracy_standard_error": 0.0183,
+        "extra_encode_over_final_median_per_image": 0.3548,
+        "extra_encode_over_final_aggregate": 0.2493
+      },
+      {
+        "block_fraction": 0.05,
+        "psnr_error_rmse_db": 2.6993,
+        "psnr_abs_error_p95_db": 2.5088,
+        "label_accuracy": 0.8767,
+        "label_accuracy_standard_error": 0.019,
+        "extra_encode_over_final_median_per_image": 0.3852,
+        "extra_encode_over_final_aggregate": 0.3561
+      },
+      {
+        "block_fraction": 0.1,
+        "psnr_error_rmse_db": 2.1583,
+        "psnr_abs_error_p95_db": 2.307,
+        "label_accuracy": 0.91,
+        "label_accuracy_standard_error": 0.0165,
+        "extra_encode_over_final_median_per_image": 0.5638,
+        "extra_encode_over_final_aggregate": 0.5451
+      }
+    ]
+  },
+  "outputs": {
+    "psnr_matrix": {
+      "path": "experiment report/.local/unity-accuracy90-20261111/gdc-psnr-train-val.npz",
+      "sha256": "11197d20d741f68ccccde84359e6fd94832f0dd9fdd4efb563ce338c61a71792"
+    }
+  },
+  "wall_seconds": 37.62
+}

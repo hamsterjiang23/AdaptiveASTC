@@ -36,6 +36,9 @@
 
 ## 实现与实验
 
+- 当前goal以用户的[V1原分辨率patch误差回归计划](<experiment plan/V1/README.md>)和[evidence.json](<experiment plan/V1/evidence.json>)为准，实际状态见[执行记录](<experiment report/unity-accuracy90-20261111/README.md>)。按patch目标／编码核验、分类对照、scratch／pretrained回归、按错误分布改进的顺序执行，训练使用CUDA。GDC train／validation用于开发，最终在Unity导入后参考像素与同次原始搜索标签的独立测试上验收Top-1≥90%。`[verified: 用户本轮V1与重新创建goal要求；V1“目标与开发数据”“实验步骤”]`
+- Unity回归采集保留原搜索提前停止、标签及baseline计时，另行补测块大小×preset缺失候选并记录解码图及原生质量分支。抽样真实编码先作为独立成本／质量对照，主路径保持预测后一次最终编码。方案差异、未完成配置和实际测量分别写入执行记录。`[verified: V1“待决定事项”；opinion: 本轮执行决定]`
+- 持续记录该目标的实验进展，统一入口为计划目录progress.json。保存配置差异与调整原因、逐epoch训练／验证指标、实际更新数、失败重试和耗时。运行中日志与heartbeat保存在.local，阶段结果同步仓库。`[verified: 用户本轮“时刻记录实验进展”；ReproductionJob.run与Trainer.fit；opinion: 进展入口]`
 - 当前执行顺序为Unity搜索baseline、Nah 2023、Nah 2022、TexNN、GDC，再研究新模型与校准。新增方法代码集中在`reproductions/`，启动入口仍放`script/`。先完成10,000张训练图的真实搜索计时报告，再启动正式文献实验。缺作者代码时允许论文重实现，原文设置、补全假设和实际完成状态分别记录。`[verified: 用户2026-11-10实施请求及复现标准选择]`
 - 正式文献实验通过`BaselineGate`检查10,000张覆盖、原生搜索记录、源图哈希核验、退出码与metadata恢复。Unity基线按实际进入ASTC的目标格式测量，临时Android覆盖与恢复、参数缓存隔离和计时区间见[复现入口](reproductions/README.md)。`[verified: reproductions/common/upstream.py BaselineGate；reproductions/unity_search_baseline/benchmark.py]`
 - 技术失败补测使用独立空缓存，保留初次失败记录与退出码，合并结果使用`passed_with_retries`并校验来源SHA-256。初次批次、补测批次、逐图计时与整轮墙钟分别记录。`[verified: reproductions/unity_search_baseline/recovery.py；reproductions/common/upstream.py BaselineGate]`

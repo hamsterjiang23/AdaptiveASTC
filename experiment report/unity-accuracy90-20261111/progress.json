@@ -1,0 +1,156 @@
+{
+  "updated_utc": "2026-11-11T11:45:58.314741+00:00",
+  "goal_status": "active",
+  "target": {
+    "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
+    "metric": "held-out exact footprint Top-1",
+    "threshold": 0.9
+  },
+  "phase": "V1 patch target extraction and standalone encoding checks passed; formal controls pending",
+  "initialization": "scratch",
+  "model": "ResNet-18",
+  "known_parameter_count": 11178564,
+  "verified_existing_reference_images": 64,
+  "new_training_completed_epochs": 0,
+  "new_validation_accuracy": null,
+  "new_test_accuracy": null,
+  "live_update_sources": {
+    "job_heartbeat": "jobs/*/receipt.json updates every30 seconds while child runs",
+    "native_samples": "unity-accuracy90-capture-20261111-retry2/probe-imports.jsonl and probe-native.jsonl",
+    "training_epochs": "per-run scratch/history.json and report scratch_training.json after each epoch"
+  },
+  "jobs": [
+    {
+      "name": "capture-probe",
+      "status": "failed",
+      "started_utc": "2026-11-11T11:04:32.421944+00:00",
+      "last_observed_alive_utc": "2026-11-11T11:09:32.617070+00:00",
+      "ended_utc": "2026-11-11T11:09:52.486622+00:00",
+      "wall_seconds": 320.05935689999933,
+      "process_exit_code": 1,
+      "failure_reason": "noUpm omitted package assemblies; owned Editor stopped;metadata restored with0 conflicts",
+      "live_receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\capture-probe\\receipt.json",
+      "stdout": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\capture-probe\\stdout.log",
+      "stderr": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\capture-probe\\stderr.log"
+    },
+    {
+      "name": "capture-probe-retry1",
+      "status": "failed",
+      "started_utc": "2026-11-11T11:10:07.469421+00:00",
+      "last_observed_alive_utc": "2026-11-11T11:12:37.542659+00:00",
+      "ended_utc": "2026-11-11T11:13:05.071651+00:00",
+      "wall_seconds": 177.59914560000107,
+      "process_exit_code": 1,
+      "failure_reason": "Unity CopyAssembly failed for Assembly-CSharp.dll; process exit1;metadata restored with0 conflicts",
+      "live_receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\capture-probe-retry1\\receipt.json",
+      "stdout": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\capture-probe-retry1\\stdout.log",
+      "stderr": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\capture-probe-retry1\\stderr.log"
+    },
+    {
+      "name": "capture-probe-retry2",
+      "status": "passed",
+      "started_utc": "2026-11-11T11:15:50.766093+00:00",
+      "last_observed_alive_utc": "2026-11-11T11:18:50.854208+00:00",
+      "ended_utc": "2026-11-11T11:18:54.577494+00:00",
+      "wall_seconds": 183.80605169999944,
+      "process_exit_code": 0,
+      "failure_reason": null,
+      "live_receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\capture-probe-retry2\\receipt.json",
+      "stdout": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\capture-probe-retry2\\stdout.log",
+      "stderr": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\capture-probe-retry2\\stderr.log"
+    }
+  ],
+  "next": [
+    "Implement and run V1 regularized classification controls",
+    "Complete V1 monotone/independent heads, stem and EMA configs; run scratch/pretrained CUDA regression",
+    "Extend Unity supplemental candidate capture preserving original policy and baseline"
+  ],
+  "decisions": [
+    "User confirmed Unity imported references as main acceptance data",
+    "User selected scratch initialization",
+    "Prioritize generalization gap diagnosis",
+    "Record trial config differences,metrics,costs and failures continuously",
+    "User feature-tree proposal added before CNN sweep; comparisons are diagnostics with production confirmation",
+    "Latest user plan replaces feature-tree diagnostic with native240 patch logMSE regression; Unity acceptance remains separate"
+  ],
+  "record_kind": "progress snapshot; referenced job receipts contain live heartbeat state",
+  "new_native_capture": {
+    "status": "passed",
+    "images": 2,
+    "metadata_restore_conflicts": 0,
+    "receipt": "probe.json"
+  },
+  "tree_environment": {
+    "status": "historical synthetic smoke; experiment cancelled by user steering; dependency removed",
+    "version": "xgboost3.1.3",
+    "device": "cuda:0",
+    "scope": "synthetic smoke only",
+    "receipt": "tree-cuda-smoke.json"
+  },
+  "patch_smoke": {
+    "status": "passed",
+    "config": {
+      "schema": "gdc-native-patch-sse-v1",
+      "manifest_sha256": "89139795be8374df3d363dec3b046effb3709c9deba44983785c106bf828de45",
+      "measured_root": "E:\\ASTC_Compression\\experiment report\\.local\\reproduction-runs\\gdc2023\\source-rgb35-medium-full",
+      "patch_size": 240,
+      "limits": {
+        "train": 48,
+        "validation": 16
+      },
+      "normalization": "SSE / (valid_width * valid_height * 3 * 255^2)",
+      "edge_targets": "real pixels only; no overlap; input edge replication at training",
+      "classes": [
+        "6x6",
+        "8x8",
+        "10x10",
+        "12x12"
+      ],
+      "source_code_sha256": "ea10d53a582635ce40e15b468380c7783a775f27c5ac883b57994f064b39e3b3"
+    },
+    "binding": "c6f7c5b519096fe4dc01ea6ec84b6e6645108711728849fe4dcb04fc4c7a75fa",
+    "counts": {
+      "train": 48,
+      "validation": 16
+    },
+    "patch_counts": {
+      "train": 601,
+      "validation": 155
+    },
+    "max_psnr_reconstruction_error_db": 7.105427357601002e-15,
+    "wall_seconds": 3.681192199999714,
+    "test_opened": false,
+    "scope": "source RGB GDC development; not Unity production acceptance",
+    "fingerprint": "41ecd4ac40b2fd64b28f9b4774d2f7532bd50e2cd2eac55223879e1db4ae0ff6"
+  },
+  "patch_training_smoke": {
+    "receipt": "patch-training-smoke.json",
+    "device": "CUDA RTX4070",
+    "applied_updates": 6,
+    "amp_skips": 0,
+    "scope": "48 train images,16 validation images,2 epochs x3 updates; execution check only"
+  },
+  "plan": "experiment plan/V1/README.md",
+  "plan_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "goal_recreated_utc": "2026-11-11T11:42:31+00:00",
+  "patch_data_full": {
+    "receipt": "patch-data-full.json",
+    "counts": {
+      "train": 10000,
+      "validation": 1000
+    },
+    "patch_counts": {
+      "train": 120276,
+      "validation": 12864
+    },
+    "seconds": 614.5488447999996,
+    "max_psnr_error_db": 1.4210854715202004e-14
+  },
+  "patch_equivalence": {
+    "receipt": "patch-equivalence20.json",
+    "images": 20,
+    "matches": 80,
+    "comparisons": 80,
+    "augmentations_enabled": false
+  }
+}

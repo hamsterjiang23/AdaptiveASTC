@@ -1,0 +1,248 @@
+{
+  "status": "passed_smoke",
+  "config": {
+    "corpus": "experiment report\\.local\\unity-accuracy90-20261111\\patch-smoke64",
+    "output": "experiment report\\.local\\unity-accuracy90-20261111\\patch-smoke64-scratch",
+    "report": "experiment report\\unity-accuracy90-20261111\\patch-training-smoke.json",
+    "initialization": "scratch",
+    "epochs": 2,
+    "batch_size": 16,
+    "patches_per_image": 2,
+    "learning_rate": 0.001,
+    "weight_decay": 0.05,
+    "warmup_epochs": 2,
+    "workers": 0,
+    "seed": 20261111,
+    "max_steps": 3,
+    "remove_maxpool": true,
+    "corpus_fingerprint": "41ecd4ac40b2fd64b28f9b4774d2f7532bd50e2cd2eac55223879e1db4ae0ff6",
+    "model_parameters": 11178564,
+    "gpu": "NVIDIA GeForce RTX 4070",
+    "torch": "2.8.0+cu128",
+    "loss": "Huber log10(MSE+1e-10), delta0.1=1dB; threshold weight 1+2exp(-distance/3dB)",
+    "sampling": "equal expected image weight; uniform patch within image; replacement",
+    "targets_clipped": false,
+    "augmentations": [],
+    "ema": false,
+    "selection": "validation exact footprint accuracy at margin0, then near-threshold RMSE",
+    "scope": "source RGB GDC development; no test access; no Unity production claim",
+    "source_files_sha256": {
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\patch_trainer.py": "a3624a4861ca8342e89ae8e540e0a63389ebb1989a1ab77fe38dd08c239e5f52",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\patch_regressor.py": "0d661cd8097d22ad37e2b4e200865de6dfbc1369145e9fe02e0bffb2852ba503",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_dataset.py": "9e8110fe3163262b5744c7193cc620a91ccdfcc5b693911c9b7f31a0766a9243"
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.11922842264175415,
+      "samples": 48,
+      "step_attempts": 3,
+      "optimizer_updates": 3,
+      "amp_skipped_steps": 0,
+      "learning_rate": 0.0005,
+      "training_seconds": 1.0081042000001617,
+      "validation": {
+        "count": 16,
+        "accuracy": 0.125,
+        "macro_f1": 0.10101010101010101,
+        "balanced_accuracy": 0.3333333333333333,
+        "confusion_matrix": [
+          [
+            0,
+            4,
+            3,
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            4,
+            0
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 7
+          },
+          "8x8": {
+            "precision": 0.16666666666666666,
+            "recall": 0.3333333333333333,
+            "f1": 0.2222222222222222,
+            "support": 3
+          },
+          "10x10": {
+            "precision": 0.1,
+            "recall": 1.0,
+            "f1": 0.18181818181818182,
+            "support": 1
+          },
+          "12x12": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5
+          }
+        },
+        "near_threshold_rmse_db": 9.712684766954842,
+        "near_threshold_candidate_count": 23,
+        "quality_pass_rate": 0.4375,
+        "payload_bytes": 1140672,
+        "fixed8_payload_bytes": 1361376,
+        "seconds": 0.37646910000148637,
+        "margins": [
+          {
+            "margin_db": 0.0,
+            "accuracy": 0.125
+          },
+          {
+            "margin_db": 0.25,
+            "accuracy": 0.0625
+          },
+          {
+            "margin_db": 0.5,
+            "accuracy": 0.1875
+          },
+          {
+            "margin_db": 0.75,
+            "accuracy": 0.1875
+          },
+          {
+            "margin_db": 1.0,
+            "accuracy": 0.125
+          }
+        ],
+        "classes": [
+          "6x6",
+          "8x8",
+          "10x10",
+          "12x12"
+        ]
+      },
+      "seconds": 1.3847377999991295
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.13557867457469305,
+      "samples": 48,
+      "step_attempts": 3,
+      "optimizer_updates": 3,
+      "amp_skipped_steps": 0,
+      "learning_rate": 0.001,
+      "training_seconds": 0.6415722000001551,
+      "validation": {
+        "count": 16,
+        "accuracy": 0.125,
+        "macro_f1": 0.05555555555555555,
+        "balanced_accuracy": 0.16666666666666666,
+        "confusion_matrix": [
+          [
+            0,
+            7,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            5,
+            0,
+            0
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 7
+          },
+          "8x8": {
+            "precision": 0.13333333333333333,
+            "recall": 0.6666666666666666,
+            "f1": 0.2222222222222222,
+            "support": 3
+          },
+          "10x10": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 1
+          },
+          "12x12": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5
+          }
+        },
+        "near_threshold_rmse_db": 22.069121945931045,
+        "near_threshold_candidate_count": 23,
+        "quality_pass_rate": 0.5,
+        "payload_bytes": 1359216,
+        "fixed8_payload_bytes": 1361376,
+        "seconds": 0.33787239999946905,
+        "margins": [
+          {
+            "margin_db": 0.0,
+            "accuracy": 0.125
+          },
+          {
+            "margin_db": 0.25,
+            "accuracy": 0.125
+          },
+          {
+            "margin_db": 0.5,
+            "accuracy": 0.125
+          },
+          {
+            "margin_db": 0.75,
+            "accuracy": 0.125
+          },
+          {
+            "margin_db": 1.0,
+            "accuracy": 0.125
+          }
+        ],
+        "classes": [
+          "6x6",
+          "8x8",
+          "10x10",
+          "12x12"
+        ]
+      },
+      "seconds": 0.9795558000005258
+    }
+  ],
+  "best_validation_accuracy": 0.125,
+  "wall_seconds": 3.1212492999984534,
+  "peak_vram_bytes": 746826240,
+  "test_opened": false,
+  "checkpoint_sha256": "facfd67772bbe013d9ad2c2452af5da9be56b7155a398e68a7b85814b4acaeeb"
+}

@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "scope": "Existing64-image native reference archive audit and production dataset readiness",
+  "capture_run_id": "unity-reference64-lite-rdo-off-retry1",
+  "capture_phase": "smoke1",
+  "source_manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+  "source_split_sizes": {
+    "test": 2000,
+    "calibration": 1000,
+    "validation": 1000,
+    "train": 10000
+  },
+  "source_group_cross_split_overlaps": 0,
+  "verified_reference_images": 64,
+  "verified_reference_splits": {
+    "train": 64
+  },
+  "reference_blocksize_counts": {
+    "10x10": 15,
+    "12x12": 28,
+    "6x6": 14,
+    "8x8": 7
+  },
+  "native_policy_verified": true,
+  "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+  "archive_manifest_sha256": "e367ca8f531787335a1276e0c010c76233b98fab1164ae40debef14c106caa4e",
+  "pending": [
+    "Complete training and development reference capture",
+    "Freeze independent confirmation asset groups",
+    "Build paired reference-pixel and same-search-label training cache",
+    "Run CUDA small-model baseline and tuning"
+  ]
+}
