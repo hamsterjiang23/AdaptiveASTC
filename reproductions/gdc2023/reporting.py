@@ -11,6 +11,7 @@ from adaptive_astc.config import CLASSES
 from adaptive_astc.utils.artifacts import ArtifactStore
 from reproductions.common.cohort import EvaluationCohort
 from reproductions.common.encoder import ASTCEncoder, ASTCFile
+from reproductions.gdc2023.costs import PreparationCost
 from reproductions.gdc2023.dataset import GDCMeasuredDataset
 
 
@@ -213,6 +214,33 @@ class GDCReport:
                     "GDC training cost does not belong to the evaluated training/model"
                 )
             costs["source_sha256"] = cost_digest
+        preparation_digest = binding.get("preparation_process_sha256")
+        preparation: dict[str, Any] = {
+            "status": "unknown_unrecorded_process_wall",
+            "wall_seconds": None,
+            "source_sha256": None,
+        }
+        if preparation_digest is not None:
+            preparation_path = self.run / "preparation-process.json"
+            if ArtifactStore.sha256_file(preparation_path) != preparation_digest:
+                raise ValueError("Data preparation timing changed after evaluation")
+            recorded = PreparationCost.load_optional(preparation_path)
+            if recorded is None:
+                preparation = {
+                    "status": "unknown_incomplete_process_record",
+                    "wall_seconds": None,
+                    "source_sha256": preparation_digest,
+                }
+            else:
+                if (
+                    recorded["protocol_sha256"] != protocol_sha256
+                    or recorded["collection_sha256"]
+                    != ArtifactStore.sha256_file(self.run / "collection.json")
+                    or recorded["manifest_sha256"]
+                    != ArtifactStore.sha256_file(self.run / "manifest.json")
+                ):
+                    raise ValueError("Data preparation timing differs from the evaluated dataset")
+                preparation = {**recorded, "source_sha256": preparation_digest}
         summary = {
             "status": "passed",
             "scope": batch["scope"],
@@ -250,6 +278,7 @@ class GDCReport:
             },
             "offline_fixed_footprints": controls,
             "costs": {
+                "data_preparation_process": preparation,
                 "label_collection_wall_seconds": collection["wall_seconds"],
                 "label_collection_workers": collection["workers"],
                 "training": costs,

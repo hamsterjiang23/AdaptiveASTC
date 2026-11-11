@@ -10,6 +10,7 @@ from PIL import Image
 
 from adaptive_astc.config import CLASSES
 from adaptive_astc.utils.artifacts import ArtifactStore
+from reproductions.gdc2023.costs import PreparationCost
 from reproductions.gdc2023.reporting import GDCReport
 
 
@@ -205,3 +206,51 @@ def test_report_controls_require_frozen_candidate_receipts(tmp_path: Path) -> No
     with pytest.raises(ValueError, match="offline control receipt changed"):
         GDCReport(tmp_path, run, output, tmp_path / "rejected").write()
     assert not (tmp_path / "rejected").exists()
+
+
+@pytest.mark.parametrize("foreign", [False, True])
+def test_preparation_process_cost_binds_the_evaluated_dataset(
+    tmp_path: Path, foreign: bool
+) -> None:
+    run, output, batch = report_fixture(tmp_path)
+    preparation = {
+        "status": "passed",
+        "process_exit_code": 0,
+        "start_utc": "2026-11-11T00:00:00+00:00",
+        "end_utc": "2026-11-11T00:00:02+00:00",
+        "wall_seconds": 2.0,
+        "protocol_sha256": ArtifactStore.sha256_file(run / "protocol.json"),
+        "collection_sha256": ArtifactStore.sha256_file(run / "collection.json"),
+        "manifest_sha256": "FOREIGN"
+        if foreign
+        else ArtifactStore.sha256_file(run / "manifest.json"),
+    }
+    ArtifactStore.write_json(run / "preparation-process.json", preparation)
+    batch["binding"]["preparation_process_sha256"] = ArtifactStore.sha256_file(
+        run / "preparation-process.json"
+    )
+    ArtifactStore.write_json(output / "receipt.json", batch)
+    destination = tmp_path / "report"
+    writer = GDCReport(tmp_path, run, output, destination)
+    if foreign:
+        with pytest.raises(ValueError, match="evaluated dataset"):
+            writer.write()
+        assert not destination.exists()
+    else:
+        writer.write()
+        summary = ArtifactStore.read_json(destination / "pretrained-test.json")
+        assert summary["costs"]["data_preparation_process"]["wall_seconds"] == 2.0
+
+
+@pytest.mark.parametrize("content", ["{}", '{"status":"passed"}', '{"status":'])
+def test_incomplete_optional_process_cost_stays_unknown(tmp_path: Path, content: str) -> None:
+    run, output, batch = report_fixture(tmp_path)
+    path = run / "preparation-process.json"
+    path.write_text(content, encoding="utf-8")
+    assert PreparationCost.load_optional(path) is None
+    batch["binding"]["preparation_process_sha256"] = ArtifactStore.sha256_file(path)
+    ArtifactStore.write_json(output / "receipt.json", batch)
+    destination = tmp_path / "report"
+    GDCReport(tmp_path, run, output, destination).write()
+    summary = ArtifactStore.read_json(destination / "pretrained-test.json")
+    assert summary["costs"]["data_preparation_process"]["wall_seconds"] is None

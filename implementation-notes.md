@@ -5,6 +5,7 @@
 ### Deviations
 
 - Formal collection continues unchanged. GDC reports now audit fixed6/8/10/12 candidate quality and payload on the same evaluation inputs; offline parallel encode times stay separate from the paired fixed8 deployment control. Smoke16 counts are 16/15/11/5 strict35 passes. `[verified: smoke/test16/pretrained-test.json offline_fixed_footprints; gdc2023/reporting.py]`
+- Collection-only timing omitted manifest validation and cache assembly. An external OS process observer now records the current Python process from its original StartTime to ExitTime, and report metadata binds that full preparation cost to the exact dataset. Optional incomplete records retain unknown cost. The process API probe returned its requested exit7 and a positive measured span. `[verified: formal preparation-process.json; process-observer probe output; costs.py; test_gdc_reporting.py]`
 - Shared Unity/Nah64 belongs to train, so its formal GDC comparison is a resubstitution diagnostic. Independent test2000 remains the generalization result. Unity imported pixels/mips/native quality policy and each publication target stay explicit; common source-RGB measurement is not equal-objective timing. `[verified: common/cohort.py; common/comparison.py; gdc2023/README.md]`
 
 ### Discovered edge cases

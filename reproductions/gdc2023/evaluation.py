@@ -22,6 +22,7 @@ from adaptive_astc.utils.runtime import ExperimentRuntime
 from reproductions.common.cohort import EvaluationCohort
 from reproductions.common.encoder import ASTCEncoder
 from reproductions.common.upstream import BaselineGate
+from reproductions.gdc2023.costs import PreparationCost
 from reproductions.gdc2023.dataset import GDCMeasuredDataset
 
 
@@ -186,6 +187,9 @@ class GDCCompressionEvaluation:
             if binding.get("cohort_paths") != frozen_paths:
                 raise ValueError("Named Unity64 inputs differ from the frozen cohort")
             binding["cohort_identity"] = identity
+        preparation = self.run / "preparation-process.json"
+        if PreparationCost.load_optional(preparation) is not None:
+            binding["preparation_process_sha256"] = ArtifactStore.sha256_file(preparation)
         verified_inputs = self.preflight_inputs(
             manifest, protocol, split, indices, protocol_fingerprint, selected_rows
         )

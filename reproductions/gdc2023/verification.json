@@ -19,7 +19,7 @@
     }
   },
   "checks": {
-    "pytest": "98 passed in 71.59s; final comparison decoder change additionally covered by actual native probe",
+    "pytest": "Historical full suite 98 passed in 71.59s; process-cost update targeted GDC tests 26 passed in 5.92s",
     "ruff": "uv run --frozen ruff check src script tests reproductions: passed",
     "basedpyright": "uv run --frozen basedpyright: 0 errors/warnings",
     "code_review": "No bugs found; frozen-cohort replacement, native payload/PNG mismatch and raw-batch receipt mismatch rejected",
@@ -29,22 +29,25 @@
     "formal": "14000-image label generation running; formal training/evaluation pending",
     "markdown": "7 documents, 142 local links/anchors passed; external URL availability not checked",
     "shared64": "Existing Nah64 frozen inputs, identical RGB PNG hashes and common RGB PSNR preflight passed; formal GDC diagnostic/comparison pending",
-    "offline_controls": "GDC smoke16 fixed6/8/10/12 strict35 passes 16/15/11/5; all frozen candidate artifacts and quality revalidated"
+    "offline_controls": "GDC smoke16 fixed6/8/10/12 strict35 passes 16/15/11/5; all frozen candidate artifacts and quality revalidated",
+    "process_preparation_cost": "OS StartTime/ExitTime observer attached to live formal process; valid/foreign/incomplete metadata regressions passed; native formal completion pending",
+    "cost_code_review": "No bugs found after optional incomplete-record handling fix"
   },
   "source_sha256": {
     "reproductions/gdc2023/dataset.py": "9387619ed6c2008b0ba75fe93cf01717cdb68c2d5a04a31c538e070e448ef893",
     "reproductions/gdc2023/training.py": "d591ff1b390cbc2903ea11b4c43f503c25b07b533eae0ea5637227b72e45b408",
-    "reproductions/gdc2023/evaluation.py": "32e7c651b0e5b30221efd7ef019bc7a7ad14cec656ec201c5b0f23699b4eb97b",
-    "reproductions/gdc2023/reporting.py": "1d88748f91e418f8b5b495ab7e0016af0b15b4cb5d97e09154c7594dca7e75ec",
+    "reproductions/gdc2023/evaluation.py": "0185b43e89f2613181d71212960b7e1ec61d13df05890434795212b86a8e9e1d",
+    "reproductions/gdc2023/reporting.py": "67d1494b96cfc15aa90b14d75bd03e42be6723a5cceee63b20cfb8dbd90f0cc9",
     "src/adaptive_astc/utils/evaluation_seal.py": "290cf5f8ccac70188a427a932c0d2d7b3e73e4d76eefd67921c3163d6e1b128a",
     "src/adaptive_astc/evaluation/evaluator.py": "cf8630da262a64e0c8531c0e78619333ec6abd80bed633ecd4246bc668b70a06",
     "src/adaptive_astc/training/trainer.py": "dcdbeab92bb084bd064e5225d01ea3cea2b6e3a7cb127e30ec71515a1adee02b",
     "script/reproduce.py": "52e9dbd7bb91455eaf4960930890887ec1642bb22ad8b19488f156fd6c464d52",
     "reproductions/common/cohort.py": "698240720f0acf4fbe3892737533f2d46a1fc38d176c1cf8705f815de985db52",
     "reproductions/common/comparison.py": "749f2dc25745c43e875ea857e2b33d810a874f84c12899d5bd1467135ca2038b",
-    "script/compare_reproductions.py": "19104c27d45d3b5c278bfcc556261ca04b186049a87c4157137855e9f60ec48d"
+    "script/compare_reproductions.py": "19104c27d45d3b5c278bfcc556261ca04b186049a87c4157137855e9f60ec48d",
+    "reproductions/gdc2023/costs.py": "1cd01d4913d0cf8725d008adbd33503b80c16ef598f0728e49c84f8f392e79f8"
   },
-  "smoke_report_sha256": "6c4cb9868659bbd65e8b35595b650673e89f4123aea1b33f9af9f0576950212f",
+  "smoke_report_sha256": "bd34c456093650ec04955315b550966973ef145c60df0ffad3312ff67613e3f3",
   "historical_smoke_completion": {
     "commit": "3cf6427a59943f7bacda90261a1cc3b3ab7a0bea",
     "checks": {

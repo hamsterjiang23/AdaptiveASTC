@@ -34,6 +34,8 @@ The evaluator verifies current training completion and all sources/labels before
 
 The report also audits all four offline candidates on the evaluation inputs and publishes fixed6/8/10/12 quality and actual payload controls. Candidate encode times retain their parallel label-collection scope. The separately measured fixed8 pipeline is the paired deployment latency control. `[verified: reporting.py write offline_fixed_footprints; smoke/test16/pretrained-test.json]`
 
+The current formal preparation process has an OS process-time observer attached. Its `preparation-process.json` records process startup through candidate collection and manifest/cache assembly at process exit. Evaluation binds a complete timing record by SHA and the report checks its protocol, collection and manifest hashes. Missing or incomplete timing records retain unknown process cost. The collection-only timer remains available in `collection.json`. `[verified: current preparation-process.json; costs.py PreparationCost; evaluation.py and reporting.py preparation_process_sha256]`
+
 ## Shared Unity64 diagnostic
 
 The existing Unity/Nah shared64 cohort belongs to the training split. The following additional evaluation uses the completed formal GDC model and records resubstitution results; the independent test2000 remains the generalization evaluation. The cohort config is checked against its frozen protocol-lock hash, which is checked against the baseline receipt. Its name, config hash and ordered paths are bound into evaluation and report metadata. `[verified: common/cohort.py EvaluationCohort.unity64/rows; evaluation.py evaluate; reporting.py write]`
