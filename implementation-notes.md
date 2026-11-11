@@ -1,5 +1,21 @@
 # Implementation notes
 
+## GDC fixed controls and shared-cohort comparison, 2026-11-11
+
+### Deviations
+
+- Formal collection continues unchanged. GDC reports now audit fixed6/8/10/12 candidate quality and payload on the same evaluation inputs; offline parallel encode times stay separate from the paired fixed8 deployment control. Smoke16 counts are 16/15/11/5 strict35 passes. `[verified: smoke/test16/pretrained-test.json offline_fixed_footprints; gdc2023/reporting.py]`
+- Shared Unity/Nah64 belongs to train, so its formal GDC comparison is a resubstitution diagnostic. Independent test2000 remains the generalization result. Unity imported pixels/mips/native quality policy and each publication target stay explicit; common source-RGB measurement is not equal-objective timing. `[verified: common/cohort.py; common/comparison.py; gdc2023/README.md]`
+
+### Discovered edge cases
+
+- Checking only 64 valid train members would accept a replaced smoke config. The cohort loader now verifies config SHA against protocol-lock and lock SHA against the baseline receipt; evaluation/report bind and verify cohort identity. A replacement by another64 regression is rejected. `[verified: common/cohort.py unity64; test_gdc_evaluation.py test_unity64_rejects_replacement_with_other_training_members]`
+- Historical Nah per-image audit hashes are not bound by its original summary. The shared comparison therefore freshly decodes selected ASTCs using the frozen binary and checks exact PNG hashes, then recomputes RGB quality. GDC public rows must match the raw batch's index/receipt SHA list and current per-image files. `[verified: common/comparison.py nah/write]`
+
+### Questions for review
+
+- The shared64 preflight covers both existing Nah runs and frozen inputs. Formal GDC model/final-encoding integration and its comparison output remain pending; prepared code is not a measured comparison result. `[verified: .local/reproduction-shared64-preflight.json; current formal collection state]`
+
 ## TexNN expanded measurements and GDC smoke loop, 2026-11-11
 
 ### Deviations

@@ -19,6 +19,7 @@ from adaptive_astc.utils.checkpoints import CheckpointStore
 from adaptive_astc.utils.environment import RunEnvironment
 from adaptive_astc.utils.evaluation_seal import EvaluationSeal
 from adaptive_astc.utils.runtime import ExperimentRuntime
+from reproductions.common.cohort import EvaluationCohort
 from reproductions.common.encoder import ASTCEncoder
 from reproductions.common.upstream import BaselineGate
 from reproductions.gdc2023.dataset import GDCMeasuredDataset
@@ -67,9 +68,10 @@ class GDCCompressionEvaluation:
         split: str,
         indices: dict[tuple[str, str], int],
         protocol_fingerprint: str,
+        selected_rows: list[dict[str, Any]] | None = None,
     ) -> list[tuple[Path, dict[str, Any]]]:
         result = []
-        for row in manifest["splits"][split]:
+        for row in manifest["splits"][split] if selected_rows is None else selected_rows:
             source = (Path(manifest["image_root"]) / row["path"]).resolve()
             if not source.is_relative_to((Path(manifest["image_root"]) / "Assets").resolve()):
                 raise ValueError("GDC evaluation source escaped project Assets")
@@ -96,11 +98,15 @@ class GDCCompressionEvaluation:
             raise ValueError("GDC evaluation split is empty")
         return result
 
-    def evaluate(self, output: Path, split: str = "test") -> dict[str, Any]:
+    def evaluate(
+        self,
+        output: Path,
+        split: str = "test",
+        cohort_paths: list[str] | None = None,
+        cohort_name: str | None = None,
+    ) -> dict[str, Any]:
         if output.exists():
             raise FileExistsError(output)
-        if split not in {"validation", "test"}:
-            raise ValueError("GDC compression evaluation supports validation or test")
         BaselineGate.require(
             self.root
             / "experiment report/.local/unity-search-baseline-lite-rdo-off/full-receipt.json"
@@ -113,6 +119,7 @@ class GDCCompressionEvaluation:
             CLASSES
         ):
             raise ValueError("GDC classifier manifest changed or uses incompatible classes")
+        selected_rows = EvaluationCohort.rows(manifest, split, cohort_paths)
         protocol = ArtifactStore.read_json(self.run / "protocol.json")
         if manifest["label_protocol_sha256"] != ArtifactStore.sha256_file(
             self.run / "protocol.json"
@@ -168,8 +175,19 @@ class GDCCompressionEvaluation:
             "split": split,
             "training_files_sha256": training_hashes,
         }
+        if cohort_paths is not None:
+            binding["cohort_paths"] = [row["path"] for row in selected_rows]
+        if cohort_name is not None:
+            if cohort_name != "unity64" or split != "train":
+                raise ValueError("Named Unity64 comparison requires the training diagnostic")
+            frozen_paths, identity = EvaluationCohort.unity64(
+                self.root / "experiment report/.local/unity-search-baseline-lite-rdo-off"
+            )
+            if binding.get("cohort_paths") != frozen_paths:
+                raise ValueError("Named Unity64 inputs differ from the frozen cohort")
+            binding["cohort_identity"] = identity
         verified_inputs = self.preflight_inputs(
-            manifest, protocol, split, indices, protocol_fingerprint
+            manifest, protocol, split, indices, protocol_fingerprint, selected_rows
         )
         output.mkdir(parents=True, exist_ok=False)
         ArtifactStore.write_json(output / "binding.json", binding)
@@ -178,7 +196,7 @@ class GDCCompressionEvaluation:
         std = torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
         started = time.perf_counter()
         results = []
-        for index, row in enumerate(manifest["splits"][split]):
+        for index, row in enumerate(selected_rows):
             sample = output / f"{index:05d}"
             sample.mkdir()
             source, label = verified_inputs[index]
@@ -297,7 +315,7 @@ class GDCCompressionEvaluation:
                 }
             )
             ArtifactStore.write_json(output / "progress.json", {"results": results})
-            print(f"GDC final compression {index + 1}/{len(manifest['splits'][split])}", flush=True)
+            print(f"GDC final compression {index + 1}/{len(selected_rows)}", flush=True)
         if (
             ArtifactStore.sha256_file(checkpoint) != checkpoint_sha256
             or ArtifactStore.sha256_file(encoder.executable) != protocol["encoder_sha256"]
@@ -321,6 +339,7 @@ class GDCCompressionEvaluation:
             "inference_device": str(device),
             "environment": RunEnvironment.capture(),
             "scope": "source RGB project four-square talk reconstruction",
+            "data_use": "training diagnostic" if split == "train" else "held-out " + split,
             "quality_audit_excluded_from_model_time": True,
         }
         ArtifactStore.write_json(output / "receipt.json", receipt)

@@ -7,8 +7,11 @@ import statistics
 from pathlib import Path
 from typing import Any
 
+from adaptive_astc.config import CLASSES
 from adaptive_astc.utils.artifacts import ArtifactStore
+from reproductions.common.cohort import EvaluationCohort
 from reproductions.common.encoder import ASTCEncoder, ASTCFile
+from reproductions.gdc2023.dataset import GDCMeasuredDataset
 
 
 class GDCReport:
@@ -24,6 +27,17 @@ class GDCReport:
         collection = ArtifactStore.read_json(self.run / "collection.json")
         binding = batch["binding"]
         initialization, split = binding["initialization"], binding["split"]
+        selected_rows = EvaluationCohort.rows(manifest, split, binding.get("cohort_paths"))
+        if "cohort_identity" in binding:
+            frozen_paths, identity = EvaluationCohort.unity64(
+                self.root / "experiment report/.local/unity-search-baseline-lite-rdo-off"
+            )
+            if (
+                split != "train"
+                or binding["cohort_identity"] != identity
+                or binding.get("cohort_paths") != frozen_paths
+            ):
+                raise ValueError("GDC shared diagnostic differs from the frozen Unity64 cohort")
         manifest_content = dict(manifest)
         fingerprint = manifest_content.pop("fingerprint")
         protocol_sha256 = ArtifactStore.sha256_file(self.run / "protocol.json")
@@ -37,7 +51,7 @@ class GDCReport:
             != ArtifactStore.sha256_file(self.run / "collection.json")
             or collection["status"] != "passed"
             or collection["protocol_sha256"] != protocol_sha256
-            or batch["images"] != len(manifest["splits"][split])
+            or batch["images"] != len(selected_rows)
             or len(batch["results"]) != batch["images"]
             or ArtifactStore.sha256_file(self.run / initialization / "best.pt")
             != binding["checkpoint_sha256"]
@@ -51,6 +65,10 @@ class GDCReport:
                 raise ValueError("GDC completed training state changed after evaluation")
         seen = set()
         rows = []
+        native_indices = {
+            (item["split"], item["path"]): index for index, item in enumerate(protocol["inputs"])
+        }
+        protocol_fingerprint = ArtifactStore.fingerprint(protocol)
         for entry in batch["results"]:
             index = entry["index"]
             if index in seen or not 0 <= index < batch["images"]:
@@ -61,7 +79,7 @@ class GDCReport:
             if ArtifactStore.sha256_file(path) != entry["receipt_sha256"]:
                 raise ValueError("GDC measured compression receipt changed")
             measured = ArtifactStore.read_json(path)
-            expected = manifest["splits"][split][index]
+            expected = selected_rows[index]
             if measured["status"] != "passed" or any(
                 measured[key] != expected[key] for key in ["path", "fileHash"]
             ):
@@ -99,7 +117,49 @@ class GDCReport:
                     "target_met" if kind == "selected" else "fixed8_target_met"
                 ]:
                     raise ValueError("GDC quality pass flag contradicts the strict target")
-            rows.append({**measured, "receipt_sha256": entry["receipt_sha256"]})
+            native_index = native_indices[(split, expected["path"])]
+            label_folder = self.run / "labels" / f"{native_index:05d}"
+            if (
+                ArtifactStore.sha256_file(label_folder / "receipt.json")
+                != expected["label_receipt_sha256"]
+            ):
+                raise ValueError("GDC offline control receipt changed after dataset assembly")
+            label = ArtifactStore.read_json(label_folder / "receipt.json")
+            GDCMeasuredDataset.validate_receipt(
+                label_folder,
+                label,
+                native_index,
+                protocol["inputs"][native_index],
+                protocol,
+                protocol_fingerprint,
+            )
+            if (
+                measured["label_class"] != expected["class_id"]
+                or CLASSES[expected["class_id"]] != label["selected"]["name"]
+                or measured["label_target_met"] != label["target_met"]
+                or measured["label_payload_bytes"] != label["selected"]["payload_bytes"]
+            ):
+                raise ValueError("GDC evaluation label differs from its offline measurements")
+            for measured_name, native_name in [
+                ("input.png", "input.png"),
+                ("selected.astc", f"{CLASSES[measured['predicted_class']]}.astc"),
+                ("selected.png", f"{CLASSES[measured['predicted_class']]}.png"),
+                ("fixed8.astc", "8x8.astc"),
+                ("fixed8.png", "8x8.png"),
+            ]:
+                if (
+                    measured["artifacts_sha256"][measured_name]
+                    != label["artifacts_sha256"][native_name]
+                ):
+                    raise ValueError("GDC final output differs from the offline control pixels")
+            rows.append(
+                {
+                    **measured,
+                    "receipt_sha256": entry["receipt_sha256"],
+                    "label_receipt_sha256": expected["label_receipt_sha256"],
+                    "offline_candidates": label["candidates"],
+                }
+            )
         finite = [row["rgb_psnr"] for row in rows if row["rgb_psnr"] is not None]
         fixed_finite = [
             row["fixed8_rgb_psnr"] for row in rows if row["fixed8_rgb_psnr"] is not None
@@ -108,6 +168,27 @@ class GDCReport:
         fixed_pipeline = sum(row["timings"]["fixed8_pipeline_seconds"] for row in rows)
         model_bytes = sum(row["payload_bytes"] for row in rows)
         fixed_bytes = sum(row["fixed8_payload_bytes"] for row in rows)
+        controls = {}
+        for name in CLASSES:
+            candidates = [
+                next(item for item in row["offline_candidates"] if item["name"] == name)
+                for row in rows
+            ]
+            qualities = [item["rgb_psnr"] for item in candidates if not item["lossless"]]
+            controls[name] = {
+                "images": len(candidates),
+                "target_met": sum(
+                    item["lossless"] or item["rgb_psnr"] > protocol["target_psnr"]
+                    for item in candidates
+                ),
+                "payload_bytes": sum(item["payload_bytes"] for item in candidates),
+                "finite_mean_psnr": statistics.mean(qualities) if qualities else None,
+                "lossless": sum(item["lossless"] for item in candidates),
+                "offline_encode_seconds": sum(
+                    item["timings"]["encode_seconds"] for item in candidates
+                ),
+                "timing_scope": "candidate encoding during parallel offline label collection",
+            }
         cost_digest = binding["training_files_sha256"].get("wall-clock.json")
         if cost_digest is None:
             costs = {
@@ -135,6 +216,7 @@ class GDCReport:
         summary = {
             "status": "passed",
             "scope": batch["scope"],
+            "data_use": "training diagnostic" if split == "train" else "held-out " + split,
             "smoke": manifest["smoke"],
             "initialization": initialization,
             "split": split,
@@ -166,6 +248,7 @@ class GDCReport:
                 "label_best_bytes": sum(row["label_payload_bytes"] for row in rows),
                 "model_to_fixed8_ratio": model_bytes / fixed_bytes,
             },
+            "offline_fixed_footprints": controls,
             "costs": {
                 "label_collection_wall_seconds": collection["wall_seconds"],
                 "label_collection_workers": collection["workers"],
@@ -195,6 +278,9 @@ class GDCReport:
                 "Preprocessing, inference and final encoding are timed; setup and verification "
                 "are separate",
                 "Classification and bytes do not establish equal-quality production acceptance",
+                "Fixed-footprint offline candidate times include concurrent label workers and "
+                "are not paired deployment latency controls",
+                "A train-split shared cohort is a resubstitution diagnostic, not generalization",
             ],
         }
         self.report.mkdir(parents=True, exist_ok=True)
@@ -209,6 +295,18 @@ class GDCReport:
             "Quality violations are retained. This is a source-RGB four-square reconstruction; "
             "the original published results and a direct Unity speedup are unverified. "
             "`[verified: accompanying JSON protocol and limits]`\n\n"
+            "| Offline fixed footprint | Strict target passed | Actual payload bytes |\n"
+            "|---|---|---|\n"
+            + "".join(
+                f"| {name} | {control['target_met']}/{control['images']} | "
+                f"{control['payload_bytes']:,} "
+                "`[verified: accompanying JSON offline_fixed_footprints]` |\n"
+                for name, control in controls.items()
+            )
+            + "\nAll controls use the same full-resolution RGB inputs. Offline encoding times "
+            "come from parallel label collection; the separately measured fixed8 pipeline "
+            "remains the deployment latency control. "
+            "`[verified: accompanying JSON protocol, offline_fixed_footprints and costs]`\n\n"
             f"Full per-image results and costs: [{initialization}-{split}.json]"
             f"({initialization}-{split}.json). `[verified: accompanying JSON]`\n"
         )

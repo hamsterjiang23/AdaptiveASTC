@@ -1,6 +1,7 @@
 {
   "status": "passed",
   "scope": "source RGB project four-square talk reconstruction",
+  "data_use": "held-out test",
   "smoke": true,
   "initialization": "pretrained",
   "split": "test",
@@ -395,6 +396,44 @@
     "label_best_bytes": 2518128,
     "model_to_fixed8_ratio": 0.451416015625
   },
+  "offline_fixed_footprints": {
+    "6x6": {
+      "images": 16,
+      "target_met": 16,
+      "payload_bytes": 6087616,
+      "finite_mean_psnr": 45.151708836064174,
+      "lossless": 0,
+      "offline_encode_seconds": 7.84875340000508,
+      "timing_scope": "candidate encoding during parallel offline label collection"
+    },
+    "8x8": {
+      "images": 16,
+      "target_met": 15,
+      "payload_bytes": 3407872,
+      "finite_mean_psnr": 40.66091635326274,
+      "lossless": 0,
+      "offline_encode_seconds": 8.950947000002998,
+      "timing_scope": "candidate encoding during parallel offline label collection"
+    },
+    "10x10": {
+      "images": 16,
+      "target_met": 11,
+      "payload_bytes": 2209984,
+      "finite_mean_psnr": 37.465358408404164,
+      "lossless": 0,
+      "offline_encode_seconds": 8.540626299994983,
+      "timing_scope": "candidate encoding during parallel offline label collection"
+    },
+    "12x12": {
+      "images": 16,
+      "target_met": 5,
+      "payload_bytes": 1538368,
+      "finite_mean_psnr": 35.37545255488882,
+      "lossless": 0,
+      "offline_encode_seconds": 7.499445600005856,
+      "timing_scope": "candidate encoding during parallel offline label collection"
+    }
+  },
   "costs": {
     "label_collection_wall_seconds": 49.89653229999931,
     "label_collection_workers": 2,
@@ -484,7 +523,74 @@
         "selected.png": "34d077c7c124a6e7378633b7e97f646bf14a8c5eb099a12257a112aa933c39ec",
         "selected.txt": "ce3d3c7a2560c88024f9a11bf109d114094894ee5318a3e692ede44624ecca32"
       },
-      "receipt_sha256": "a923a08e322781478092bc280822419b95ec71317a842b8c0512c5c616ce4379"
+      "receipt_sha256": "a923a08e322781478092bc280822419b95ec71317a842b8c0512c5c616ce4379",
+      "label_receipt_sha256": "82d33882619bf6ea016faa9f4db95731fd2fe2302b6bf7b12340b5709f6d3e80",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 40.16753837923297,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.39172060000055353,
+            "decode_seconds": 0.05220660000122734,
+            "metric_seconds": 0.015794999999343418
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 65536,
+          "container_bytes": 65552,
+          "rgb_psnr": 36.072427077116835,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.369303100000252,
+            "decode_seconds": 0.05122540000047593,
+            "metric_seconds": 0.016349400000763126
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 43264,
+          "container_bytes": 43280,
+          "rgb_psnr": 33.54464275208829,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.3333910000001197,
+            "decode_seconds": 0.04920730000048934,
+            "metric_seconds": 0.014947899999242509
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 29584,
+          "container_bytes": 29600,
+          "rgb_psnr": 31.70994843502493,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.29750400000011723,
+            "decode_seconds": 0.05343150000044261,
+            "metric_seconds": 0.01603590000013355
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -524,7 +630,74 @@
         "selected.png": "07e277100384888e57ab4f63777887bcc77e1cf2b2367e264cab322ae2e944b7",
         "selected.txt": "265366d17e980b810eaba29a69d96c981cc962fa966115f0479ad016ccb45a2c"
       },
-      "receipt_sha256": "2bfe679ed71c8a1cbed7e46c7e85df79517cbf50f00a86515e19970b36b62864"
+      "receipt_sha256": "2bfe679ed71c8a1cbed7e46c7e85df79517cbf50f00a86515e19970b36b62864",
+      "label_receipt_sha256": "bb2b2246f63fd83d65f76941bfe59a77a4feaa57f814a46dfa7734d44fe79ae6",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 40.12854825211334,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.28036470000006375,
+            "decode_seconds": 0.04663129999971716,
+            "metric_seconds": 0.015180000000327709
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 65536,
+          "container_bytes": 65552,
+          "rgb_psnr": 35.651432064944984,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.344893299999967,
+            "decode_seconds": 0.0620612999991863,
+            "metric_seconds": 0.017148599999927683
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 43264,
+          "container_bytes": 43280,
+          "rgb_psnr": 33.074950779910445,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.3184686000004149,
+            "decode_seconds": 0.04734129999997094,
+            "metric_seconds": 0.014467799999692943
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 29584,
+          "container_bytes": 29600,
+          "rgb_psnr": 31.21045015576973,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.2893405000013445,
+            "decode_seconds": 0.0503006999988429,
+            "metric_seconds": 0.014595599999665865
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -564,7 +737,74 @@
         "selected.png": "7a1e926872c655b6d495d31191dddb9f88e5fb33dc5b41bc46c79a7248486b4f",
         "selected.txt": "e25b612933f2debb25528766e2536b553d8ace2e1414c65defcb1f8d789a48a9"
       },
-      "receipt_sha256": "95dc7d5ff108bc867248bbdb0d40565b9ca7e7306bf25bb310fffeb2be9640aa"
+      "receipt_sha256": "95dc7d5ff108bc867248bbdb0d40565b9ca7e7306bf25bb310fffeb2be9640aa",
+      "label_receipt_sha256": "8668d547751b3eb6edd385ab2f1b21de54066451b33c3e75e95a91c6096dd177",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 43.2680036797209,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.1659023000011075,
+            "decode_seconds": 0.039857099998698686,
+            "metric_seconds": 0.013068399999610847
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 65536,
+          "container_bytes": 65552,
+          "rgb_psnr": 38.777791002658006,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.20421859999987646,
+            "decode_seconds": 0.041567800000848365,
+            "metric_seconds": 0.013674100000571343
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 43264,
+          "container_bytes": 43280,
+          "rgb_psnr": 35.867816898610386,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.18447030000061204,
+            "decode_seconds": 0.04235350000089966,
+            "metric_seconds": 0.015479300000151852
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 29584,
+          "container_bytes": 29600,
+          "rgb_psnr": 33.916239682841194,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.16059900000072957,
+            "decode_seconds": 0.045499699999709264,
+            "metric_seconds": 0.015384000000267406
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -604,7 +844,74 @@
         "selected.png": "f331ed6055bd2f6728367ea1ba97e96f415eae7bb7bab8f48db19013ff62c5ff",
         "selected.txt": "6458acbb3072318a26fd51505491cbcf41cabb791b9a2be4c797f1b17b4b6096"
       },
-      "receipt_sha256": "c0c995940c83cefa31f14a17cefa139f9bc5e336f5993fdb0e677b47664725ee"
+      "receipt_sha256": "c0c995940c83cefa31f14a17cefa139f9bc5e336f5993fdb0e677b47664725ee",
+      "label_receipt_sha256": "d88f5b12d9ee53e2315944f2a413d0573a7f1e2a1c6f47ed784d0bf95e259f4e",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 58.8695297756302,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.024329500000021653,
+            "decode_seconds": 0.025822500001595472,
+            "metric_seconds": 0.011076099999627331
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 65536,
+          "container_bytes": 65552,
+          "rgb_psnr": 52.191655180537644,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.028222699998877943,
+            "decode_seconds": 0.027840499999001622,
+            "metric_seconds": 0.008740700000998913
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 43264,
+          "container_bytes": 43280,
+          "rgb_psnr": 48.289606214419194,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.02924689999963448,
+            "decode_seconds": 0.033097100000304636,
+            "metric_seconds": 0.010837199999514269
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 29584,
+          "container_bytes": 29600,
+          "rgb_psnr": 45.78348902004247,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.03369419999944512,
+            "decode_seconds": 0.03382909999891126,
+            "metric_seconds": 0.008999600000606733
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -644,7 +951,74 @@
         "selected.png": "744832587a205309ab45189d69aa901f7538a80a5234b48edcff844384bca457",
         "selected.txt": "966041d681ae706f1b18852a3aa34e82e6124a2841de9e118623f6f1b970a7aa"
       },
-      "receipt_sha256": "15498517330efbbd6c008aee74cf89a186035885a0ab5c869d127dff5d8ba345"
+      "receipt_sha256": "15498517330efbbd6c008aee74cf89a186035885a0ab5c869d127dff5d8ba345",
+      "label_receipt_sha256": "96d5d186df15930bdd34c7c958bc62eee6c22e673e18ed06608b5e3c4911add2",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 52.481770573005406,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.087902799999938,
+            "decode_seconds": 0.06605849999868951,
+            "metric_seconds": 0.04181419999986247
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 48.27327205944059,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.1168350999996619,
+            "decode_seconds": 0.07378489999973681,
+            "metric_seconds": 0.0433286000006774
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 44.204625698517674,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.12211699999897974,
+            "decode_seconds": 0.06793130000005476,
+            "metric_seconds": 0.04282950000015262
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 41.95222234270675,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.1202320000011241,
+            "decode_seconds": 0.07156409999879543,
+            "metric_seconds": 0.04615609999927983
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -684,7 +1058,74 @@
         "selected.png": "0b83e612d338c6dcf31ec29fa149980416a615a52a031eb950aba45bdc642e49",
         "selected.txt": "4da711afd580ac9922f2690cc5635c4fa82f1846781342852e6b7faee7fb1d36"
       },
-      "receipt_sha256": "6f7e25b179ea3b08d79d25afe7dbcd8a25dea496650aca811af57ed550fbaa22"
+      "receipt_sha256": "6f7e25b179ea3b08d79d25afe7dbcd8a25dea496650aca811af57ed550fbaa22",
+      "label_receipt_sha256": "3ce4638bfd353e0a09324d02f3baa20a32c8225d7fff2b44581ca064d65a1498",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 44.31493774530249,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.4426469999998517,
+            "decode_seconds": 0.13425629999983357,
+            "metric_seconds": 0.0641250000007858
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 39.31535054041453,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.6150066999998671,
+            "decode_seconds": 0.13271910000003118,
+            "metric_seconds": 0.058579399999871384
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 36.13742850275146,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.6083479999997508,
+            "decode_seconds": 0.11418910000065807,
+            "metric_seconds": 0.0539587000002939
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 34.228550264773965,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.5034458999998606,
+            "decode_seconds": 0.11295109999991837,
+            "metric_seconds": 0.05428900000151771
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -724,7 +1165,74 @@
         "selected.png": "0f4edbc34b898c99a679801423cabb223cc260537de25ca8c25aea5baa691b67",
         "selected.txt": "996fa582c7291a0b92864314391de52c1251e1f815c4d2d17fecfd7ebc5d0a81"
       },
-      "receipt_sha256": "94a1ceb675b94c523ec6abc4f4ef2de6a29ed879a14e15105fb7093d4164fa40"
+      "receipt_sha256": "94a1ceb675b94c523ec6abc4f4ef2de6a29ed879a14e15105fb7093d4164fa40",
+      "label_receipt_sha256": "f52e0814f9aeb60e941272f9f3f862045309b9a8d5dd68cdff5242899432fdd3",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 36.20467506912966,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 2.1278668000013568,
+            "decode_seconds": 0.16193620000012743,
+            "metric_seconds": 0.0665685999993002
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 33.27632745567361,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 2.204252200001065,
+            "decode_seconds": 0.14523860000008426,
+            "metric_seconds": 0.06498760000067705
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 31.259759388097507,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 1.9345593999987614,
+            "decode_seconds": 0.1297457000000577,
+            "metric_seconds": 0.06607439999970666
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 29.75572014781864,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 1.561038499999995,
+            "decode_seconds": 0.1322811999998521,
+            "metric_seconds": 0.0647540999998455
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -764,7 +1272,74 @@
         "selected.png": "d7dc83f5dfaf8234b878f29903bd4b1c4c5c41b4a2460f13ee4adc631bcdf187",
         "selected.txt": "bbf3456a61a8fced3199484107e47927c40e4fe3fb1e44f20bfabe0ce7c5d480"
       },
-      "receipt_sha256": "f0b2a0d0537ae12fcde965631c79cdb99f1ecdbcaeb90b12cafeebecd815b7a0"
+      "receipt_sha256": "f0b2a0d0537ae12fcde965631c79cdb99f1ecdbcaeb90b12cafeebecd815b7a0",
+      "label_receipt_sha256": "a15bf4be488da8b7f9167fb24a40b63c8056ecf312baed7ffb35e31fb85be770",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 52.86149235707872,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.17553380000026664,
+            "decode_seconds": 0.07010149999950954,
+            "metric_seconds": 0.04081679999944754
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 47.579800593927466,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.2466468000002351,
+            "decode_seconds": 0.06036189999940689,
+            "metric_seconds": 0.04154490000109945
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 43.925953069672346,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.2529664000012417,
+            "decode_seconds": 0.061923100000058184,
+            "metric_seconds": 0.04507419999936246
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 41.46443646004496,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.2342081999995571,
+            "decode_seconds": 0.09886980000010226,
+            "metric_seconds": 0.043934599998465274
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -804,7 +1379,74 @@
         "selected.png": "621006f3f27ac29aa73e2734ed73264edd22295d9fb5b2dbcf5a58d08c29f366",
         "selected.txt": "72c5f0754661d3a6f60353753bb549540476106351430291641900a4a06375f3"
       },
-      "receipt_sha256": "f6ec86529e08819b7a7cbef10ad781513fe0cd3aa902b602333383071c442f0b"
+      "receipt_sha256": "f6ec86529e08819b7a7cbef10ad781513fe0cd3aa902b602333383071c442f0b",
+      "label_receipt_sha256": "1d02f695dee041a2d32442c116a81e56f8fc6170c10e19223c7114ed1916a6b7",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 44.734389446050294,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.42270449999887205,
+            "decode_seconds": 0.11777400000028138,
+            "metric_seconds": 0.05254580000109854
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 40.7054802598052,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.4781775999999809,
+            "decode_seconds": 0.10618260000046575,
+            "metric_seconds": 0.051901699998779804
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 37.00046193332299,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.5528253999982553,
+            "decode_seconds": 0.09384239999963029,
+            "metric_seconds": 0.05153190000055474
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 34.58466999443088,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.5866710999998759,
+            "decode_seconds": 0.09476230000109354,
+            "metric_seconds": 0.05233509999925445
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -844,7 +1486,74 @@
         "selected.png": "a57656f54b4558f1b417a79bfd44d68ce04f478b30757032ae626c2e3d4b1837",
         "selected.txt": "afe7a03bb7e7c59fa12caa7df98687b1273c2e34be954da5287efe5e1f18ca40"
       },
-      "receipt_sha256": "ce0712e5307dee305536c61068a5253b59c0336fac9e1e130017c0ed372553be"
+      "receipt_sha256": "ce0712e5307dee305536c61068a5253b59c0336fac9e1e130017c0ed372553be",
+      "label_receipt_sha256": "c6b808e3ea5ef8e97303b8ca84b0484ac0aabb8a3bb440402e43dd03a0d5c580",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 42.45205309021517,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.6724384000008286,
+            "decode_seconds": 0.15253189999930328,
+            "metric_seconds": 0.0637721999992209
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 38.110304678629944,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.7995589000001928,
+            "decode_seconds": 0.1418539000005694,
+            "metric_seconds": 0.06206679999922926
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 34.88444755533962,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.819949099999576,
+            "decode_seconds": 0.1300781999998435,
+            "metric_seconds": 0.06617919999916921
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 32.93868180679236,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.6969205000004877,
+            "decode_seconds": 0.13380689999939932,
+            "metric_seconds": 0.06828800000039337
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -884,7 +1593,74 @@
         "selected.png": "71685756ddb0e99ba8d3ef4694cbf2e77e67f02b1f93d308f271b9c4597bcba3",
         "selected.txt": "728d0c89d9d43925db069d35c2985fadd97506d612ae4d2ed0e6be6a23bac166"
       },
-      "receipt_sha256": "d6690e7940e5a07292215328dcd9204a496f9cf59e982ea47df18ad1acdcb9a3"
+      "receipt_sha256": "d6690e7940e5a07292215328dcd9204a496f9cf59e982ea47df18ad1acdcb9a3",
+      "label_receipt_sha256": "e924b1f827090821384765032d14413daf6e24a2f8e697534c280f95091308e7",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 43.62838643147184,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.4958170000008977,
+            "decode_seconds": 0.14871660000062548,
+            "metric_seconds": 0.0588145000001532
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 39.15891139173284,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.6403299000012339,
+            "decode_seconds": 0.13358200000038778,
+            "metric_seconds": 0.056571400000393623
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 35.89986629800512,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.6338714999983495,
+            "decode_seconds": 0.11044930000025488,
+            "metric_seconds": 0.05530680000083521
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 33.70484227569355,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.5688458000004175,
+            "decode_seconds": 0.11000400000011723,
+            "metric_seconds": 0.07322779999958584
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -924,7 +1700,74 @@
         "selected.png": "aa5c0978961d4fe248d1bfe8ea9272f90b3d72dc01dc38d3b601ae42cfbf6e50",
         "selected.txt": "17f0d41258365c37a18cc79c365d34651a263709c35a60efc6867d51adbfede2"
       },
-      "receipt_sha256": "ca7982876bac352a8a99113a6a4c3d58d19ee6d5448af95a668be5b521b50b06"
+      "receipt_sha256": "ca7982876bac352a8a99113a6a4c3d58d19ee6d5448af95a668be5b521b50b06",
+      "label_receipt_sha256": "c0e945a6ad2d716aaa8aae5afe867f43613be45bf54061573a52574bb7e96455",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 43.088495125131104,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.5638584999996965,
+            "decode_seconds": 0.12137980000079551,
+            "metric_seconds": 0.05588229999921168
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 37.60622920671163,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.7339916000000812,
+            "decode_seconds": 0.11764769999899727,
+            "metric_seconds": 0.05396870000004128
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 34.18616212647604,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.8171074000001681,
+            "decode_seconds": 0.11288539999986824,
+            "metric_seconds": 0.05298860000038985
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 32.19476078553926,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.7881957000008697,
+            "decode_seconds": 0.11051009999937378,
+            "metric_seconds": 0.05372290000013891
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -964,7 +1807,74 @@
         "selected.png": "3552176229d2d7348c5b967c67918d7a66989fcce1a64e1719737a12b4b823e2",
         "selected.txt": "4fb2acfbdc3f6603307b9002f1f1471e24b9903dba72c1d83a396ecb772c4881"
       },
-      "receipt_sha256": "eba6f02c6f86a76efdba46e3484f775ab006544c0f0ee417af75edc3e6765b54"
+      "receipt_sha256": "eba6f02c6f86a76efdba46e3484f775ab006544c0f0ee417af75edc3e6765b54",
+      "label_receipt_sha256": "ac3d26b630606e16baedab0484b7b6b4009456c590f1e6562999cb55ba45e1e4",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 44.25944280948212,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.5141309999999066,
+            "decode_seconds": 0.11363499999970372,
+            "metric_seconds": 0.051705199999560136
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 39.99325747658668,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.6259702000006655,
+            "decode_seconds": 0.10261479999826406,
+            "metric_seconds": 0.05253149999953166
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 36.82739986068371,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.6085812999990594,
+            "decode_seconds": 0.095219900000302,
+            "metric_seconds": 0.051090999999360065
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 34.424916083922206,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.5820431000011013,
+            "decode_seconds": 0.09654709999995248,
+            "metric_seconds": 0.054335599999831175
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -1004,7 +1914,74 @@
         "selected.png": "c47576794a785a2a1cc79124f66a2a9f39fbe976f5ca08d1cb133d68d18f8626",
         "selected.txt": "0efa900f2e90c51a7f494df25427e7828e09085b9fd8f4c1b39aa99bc1c9430d"
       },
-      "receipt_sha256": "f7ced5e99a106a6fcbf2be76e2ade67f409276bbc1276e521c6a6745ce8b3bb9"
+      "receipt_sha256": "f7ced5e99a106a6fcbf2be76e2ade67f409276bbc1276e521c6a6745ce8b3bb9",
+      "label_receipt_sha256": "959df19e29de756bc46a0b92198fe7790a25f24fd577ae12d396fbd1f2d97fad",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 44.85562412206818,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.44280630000139354,
+            "decode_seconds": 0.131633500001044,
+            "metric_seconds": 0.05267760000060662
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 40.89702209986434,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.48022579999997106,
+            "decode_seconds": 0.12579899999946065,
+            "metric_seconds": 0.05249370000092313
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 37.81771374340008,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.4236726999988605,
+            "decode_seconds": 0.11595159999887983,
+            "metric_seconds": 0.06145730000025651
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 35.77196018196693,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.3372381999997742,
+            "decode_seconds": 0.14064949999919918,
+            "metric_seconds": 0.05322770000020682
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -1044,7 +2021,74 @@
         "selected.png": "e962421b9cd8591300a3ae30c9ef950f7ab7f05f609d34aab8c1e475dbd10622",
         "selected.txt": "af23b1af36ea62ec2e8621ee3bd2bbbf681db96fe5953841c2c8d77be98e4500"
       },
-      "receipt_sha256": "f35c33688ebb9fd80a6aac7ad9e0aa17b5cc97958268d71fa1cc69ed5acb7ab3"
+      "receipt_sha256": "f35c33688ebb9fd80a6aac7ad9e0aa17b5cc97958268d71fa1cc69ed5acb7ab3",
+      "label_receipt_sha256": "a0eaa9dea3bd1204c782a797982ecb52e25f7059eb28e53c6a05b84b5a5995bf",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 49.6104314325845,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.1705710000005638,
+            "decode_seconds": 0.08553350000147475,
+            "metric_seconds": 0.04490780000014638
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 44.94182523816207,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.22928780000074767,
+            "decode_seconds": 0.08452509999915492,
+            "metric_seconds": 0.045801700000083656
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 41.01794748475426,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.2241317000007257,
+            "decode_seconds": 0.08753480000086711,
+            "metric_seconds": 0.04679220000070927
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 38.60317333745144,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.2042730000011943,
+            "decode_seconds": 0.08709890000136511,
+            "metric_seconds": 0.046684999999342836
+          }
+        }
+      ]
     },
     {
       "status": "passed",
@@ -1084,7 +2128,74 @@
         "selected.png": "e176842e177f6fcb9a677257d13b93db59f48b8f0abc26a85d8841522efa7227",
         "selected.txt": "6cd9a515ee9e6360de0ba0bb39a2053d962824bccf33ad51731a3a36ded1ba1b"
       },
-      "receipt_sha256": "1ecb849a9c29c2210c4a8a426ffb4dc45b85c70f4584716a2d2583728f3fc2a1"
+      "receipt_sha256": "1ecb849a9c29c2210c4a8a426ffb4dc45b85c70f4584716a2d2583728f3fc2a1",
+      "label_receipt_sha256": "3d9dbd8aaa559f5e79142a505011e0279c00b2efd62dbc7ed2a91f1895417c92",
+      "offline_candidates": [
+        {
+          "name": "6x6",
+          "footprint": [
+            6,
+            6
+          ],
+          "payload_bytes": 467856,
+          "container_bytes": 467872,
+          "rgb_psnr": 41.50202308880989,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.8701591999997618,
+            "decode_seconds": 0.1472788999999466,
+            "metric_seconds": 0.06376619999900868
+          }
+        },
+        {
+          "name": "8x8",
+          "footprint": [
+            8,
+            8
+          ],
+          "payload_bytes": 262144,
+          "container_bytes": 262160,
+          "rgb_psnr": 38.023575325997484,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.8340267000003223,
+            "decode_seconds": 0.14223990000027698,
+            "metric_seconds": 0.06351320000067062
+          }
+        },
+        {
+          "name": "10x10",
+          "footprint": [
+            10,
+            10
+          ],
+          "payload_bytes": 169744,
+          "container_bytes": 169760,
+          "rgb_psnr": 35.506952228417475,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.676919600000474,
+            "decode_seconds": 0.13277220000054513,
+            "metric_seconds": 0.0656622000005882
+          }
+        },
+        {
+          "name": "12x12",
+          "footprint": [
+            12,
+            12
+          ],
+          "payload_bytes": 118336,
+          "container_bytes": 118352,
+          "rgb_psnr": 33.76317990340185,
+          "lossless": false,
+          "timings": {
+            "encode_seconds": 0.5351958999999624,
+            "decode_seconds": 0.1313494999994873,
+            "metric_seconds": 0.0609227999993891
+          }
+        }
+      ]
     }
   ],
   "limits": [
@@ -1094,6 +2205,8 @@
     "Model is uncalibrated; probability calibration is a separate experiment",
     "Input profile, metric, encoder and timing differ from the Unity LITE baseline",
     "Preprocessing, inference and final encoding are timed; setup and verification are separate",
-    "Classification and bytes do not establish equal-quality production acceptance"
+    "Classification and bytes do not establish equal-quality production acceptance",
+    "Fixed-footprint offline candidate times include concurrent label workers and are not paired deployment latency controls",
+    "A train-split shared cohort is a resubstitution diagnostic, not generalization"
   ]
 }

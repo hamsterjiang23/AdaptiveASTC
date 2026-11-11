@@ -32,4 +32,18 @@ uv run --frozen python script/reproduce.py report --method gdc2023 --run-id sour
 
 The evaluator verifies current training completion and all sources/labels before opening test inference. `EvaluationSeal` preserves probability-evaluation checkpoint/temperature bindings and adds compression-model identities. Model warmup is counted in setup. Per-image deployment time includes source RGB preparation, RGB224 normalization, inference and one final ASTC encode, with a separately measured fixed8 control. Auditing checks exact ASTC and decoded PNG agreement with frozen candidate measurements; audit time is separate. `[verified: evaluation.py completed_training/preflight_inputs/evaluate; utils/evaluation_seal.py; reporting.py write]`
 
+The report also audits all four offline candidates on the evaluation inputs and publishes fixed6/8/10/12 quality and actual payload controls. Candidate encode times retain their parallel label-collection scope. The separately measured fixed8 pipeline is the paired deployment latency control. `[verified: reporting.py write offline_fixed_footprints; smoke/test16/pretrained-test.json]`
+
+## Shared Unity64 diagnostic
+
+The existing Unity/Nah shared64 cohort belongs to the training split. The following additional evaluation uses the completed formal GDC model and records resubstitution results; the independent test2000 remains the generalization evaluation. The cohort config is checked against its frozen protocol-lock hash, which is checked against the baseline receipt. Its name, config hash and ordered paths are bound into evaluation and report metadata. `[verified: common/cohort.py EvaluationCohort.unity64/rows; evaluation.py evaluate; reporting.py write]`
+
+```powershell
+uv run --frozen python script/reproduce.py evaluate --method gdc2023 --run-id source-rgb35-medium-full --evaluation-id shared64 --split train --cohort unity64
+uv run --frozen python script/reproduce.py report --method gdc2023 --run-id source-rgb35-medium-full --evaluation-id shared64
+uv run --frozen python script/compare_reproductions.py --gdc-report "experiment report/gdc2023/source-rgb35-medium-full/shared64/pretrained-train.json" --output "experiment report/reproduction-shared64"
+```
+
+The comparison verifies identical source identities and full-resolution RGB PNG hashes across Nah/GDC and recomputes their RGB PSNR. Nah selected ASTCs are freshly decoded by each pinned binary. Unity retains its imported pixels, LITE quality branches and full mip/face compression scope; imported-reference equivalence is not established. Native targets, candidate sets and presets remain explicit, so the table is not an equal-quality speed ranking. These commands remain pending until formal label collection and training complete. `[verified: common/comparison.py nah/write; active formal collection; accepted execution order]`
+
 Training distinguishes step attempts from actual optimizer calls through a post-step hook. Scheduler advancement and best-checkpoint selection require an applied update. The first two-image, one-epoch probe skipped its sole update under AMP and is retained as a diagnostic. The 32-image smoke applied ten optimizer updates without skips. This behavior is covered by CPU GradScaler overflow and normal-update tests. `[verified: training/trainer.py train_epoch/fit; source-rgb35-medium-smoke history.json; tests/test_amp_step_accounting.py]` [PyTorch 2.8 AMP example](https://docs.pytorch.org/docs/2.8/notes/amp_examples.html#typical-mixed-precision-training), [optimizer post-step hook](https://docs.pytorch.org/docs/2.8/generated/torch.optim.Optimizer.register_step_post_hook.html).

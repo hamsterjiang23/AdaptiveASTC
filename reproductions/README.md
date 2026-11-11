@@ -95,6 +95,8 @@ Keep original publication settings and project-adapted settings as separate expe
 
 Build success, smoke acceptance and full experiment completion are separate statuses. Only measured results may be marked complete. `[opinion]`
 
+The [GDC reproduction commands](gdc2023/README.md#shared-unity64-diagnostic) include an additional frozen Unity64 diagnostic and `script/compare_reproductions.py`. Existing Nah64 inputs passed byte-identical RGB PNG and common RGB PSNR preflight. GDC shared64 remains pending behind formal labels/training and is explicitly training-set resubstitution; independent test2000 remains separate. Unity keeps imported-reference/mip/native-quality scope. No cross-method equal-quality speed ranking follows from these native measurements. `[verified: .local/reproduction-shared64-preflight.json; common/cohort.py; common/comparison.py; gdc2023/README.md]`
+
 ## Validation recorded with the Nah project runs
 
 - `uv run --frozen pytest -q` passed 56 tests. `uv run --frozen ruff check src script tests reproductions` and `uv run --frozen basedpyright` passed. `[verified: test/check outputs, 2026-11-11]`

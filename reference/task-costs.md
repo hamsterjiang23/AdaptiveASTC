@@ -3,8 +3,8 @@
 | Task | Classification | Observed cost and state |
 |---|---|---|
 | Native Editor link, four build threads | Moderate | Link observed at approximately 3 GiB working set; native output target completed. Full package validation failed in UPM. `[verified: native-output-build.log; process snapshot]` |
-| Unity two-texture probe | Unknown | First startup failed before imports. Diagnostic retry is recorded in the baseline run directory. `[verified: probe receipts and attempts/]` |
-| 64-texture smoke and 10,000-texture baseline | Unknown | Run only after the two-texture probe passes; measure cost before expansion. `[opinion]` |
+| Unity two-texture probe | Light | Final measured probe wall 267.97 s; initial startup failures remain archived separately. `[verified: unity-search-baseline-lite-rdo-off/probe-receipt.json process_wall_seconds]` |
+| 64-texture smoke and 10,000-texture baseline | Heavy for full cohort | First64 smoke wall 434.38 s; complete10k plus technical retries wall 24,416.51 s, native search 4,060.47 s. Keep the machine free of competing benchmarks for a new timing run. `[verified: smoke1-receipt.json; full-receipt.json]` `[opinion]` |
 | TexNN training | Heavy | Paper reports roughly 40–48 hours per network on a Pascal GPU; current-machine cost remains unmeasured. `[verified: user-supplied TexNN PDF p.8 §3.6]` |
 | TexNN 64 source-image labels, 64-pixel crops, two workers | Light | 77.47 s for three footprints; 8,377 / 3,724 / 2,340 nonconstant blocks. `[verified: source-rgb64-patch64-v2 collection.json and prepared manifests]` |
 | TexNN six-network pilot training | Light | CUDA training loops total about 69.5 s, batch 128, up to 100 epochs with patience 8. The largest network has 40.5M parameters. `[verified: source-rgb64-patch64-v2 models training_complete.json; network-shape-probe.json]` |

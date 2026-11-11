@@ -86,7 +86,8 @@ def main() -> None:
     parser.add_argument("--evaluation-id")
     parser.add_argument("--inference-device", default="cpu")
     parser.add_argument("--initialization", choices=["pretrained", "scratch"], default="pretrained")
-    parser.add_argument("--split", choices=["validation", "test"], default="test")
+    parser.add_argument("--split", choices=["train", "validation", "test"], default="test")
+    parser.add_argument("--cohort", choices=["unity64"])
     parser.add_argument("--micro-batch", type=int, choices=[16, 32, 64], default=64)
     parser.add_argument(
         "--phase", choices=["probe", "smoke1", "smoke2", "smoke3", "full"], default="probe"
@@ -106,6 +107,8 @@ def main() -> None:
         / "experiment report/.local/gdc-lite-rgb-resnet18-seed20261109/coverage-v2/manifest.json",
     )
     args = parser.parse_args()
+    if args.cohort is not None and (args.method != "gdc2023" or args.action != "evaluate"):
+        parser.error("--cohort is supported only by GDC compression evaluation")
     if args.method == "gdc2023":
         from reproductions.gdc2023.dataset import GDCMeasuredDataset
 
@@ -139,8 +142,20 @@ def main() -> None:
                 or args.evaluation_id in {".", ".."}
             ):
                 parser.error("GDC evaluation requires a single-directory --evaluation-id")
+            paths = None
+            if args.cohort == "unity64":
+                from reproductions.common.cohort import EvaluationCohort
+
+                if args.split != "train":
+                    parser.error("The frozen Unity64 cohort belongs to train; use --split train")
+                paths, _ = EvaluationCohort.unity64(
+                    ROOT / "experiment report/.local/unity-search-baseline-lite-rdo-off"
+                )
             result = GDCCompressionEvaluation(ROOT, directory, args.initialization).evaluate(
-                directory / "evaluations" / args.evaluation_id / args.initialization, args.split
+                directory / "evaluations" / args.evaluation_id / args.initialization,
+                args.split,
+                paths,
+                args.cohort,
             )
         elif args.action == "train":
             from reproductions.gdc2023.training import GDCTraining

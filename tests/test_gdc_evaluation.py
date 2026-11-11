@@ -15,8 +15,44 @@ from adaptive_astc.config import TrainConfig
 from adaptive_astc.utils.artifacts import ArtifactStore
 from adaptive_astc.utils.checkpoints import CheckpointStore
 from adaptive_astc.utils.evaluation_seal import EvaluationSeal
+from reproductions.common.cohort import EvaluationCohort
 from reproductions.gdc2023.evaluation import GDCCompressionEvaluation
 from reproductions.gdc2023.training import GDCTraining
+
+
+def test_explicit_cohort_preserves_frozen_identity_and_requested_order() -> None:
+    manifest = {"splits": {"train": [{"path": "Assets/A.png"}, {"path": "Assets/B.png"}]}}
+    identity = ArtifactStore.fingerprint(manifest)
+    selected = EvaluationCohort.rows(manifest, "train", ["assets/b.png", "Assets/A.png"])
+    assert [row["path"] for row in selected] == ["Assets/B.png", "Assets/A.png"]
+    assert ArtifactStore.fingerprint(manifest) == identity
+
+
+@pytest.mark.parametrize("paths", [None, [], ["a", "A"], ["Assets/foreign.png"]])
+def test_invalid_training_diagnostics_are_rejected(paths: list[str] | None) -> None:
+    manifest = {"splits": {"train": [{"path": "a"}], "test": [{"path": "test"}]}}
+    with pytest.raises(ValueError):
+        EvaluationCohort.rows(manifest, "train", paths)
+    with pytest.raises(ValueError):
+        EvaluationCohort.rows(manifest, "test", ["a"])
+
+
+def test_unity64_rejects_replacement_with_other_training_members(tmp_path: Path) -> None:
+    config = tmp_path / "smoke1-config.json"
+    ArtifactStore.write_json(config, {"assets": [{"path": f"Assets/{i}.png"} for i in range(64)]})
+    lock = tmp_path / "protocol-lock.json"
+    ArtifactStore.write_json(lock, {"smoke1-config.json": ArtifactStore.sha256_file(config)})
+    ArtifactStore.write_json(
+        tmp_path / "full-receipt.json",
+        {"provenance": {"protocol_sha256": ArtifactStore.sha256_file(lock)}},
+    )
+    paths, identity = EvaluationCohort.unity64(tmp_path)
+    assert len(paths) == 64 and identity["config_sha256"] == ArtifactStore.sha256_file(config)
+    ArtifactStore.write_json(
+        config, {"assets": [{"path": f"Assets/{i}.png"} for i in range(64, 128)]}
+    )
+    with pytest.raises(ValueError, match="configuration changed"):
+        EvaluationCohort.unity64(tmp_path)
 
 
 @pytest.mark.parametrize("first", ["probability", "compression"])

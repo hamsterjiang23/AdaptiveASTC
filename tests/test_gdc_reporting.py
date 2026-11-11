@@ -8,6 +8,7 @@ from typing import Any
 import pytest
 from PIL import Image
 
+from adaptive_astc.config import CLASSES
 from adaptive_astc.utils.artifacts import ArtifactStore
 from reproductions.gdc2023.reporting import GDCReport
 
@@ -51,14 +52,53 @@ def report_fixture(root: Path) -> tuple[Path, Path, dict[str, Any]]:
         "fixed8_payload_bytes": 16,
         "label_payload_bytes": 16,
         "predicted_class": 1,
-        "label_class": 1,
+        "label_class": 3,
         "timings": timings,
         "artifacts_sha256": {
             path.name: ArtifactStore.sha256_file(path) for path in folder.iterdir()
         },
     }
     ArtifactStore.write_json(folder / "receipt.json", sample)
-    ArtifactStore.write_json(run / "protocol.json", {"target_psnr": 35.0})
+    source = {"split": "test", "path": "Assets/a.png", "fileHash": "hash"}
+    protocol = {"target_psnr": 35.0, "inputs": [source]}
+    ArtifactStore.write_json(run / "protocol.json", protocol)
+    labels = run / "labels/00000"
+    labels.mkdir(parents=True)
+    (labels / "input.png").write_bytes((folder / "input.png").read_bytes())
+    candidates = []
+    for name in CLASSES:
+        size = int(name.split("x")[0])
+        candidate_header = header[:4] + bytes([size, size, 1]) + header[7:]
+        (labels / f"{name}.astc").write_bytes(candidate_header + bytes(16))
+        (labels / f"{name}.png").write_bytes((folder / "input.png").read_bytes())
+        (labels / f"{name}.txt").write_text("synthetic offline control", encoding="utf-8")
+        candidates.append(
+            {
+                "name": name,
+                "footprint": [size, size],
+                "payload_bytes": 16,
+                "container_bytes": 32,
+                "rgb_psnr": None,
+                "lossless": True,
+                "timings": {"encode_seconds": 1.0},
+            }
+        )
+    ArtifactStore.write_json(
+        labels / "receipt.json",
+        {
+            "status": "passed",
+            "index": 0,
+            **source,
+            "protocol_fingerprint": ArtifactStore.fingerprint(protocol),
+            "candidates": candidates,
+            "selected": candidates[-1],
+            "target_met": True,
+            "fallback": None,
+            "artifacts_sha256": {
+                path.name: ArtifactStore.sha256_file(path) for path in labels.iterdir()
+            },
+        },
+    )
     protocol_sha = ArtifactStore.sha256_file(run / "protocol.json")
     ArtifactStore.write_json(
         run / "collection.json",
@@ -67,7 +107,16 @@ def report_fixture(root: Path) -> tuple[Path, Path, dict[str, Any]]:
     manifest = {
         "label_protocol_sha256": protocol_sha,
         "label_collection_sha256": ArtifactStore.sha256_file(run / "collection.json"),
-        "splits": {"test": [{"path": "Assets/a.png", "fileHash": "hash"}]},
+        "splits": {
+            "test": [
+                {
+                    "path": source["path"],
+                    "fileHash": source["fileHash"],
+                    "class_id": 3,
+                    "label_receipt_sha256": ArtifactStore.sha256_file(labels / "receipt.json"),
+                }
+            ]
+        },
         "smoke": True,
     }
     manifest["fingerprint"] = ArtifactStore.fingerprint(manifest)
@@ -137,3 +186,22 @@ def test_report_rejects_foreign_label_and_training_provenance(tmp_path: Path, da
     with pytest.raises(ValueError):
         GDCReport(tmp_path, run, output, destination).write()
     assert not destination.exists()
+
+
+def test_report_controls_require_frozen_candidate_receipts(tmp_path: Path) -> None:
+    run, output, _ = report_fixture(tmp_path)
+    destination = tmp_path / "report"
+    GDCReport(tmp_path, run, output, destination).write()
+    summary = ArtifactStore.read_json(destination / "pretrained-test.json")
+    assert set(summary["offline_fixed_footprints"]) == set(CLASSES)
+    for control in summary["offline_fixed_footprints"].values():
+        assert control["target_met"] == 1 and control["payload_bytes"] == 16
+        assert control["lossless"] == 1 and control["finite_mean_psnr"] is None
+        assert control["offline_encode_seconds"] == 1.0
+    changed = run / "labels/00000/receipt.json"
+    label = ArtifactStore.read_json(changed)
+    label["candidates"][0]["rgb_psnr"] = 999
+    ArtifactStore.write_json(changed, label)
+    with pytest.raises(ValueError, match="offline control receipt changed"):
+        GDCReport(tmp_path, run, output, tmp_path / "rejected").write()
+    assert not (tmp_path / "rejected").exists()

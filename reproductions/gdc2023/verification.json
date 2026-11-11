@@ -19,24 +19,56 @@
     }
   },
   "checks": {
-    "pytest": "91 passed in 45.82s",
+    "pytest": "98 passed in 71.59s; final comparison decoder change additionally covered by actual native probe",
     "ruff": "uv run --frozen ruff check src script tests reproductions: passed",
     "basedpyright": "uv run --frozen basedpyright: 0 errors/warnings",
-    "code_review": "No bugs found after all identified fixes, including AMP post-hook cleanup",
+    "code_review": "No bugs found; frozen-cohort replacement, native payload/PNG mismatch and raw-batch receipt mismatch rejected",
     "native_label_probe": "8 images, 32 ASTCs, cache replay preserved hashes",
     "native_smoke": "64 labels, 32 train images x10 epochs, 16 final model/fixed8 pairs, exact frozen ASTC and PNG matches",
     "optimizer_updates": "10 applied, 0 skipped in smoke; initial 2-image probe skip retained separately",
-    "formal": "14000-image label generation running; formal training/evaluation pending"
+    "formal": "14000-image label generation running; formal training/evaluation pending",
+    "markdown": "7 documents, 142 local links/anchors passed; external URL availability not checked",
+    "shared64": "Existing Nah64 frozen inputs, identical RGB PNG hashes and common RGB PSNR preflight passed; formal GDC diagnostic/comparison pending",
+    "offline_controls": "GDC smoke16 fixed6/8/10/12 strict35 passes 16/15/11/5; all frozen candidate artifacts and quality revalidated"
   },
   "source_sha256": {
     "reproductions/gdc2023/dataset.py": "9387619ed6c2008b0ba75fe93cf01717cdb68c2d5a04a31c538e070e448ef893",
     "reproductions/gdc2023/training.py": "d591ff1b390cbc2903ea11b4c43f503c25b07b533eae0ea5637227b72e45b408",
-    "reproductions/gdc2023/evaluation.py": "1e4a34fd0f83d2fbe85e5023aa4e0c72b680761a8b534607e316d3eb2048a9a8",
-    "reproductions/gdc2023/reporting.py": "2c9b82b7ba17e94acf1acd558fd72c49f97957d0a6004feeadb955e1080613d0",
+    "reproductions/gdc2023/evaluation.py": "32e7c651b0e5b30221efd7ef019bc7a7ad14cec656ec201c5b0f23699b4eb97b",
+    "reproductions/gdc2023/reporting.py": "1d88748f91e418f8b5b495ab7e0016af0b15b4cb5d97e09154c7594dca7e75ec",
     "src/adaptive_astc/utils/evaluation_seal.py": "290cf5f8ccac70188a427a932c0d2d7b3e73e4d76eefd67921c3163d6e1b128a",
     "src/adaptive_astc/evaluation/evaluator.py": "cf8630da262a64e0c8531c0e78619333ec6abd80bed633ecd4246bc668b70a06",
     "src/adaptive_astc/training/trainer.py": "dcdbeab92bb084bd064e5225d01ea3cea2b6e3a7cb127e30ec71515a1adee02b",
-    "script/reproduce.py": "7c85482730622324a96a06d310cb7fb0c07b625d57e460aa6bcc1c26910af06a"
+    "script/reproduce.py": "52e9dbd7bb91455eaf4960930890887ec1642bb22ad8b19488f156fd6c464d52",
+    "reproductions/common/cohort.py": "698240720f0acf4fbe3892737533f2d46a1fc38d176c1cf8705f815de985db52",
+    "reproductions/common/comparison.py": "749f2dc25745c43e875ea857e2b33d810a874f84c12899d5bd1467135ca2038b",
+    "script/compare_reproductions.py": "19104c27d45d3b5c278bfcc556261ca04b186049a87c4157137855e9f60ec48d"
   },
-  "smoke_report_sha256": "a67dd7dc3af65ee466143807871c451e83ce2f32fe323fb3ac5ed59416e72789"
+  "smoke_report_sha256": "6c4cb9868659bbd65e8b35595b650673e89f4123aea1b33f9af9f0576950212f",
+  "historical_smoke_completion": {
+    "commit": "3cf6427a59943f7bacda90261a1cc3b3ab7a0bea",
+    "checks": {
+      "pytest": "91 passed in 45.82s",
+      "ruff": "uv run --frozen ruff check src script tests reproductions: passed",
+      "basedpyright": "uv run --frozen basedpyright: 0 errors/warnings",
+      "code_review": "No bugs found after all identified fixes, including AMP post-hook cleanup",
+      "native_label_probe": "8 images, 32 ASTCs, cache replay preserved hashes",
+      "native_smoke": "64 labels, 32 train images x10 epochs, 16 final model/fixed8 pairs, exact frozen ASTC and PNG matches",
+      "optimizer_updates": "10 applied, 0 skipped in smoke; initial 2-image probe skip retained separately",
+      "formal": "14000-image label generation running; formal training/evaluation pending"
+    },
+    "source_sha256": {
+      "reproductions/gdc2023/dataset.py": "9387619ed6c2008b0ba75fe93cf01717cdb68c2d5a04a31c538e070e448ef893",
+      "reproductions/gdc2023/training.py": "d591ff1b390cbc2903ea11b4c43f503c25b07b533eae0ea5637227b72e45b408",
+      "reproductions/gdc2023/evaluation.py": "1e4a34fd0f83d2fbe85e5023aa4e0c72b680761a8b534607e316d3eb2048a9a8",
+      "reproductions/gdc2023/reporting.py": "2c9b82b7ba17e94acf1acd558fd72c49f97957d0a6004feeadb955e1080613d0",
+      "src/adaptive_astc/utils/evaluation_seal.py": "290cf5f8ccac70188a427a932c0d2d7b3e73e4d76eefd67921c3163d6e1b128a",
+      "src/adaptive_astc/evaluation/evaluator.py": "cf8630da262a64e0c8531c0e78619333ec6abd80bed633ecd4246bc668b70a06",
+      "src/adaptive_astc/training/trainer.py": "dcdbeab92bb084bd064e5225d01ea3cea2b6e3a7cb127e30ec71515a1adee02b",
+      "script/reproduce.py": "7c85482730622324a96a06d310cb7fb0c07b625d57e460aa6bcc1c26910af06a"
+    },
+    "smoke_report_sha256": "a67dd7dc3af65ee466143807871c451e83ce2f32fe323fb3ac5ed59416e72789"
+  },
+  "comparison_review_sha256": "570c0d9392015205f0ad388e26adedc71bbf11e949ad2adb50b76acc8af11935",
+  "shared64_preflight_sha256": "e1bdeeba63f7914dce60ca99595938eb64b275682142cf6443846a9b02105021"
 }
