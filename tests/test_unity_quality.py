@@ -212,6 +212,50 @@ def test_feature_pool_tied_maxima_share_negative_upstream_gradient() -> None:
     torch.testing.assert_close(gradient, torch.full_like(features, -1 / 3))
 
 
+def test_mean_only_pool_uses_pixel_weighted_features_and_gradients() -> None:
+    features = torch.stack([torch.ones(512), torch.full((512,), 3.0), torch.full((512,), 7.0)])
+    features.requires_grad_()
+    pixels = torch.tensor([3, 1, 2])
+    ids = torch.tensor([0, 0, 1])
+    pooled = UnityQualityRegressor.pool_features(features, pixels, ids, 2, image_pooling="mean")
+    assert pooled.shape == (2, 512)
+    torch.testing.assert_close(pooled[0], torch.full((512,), 1.5))
+    torch.testing.assert_close(pooled[1], torch.full((512,), 7.0))
+    gradient = torch.autograd.grad(pooled.sum(), features)[0]
+    torch.testing.assert_close(gradient[:, 0], torch.tensor([0.75, 0.25, 1.0]))
+
+
+def test_mean_only_initialization_preserves_paired_weights_and_rng() -> None:
+    torch.manual_seed(123)
+    baseline = UnityQualityRegressor()
+    next_baseline = torch.rand(3)
+    torch.manual_seed(123)
+    mean = UnityQualityRegressor(image_pooling="mean")
+    next_mean = torch.rand(3)
+    for name, value in baseline.state_dict().items():
+        if name != "image_head.weight":
+            assert torch.equal(value, mean.state_dict()[name])
+    expected = torch.cat(
+        (baseline.image_head.weight[:, :512], baseline.image_head.weight[:, -8:]), dim=1
+    )
+    assert torch.equal(mean.image_head.weight, expected)
+    assert torch.equal(next_mean, next_baseline)
+    assert sum(parameter.numel() for parameter in mean.parameters()) == 11305980
+
+
+@pytest.mark.parametrize("pooling", ["mean_max", "mean"])
+def test_checkpoint_factory_restores_pooling_and_legacy_default(pooling: str) -> None:
+    original = UnityQualityRegressor(image_pooling=pooling)
+    settings = {} if pooling == "mean_max" else {"image_pooling": pooling}
+    restored = UnityQualityRegressor.from_checkpoint(
+        {"config": settings, "model": original.state_dict()}, torch.device("cpu")
+    )
+    assert restored.image_pooling == pooling
+    assert restored.image_head.in_features == original.image_head.in_features
+    for name, value in original.state_dict().items():
+        assert torch.equal(value, restored.state_dict()[name])
+
+
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA pool replay regression")
 def test_cuda_feature_pool_repeated_outputs_are_bit_identical() -> None:
     features = torch.randn(4096, 512, device="cuda")

@@ -342,8 +342,7 @@ class UnityConfirmationEvaluation:
                 Path(settings["output"]) / "best.pt", map_location="cpu", weights_only=False
             )
             S.verify_checkpoint(checkpoint, training)
-            model = UnityQualityRegressor().to(device)
-            model.load_state_dict(checkpoint["model"], strict=True)
+            model = UnityQualityRegressor.from_checkpoint(checkpoint, device)
             torch.cuda.synchronize(device)
             state["model_load_and_cuda_seconds"] = time.perf_counter() - before
             predictor = UnityQualityInference(

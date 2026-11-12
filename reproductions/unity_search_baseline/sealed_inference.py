@@ -210,8 +210,7 @@ class UnitySealedInferenceSmoke:
                 Path(settings["output"]) / "best.pt", map_location="cpu", weights_only=False
             )
             self.verify_checkpoint(checkpoint, training)
-            model = UnityQualityRegressor().to(device)
-            model.load_state_dict(checkpoint["model"], strict=True)
+            model = UnityQualityRegressor.from_checkpoint(checkpoint, device)
             torch.cuda.synchronize(device)
             state["model_load_seconds"] = time.perf_counter() - before
             predictor = UnityQualityInference(

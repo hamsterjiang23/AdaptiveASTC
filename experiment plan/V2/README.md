@@ -1,8 +1,10 @@
 # 实验计划 V2：Unity 原生协议的质量预测与原规则决策
 
-V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使用 Unity 协议，即导入处理后的第一个 image／mip0 参考像素、同次原搜索标签、20 候选补测得到的原生质量，以及原规则重放。GDC 源图 RGB 协议的数据、标签、权重和结果不进入 V2 的训练、选模或验收。引用数字与来源 SHA-256 保存在 [evidence.json](evidence.json)，由归档脚本 `experiment report/.local/unity-accuracy90-20261111/plan_v2_evidence.py` 生成，脚本 SHA-256 记录在同一文件。`[verified: 用户本轮要求“按照我们的UNITY协议指定V2的expreiment plan，不需要使用GDC协议”；evidence.json script、inputs]`
+V2 初版记录于 2026-11-12，当时状态为待执行。开发、选模与验收全部使用 Unity 协议，即导入处理后的第一个 image／mip0 参考像素、同次原搜索标签、20 候选补测得到的原生质量，以及原规则重放。GDC 源图 RGB 协议的数据、标签、权重和结果不进入 V2 的训练、选模或验收。引用数字与来源 SHA-256 保存在 [evidence.json](evidence.json)，由归档脚本 `experiment report/.local/unity-accuracy90-20261111/plan_v2_evidence.py` 生成，脚本 SHA-256 记录在同一文件。`[verified: 用户本轮要求“按照我们的UNITY协议指定V2的expreiment plan，不需要使用GDC协议”；evidence.json script、inputs]`
 
-[V1](../V1/README.md) 的历史方法与实测结果保留，执行状态按用户最新指示更新。V2 复用 V1 执行期间完成的 Unity 原生组件，包括采集、补测、Dataset、`UnityQualityRegressor`、训练器、规则重放和确认集入口，不复用 GDC 数据、权重或结果。用户最初选择只指定 V2；随后于 2026-11-12 明确本 chat 的 goal 在完成数据采集后结束，后续执行 V2。当前只继续[数据交接](<../../experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)，V1 正式训练自动启动已取消；V2 的 R0 可复用保留的配方，以新的实验身份启动。`[verified: 用户先前“先不切换，只是指定”及后续“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json training_auto_start] [opinion: 复用范围]`
+[V1](../V1/README.md) 的历史方法与实测结果保留，执行状态按用户最新指示更新。V2 复用 V1 执行期间完成的 Unity 原生组件，包括采集、补测、Dataset、`UnityQualityRegressor`、训练器、规则重放和确认集入口，不复用 GDC 数据、权重或结果。用户最初选择只指定 V2；随后于 2026-11-12 明确数据 goal 在完成采集后结束，后续执行 V2。当时只继续[数据交接](<../../experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)，V1 正式训练自动启动已取消；V2 的 R0 复用保留的配方，以新的实验身份启动。`[verified: 用户先前“先不切换，只是指定”及后续“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json training_auto_start]`
+
+当前V2 goal已启动，完整原生基线、权重0.03及仅均值池化对照、冻结预测归因和验证余量拟合已完成，后续继续单项改进。结果与活动状态见[执行报告](<../../experiment report/unity-v2-20261112/README.md>)；计划初版源码哈希和归档位置见[执行绑定](<../../experiment report/unity-v2-20261112/plan-execution-binding.json>)。`[verified: 用户“查看V2版本的实验之后，创建一个goal开始实验”；experiment report/unity-v2-20261112/comparison.json、progress.json]`
 
 核心做法：对每张图预测 20 个候选在 Unity 口径下的质量，交给原规则 `UnitySearchPolicy` 选出块大小和 preset，最后只编码一次。`[opinion]`
 
@@ -106,7 +108,7 @@ V2 数据采集与完整性验收已完成：训练10000张、验证1000张、�
 
 - **质量约束**：验收只看块大小 Top-1≥90%；严格通过率、质量回退和 payload 全部报告，不设门槛。`[verified: 用户本轮选择“只看 Top-1≥90%，质量和字节全部报告但不设门槛”]`
 - **preset**：只报告块大小＋preset 完整匹配率，不设目标。preset 不影响字节，只影响质量和编码时间。`[verified: 用户本轮选择“只报告块大小＋preset 完整匹配率，不设门槛”；AGENTS.md“同图同尺寸同blockSize的payload容量相同”]`
-- **执行依据**：先前的“暂不切换”决定已由后续指示更新：本 chat 的 goal 仅完成数据采集与验收，之后执行 V2；V1 正式训练自动队列已取消。`[verified: 用户2026-11-12后续范围调整；unity-data-handoff-v1.json]`
+- **执行依据**：此前数据goal已完成采集与验收，用户随后要求创建新goal执行V2；V1正式训练自动队列已取消。`[verified: 用户“查看V2版本的实验之后，创建一个goal开始实验”；unity-data-handoff-v1.json；unity-data-delivery-v3-verification.json]`
 
 以下三项等 E4／E6 有结果再定：
 

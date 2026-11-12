@@ -1,7 +1,7 @@
 {
-  "status": "running",
+  "status": "completed",
   "test_opened": false,
-  "training_updates": 1874,
+  "training_updates": 3749,
   "config": {
     "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2",
     "corpus_sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
@@ -333,16 +333,318 @@
         "seconds": 11.931564200000139
       },
       "learning_rate": 0.00029912069357315393
+    },
+    {
+      "epoch": 4,
+      "loss": {
+        "total": 0.2009302400827408,
+        "patch": 0.06693188002705575,
+        "zero": 0.07264439343586564,
+        "ssim": 2.5406901282310486,
+        "angle": 0.5051321752727032
+      },
+      "images_seen": 10000,
+      "patch_draws": 40000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 39.729583699999694,
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.676,
+        "balanced_accuracy": 0.5409703268834429,
+        "full_choice_accuracy": 0.347,
+        "confusion_matrix": [
+          [
+            84,
+            18,
+            9,
+            9
+          ],
+          [
+            51,
+            60,
+            14,
+            18
+          ],
+          [
+            14,
+            48,
+            28,
+            48
+          ],
+          [
+            6,
+            34,
+            55,
+            504
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.4195804195804196
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.2028985507246377
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.8414023372287145
+          }
+        },
+        "actual_quality_pass_rate": 0.689,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 4.091815849565975,
+        "selected_payload_bytes": 34917408,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 11.831955600000128
+      },
+      "learning_rate": 0.000296493083356513
+    },
+    {
+      "epoch": 5,
+      "loss": {
+        "total": 0.1879570344686508,
+        "patch": 0.06407551401108504,
+        "zero": 0.07077502726651728,
+        "ssim": 2.4353628604888917,
+        "angle": 0.4374313273116946
+      },
+      "images_seen": 10000,
+      "patch_draws": 40000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 39.20164059999979,
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.727,
+        "balanced_accuracy": 0.5731995547036013,
+        "full_choice_accuracy": 0.378,
+        "confusion_matrix": [
+          [
+            69,
+            33,
+            8,
+            10
+          ],
+          [
+            27,
+            65,
+            31,
+            20
+          ],
+          [
+            7,
+            23,
+            49,
+            59
+          ],
+          [
+            4,
+            19,
+            32,
+            544
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.575
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.45454545454545453
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.35507246376811596
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9081803005008348
+          }
+        },
+        "actual_quality_pass_rate": 0.616,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 3.6067892552871985,
+        "selected_payload_bytes": 32467472,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 11.921604399999978
+      },
+      "learning_rate": 0.00029214797567742035
+    },
+    {
+      "epoch": 6,
+      "loss": {
+        "total": 0.18074262048006057,
+        "patch": 0.06178283778727055,
+        "zero": 0.06734165021590889,
+        "ssim": 2.362332648086548,
+        "angle": 0.41355639291107654
+      },
+      "images_seen": 10000,
+      "patch_draws": 40000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 39.28615609999997,
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.687,
+        "balanced_accuracy": 0.4711365967027577,
+        "full_choice_accuracy": 0.32,
+        "confusion_matrix": [
+          [
+            48,
+            45,
+            18,
+            9
+          ],
+          [
+            8,
+            46,
+            53,
+            36
+          ],
+          [
+            1,
+            14,
+            31,
+            92
+          ],
+          [
+            1,
+            8,
+            28,
+            562
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.4
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.32167832167832167
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.2246376811594203
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9382303839732888
+          }
+        },
+        "actual_quality_pass_rate": 0.453,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 3.675102685250122,
+        "selected_payload_bytes": 29572912,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 11.955759599999965
+      },
+      "learning_rate": 0.0002861363129506435
     }
   ],
   "preparation_seconds": 80.5941227999997,
   "best_artifacts_sha256": {
-    "best.pt": "021591028a199ac9ec9723c6b7d60761b04062fbeb581d80ba80e53ce920c1d8",
-    "best-validation.npz": "17d14be018ffbe79a1febb49fcd34d77bfde80c541f391092daa1ca9aa7d85a2",
-    "best-decisions.json": "06e515bf9a567f129dccc889824cf985e9c70df022f0835e79ba9a710c132544"
+    "best.pt": "847745307ac10d3e858a383cebb02160ebdbad83864121f1a8474551728516e2",
+    "best-validation.npz": "b8f1a0bf8a61a909b0b66c17c2aae8cfbe95d9c2fcf79fd02a076abc5b1a3727",
+    "best-decisions.json": "3b1a31461eae11a25324be221bb169cae8463b74eaf4f56704519c6531e9b9b6"
   },
-  "best_validation_accuracy": 0.684,
+  "best_validation_accuracy": 0.727,
   "best_color_near_threshold_rmse_db": 2.9393280122796974,
-  "wall_seconds": 241.4540382,
-  "peak_vram_bytes": 1219232256
+  "wall_seconds": 421.96509019999985,
+  "peak_vram_bytes": 1219232256,
+  "stop_reason": "color_near_threshold_rmse_patience",
+  "checkpoint_sha256": "847745307ac10d3e858a383cebb02160ebdbad83864121f1a8474551728516e2",
+  "checkpoint_audit": {
+    "status": "passed",
+    "epoch": 5,
+    "metrics": {
+      "count": 1000,
+      "accuracy": 0.727,
+      "balanced_accuracy": 0.5731995547036013,
+      "full_choice_accuracy": 0.378,
+      "confusion_matrix": [
+        [
+          69,
+          33,
+          8,
+          10
+        ],
+        [
+          27,
+          65,
+          31,
+          20
+        ],
+        [
+          7,
+          23,
+          49,
+          59
+        ],
+        [
+          4,
+          19,
+          32,
+          544
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 0.575
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 0.45454545454545453
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 0.35507246376811596
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 0.9081803005008348
+        }
+      },
+      "actual_quality_pass_rate": 0.616,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 3.6067892552871985,
+      "selected_payload_bytes": 32467472,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "seconds": 12.41905850000012
+    },
+    "checkpoint_sha256": "847745307ac10d3e858a383cebb02160ebdbad83864121f1a8474551728516e2",
+    "predictions_sha256": "b8f1a0bf8a61a909b0b66c17c2aae8cfbe95d9c2fcf79fd02a076abc5b1a3727",
+    "selected_artifacts_sha256": {
+      "best.pt": "847745307ac10d3e858a383cebb02160ebdbad83864121f1a8474551728516e2",
+      "best-validation.npz": "b8f1a0bf8a61a909b0b66c17c2aae8cfbe95d9c2fcf79fd02a076abc5b1a3727",
+      "best-decisions.json": "3b1a31461eae11a25324be221bb169cae8463b74eaf4f56704519c6531e9b9b6"
+    },
+    "test_opened": false,
+    "wall_seconds": 22.91310969999995
+  }
 }

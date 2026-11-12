@@ -46,6 +46,7 @@ class UnityTrainConfig:
     zero_weight: float = 0.1
     ssim_weight: float = 0.1
     angle_weight: float = 0.1
+    image_pooling: str = "mean_max"
 
     def validate(self) -> None:
         for name in ["epochs", "image_batch_size", "patches_per_image", "validation_batch_size"]:
@@ -61,6 +62,7 @@ class UnityTrainConfig:
             or not math.isfinite(self.weight_decay)
             or self.weight_decay < 0
             or not 0 < self.zero_probability_threshold < 1
+            or self.image_pooling not in ("mean_max", "mean")
         ):
             raise ValueError("Invalid native training configuration")
         if not self.smoke and self.train_image_indices:
@@ -148,7 +150,7 @@ class UnityQualityTrainer:
         # Verify native policy provenance before optimizing any parameter.
         for row in validation.rows:
             self.resolver.policy_for(row)
-        model = UnityQualityRegressor().to(device)
+        model = UnityQualityRegressor(image_pooling=config.image_pooling).to(device)
         criterion = UnityQualityLoss(
             UnityQualityLossConfig(config.zero_weight, config.ssim_weight, config.angle_weight)
         )
@@ -466,8 +468,7 @@ class UnityQualityTrainer:
         self.resolver = UnityPredictionAudit(self.root, self.config_path)
         for row in fresh_validation.rows:
             self.resolver.policy_for(row)
-        model = UnityQualityRegressor().to(device)
-        model.load_state_dict(checkpoint["model"], strict=True)
+        model = UnityQualityRegressor.from_checkpoint(checkpoint, device)
         metrics, predictions, rows = self.evaluate(model, fresh_validation, device)
         with np.load(config.output / "best-validation.npz", allow_pickle=False) as saved:
             for key, value in predictions.items():

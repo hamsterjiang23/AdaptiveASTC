@@ -1,0 +1,39 @@
+{
+  "status": "passed_completed_mean_control",
+  "verified_utc": "2026-11-12T14:57:50.225234+00:00",
+  "component_checks": {
+    "passed": 61,
+    "command": "uv run pytest -q --tb=short --basetemp \"experiment report/.local/unity-v2-20261112/pytest-mean-components\" -o \"cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted\" tests/test_unity_search_policy.py tests/test_unity_error_attribution.py tests/test_unity_quality.py tests/test_unity_quality_training.py"
+  },
+  "caller_checks": {
+    "passed": 71,
+    "command": "uv run pytest -q --tb=short --basetemp \"experiment report/.local/unity-v2-20261112/pytest-mean-consumers\" -o \"cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted\" tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py"
+  },
+  "calibration_cpu_checks": {
+    "passed": 56,
+    "deselected_gpu_check": 1
+  },
+  "review": "CLEAN",
+  "initialization_design": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-pooling-design.json",
+  "initialization_design_sha256": "e122a1f0c99d6bc6ac142b286d29ad557facf7c9ffd05d759a72bca8556321e7",
+  "archived_attribution_exact_replay": true,
+  "archived_attribution_report_sha256": "5f7a8ddee867a13d1ce985a5c32b968671ad8cf5f97286677dcad7cb15b03f7f",
+  "model_smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-pooling-smoke.json",
+  "model_smoke_report_sha256": "1b5155a5c5b77d6a30a498a42ae630f0f04c6120deb39b28afa4c4c1a2e967ff",
+  "source_rechecks": "passed",
+  "static_checks": [
+    "ruff format --check",
+    "ruff check",
+    "basedpyright"
+  ],
+  "test_opened": false,
+  "local_document_links": {
+    "checked": 19,
+    "passed": 19
+  },
+  "completed_training_report_sha256": "5a0ad8e013351a11a76bf11452dc4f1b67168d0adc9292bf1ad7e3a45da1e36e",
+  "completed_attribution_report_sha256": "8ae0ee6464c05acdd97afa3b7872aebedd52b899f8a13dbd9f6b1c107973f261",
+  "completed_calibration_report_sha256": "ca74514a226920696b690adf04bb97ad5b800d8fd7c74709ec3e5f0f673315d8",
+  "final_checkpoint_audit": "passed",
+  "validation90_achieved": false
+}

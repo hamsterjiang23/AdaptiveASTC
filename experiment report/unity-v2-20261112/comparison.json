@@ -1,0 +1,304 @@
+{
+  "status": "scratch_controls_completed",
+  "created_utc": "2026-11-12T14:40:16.378356+00:00",
+  "results": {
+    "baseline": {
+      "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-stable-sum.json",
+      "training_report_sha256": "601b1739842d8533fdc4d2adbd86c570510dc9f4083dc9305b869954eeaae377",
+      "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-attribution.json",
+      "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-calibration.json",
+      "calibration_report_sha256": "c0ccb07fe45d99daeb3995ee3ef38682435f16369fa5d5bfa4cd4df74ffec268",
+      "epochs": 8,
+      "updates": 4996,
+      "amp_skips": 4,
+      "selected_checkpoint_epoch": 5,
+      "selected_checkpoint_metrics": {
+        "count": 1000,
+        "accuracy": 0.739,
+        "balanced_accuracy": 0.5848084437458938,
+        "full_choice_accuracy": 0.381,
+        "confusion_matrix": [
+          [
+            73,
+            27,
+            13,
+            7
+          ],
+          [
+            27,
+            66,
+            35,
+            15
+          ],
+          [
+            4,
+            30,
+            48,
+            56
+          ],
+          [
+            1,
+            15,
+            31,
+            552
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.6083333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.46153846153846156
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.34782608695652173
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9215358931552587
+          }
+        },
+        "actual_quality_pass_rate": 0.617,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.9747165580397135,
+        "selected_payload_bytes": 31661760,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 14.830558099999962
+      },
+      "same_validation_fitted_top1": 0.76,
+      "same_validation_fitted_parameters": {
+        "zero_probability_threshold": 0.5,
+        "psnr_margin_db": -1.0,
+        "ssim_margin_db": 0.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -1.5
+      },
+      "same_validation_fitted_metrics": {
+        "images": 1000,
+        "accuracy": 0.76,
+        "full_choice_accuracy": 0.379,
+        "actual_strict_quality_pass_rate": 0.614,
+        "quality_regression_images": 260,
+        "larger_block_images": 154,
+        "smaller_block_images": 86,
+        "payload_bytes": 30438608,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 0.9613754488097855,
+        "payload_ratio_to_fixed8": 0.5093337502787743
+      },
+      "quality_regression_images": 257,
+      "trainer_wall_seconds": 529.2559755000002,
+      "parameters": 11377660,
+      "deployment_timings": null,
+      "confirmation_test_opened": false
+    },
+    "ssim_weight003": {
+      "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\ssim-weight003.json",
+      "training_report_sha256": "e47baf61107bbad74dd3a01f04abb32fba52bec3ebb6e80e867de6cb5dc7df4b",
+      "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\ssim-weight003-attribution.json",
+      "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\ssim-weight003-calibration.json",
+      "calibration_report_sha256": "f66659b6a8cdb99cc3f6fb08931fbbdaffccf56094ffc5f569b0076b1bdbf179",
+      "epochs": 6,
+      "updates": 3749,
+      "amp_skips": 1,
+      "selected_checkpoint_epoch": 5,
+      "selected_checkpoint_metrics": {
+        "count": 1000,
+        "accuracy": 0.727,
+        "balanced_accuracy": 0.5731995547036013,
+        "full_choice_accuracy": 0.378,
+        "confusion_matrix": [
+          [
+            69,
+            33,
+            8,
+            10
+          ],
+          [
+            27,
+            65,
+            31,
+            20
+          ],
+          [
+            7,
+            23,
+            49,
+            59
+          ],
+          [
+            4,
+            19,
+            32,
+            544
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.575
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.45454545454545453
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.35507246376811596
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9081803005008348
+          }
+        },
+        "actual_quality_pass_rate": 0.616,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 3.6067892552871985,
+        "selected_payload_bytes": 32467472,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 12.41905850000012
+      },
+      "same_validation_fitted_top1": 0.743,
+      "same_validation_fitted_parameters": {
+        "zero_probability_threshold": 0.5,
+        "psnr_margin_db": 0.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -1.0
+      },
+      "same_validation_fitted_metrics": {
+        "images": 1000,
+        "accuracy": 0.743,
+        "full_choice_accuracy": 0.386,
+        "actual_strict_quality_pass_rate": 0.63,
+        "quality_regression_images": 244,
+        "larger_block_images": 146,
+        "smaller_block_images": 111,
+        "payload_bytes": 31666000,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 1.0001414966811448,
+        "payload_ratio_to_fixed8": 0.5298718829825485
+      },
+      "quality_regression_images": 258,
+      "trainer_wall_seconds": 421.96509019999985,
+      "parameters": 11377660,
+      "deployment_timings": null,
+      "confirmation_test_opened": false
+    },
+    "mean_pooling": {
+      "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-pooling.json",
+      "training_report_sha256": "5a0ad8e013351a11a76bf11452dc4f1b67168d0adc9292bf1ad7e3a45da1e36e",
+      "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-pooling-attribution.json",
+      "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-pooling-calibration.json",
+      "calibration_report_sha256": "ca74514a226920696b690adf04bb97ad5b800d8fd7c74709ec3e5f0f673315d8",
+      "epochs": 10,
+      "updates": 6246,
+      "amp_skips": 4,
+      "selected_checkpoint_epoch": 9,
+      "selected_checkpoint_metrics": {
+        "count": 1000,
+        "accuracy": 0.75,
+        "balanced_accuracy": 0.5670888087016417,
+        "full_choice_accuracy": 0.418,
+        "confusion_matrix": [
+          [
+            52,
+            48,
+            16,
+            4
+          ],
+          [
+            7,
+            64,
+            49,
+            23
+          ],
+          [
+            0,
+            13,
+            59,
+            66
+          ],
+          [
+            1,
+            3,
+            20,
+            575
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.43333333333333335
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.44755244755244755
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.427536231884058
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9599332220367279
+          }
+        },
+        "actual_quality_pass_rate": 0.52,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 3.3832694791168123,
+        "selected_payload_bytes": 29603568,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 12.344155100000535
+      },
+      "same_validation_fitted_top1": 0.774,
+      "same_validation_fitted_parameters": {
+        "zero_probability_threshold": 0.5,
+        "psnr_margin_db": 1.25,
+        "ssim_margin_db": 0.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "same_validation_fitted_metrics": {
+        "images": 1000,
+        "accuracy": 0.774,
+        "full_choice_accuracy": 0.422,
+        "actual_strict_quality_pass_rate": 0.612,
+        "quality_regression_images": 262,
+        "larger_block_images": 147,
+        "smaller_block_images": 79,
+        "payload_bytes": 30294528,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 0.9568248144751105,
+        "payload_ratio_to_fixed8": 0.5069228382311483
+      },
+      "quality_regression_images": 354,
+      "trainer_wall_seconds": 630.1573104000008,
+      "parameters": 11305980,
+      "deployment_timings": null,
+      "confirmation_test_opened": false
+    }
+  },
+  "reference_model": "mean_pooling",
+  "next_experiment": "ImageNet initialization contrast under V2 plan",
+  "decision": "Mean-only pooling is the validation reference by raw Top1; fitted margins are validation diagnostics",
+  "calibration_scope": "Finite two-pass coordinate fitting on the same1000 validation predictions; no confirmation evaluation",
+  "test_opened": false,
+  "updated_utc": "2026-11-12T14:56:02.256993+00:00",
+  "calibration_deployment_integrated": false
+}

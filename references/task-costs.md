@@ -98,3 +98,9 @@ Unity V2首次完整R0训练器720.81秒、10轮、6247实际更新，最佳74.9
 
 
 修订后V2完整基线8轮，训练器529.26秒（准备80.51、训练321.22、逐轮验证97.32），4996更新、4AMP跳步，最终重载25.32秒通过。完整冻结归因CPU1000图运行6.53秒进程，0次forward。MS-SSIM权重0.03对照的32／16图CUDA检查训练器11.59秒，4更新及重载通过，正式任务继续GPU串行并写独立目录。`[verified: ../experiment report/unity-v2-20261112/baseline-result.json；r0-stable-sum.json checkpoint_audit.wall_seconds；本轮归因命令wall_time_seconds=6.527；ssim-weight003-smoke.json wall_seconds、checkpoint_audit]`
+
+
+MS-SSIM权重0.03正式6轮训练器421.97秒，3749更新、1AMP跳步，重载通过。两组冻结验证余量拟合仅CPU，基线约9.08秒循环，GPU对照当时仍在运行，计时按诊断活动记录。仅均值池化32／16图CUDA检查训练器10.78秒，4更新／重载通过，峰值分配显存1,218,372,096字节；正式启动前RAM43.87GiB、GPU611／12282MiB。只读冻结Unity语料，独立mean-pooling目录写入，GPU串行；旧实现17份源码及原结果另存。`[verified: ../experiment report/unity-v2-20261112/comparison.json；r0-calibration.json wall_seconds；mean-pooling-smoke.json；对应launch-preflight.json；mean-pooling-design.json]`
+
+
+仅均值池化正式10轮训练器630.16秒，6246更新、4AMP跳步，完整最佳权重重载通过。冻结归因1000图CPU进程7.53秒，同验证集余量拟合循环9.14秒，均0次模型forward。训练时长按本组10轮及源核验记录，部署时延另测。`[verified: ../experiment report/unity-v2-20261112/mean-pooling.json wall_seconds、training_updates、history、checkpoint_audit；本轮归因命令wall_time_seconds=7.5327511；mean-pooling-calibration.json wall_seconds、model_forward_calls]`

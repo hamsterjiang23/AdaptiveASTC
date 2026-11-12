@@ -1,11 +1,15 @@
 import copy
+from pathlib import Path
 
 import numpy as np
 import pytest
 
 from adaptive_astc.config import JsonDict
+from adaptive_astc.evaluation.unity_quality import UnityTextureInput
+from adaptive_astc.utils.artifacts import ArtifactStore
 from reproductions.unity_search_baseline.policy import UnitySearchPolicy
 from reproductions.unity_search_baseline.supplement import UnityASTCBackend
+from script.calibrate_unity_decisions import UnityDecisionCalibration
 
 
 def policy() -> UnitySearchPolicy:
@@ -43,6 +47,54 @@ def grid() -> list[JsonDict]:
         for block in UnityASTCBackend.BLOCKS
         for preset in UnityASTCBackend.PRESETS
     ]
+
+
+def test_margin_calibration_preserves_cached_predictions_and_applies_sign() -> None:
+    candidates = grid()
+    for candidate in candidates:
+        candidate["metrics"].update(psnr=31.0, ms_ssim_db=22.0)
+    calibration = object.__new__(UnityDecisionCalibration)
+    calibration.entries = [
+        {"texture": UnityTextureInput(32, 32, True, False, False, True, 0.0), "policy": policy()}
+    ]
+    calibration.candidate_cache = {0.5: [candidates]}
+    parameters = {
+        "zero_probability_threshold": 0.5,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0,
+    }
+    snapshot = copy.deepcopy(candidates)
+    baseline = calibration.select(parameters)
+    stricter = calibration.select({**parameters, "psnr_margin_db": 2.0})
+    assert baseline[0]["selection_reason"] == "first_valid"
+    assert stricter[0]["selection_reason"] == "highest_psnr_fallback"
+    assert calibration.select(parameters) == baseline
+    assert candidates == snapshot
+
+
+def test_calibration_rejects_active_attribution_before_artifact_access(tmp_path: Path) -> None:
+    attribution = tmp_path / "attribution.json"
+    ArtifactStore.write_json(attribution, {"status": "running"})
+    path = tmp_path / "config.json"
+    ArtifactStore.write_json(
+        path,
+        {
+            "attribution_report": str(attribution),
+            "attribution_report_sha256": ArtifactStore.sha256_file(attribution),
+            "smoke": False,
+            "passes": 1,
+            "grids": {
+                name: [0.5 if name == "zero_probability_threshold" else 0.0]
+                for name in UnityDecisionCalibration.PARAMETERS
+            },
+            "output": str(tmp_path / "forbidden-output"),
+        },
+    )
+    with pytest.raises(ValueError, match="completed development-only attribution"):
+        UnityDecisionCalibration(path).run()
+    assert not (tmp_path / "forbidden-output").exists()
 
 
 def test_first_valid_respects_candidate_order_and_inclusive_threshold() -> None:

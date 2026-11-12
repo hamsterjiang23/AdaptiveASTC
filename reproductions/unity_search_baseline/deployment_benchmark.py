@@ -238,8 +238,7 @@ class UnityDeploymentBenchmark:
             checkpoint = torch.load(
                 Path(settings["output"]) / "best.pt", map_location="cpu", weights_only=False
             )
-            model = UnityQualityRegressor().to(device)
-            model.load_state_dict(checkpoint["model"], strict=True)
+            model = UnityQualityRegressor.from_checkpoint(checkpoint, device)
             torch.cuda.synchronize(device)
             state.update(
                 status="running",

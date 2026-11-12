@@ -50,7 +50,7 @@
 
 ## 进度
 
-规则诊断、完整原生基线和冻结预测归因已完成，MS-SSIM loss权重0.03的单项对照已启动，继续单GPU串行调度。后续状态与结果写入[本轮进度](progress.json)。`[verified: rules.json status；r0-stable-sum.json status、checkpoint_audit；r0-attribution.json status；ssim-weight003.json status；progress.json]`
+规则诊断、完整原生基线、权重0.03及仅均值池化对照、冻结预测归因及同验证集余量拟合已完成。下一项按计划进行ImageNet初始化对照。后续状态与结果写入[本轮进度](progress.json)。`[verified: rules.json status；comparison.json；mean-pooling.json status；progress.json next]`
 
 全量训练的首轮启动快照为验证Top-1 63.0%、近阈值RMSE 3.4667dB，实际624次更新、1次AMP跳步；训练47.43秒、验证11.67秒，首次数据准备170.30秒。这是训练过程记录，后续最佳权重仍按完整验证和重载审计确定。`[verified: r0.json history中epoch1、preparation_seconds；opinion: 过程与最终选模范围]`
 
@@ -94,6 +94,30 @@
 
 ## MS-SSIM loss权重单项对照
 
-下一项将`ssim_weight`从0.1改为0.03，其他训练配方字段逐项比较一致，采用独立实验身份。32／16图CUDA预检完成4次更新及最佳权重重载，正式10000／1000训练已启动。`[verified: ssim-weight003-smoke.json status、training_updates、checkpoint_audit；ssim-weight003-config.json；对应job launch-preflight.json changed_training_fields；progress.json current_training_report]`
+该项将`ssim_weight`从0.1改为0.03，其他训练配方字段逐项比较一致，采用独立实验身份。32／16图CUDA预检完成4次更新及最佳权重重载，正式10000／1000训练完成6轮、3749次更新，最佳权重重载通过。`[verified: ssim-weight003-smoke.json status、training_updates、checkpoint_audit；ssim-weight003.json status、history、training_updates、checkpoint_audit；对应job launch-preflight.json changed_training_fields]`
 
 选择0.03的依据是选中基线轮的patch loss为0.06739、未加权MS-SSIM loss为2.35299；权重0.1时后者贡献约0.2353，权重0.03对应参考量级约0.0706。该系数作为观察任务权衡的单项对照，结果按实际验证评价。`[verified: ssim-weight003-design.json basis；opinion: 系数选择及实验目的]`
+
+## 验证结果与决策余量
+
+| 运行 | 选中权重验证Top-1 | 同权重近阈值RMSE | 同验证集余量拟合Top-1 |
+|---|---|---|---|
+| 原生基线 | 73.9% | 2.9747dB | 76.0%。`[verified: comparison.json results.baseline]` |
+| MS-SSIM loss权重0.03 | 72.7% | 3.6068dB | 74.3%。`[verified: comparison.json results.ssim_weight003]` |
+| 仅均值池化 | 75.0% | 3.3833dB | 77.4%。`[verified: comparison.json results.mean_pooling]` |
+
+按当前验证Top-1，仅均值池化作为下一项初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
+
+余量拟合使用`script/calibrate_unity_decisions.py`，绑定已完成归因、原检查点产物和完整1000张validation预测。五个全局参数分别为零通道概率门槛、PSNR／MS-SSIM dB余量、平均／p95角度余量，执行两轮显式网格坐标搜索，仅在Top-1严格提高时更新。正PSNR／MS-SSIM余量从预测dB中扣除，正角度余量加到预测度数，再交原规则选参。结果属于同验证集拟合。`[verified: script/calibrate_unity_decisions.py；r0-calibration-config.json；r0-calibration.json scope、margin_convention]`
+
+基线拟合选择的门槛为0.5，PSNR余量−1dB、MS-SSIM余量0.25dB、平均角度余量0°、p95余量−1.5°；权重0.03组为0.5、0.5dB、0dB、0°、−1°。这些参数保存在诊断报告中，生产决策接入及确认评价按后续选模和封存结果执行。`[verified: r0-calibration.json best_parameters；ssim-weight003-calibration.json best_parameters；opinion: 后续接入顺序]`
+
+## 仅均值池化对照
+
+整图头采用按有效像素数加权的均值，输入维度从1032变为520，模型参数从11,377,660降至11,305,980。初始化先构造配对整图头，再取前512列均值特征和末8列元数据；seed20261112下的共享初始权重、保留列及后续RNG抽样均逐位相同。`[verified: mean-pooling-design.json pooling、parameters、baseline_parameters、paired_initialization_seed、shared_initial_weights_equal、retained_image_head_columns_equal、next_rng_draw_equal]`
+
+训练、重载及五个原生推理／确认消费者统一从检查点配置恢复池化方式；历史配置缺少该字段时使用mean_max。61项组件及71项调用方检查通过，32／16图CUDA预检完成4次更新及重载，训练器10.78秒、峰值分配显存1,218,372,096字节。正式10000／1000训练完成10轮、6246次更新，选中epoch9，最佳权重重载通过。`[verified: UnityQualityRegressor.from_checkpoint；mean-pooling-design.json component_tests、consumer_tests；mean-pooling-smoke.json status、training_updates、wall_seconds、peak_vram_bytes、checkpoint_audit；mean-pooling.json status、history、training_updates、checkpoint_audit]`
+
+仅均值池化的原始／拟合Top-1为75.0%／77.4%，原始／拟合严格质量通过率为52.0%／61.2%。原始选择的质量回退354张，拟合选择262张；报告同时保留balanced accuracy、逐类结果及payload。实测通道MSE替换为87.7%、MS-SSIM替换为87.1%，全部实测质量替换为100%。`[verified: comparison.json results.mean_pooling；mean-pooling-attribution.json variants]`
+
+扩展前17份相关源码已按SHA归档。冻结归因复用既有`PatchNormalizationAudit.bind_training_sources`，通过显式配置验证历史源码，同时记录当前执行源码；完整基线的全部归因指标与归档前逐项相同。`[verified: .local/unity-v2-20261112/source-archive-before-mean/manifest.json；r0-attribution-archive.json training_source_binding；mean-pooling-design.json attribution_archive_replay_exact]`

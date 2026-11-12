@@ -12,6 +12,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from adaptive_astc.config import JsonDict
+from adaptive_astc.evaluation.patch_normalization import PatchNormalizationAudit
 from adaptive_astc.evaluation.unity_quality import UnityQualityPrediction, UnityTextureInput
 from adaptive_astc.utils.artifacts import ArtifactStore
 from reproductions.unity_search_baseline.prediction_audit import UnityPredictionAudit
@@ -123,13 +124,29 @@ def run(config_path: Path) -> JsonDict:
     ):
         raise ValueError("Formal attribution requires the full development split")
     model_output = Path(settings["output"])
+    archive = config.get("training_source_archive")
+    source_binding = PatchNormalizationAudit.bind_training_sources(
+        {"source_files_sha256": settings["source_sha256"]},
+        root,
+        Path(archive) if archive else None,
+    )
     sources = {
         str(training_path.resolve()): config["training_report_sha256"],
         str(config_path.resolve()): ArtifactStore.sha256_file(config_path),
         str(corpus.resolve()): settings["corpus_sha256"],
         str(Path(__file__).resolve()): ArtifactStore.sha256_file(Path(__file__)),
-        **settings["source_sha256"],
+        **{row["verified_source"]: row["training_sha256"] for row in source_binding["sources"]},
     }
+    for relative in [
+        "src/adaptive_astc/evaluation/patch_normalization.py",
+        "src/adaptive_astc/evaluation/unity_quality.py",
+        "src/adaptive_astc/utils/artifacts.py",
+        "reproductions/unity_search_baseline/prediction_audit.py",
+        "reproductions/unity_search_baseline/policy.py",
+        "reproductions/unity_search_baseline/policy_audit.py",
+    ]:
+        path = root / relative
+        sources[str(path)] = ArtifactStore.sha256_file(path)
     for name, expected in training["best_artifacts_sha256"].items():
         sources[str(model_output / name)] = expected
     for path, expected in sources.items():
@@ -188,6 +205,7 @@ def run(config_path: Path) -> JsonDict:
         "status": "running",
         "config": config,
         "sources_sha256": sources,
+        "training_source_binding": source_binding,
         "validation_images": len(rows),
         "training_updates": 0,
         "model_forward_calls": 0,

@@ -361,3 +361,23 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 - Stable-sum R0 completed8epochs/4996updates, selectedepoch5 gives73.9% and same-checkpoint2.9747dB; full checkpoint/prediction replay passed. Do not mix with epoch3 minimum RMSE2.8848dB. `[verified: baseline-result.json selected_checkpoint_metrics; r0-stable-sum.json history]`
 - Frozen1000 validation replacements give MSE84.3%, zero73.9%, SSIM86.4%, angles76.6%, alltruth100%. These are conditional diagnostic replacements. `[verified: r0-attribution.json variants]`
 - Next single-factor control changes only ssim_weight0.1to0.03, selected heuristically from selected-epoch patchloss0.06739 and weightedSSIM0.2353. Its32/16CUDA smoke passed4updates/reload; full trialstarted. `[verified: ssim-weight003-design.json; ssim-weight003-smoke.json; corresponding launch-preflight.json changed_training_fields]`
+
+
+## 2026-11-12 validation calibration and mean-only image head
+
+### Deviations
+
+- The SSIMweight0.03 single-factor run completed6epochs, selected72.7%/3.6068dB and same-validation marginfit74.3%, below baseline73.9%/2.9747dB and fitted76.0%. Keep the baseline reference. `[verified: experiment report/unity-v2-20261112/comparison.json]`
+- The planned mean-only pooling control reduces headinput1032to520 and71680parameters, total11305980. Initialize the full paired head then retain mean/metadata columns, preserving shared initialweights and nextRNGdraw atseed20261112. `[verified: mean-pooling-design.json]`
+
+### Discovered edge cases
+
+- Historical configs lack image_pooling. Model checkpoint factory defaultsmean_max, restoresmean whenexplicit, and is used by trainingaudit plus five native inference/confirmation consumers.61component and71caller checks passed; CUDA32/16smoke4updates/reload passed. `[verified: mean-pooling-verification.json; mean-pooling-smoke.json]`
+- Old completed-run source hashes differ after extensions. Explicit archival binding reuses PatchNormalizationAudit.bind_training_sources, checks originalSHA and currentexecution identities.17sourcefiles frozen; full baseline attribution matches every metric andresidual after archivalreplay. `[verified: source-archive-before-mean/manifest.json; r0-attribution-archive.json training_source_binding; mean-pooling-design.json attribution_archive_replay_exact]`
+- Calibration is a finite two-pass coordinatefit on the same1000validation predictions. It stores signs/parameters and exactzero-margin replay, without modelupdates/forward. `[verified: r0-calibration.json scope、best_parameters、model_forward_calls]`
+
+
+## 2026-11-12 completed mean-only pooling control
+
+- Mean-only completed10epochs/6246updates, selectedepoch9raw75.0%/3.3833dB, fullcheckpoint replay passed. Same-validation coordinatefit77.4%, withstrictquality52.0%raw/61.2%fit and354/262qualityregressions. Reports preserve both accuracy andquality under the existing Top1-only acceptance. `[verified: comparison.json results.mean_pooling; mean-pooling.json checkpoint_audit]`
+- Mean-only becomes the current validation reference byTop1. Next planned factor is ImageNet initialization, with any mainline promotion governed by the plan's pending decision. Current implementation19sources preserved before initialization extensions. `[verified: comparison.json reference_model; progress.json next、source_archives; experiment plan/V2/README.md 待决定事项]`

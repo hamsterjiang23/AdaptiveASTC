@@ -8,12 +8,17 @@ import torch
 from torch import Tensor, nn
 from torchvision.models.resnet import BasicBlock, ResNet
 
+from adaptive_astc.config import JsonDict
+
 
 class UnityQualityRegressor(nn.Module):
     """A scratch ResNet-18 backbone; image heads consume pooled features, not patch scores."""
 
-    def __init__(self) -> None:
+    def __init__(self, image_pooling: str = "mean_max") -> None:
         super().__init__()
+        if image_pooling not in ("mean_max", "mean"):
+            raise ValueError("Native image pooling must be mean_max or mean")
+        self.image_pooling = image_pooling
         backbone = ResNet(BasicBlock, [2, 2, 2, 2])
         backbone.conv1 = nn.Conv2d(5, 64, kernel_size=7, stride=2, padding=3, bias=False)
         nn.init.kaiming_normal_(backbone.conv1.weight, mode="fan_out", nonlinearity="relu")
@@ -30,6 +35,18 @@ class UnityQualityRegressor(nn.Module):
             self.image_head.bias[:80].fill_(-4.0)
             for index, initial in enumerate([21.0, 3.2, 9.0]):
                 self.image_head.bias[80 + index :: 3].fill_(math.log(math.expm1(initial)))
+        if image_pooling == "mean":
+            # Initialize the paired control identically, then retain mean and metadata columns.
+            self.image_head.in_features = 512 + 8
+            self.image_head.weight = nn.Parameter(
+                torch.cat((self.image_head.weight[:, :512], self.image_head.weight[:, -8:]), dim=1)
+            )
+
+    @classmethod
+    def from_checkpoint(cls, checkpoint: JsonDict, device: torch.device) -> UnityQualityRegressor:
+        model = cls(image_pooling=checkpoint["config"].get("image_pooling", "mean_max"))
+        model.load_state_dict(checkpoint["model"], strict=True)
+        return model.to(device)
 
     def encode(self, rgba: Tensor, valid_mask: Tensor, metadata: Tensor) -> dict[str, Tensor]:
         if (
@@ -57,7 +74,12 @@ class UnityQualityRegressor(nn.Module):
 
     @staticmethod
     def pool_features(
-        features: Tensor, valid_pixels: Tensor, image_ids: Tensor, count: int
+        features: Tensor,
+        valid_pixels: Tensor,
+        image_ids: Tensor,
+        count: int,
+        *,
+        image_pooling: str = "mean_max",
     ) -> Tensor:
         if (
             features.ndim != 2
@@ -73,6 +95,7 @@ class UnityQualityRegressor(nn.Module):
             or count < 1
             or torch.any(image_ids < 0)
             or torch.any(image_ids >= count)
+            or image_pooling not in ("mean_max", "mean")
         ):
             raise ValueError(
                 "Require image-indexed finite512 features and positive valid-pixel counts"
@@ -90,10 +113,13 @@ class UnityQualityRegressor(nn.Module):
         sums = torch.segment_reduce(
             ordered_features * ordered_weights[:, None], "sum", lengths=lengths
         )
+        means = sums / totals[:, None]
+        if image_pooling == "mean":
+            return means
         maxima = features.new_full((count, 512), -torch.inf).scatter_reduce_(
             0, ids[:, None].expand(-1, 512), features, reduce="amax", include_self=True
         )
-        return torch.cat((sums / totals[:, None], maxima), dim=1)
+        return torch.cat((means, maxima), dim=1)
 
     def predict_images(
         self,
@@ -104,7 +130,9 @@ class UnityQualityRegressor(nn.Module):
     ) -> dict[str, Tensor]:
         if metadata.ndim != 2 or metadata.shape[1] != 8 or not torch.isfinite(metadata).all():
             raise ValueError("Require eight input-only metadata values per image")
-        pooled = self.pool_features(features, valid_pixels, image_ids, len(metadata))
+        pooled = self.pool_features(
+            features, valid_pixels, image_ids, len(metadata), image_pooling=self.image_pooling
+        )
         scale = metadata.new_tensor([12, 12, 1, 1, 1, 1, 4, 1])
         outputs = self.image_head(torch.cat((pooled, metadata / scale), dim=1)).float()
         return {

@@ -1,6 +1,6 @@
 {
-  "status": "single_factor_ssim_weight_training",
-  "updated_utc": "2026-11-12T14:12:52.130369+00:00",
+  "status": "scratch_controls_completed",
+  "updated_utc": "2026-11-12T14:56:02.311212+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,9 +10,9 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Finish the single-factor MS-SSIM weight0.03 trial and audit selected checkpoint",
-    "Compare same-checkpoint validation accuracy, residuals, group metrics and cost against baseline",
-    "Continue validation-only single-factor improvements before eligible model sealing"
+    "Run the planned ImageNet initialization contrast using the selected mean-only architecture",
+    "Continue validation-only controls and compare same-checkpoint metrics and cost",
+    "Seal an eligible model only after validation90 and the original data gates pass"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
   "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
@@ -61,21 +61,27 @@
     "full_status": "completed",
     "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\attribution-stable-smoke.json"
   },
-  "current_training_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\ssim-weight003-config.json",
-  "current_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\ssim-weight003.json",
-  "current_training_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\ssim-weight003\\receipt.json",
+  "current_training_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-pooling-config.json",
+  "current_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-pooling.json",
+  "current_training_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\mean-pooling\\receipt.json",
   "recovery_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\recovery-verification.json",
-  "current_training_completed_epochs": 3,
-  "current_training_best_validation_accuracy": 0.684,
+  "current_training_completed_epochs": 10,
+  "current_training_best_validation_accuracy": 0.75,
   "current_training_observation": {
-    "status": "training",
-    "epoch": 4,
-    "batches": 275,
-    "images": 4400,
-    "optimizer_updates": 2149,
-    "wall_seconds": 259.2706016999996
+    "status": "completed",
+    "training_updates": 6246,
+    "checkpoint_audit": "passed"
   },
   "completed_baseline_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\baseline-result.json",
   "completed_attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-attribution.json",
-  "validation90_achieved": false
+  "validation90_achieved": false,
+  "comparison_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\comparison.json",
+  "reference_model_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-pooling.json",
+  "best_raw_validation_accuracy": 0.75,
+  "best_same_validation_fitted_accuracy": 0.774,
+  "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-mean\\manifest.json",
+  "source_archives": {
+    "before_mean": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-mean\\manifest.json",
+    "before_imagenet": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-imagenet\\manifest.json"
+  }
 }
