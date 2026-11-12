@@ -1987,7 +1987,24 @@
     "training_updates": 0,
     "report": "unity-native-pipeline-full-v3.json",
     "report_sha256": "1238ce72d578374eae35b028a118f0675fe8f4c570189f770a714d03a2d78fb5",
-    "observed_utc": "2026-11-12T05:41:49.225535+00:00"
+    "observed_utc": "2026-11-12T05:41:49.225535+00:00",
+    "current_stage_snapshot": {
+      "report": "native-pipeline-full-v3/prepare.json",
+      "report_sha256": "cb75afb09c4c808620cd0f8be2de0d445b6e6029e174efe8859c79811314c4ab",
+      "observed_utc": "2026-11-12T06:12:55.941452+00:00",
+      "status": "running",
+      "counts": {
+        "train": 5440,
+        "validation": 2
+      },
+      "patch_counts": {
+        "train": 24081,
+        "validation": 13
+      },
+      "current_batch": "unity-v1-train-021-20261111",
+      "snapshot_only": true,
+      "git_normalized_report_sha256": "0df0d5dacbff32794ed4848e2bb29f798f38d4f41892674f5fc3c3edc4800d3f"
+    }
   },
   "fixed_capacity_metadata": {
     "status": "completed_negative_control",
@@ -3204,6 +3221,122 @@
       "full_development_data_ready": false,
       "verification": "unity-development-candidates11000-verification.json",
       "verification_sha256": "10ba0447d21434541d9054d7dd2188b63e42343da16408d6b7431bb749dea743"
+    },
+    "prior_patch_targets_revalidated": {
+      "prior_report": "unity-patch-batches4674.json",
+      "prior_report_sha256": "f2dac3c47184fa461c87738bc83d4afb7756b12e98879e52de7863028c959a70",
+      "counts": {
+        "train": 4672,
+        "validation": 2
+      },
+      "patch_counts": {
+        "train": 23242,
+        "validation": 13
+      },
+      "corpus_hashes_unchanged": [
+        {
+          "run_id": "unity-actual-options64-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-actual-options64-20261111\\corpus.json",
+          "corpus_sha256": "ea7a05966acc3b3a0db1dd56944e281089b594e1a28b5a1c4dbc09c07da40e5f"
+        },
+        {
+          "run_id": "unity-train256-batch001-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-train256-batch001-20261111\\corpus.json",
+          "corpus_sha256": "6f0dfaece117813d7b85df09114e4b0c03479644524b0176989f0ad131d5e7ce"
+        },
+        {
+          "run_id": "unity-validation2-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-validation2-20261111\\corpus.json",
+          "corpus_sha256": "7fafcb29b28d85cc97ca2ddbd0343afe1c3629a2c86908b7020be53139f32811"
+        },
+        {
+          "run_id": "unity-v1-train-001-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-001-20261111\\corpus.json",
+          "corpus_sha256": "996ab577de6e310a8494da646bdc19b7bd3695226847d9cadd48548bc75ec4f7"
+        },
+        {
+          "run_id": "unity-v1-train-002-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-002-20261111\\corpus.json",
+          "corpus_sha256": "b90960fef962bf2c78dfd4c160deac665692ce12d88b63c43db20968b2aa1cba"
+        },
+        {
+          "run_id": "unity-v1-train-003-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-003-20261111\\corpus.json",
+          "corpus_sha256": "6a9f2068ae47f53aa8aca85658b080bacba0793a7f802db9353b7bf2eb68bf88"
+        },
+        {
+          "run_id": "unity-v1-train-004-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-004-20261111\\corpus.json",
+          "corpus_sha256": "bcf3357051af246f9eba267fb4a867189a055805edd4ff8146fbf3b80fa515a7"
+        },
+        {
+          "run_id": "unity-v1-train-005-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-005-20261111\\corpus.json",
+          "corpus_sha256": "351e643707193412278fbf1e39e6064727231381cc593e89580684578de650a2"
+        },
+        {
+          "run_id": "unity-v1-train-006-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-006-20261111\\corpus.json",
+          "corpus_sha256": "2a96f65729796b719a2854ce9e2dba484fe77bc703750ffb5113abebd93ebb18"
+        },
+        {
+          "run_id": "unity-v1-train-007-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-007-20261111\\corpus.json",
+          "corpus_sha256": "46fbdfdf9bdf4604bb7a672a7953ac6768f43feba14b4f606f663e630b3d11f1"
+        },
+        {
+          "run_id": "unity-v1-train-008-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-008-20261111\\corpus.json",
+          "corpus_sha256": "65b83f062339a8e0628b03ad13a72353c4f7dd8a4dbeaf4cb06247ef1628ad24"
+        },
+        {
+          "run_id": "unity-v1-train-009-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-009-20261111\\corpus.json",
+          "corpus_sha256": "015039cb7828cba3f233a16f6f3bbdd06cc9f7c9207217186eed03061146d42e"
+        },
+        {
+          "run_id": "unity-v1-train-010-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-010-20261111\\corpus.json",
+          "corpus_sha256": "181c064780d0be7ffc7fa3c1a1d6998e5973873424eacef00ed96aeac76cace7"
+        },
+        {
+          "run_id": "unity-v1-train-011-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-011-20261111\\corpus.json",
+          "corpus_sha256": "4c9e8c43c01ccb20062871a9ef6627181aeef3f3b4ee6e7928be1a8572edcbfe"
+        },
+        {
+          "run_id": "unity-v1-train-012-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-012-20261111\\corpus.json",
+          "corpus_sha256": "aec955273b3161910b5d37b4fad0ea55ea7dc9a16c226cc34790cc7eee721e6e"
+        },
+        {
+          "run_id": "unity-v1-train-013-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-013-20261111\\corpus.json",
+          "corpus_sha256": "2a1afb173ce844e39298522a86759e09ca8341bec8c3c5a1d6cbedf665b367fa"
+        },
+        {
+          "run_id": "unity-v1-train-014-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-014-20261111\\corpus.json",
+          "corpus_sha256": "6165c81b9f9e05bd03d299c61018a623cb5c79816ac63009d6edb04b703722a7"
+        },
+        {
+          "run_id": "unity-v1-train-015-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-015-20261111\\corpus.json",
+          "corpus_sha256": "f86ba26f55444ac81cfc5f8dd648bf5fb1faafcdd0c826de34c1a5ae5d88c383"
+        },
+        {
+          "run_id": "unity-v1-train-016-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-016-20261111\\corpus.json",
+          "corpus_sha256": "a4a67deaf6bb26d11ed7dcbc81ece2fb85b31a325d32d2d0bed0a961a2fbc9b4"
+        },
+        {
+          "run_id": "unity-v1-train-017-20261111",
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-shards-v1\\corpora\\unity-v1-train-017-20261111\\corpus.json",
+          "corpus_sha256": "5859f6abfb67cfaeda6d7950403e6a32c52abfa37623960647ab5568a960d082"
+        }
+      ],
+      "observed_utc": "2026-11-12T06:09:31.865495+00:00",
+      "full_development_data_ready": false
     }
   }
 }
