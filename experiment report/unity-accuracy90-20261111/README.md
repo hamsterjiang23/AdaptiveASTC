@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[原生采集输入对齐](unity-capture-inputs.md)通过按资产路径去重的68张开发图／812patch检查，输入张量和决策属性与训练端一致；原始70次图像／825次patch比较包含两张重复validation，已分开计数。49项CPU测试通过，完整进程11.76秒，没有模型forward、训练或确认集测试，90%验收仍待完成。`[verified: unity-capture-input-verification.json；pytest 49 passed；opinion: 完成边界]`
+
 [独立确认集2000张串行采集](unity-confirmation-series.md)已实现并启动等待，复用真实两图预检后分8批补采剩余1998张；冻结主名单与confirmation身份保持。50项CPU检查及真实配置只读核验通过；当前waiting_smoke、已采集0张，完整采集、像素隔离和模型独立评价分别验收。`[verified: unity-confirmation-series2000-v1.json status、captured_images；unity-confirmation-series-readiness.json plan；pytest 50 passed；opinion: 完成边界]`
 
 [Sprite补测恢复](unity-sprite-recovery.md)通过20候选实测，原16项指标及选中输出一致；候选sprite-v3、数据full-v3、训练full-v2和确认smoke2-v2已启动，复核复用旧7744／2图候选。旧等待任务因上游Sprite限制失败，原记录保留，以下先前状态按历史阅读；当前进度见progress.json与恢复验证。`[verified: unity-sprite-recovery-readiness.json；unity-sprite-recovery-verification.json；opinion: 状态边界]`

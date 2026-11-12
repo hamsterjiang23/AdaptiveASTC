@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "config_sha256": "d98e79e81e3452d5edaa17e481e32d393b16ce5e98156b81b4c69ffae2c3fc4f",
+  "source_files_sha256": {
+    "src/adaptive_astc/data/unity_capture_input.py": "d3de1264d6a495941d00fc4824dadaaf054e71644320c43bca1d48ca1317e7fb",
+    "src/adaptive_astc/data/unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+    "src/adaptive_astc/data/unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "src/adaptive_astc/data/patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0",
+    "src/adaptive_astc/evaluation/unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "src/adaptive_astc/utils/artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "reproductions/unity_search_baseline/patch_targets.py": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+    "reproductions/unity_search_baseline/supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "reproductions/unity_search_baseline/policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "reproductions/unity_search_baseline/capture_input_audit.py": "e8ab44cdcc548a9b97b875fe9d5cceae160b21aa2b389271d30348bc8d3d952d",
+    "script/audit_unity_capture_inputs.py": "81725099b041bd695aa00c6c4904ea21fcfdad9a6113ec3400d1dae26015b2b9"
+  },
+  "corpora": [
+    {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-assembled66-v2\\corpus.json",
+      "sha256": "13b7ec6ffb98c39875908a9ba0f8e22c019319d2b9f9bda9958e8e9d1b9f896c"
+    },
+    {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-patches-multimip2\\corpus.json",
+      "sha256": "6db61928f2067b32b014ff0adf178f857ad79ac24a8b8c28d41b0e8174cf6b03"
+    }
+  ],
+  "splits": [
+    {
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-assembled66-v2\\corpus.json",
+      "split": "train",
+      "images": 64,
+      "patches": 781,
+      "input_fingerprint": "08dedf4e1642666d87b7219db733618ffdea519c4f25fd37506de48f64fd77b7",
+      "texture_types": [
+        "Default",
+        "NormalMap"
+      ],
+      "normal_mip_counts": [
+        1
+      ],
+      "max_tensor_difference": 0.0,
+      "decision_inputs_equal": true
+    },
+    {
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-patch-assembled66-v2\\corpus.json",
+      "split": "validation",
+      "images": 2,
+      "patches": 13,
+      "input_fingerprint": "39ace3bd4c3ab1a5200cba23a51d827013a2437c0f31a971f63ba680b8730540",
+      "texture_types": [
+        "Default"
+      ],
+      "normal_mip_counts": [],
+      "max_tensor_difference": 0.0,
+      "decision_inputs_equal": true
+    },
+    {
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-patches-multimip2\\corpus.json",
+      "split": "train",
+      "images": 2,
+      "patches": 18,
+      "input_fingerprint": "8508541b189291c9d21cdfcbe8d102e5f703ff59df75856b5c946168cc076445",
+      "texture_types": [
+        "NormalMap"
+      ],
+      "normal_mip_counts": [
+        4
+      ],
+      "max_tensor_difference": 0.0,
+      "decision_inputs_equal": true
+    },
+    {
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-patches-multimip2\\corpus.json",
+      "split": "validation",
+      "images": 2,
+      "patches": 13,
+      "input_fingerprint": "39ace3bd4c3ab1a5200cba23a51d827013a2437c0f31a971f63ba680b8730540",
+      "texture_types": [
+        "Default"
+      ],
+      "normal_mip_counts": [],
+      "max_tensor_difference": 0.0,
+      "decision_inputs_equal": true
+    }
+  ],
+  "test_opened": false,
+  "training_updates": 0,
+  "model_forward_calls": 0,
+  "scope": "Development tensor parity only; no independent confirmation evaluation",
+  "wall_seconds": 7.872418899998593
+}

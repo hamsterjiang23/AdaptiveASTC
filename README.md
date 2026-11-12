@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[原生采集输入对齐](<experiment report/unity-accuracy90-20261111/unity-capture-inputs.md>)已通过按资产路径去重的68张开发图／812patch核验：直接从参考图、导入属性与实际回调构造模型输入，与训练端张量及决策输入完全一致。49项CPU检查通过；没有模型forward、训练或确认集测试，独立评价仍需来源／像素隔离及模型冻结。`[verified: unity-capture-input-verification.json；pytest 49 passed；opinion: 接入边界]`
+
 [独立确认集2000张串行采集](<experiment report/unity-accuracy90-20261111/unity-confirmation-series.md>)已实现并启动等待：两图原生预检成功并复核后，复用首两张，串行补采其余1998张，保留冻结主名单与confirmation身份。50项CPU检查和真实配置只读核验通过；当前waiting_smoke、已采集0张，原生预检、全量采集与模型独立验收仍待完成。`[verified: unity-confirmation-series2000-v1.json status、captured_images；unity-confirmation-series-readiness.json plan；pytest 50 passed；opinion: 完成边界]`
 
 [Sprite补测恢复](<experiment report/unity-accuracy90-20261111/unity-sprite-recovery.md>)已完成失败样本20候选重编，原16项指标及选中ASTC／解码一致。已恢复候选sprite-v3、数据full-v3、训练full-v2和确认集smoke2-v2；旧7744／2图候选归档继续复核复用，训练配方和确认名单不变。以下旧队列等待记录保留为历史，新状态见progress.json。`[verified: unity-sprite-candidates20-v1.json；unity-sprite-recovery.json；unity-sprite-recovery-verification.json；opinion: 历史与当前边界]`

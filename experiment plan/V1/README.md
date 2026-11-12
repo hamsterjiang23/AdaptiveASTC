@@ -72,6 +72,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 实验步骤
 
+[原生采集输入对齐](<../../experiment report/unity-accuracy90-20261111/unity-capture-inputs.md>)完成按资产路径去重的68张开发图／812patch核验：直接由参考图、实际回调和导入属性构造输入，张量与决策元数据均与训练端一致。49项CPU检查通过，未进行模型forward或确认集评价；后续独立推理可复用该接口，仍需来源／像素隔离与模型封存。`[verified: unity-capture-input-verification.json；pytest 49 passed；opinion: 后续接入]`
+
 [独立确认集2000张串行采集](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-series.md>)已完成入口、50项CPU检查和真实配置只读核验。两图原生预检通过后复用其产物，其余1998张按冻结顺序分8批采集；采集与模型独立测试分开，全量原生数据和90%验收仍待完成，V1原始evidence.json保持不变。`[verified: unity-confirmation-series-readiness.json plan、v1_evidence_sha256；pytest 50 passed；opinion: 验收边界]`
 
 [Sprite补测恢复](<../../experiment report/unity-accuracy90-20261111/unity-sprite-recovery.md>)完成真实20候选检查，原16项指标和选中输出一致。补测及三个下游等待任务已换新身份恢复，旧7744／2图产物复核复用；训练配方、开发划分、确认名单和原搜索策略保持。此次是数据管线修复，未提供新模型准确率，完整Unity验收继续等待。`[verified: unity-sprite-recovery-readiness.json；unity-sprite-recovery-verification.json；opinion: 实验范围]`

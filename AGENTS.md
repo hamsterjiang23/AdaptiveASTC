@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- [原生采集输入对齐](<experiment report/unity-accuracy90-20261111/unity-capture-inputs.md>)新增`data.unity_capture_input.UnityCaptureInputAdapter`，从参考图／实际回调／导入属性构造输入，保留显式划分；不读取搜索标签和候选监督。按资产路径去重的68张开发图／812patch与训练端张量、决策输入一致，49项CPU检查通过；真实Sprite输入未在本次开发语料覆盖。调用方仍须核验采集来源、像素隔离并在独立forward前冻结模型，本接口不自动开启测试。`[verified: unity-capture-input-verification.json；unity_capture_input.py；pytest 49 passed；opinion: 接入约束]`
+
 - [独立确认集2000张串行采集](<experiment report/unity-accuracy90-20261111/unity-confirmation-series.md>)使用`script/collect_unity_confirmation_series.py`，绑定两图预检及17份源码。真实预检通过并追溯原生证据后复用首两张，剩余1998张分8批；逐批核对原名单、回调、原搜索与恢复，失败保留partial并停止，不自动换用备用图。50项CPU检查与真实配置只读核验通过，实际全量采集和模型测试尚未验收；活动期间保持绑定源码不变。`[verified: confirmation_series.py audit_batch/publish/run；unity-confirmation-series-readiness.json；pytest 50 passed；opinion: 执行边界]`
 
 - 第30批Sprite触发旧补测Default限制后，已验证20候选并以新身份恢复：候选sprite-v3、数据full-v3、训练full-v2、确认smoke2-v2。当前颜色补测仅放行Default／Sprite LDR，Sprite必须绑定实际回调；保留原类型、标签和失败产物。旧32批7744／2图通过原SHA复核后复用，新队列计数是本轮重新核验进度；不得覆盖旧失败身份。`[verified: experiment report/unity-accuracy90-20261111/unity-sprite-recovery.md；reproductions/unity_search_baseline/supplement.py validate_color_input；opinion: 恢复约束]`
