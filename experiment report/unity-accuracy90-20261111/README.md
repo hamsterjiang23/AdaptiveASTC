@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[独立确认集2000张串行采集](unity-confirmation-series.md)已实现并启动等待，复用真实两图预检后分8批补采剩余1998张；冻结主名单与confirmation身份保持。50项CPU检查及真实配置只读核验通过；当前waiting_smoke、已采集0张，完整采集、像素隔离和模型独立评价分别验收。`[verified: unity-confirmation-series2000-v1.json status、captured_images；unity-confirmation-series-readiness.json plan；pytest 50 passed；opinion: 完成边界]`
+
 [Sprite补测恢复](unity-sprite-recovery.md)通过20候选实测，原16项指标及选中输出一致；候选sprite-v3、数据full-v3、训练full-v2和确认smoke2-v2已启动，复核复用旧7744／2图候选。旧等待任务因上游Sprite限制失败，原记录保留，以下先前状态按历史阅读；当前进度见progress.json与恢复验证。`[verified: unity-sprite-recovery-readiness.json；unity-sprite-recovery-verification.json；opinion: 状态边界]`
 
 [原生像素重复审计](unity-pixel-identity.md)完成7744训练／2验证图核验：5组RGBA精确重复、10张均在训练集内，当前两张验证图未见重复；仅RGB的18组中13组Alpha不同。进程74.64秒，最终21项CPU测试及66图复跑通过。开发划分保持，完整验证／确认集及近重复隔离尚未完成。`[verified: unity-pixel-identity-completed-v1.json；unity-pixel-identity-verification.json；opinion: 覆盖边界]`

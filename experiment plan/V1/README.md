@@ -72,6 +72,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 实验步骤
 
+[独立确认集2000张串行采集](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-series.md>)已完成入口、50项CPU检查和真实配置只读核验。两图原生预检通过后复用其产物，其余1998张按冻结顺序分8批采集；采集与模型独立测试分开，全量原生数据和90%验收仍待完成，V1原始evidence.json保持不变。`[verified: unity-confirmation-series-readiness.json plan、v1_evidence_sha256；pytest 50 passed；opinion: 验收边界]`
+
 [Sprite补测恢复](<../../experiment report/unity-accuracy90-20261111/unity-sprite-recovery.md>)完成真实20候选检查，原16项指标和选中输出一致。补测及三个下游等待任务已换新身份恢复，旧7744／2图产物复核复用；训练配方、开发划分、确认名单和原搜索策略保持。此次是数据管线修复，未提供新模型准确率，完整Unity验收继续等待。`[verified: unity-sprite-recovery-readiness.json；unity-sprite-recovery-verification.json；opinion: 实验范围]`
 
 [原生像素重复审计](<../../experiment report/unity-accuracy90-20261111/unity-pixel-identity.md>)完成7744训练／2验证图检查，5组精确RGBA重复全部位于训练集内；仅RGB分组会合并13组Alpha不同的图片，因此保留RGBA及尺寸身份。21项CPU测试和最终66图检查通过，当前不修改冻结划分；完整validation／confirmation及近重复隔离仍待后续验收，V1原始证据文件保持。`[verified: unity-pixel-identity-completed-v1.json；unity-pixel-identity-verification.json；opinion: 解释与后续范围]`

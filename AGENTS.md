@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- [独立确认集2000张串行采集](<experiment report/unity-accuracy90-20261111/unity-confirmation-series.md>)使用`script/collect_unity_confirmation_series.py`，绑定两图预检及17份源码。真实预检通过并追溯原生证据后复用首两张，剩余1998张分8批；逐批核对原名单、回调、原搜索与恢复，失败保留partial并停止，不自动换用备用图。50项CPU检查与真实配置只读核验通过，实际全量采集和模型测试尚未验收；活动期间保持绑定源码不变。`[verified: confirmation_series.py audit_batch/publish/run；unity-confirmation-series-readiness.json；pytest 50 passed；opinion: 执行边界]`
+
 - 第30批Sprite触发旧补测Default限制后，已验证20候选并以新身份恢复：候选sprite-v3、数据full-v3、训练full-v2、确认smoke2-v2。当前颜色补测仅放行Default／Sprite LDR，Sprite必须绑定实际回调；保留原类型、标签和失败产物。旧32批7744／2图通过原SHA复核后复用，新队列计数是本轮重新核验进度；不得覆盖旧失败身份。`[verified: experiment report/unity-accuracy90-20261111/unity-sprite-recovery.md；reproductions/unity_search_baseline/supplement.py validate_color_input；opinion: 恢复约束]`
 
 - 原生重复像素用[像素审计入口](script/audit_unity_pixel_identity.py)读取SHA绑定的已完成归档，精确身份包含RGBA和尺寸，RGB相同／Alpha不同单列。PNG显示顺序用于重复分组，callback哈希需翻转上下行核对。已完成7744训练／2验证图部分审计，不改冻结划分；完整开发／确认集及近重复审计仍待完成。报告与明细路径分离并独占创建，失败保留原身份。`[verified: reproductions/unity_search_baseline/pixel_identity.py；experiment report/unity-accuracy90-20261111/unity-pixel-identity.md；opinion: 验收边界]`

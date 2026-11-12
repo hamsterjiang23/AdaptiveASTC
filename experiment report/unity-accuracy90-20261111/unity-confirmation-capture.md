@@ -1,5 +1,7 @@
 # 独立确认集的原生参考与搜索标签采集入口
 
+后续已新增[2000张串行采集入口](unity-confirmation-series.md)，绑定恢复后的smoke2-v2；两图真实预检成功后复用其结果，再采集剩余1998张。当前仅完成CPU与只读配置检查，原生全量采集和模型独立验收尚未完成。`[verified: unity-confirmation-series-readiness.json plan、dependency；opinion: 后续边界]`
+
 当前使用[Sprite恢复后的smoke2-v2](unity-sprite-recovery.md)，原确认主名单前两项不变，绑定新依赖及当前补测源码；正在等待，没有新确认标签或模型测试。此前smoke2-v1因上游失败退出；下文v1排队记录为历史状态，当前见[v2报告](unity-confirmation-capture-smoke2-v2.json)。`[verified: 对应报告status、native_labels_collected、test_opened；opinion: 历史边界]`
 
 独立入口已完成30项CPU检查和真实两图的只读配置核验，并启动等待队列。当前`waiting_dependencies`，尚未启动新的Editor、导出确认集参考图或运行模型预测。两图取自已冻结2000张主名单的前两项，不使用备用或压缩质量筛样。`[verified: unity-confirmation-capture-smoke2-v1.json status、images、native_labels_collected、test_opened；unity-confirmation-capture-readiness.json validation；unity-confirmation-capture-smoke2-v1-config.json start、images；本轮pytest30passed]`
