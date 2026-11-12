@@ -18,3 +18,9 @@
 名单逻辑已通过10项测试、格式、lint及类型检查。审查发现并修正了输出身份保护问题：报告不能覆盖本地名单，两个预构造任务不能覆盖同一公开报告。实际名单产生时使用独立公开报告，文件SHA均核对一致，产生时的源码已归档并由producer_source绑定。采集计划的只读验证和队列来源绑定检查通过；这些检查不代表18张已经采完。`[verified: 本轮pytest“10 passed”、ruff、basedpyright输出；独立审查C1／C2关闭；unity-development-cohort-v2.json files、producer_source、source_sha256；本轮reference_validation／queue_bindings输出]`
 
 确认集采集继续使用已批准的2000张名单。原13000张像素审计队列保留为修订前范围的记录；最终交接需对新版开发语料与确认集重新绑定并审计。Goal仍只完成数据交接，训练和90%模型验收由后续V2执行。`[verified: unity-data-handoff.md本Goal完成条件；用户本轮补采选择；opinion: 修订审计边界]`
+
+## 新版语料合并验收准备
+
+[合并检查记录](unity-development-corpus-revision-readiness.json)区分实现与正式数据完成。合并器会绑定批准的源manifest、MD4、源SHA、原始meta备份，并检查保留图片的patch和候选来源；8项来源链测试、格式、lint、类型检查及独立审查通过。原11000张的90份来源文件也已重核。`[verified: unity-development-corpus-revision-readiness.json checks；unity-development-origin11000-check.json]`
+
+先期2图、4图结构预检使用已有实测目标与模拟成员关系，Dataset和原规则重放通过；它们产生于新增严格来源检查之前，产生版本已归档，不作为18张补采完成的证据。正式合并仍等待实际补采、20候选和patch目标完成。`[verified: unity-development-corpus-revision-readiness.json historical_structural_smokes、formal_revision_complete]`

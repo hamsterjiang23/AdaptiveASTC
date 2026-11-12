@@ -42,3 +42,5 @@
 入口为`uv run python script/revise_unity_confirmation.py --config <新配置路径>`，新配置必须使用尚不存在的输出目录与报告；原配置和输出不覆盖。替换映射与逐图预检保存于报告指向的`.local/revision-audit.json`。`[verified: script/revise_unity_confirmation.py main；confirmation_revision.py revise；confirmation.py __init__]`
 
 格式、lint和类型检查通过；名单预留与修订共23项CPU测试通过，另独立重算47个替换位置与备用顺序一致。新采集配置、系列配置和像素管线构造／来源绑定检查通过，三项任务已启动，启动记录见[预检记录](unity-confirmation-v2-readiness.json)；这些检查不表示新2000张已经采完。`[verified: unity-confirmation-v2-readiness.json checks、jobs、source_eligibility；opinion: 验收边界]`
+
+2026-11-12 11:35 UTC：已归档并核对1538／2000张实际输入，类型分布为Default 1519、Sprite 10、NormalMap 9。from01282批次256张，完整采集1308.79秒、候选回调1384次，退出码0、无导入错误或meta恢复冲突。18张开发替补仍等待确认采集结束。`[verified: progress.json latest_confirmation_milestone；from01282报告及batch-receipt.json；unity-development-replacement18-queue-v2.json]`

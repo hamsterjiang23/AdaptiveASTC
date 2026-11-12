@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "config": {
+    "corpora": [
+      {
+        "name": "revision-smoke4",
+        "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus-revision-smoke4\\revised-corpus",
+        "sha256": "065a232c908ebe7b553848f299521f92cd7057dbf929800983a854ce40a34783"
+      }
+    ],
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-development-corpus-revision-smoke4-dataset.json"
+  },
+  "config_sha256": "09e3d45567e3cd2f37973e7aca592677d190137169cfe008e1010380ff182da1",
+  "corpora": [
+    {
+      "name": "revision-smoke4",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus-revision-smoke4\\revised-corpus",
+      "sha256": "065a232c908ebe7b553848f299521f92cd7057dbf929800983a854ce40a34783",
+      "splits": {
+        "train": {
+          "images": 2,
+          "patches": 2,
+          "candidates": 40,
+          "exact_pixel_and_padding_checks": 2,
+          "max_native_psnr_error_db": 1.8635636394037647e-06,
+          "normal_images": 0,
+          "multimip_normal_images": 0,
+          "alpha_participating_images": 0,
+          "image_candidates_with_a_lossless_rgb_channel": 0,
+          "image_candidates_with_no_rgb_error": 0,
+          "patch_channel_zero_error_counts": [
+            0,
+            0,
+            0,
+            40
+          ],
+          "corpus_fingerprint": "0d8e8e2916d5407bd27c3d28dc8c2b145fba589f07ea263946dbe78f440dd66a"
+        },
+        "validation": {
+          "images": 2,
+          "patches": 8,
+          "candidates": 40,
+          "exact_pixel_and_padding_checks": 8,
+          "max_native_psnr_error_db": 1.8135277031205987e-06,
+          "normal_images": 0,
+          "multimip_normal_images": 0,
+          "alpha_participating_images": 0,
+          "image_candidates_with_a_lossless_rgb_channel": 28,
+          "image_candidates_with_no_rgb_error": 0,
+          "patch_channel_zero_error_counts": [
+            80,
+            116,
+            144,
+            160
+          ],
+          "corpus_fingerprint": "0d8e8e2916d5407bd27c3d28dc8c2b145fba589f07ea263946dbe78f440dd66a"
+        }
+      }
+    }
+  ],
+  "unique_images": {
+    "train": 2,
+    "validation": 2
+  },
+  "metadata_names": [
+    "log2_width",
+    "log2_height",
+    "srgb",
+    "normal",
+    "need_alpha",
+    "alpha_constant",
+    "normal_metric_mips",
+    "black_pixel_ratio"
+  ],
+  "sources_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\dataset_audit.py": "e2cc2eb260dd00a754ffa21dd6d7105f8b9c720ff39953453b291acb32685c3a",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008"
+  },
+  "test_opened": false,
+  "training_updates": 0,
+  "device": "cpu",
+  "wall_seconds": 0.04530609998619184,
+  "scope": "Native Dataset input/target/geometry verification; no model training or accuracy claim"
+}
