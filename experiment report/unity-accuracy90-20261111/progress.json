@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T08:44:32.626601+00:00",
+  "updated_utc": "2026-11-12T09:08:05.455158+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -2535,9 +2535,9 @@
   "unity_confirmation_series": {
     "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-data-v2.json",
     "status": "collecting",
-    "snapshot_utc": "2026-11-12T08:44:32.626601+00:00",
+    "snapshot_utc": "2026-11-12T09:08:05.455158+00:00",
     "test_opened": false,
-    "captured_images": 2
+    "captured_images": 258
   },
   "unity_capture_input_parity": {
     "status": "passed",
@@ -3377,17 +3377,21 @@
       }
     },
     "latest_confirmation_milestone": {
-      "observed_utc": "2026-11-12T07:59:21.339602+00:00",
+      "snapshot_utc": "2026-11-12T09:08:05.455158+00:00",
+      "cohort_version": "unity-confirmation2000-v2",
       "captured_images": 258,
       "completed_batches": 2,
-      "next_start": 258,
-      "batch_config_report_hashes_verified": true,
-      "completed_import_exit_codes": [
-        0,
-        0
-      ],
-      "completed_metadata_restore_conflicts": 0,
-      "full_confirmation_complete": false
+      "manifest_sha256": "599c5f5f745efade18ade4e97cb644bf198117ae7c852e8a9c318f91d362e49e",
+      "input_eligibility_images": 258,
+      "input_types": {
+        "Default": 251,
+        "Sprite": 5,
+        "NormalMap": 2
+      },
+      "batch_report_sha256": "98bb43a026e84b4e60d9a1c0e53d4820313397c183534498a85f4462dc7a4b8c",
+      "phase_receipt_sha256": "4d9d9586eb134f3d9dfbb0a1daf59a2c7b5626297173f5846fd3a73b6ab84450",
+      "native_process_exit_code": 0,
+      "metadata_restore_conflicts": []
     },
     "confirmation_revision_history": [
       {
@@ -3489,7 +3493,16 @@
     "confirmation_input_audit": {
       "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-v2-input-audit.json",
       "snapshot_status": "partial",
-      "images": 2
+      "images": 258
+    },
+    "latest_native_capture_snapshot": {
+      "snapshot_utc": "2026-11-12T09:08:05.455158+00:00",
+      "archived_images": 258,
+      "actual_input_verified": 258,
+      "current_batch_start": 258,
+      "current_batch_expected": 256,
+      "full_capture_complete": false,
+      "test_opened": false
     }
   }
 }

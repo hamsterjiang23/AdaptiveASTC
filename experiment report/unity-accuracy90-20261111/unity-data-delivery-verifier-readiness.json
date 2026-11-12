@@ -1,0 +1,40 @@
+{
+  "status": "ready_waiting_completed_capture_and_audit",
+  "verified_utc": "2026-11-12T09:09:12.299154+00:00",
+  "scripts": {
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\verify_data_delivery_v2.py": "c30721069ef16e56eeac5d84b35906f7b63497e3ab6a671585ae6cf93e165fce",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\observe_confirmation_v2.py": "af2abbfbee32ede849ea8ba8151aa5b8c3d6c6dd29f8d6753b2b557ae3b3134c"
+  },
+  "checks": {
+    "ruff_format": "2 files unchanged",
+    "ruff_check": "passed",
+    "basedpyright": "0 errors, 0 warnings",
+    "incomplete_run_guard": {
+      "exit_code": 1,
+      "expected_rejection": "Wait for the input observer to exit",
+      "log": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\delivery-verifier-incomplete-guard.log",
+      "log_sha256": "f3ee5cd0546d1ea6c73fcbe3d4b177ad6c3f602dd41eb100ef3fa73da5b7b84b"
+    },
+    "independent_review": "CLEAN after C1/C2/C3/C4 closure"
+  },
+  "completion_checks": [
+    "Completed required data jobs with exit0 and configuration binding",
+    "Native reference and patch target artifacts with bound SHA256",
+    "Exact and near pixel stage summaries, raw details, inputs and actual cohort membership",
+    "Original confirmation identity order and native input properties",
+    "Observer stopped and final bound inputs unchanged at publication"
+  ],
+  "observer_corrections": {
+    "atomic_manifest_read": true,
+    "cached_input_properties_frozen": true,
+    "prior_sources_and_partial_records_preserved": [
+      "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\observer-atomic-read-restart.json",
+      "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\observer-input-binding-restart.json"
+    ],
+    "capture_process_restarted": false
+  },
+  "full_data_verification_executed": false,
+  "goal_complete": false,
+  "training_updates": 0,
+  "test_opened": false
+}
