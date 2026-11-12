@@ -2,7 +2,7 @@
 
 V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使用 Unity 协议，即导入处理后的第一个 image／mip0 参考像素、同次原搜索标签、20 候选补测得到的原生质量，以及原规则重放。GDC 源图 RGB 协议的数据、标签、权重和结果不进入 V2 的训练、选模或验收。引用数字与来源 SHA-256 保存在 [evidence.json](evidence.json)，由归档脚本 `experiment report/.local/unity-accuracy90-20261111/plan_v2_evidence.py` 生成，脚本 SHA-256 记录在同一文件。`[verified: 用户本轮要求“按照我们的UNITY协议指定V2的expreiment plan，不需要使用GDC协议”；evidence.json script、inputs]`
 
-[V1](../V1/README.md) 及其执行记录保持原样。V2 复用 V1 执行期间完成的 Unity 原生组件，包括采集、补测、Dataset、`UnityQualityRegressor`、训练器、规则重放和确认集入口，不复用 GDC 数据、权重或结果。当前 active goal 和活动队列仍以 V1 为执行依据，切换到 V2 需要用户确认。`[verified: AGENTS.md“当前goal以用户的V1原分辨率patch误差回归计划…为准”] [opinion: 复用范围与切换方式]`
+[V1](../V1/README.md) 及其执行记录保持原样。V2 复用 V1 执行期间完成的 Unity 原生组件，包括采集、补测、Dataset、`UnityQualityRegressor`、训练器、规则重放和确认集入口，不复用 GDC 数据、权重或结果。当前 active goal 和活动队列仍以 V1 为执行依据。用户 2026-11-12 确认暂不切换，V2 只作为已指定的计划，开始执行前另行确认。`[verified: AGENTS.md“当前goal以用户的V1原分辨率patch误差回归计划…为准”；用户本轮选择“先不切换，只是指定”] [opinion: 复用范围]`
 
 核心做法：对每张图预测 20 个候选在 Unity 口径下的质量，交给原规则 `UnitySearchPolicy` 选出块大小和 preset，最后只编码一次。`[opinion]`
 
@@ -10,7 +10,7 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 
 - **主验收**：独立确认集 2000 张上，块大小 Top-1≥90%，对照同次原搜索的选中配置。`[verified: unity-accuracy90 README“主验收保持…独立测试块大小Top-1≥90%”]`
 - **开发准入**：同一个选中权重在 validation1000 上块大小 Top-1≥90%，且 10000／1000／2000 的完整像素审计和 2000 张确认采集都通过，才封存模型并打开确认集。`[verified: unity-confirmation-evaluation.md“准入与数据边界”]`
-- **同时报告，默认不设门槛**：块大小＋preset 完整匹配；实际解码后的严格质量通过率；质量回退，即原标签严格合格而模型选择不合格的图数；错误方向（选大／选小）；相对固定 8×8／medium 和原搜索标签的 payload；预处理、推理、决策和最终编码耗时。质量约束是否进入验收列在待决定事项。`[verified: unity-confirmation-evaluation.md“指标与成本”；unity-deployment.md fixed8 路径] [opinion: 指标定义与门槛安排]`
+- **同时报告，不设门槛**：块大小＋preset 完整匹配；实际解码后的严格质量通过率；质量回退，即原标签严格合格而模型选择不合格的图数；错误方向（选大／选小）；相对固定 8×8／medium 和原搜索标签的 payload；预处理、推理、决策和最终编码耗时。质量约束不进入验收，preset 只报告完整配置匹配率，均由用户 2026-11-12 确认。`[verified: unity-confirmation-evaluation.md“指标与成本”；unity-deployment.md fixed8 路径；用户本轮选择“只看 Top-1≥90%，质量和字节全部报告但不设门槛”“只报告块大小＋preset 完整匹配率，不设门槛”] [opinion: 指标定义]`
 
 ## Unity 协议
 
@@ -97,12 +97,17 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 
 ## 待决定事项
 
-1. **质量约束**：验收只看 Top-1≥90%，还是同时限定质量回退的比例，或要求严格通过率不低于固定 8×8／medium。`[opinion]`
-2. **preset**：只报告完整配置匹配，还是也设目标。preset 不影响字节，只影响质量和编码时间。`[verified: AGENTS.md“同图同尺寸同blockSize的payload容量相同”] [opinion]`
-3. **初始化**：维持随机初始化为主线；如果 E4 中 ImageNet 预训练在 validation 上明显更好，是否允许改为主线。`[opinion]`
-4. **系统变体**：是否增加两个系统对照，一是把预测结果作为搜索起点、按原顺序实测续搜，二是法线图直接走原搜索。两者改变 Top-1 和成本的含义，需要单独报告。`[opinion]`
-5. **确认失败后的处理**：确认集只能使用一次，500 张备用只用于身份或像素重复替换。E6 未达标时，是否另外预留新的独立确认集。`[verified: unity-confirmation-cohort.md] [opinion]`
-6. **执行依据**：是否把 active goal 切换到 V2。`[opinion]`
+用户 2026-11-12 已确认以下三项：
+
+- **质量约束**：验收只看块大小 Top-1≥90%；严格通过率、质量回退和 payload 全部报告，不设门槛。`[verified: 用户本轮选择“只看 Top-1≥90%，质量和字节全部报告但不设门槛”]`
+- **preset**：只报告块大小＋preset 完整匹配率，不设目标。preset 不影响字节，只影响质量和编码时间。`[verified: 用户本轮选择“只报告块大小＋preset 完整匹配率，不设门槛”；AGENTS.md“同图同尺寸同blockSize的payload容量相同”]`
+- **执行依据**：暂不切换 active goal，V2 只作为已指定的计划。`[verified: 用户本轮选择“先不切换，只是指定”]`
+
+以下三项等 E4／E6 有结果再定：
+
+1. **初始化**：维持随机初始化为主线；如果 E4 中 ImageNet 预训练在 validation 上明显更好，是否允许改为主线。`[opinion]`
+2. **系统变体**：是否增加两个系统对照，一是把预测结果作为搜索起点、按原顺序实测续搜，二是法线图直接走原搜索。两者改变 Top-1 和成本的含义，需要单独报告。`[opinion]`
+3. **确认失败后的处理**：确认集只能使用一次，500 张备用只用于身份或像素重复替换。E6 未达标时，是否另外预留新的独立确认集。`[verified: unity-confirmation-cohort.md] [opinion]`
 
 ## 运行约束
 
@@ -121,3 +126,4 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 ## 版本记录
 
 - V2（2026-11-12）：初版，只使用 Unity 协议，依据现有 Unity 原生数据、规则重放与已排队训练配置。`[verified: evidence.json]`
+- V2 修订（2026-11-12）：记录用户对质量约束、preset 和执行依据的决定，验收与实验步骤不变。`[verified: 用户本轮选择]`
