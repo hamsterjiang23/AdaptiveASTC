@@ -36,7 +36,7 @@
 
 ## 实现与实验
 
-- V2数据交接须逐图检查实际导入维度和类型。完整开发语料发现13张train／5张validation Cube超出Tex2D范围；原语料与报告保持，补采或排除方式待用户确认，不能把原始数据流水线完成等同于V2范围就绪。确认集采集继续，详见[开发范围检查](<experiment report/unity-accuracy90-20261111/unity-development-v2-input-scope.md>)。`[verified: unity-development-v2-input-scope-initial.json；unity-development-v2-input-scope-verification.json]`
+- V2开发语料已获批准替换13张train／5张validation Cube，保持10000／1000，保留原语料、标签和成本。按[开发集修订记录](<experiment report/unity-accuracy90-20261111/unity-development-v2-revision.md>)先等当前确认集采完，再串行补采；20候选、patch、Dataset、原规则与最终像素审计都须绑定新版本。替补不按质量或标签选择。`[verified: 用户本轮补采选择；unity-development-cohort-v2.json；opinion: 修订验收边界]`
 
 - 当前数据采集goal的确认集使用[新版V2范围名单](<experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)，用户已批准排除39GUI、7Cube及另1HDR源图，保持原主名单位置并按原备用顺序补47张；旧名单与失败记录保持。源文件准入不替代实际导入类型及像素审计，确认集不做全20候选补测、训练或推理。`[verified: 用户本次范围替换选择；unity-confirmation2000-v2.json；opinion: 完成边界]`
 

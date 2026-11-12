@@ -1,0 +1,53 @@
+{
+  "status": "capture_queued",
+  "verified_utc": "2026-11-12T11:11:40.465793+00:00",
+  "replacement_counts": {
+    "train": 13,
+    "validation": 5
+  },
+  "full_counts": {
+    "train": 10000,
+    "validation": 1000
+  },
+  "reservation_sha256": "d5cfe21a81c481dbab9ced656b92f1ced651c9f4179284725f2c284def3377a7",
+  "queue_config_sha256": "057c047c6bc488a7dbb276abf88c8672e965f9e1de9f04f14f121e0510957ccf",
+  "job_config_sha256": "508c6e7967100928b3b162c5d32bc58e64b6cb8bb4b7afbd86948a85bb2cfdd1",
+  "execution_sources_verified": 43,
+  "processes": [
+    {
+      "pid": 79500,
+      "created": 1794481791.5917861,
+      "command": [
+        "C:\\Users\\admin\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+        "-u",
+        "script/run_reproduction_job.py",
+        "--config",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-development-replacement18-queue-v2\\job.json"
+      ]
+    },
+    {
+      "pid": 62096,
+      "created": 1794481791.7107496,
+      "command": [
+        "E:\\ASTC_Compression\\.venv\\Scripts\\python.exe",
+        "-u",
+        "script/queue_unity_development_replacements.py",
+        "--config",
+        "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-development-replacement18-queue-v2-config.json"
+      ]
+    }
+  ],
+  "checks": {
+    "unit_tests": "10passed",
+    "ruff": "passed",
+    "basedpyright": "passed",
+    "reference_plan_validate": "passed",
+    "queue_constructor_verify": "passed",
+    "independent_review": "reservation C1/C2 and queue C1/C2 closed",
+    "local_links": 407
+  },
+  "native_replacement_capture_complete": false,
+  "goal_complete": false,
+  "training_updates": 0,
+  "test_opened": false
+}

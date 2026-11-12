@@ -1,6 +1,6 @@
 # 实验计划 V1：原分辨率 patch 误差回归
 
-数据交接补查发现开发集[18张Cube超出V2输入范围](<../../experiment report/unity-accuracy90-20261111/unity-development-v2-input-scope.md>)，处理方式待用户确认；原数据与历史结果保持，确认集采集继续。`[verified: unity-development-v2-input-scope-initial.json；本轮异步问题]`
+数据交接已获批准[补采18张V2范围内图片](<../../experiment report/unity-accuracy90-20261111/unity-development-v2-revision.md>)，保持开发集10000／1000；原始V1数据和结果保留。确认集采集继续，V1训练不恢复。`[verified: 用户本轮补采选择；unity-development-cohort-v2.json]`
 
 当前数据采集交接中的确认集已按用户批准的V2范围生成[新版名单与采集链](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)，替换47张范围外图，旧名单和失败保留；不恢复V1正式训练。`[verified: unity-confirmation2000-v2.json；unity-data-handoff.md；用户本次替换选择]`
 

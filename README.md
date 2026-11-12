@@ -52,7 +52,7 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
-补查完整开发语料发现[18张Cube范围问题](<experiment report/unity-accuracy90-20261111/unity-development-v2-input-scope.md>)：训练13张、验证5张均被V2实际输入适配器拒绝。原始采集与测量完成状态保持，V2范围验收待用户决定补采或排除后继续；确认集采集保持运行。`[verified: unity-development-v2-input-scope-initial.json；unity-development-v2-input-scope-verification.json；本轮异步问题]`
+开发集18张Cube已获用户批准[补采并生成新版本](<experiment report/unity-accuracy90-20261111/unity-development-v2-revision.md>)：训练补13张、验证补5张，保持10000／1000；原语料与记录保留。替补名单已冻结，原生采集、20候选补测、新语料及像素审计仍待完成。`[verified: 用户本轮补采选择；unity-development-cohort-v2.json status、replacement_counts、counts]`
 
 确认集已按用户批准的V2范围生成[新版2000张名单](<experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)：保留1953张，按原备用顺序替换47张GUI／Cube／HDR范围外图，剩余备用441张。旧名单与失败记录保留，新预检、串行采集和完整像素审计使用独立身份；实际导入准入与像素隔离仍待完成。`[verified: unity-confirmation2000-v2.json；unity-confirmation-v2-readiness.json；opinion: 验收边界]`
 

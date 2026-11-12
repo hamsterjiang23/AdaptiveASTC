@@ -25,7 +25,9 @@
 
 ## 采集进度
 
-2026-11-12 10:35 UTC：新版已归档并验证实际输入1026／2000张，包括1013张Default、7张Sprite、6张NormalMap。第四个256张批次完整采集1537.82秒、原生候选回调1397次；退出码0、无导入错误或meta恢复冲突，临时采集源码已恢复。下一批从索引1026继续，完整像素审计仍等待。`[verified: progress.json data_handoff.latest_confirmation_milestone；unity-confirmation-v2-input-audit.json；from00770报告及batch-receipt.json]`
+2026-11-12 11:11 UTC：新版已归档并验证实际输入1282／2000张，包括1268张Default、8张Sprite、6张NormalMap。第五个256张批次完整采集1368.06秒、原生候选回调1477次；退出码0、无导入错误或meta恢复冲突。下一批从索引1282继续，完整像素审计仍等待；另已安排开发集18张替补在确认集采完后串行采集。`[verified: progress.json data_handoff.latest_confirmation_milestone；unity-confirmation-v2-input-audit.json；from01026报告及batch-receipt.json；unity-development-replacement18-queue-v2.json]`
+
+10:35 UTC历史快照：新版已归档并验证实际输入1026／2000张，包括1013张Default、7张Sprite、6张NormalMap。第四个256张批次完整采集1537.82秒、原生候选回调1397次；退出码0、无导入错误或meta恢复冲突，临时采集源码已恢复。当时下一批从索引1026继续，完整像素审计仍等待。`[verified: progress.json data_handoff.confirmation_milestones；from00770报告及batch-receipt.json]`
 
 10:07 UTC历史快照：新版已归档并验证实际输入770／2000张，包括757张Default、7张Sprite、6张NormalMap。第三个256张批次完整采集1948.84秒、原生候选回调1480次；退出码0、无导入错误或meta恢复冲突，临时采集源码已恢复。当时下一批从索引770继续，完整像素审计仍等待。`[verified: progress.json data_handoff.confirmation_milestones；from00514报告及batch-receipt.json]`
 

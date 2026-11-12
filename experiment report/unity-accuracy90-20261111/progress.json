@@ -3378,19 +3378,19 @@
       "v2_input_scope_ready": false
     },
     "latest_confirmation_milestone": {
-      "snapshot_utc": "2026-11-12T10:35:24.299137+00:00",
+      "snapshot_utc": "2026-11-12T11:11:14.177713+00:00",
       "cohort_version": "unity-confirmation2000-v2",
-      "captured_images": 1026,
-      "completed_batches": 5,
-      "manifest_sha256": "2b8723b98cfee99524914f9005af0dcbe5f77f86ff53c209216a317e277c9a44",
-      "input_eligibility_images": 1026,
+      "captured_images": 1282,
+      "completed_batches": 6,
+      "manifest_sha256": "73085bbc3245cf4c8f67267f30b046b94c5956236a604e97e1e6fafbbb37508a",
+      "input_eligibility_images": 1282,
       "input_types": {
-        "Default": 1013,
-        "Sprite": 7,
+        "Default": 1268,
+        "Sprite": 8,
         "NormalMap": 6
       },
-      "batch_report_sha256": "bdc83e81bcfb627ec63f8b15df21a5a1dc50cff2ab50938aaa61d55dca4bb782",
-      "phase_receipt_sha256": "32ae5bfbdb0d07148a2b40e1fc1f4c984fb9762d0fe683d2cb9ada2706f1c39f",
+      "batch_report_sha256": "69071dac70165083d2c2e03e7618d750989dac31f99a14d94e60f841515fd4ce",
+      "phase_receipt_sha256": "f41847adf688f6d6884fdb1c54f468d4565d443c074a92e56b26d154264bf556",
       "native_process_exit_code": 0,
       "metadata_restore_conflicts": []
     },
@@ -3497,10 +3497,10 @@
       "images": 770
     },
     "latest_native_capture_snapshot": {
-      "snapshot_utc": "2026-11-12T10:35:24.299137+00:00",
-      "archived_images": 1026,
-      "actual_input_verified": 1026,
-      "current_batch_start": 1026,
+      "snapshot_utc": "2026-11-12T11:11:14.177713+00:00",
+      "archived_images": 1282,
+      "actual_input_verified": 1282,
+      "current_batch_start": 1282,
       "current_batch_expected": 256,
       "full_capture_complete": false,
       "test_opened": false
@@ -3556,6 +3556,23 @@
         "phase_receipt_sha256": "32d9bc7951144023afc8046bcaf41babfce27051f6a16fb62d36b0e8c0faedfb",
         "native_process_exit_code": 0,
         "metadata_restore_conflicts": []
+      },
+      {
+        "snapshot_utc": "2026-11-12T10:35:24.299137+00:00",
+        "cohort_version": "unity-confirmation2000-v2",
+        "captured_images": 1026,
+        "completed_batches": 5,
+        "manifest_sha256": "2b8723b98cfee99524914f9005af0dcbe5f77f86ff53c209216a317e277c9a44",
+        "input_eligibility_images": 1026,
+        "input_types": {
+          "Default": 1013,
+          "Sprite": 7,
+          "NormalMap": 6
+        },
+        "batch_report_sha256": "bdc83e81bcfb627ec63f8b15df21a5a1dc50cff2ab50938aaa61d55dca4bb782",
+        "phase_receipt_sha256": "32ae5bfbdb0d07148a2b40e1fc1f4c984fb9762d0fe683d2cb9ada2706f1c39f",
+        "native_process_exit_code": 0,
+        "metadata_restore_conflicts": []
       }
     ],
     "development_scope_issue": {
@@ -3566,13 +3583,19 @@
         "validation": 5
       },
       "v2_input_scope_ready": false,
-      "decision": "pending",
+      "decision": "approved_replace13train5validation",
       "full_input_audit": "unity-development-v2-input-all11000.json",
       "full_input_audit_sha256": "746fcd7dae9bef240f78067941ac0d97ff74c02f7540255efa561a4ab2db27b6",
       "actual_inputs_accepted": {
         "train": 9987,
         "validation": 995
-      }
-    }
+      },
+      "decision_utc": "2026-11-12T11:03:50.884260+00:00",
+      "revision_report": "unity-development-cohort-v2.json",
+      "revision_report_sha256": "d5cfe21a81c481dbab9ced656b92f1ced651c9f4179284725f2c284def3377a7",
+      "status": "replacement_capture_waiting_confirmation",
+      "capture_queue_report": "unity-development-replacement18-queue-v2.json"
+    },
+    "next": "Finish confirmation collection; capture approved18replacements; supplement20candidates; assemble and audit revised10000/1000corpus; final pixel audit and handoff."
   }
 }

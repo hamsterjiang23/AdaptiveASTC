@@ -1,6 +1,6 @@
 # Unity 90%目标执行记录
 
-开发数据新增[18张Cube范围问题](unity-development-v2-input-scope.md)：训练13张、验证5张不符合V2的Tex2D约定。原始采集与候选测量保持，处理方式待用户确认；确认集采集继续，当前数据Goal尚未完成。`[verified: unity-development-v2-input-scope-initial.json；unity-development-v2-input-scope-verification.json；本轮异步问题]`
+开发数据已获批准[补采13张训练图和5张验证图](unity-development-v2-revision.md)，生成10000／1000的新版本。原Cube数据与测量记录保持；确认集继续采集，新版数据Goal尚未完成。`[verified: 用户本轮补采选择；unity-development-cohort-v2.json]`
 
 确认集已按用户批准的V2范围完成[47张替换及新队列启动](unity-confirmation-v2-revision.md)：保留原主名单1953张，按原备用顺序补齐2000张，备用剩441张，旧名单／失败归档保留。新名单仍需实际导入准入检查和全13000张像素审计；当前goal继续只完成数据交接。`[verified: unity-confirmation2000-v2.json；unity-confirmation-v2-readiness.json；opinion: 完成边界]`
 
