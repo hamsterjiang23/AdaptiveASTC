@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+原生封存推理的两张验证图／13patch CUDA检查：证据准备0.960秒、加载0.330秒、单次未预热推理0.752秒、完整进程9.933秒。读取已完成smoke8权重、验证参考图及原规则，写新运行的开发seal／尝试／预测；启动前GPU占用1540／12282MiB、利用率3%，正式训练仍等待数据。本次无训练或编码，正式确认集仍需共享registry和完整评价入口。`[verified: unity-sealed-inference-verification.json；本轮nvidia-smi及训练状态输出；opinion: 成本与接入边界]`
+
 完整像素审计队列的真实66图检查：归档复核5.675秒、精确身份1.276秒、近重复1.963秒，完整进程12.709秒。读取已完成参考／回调归档，写独立.local明细与公开报告；全量10000／1000／2000必须等待两个采集系列成功退出，并在启动像素检查前保留8GiB RAM／5GiB磁盘。等待控制器每15秒检查，不启动Editor或CUDA；确认集真实投影与全量耗时仍待实测。`[verified: unity-pixel-pipeline-verification.json smoke、full_queue；pixel_audit_pipeline.py wait/run；opinion: 成本边界]`
 
 Sprite恢复的真实128²图完成20候选，内部0.763秒／进程1.048秒，原16项指标及winner一致。新候选队列先逐批复核32份已完成归档，完整复核耗时待结束后单列；失败批52图部分产物保留但不计作完整复用。下游训练按原门槛在新目录重做32图CUDA预检，再等待全量数据；四个旧任务总时长含等待和已完成工作，见恢复报告，不全部算作重试浪费。`[verified: unity-sprite-recovery-readiness.json；unity-sprite-recovery.json prior_jobs；opinion: 成本解释]`

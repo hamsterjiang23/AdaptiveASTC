@@ -72,6 +72,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 实验步骤
 
+[原生模型封存与推理](<../../experiment report/unity-accuracy90-20261111/unity-sealed-inference.md>)完成两张已观察验证图／13patch的CUDA接口检查，预测数组和选参与原smoke权重结果一致，进程9.93秒；73项CPU检查通过。首次配置tuple／list差异在forward前失败，修复后新身份复跑；原始证据和活动任务源码保持。正式确认集评价、完整压缩对照与90%验收仍未完成。`[verified: unity-sealed-inference-verification.json；opinion: 验收范围]`
+
 [完整像素审计队列](<../../experiment report/unity-accuracy90-20261111/unity-pixel-pipeline.md>)已完成真实66图归档与两种像素检查，完整进程12.71秒，74项CPU检查通过；10000训练／1000验证／2000确认图任务已启动等待上游采集，25份文件冻结。当前没有确认集模型结果，检查本身不修改划分，也不证明裁剪／缩放或历史语料的像素隔离；V1原始证据保持。`[verified: unity-pixel-pipeline-verification.json smoke、full_queue、v1_evidence_sha256；opinion: 完成边界]`
 
 [原生RGBA近重复筛查](<../../experiment report/unity-accuracy90-20261111/unity-near-duplicates.md>)完成7744训练／2验证图的同尺寸、同坐标检查，找到6对低RMSE候选、共12张训练图；47项CPU检查和6对独立重算通过。此次不修改开发划分或标签、不运行模型，完整验证／确认范围及缩放、裁剪等相似性仍未证明隔离，V1原始证据保持。`[verified: unity-near-duplicates-verification.json results.completed7746、v1_evidence_sha256、splits_modified；pytest 47 passed；opinion: 覆盖限制]`

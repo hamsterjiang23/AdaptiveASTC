@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-12T02:28:34.016168+00:00",
+  "report": "unity-sealed-inference-smoke2-v2.json",
+  "report_sha256": "1eb485407abf855779524d9c4183a650c0c16bf6721e4cbab8ea052f28fa8a1a",
+  "config_sha256": "241aebbcc671ac9b8dde50dccf1cf76aea325aef62a589e3b01ed48a8c2d6700",
+  "images": 2,
+  "patches": 13,
+  "prediction_differences": {
+    "channel_mse": 0.0,
+    "channel_zero": 0.0,
+    "zero_probability": 0.0,
+    "image_quality": 0.0
+  },
+  "choices_match": true,
+  "checkpoint_sha256": "b4679b4fa48f66ec04e0c9f87f40571d669d459feb7bae33642376ae5c5d99ec",
+  "seal_sha256": "3166bed51629c77d035a7ddce3e2b0b92e884bea0de212905f80bbf5f793834f",
+  "seal_before_forward": true,
+  "changed_contract_rejections": [
+    "model",
+    "decision"
+  ],
+  "attempt_sha256": "d751465a918ba1025d4338c90b7591cad73f660c9eec8cf03966ccc6f3deeea2",
+  "evidence_preparation_seconds": 0.9599732999922708,
+  "model_load_seconds": 0.3303091999987373,
+  "input_preparation_seconds": 0.010808999999426305,
+  "inference_seconds": 0.7516749000060372,
+  "post_preparation_seconds": 2.8364526000077603,
+  "process_seconds": 9.933245799998986,
+  "process_receipt_sha256": "e5d93d5044985159c53bcb4bf5da81b6a65f52cf7a624deb136131442404aaa8",
+  "prior_failure": {
+    "report": "unity-sealed-inference-smoke2-v1.json",
+    "error": "ValueError('Selected checkpoint settings or epoch changed')",
+    "before_forward": true,
+    "process_seconds": 7.6231288999988465,
+    "archived_source_sha256": "a09dd8a5476bf107dcbac01143a632cbef27a75662bc88abe29318181983515f"
+  },
+  "cpu_tests": {
+    "passed": 73,
+    "seconds": 6.97
+  },
+  "unchanged_active_sources": {
+    "unity-native-pipeline-full-v3": 14,
+    "unity-native-training-full-v2": 23,
+    "unity-confirmation-capture-smoke2-v2": 15,
+    "unity-confirmation-series2000-v1": 17,
+    "unity-pixel-pipeline-full13000-v2": 25
+  },
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "jobs": {
+    "unity-reference-series-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "status": "running",
+      "pid": 41024,
+      "created": 1794409642.5245771
+    },
+    "unity-candidate-queue-sprite-v3": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
+      "status": "running",
+      "pid": 33060,
+      "created": 1794443373.3538325
+    },
+    "unity-native-pipeline-full-v3": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+      "status": "running",
+      "pid": 37368,
+      "created": 1794443383.9480257
+    },
+    "unity-native-training-full-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v2\\job.json",
+      "status": "running",
+      "pid": 8636,
+      "created": 1794443400.968097
+    },
+    "unity-confirmation-capture-smoke2-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v2\\job.json",
+      "status": "running",
+      "pid": 47368,
+      "created": 1794443411.405678
+    },
+    "unity-confirmation-series2000-v1": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-series2000-v1\\job.json",
+      "status": "running",
+      "pid": 60172,
+      "created": 1794444748.3573053
+    },
+    "unity-pixel-pipeline-full13000-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-pixel-pipeline-full13000-v2\\job.json",
+      "status": "running",
+      "pid": 57104,
+      "created": 1794449302.7315347
+    },
+    "unity-sealed-inference-smoke2-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-sealed-inference-smoke2-v2\\job.json",
+      "status": "passed",
+      "receipt_sha256": "e5d93d5044985159c53bcb4bf5da81b6a65f52cf7a624deb136131442404aaa8"
+    }
+  },
+  "script_sha256": "ff5d72b43191be7840bbc3e016b1af6465228e268f65dcf9492ddad79edcf28c",
+  "test_opened": false,
+  "training_updates": 0,
+  "scope": "Development2 CUDA seal/input/prediction parity only; no final encoding, independent confirmation evaluator or new model quality result"
+}

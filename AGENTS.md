@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- [原生推理封存](<experiment report/unity-accuracy90-20261111/unity-sealed-inference.md>)使用`UnityEvaluationSeal`固定模型、输入、策略、决策、运行库和文件身份，并在forward前持久化尝试；竞争或失败不能覆盖已有合同。验证smoke使用运行内seal，正式confirmation调用方须使用共享cohort registry并核验完整采集／隔离，当前正式调用方尚未完成。验证2图／13patch CUDA预测及选参与原保存结果完全一致，73项CPU检查通过，初次tuple／list失败与旧源码保留。`[verified: unity_evaluation_seal.py acquire/forward；sealed_inference.py prepare/run；unity-sealed-inference-verification.json；opinion: 正式接入要求]`
+
 - [完整像素审计队列](<experiment report/unity-accuracy90-20261111/unity-pixel-pipeline.md>)使用`script/queue_unity_pixel_audit.py`，须等待开发与确认采集成功退出，完整范围固定10000／1000／2000，并要求同代码的真实66图检查通过。缺归档直接拒绝；确认集options转换只写派生文件，保留原报告／配置SHA。25份文件冻结，待生成的采集报告和目录同样受路径保护。真实66图及74项CPU检查通过，全量仍等待；禁止把诊断passed解释为完整隔离或模型验收，不自动改变划分。`[verified: pixel_audit_pipeline.py verify_smoke/verify_destinations/require_archive/confirmation_batches/run；unity-pixel-pipeline-verification.json；opinion: 验收解释]`
 
 - [原生RGBA近重复筛查](<experiment report/unity-accuracy90-20261111/unity-near-duplicates.md>)使用`script/audit_unity_near_duplicates.py`读取冻结的精确像素审计；按原尺寸、同坐标及完整RGBA的RMSE≤2/255筛查，不读取监督标签或自动调整划分。7744训练／2验证图发现6对、12张训练图候选，47项CPU检查与6对独立重算通过。候选只表示低全图误差，仍可能存在局部大差异；不同尺寸、裁剪／旋转与语义相似性未覆盖，不能作为完整确认集隔离证明。`[verified: near_duplicates.py rows/measure/run；unity-near-duplicates-verification.json；pytest 47 passed；opinion: 解释与接入边界]`
