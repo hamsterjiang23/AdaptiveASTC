@@ -1,0 +1,393 @@
+{
+  "plan": "experiment plan/V2/README.md",
+  "status": "passed",
+  "scope": "Unity-native facts cited by V2; no training, encoding, GDC data or test access",
+  "generated_utc": "2026-11-12T03:46:44.778004+00:00",
+  "script": {
+    "path": "experiment report/.local/unity-accuracy90-20261111/plan_v2_evidence.py",
+    "sha256": "78d4d00d3563bbea05da6981cfcf35ffab08109b871dbd07315deb2cd57b118c"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Windows-10-10.0.19044-SP0"
+  },
+  "inputs": {
+    "target_diagnostics": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-native3906-target-diagnostics.json",
+      "sha256": "ec76f4c6c20d7abb8fc76bd493d388a410273ccb8b6a99c70fc3fa30c66fdc0a"
+    },
+    "prediction_interface": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-prediction-interface3906.json",
+      "sha256": "f9006ac6e8ef3a356f6319bd4197653d5fa6b7186cd30555f447d9434db0948e"
+    },
+    "policy_replay": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-policy260-bound-v2.json",
+      "sha256": "933ac344bfb4b5767557f6cbcb0943eb6eacfaeca86c3b0319ea5f297c90bc1f"
+    },
+    "policy_analysis": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-policy260-analysis.json",
+      "sha256": "49d0247d2db331ffa16b0245701611a855c3c4c741c97e924a79fe326c232b3f"
+    },
+    "model_contract": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-native-model-contract.json",
+      "sha256": "e8bd8347174e15114927955d838aa131abfe11ff952219ce3af0e6b35a272eef"
+    },
+    "training_config": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-native-training-full-v2-config.json",
+      "sha256": "8dc98d66ee2bc08257e8ef9ebb5c4f030f9ecab3a7fc0a58c0a068de291febb3"
+    },
+    "confirmation_cohort": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-confirmation2000-v1.json",
+      "sha256": "e6eb7ada5f373985d0fe190a58de7042b9a16450f3b64f91ad55226f7425b1cd"
+    },
+    "pixel_identity": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-pixel-identity-completed-v1.json",
+      "sha256": "7562dde43bffae2bef9ddd854db9a219ba98fba1b9bbc0ebe751e022e21eaa2f"
+    },
+    "near_duplicates": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-near-duplicates-completed7746-v1.json",
+      "sha256": "d509bdcfaa0384a17849ac8a2a9cdb75c1b8ad8c63fe483b9f39ff7cac1cdbc4"
+    },
+    "search_baseline": {
+      "path": "experiment report/unity-search-baseline-lite-rdo-off/summary.json",
+      "sha256": "4757f42522ffd82f6419197de8efc2cd3822c4664e411130244f49ddfd0bf1f4"
+    },
+    "capture_identity": {
+      "path": "experiment report/.local/unity-validation2-20261111/identity.json",
+      "sha256": "5498e2fc6c11b268a53ef5f257681afa64276b05f43960261b598486c86b7a37"
+    }
+  },
+  "capture_protocol": {
+    "quality": {
+      "psnr": 30,
+      "ms_ssim_db": 21,
+      "normal_mean": 3.2,
+      "normal_p95": 9,
+      "rdo": false
+    },
+    "source_split": "validation",
+    "source_split_count": 1000,
+    "manifest": "E:\\ASTC_Compression\\experiment report\\.local\\gdc-lite-rgb-resnet18-seed20261109\\coverage-v2\\manifest.json",
+    "manifest_sha256": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+    "encoder_dlls": {
+      "astcenc-avx2-shared.dll": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+      "astcenc-avx2-static.dll": "c7cbe0077409640717032779bbfa6d8b09b4f5bd8293a56f7459abf9251db6e9"
+    }
+  },
+  "targets3904": {
+    "scope": "First3904 frozen-order training images; partial coverage",
+    "images": 3904,
+    "candidates": 78080,
+    "labels": {
+      "6x6": 429,
+      "8x8": 512,
+      "10x10": 549,
+      "12x12": 2414
+    },
+    "label_shares": {
+      "6x6": 0.1098872950819672,
+      "8x8": 0.13114754098360656,
+      "10x10": 0.140625,
+      "12x12": 0.6183401639344263
+    },
+    "majority_label": "12x12",
+    "majority_top1": 0.6183401639344263,
+    "presets": {
+      "exhaustive": 722,
+      "fast": 138,
+      "fastest": 1159,
+      "medium": 956,
+      "thorough": 929
+    },
+    "selection_reasons": {
+      "first_valid": 2746,
+      "highest_psnr_fallback": 83,
+      "size_first_relaxed": 319,
+      "size_first_strict": 756
+    },
+    "input_conditions": {
+      "normal": 262,
+      "srgb": 3604,
+      "need_alpha": 1287,
+      "constant_alpha": 2615,
+      "single_patch": 1382,
+      "area_ge_512_squared": 1318,
+      "black_ratio_gt_0_4": 526,
+      "black_ratio_gt_0_8": 199,
+      "normal_metric_mips": {
+        "1": 241,
+        "4": 21
+      }
+    },
+    "nonmonotone_psnr_image_counts": {
+      "definition": "At least one decline greater than1e-5dB in the stated candidate order",
+      "smaller_footprint_per_preset": {
+        "fastest": 42,
+        "fast": 39,
+        "medium": 30,
+        "thorough": 31,
+        "exhaustive": 49
+      },
+      "slower_preset_per_footprint": {
+        "12x12": 179,
+        "10x10": 177,
+        "8x8": 90,
+        "6x6": 86
+      }
+    },
+    "zero_channels": {
+      "rgba_counts_across_all_candidates": [
+        1540,
+        1523,
+        2504,
+        51355
+      ],
+      "images_with_any_zero_rgb_candidate_channel": 229,
+      "note": "Descriptive exact channel errors, including channels excluded by native PSNR"
+    },
+    "asset_groups": {
+      "count": 1118,
+      "largest": {
+        "group": "Assets/Art/Effects/Texture/Common/Group/SD",
+        "images": 257
+      }
+    },
+    "exact_reconstruction": {
+      "footprint_accuracy": 1.0,
+      "full_choice_accuracy": 1.0,
+      "validation_images": 2
+    },
+    "label_strict_quality_pass_rate": 0.8970286885245902,
+    "label_strict_quality_pass_images": 3502,
+    "no_strict_feasible_images": 84,
+    "label_payload_bytes": 96099472,
+    "fixed8_payload_bytes": 145706576,
+    "label_payload_vs_fixed8": 0.659541076581197,
+    "positive_floor_without_zero_mask": {
+      "footprint_changes": 6,
+      "full_choice_changes": 36,
+      "strict_quality_pass_rate": 0.889344262295082
+    }
+  },
+  "policy_replay260": {
+    "counts": {
+      "train": 258,
+      "validation": 2
+    },
+    "matching_fields": [
+      "block_size",
+      "preset",
+      "selection_reason",
+      "candidates_measured"
+    ],
+    "mismatches": 0,
+    "branch_counts": {
+      "first_valid": 198,
+      "size_first_relaxed": 25,
+      "size_first_strict": 35,
+      "highest_psnr_fallback": 2
+    },
+    "normal_images": 18,
+    "strict_quality_passing_images": 233,
+    "effective_psnr_thresholds": {
+      "30.0": 218,
+      "35.0": 17,
+      "37.0": 25
+    },
+    "psnr_only_footprint_accuracy": 0.7961538461538461,
+    "psnr_only_full_choice_accuracy": 0.4230769230769231,
+    "psnr_only_groups": {
+      "srgb_small": {
+        "images": 180,
+        "psnr_only_footprint_matches": 140,
+        "psnr_only_full_choice_matches": 84
+      },
+      "srgb_large": {
+        "images": 60,
+        "psnr_only_footprint_matches": 60,
+        "psnr_only_full_choice_matches": 22
+      },
+      "normal": {
+        "images": 18,
+        "psnr_only_footprint_matches": 5,
+        "psnr_only_full_choice_matches": 2
+      },
+      "linear": {
+        "images": 2,
+        "psnr_only_footprint_matches": 2,
+        "psnr_only_full_choice_matches": 2
+      }
+    }
+  },
+  "search_baseline10000": {
+    "status": "passed_with_retries",
+    "search_ms": {
+      "sum": 4060469.3016,
+      "mean": 406.04693016,
+      "median": 259.5212,
+      "p95": 1262.0682,
+      "max": 122755.4059
+    },
+    "select_and_encode_ms": {
+      "sum": 4163310.4649,
+      "mean": 416.33104649,
+      "median": 266.82915,
+      "p95": 1286.1679,
+      "max": 137514.6332
+    },
+    "candidates_attempted": {
+      "sum": 77706.0,
+      "mean": 7.7706,
+      "median": 6.0,
+      "p95": 18.0,
+      "max": 20.0
+    },
+    "import_wall_ms": {
+      "sum": 23828660.006300002,
+      "mean": 2382.86600063,
+      "median": 2223.6661000000004,
+      "p95": 3272.8038,
+      "max": 140622.4879
+    }
+  },
+  "model": {
+    "parameters": 11377660,
+    "fp32_parameter_bytes": 45510640,
+    "backbone": "scratch ResNet18, standard stem with maxpool",
+    "input": [
+      "RGBA240 native patch",
+      "valid mask",
+      "8 input-only import metadata"
+    ],
+    "outputs": {
+      "features": [
+        2,
+        512
+      ],
+      "channel_log_mse": [
+        2,
+        20,
+        4
+      ],
+      "channel_zero_logits": [
+        2,
+        20,
+        4
+      ],
+      "image_quality": [
+        2,
+        20,
+        3
+      ]
+    },
+    "queued_recipe": {
+      "epochs": 30,
+      "image_batch_size": 16,
+      "patches_per_image": 4,
+      "validation_batch_size": 16,
+      "learning_rate": 0.0003,
+      "weight_decay": 0.05,
+      "warmup_epochs": 1,
+      "patience": 5,
+      "workers": 2,
+      "seed": 20261112,
+      "zero_probability_threshold": 0.5,
+      "zero_weight": 0.1,
+      "ssim_weight": 0.1,
+      "angle_weight": 0.1
+    }
+  },
+  "isolation": {
+    "confirmation": {
+      "status": "reserved",
+      "primary_images": 2000,
+      "primary_groups": 1227,
+      "reserve_images": 500,
+      "selection": "SHA256(seed,casefolded path); no compression label/quality filtering",
+      "native_pixels_audited": false,
+      "native_labels_collected": false,
+      "model_sealed": false,
+      "test_opened": false
+    },
+    "development_pixel_identity": {
+      "counts": {
+        "train": 7744,
+        "validation": 2
+      },
+      "rgba": {
+        "unique_identities": 7741,
+        "duplicate_groups": 5,
+        "images_in_duplicate_groups": 10,
+        "redundant_images": 5,
+        "cross_split_groups": 0,
+        "cross_split_images": {},
+        "groups_with_different_rgba": 0,
+        "groups_with_different_choices": 0
+      },
+      "independent_test_isolation_proven": false
+    },
+    "development_near_duplicates": {
+      "counts": {
+        "train": 7744,
+        "validation": 2
+      },
+      "rgba_rmse_8bit": 2.0,
+      "near_image_pairs": 6,
+      "cross_split_near_identity_pairs": 0,
+      "scope": "Same native dimensions and pixel alignment, RGBA8 RMSE only; no resize/crop/rotation/semantic invariance, no label-based filtering"
+    }
+  },
+  "live_snapshot": {
+    "reference_series": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-reference-series.json",
+      "sha256": "a8d48d905a00cafe3fb2107ea980f99695a14b72481d68efd9b9afbe9c3fa383",
+      "modified_utc": "2026-11-12T03:24:51.022161+00:00",
+      "status": "running",
+      "counts": {
+        "train": 9792,
+        "validation": 2
+      }
+    },
+    "candidate_queue": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-candidate-queue-sprite-v3.json",
+      "sha256": "e05677097fe16aaae44c11f825a0b8090dc7e4d5ca80515717c088b6cb4aaab5",
+      "modified_utc": "2026-11-12T03:46:43.024602+00:00",
+      "status": "waiting_references",
+      "counts": {
+        "train": 9280,
+        "validation": 2
+      }
+    },
+    "native_pipeline": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-native-pipeline-full-v3.json",
+      "sha256": "827c07173ab8e13fc579a449ec00ac268b2280eb45448ba4054226aa8f4ef341",
+      "modified_utc": "2026-11-12T03:46:31.246119+00:00",
+      "status": "waiting_upstream",
+      "counts": null
+    },
+    "native_training": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-native-training-full-v2.json",
+      "sha256": "f012d4472690316d9421f064bf59efd78a9462be5b1b3e0747419fe4a47c134b",
+      "modified_utc": "2026-11-12T03:46:31.132388+00:00",
+      "status": "waiting_data",
+      "counts": null
+    },
+    "confirmation_series": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-confirmation-series2000-v1.json",
+      "sha256": "95e9a6e97459810dd12a7f424d9d037e4f178869e0735d1d432c4231bd244299",
+      "modified_utc": "2026-11-12T03:46:37.883065+00:00",
+      "status": "waiting_smoke",
+      "counts": null
+    },
+    "pixel_pipeline": {
+      "path": "experiment report/unity-accuracy90-20261111/unity-pixel-pipeline-full13000-v2.json",
+      "sha256": "011584d00685996e3707edb6015685dd0ada6cf83865f77425dba328eefb0242",
+      "modified_utc": "2026-11-12T03:46:44.734004+00:00",
+      "status": "waiting_captures",
+      "counts": null
+    }
+  },
+  "training_updates": 0,
+  "test_opened": false,
+  "wall_seconds": 0.11327470000833273
+}
