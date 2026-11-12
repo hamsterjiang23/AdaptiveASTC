@@ -36,9 +36,11 @@
 
 ## 实现与实验
 
-- 原生采集输入的最终输出评分使用`UnityCaptureOutputAudit`，从实际ASTC解码复算原生质量，标签asset必须与输入匹配，不读取候选补测档案；`benchmark_unity_capture_deployment.py`目前仅运行已观察validation2。旧smoke8权重完成16份ASTC／PNG一致性及57项CPU检查，正式confirmation调用方、完整mip成本和90%验收仍待完成。`[verified: capture_output.py run；capture_deployment.py run；unity-capture-deployment-verification.json]`
+- [独立确认集评价](<experiment report/unity-accuracy90-20261111/unity-confirmation-evaluation.md>)使用`script/evaluate_unity_confirmation.py`，要求完整原生训练、同一最佳权重的1000图验证Top-1≥90%、原始2000确认图和完整13000图像素审计。候选补测不参与部署输入或最终输出评分；以原始采集验证标签、完整主名单、顺序与原生规则。75项CPU检查与实际66图报告接口通过，正式确认集推理尚未执行。`[verified: confirmation_evidence.py validate_training/model/pixel_audit/captures；unity-confirmation-evaluation-readiness.json]`
+- 正式确认共用按预留cohort身份索引的seal，模型、规则及全部非输出配置保持；失败可在新输出目录重试，旧失败记录保留，改变模型／协议不能重开同一cohort。最终报告绑定全部有序chunk receipt、预测、ASTC、PNG与重复统计；只测最终选择候选的误差，未测20候选整体RMSE明确为空。当前计时仅覆盖参考PNG到mip0 ASTC，完整mip集成及独立90%验收继续单列。`[verified: confirmation_evaluation.py __init__/seal_files/verify_outputs/evaluate/run；capture_output.py summarize；opinion: 验收范围]`
+- 原生采集输入的最终输出评分使用`UnityCaptureOutputAudit`，从实际ASTC解码复算原生质量，标签asset必须与输入匹配，不读取候选补测档案；`benchmark_unity_capture_deployment.py`目前仅运行已观察validation2。旧smoke8权重完成16份ASTC／PNG一致性及57项CPU检查，完整mip成本和90%验收仍待完成。`[verified: capture_output.py run；capture_deployment.py run；unity-capture-deployment-verification.json]`
 
-- [原生推理封存](<experiment report/unity-accuracy90-20261111/unity-sealed-inference.md>)使用`UnityEvaluationSeal`固定模型、输入、策略、决策、运行库和文件身份，并在forward前持久化尝试；竞争或失败不能覆盖已有合同。验证smoke使用运行内seal，正式confirmation调用方须使用共享cohort registry并核验完整采集／隔离，当前正式调用方尚未完成。验证2图／13patch CUDA预测及选参与原保存结果完全一致，73项CPU检查通过，初次tuple／list失败与旧源码保留。`[verified: unity_evaluation_seal.py acquire/forward；sealed_inference.py prepare/run；unity-sealed-inference-verification.json；opinion: 正式接入要求]`
+- [原生推理封存](<experiment report/unity-accuracy90-20261111/unity-sealed-inference.md>)使用`UnityEvaluationSeal`固定模型、输入、策略、决策、运行库和文件身份，并在forward前持久化尝试；竞争或失败不能覆盖已有合同。验证smoke使用运行内seal，正式confirmation调用方使用共享cohort registry并核验完整采集／隔离，当前正式执行尚未完成。验证2图／13patch CUDA预测及选参与原保存结果完全一致，73项CPU检查通过，初次tuple／list失败与旧源码保留。`[verified: unity_evaluation_seal.py acquire/forward；sealed_inference.py prepare/run；confirmation_evaluation.py run；unity-sealed-inference-verification.json]`
 
 - [完整像素审计队列](<experiment report/unity-accuracy90-20261111/unity-pixel-pipeline.md>)使用`script/queue_unity_pixel_audit.py`，须等待开发与确认采集成功退出，完整范围固定10000／1000／2000，并要求同代码的真实66图检查通过。缺归档直接拒绝；确认集options转换只写派生文件，保留原报告／配置SHA。25份文件冻结，待生成的采集报告和目录同样受路径保护。真实66图及74项CPU检查通过，全量仍等待；禁止把诊断passed解释为完整隔离或模型验收，不自动改变划分。`[verified: pixel_audit_pipeline.py verify_smoke/verify_destinations/require_archive/confirmation_batches/run；unity-pixel-pipeline-verification.json；opinion: 验收解释]`
 

@@ -1,6 +1,6 @@
 # 原生采集输入到最终压缩的闭环
 
-原生参考图→封存模型推理→按原规则选参→每图一次ASTC编码→解码质量复算已通过两张已观察验证图的实际CUDA检查。评价过程直接使用原始采集与最终ASTC，不读取候选补测档案；独立确认集的正式调用方仍未接通。此次沿用旧smoke8权重，没有新增训练或生产准确率结论。`[verified: unity-capture-deployment-verification.json images、summary、test_opened、training_updates；capture_deployment.py run；capture_output.py run]`
+原生参考图→封存模型推理→按原规则选参→每图一次ASTC编码→解码质量复算已通过两张已观察验证图的实际CUDA检查。评价过程直接使用原始采集与最终ASTC，不读取候选补测档案；后续[独立确认集调用方](unity-confirmation-evaluation.md)已实现并通过CPU检查，正式执行仍待前置条件。此次沿用旧smoke8权重，没有新增训练或生产准确率结论。`[verified: unity-capture-deployment-verification.json images、summary、test_opened、training_updates；unity-confirmation-evaluation-readiness.json；capture_deployment.py run；capture_output.py run]`
 
 ## 实测结果与范围
 
@@ -24,11 +24,11 @@
 - 第一版实测也通过；随后补上原标签asset与输入asset的显式匹配检查，以新身份v2复跑。旧版评分源码归档于`.local/unity-accuracy90-20261111/unity-capture-deployment-smoke2-v1/prior-source/capture_output.py`，SHA为`3e30eaea02d6ef08c9e93263ff89f28ae1f9cda551d62486279a014c09d148c8`。`[verified: 同文件 prior_pass；对应v1/v2配置与结果]`
 - 所有活动队列的14／23／15／17／25份执行文件及V1原始evidence哈希保持。`[verified: 同文件 unchanged_active_sources、v1_evidence_sha256]`
 
-此次只真实编码选中的候选，因此报告的阈值附近误差只覆盖被选颜色候选，不能替代20候选的整体RMSE；未测候选误差明确为null。后续正式确认还需接通完整采集／像素隔离检查、共享固定cohort封存、独立2000图评价以及完整成本报告。`[verified: capture_output.py summarize；unity-capture-deployment-verification.json summary.*.all_candidate_rmse_db；opinion: 后续验收要求]`
+此次只真实编码选中的候选，因此报告的阈值附近误差只覆盖被选颜色候选，不能替代20候选的整体RMSE；未测候选误差明确为null。后续正式确认仍需实际通过完整采集／像素隔离检查、共享固定cohort封存、独立2000图评价以及完整成本验收。`[verified: capture_output.py summarize；unity-capture-deployment-verification.json summary.*.all_candidate_rmse_db；opinion: 后续验收要求]`
 
 ## 入口与产物
 
-- [运行入口](../../script/benchmark_unity_capture_deployment.py)、[部署实现](../../reproductions/unity_search_baseline/capture_deployment.py)、[可复用评分组件](../../reproductions/unity_search_baseline/capture_output.py)。入口显式限制已观察validation2，正式确认须另行接入，不能只改split绕过。`[verified: UnityCaptureDeploymentSmoke继承UnitySealedInferenceSmoke.__init__]`
+- [运行入口](../../script/benchmark_unity_capture_deployment.py)、[部署实现](../../reproductions/unity_search_baseline/capture_deployment.py)、[可复用评分组件](../../reproductions/unity_search_baseline/capture_output.py)。入口显式限制已观察validation2，正式确认使用独立入口及完整前置核验，不能只改split绕过。`[verified: UnityCaptureDeploymentSmoke继承UnitySealedInferenceSmoke.__init__；confirmation_evaluation.py run]`
 - [冻结配置](unity-capture-deployment-smoke2-v2-config.json)、[实际结果](unity-capture-deployment-smoke2-v2.json)、[核验记录](unity-capture-deployment-verification.json)。重新执行须使用新输出身份；原始ASTC、解码图、预测数组和进程日志保存在`.local`。`[verified: 对应文件及capture_deployment.py run]`
 
 ```powershell

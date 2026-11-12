@@ -72,6 +72,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 实验步骤
 
+[独立确认集评价入口](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-evaluation.md>)完成75项CPU检查和实际66图报告接口核验。新增开发集准入条件：完整原生训练选出的同一权重在1000张验证图上Top-1≥90%，且原始2000确认图与完整像素审计通过后才推理；目的在于保留确认集独立性，不把验证达标视为最终达标。同协议技术失败可用新输出重试，最终报告绑定完整分批产物；当前正式训练／确认测试仍未完成。`[verified: unity-confirmation-evaluation-readiness.json；confirmation_evidence.py validate_training；opinion: 准入设计与完成边界]`
+
 [原生采集到最终压缩闭环](<../../experiment report/unity-accuracy90-20261111/unity-capture-deployment.md>)完成旧smoke8权重的验证2图CUDA预测、每图一次编码与质量复算，16份ASTC／PNG及指标和原记录一致，57项CPU检查通过。两图预测／固定8×8质量达标1/2、2/2，中位83.09／66.12毫秒；本轮没有新训练、confirmation测试或模型增益，完整独立验收继续推进。`[verified: unity-capture-deployment-verification.json；opinion: 验收范围]`
 
 [原生模型封存与推理](<../../experiment report/unity-accuracy90-20261111/unity-sealed-inference.md>)完成两张已观察验证图／13patch的CUDA接口检查，预测数组和选参与原smoke权重结果一致，进程9.93秒；73项CPU检查通过。首次配置tuple／list差异在forward前失败，修复后新身份复跑；原始证据和活动任务源码保持。正式确认集评价、完整压缩对照与90%验收仍未完成。`[verified: unity-sealed-inference-verification.json；opinion: 验收范围]`

@@ -52,9 +52,11 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[独立确认集评价入口](<experiment report/unity-accuracy90-20261111/unity-confirmation-evaluation.md>)已实现，75项CPU检查和实际66图报告字段核验通过；完整训练、1000张验证图达90%、原始2000图采集及像素审计通过后才允许推理。共享封存支持同协议失败重试，最终报告绑定全部分批产物。当前尚未运行确认集推理，Unity独立90%与完整mip成本仍待验收。`[verified: unity-confirmation-evaluation-readiness.json；confirmation_evidence.py validate_training；opinion: 验收边界]`
+
 [原生采集到最终压缩闭环](<experiment report/unity-accuracy90-20261111/unity-capture-deployment.md>)已在旧smoke8权重和两张已观察验证图上跑通：16份ASTC／解码图和原质量记录一致，预测数组最大差0；57项CPU检查通过。预测与固定8×8质量达标分别1/2、2/2，两图端到端中位83.09／66.12毫秒；只证明接口闭环，正式确认集、完整mip成本与90%验收仍未完成。`[verified: unity-capture-deployment-verification.json；opinion: 验收边界]`
 
-[原生模型封存与推理](<experiment report/unity-accuracy90-20261111/unity-sealed-inference.md>)通过两张验证图／13patch的CUDA检查，四组预测及选参均与原smoke权重的保存结果一致，进程9.93秒。73项CPU检查通过，首次tuple／list配置误判失败保留并修复；本次无新增训练、确认集测试或准确率提升，正式独立评价接入仍待完成。`[verified: unity-sealed-inference-verification.json；opinion: 完成边界]`
+[原生模型封存与推理](<experiment report/unity-accuracy90-20261111/unity-sealed-inference.md>)通过两张验证图／13patch的CUDA检查，四组预测及选参均与原smoke权重的保存结果一致，进程9.93秒。73项CPU检查通过，首次tuple／list配置误判失败保留并修复；本次无新增训练、确认集测试或准确率提升，正式独立评价实测仍待完成。`[verified: unity-sealed-inference-verification.json；opinion: 完成边界]`
 
 [完整像素审计队列](<experiment report/unity-accuracy90-20261111/unity-pixel-pipeline.md>)已通过真实64训练／2验证图的归档、精确重复和近重复检查，完整进程12.71秒；74项CPU检查通过。全量10000／1000／2000任务已启动等待开发与确认采集完成，25份执行文件冻结；不改划分、不进行模型测试，完整像素隔离与Unity90%验收仍待完成。`[verified: unity-pixel-pipeline-verification.json smoke、full_queue、cpu_tests；opinion: 验收边界]`
 

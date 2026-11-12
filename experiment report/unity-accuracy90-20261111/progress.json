@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T02:56:58.099000+00:00",
+  "updated_utc": "2026-11-12T03:25:37.367774+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -2907,5 +2907,71 @@
     "compared_native_outputs": 16,
     "test_opened": false,
     "production_evaluation_pending": true
+  },
+  "unity_confirmation_evaluation": {
+    "status": "implemented_cpu_checked_waiting_formal_model_and_captures",
+    "readiness": "unity-confirmation-evaluation-readiness.json",
+    "readiness_sha256": "c06b949a1909d4fd30472dc875be1bece07d25462a11c88087feb75e7aaa4686",
+    "test_opened": false,
+    "formal_confirmation_ready": false,
+    "live_reports": {
+      "unity-reference-series-v2": {
+        "status": "running",
+        "counts": {
+          "train": 9792,
+          "validation": 2
+        },
+        "current_batch": "unity-v1-train-038-20261111",
+        "test_opened": false,
+        "report": "experiment report\\unity-accuracy90-20261111\\unity-reference-series.json",
+        "report_sha256_at_observation": "a8d48d905a00cafe3fb2107ea980f99695a14b72481d68efd9b9afbe9c3fa383"
+      },
+      "unity-candidate-queue-sprite-v3": {
+        "status": "running",
+        "counts": {
+          "train": 8768,
+          "validation": 2
+        },
+        "current_batch": "unity-v1-train-034-20261111",
+        "test_opened": false,
+        "report": "experiment report\\unity-accuracy90-20261111\\unity-candidate-queue-sprite-v3.json",
+        "report_sha256_at_observation": "ce6ecd110ad1557041daecbc4694b10787230b63c5112cae7f778e42742151f7"
+      },
+      "unity-native-pipeline-full-v3": {
+        "status": "waiting_upstream",
+        "test_opened": false,
+        "training_updates": 0,
+        "report": "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline-full-v3.json",
+        "report_sha256_at_observation": "5d5a06fe5f407c61daf9a3eef9f30995aea9ce6cf3e2bb31371080536269591a"
+      },
+      "unity-native-training-full-v2": {
+        "status": "waiting_data",
+        "test_opened": false,
+        "report": "experiment report\\unity-accuracy90-20261111\\unity-native-training-full-v2.json",
+        "report_sha256_at_observation": "f012d4472690316d9421f064bf59efd78a9462be5b1b3e0747419fe4a47c134b"
+      },
+      "unity-confirmation-capture-smoke2-v2": {
+        "status": "waiting_dependencies",
+        "test_opened": false,
+        "training_updates": 0,
+        "report": "experiment report\\unity-accuracy90-20261111\\unity-confirmation-capture-smoke2-v2.json",
+        "report_sha256_at_observation": "affccf2691fc33e136a9bf570ff9931c864f8cf19c25e6ed38144b07faa720bc"
+      },
+      "unity-confirmation-series2000-v1": {
+        "status": "waiting_smoke",
+        "captured_images": 0,
+        "test_opened": false,
+        "training_updates": 0,
+        "report": "experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-v1.json",
+        "report_sha256_at_observation": "95e9a6e97459810dd12a7f424d9d037e4f178869e0735d1d432c4231bd244299"
+      },
+      "unity-pixel-pipeline-full13000-v2": {
+        "status": "waiting_captures",
+        "test_opened": false,
+        "training_updates": 0,
+        "report": "experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-v2.json",
+        "report_sha256_at_observation": "22421129356c56508664767a7e4b15550509890261700bfa462e45314b63bf81"
+      }
+    }
   }
 }

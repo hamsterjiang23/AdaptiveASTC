@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[独立确认集评价入口](unity-confirmation-evaluation.md)完成75项CPU检查与实际66图报告字段核验，允许同协议技术失败后保留旧产物并换新目录重试，最终报告绑定全部分批结果。只有完整原生训练及验证Top-1≥90%、原始2000图和完整像素检查均通过后才打开推理。当前没有新的训练或确认集准确率结果，完整mip成本仍待完成。`[verified: unity-confirmation-evaluation-readiness.json；confirmation_evidence.py validate_training；opinion: 准入与验收边界]`
+
 [原生采集到最终压缩闭环](unity-capture-deployment.md)完成验证2图的封存CUDA推理、一次最终编码及直接解码质量评价，不依赖候选补测档案；16份ASTC／PNG与原记录一致，预测差0，57项CPU检查通过。沿用旧smoke8模型，预测／固定8×8质量达标1/2、2/2，正式独立模型验收与完整mip成本尚未完成。`[verified: unity-capture-deployment-verification.json；opinion: 验收边界]`
 
 [原生模型封存与推理](unity-sealed-inference.md)完成模型／输入／规则固定后的验证2图CUDA检查，13patch、四组预测最大差0、选参一致，进程9.93秒。73项CPU检查通过，首次配置类型误判失败与修复前源码保留；该入口只运行开发验证图，正式confirmation评价和新的生产准确率尚未取得。`[verified: unity-sealed-inference-verification.json；opinion: 验收边界]`
