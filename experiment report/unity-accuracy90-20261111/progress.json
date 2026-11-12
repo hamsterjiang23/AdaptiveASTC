@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T04:28:10.460595+00:00",
+  "updated_utc": "2026-11-12T04:42:48.539732+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -1607,16 +1607,16 @@
     "status": "running",
     "counts": {
       "train": 10000,
-      "validation": 258
+      "validation": 514
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-validation-002-20261111",
+    "current_batch": "unity-v1-validation-003-20261111",
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "bf3f978c57d57fd6bdd72b3e768b31d334d523c50fbbf58530ea4fa11a0be5a4"
+    "report_sha256": "4415177a009cb44521e4d72106557c89ee73116980d39d0cdc202a2e7a352fc3"
   },
   "fixed_capacity_stem": {
     "summary": "patch-fixed-capacity\\scratch-stem2-lr0003-summary.json",
@@ -1636,17 +1636,17 @@
   "unity_candidate_queue": {
     "status": "running",
     "counts": {
-      "train": 9536,
+      "train": 10000,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-037-20261111",
+    "current_batch": "unity-v1-validation-001-20261111",
     "test_opened": false,
     "report": "unity-candidate-queue-sprite-v3.json",
-    "report_sha256": "257552421695f9281c05c1908fd6574fac4d3ee192a8056ea3c8c94979fde30d"
+    "report_sha256": "f216050e3bf823387355b162f0915545be10070491931946c35a8683811a05bb"
   },
   "fixed_capacity_group_sampling": {
     "status": "completed",
@@ -3017,35 +3017,35 @@
     "verification": "unity-data-handoff-verification.json",
     "verification_sha256": "618411ac2e2a727728819c3762335526a53495d5a2998a0bca2b3bd322f90931",
     "latest_capture_milestone": {
-      "run_id": "unity-v1-validation-001-20261111",
+      "run_id": "unity-v1-validation-002-20261111",
       "images": 256,
       "split": "validation",
       "status": "published_and_receipt_hashes_verified",
+      "bindings": {
+        "phase_receipt_sha256": {
+          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-002-20261111\\batch-receipt.json",
+          "sha256": "990a272cba2fcd25de6d7c5ec0134136212b844b790353aef62f55db366b366e"
+        },
+        "reference_receipt_sha256": {
+          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-002-20261111\\references\\normalized-batch\\receipt.json",
+          "sha256": "dadbdb454a8fd48183c9f1e20899380ea5cf44a0aaa8e0165dc08c61d207bb22"
+        },
+        "options_sha256": {
+          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-002-20261111\\options-receipt.json",
+          "sha256": "d11754d6d69dcf71f647074d5a03bce00886fc9655962a7f99083b2192f50b9b"
+        }
+      },
       "reference_counts": {
         "train": 10000,
-        "validation": 258
+        "validation": 514
       },
       "candidate_counts": {
-        "train": 9280,
+        "train": 10000,
         "validation": 2
-      },
-      "bindings": {
-        "phase": {
-          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\batch-receipt.json",
-          "sha256": "cdf6d2fb72a3d949ea484b0937da119c479eed1e8df337d6ab90744383185e24"
-        },
-        "reference": {
-          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\references\\normalized-batch\\receipt.json",
-          "sha256": "c54abdaf6224e75fe2336f4afd667b56e59d5e05e3e00a6e3eccdd248b63e420"
-        },
-        "options": {
-          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\options-receipt.json",
-          "sha256": "c702e1aa2f6d13ef30983b8cb04aac69551784335112fab657a4d7832db61dc6"
-        }
       },
       "process_exit_code": 0,
       "metadata_restore_conflicts": 0,
-      "verified_utc": "2026-11-12T04:21:51.439022+00:00",
+      "verified_utc": "2026-11-12T04:42:48.539732+00:00",
       "model_evaluation_performed": false
     },
     "latest_candidate_milestone": {
@@ -3072,6 +3072,20 @@
       "wall_seconds": 2285.0384584999993,
       "verified_utc": "2026-11-12T04:28:10.460595+00:00",
       "test_opened": false
+    },
+    "training_candidate_completion": {
+      "report": "unity-training-candidates10000-v1.json",
+      "report_sha256": "6957e31e51026b2b4366bd9fea43d171c2f37db1434f1b4878cd597cd8aea5fa",
+      "status": "passed_training_candidate_snapshot",
+      "totals": {
+        "images": 10000,
+        "candidates": 200000,
+        "new_candidates": 122294,
+        "original_candidates": 77706
+      },
+      "full_development_data_ready": false,
+      "verification": "unity-training-candidates10000-verification.json",
+      "verification_sha256": "62a35da6b4876e36f1aa9474f5652d0f4794941985c54067978c3d7695462153"
     }
   }
 }

@@ -54,6 +54,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 2026-11-12 用户将当前 goal 改为**完成 Unity 数据采集及完整性验收后结束**，后续模型训练和 90% 准确率验收交给 V2。数据范围为 train10000／validation1000 的原始采集、20 候选补测、patch 语料与规则重放，以及 confirmation2000 原始采集和完整像素审计。V1 未启动的正式训练已取消；任务依赖与完成条件见[数据交接](<experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)。`[verified: 用户“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json]`
 
+[训练图完整20候选](<experiment report/unity-accuracy90-20261111/unity-training-candidates10000-v1.json>)已覆盖全部10000张／40批次，共200000候选：原搜索77706、额外补测122294。冻结名单、原选择及回执哈希核验通过；当前原始采集train10000／validation514，候选train10000／validation2。完整开发语料、验证补测和确认图仍待完成，本goal继续数据收尾。`[verified: unity-training-candidates10000-v1.json totals、unique_assets_match_frozen_train10000、original_selections_unchanged；progress.json data_handoff；opinion: 完成边界]`
+
 [原生训练图采集与标签分布](<experiment report/unity-accuracy90-20261111/unity-native-label-distribution.md>)已覆盖全部10000张训练图，队列转入验证图采集。6／8／10／12类占17.10%／14.90%／13.66%／54.34%，大图放宽498张、最高PSNR回退377张；旧9792条记录保持。40个训练批次、208个输入SHA与完整训练名单核验通过。验证图和20候选补测仍未完整，正式CUDA训练与独立90%验收继续等待。`[verified: unity-native-labels10000-v1.json summary；unity-native-labels10000-verification.json；opinion: 完成边界]`
 
 [独立确认集评价入口](<experiment report/unity-accuracy90-20261111/unity-confirmation-evaluation.md>)已实现，75项CPU检查和实际66图报告字段核验通过；完整训练、1000张验证图达90%、原始2000图采集及像素审计通过后才允许推理。共享封存支持同协议失败重试，最终报告绑定全部分批产物。当前尚未运行确认集推理，Unity独立90%与完整mip成本仍待验收。`[verified: unity-confirmation-evaluation-readiness.json；confirmation_evidence.py validate_training；opinion: 验收边界]`

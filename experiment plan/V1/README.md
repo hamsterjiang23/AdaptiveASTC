@@ -4,6 +4,8 @@ V1 记录于 2026-11-11。用户于 2026-11-12 将本 goal 收尾范围改为数
 
 核心判断是把块大小选择改写为逐块大小的 PSNR 预测。四分类标签由四个候选 PSNR 按阈值唯一确定，PSNR 预测误差约 0.75 dB 时推出的标签准确率约 90%，整图缩放到 224×224 的输入难以提供这种精度。`[verified: evidence.json label_structure、precision_requirement] [opinion: 方案判断]`
 
+[训练图完整20候选](<../../experiment report/unity-accuracy90-20261111/unity-training-candidates10000-v1.json>)已覆盖全部10000张／40批次，共200000候选：原搜索77706、额外补测122294。冻结名单、原选择及回执哈希核验通过；当前原始采集train10000／validation514，候选train10000／validation2。完整开发语料、验证补测和确认图仍待完成，本goal继续数据收尾。`[verified: unity-training-candidates10000-v1.json totals、unique_assets_match_frozen_train10000、original_selections_unchanged；progress.json data_handoff；opinion: 完成边界]`
+
 ## 目标与开发数据
 
 - 最终验收不变：Unity 导入后参考像素与同次搜索标签，独立测试 Top-1≥90%，同时报告质量达标率、payload 与端到端成本。`[verified: unity-accuracy90 README“已确定的验收口径”]`

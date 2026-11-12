@@ -26,4 +26,4 @@
 
 ## 数据交接状态
 
-截至 2026-11-12T04:28:10.460595+00:00，原采集 train10000／validation258，完整候选 train9536／validation2。新增补测批次256张／5120候选通过，原选中payload与解码保持；验证采集继续，确认图尚未完成。动态状态见 [progress.json](progress.json) 的 `data_handoff` 及各队列报告。正式训练不再由本goal自动启动，V2 使用新实验身份与已验收数据。`[verified: progress.json data_handoff.latest_capture_milestone、latest_candidate_milestone；unity-data-handoff-v1.json training_auto_start]`
+截至 2026-11-12T04:42:48.539732+00:00，原采集 train10000／validation514，完整候选 train10000／validation2。[全部训练候选核验](unity-training-candidates10000-v1.json)确认10000张唯一训练图及200000候选，原选择保持；本次没有重新解码全部图片，完整像素／patch验收仍由已排队数据流水线执行。动态状态见 [progress.json](progress.json) 的 `data_handoff` 及各队列报告。`[verified: unity-training-candidates10000-v1.json；progress.json data_handoff.latest_capture_milestone；opinion: 验收边界]`
