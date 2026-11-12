@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T10:08:51.971498+00:00",
+  "updated_utc": "2026-11-12T10:23:12.398654+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -63,9 +63,9 @@
     }
   ],
   "next": [
-    "Finish native smoke and serial capture for revised confirmation2000.",
-    "Verify actual V2 input eligibility and full13000 exact/near pixel audit.",
-    "Complete data-only handoff, sync repository and mark goal complete."
+    "Resolve18 Cube development samples with user-approved replacement or exclusion; preserve original corpus.",
+    "Continue revisedconfirmation2000 native collection and input audit.",
+    "Complete full pixel audit and final data handoff under the resolved V2 scope."
   ],
   "decisions": [
     "User confirmed Unity imported references as main acceptance data",
@@ -3374,7 +3374,8 @@
         "anchors": 27,
         "external_urls_checked": false,
         "git_diff_check": "passed"
-      }
+      },
+      "v2_input_scope_ready": false
     },
     "latest_confirmation_milestone": {
       "snapshot_utc": "2026-11-12T10:08:51.971498+00:00",
@@ -3539,6 +3540,16 @@
         "native_process_exit_code": 0,
         "metadata_restore_conflicts": []
       }
-    ]
+    ],
+    "development_scope_issue": {
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-development-v2-input-scope-initial.json",
+      "sha256": "190e70c99d208311155aa83e54e59608c47bc067ef44bd44cb56892608346381",
+      "out_of_scope_counts": {
+        "train": 13,
+        "validation": 5
+      },
+      "v2_input_scope_ready": false,
+      "decision": "pending"
+    }
   }
 }

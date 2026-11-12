@@ -28,6 +28,8 @@
 
 ## 数据交接状态
 
+新增完成条件：[开发语料18张Cube范围问题](unity-development-v2-input-scope.md)需按用户选择处理，并重新核对V2有效名单、实际输入准入及像素审计覆盖。原开发流水线完成的事实保持，当前V2范围验收未通过；确认集继续采集。`[verified: unity-development-v2-input-scope-initial.json；unity-development-v2-input-scope-verification.json；opinion: 交接完整性条件]`
+
 开发集原始采集、20候选、patch整理、合并、Dataset全读和原规则重放均已完成。训练10000张／67105个patch，验证1000张／7082个patch，合计220000个候选。逐图核对块大小、preset、选择原因、候选测量次数（candidates_measured），11000张均与同次原搜索一致；这是实测目标与规则重放验收，没有模型准确率结论。确认图与完整精确／近重复像素审计仍待完成，E0和本goal保持未完成。`[verified: unity-development-data11000-verification.json counts、patch_counts、exact_policy_replay、e0_complete、model_accuracy]`
 
 | 数据入口 | 内容 |

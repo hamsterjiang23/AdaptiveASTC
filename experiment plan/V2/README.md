@@ -30,6 +30,8 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 
 ## 数据
 
+开发语料存在[18张Cube范围问题](<../../experiment report/unity-accuracy90-20261111/unity-development-v2-input-scope.md>)：训练13张、验证5张被当前V2输入适配器拒绝。原10000／1000语料保留，补采保持规模或排除生成9987／995视图的选择待用户确认；E0不能仅凭原四阶段数据流水线通过而结束。`[verified: unity-development-v2-input-scope-initial.json；unity-development-v2-input-scope-verification.json；本轮异步问题]`
+
 确认集以用户批准的[V2范围修订名单](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)为当前采集版本：2000张、1231个资产组，47个范围外样本按原备用顺序替换。源身份检查通过；实际导入准入、完整参考像素审计和模型确认评价仍分别待验收。原始evidence.json保留为计划建立时的快照。`[verified: unity-confirmation2000-v2.json；unity-confirmation-v2-readiness.json；opinion: 验收边界]`
 
 - **开发划分**：沿用已冻结的 coverage-v2 资产名单，train10000／validation1000。只复用名单和划分，像素、标签和候选质量全部按 Unity 协议采集。`[verified: evidence.json capture_protocol.manifest、source_split_count；unity-reference-series.md] [opinion: 复用边界]`

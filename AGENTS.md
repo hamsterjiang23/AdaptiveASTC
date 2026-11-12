@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- V2数据交接须逐图检查实际导入维度和类型。完整开发语料发现13张train／5张validation Cube超出Tex2D范围；原语料与报告保持，补采或排除方式待用户确认，不能把原始数据流水线完成等同于V2范围就绪。确认集采集继续，详见[开发范围检查](<experiment report/unity-accuracy90-20261111/unity-development-v2-input-scope.md>)。`[verified: unity-development-v2-input-scope-initial.json；unity-development-v2-input-scope-verification.json]`
+
 - 当前数据采集goal的确认集使用[新版V2范围名单](<experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)，用户已批准排除39GUI、7Cube及另1HDR源图，保持原主名单位置并按原备用顺序补47张；旧名单与失败记录保持。源文件准入不替代实际导入类型及像素审计，确认集不做全20候选补测、训练或推理。`[verified: 用户本次范围替换选择；unity-confirmation2000-v2.json；opinion: 完成边界]`
 
 - [原生训练标签分布](<experiment report/unity-accuracy90-20261111/unity-native-label-distribution.md>)已覆盖全部10000张训练图／40批次，208个输入SHA、原生选参与回执一致；四类计数1710／1490／1366／5434，放宽大图498、最高PSNR回退377，旧9792条保持。training_complete仅表示训练图原始标签覆盖，不代表验证／20候选目标或模型训练完成。法线按导入用途识别，299张NormalMap的normal_pack均为false；直接父目录分组与历史资产族分组分开解释。统计不使用验证／确认标签或模型预测，不把配比直接当作错误原因，不热改活动训练配置。`[verified: unity-native-labels10000-v1.json summary、model_forward_calls；unity-native-labels10000-verification.json；opinion: 解释与实验边界]`

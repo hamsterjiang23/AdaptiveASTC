@@ -1,5 +1,7 @@
 # 实验计划 V1：原分辨率 patch 误差回归
 
+数据交接补查发现开发集[18张Cube超出V2输入范围](<../../experiment report/unity-accuracy90-20261111/unity-development-v2-input-scope.md>)，处理方式待用户确认；原数据与历史结果保持，确认集采集继续。`[verified: unity-development-v2-input-scope-initial.json；本轮异步问题]`
+
 当前数据采集交接中的确认集已按用户批准的V2范围生成[新版名单与采集链](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)，替换47张范围外图，旧名单和失败保留；不恢复V1正式训练。`[verified: unity-confirmation2000-v2.json；unity-data-handoff.md；用户本次替换选择]`
 
 V1 记录于 2026-11-11。用户于 2026-11-12 将本 goal 收尾范围改为数据采集与完整性验收，具体见[数据交接](<../../experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)；模型训练和独立 90% 验收由后续 V2 承接，以下 V1 方案与结果保留为历史记录。`[verified: 用户2026-11-12最新范围调整]` 原始验收口径见 [Unity90%执行记录](<../../experiment report/unity-accuracy90-20261111/README.md>)。诊断数值保存在 [evidence.json](evidence.json)，由归档脚本 `experiment report/.local/unity-accuracy90-20261111/plan_v1_analysis.py` 生成，脚本 SHA-256 记录在同一文件。`[verified: 用户本轮重新创建goal要求；create_goal返回active；evidence.json script]`
