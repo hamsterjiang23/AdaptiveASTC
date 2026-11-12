@@ -1635,20 +1635,20 @@
     "scope": "complete20candidate archived colors and mip0 normals; original choices retained"
   },
   "unity_candidate_queue": {
-    "status": "running",
+    "status": "passed",
     "counts": {
       "train": 10000,
-      "validation": 770
+      "validation": 1000
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-validation-004-20261111",
+    "current_batch": null,
     "test_opened": false,
     "report": "unity-candidate-queue-sprite-v3.json",
-    "report_sha256": "bfed3500896abad5cc115d139acd42fa1c09646eb169d413ed299dc66b67953f",
-    "observed_utc": "2026-11-12T05:28:42.815410+00:00"
+    "report_sha256": "c891b6a67d5fe0bd8280f2cf88d3ad847f40a467331a59271deabad64f1f9662",
+    "observed_utc": "2026-11-12T05:41:49.225535+00:00"
   },
   "fixed_capacity_group_sampling": {
     "status": "completed",
@@ -1976,15 +1976,18 @@
     "scope": "Completed GDC source-RGB validation control; no Unity or test accuracy claim"
   },
   "unity_native_data_pipeline": {
-    "status": "waiting_upstream",
+    "status": "running",
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
+    "current_stage": "prepare",
+    "stages": [],
     "test_opened": false,
     "training_updates": 0,
     "report": "unity-native-pipeline-full-v3.json",
-    "report_sha256": "41218a4bb7575e3753b92a2b3d950111d4f92d7337823d7de671d236e1853942"
+    "report_sha256": "1238ce72d578374eae35b028a118f0675fe8f4c570189f770a714d03a2d78fb5",
+    "observed_utc": "2026-11-12T05:41:49.225535+00:00"
   },
   "fixed_capacity_metadata": {
     "status": "completed_negative_control",
@@ -3051,29 +3054,29 @@
       "model_evaluation_performed": false
     },
     "latest_candidate_milestone": {
-      "run_id": "unity-v1-validation-003-20261111",
-      "images": 256,
-      "candidates": 5120,
-      "new_candidates": 3652,
-      "original_candidates": 1468,
-      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\reports\\unity-v1-validation-003-20261111.json",
-      "report_sha256": "cbe0a03e7b15db492e49d62d3879ae0283f1e566caadcd98ea34560f1d998a1e",
-      "raw_receipt_sha256": "5535c073948231efb3efc943b56c90f038f313185919bcc2fe3361a43967e31d",
-      "wall_seconds": 525.436426500004,
+      "run_id": "unity-v1-validation-004-20261111",
+      "images": 230,
+      "candidates": 4600,
+      "new_candidates": 2723,
+      "original_candidates": 1877,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\reports\\unity-v1-validation-004-20261111.json",
+      "report_sha256": "c085f90b8fd5d79bc40279cf4060db1e61a4c041ce978cceb941d9b108826bef",
+      "raw_receipt_sha256": "d08329d83b990264a34584c36b75cb4b240d995471aa42501c00425b45c70064",
+      "wall_seconds": 967.3729410999949,
       "source_split": "validation",
       "status": "published_summary_and_raw_hashes_verified",
       "all_rows_twenty_candidates": true,
       "all_original_selected_payload_and_decode_match": true,
-      "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\batches\\unity-v1-validation-003-20261111\\receipt.json",
+      "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\batches\\unity-v1-validation-004-20261111\\receipt.json",
       "reference_counts": {
         "train": 10000,
-        "validation": 770
+        "validation": 1000
       },
       "candidate_counts": {
         "train": 10000,
-        "validation": 770
+        "validation": 1000
       },
-      "verified_utc": "2026-11-12T05:11:34.000581+00:00",
+      "verified_utc": "2026-11-12T05:39:39.718633+00:00",
       "test_opened": false
     },
     "training_candidate_completion": {
@@ -3139,7 +3142,68 @@
             "report_sha256": "f216050e3bf823387355b162f0915545be10070491931946c35a8683811a05bb"
           }
         }
+      },
+      {
+        "archived_utc": "2026-11-12T05:41:49.225535+00:00",
+        "reason": "All development candidates completed; full native data preparation started",
+        "entries": {
+          "unity_candidate_queue": {
+            "status": "running",
+            "counts": {
+              "train": 10000,
+              "validation": 770
+            },
+            "expected_counts": {
+              "train": 10000,
+              "validation": 1000
+            },
+            "current_batch": "unity-v1-validation-004-20261111",
+            "test_opened": false,
+            "report": "unity-candidate-queue-sprite-v3.json",
+            "report_sha256": "bfed3500896abad5cc115d139acd42fa1c09646eb169d413ed299dc66b67953f",
+            "observed_utc": "2026-11-12T05:28:42.815410+00:00"
+          },
+          "unity_native_data_pipeline": {
+            "status": "waiting_upstream",
+            "expected_counts": {
+              "train": 10000,
+              "validation": 1000
+            },
+            "test_opened": false,
+            "training_updates": 0,
+            "report": "unity-native-pipeline-full-v3.json",
+            "report_sha256": "41218a4bb7575e3753b92a2b3d950111d4f92d7337823d7de671d236e1853942"
+          }
+        }
       }
-    ]
+    ],
+    "development_candidate_completion": {
+      "report": "unity-development-candidates11000-v1.json",
+      "report_sha256": "2a6f57bea065377735fc69b637e77248e0d069c4f9e780e44f1c925e6cac8d38",
+      "status": "passed_development_candidate_receipt_audit",
+      "counts": {
+        "train": 10000,
+        "validation": 1000
+      },
+      "total_candidates": 220000,
+      "totals_by_split": {
+        "train": {
+          "images": 10000,
+          "candidates": 200000,
+          "original_candidates": 77706,
+          "new_candidates": 122294
+        },
+        "validation": {
+          "images": 1000,
+          "candidates": 20000,
+          "original_candidates": 7064,
+          "new_candidates": 12936
+        }
+      },
+      "bound_inputs": 325,
+      "full_development_data_ready": false,
+      "verification": "unity-development-candidates11000-verification.json",
+      "verification_sha256": "10ba0447d21434541d9054d7dd2188b63e42343da16408d6b7431bb749dea743"
+    }
   }
 }

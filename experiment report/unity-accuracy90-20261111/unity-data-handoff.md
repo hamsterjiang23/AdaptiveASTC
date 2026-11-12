@@ -26,4 +26,4 @@
 
 ## 数据交接状态
 
-截至 2026-11-12T05:23:29.152490+00:00，[开发集原始采集核验](unity-development-capture11000-v1.json)已确认train10000／validation1000全部完成，45批次、230份输入绑定、原搜索与实际属性配对、执行和恢复记录通过。[全部训练候选核验](unity-training-candidates10000-v1.json)保留10000张／200000候选的完成证据。验证候选补测与完整像素／patch验收继续执行，确认集仍待采集；这些记录核验没有重新解码全部图片。动态状态见 [progress.json](progress.json) 的 `data_handoff` 及各队列报告。`[verified: unity-development-capture11000-v1.json；unity-training-candidates10000-v1.json；opinion: 验收边界]`
+截至 2026-11-12T05:39:39.718633+00:00，[开发集原始采集](unity-development-capture11000-v1.json)和[全部开发图20候选](unity-development-candidates11000-v1.json)均已完成：train10000／validation1000，共220000候选，原搜索84770、额外补测135230。完整数据流水线已开始patch整理；确认图与全量像素审计尚待完成。这两份记录核验没有重新解码全部图片，完整像素／patch读取与规则重放由数据流水线验收。历史[训练图候选报告](unity-training-candidates10000-v1.json)保持原样；动态状态见 [progress.json](progress.json) 的 `data_handoff` 及各队列报告。`[verified: unity-development-capture11000-v1.json；unity-development-candidates11000-v1.json；unity-native-pipeline-full-v3.json；opinion: 验收边界]`

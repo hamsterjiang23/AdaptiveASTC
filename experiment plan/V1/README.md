@@ -4,7 +4,7 @@ V1 记录于 2026-11-11。用户于 2026-11-12 将本 goal 收尾范围改为数
 
 核心判断是把块大小选择改写为逐块大小的 PSNR 预测。四分类标签由四个候选 PSNR 按阈值唯一确定，PSNR 预测误差约 0.75 dB 时推出的标签准确率约 90%，整图缩放到 224×224 的输入难以提供这种精度。`[verified: evidence.json label_structure、precision_requirement] [opinion: 方案判断]`
 
-[开发集原始采集](<../../experiment report/unity-accuracy90-20261111/unity-development-capture11000-v1.json>)已完成train10000／validation1000，共45批次；名单、MD4、同次原搜索与实际导入属性逐图配对，230份输入哈希及执行／恢复记录核验通过。[训练图20候选](<../../experiment report/unity-accuracy90-20261111/unity-training-candidates10000-v1.json>)已完成10000张／200000候选。当前继续验证候选补测、完整patch检查和确认集采集；原始采集完成与完整数据就绪分别验收。`[verified: unity-development-capture11000-v1.json counts、batches、inputs_sha256；unity-training-candidates10000-v1.json totals；opinion: 验收边界]`
+[开发集原始采集](<../../experiment report/unity-accuracy90-20261111/unity-development-capture11000-v1.json>)已完成train10000／validation1000，45批次的名单、MD4、原搜索、实际属性及恢复记录核验通过。[全部开发图20候选](<../../experiment report/unity-accuracy90-20261111/unity-development-candidates11000-v1.json>)已完成11000张／220000候选：原搜索84770、额外补测135230；逐图候选顺序、原选择和325份输入绑定通过检查。完整数据流水线已进入patch整理；完整像素／patch读取、规则重放和确认集采集仍需完成，候选记录齐备与完整训练语料就绪分别验收。`[verified: unity-development-capture11000-v1.json；unity-development-candidates11000-v1.json totals_by_split、inputs_sha256；unity-native-pipeline-full-v3.json current_stage；opinion: 验收边界]`
 
 ## 目标与开发数据
 

@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "passed",
   "started_utc": "2026-11-12T00:29:33.947429+00:00",
   "config_sha256": "11f217d967857430bb1906c66671ce8e8f836c970e4f169770a4bbecba687c92",
   "implementation_sha256": "aa4b6ffbd2e4822272dedcb71867d304529f84e13275752e4250e113adf4f932",
@@ -11,7 +11,7 @@
   "coverage": "complete",
   "counts": {
     "train": 10000,
-    "validation": 770
+    "validation": 1000
   },
   "batches": [
     {
@@ -1377,12 +1377,45 @@
         "decode_seconds": 37.39273039948603,
         "quality_seconds": 59.290640099774464
       }
+    },
+    {
+      "run_id": "unity-v1-validation-004-20261111",
+      "source_split": "validation",
+      "reference": {
+        "run_id": "unity-v1-validation-004-20261111",
+        "source_split": "validation",
+        "images": 230,
+        "callbacks": 1877,
+        "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-004-20261111\\options-receipt.json",
+        "options_sha256": "49b9c7b9e2cbbad3baf6a8dd5dd817201fe00d407accc201fd3e22a3cfa5e7ba",
+        "reference_receipt_sha256": "6e9685062b59651bdd39130b0783b1feaff538568f8000bb17038cf6fb9b6f1a",
+        "phase_receipt_sha256": "51b6ac8aed9d903b6f08e75d3711d14eb0ad147f6a743f46ea575d7aa25c5f4f",
+        "editor_process_seconds": 1110.686479099997
+      },
+      "prior_attempts": [],
+      "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+      "images": 230,
+      "candidates": 4600,
+      "new_candidates": 2723,
+      "original_candidates": 1877,
+      "normal_images": 0,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\reports\\unity-v1-validation-004-20261111.json",
+      "report_sha256": "c085f90b8fd5d79bc40279cf4060db1e61a4c041ce978cceb941d9b108826bef",
+      "raw_receipt_sha256": "d08329d83b990264a34584c36b75cb4b240d995471aa42501c00425b45c70064",
+      "wall_seconds": 967.3729410999949,
+      "cost": {
+        "encode_seconds": 558.6780719996605,
+        "decode_seconds": 33.67504049936542,
+        "quality_seconds": 156.6333787003823
+      }
     }
   ],
   "test_opened": false,
   "invocation_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\invocations\\6edd92efaa9d48c8939abf93786b3852\\receipt.json",
   "scope": "native20 candidate targets paired to original imported references and search choices",
-  "current_batch": "unity-v1-validation-004-20261111",
-  "updated_utc": "2026-11-12T05:21:58.300553+00:00",
-  "wall_seconds": 17544.352176600005
+  "current_batch": null,
+  "updated_utc": "2026-11-12T05:38:56.229937+00:00",
+  "wall_seconds": 18562.2810169,
+  "manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\manifest.json",
+  "manifest_sha256": "a8ce6267f7ace6d74fdd2c464c5bc61bca05cf75d81516cd6ef09113047a301d"
 }
