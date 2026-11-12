@@ -103,6 +103,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 本轮执行补充
 
+- [独立确认集采集入口](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-capture.md>)完成30项CPU检查和两张真实源资产的只读核验；以独立confirmation划分复用原搜索、参考导出和恢复逻辑。两图任务已等待开发采集／补测／完整数据及首轮原生训练成功退出，当前没有新的确认集标签或模型测试；大于两图的扩展需追溯真实smoke原生证据。`[verified: unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status、dependencies、native_labels_collected；opinion: 完成边界]`
+
 - [独立确认集预留](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-cohort.md>)已预留2000张主名单、500张备用，主名单覆盖1227个未出现于9份历史清单的资产组；2500份实际源文件及meta身份复核通过。仅完成源资产隔离，后续仍需Unity参考像素、同次原搜索标签、像素重复审计，以及模型和决策冻结后的独立测试；当前未打开模型测试。`[verified: unity-confirmation2000-v1.json primary_images、primary_groups、reserve_images、native_pixels_audited、native_labels_collected、model_sealed；unity-confirmation-reservation-verification.json；opinion: 后续验收]`
 
 - [冻结预测残差诊断](<../../experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)完成：cap512验证1000上的全局余量101点扫描最高仍为84.5%；逐候选减去近阈值平均残差仅将RMSE从1.3869降至1.3372dB，准确率为83.9%。这类简单修正不加入部署，尺寸元数据终态见上方，继续完成Unity原生训练。偏移与余量在同一验证集拟合／计分，不能当独立泛化收益或模型上限；没有新增训练或test访问。`[verified: scratch-group512-residuals.json；opinion: 后续选择与解释边界]`

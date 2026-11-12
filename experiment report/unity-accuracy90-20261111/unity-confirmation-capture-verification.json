@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-12T00:03:56.930570+00:00",
+  "scope": "CPU protocol and live waiting job only; no native confirmation capture yet",
+  "tests": {
+    "command": "uv run pytest tests/test_unity_confirmation_capture.py tests/test_unity_reference_batches.py -q",
+    "passed": 30,
+    "seconds": 20.15
+  },
+  "checks": {
+    "ruff": "passed",
+    "basedpyright": "passed",
+    "code_review": "CLEAN after native smoke evidence binding",
+    "doc_review": "CLEAN; waiting/native completion and final acceptance kept separate"
+  },
+  "capture_status": "waiting_dependencies",
+  "observed_job": {
+    "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v1\\job.json",
+    "status": "running",
+    "pid": 61872,
+    "created": 1794441533.871626
+  },
+  "native_labels_collected": false,
+  "test_opened": false,
+  "training_updates": 0,
+  "configuration_sha256": "31862ca9305c6f0396c7aa8f3987cdca0b2df58074c57b9c7b4ce6ca4df3a16d",
+  "readiness_sha256": "9a9aa0df81292366f316e24d880e6bf290b26ff79cda2d6f280023063c6f0563",
+  "source_bindings": 15,
+  "existing_bindings_unchanged": {
+    "unity-native-training-full-v1": 23,
+    "unity-native-pipeline-full-v2": 14
+  },
+  "local_file_links": 311,
+  "internal_anchors": 26,
+  "docs_sha256": {
+    "README.md": "f09cb59026a5d273f8f9f76365c78cc51f80c2e4fccfbb62f204ae077e2a5495",
+    "AGENTS.md": "b170f220d9e6a50aa06d955223ee04b386cc85a46c87f1833573db29b5cd27a2",
+    "experiment plan\\V1\\README.md": "6f72f3d1dca315e4f1d448e595cf5cd7af62ae5d8e319105be76af38dc074a37",
+    "experiment report\\unity-accuracy90-20261111\\README.md": "9c87b4ad3452f658326b29b5e11d33f71c3e09e362281c77d2fa23d84bf5ff41",
+    "experiment report\\unity-accuracy90-20261111\\unity-confirmation-cohort.md": "516ad7e899e9ee5ea043bd09ecb0d9872e307ecdc24c08d2ab6859438003eb5f",
+    "experiment report\\unity-accuracy90-20261111\\unity-confirmation-capture.md": "88119ada2fe8f7d0ff5ab1668facf12a80ce0f130b0baaa1cd5900cff6697461",
+    "references\\task-costs.md": "e48925aa258b6e5ab7a66f61ec0b00f933b916750f2fdf52f4e53d7563f02fd4"
+  },
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "script_sha256": "24232d2650ad385c6bf81854eb5e2b4d7d27a21c13fa7652fea6d885518ec2a5"
+}

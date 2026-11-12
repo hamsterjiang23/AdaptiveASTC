@@ -36,6 +36,8 @@ uv run python script/prepare_unity_confirmation.py --config "experiment report/u
 
 ## 后续验收约束
 
+后续已建立[独立confirmation采集入口](unity-confirmation-capture.md)，30项CPU检查通过，两图任务在等待开发任务成功退出。当前预留名单与SHA保持，新入口尚未产生原生参考或标签，最终像素重复审计和模型评价仍未完成。`[verified: unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status、native_labels_collected；opinion: 完成边界]`
+
 - 主名单和备用顺序现在冻结。仅在预测前按已声明的身份失败或像素重复规则替换，并保留原条目、原因与替换链；不得按标签、质量或模型错误筛样。`[opinion]`
 - 先完成Unity导入后参考像素和同次原始搜索标签采集，保留原搜索提前停止、配置、失败及恢复记录；当前开发采集入口的train／validation限制保持，新确认集需独立受控入口。`[opinion]`
 - 源MD4隔离不能排除不同文件编码、不同导入配置形成的相同或近重复像素。须将导入后参考图与历史开发数据及确认集内部做像素重复审计，并记录其影响；目前`native_pixels_audited=false`。`[verified: unity-confirmation2000-v1.json native_pixels_audited；opinion: 隔离边界与后续要求]`

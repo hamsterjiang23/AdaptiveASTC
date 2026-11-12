@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[独立确认集采集入口](<experiment report/unity-accuracy90-20261111/unity-confirmation-capture.md>)已通过30项CPU检查及两张真实源图的只读协议核验，并启动等待任务；保留confirmation身份，开发入口仍只允许train／validation。绑定15份源码，等原采集、补测、完整数据和首轮原生训练成功后才启动Editor；当前尚未采到新确认集像素或标签，也未打开模型测试。`[verified: unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status、dependencies、native_labels_collected；opinion: 验收边界]`
+
 [独立确认集预留](<experiment report/unity-accuracy90-20261111/unity-confirmation-cohort.md>)已预留2000张主名单、500张备用，主名单覆盖1227个未出现于9份历史清单的资产组；2500份实际源文件及meta身份复核通过。仅完成源资产隔离，后续仍需Unity参考像素、同次原搜索标签、像素重复审计，以及模型和决策冻结后的独立测试；当前未打开模型测试。`[verified: unity-confirmation2000-v1.json primary_images、primary_groups、reserve_images、native_pixels_audited、native_labels_collected、model_sealed；unity-confirmation-reservation-verification.json；opinion: 后续验收]`
 
 [冻结预测残差诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)显示，cap512模型在−2.5至+2.5dB的101点全局余量网格上最高仍为84.5%；逐候选均值偏移修正后近阈值RMSE为1.3372dB、准确率83.9%。同验证集拟合的修正不作为泛化收益，也不加入当前部署；尺寸元数据终态见下方，完整Unity训练继续等待原生数据。`[verified: scratch-group512-residuals.json same_validation_best_global_margin、same_validation_offset_diagnostic；opinion: 实验选择与解释边界]`

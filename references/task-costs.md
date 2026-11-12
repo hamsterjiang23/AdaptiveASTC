@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+独立确认集采集入口：30项CPU检查20.15秒，真实两图配置及源／meta／Editor／DLL核验0.108秒。等待任务不运行Editor或模型；开发采集、补测、完整数据和首轮原生训练成功后，先取得工程锁再要求20GiB空闲RAM、相关卷40GiB磁盘。实际Editor阶段预计5–15分钟，依据历史validation2进程370.06秒；等待与采集分开记录。冻结15份源码，读预留主名单前两项，写独立`.local/unity-confirmation-capture-smoke2-v1`，不读取模型预测，内存峰值待实测。`[verified: 本轮pytest30passed in20.15s；unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status；opinion: 成本预算与范围]`
+
 独立确认集预留：2000主名单＋500备用，CPU内部47.03秒、完整进程52.71秒；2500份源文件／meta再次复核10.03秒。读取9份历史清单及参数快照的资产身份字段，写独立.local名单和公开摘要，不运行模型、不采集Unity标签。峰值内存未测；不与后续原生采集成本混合。`[verified: unity-confirmation2000-v1.json wall_seconds、primary_images、reserve_images；unity-confirmation-reservation-verification.json wall_seconds、reservation_process_seconds；opinion: 成本范围]`
 
 完整Unity训练衔接的32图CUDA预检已完成：2轮4次更新、0次AMP跳步，训练器75.44秒、完整进程83.45秒。image batch16×4patch、workers2、validation batch16、11,377,660参数；正式训练仍等待完整数据四阶段通过，预计最多30轮1–4小时仅为预算。活动期间冻结23份源码，其他GPU任务须纳入串行调度。`[verified: native-training-full-v1/smoke.json wall_seconds、history；unity-native-training-full-v1.json stages、status；opinion: 预算与调度]`

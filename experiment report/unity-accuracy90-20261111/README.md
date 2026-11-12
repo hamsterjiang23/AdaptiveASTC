@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[独立确认集采集入口](unity-confirmation-capture.md)完成30项CPU检查及两图只读配置核验，独立confirmation身份不进入开发划分。两图任务已启动等待原采集、补测、完整数据和首轮原生训练成功；15份源码冻结，当前没有新确认集像素／标签或模型测试。后续需要真实Editor预检、全量采集、像素重复审计和最终冻结评价。`[verified: unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status、native_labels_collected、test_opened；opinion: 后续验收]`
+
 [独立确认集预留](<unity-confirmation-cohort.md>)已预留2000张主名单、500张备用，主名单覆盖1227个未出现于9份历史清单的资产组；2500份实际源文件及meta身份复核通过。仅完成源资产隔离，后续仍需Unity参考像素、同次原搜索标签、像素重复审计，以及模型和决策冻结后的独立测试；当前未打开模型测试。`[verified: unity-confirmation2000-v1.json primary_images、primary_groups、reserve_images、native_pixels_audited、native_labels_collected、model_sealed；unity-confirmation-reservation-verification.json；opinion: 后续验收]`
 
 [原cap512冻结预测诊断](patch-fixed-capacity/README.md#固定预测的残差与阈值诊断)已完成：全局余量101点扫描最高84.5%，逐候选平均偏差修正后的近阈值RMSE为1.3372dB、准确率83.9%。没有新推理或训练，也没有test访问；这是同验证集拟合／计分的描述性结果，当前不更换部署参数。`[verified: patch-fixed-capacity/scratch-group512-residuals.json；opinion: 结果范围和执行选择]`

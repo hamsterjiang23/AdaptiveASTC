@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-11T23:43:11.949161+00:00",
+  "updated_utc": "2026-11-12T00:03:50.304882+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -371,7 +371,13 @@
       "name": "normalization-smoke",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\normalization-smoke\\receipt.json",
       "sha256": "2a389011619220a0412e5f094525816f4925539e5126b66e84c41ac98e2e6b2d",
-      "observed_processes": []
+      "observed_processes": [
+        {
+          "pid": 19624,
+          "name": "conhost.exe",
+          "create_time": 1794441829.8816605
+        }
+      ]
     },
     {
       "status": "passed",
@@ -535,10 +541,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T23:43:07.131528+00:00",
+      "last_observed_alive_utc": "2026-11-12T00:03:38.104765+00:00",
       "name": "unity-reference-series-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\receipt.json",
-      "sha256": "77f15613ada4e03f2d11441e07c4877191f754ef07d35e6c503f584aa8db2aba",
+      "sha256": "9a2666fdbacc7ec3e9069ac17eb5527b5900792e6454ef5ac520510202e7ed92",
       "observed_processes": [
         {
           "pid": 51744,
@@ -622,7 +628,13 @@
       "name": "unity-candidate-queue-smoke",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-smoke\\receipt.json",
       "sha256": "bcca9413f7cea7df3781202448b00bf70b0b09a1679f2bebf324a9c9088eec3c",
-      "observed_processes": []
+      "observed_processes": [
+        {
+          "pid": 63620,
+          "name": "UnityCrashHandler64.exe",
+          "create_time": 1794441123.20726
+        }
+      ]
     },
     {
       "status": "passed",
@@ -702,10 +714,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T23:43:11.808017+00:00",
+      "last_observed_alive_utc": "2026-11-12T00:03:42.619630+00:00",
       "name": "unity-candidate-queue-multimip-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\receipt.json",
-      "sha256": "b266e94cbcaa2c357b1068af942613741ce261b406d577a40bf2508194c5400f",
+      "sha256": "3d93fa1dacd5a16fc9bfdaaa5f103eab3b257731abcf437c8086e1f4d9fabf11",
       "observed_processes": [
         {
           "pid": 25096,
@@ -1091,10 +1103,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T23:43:09.636732+00:00",
+      "last_observed_alive_utc": "2026-11-12T00:03:40.365878+00:00",
       "name": "unity-native-pipeline-full-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v2\\receipt.json",
-      "sha256": "a3beb7bbc2092b10220737e1b1fa57f860182b4b17e627d981045afb0c011e70",
+      "sha256": "0530ff3147eff74f267ac7f567d86a39c3b24cf9f29d0532bb806445c96d5a1a",
       "observed_processes": [
         {
           "pid": 30076,
@@ -1244,13 +1256,7 @@
       "name": "unity-inference-smoke2-v1",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-inference-smoke2-v1\\receipt.json",
       "sha256": "8a25144ddbab5a2fe9256b785e55e3692bad8d2948f0b18688b4edd2f2e6e88f",
-      "observed_processes": [
-        {
-          "pid": 63628,
-          "name": "WmiPrvSE.exe",
-          "create_time": 1794440591.5681336
-        }
-      ]
+      "observed_processes": []
     },
     {
       "status": "passed",
@@ -1270,10 +1276,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-11T23:43:10.671642+00:00",
+      "last_observed_alive_utc": "2026-11-12T00:03:41.490175+00:00",
       "name": "unity-native-training-full-v1",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v1\\receipt.json",
-      "sha256": "da5ef0c0c35140124c9ff9c2cc0bf8ffbb62ca97ae82f720cb81d269ff907cd6",
+      "sha256": "0336af4011588b8f80a26d999d6b6a0b5c1543e3eae7fdc2300f835030c7ac78",
       "observed_processes": [
         {
           "pid": 62688,
@@ -1298,6 +1304,29 @@
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation2000-v1\\receipt.json",
       "sha256": "b373e125de3e5192e11797d578a24bb126d82645c2101fefed676cd13d15c4b7",
       "observed_processes": []
+    },
+    {
+      "status": "running",
+      "started_utc": "2026-11-11T23:58:53.867076+00:00",
+      "ended_utc": null,
+      "wall_seconds": null,
+      "process_exit_code": null,
+      "last_observed_alive_utc": "2026-11-12T00:03:24.043132+00:00",
+      "name": "unity-confirmation-capture-smoke2-v1",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v1\\receipt.json",
+      "sha256": "3a03bbaa92509d592ea30f12fff3999d7d484e55443b4ffb548191262bdcc400",
+      "observed_processes": [
+        {
+          "pid": 61712,
+          "name": "python.exe",
+          "create_time": 1794441533.0087287
+        },
+        {
+          "pid": 61872,
+          "name": "python.exe",
+          "create_time": 1794441533.871626
+        }
+      ]
     }
   ],
   "normalization_diagnostics": {
@@ -1331,17 +1360,17 @@
   "unity_reference_series": {
     "status": "running",
     "counts": {
-      "train": 7488,
+      "train": 7744,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-029-20261111",
+    "current_batch": "unity-v1-train-030-20261111",
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "7a3aeeefe6a5a236ad9cac88f85c5f327e90ed8f11ba4c1c3fb305a3cc11f014",
+    "report_sha256": "e7a8d6779a2e43fbccd9af970986ef15fc2d8e7c0026fd883b5efcfce97e2151",
     "scope": "original imported references/choices only; supplemental targets pending"
   },
   "fixed_capacity_stem": {
@@ -1362,17 +1391,17 @@
   "unity_candidate_queue": {
     "status": "running",
     "counts": {
-      "train": 7232,
+      "train": 7488,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-028-20261111",
+    "current_batch": "unity-v1-train-029-20261111",
     "test_opened": false,
     "report": "unity-candidate-queue-multimip-v2.json",
-    "report_sha256": "a51bb6e6ebfd0804007e52581f34abd9f6bc63268bf97715062c2dea4579c1a9",
+    "report_sha256": "d05a48229889b1cf80c588c215f6b238111c924adafca26b60e0ffcd08241fd7",
     "prior_failure_report": "unity-candidate-queue-full.json",
     "prior_failure_counts": {
       "train": 576,
@@ -1715,7 +1744,7 @@
     "training_updates": 0,
     "test_opened": false,
     "report": "unity-native-pipeline-full-v2.json",
-    "report_sha256": "84bba9f05463491cc0cbdc24059f027e9fd72f64729e44582fdef3c583dc3be7",
+    "report_sha256": "87e9269772c058fbed8e8d395eca738b97916604b4bb2a28742afc4e68280ac8",
     "final_smoke": "unity-native-pipeline-smoke66-v3.json"
   },
   "fixed_capacity_metadata": {
@@ -2138,5 +2167,45 @@
     "report": "unity-confirmation2000-v1.json",
     "report_sha256": "e6eb7ada5f373985d0fe190a58de7042b9a16450f3b64f91ad55226f7425b1cd",
     "verification": "unity-confirmation-reservation-verification.json"
+  },
+  "unity_confirmation_capture": {
+    "status": "waiting_dependencies",
+    "images": 2,
+    "source_split": "confirmation",
+    "test_opened": false,
+    "training_updates": 0,
+    "native_labels_collected": false,
+    "config_sha256": "31862ca9305c6f0396c7aa8f3987cdca0b2df58074c57b9c7b4ce6ca4df3a16d",
+    "reservation_manifest_sha256": "42bed07c6bc668f86a0734f1afda7578fd67293b19635435d941a273c5d7b238",
+    "dependencies": [
+      {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+        "status": "running",
+        "pid": 41024,
+        "created": 1794409642.5245771
+      },
+      {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\job.json",
+        "status": "running",
+        "pid": 33640,
+        "created": 1794415260.4741013
+      },
+      {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v2\\job.json",
+        "status": "running",
+        "pid": 43872,
+        "created": 1794430895.0713837
+      },
+      {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v1\\job.json",
+        "status": "running",
+        "pid": 47576,
+        "created": 1794437559.1115017
+      }
+    ],
+    "scope": "Reserved primary pixels and original search labels only; no model evaluation",
+    "report": "unity-confirmation-capture-smoke2-v1.json",
+    "report_sha256": "5b89a137ae4c111f636a405d96f5dc0477d220e3506fad34b6b01a667b7b6184",
+    "readiness": "unity-confirmation-capture-readiness.json"
   }
 }
