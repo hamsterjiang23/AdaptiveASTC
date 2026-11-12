@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T03:41:20.137807+00:00",
+  "updated_utc": "2026-11-12T03:48:41.424076+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -2975,36 +2975,41 @@
     }
   },
   "unity_native_label_distribution": {
-    "report": "unity-native-labels9792-v1.json",
-    "report_sha256": "e3320213fae3dc890f54c0393c090ec5fd06993ad2a030ecd892e4d4e55f14fc",
-    "verification": "unity-native-labels9792-verification.json",
-    "verification_sha256": "36a3e06ef7792ea817d4c7c1e071845bd6c90a876e578186fed3394b0761f0a0",
-    "status": "passed_train_only_partial",
-    "images": 9792,
+    "report": "unity-native-labels10000-v1.json",
+    "report_sha256": "b88c4182bcbb3976b79d0260c15bba63f8d967dbf19a497c09c7777177ed8696",
+    "verification": "unity-native-labels10000-verification.json",
+    "verification_sha256": "6aaf6f9b4806760724da57d5c2dc2a8e761e5608a1b2e046810ce5ba49d28448",
+    "status": "passed_train_only_complete",
+    "images": 10000,
     "block_counts": {
-      "10x10": 1346,
-      "12x12": 5392,
-      "6x6": 1598,
-      "8x8": 1456
+      "6x6": 1710,
+      "8x8": 1490,
+      "10x10": 1366,
+      "12x12": 5434
     },
     "test_opened": false,
+    "training_updates": 0,
+    "prior_snapshot": {
+      "report": "unity-native-labels9792-v1.json",
+      "report_sha256": "e3320213fae3dc890f54c0393c090ec5fd06993ad2a030ecd892e4d4e55f14fc"
+    },
     "live_reports": {
       "unity-reference-series-v2": {
         "status": "running",
         "counts": {
-          "train": 9792,
+          "train": 10000,
           "validation": 2
         },
-        "current_batch": "unity-v1-train-038-20261111",
+        "current_batch": "unity-v1-validation-001-20261111",
         "test_opened": false
       },
       "unity-candidate-queue-sprite-v3": {
         "status": "running",
         "counts": {
-          "train": 9024,
+          "train": 9280,
           "validation": 2
         },
-        "current_batch": "unity-v1-train-035-20261111",
+        "current_batch": "unity-v1-train-036-20261111",
         "test_opened": false
       },
       "unity-native-pipeline-full-v3": {
@@ -3029,5 +3034,15 @@
         "test_opened": false
       }
     }
+  },
+  "original_training_capture": {
+    "status": "complete_train_only",
+    "images": 10000,
+    "batches": 40,
+    "validation_complete": false,
+    "candidate_targets_complete": false,
+    "formal_model_training_complete": false,
+    "verification": "unity-native-labels10000-verification.json",
+    "verified_utc": "2026-11-12T03:48:41.424076+00:00"
   }
 }

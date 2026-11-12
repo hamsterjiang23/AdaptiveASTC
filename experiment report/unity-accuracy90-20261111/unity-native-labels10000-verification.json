@@ -1,0 +1,122 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-12T03:48:41.424076+00:00",
+  "report": "unity-native-labels10000-v1.json",
+  "report_sha256": "b88c4182bcbb3976b79d0260c15bba63f8d967dbf19a497c09c7777177ed8696",
+  "images": 10000,
+  "completed_training_batches": 40,
+  "bound_inputs": 208,
+  "complete_frozen_training_membership": true,
+  "unchanged_prior_rows": 9792,
+  "added_images": 208,
+  "added_block_counts": {
+    "12x12": 42,
+    "6x6": 112,
+    "8x8": 34,
+    "10x10": 20
+  },
+  "old_report_sha256": "e3320213fae3dc890f54c0393c090ec5fd06993ad2a030ecd892e4d4e55f14fc",
+  "script_unchanged": true,
+  "source_hashes_unchanged": true,
+  "unchanged_active_sources": {
+    "unity-native-pipeline-full-v3": 14,
+    "unity-native-training-full-v2": 23,
+    "unity-confirmation-capture-smoke2-v2": 15,
+    "unity-confirmation-series2000-v1": 17,
+    "unity-pixel-pipeline-full13000-v2": 25
+  },
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "jobs": {
+    "unity-reference-series-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "status": "running",
+      "pid": 41024,
+      "created": 1794409642.5245771
+    },
+    "unity-candidate-queue-sprite-v3": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
+      "status": "running",
+      "pid": 33060,
+      "created": 1794443373.3538325
+    },
+    "unity-native-pipeline-full-v3": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+      "status": "running",
+      "pid": 37368,
+      "created": 1794443383.9480257
+    },
+    "unity-native-training-full-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v2\\job.json",
+      "status": "running",
+      "pid": 8636,
+      "created": 1794443400.968097
+    },
+    "unity-confirmation-capture-smoke2-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v2\\job.json",
+      "status": "running",
+      "pid": 47368,
+      "created": 1794443411.405678
+    },
+    "unity-confirmation-series2000-v1": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-series2000-v1\\job.json",
+      "status": "running",
+      "pid": 60172,
+      "created": 1794444748.3573053
+    },
+    "unity-pixel-pipeline-full13000-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-pixel-pipeline-full13000-v2\\job.json",
+      "status": "running",
+      "pid": 57104,
+      "created": 1794449302.7315347
+    }
+  },
+  "live_reports": {
+    "unity-reference-series-v2": {
+      "status": "running",
+      "counts": {
+        "train": 10000,
+        "validation": 2
+      },
+      "current_batch": "unity-v1-validation-001-20261111",
+      "test_opened": false
+    },
+    "unity-candidate-queue-sprite-v3": {
+      "status": "running",
+      "counts": {
+        "train": 9280,
+        "validation": 2
+      },
+      "current_batch": "unity-v1-train-036-20261111",
+      "test_opened": false
+    },
+    "unity-native-pipeline-full-v3": {
+      "status": "waiting_upstream",
+      "test_opened": false
+    },
+    "unity-native-training-full-v2": {
+      "status": "waiting_data",
+      "test_opened": false
+    },
+    "unity-confirmation-capture-smoke2-v2": {
+      "status": "waiting_dependencies",
+      "test_opened": false
+    },
+    "unity-confirmation-series2000-v1": {
+      "status": "waiting_smoke",
+      "captured_images": 0,
+      "test_opened": false
+    },
+    "unity-pixel-pipeline-full13000-v2": {
+      "status": "waiting_captures",
+      "test_opened": false
+    }
+  },
+  "test_opened": false,
+  "training_updates": 0,
+  "model_forward_calls": 0,
+  "scope": "Complete original training labels only; validation, all20 targets, formal training and independent test remain separate",
+  "local_links": {
+    "files": 344,
+    "anchors": 26
+  }
+}
