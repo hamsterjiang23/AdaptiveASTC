@@ -72,6 +72,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 实验步骤
 
+[原生RGBA近重复筛查](<../../experiment report/unity-accuracy90-20261111/unity-near-duplicates.md>)完成7744训练／2验证图的同尺寸、同坐标检查，找到6对低RMSE候选、共12张训练图；47项CPU检查和6对独立重算通过。此次不修改开发划分或标签、不运行模型，完整验证／确认范围及缩放、裁剪等相似性仍未证明隔离，V1原始证据保持。`[verified: unity-near-duplicates-verification.json results.completed7746、v1_evidence_sha256、splits_modified；pytest 47 passed；opinion: 覆盖限制]`
+
 [原始采集规则绑定](<../../experiment report/unity-accuracy90-20261111/unity-capture-policy.md>)已在train64／validation2的真实记录上通过，直接绑定原生LITE规则与选参来源，独立于候选补测文件。44项CPU检查通过，首次历史train缺split失败及旧源码保留；未进行模型forward、确认集评价或新增编码，原V1证据保持不变。`[verified: unity-capture-policy-verification.json counts、prior_failure、model_forward_calls、v1_evidence_sha256；pytest 44 passed]`
 
 [原生采集输入对齐](<../../experiment report/unity-accuracy90-20261111/unity-capture-inputs.md>)完成按资产路径去重的68张开发图／812patch核验：直接由参考图、实际回调和导入属性构造输入，张量与决策元数据均与训练端一致。49项CPU检查通过，未进行模型forward或确认集评价；后续独立推理可复用该接口，仍需来源／像素隔离与模型封存。`[verified: unity-capture-input-verification.json；pytest 49 passed；opinion: 后续接入]`

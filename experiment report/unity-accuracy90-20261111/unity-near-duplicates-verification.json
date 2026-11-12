@@ -1,0 +1,135 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-12T01:44:29.488037+00:00",
+  "results": {
+    "smoke66": {
+      "counts": {
+        "train": 64,
+        "validation": 2
+      },
+      "unique_rgba_identities": 66,
+      "exact_duplicate_groups": 0,
+      "eligible_identity_pairs": 120,
+      "all_identity_pairs": 2145,
+      "retrieved_candidate_pairs": 0,
+      "measured_candidate_pairs": 0,
+      "near_identity_pairs": 0,
+      "near_image_pairs": 0,
+      "cross_split_near_identity_pairs": 0,
+      "exact_cross_split_groups": 0,
+      "report": "unity-near-duplicates-smoke66-v1.json",
+      "report_sha256": "b10ed99ec830fe4652780bfc353fbe15be59414fd6d27809820cc0014d06ed9c",
+      "config_sha256": "0f88ac05e13a00bff43be7e68a4735c2ad9eee2ea153aa7a7bf2636a1b560ba8",
+      "internal_seconds": 2.3202974000014365,
+      "process_seconds": 2.9936792999942554,
+      "process_receipt_sha256": "10693ec31a5083bd89528b9a161ec7bdcd58aa5e1633c7518877136191ae4ba4",
+      "near_pair_unique_images": 0,
+      "image_pair_split_counts": {},
+      "independently_recalculated_pairs": 0,
+      "max_rmse_difference": 0.0,
+      "total_input_pixels": 35262943,
+      "max_input_pixels": 16777216,
+      "initial_resources": {
+        "free_ram_gib": 25.008853912353516,
+        "free_disk_gib": 893.2533302307129,
+        "cpu_percent": 39.5
+      }
+    },
+    "completed7746": {
+      "counts": {
+        "train": 7744,
+        "validation": 2
+      },
+      "unique_rgba_identities": 7741,
+      "exact_duplicate_groups": 5,
+      "eligible_identity_pairs": 7363957,
+      "all_identity_pairs": 29957670,
+      "retrieved_candidate_pairs": 92,
+      "measured_candidate_pairs": 92,
+      "near_identity_pairs": 6,
+      "near_image_pairs": 6,
+      "cross_split_near_identity_pairs": 0,
+      "exact_cross_split_groups": 0,
+      "report": "unity-near-duplicates-completed7746-v1.json",
+      "report_sha256": "d509bdcfaa0384a17849ac8a2a9cdb75c1b8ad8c63fe483b9f39ff7cac1cdbc4",
+      "config_sha256": "ac7a65b28895d4d6c3be2aa11de6081997ede9ab89994321c33998607b48005b",
+      "internal_seconds": 121.47816149999562,
+      "process_seconds": 122.28062379999028,
+      "process_receipt_sha256": "14d400f489a0cb0a62180143d04b7f391cb2acc1aed22cf18b34bad9f7fc1597",
+      "near_pair_unique_images": 12,
+      "image_pair_split_counts": {
+        "train+train": 6
+      },
+      "independently_recalculated_pairs": 6,
+      "max_rmse_difference": 0.0,
+      "total_input_pixels": 1040717817,
+      "max_input_pixels": 16777216,
+      "initial_resources": {
+        "free_ram_gib": 24.897502899169922,
+        "free_disk_gib": 893.0843658447266,
+        "cpu_percent": 29.5
+      }
+    }
+  },
+  "cpu_tests": {
+    "passed": 47,
+    "seconds": 4.49
+  },
+  "unchanged_active_sources": {
+    "unity-native-pipeline-full-v3-config.json": 14,
+    "unity-native-training-full-v2-config.json": 23,
+    "unity-confirmation-capture-smoke2-v2-config.json": 15,
+    "unity-confirmation-series2000-v1-config.json": 17
+  },
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "jobs": {
+    "unity-reference-series-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "status": "running",
+      "pid": 41024,
+      "created": 1794409642.5245771
+    },
+    "unity-candidate-queue-sprite-v3": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
+      "status": "running",
+      "pid": 33060,
+      "created": 1794443373.3538325
+    },
+    "unity-native-pipeline-full-v3": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+      "status": "running",
+      "pid": 37368,
+      "created": 1794443383.9480257
+    },
+    "unity-native-training-full-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v2\\job.json",
+      "status": "running",
+      "pid": 8636,
+      "created": 1794443400.968097
+    },
+    "unity-confirmation-capture-smoke2-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v2\\job.json",
+      "status": "running",
+      "pid": 47368,
+      "created": 1794443411.405678
+    },
+    "unity-confirmation-series2000-v1": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-series2000-v1\\job.json",
+      "status": "running",
+      "pid": 60172,
+      "created": 1794444748.3573053
+    }
+  },
+  "sources_sha256": {
+    "reproductions/unity_search_baseline/near_duplicates.py": "4d5bd163dadd82285e74b4ae4e5ae4290336f81b7fb890cb73d3b810337dc913",
+    "src/adaptive_astc/utils/artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "script/audit_unity_near_duplicates.py": "40629b17d2417bc8274d422a06a50281b10d53a01c760124443499a633c2c7c3",
+    "pyproject.toml": "56cf9ef015a848712715ab882da1cb690187f607956efb9208163efde0c8ff9d",
+    "uv.lock": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953"
+  },
+  "script_sha256": "254419d2e119dcb14216bd595f0b5678250436aa319b91b3d42a88590c75b70a",
+  "scope": "Aligned same-size native RGBA RMSE diagnostic only; no split changes, model forward or independent confirmation acceptance",
+  "test_opened": false,
+  "splits_modified": false,
+  "model_forward_calls": 0
+}

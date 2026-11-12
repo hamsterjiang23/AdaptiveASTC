@@ -2,6 +2,8 @@
 
 Sprite恢复的真实128²图完成20候选，内部0.763秒／进程1.048秒，原16项指标及winner一致。新候选队列先逐批复核32份已完成归档，完整复核耗时待结束后单列；失败批52图部分产物保留但不计作完整复用。下游训练按原门槛在新目录重做32图CUDA预检，再等待全量数据；四个旧任务总时长含等待和已完成工作，见恢复报告，不全部算作重试浪费。`[verified: unity-sprite-recovery-readiness.json；unity-sprite-recovery.json prior_jobs；opinion: 成本解释]`
 
+原生RGBA近重复筛查：66图内部2.32秒／进程2.99秒；7746图内部121.48秒／进程122.28秒，输入约10.41亿像素、最大4096²图像，92对候选完整比较。单CPU计算进程，不占GPU；只读已完成归档和冻结回执，写独立.local明细与公开摘要，不修改采集／训练输入。完整运行前空闲RAM24.90GiB、E盘893.08GiB，未测峰值内存；成本属于数据审计，不作为部署耗时。`[verified: unity-near-duplicates-verification.json results.*的total_input_pixels、max_input_pixels、initial_resources及耗时；对应job scope；opinion: 成本边界]`
+
 原生像素审计只读已完成归档PNG和SHA绑定的receipt，单CPU进程，写独立.local明细和公开摘要，不占GPU；7746图内部74.43秒／进程74.64秒。首次66图方向检查失败0.24秒，修正后2.06秒；输出保护补强后的66图复跑1.49秒。启动时空闲内存／磁盘见独立preflight；未采集进程树峰值内存。原采集、补测及后续训练的读写目录保持隔离，这些是审计成本，不作为部署耗时。`[verified: unity-pixel-identity-completed-v1.json；对应jobs/receipt.json及launch-preflight.json；unity-pixel-identity-verification.json jobs；opinion: 成本与并发范围]`
 
 历史首次任务成本（等待队列后因上游失败结束）：独立确认集采集入口：30项CPU检查20.15秒，真实两图配置及源／meta／Editor／DLL核验0.108秒。等待任务不运行Editor或模型；开发采集、补测、完整数据和首轮原生训练成功后，先取得工程锁再要求20GiB空闲RAM、相关卷40GiB磁盘。实际Editor阶段预计5–15分钟，依据历史validation2进程370.06秒；等待与采集分开记录。冻结15份源码，读预留主名单前两项，写独立`.local/unity-confirmation-capture-smoke2-v1`，不读取模型预测，内存峰值待实测。`[verified: 本轮pytest30passed in20.15s；unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status；opinion: 成本预算与范围]`

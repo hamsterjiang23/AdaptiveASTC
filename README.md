@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[原生RGBA近重复筛查](<experiment report/unity-accuracy90-20261111/unity-near-duplicates.md>)完成7744训练／2验证图的同尺寸、同坐标检查，完整像素RMSE≤2/255的候选有6对、涉及12张训练图；没有改变划分或进行模型测试。47项CPU检查及6对独立重算通过，缩放／裁剪相似性、完整验证集与确认集隔离仍待后续核验。`[verified: unity-near-duplicates-verification.json results.completed7746；pytest 47 passed；opinion: 覆盖边界]`
+
 [原始采集规则绑定](<experiment report/unity-accuracy90-20261111/unity-capture-policy.md>)已在64张训练图和2张验证图的真实记录上通过，直接从原搜索回执与缓存绑定有效LITE规则，不依赖候选补测文件。44项相关CPU检查通过，首次历史train缺split失败及修复前源码保留；没有模型forward或确认集评价。`[verified: unity-capture-policy-verification.json counts、prior_failure、model_forward_calls；pytest 44 passed]`
 
 [原生采集输入对齐](<experiment report/unity-accuracy90-20261111/unity-capture-inputs.md>)已通过按资产路径去重的68张开发图／812patch核验：直接从参考图、导入属性与实际回调构造模型输入，与训练端张量及决策输入完全一致。49项CPU检查通过；没有模型forward、训练或确认集测试，独立评价仍需来源／像素隔离及模型冻结。`[verified: unity-capture-input-verification.json；pytest 49 passed；opinion: 接入边界]`

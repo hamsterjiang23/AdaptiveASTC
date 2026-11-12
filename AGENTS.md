@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- [原生RGBA近重复筛查](<experiment report/unity-accuracy90-20261111/unity-near-duplicates.md>)使用`script/audit_unity_near_duplicates.py`读取冻结的精确像素审计；按原尺寸、同坐标及完整RGBA的RMSE≤2/255筛查，不读取监督标签或自动调整划分。7744训练／2验证图发现6对、12张训练图候选，47项CPU检查与6对独立重算通过。候选只表示低全图误差，仍可能存在局部大差异；不同尺寸、裁剪／旋转与语义相似性未覆盖，不能作为完整确认集隔离证明。`[verified: near_duplicates.py rows/measure/run；unity-near-duplicates-verification.json；pytest 47 passed；opinion: 解释与接入边界]`
+
 - [原始采集规则绑定](<experiment report/unity-accuracy90-20261111/unity-capture-policy.md>)使用`UnityCapturePolicyBinding`直接读取原采集完成回执、原生搜索与缓存规则，不依赖候选补测文件。缓存快照／追加日志及恢复assembly证据均绑定SHA，保留显式划分；缺split仅兼容历史train，不能用作validation／confirmation默认值。真实train64／validation2通过，44项CPU检查通过，首次失败保留；该入口不替代像素隔离、完整恢复审计或独立forward前的模型封存。`[verified: capture_policy.py __init__/verify；unity-capture-policy-verification.json；pytest 44 passed；opinion: 接入边界]`
 
 - [原生采集输入对齐](<experiment report/unity-accuracy90-20261111/unity-capture-inputs.md>)新增`data.unity_capture_input.UnityCaptureInputAdapter`，从参考图／实际回调／导入属性构造输入，保留显式划分；不读取搜索标签和候选监督。按资产路径去重的68张开发图／812patch与训练端张量、决策输入一致，49项CPU检查通过；真实Sprite输入未在本次开发语料覆盖。调用方仍须核验采集来源、像素隔离并在独立forward前冻结模型，本接口不自动开启测试。`[verified: unity-capture-input-verification.json；unity_capture_input.py；pytest 49 passed；opinion: 接入约束]`

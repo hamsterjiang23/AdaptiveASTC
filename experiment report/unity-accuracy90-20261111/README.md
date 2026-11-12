@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[原生RGBA近重复筛查](unity-near-duplicates.md)完成7744训练／2验证图的同尺寸、同坐标低RMSE检查，92对候选中6对达到≤2/255，涉及12张训练图。47项CPU检查与6对独立重算通过，进程122.28秒；不删图、不改变划分或进行模型测试，完整独立确认集隔离仍未完成。`[verified: unity-near-duplicates-verification.json results.completed7746；pytest 47 passed；opinion: 验收边界]`
+
 [原始采集规则绑定](unity-capture-policy.md)完成train64／validation2的真实来源核验，直接读取原搜索与缓存，44项CPU检查通过，完整进程4.23秒。首次历史train缺split导致的失败与修复前源码保留；没有模型forward或确认集测试。`[verified: unity-capture-policy-verification.json counts、process_seconds、prior_failure、model_forward_calls；pytest 44 passed]`
 
 [原生采集输入对齐](unity-capture-inputs.md)通过按资产路径去重的68张开发图／812patch检查，输入张量和决策属性与训练端一致；原始70次图像／825次patch比较包含两张重复validation，已分开计数。49项CPU测试通过，完整进程11.76秒，没有模型forward、训练或确认集测试，90%验收仍待完成。`[verified: unity-capture-input-verification.json；pytest 49 passed；opinion: 完成边界]`
