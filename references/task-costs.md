@@ -119,3 +119,7 @@ ImageNet完整30轮训练器1647.19秒，18,743更新、7AMP跳步，选中权�
 EMA完整30轮训练器2107.69秒，18,741次优化器／EMA更新；训练1244.16秒，raw／EMA逐轮验证分别354.48／390.92秒。整图头sampled4／全部patch的预检完整进程121.11／118.30秒，正式各30轮353.17／353.99秒，仅更新72,940个图像头参数；初始模型1651.94秒单列。ImageNet整图头独立对照预检118.63秒、4更新及原生重载通过，随后完整阶段串行启动。`[verified: ../experiment report/unity-v2-20261112/mean-ema099-result.json；mean-head-sampled4-smoke.json；mean-head-all-smoke.json；对应result.json；imagenet-head-sampled4-smoke.json]`
 
 ImageNet头部阶段完整30轮356.51秒，18,746更新，初始模型1647.19秒单列。PSNR准备分支CUDA预检10.57秒、4更新及所选模型重载通过，完整准备任务随后单GPU启动。154项相关CPU检查7.18秒。`[verified: ../experiment report/unity-v2-20261112/imagenet-head-sampled4-result.json；psnr-preparation-smoke.json；psnr-preparation-verification.json]`
+
+Unity V2 PSNR组件准备完成30轮、18,742次更新，训练器1636.34秒；后续冻结编码器的32训练图／1000验证图整图头预检完成4次更新、原生重载及冻结状态核验，训练器117.64秒。整图头显式恢复三项0.1监督，正式30轮阶段成本另计；开发检查及训练成本分别记录。`[verified: psnr-preparation-result.json；psnr-head-sampled4-smoke.json；psnr-head-sampled4-verification.json]`
+
+PSNR两阶段的正式整图头训练完成30轮、18,747次更新、3次AMP跳步，训练器352.19秒；准备与头部训练器合计1988.53秒。所选权重原生重载和全部非图像头状态核验通过，冻结归因及同验证集余量拟合另外记录。`[verified: psnr-head-sampled4-result.json trainer_wall_seconds、two_stage_trainer_wall_seconds；psnr-head-sampled4-verification.json]`

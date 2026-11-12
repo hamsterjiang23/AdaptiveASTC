@@ -36,6 +36,7 @@ class UnityConfirmationEvaluation:
         names = [
             "reproductions/unity_search_baseline/confirmation_evidence.py",
             "reproductions/unity_search_baseline/confirmation_evaluation.py",
+            "src/adaptive_astc/evaluation/patch_normalization.py",
             "script/evaluate_unity_confirmation.py",
         ]
         return (

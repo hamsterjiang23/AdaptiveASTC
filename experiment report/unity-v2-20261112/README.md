@@ -50,7 +50,7 @@
 
 ## 进度
 
-规则诊断、完整原生基线、权重0.03及仅均值池化对照、冻结预测归因及同验证集余量拟合已完成。ImageNet初始化对照已启动。后续状态与结果写入[本轮进度](progress.json)。`[verified: rules.json status；comparison.json；imagenet-mean.json status；progress.json]`
+规则诊断、完整原生基线、初始化与固定容量对照、冻结预测归因及同验证集余量拟合已完成。当前随机初始化参照Top-1为81.3%，最佳独立ImageNet对照为86.3%，PSNR两阶段为76.4%。后续状态与结果写入[本轮进度](progress.json)。`[verified: rules.json status；comparison.json；progress.json]`
 
 全量训练的首轮启动快照为验证Top-1 63.0%、近阈值RMSE 3.4667dB，实际624次更新、1次AMP跳步；训练47.43秒、验证11.67秒，首次数据准备170.30秒。这是训练过程记录，后续最佳权重仍按完整验证和重载审计确定。`[verified: r0.json history中epoch1、preparation_seconds；opinion: 过程与最终选模范围]`
 
@@ -112,6 +112,7 @@
 | 冻结编码器，整图头sampled4再训练 | 81.2% | 2.1532dB | 81.3%。`[verified: comparison.json results.mean_head_sampled4]` |
 | 冻结编码器，整图头全部patch再训练 | 81.1% | 2.1432dB | 81.4%。`[verified: comparison.json results.mean_head_all]` |
 | ImageNet初始化，整图头sampled4再训练 | 86.3% | 1.9180dB | 86.7%。`[verified: comparison.json results.imagenet_head_sampled4]` |
+| PSNR组件准备，再训整图头sampled4 | 76.4% | 2.0084dB | 77.1%。`[verified: comparison.json results.psnr_head_sampled4]` |
 
 前三组完成时，仅均值池化作为初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
 
@@ -203,9 +204,21 @@ ImageNet头部阶段完成30轮／18,746次更新，选中epoch25，原始／同
 
 完整近重复审计的11对跨划分候选均位于训练与确认之间，涉及10张确认图和11张训练图。精确RGBA跨确认／开发重复为0。已核对前10张冻结备用图的源文件、字节数及meta SHA，形成按原位置与备用顺序替换的[提案](<../.local/unity-v2-20261112/confirmation-near-replacement-proposal.json>)，当前名单修订待用户决定。提案只读取输入身份和像素审计，model forward为0。`[verified: confirmation-overlap-readiness.json overlap、unique_confirmation_images、unique_training_images、replacement_source_checks_all_passed、proposal、model_forward_calls]`
 
-现有确认入口会拒绝跨确认／开发的精确或检测近重复，V2交接则记录当前冻结名单的独立隔离尚未证明。后续正式确认须处理这一准入差异。新版修订像素证据与11000开发图全部匹配，旧管线的像素证据缺少18个新版资产身份，正式入口的证据映射及阶段训练模型接入仍待适配。`[verified: confirmation_evidence.py pixel_audit；unity-v2-data-inputs.json pixel_audit；confirmation-job-interface-verification.json pixel_evidence_corpus_comparison、staged_model_evidence_adapter、v2_pixel_handoff_adapter]`
+现有确认入口会拒绝跨确认／开发的精确或检测近重复，V2交接记录当前冻结名单的独立隔离尚未证明。新版修订像素证据与11000开发图全部匹配，旧管线的像素证据缺少18个新版资产身份。正式入口已支持批准的开发图替换和阶段训练证据，确认名单的近重复处理仍待用户决定。`[verified: confirmation_evidence.py pixel_audit、model；confirmation-v2-pixel-interface-verification.json；confirmation-stage-interface-verification.json；confirmation-overlap-readiness.json]`
 
 已修复上游任务识别对UTF-8参数与绝对脚本路径的兼容。原有相对路径及`-u`命令可用，额外执行参数会被拒绝；三份实际已完成任务的命令／receipt身份核验通过，此项核验的forward为0。相关34项CPU检查和只读审阅通过，完整相关检查为152项。`[verified: confirmation-job-interface-verification.json completed_jobs、cpu_tests、model_forward_calls；tests/test_unity_confirmation_evaluation.py test_completed_job_binding；本轮pytest“152 passed in 6.96s”]`
+
+阶段模型准入绑定整图头任务、完整初始训练、双方选中产物与源码归档，并核对语料身份、初始更新数和冻结状态。初始准备阶段允许低于90%，最终模型继续要求同一权重的1000图重载Top-1≥90%。历史配置缺少池化字段时按mean_max恢复，循环来源、归档差异及未完成初始训练均拒绝。实际86.3%模型的52份结构来源核验通过，最终准入因低于90%被拒绝，forward为0。`[verified: confirmation_evidence.py validate_training、_model；confirmation-stage-interface-verification.json]`
+
+新版像素入口复用原审批、原始／补采像素及修订语料，重建13张训练图和5张验证图的批准替换，要求确认图身份及顺序一致。完整13000行核验通过，近重复阈值固定为RGBA8 RMSE 2.0；正式外层检查继续因11对训练—确认近重复拒绝。206项相关CPU检查、ruff、basedpyright及只读审阅通过。`[verified: confirmation-v2-pixel-interface-verification.json；confirmation-stage-interface-verification.json cpu_tests、static_checks；confirmation_evidence.py revised_pixels、pixel_audit]`
+
+## PSNR准备与整图头衔接
+
+准备阶段完成30轮、18,742次更新及8次AMP跳步，选中epoch25，颜色近阈值RMSE为2.0060dB，所选权重重载通过，训练器1636.34秒。该准备权重按完整规则的Top-1为43.2%。整图头显式恢复zero／SSIM／angle权重均为0.1，使用sampled4、恒定lr0.0003及Top-1选模，32图CUDA预检完成4次更新、冻结状态和1000图原生重载通过，训练器117.64秒。`[verified: psnr-preparation-result.json；psnr-head-sampled4-smoke.json；psnr-head-sampled4-config.json]`
+
+正式整图头完成30轮、18,747次更新及3次AMP跳步，选中epoch27。最终原始／同集拟合Top-1为76.4%／77.1%，同一权重近阈值RMSE为2.0084dB，完整配置匹配44.4%，原始严格质量60.1%、回退273张、payload30,835,712字节。阶段时长352.19秒，两阶段训练器合计1988.53秒，全部冻结状态及原生重载通过。当前随机初始化参照保持81.3%。`[verified: psnr-head-sampled4-result.json；comparison.json reference_model、results.mean_full30]`
+
+冻结预测分别替换实测通道MSE、零通道、MS-SSIM和角度后，Top-1为86.1%、76.3%、87.2%和78.5%，全部实测指标为100%。同集余量拟合的严格质量为60.2%、回退272张。以上保留为本开发协议的条件替换和拟合结果。后续按计划继续固定容量的资产组限权与法线过采样对照。当前准备和头部阶段的22份源码／输入已按SHA归档，共317,919,625字节。`[verified: psnr-head-sampled4-result.json；progress.json source_archives.before_image_sampling；source-archive-before-image-sampling/manifest.json；opinion: 后续实验顺序]`
 
 ## 版本同步状态
 

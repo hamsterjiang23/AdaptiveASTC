@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "kind": "Read-only staged model evidence compatibility",
+  "model_forward_calls": 0,
+  "training_updates": 0,
+  "test_opened": false,
+  "structural_lineage_passed": true,
+  "bound_evidence_files": 52,
+  "final_accuracy": 0.863,
+  "formal_model_admission": "rejected_below90",
+  "formal_rejection": "Selected model has not reached90% on the development validation set",
+  "source_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation_evidence.py": "28a522d8e4a8b8e3eae1db26e75ee428cdfad77046f9266ae83a9fde0e954010",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation_evaluation.py": "66529734ddbfcfe309b50b0c08d58f7da3b42351093917cf60df6c07bd224b6a",
+    "E:\\ASTC_Compression\\tests\\test_unity_confirmation_evaluation.py": "b23fb58824f8311affb16c342d01e3a0ea37ad43ec30ef0fb71a057305712fcb",
+    "E:\\ASTC_Compression\\tests\\test_unity_revised_pixel_identity.py": "5abc6e5b10ad682c4b273d6d56fec40ce40cebc17d89a9e23d5658f269fb6bf5"
+  },
+  "training": {
+    "config": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-head-sampled4-config.json",
+      "sha256": "548be03a0ac7d4e3e1a5d1b910269a9e1a763bd3f26a954298c185a960fc1128"
+    },
+    "report": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-head-sampled4.json",
+      "sha256": "e37796dcc3bd3b356c7b683530758699e258c000c7e680878e2fe02ccc46ca60"
+    },
+    "job": {
+      "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-head-sampled4\\job.json",
+      "sha256": "de8426de8ab97c2a65ae164615d63ce9c58d16e6e11b7b4ffa03dbb2178ad472"
+    },
+    "initial_training": {
+      "config": {
+        "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-full30-config.json",
+        "sha256": "bc61cc3bf02842bdeba6b615d3658a57b4cf4f13522ebe2e676cd17a86c03251"
+      },
+      "report": {
+        "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-full30.json",
+        "sha256": "ccf8bd7729fe5f0d10a3c844a71c84984f7708180e3bc5de0c241ad1d85cb038"
+      },
+      "job": {
+        "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-full30\\job.json",
+        "sha256": "47eb26aec88f94d9b1a816a8afe3243d07fe4df4138323ea1d725f0f1136cd6a"
+      },
+      "training_source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema"
+    },
+    "training_source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-psnr-warmup"
+  },
+  "review": "CLEAN after legacy omitted-pooling default correction",
+  "cpu_tests": {
+    "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-v2-adapters-final' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_search_policy.py tests/test_unity_error_attribution.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py tests/test_unity_normalization.py tests/test_unity_head_refit.py tests/test_unity_revised_pixel_identity.py tests/test_unity_near_duplicates.py",
+    "result": "206 passed in9.46s",
+    "exit_code": 0
+  },
+  "static_checks": [
+    {
+      "command": "uv run ruff check reproductions/unity_search_baseline/confirmation_evidence.py reproductions/unity_search_baseline/confirmation_evaluation.py tests/test_unity_confirmation_evaluation.py tests/test_unity_revised_pixel_identity.py",
+      "result": "All checks passed",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run ruff format --check reproductions/unity_search_baseline/confirmation_evidence.py reproductions/unity_search_baseline/confirmation_evaluation.py tests/test_unity_confirmation_evaluation.py tests/test_unity_revised_pixel_identity.py",
+      "result": "4 files already formatted",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run basedpyright reproductions/unity_search_baseline/confirmation_evidence.py reproductions/unity_search_baseline/confirmation_evaluation.py tests/test_unity_confirmation_evaluation.py tests/test_unity_revised_pixel_identity.py",
+      "result": "0 errors,0 warnings,0 notes",
+      "exit_code": 0
+    }
+  ]
+}

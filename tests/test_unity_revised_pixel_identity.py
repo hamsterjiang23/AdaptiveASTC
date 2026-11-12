@@ -8,6 +8,8 @@ from PIL import Image
 
 from adaptive_astc.config import JsonDict
 from adaptive_astc.utils.artifacts import ArtifactStore as A
+from reproductions.unity_search_baseline.confirmation_evidence import UnityConfirmationEvidence as E
+from reproductions.unity_search_baseline.near_duplicates import UnityNearDuplicateAudit as N
 from reproductions.unity_search_baseline.pixel_identity import UnityPixelIdentityAudit as I
 from reproductions.unity_search_baseline.revised_pixel_identity import (
     UnityRevisedPixelIdentityAudit as R,
@@ -100,9 +102,21 @@ def test_duplicate_original_paths_are_rejected() -> None:
         R.select(old, added, reservation, corpus)
 
 
-@pytest.mark.parametrize("damage", [False, True])
+@pytest.mark.parametrize(
+    ("damage", "admission_damage"),
+    [
+        (True, "none"),
+        (False, "none"),
+        (False, "original"),
+        (False, "corpus"),
+        (False, "confirmation"),
+        (False, "threshold"),
+        (False, "test"),
+        (False, "forward"),
+    ],
+)
 def test_actual_png_read_and_report_publication(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, damage: bool
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, damage: bool, admission_damage: str
 ) -> None:
     # Tiny synthetic provenance exercises the full pixel I/O path, not real collection coverage.
     monkeypatch.setattr(R, "execution_sources", staticmethod(lambda root: {}))
@@ -196,3 +210,64 @@ def test_actual_png_read_and_report_publication(
         with pytest.raises(FileExistsError):
             R(tmp_path, config_path).run()
         assert report_path.read_bytes() == before
+        monkeypatch.setattr(E, "EXPECTED", config["expected_counts"])
+        monkeypatch.setattr(N, "execution_sources", staticmethod(lambda root: {}))
+
+        def completed_job(self: E, item: JsonDict, script: str, path: Path) -> None:
+            assert script.startswith("script/audit_unity_") and path.is_file()
+
+        monkeypatch.setattr(E, "job", completed_job)
+        exact = {
+            "config": bind(config_path, config),
+            "report": bind(report_path, result),
+            "job": {},
+        }
+        details = A.read_json(Path(result["details"]))
+        if admission_damage == "confirmation":
+            details["rows"][-1]["path"] = "Assets/unapproved-confirmation.png"
+            result["details_sha256"] = bind(Path(result["details"]), details)["sha256"]
+            exact["report"] = bind(report_path, result)
+        near_path, near_report = public / "near-config.json", public / "near.json"
+        threshold = 1.0 if admission_damage == "threshold" else 2.0
+        near_config = {
+            "sources_sha256": {},
+            "report": str(near_report),
+            "pixel_identity_report": exact["report"],
+            "expected_counts": config["expected_counts"],
+            "rgba_rmse_8bit": threshold,
+        }
+        near_config_binding = bind(near_path, near_config)
+        near_details = bind(local / "near-details.json", {"rows": [], "near_pairs": []})
+        near = {
+            "config": near_config_binding,
+            "job": {},
+            "report": bind(
+                near_report,
+                {
+                    "status": "passed",
+                    "counts": config["expected_counts"],
+                    "config_sha256": near_config_binding["sha256"],
+                    "sources_sha256": {},
+                    "rgba_rmse_8bit": threshold,
+                    "test_opened": admission_damage == "test",
+                    "splits_modified": False,
+                    "model_forward_calls": int(admission_damage == "forward"),
+                    "training_updates": 0,
+                    "inputs_sha256": {},
+                    "details": near_details["path"],
+                    "details_sha256": near_details["sha256"],
+                },
+            ),
+        }
+        evidence = E(tmp_path)
+        evidence.corpus = corpus if admission_damage != "corpus" else {"wrong": True}
+        original = dict(config["original_pixels"])
+        if admission_damage == "original":
+            original["sha256"] = "wrong-original-audit"
+        if admission_damage == "none":
+            selected = evidence.revised_pixels({"exact": exact, "near": near}, original)
+            assert selected["exact"] == details
+            evidence.verify()
+        else:
+            with pytest.raises(ValueError):
+                evidence.revised_pixels({"exact": exact, "near": near}, original)

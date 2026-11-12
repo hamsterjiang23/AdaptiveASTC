@@ -8,11 +8,16 @@ from pathlib import Path
 
 from adaptive_astc.config import JsonDict
 from adaptive_astc.data.unity_capture_input import UnityCaptureInputAdapter
+from adaptive_astc.evaluation.patch_normalization import PatchNormalizationAudit
 from adaptive_astc.utils.artifacts import ArtifactStore as A
 from reproductions.unity_search_baseline.capture_policy import UnityCapturePolicyBinding
 from reproductions.unity_search_baseline.confirmation_capture import UnityConfirmationCapture as C
 from reproductions.unity_search_baseline.native_data_pipeline import UnityNativeDataPipeline as P
+from reproductions.unity_search_baseline.near_duplicates import UnityNearDuplicateAudit as N
 from reproductions.unity_search_baseline.pixel_audit_pipeline import UnityPixelAuditPipeline as I
+from reproductions.unity_search_baseline.revised_pixel_identity import (
+    UnityRevisedPixelIdentityAudit as R,
+)
 
 
 class UnityConfirmationEvidence:
@@ -79,7 +84,7 @@ class UnityConfirmationEvidence:
         self.bind(path.with_name("receipt.json"), observed["receipt_sha256"])
 
     @staticmethod
-    def validate_training(training: JsonDict) -> None:
+    def validate_training(training: JsonDict, *, require_accuracy: bool = True) -> None:
         settings, audit = training["config"], training["checkpoint_audit"]
         expected = training["best_artifacts_sha256"]
         if (
@@ -99,23 +104,80 @@ class UnityConfirmationEvidence:
         ):
             raise ValueError("Require formal native training and its selected-checkpoint audit")
         # Keep the confirmation cohort out of iterative model selection.
-        if not 0.90 <= audit["metrics"]["accuracy"] <= 1.0:
+        accuracy = audit["metrics"]["accuracy"]
+        if not 0 <= accuracy <= 1.0 or (require_accuracy and accuracy < 0.90):
             raise ValueError("Selected model has not reached90% on the development validation set")
 
     def model(self, item: JsonDict) -> JsonDict:
+        return self._model(item, require_accuracy=True, ancestors=set())
+
+    def _model(self, item: JsonDict, *, require_accuracy: bool, ancestors: set[Path]) -> JsonDict:
+        report_path = Path(item["report"]["path"]).resolve()
+        if report_path in ancestors:
+            raise ValueError("Cyclic initial training evidence")
+        ancestors = ancestors | {report_path}
         config_path = self.bind(Path(item["config"]["path"]), item["config"]["sha256"])
-        self.job(item["job"], "script/train_unity_quality.py", config_path)
         launched = self.read(config_path)
         training = self.bound(item["report"])
-        self.validate_training(training)
+        self.validate_training(training, require_accuracy=require_accuracy)
         settings = training["config"]
-        if Path(launched["report"]).resolve() != Path(item["report"]["path"]).resolve() or any(
+        stage = settings.get("stage")
+        if stage not in (None, "Frozen encoder image-head refit"):
+            raise ValueError("Unsupported native training stage")
+        script = "script/refit_unity_image_head.py" if stage else "script/train_unity_quality.py"
+        self.job(item["job"], script, config_path)
+        compared = dict(launched)
+        if stage:
+            initial_item = item["initial_training"]
+            if (
+                training["encoder_and_channel_head_unchanged"] is not True
+                or settings["head_patch_views"] not in (0, 4)
+                or settings.get("selection_metric", "accuracy") != "accuracy"
+                or Path(settings["initial_training_report"]).resolve()
+                != Path(initial_item["report"]["path"]).resolve()
+                or settings["initial_training_report_sha256"] != initial_item["report"]["sha256"]
+            ):
+                raise ValueError("Head-stage evidence differs from its initial native training")
+            archive = compared.pop("training_source_archive", None)
+            recorded_archive = training["training_source_binding"]["archive"]
+            initial_archive = initial_item.get("training_source_archive")
+            archives = [
+                Path(p).resolve() if p else None
+                for p in (archive, recorded_archive, initial_archive)
+            ]
+            if len(set(archives)) != 1:
+                raise ValueError("Head stage and initial training require the same source archive")
+            compared["initial_training_report"] = compared.pop("training_report")
+            compared["initial_training_report_sha256"] = compared.pop("training_report_sha256")
+            compared["head_patch_views"] = compared["patches_per_image"]
+            initial = self._model(initial_item, require_accuracy=False, ancestors=ancestors)
+            if (
+                training["initial_training_updates"] != initial["training_updates"]
+                or any(
+                    settings[key] != initial["config"][key]
+                    for key in ("corpus", "corpus_sha256", "corpus_fingerprint")
+                )
+                or settings.get("image_pooling", "mean_max")
+                != initial["config"].get("image_pooling", "mean_max")
+                or {
+                    str((self.root / row["relative_path"]).resolve()): row["training_sha256"]
+                    for row in training["training_source_binding"]["sources"]
+                }
+                != initial["config"]["source_sha256"]
+            ):
+                raise ValueError("Head stage changed its initial training or development corpus")
+        if Path(launched["report"]).resolve() != report_path or any(
             A.fingerprint(settings.get(key)) != A.fingerprint(value)
-            for key, value in launched.items()
+            for key, value in compared.items()
         ):
             raise ValueError("Training report differs from the completed job configuration")
-        for name, digest in settings["source_sha256"].items():
-            self.bind(Path(name), digest)
+        source_binding = PatchNormalizationAudit.bind_training_sources(
+            {"source_files_sha256": settings["source_sha256"]},
+            self.root,
+            Path(item["training_source_archive"]) if item.get("training_source_archive") else None,
+        )
+        for source in source_binding["sources"]:
+            self.bind(Path(source["verified_source"]), source["training_sha256"])
         run = Path(settings["output"])
         for name, digest in training["best_artifacts_sha256"].items():
             self.bind(run / name, digest)
@@ -167,6 +229,87 @@ class UnityConfirmationEvidence:
             "near_confirmation_overlap_pairs": len(near_hits),
         }
 
+    def revised_pixels(self, item: JsonDict, original: JsonDict) -> dict[str, JsonDict]:
+        exact_item, near_item = item["exact"], item["near"]
+        path = self.bind(Path(exact_item["config"]["path"]), exact_item["config"]["sha256"])
+        audit = R(self.root, path)
+        config = audit.config
+        self.job(exact_item["job"], "script/audit_unity_revised_pixels.py", path)
+        report = self.bound(exact_item["report"])
+        revision = audit.bound(config["corpus_revision_report"])
+        corpus = audit.bound(config["corpus"])
+        reservation = audit.bound(config["reservation"])
+        if (
+            report["status"] != "passed"
+            or report["counts"] != self.EXPECTED
+            or config["expected_counts"] != self.EXPECTED
+            or report["config_sha256"] != exact_item["config"]["sha256"]
+            or audit.report != Path(exact_item["report"]["path"]).resolve()
+            or report["sources_sha256"] != config["sources_sha256"]
+            or report["coverage"] != "approved_revised_native_cohort"
+            or report["cohort_revision_applied_before_audit"] is not True
+            or report["test_opened"] is not False
+            or report["splits_modified"] is not False
+            or report["training_updates"] != 0
+            or config["original_pixels"] != original
+            or corpus != self.corpus
+            or revision["status"] != "passed"
+            or revision["corpus_sha256"] != config["corpus"]["sha256"]
+            or Path(revision["corpus"]).resolve() != Path(config["corpus"]["path"]).resolve()
+            or reservation["status"] != "reserved"
+            or corpus["config"]["revision"]["reservation"] != config["reservation"]
+            or A.fingerprint(corpus["config"]) != corpus["binding"]
+            or A.fingerprint({"binding": corpus["binding"], "splits": corpus["splits"]})
+            != corpus["fingerprint"]
+        ):
+            raise ValueError("Revised pixels differ from the approved complete development corpus")
+        old, added = [audit.audited_rows(key) for key in ("original_pixels", "replacement_pixels")]
+        expected = R.select(old, added, reservation, corpus)
+        exact = self.read(Path(report["details"]), report["details_sha256"])
+        if (
+            exact["rows"] != expected
+            or report["replacement_counts"] != reservation["replacement_counts"]
+            or report["inputs_sha256"] != audit.inputs
+        ):
+            raise ValueError("Revised pixels changed approved positions or confirmation membership")
+        for name, digest in audit.inputs.items():
+            self.bind(Path(name), digest)
+        for name, digest in config["sources_sha256"].items():
+            self.bind(self.root / name, digest)
+        pngs = self.read(Path(report["native_png_bindings"]), report["native_png_bindings_sha256"])
+        if pngs != {
+            str(Path(row["reference"]).resolve()): row["reference_sha256"] for row in expected
+        }:
+            raise ValueError("Revised native PNG bindings differ from the audited rows")
+        near_path = self.bind(Path(near_item["config"]["path"]), near_item["config"]["sha256"])
+        self.job(near_item["job"], "script/audit_unity_near_duplicates.py", near_path)
+        near_config, near_report = self.read(near_path), self.bound(near_item["report"])
+        if (
+            near_report["status"] != "passed"
+            or near_report["counts"] != self.EXPECTED
+            or near_config["expected_counts"] != self.EXPECTED
+            or Path(near_config["report"]).resolve() != Path(near_item["report"]["path"]).resolve()
+            or near_report["config_sha256"] != near_item["config"]["sha256"]
+            or near_config["pixel_identity_report"] != exact_item["report"]
+            or near_config["sources_sha256"] != N.execution_sources(self.root)
+            or near_report["sources_sha256"] != near_config["sources_sha256"]
+            or near_report["rgba_rmse_8bit"] != 2.0
+            or near_config["rgba_rmse_8bit"] != 2.0
+            or near_report["test_opened"] is not False
+            or near_report["splits_modified"] is not False
+            or near_report["model_forward_calls"] != 0
+            or near_report["training_updates"] != 0
+        ):
+            raise ValueError("Revised near-pixel audit differs from the complete exact audit")
+        for name, digest in near_report["inputs_sha256"].items():
+            self.bind(Path(name), digest)
+        for name, digest in near_config["sources_sha256"].items():
+            self.bind(self.root / name, digest)
+        return {
+            "exact": exact,
+            "near": self.read(Path(near_report["details"]), near_report["details_sha256"]),
+        }
+
     def pixel_audit(self, item: JsonDict) -> tuple[I, JsonDict]:
         config = self.bound(item["config"])
         path = Path(item["config"]["path"])
@@ -190,6 +333,7 @@ class UnityConfirmationEvidence:
         for name, digest in report["inputs_sha256"].items():
             self.bind(Path(name), digest)
         details = {}
+        original_exact = {}
         for stage in report["stages"]:
             summary = self.bound(stage)
             if summary["status"] != "passed" or summary["counts"] != self.EXPECTED:
@@ -197,6 +341,10 @@ class UnityConfirmationEvidence:
             for name, digest in summary["inputs_sha256"].items():
                 self.bind(Path(name), digest)
             details[stage["kind"]] = self.read(Path(summary["details"]), summary["details_sha256"])
+            if stage["kind"] == "exact":
+                original_exact = {"path": stage["path"], "sha256": stage["sha256"]}
+        if "revised_development" in item:
+            details = self.revised_pixels(item["revised_development"], original_exact)
         overlap = self.overlaps(details["exact"], details["near"])
         if any(overlap.values()):
             raise ValueError(

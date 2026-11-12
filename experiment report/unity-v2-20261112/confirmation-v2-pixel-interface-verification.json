@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "kind": "V2 revised development pixel evidence compatibility",
+  "approved_development_replacement_counts": {
+    "train": 13,
+    "validation": 5
+  },
+  "exact_rows": 13000,
+  "overlap": {
+    "exact_confirmation_overlap_groups": 0,
+    "near_confirmation_overlap_pairs": 11
+  },
+  "outer_pixel_admission": "rejected_existing_cross_confirmation_near_pairs",
+  "outer_rejection": "Confirmation overlaps development pixels; retain the cohort: {'exact_confirmation_overlap_groups': 0, 'near_confirmation_overlap_pairs': 11}",
+  "cohort_modified": false,
+  "model_forward_calls": 0,
+  "training_updates": 0,
+  "test_opened": false,
+  "source_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation_evidence.py": "28a522d8e4a8b8e3eae1db26e75ee428cdfad77046f9266ae83a9fde0e954010",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation_evaluation.py": "66529734ddbfcfe309b50b0c08d58f7da3b42351093917cf60df6c07bd224b6a",
+    "E:\\ASTC_Compression\\tests\\test_unity_confirmation_evaluation.py": "b23fb58824f8311affb16c342d01e3a0ea37ad43ec30ef0fb71a057305712fcb",
+    "E:\\ASTC_Compression\\tests\\test_unity_revised_pixel_identity.py": "5abc6e5b10ad682c4b273d6d56fec40ce40cebc17d89a9e23d5658f269fb6bf5"
+  },
+  "pixel_audit": {
+    "config": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-data-v2-config.json",
+      "sha256": "cc394cccb0495b8a68bbe76241293f83f22e3ed4024691354aea480452b7eb96"
+    },
+    "report": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-data-v2.json",
+      "sha256": "31a03ae75e9e3df43c01073ea9db42f2ec41d107149fdbae53f248e02da0d27e"
+    },
+    "job": {
+      "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-pixel-pipeline-full13000-data-v2\\job.json",
+      "sha256": "3f7fbe8883a1a69de7842827f08cb56017f001ddf5f27212e8a72ab18f3ac9af"
+    },
+    "revised_development": {
+      "exact": {
+        "config": {
+          "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-revised-pixels13000-v2-config.json",
+          "sha256": "77f9e8d5e19f441212f6204620916c69051864edbb7d2095d95564e6cab29d53"
+        },
+        "report": {
+          "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-revised-pixels13000-v2.json",
+          "sha256": "8df33f2be0b843ba622c37953b83e41a2c76c41d9da313ed5eec5ec3eb5cb28c"
+        },
+        "job": {
+          "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-revised-pixels13000-v2\\job.json",
+          "sha256": "2b4af4cf48ab39e9fe61a3a9f024e79f7ccd4f3c9123537d745e0ef1b0be6622"
+        }
+      },
+      "near": {
+        "config": {
+          "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-revised-near13000-v2-config.json",
+          "sha256": "ca13dbbc9c8c1ac4e4fc919ac8f75cec572179ce3733a06a4593e46a520d6459"
+        },
+        "report": {
+          "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-revised-near13000-v2.json",
+          "sha256": "bc038aaa4e5e30ca958a9ba4588fd5ad51188d2bfc60bb9b1ea14f77f5092c10"
+        },
+        "job": {
+          "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-revised-near13000-v2\\job.json",
+          "sha256": "5435f0c0be03b30a2e2715e2e0d453aeab10a83d780a72b04bad229e613599a5"
+        }
+      }
+    }
+  },
+  "review": "CLEAN",
+  "tests": "confirmation-stage-interface-verification.json cpu_tests/static_checks"
+}

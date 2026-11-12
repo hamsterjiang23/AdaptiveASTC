@@ -1,6 +1,6 @@
 {
-  "status": "psnr_preparation_running",
-  "updated_utc": "2026-11-12T18:46:28.521287+00:00",
+  "status": "psnr_two_stage_completed_below_gate",
+  "updated_utc": "2026-11-12T19:17:53.751037+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,9 +10,9 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Complete PSNR-component preparation selected by near-threshold RMSE",
-    "Restore zero/SSIM/angle supervision and train the image head, selected byTop1",
-    "Complete staged-model and revised-data evidence adapters before formal confirmation"
+    "Run planned fixed-capacity asset-group weighting and normal oversampling controls with new identities",
+    "Resolve pending initialization mainline promotion and10confirmation replacements",
+    "Admit final confirmation only after validation90% and zero cross-confirmation pixel overlaps"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
   "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
@@ -61,12 +61,12 @@
     "full_status": "completed",
     "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\attribution-stable-smoke.json"
   },
-  "current_training_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\psnr-preparation-config.json",
-  "current_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\psnr-preparation.json",
-  "current_training_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\psnr-preparation\\receipt.json",
+  "current_training_config": null,
+  "current_training_report": null,
+  "current_training_job": null,
   "recovery_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\recovery-verification.json",
-  "current_training_completed_epochs": 10,
-  "current_training_best_validation_accuracy": 0.428,
+  "current_training_completed_epochs": 30,
+  "current_training_best_validation_accuracy": 0.764,
   "current_training_observation": null,
   "completed_baseline_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\baseline-result.json",
   "completed_attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-attribution.json",
@@ -81,7 +81,8 @@
     "before_imagenet": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-imagenet\\manifest.json",
     "native30": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-native30\\manifest.json",
     "before_ema": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\manifest.json",
-    "before_psnr_preparation": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-psnr-warmup\\manifest.json"
+    "before_psnr_preparation": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-psnr-warmup\\manifest.json",
+    "before_image_sampling": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-image-sampling"
   },
   "pretrained_mainline_promotion": "pending_user_decision",
   "current_bn_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30-bn.json",
@@ -112,11 +113,13 @@
   "head_refit_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\image-head-refit-verification.json",
   "confirmation_overlap_readiness": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-overlap-readiness.json",
   "confirmation_overlap_decision": "pending_user_decision_on_10_primary_replacements",
-  "confirmation_interface_pending": [
-    "staged_model_evidence_admission",
-    "revised_V2_pixel_evidence_mapping"
-  ],
+  "confirmation_interface_pending": [],
   "best_development_contrast_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-head-sampled4-result.json",
-  "current_training_selection_metric": "near_rmse",
-  "current_training_best_near_rmse": 2.5453987636045334
+  "current_training_selection_metric": "accuracy",
+  "current_training_best_near_rmse": 2.008383993597554,
+  "confirmation_stage_interface_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-stage-interface-verification.json",
+  "confirmation_pixel_interface_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-v2-pixel-interface-verification.json",
+  "completed_psnr_preparation_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\psnr-preparation-result.json",
+  "completed_psnr_head_smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\psnr-head-sampled4-smoke.json",
+  "completed_psnr_two_stage_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\psnr-head-sampled4-result.json"
 }

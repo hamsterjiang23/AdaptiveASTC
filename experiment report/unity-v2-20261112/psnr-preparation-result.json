@@ -1,0 +1,76 @@
+{
+  "status": "completed_preparation_stage",
+  "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\psnr-preparation.json",
+  "training_report_sha256": "2e68eb6d3497615d0cec9ea7b036599fd657ae842ab1e67157c70a0d27cccad7",
+  "epochs": 30,
+  "updates": 18742,
+  "amp_skips": 8,
+  "selected_checkpoint_epoch": 25,
+  "selection_metric": "near_rmse",
+  "selected_checkpoint_metrics": {
+    "count": 1000,
+    "accuracy": 0.432,
+    "balanced_accuracy": 0.37216664230255725,
+    "full_choice_accuracy": 0.137,
+    "confusion_matrix": [
+      [
+        106,
+        1,
+        1,
+        12
+      ],
+      [
+        124,
+        1,
+        2,
+        16
+      ],
+      [
+        103,
+        1,
+        10,
+        24
+      ],
+      [
+        277,
+        0,
+        7,
+        315
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 120,
+        "recall": 0.8833333333333333
+      },
+      "8x8": {
+        "support": 143,
+        "recall": 0.006993006993006993
+      },
+      "10x10": {
+        "support": 138,
+        "recall": 0.07246376811594203
+      },
+      "12x12": {
+        "support": 599,
+        "recall": 0.5258764607679466
+      }
+    },
+    "actual_quality_pass_rate": 0.827,
+    "no_strict_feasible_images": 34,
+    "color_near_threshold_candidate_count": 4687,
+    "color_near_threshold_rmse_db": 2.00597371372423,
+    "selected_payload_bytes": 35885472,
+    "original_payload_bytes": 31661520,
+    "fixed8_payload_bytes": 59761616,
+    "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+    "seconds": 12.129833700000745
+  },
+  "checkpoint_audit": "passed",
+  "trainer_wall_seconds": 1636.3425695000005,
+  "parameters": 11305980,
+  "test_opened": false,
+  "next_stage": "Frozen encoder image-head training with explicitzero/ssim/angle weights0.1",
+  "whole_two_stage_pipeline_completed": true,
+  "final_stage_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\psnr-head-sampled4-result.json"
+}

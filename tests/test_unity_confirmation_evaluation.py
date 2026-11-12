@@ -100,6 +100,165 @@ def test_completed_validation_selection_required(changed: str) -> None:
             E.validate_training(report)
 
 
+def model_evidence(
+    root: Path,
+    name: str,
+    parent: JsonDict | None = None,
+    image_pooling: str | None = "mean",
+) -> JsonDict:
+    run = root / name
+    run.mkdir()
+    config_path, report_path = root / f"{name}-config.json", root / f"{name}.json"
+    corpus = root / "corpus"
+    corpus.mkdir(exist_ok=True)
+    A.write_json(
+        corpus / "corpus.json",
+        {
+            "status": "passed",
+            "test_opened": False,
+            "counts": {"train": 10000, "validation": 1000},
+            "splits": {"train": [{}] * 10000, "validation": [{}] * 1000},
+        },
+    )
+    launched: JsonDict = {"output": str(run), "report": str(report_path), "smoke": False}
+    report = training()
+    settings = {
+        **report["config"],
+        **launched,
+        "corpus": str(corpus),
+        "corpus_sha256": A.sha256_file(corpus / "corpus.json"),
+        "corpus_fingerprint": "same-development-inputs",
+    }
+    if image_pooling is not None:
+        settings["image_pooling"] = image_pooling
+    item: JsonDict = {"job": {"expected_script": "script/train_unity_quality.py"}}
+    if parent is not None:
+        initial = A.read_json(Path(parent["report"]["path"]))
+        launched.update(
+            training_report=parent["report"]["path"],
+            training_report_sha256=parent["report"]["sha256"],
+            patches_per_image=4,
+        )
+        settings.update(
+            stage="Frozen encoder image-head refit",
+            initial_training_report=launched["training_report"],
+            initial_training_report_sha256=launched["training_report_sha256"],
+            head_patch_views=4,
+            patches_per_image=4,
+        )
+        report.update(
+            encoder_and_channel_head_unchanged=True,
+            initial_training_updates=initial["training_updates"],
+            training_source_binding={
+                "archive": None,
+                "sources": [
+                    {
+                        "relative_path": Path(path).relative_to(root).as_posix(),
+                        "training_sha256": digest,
+                    }
+                    for path, digest in initial["config"]["source_sha256"].items()
+                ],
+            },
+        )
+        item.update(
+            initial_training=parent, job={"expected_script": "script/refit_unity_image_head.py"}
+        )
+    A.write_json(config_path, launched)
+    settings["source_sha256"] = {str(config_path): A.sha256_file(config_path)}
+    artifacts = {}
+    for artifact in ("best.pt", "best-validation.npz", "best-decisions.json"):
+        (run / artifact).write_bytes(artifact.encode())
+        artifacts[artifact] = A.sha256_file(run / artifact)
+    report.update(
+        config=settings, best_artifacts_sha256=artifacts, checkpoint_sha256=artifacts["best.pt"]
+    )
+    report["checkpoint_audit"].update(
+        selected_artifacts_sha256=artifacts,
+        checkpoint_sha256=artifacts["best.pt"],
+        predictions_sha256=artifacts["best-validation.npz"],
+    )
+    A.write_json(run / "config.json", settings)
+    A.write_json(run / "checkpoint-audit.json", report["checkpoint_audit"])
+    A.write_json(report_path, report)
+    item.update(
+        config={"path": str(config_path), "sha256": A.sha256_file(config_path)},
+        report={"path": str(report_path), "sha256": A.sha256_file(report_path)},
+    )
+    return item
+
+
+@pytest.mark.parametrize(
+    "changed",
+    [
+        "none",
+        "legacy_pooling",
+        "low_final",
+        "unfinished_parent",
+        "source",
+        "frozen",
+        "archive",
+        "lineage",
+    ],
+)
+def test_head_stage_requires_full_initial_training_and_final_ninety_percent(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, changed: str
+) -> None:
+    pooling = None if changed == "legacy_pooling" else "mean"
+    parent = model_evidence(tmp_path, "initial", image_pooling=pooling)
+    initial_path = Path(parent["report"]["path"])
+    initial = A.read_json(initial_path)
+    initial["checkpoint_audit"]["metrics"]["accuracy"] = 0.4
+    if changed == "unfinished_parent":
+        initial["status"] = "running"
+    A.write_json(initial_path, initial)
+    A.write_json(tmp_path / "initial/checkpoint-audit.json", initial["checkpoint_audit"])
+    parent["report"]["sha256"] = A.sha256_file(initial_path)
+    item = model_evidence(tmp_path, "head", parent, image_pooling=pooling)
+    path = Path(item["report"]["path"])
+    report = A.read_json(path)
+    if changed == "low_final":
+        report["checkpoint_audit"]["metrics"]["accuracy"] = 0.89
+    if changed == "source":
+        Path(parent["config"]["path"]).write_text("changed", encoding="utf-8")
+    if changed == "frozen":
+        report["encoder_and_channel_head_unchanged"] = False
+    if changed == "archive":
+        parent["training_source_archive"] = str(tmp_path / "unrelated-archive")
+    if changed == "lineage":
+        report["initial_training_updates"] += 1
+    A.write_json(path, report)
+    A.write_json(tmp_path / "head/checkpoint-audit.json", report["checkpoint_audit"])
+    item["report"]["sha256"] = A.sha256_file(path)
+    scripts = []
+
+    def job(self: E, value: JsonDict, script: str, config_path: Path) -> None:
+        assert script == value["expected_script"] and config_path.is_file()
+        scripts.append(script)
+
+    monkeypatch.setattr(E, "job", job)
+    evidence = E(tmp_path)
+    if changed in {"none", "legacy_pooling"}:
+        assert evidence.model(item) == report
+        assert scripts == ["script/refit_unity_image_head.py", "script/train_unity_quality.py"]
+        evidence.verify()
+        (tmp_path / "initial/best.pt").write_bytes(b"changed")
+        with pytest.raises(ValueError, match="changed"):
+            evidence.verify()
+    else:
+        with pytest.raises(ValueError):
+            evidence.model(item)
+
+
+def test_initial_stage_cannot_bypass_cycle_or_numeric_checks(tmp_path: Path) -> None:
+    item = model_evidence(tmp_path, "initial")
+    with pytest.raises(ValueError, match="Cyclic"):
+        E(tmp_path)._model(item, require_accuracy=False, ancestors={Path(item["report"]["path"])})
+    report = training()
+    report["checkpoint_audit"]["metrics"]["accuracy"] = float("nan")
+    with pytest.raises(ValueError):
+        E.validate_training(report, require_accuracy=False)
+
+
 @pytest.mark.parametrize("changed", ["split", "hash", "order"])
 def test_only_confirmation_cross_split_pairs_block(changed: str) -> None:
     fields = {
