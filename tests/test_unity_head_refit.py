@@ -97,26 +97,30 @@ def test_image_only_loss_matches_native_components_and_updates_only_image_head()
 class EncodedInputProbe(UnityQualityRegressor):
     def encode(self, rgba: Tensor, valid_mask: Tensor, metadata: Tensor) -> dict[str, Tensor]:
         return {
-            "features": rgba[:, :1].mean((2, 3)).repeat(1, 512),
+            "features": rgba[:, :1].mean((2, 3)).repeat(1, self.channel_head.in_features),
             "channel_log_mse": rgba.new_zeros((len(rgba), 20, 4)),
         }
 
 
-def test_feature_cache_remaps_a_source_subset_without_other_image_patches(tmp_path: Path) -> None:
+@pytest.mark.parametrize("backbone_name", ["resnet18", "resnet50"])
+def test_feature_cache_remaps_a_source_subset_without_other_image_patches(
+    tmp_path: Path, backbone_name: str
+) -> None:
     dataset = paired_dataset(tmp_path)
     output = tmp_path / "cache"
     output.mkdir()
+    model = EncodedInputProbe(image_pooling="mean", backbone_name=backbone_name)
     cache, files = NativeFeatureCache.prepare(
         dataset,
         [1],
-        EncodedInputProbe(image_pooling="mean"),
+        model,
         2,
         torch.device("cpu"),
         output,
         "train",
     )
     assert cache.rows == [dataset.rows[1]]
-    assert cache.features.shape == (2, 512)
+    assert cache.features.shape == (2, model.channel_head.in_features)
     assert cache.channel_mse.shape == (1, 20, 4)
     torch.testing.assert_close(cache.patch_indexes[0], torch.tensor([0, 1]))
     assert len(files) == 2

@@ -1,0 +1,79 @@
+{
+  "status": "passed_cpu",
+  "archived_model_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-resnet50\\src\\adaptive_astc\\models\\unity_quality.py",
+  "archived_model_source_sha256": "1770193dbde602ffc163efe81c3c788cdeeb7f03dad62048adb934ef1c58d084",
+  "initialization_comparisons": [
+    {
+      "backbone": "resnet18",
+      "pooling": "mean",
+      "all_state_tensors_exact": true,
+      "following_cpu_rng_exact": true
+    },
+    {
+      "backbone": "resnet18",
+      "pooling": "mean_max",
+      "all_state_tensors_exact": true,
+      "following_cpu_rng_exact": true
+    },
+    {
+      "backbone": "resnet34",
+      "pooling": "mean",
+      "all_state_tensors_exact": true,
+      "following_cpu_rng_exact": true
+    },
+    {
+      "backbone": "resnet34",
+      "pooling": "mean_max",
+      "all_state_tensors_exact": true,
+      "following_cpu_rng_exact": true
+    }
+  ],
+  "actual_checkpoint_comparisons": [
+    {
+      "training": "mean-full30",
+      "checkpoint_sha256": "033fa36ff956256c9b86cff70ae70bafbe6535562ca27ed864459ed94c7a27af",
+      "all_state_tensors_exact": true,
+      "cpu_probe_outputs_exact": true
+    },
+    {
+      "training": "imagenet-resnet34-head-sampled4",
+      "checkpoint_sha256": "8e8945fcb0e1b71c6d9cf8e26eb2110eca2f2a918f3c96eaabc11a38cfa8788b",
+      "all_state_tensors_exact": true,
+      "cpu_probe_outputs_exact": true
+    }
+  ],
+  "resnet50_capacity": [
+    {
+      "pooling": "mean",
+      "parameters": 24003068,
+      "feature_width": 2048,
+      "image_head_parameters": 287980,
+      "outputs_finite": true
+    },
+    {
+      "pooling": "mean_max",
+      "parameters": 24289788,
+      "feature_width": 2048,
+      "image_head_parameters": 574700,
+      "outputs_finite": true
+    }
+  ],
+  "cuda_replay": "passed_legacy18_training_and_legacy34_validation1000",
+  "test_opened": false,
+  "cuda_legacy18_smoke": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\resnet50-legacy18-smoke.json",
+    "updates": 4,
+    "all_epoch_losses_exact": true,
+    "all_untimed_validation_metrics_exact": true,
+    "checkpoint_audit": "passed",
+    "trainer_seconds": 10.62133509999694
+  },
+  "cuda_legacy34_validation1000": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\resnet50-legacy34-inference1000.json",
+    "images": 1000,
+    "patches": 7173,
+    "prediction_max_abs_differences": 0.0,
+    "all_choices_match": true,
+    "runtime_training_source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-resnet50"
+  }
+}

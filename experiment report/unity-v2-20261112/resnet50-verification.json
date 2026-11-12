@@ -1,0 +1,70 @@
+{
+  "status": "full_training_running",
+  "implementation_files_sha256": {
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "0a49302ab3ac621d9ea3f9cc0c01e12112e9b4419875d298fdbad06b907ee0ac",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "940979f7cd0c725bbebabe7260fc33f991a77dd2071c1e78c16ab7f8b7ce1ea2",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_inference.py": "a4ca5d78edef060431d71ee58d174f25098b7455c1a3130ed2f8bf190d2aca13",
+    "E:\\ASTC_Compression\\script\\refit_unity_image_head.py": "4b35d9a6c65343a8fda74a13c3a97d011b0358a11185d92511531f5a814eacb3",
+    "E:\\ASTC_Compression\\tests\\test_unity_quality.py": "b98abe8731fc56f098e22e204442ea71e8536acbc73cb142ba7626399416e46a",
+    "E:\\ASTC_Compression\\tests\\test_unity_quality_training.py": "b4df3233addb225f703b2cec887fa0c2642e170adae5f6eb8c66716851864352",
+    "E:\\ASTC_Compression\\tests\\test_unity_inference.py": "062997dc73faac261209e43c2ce3c30ed4d160caba1ce8eb71584c20654681a6",
+    "E:\\ASTC_Compression\\tests\\test_unity_head_refit.py": "c3447a881dc00666b8bf506b9ffd50f6599ca39a6876a4d9832b52c21b5cc682"
+  },
+  "cpu_tests": {
+    "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-resnet50-final-cpu' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' -k 'not test_cuda_feature_pool_repeated_outputs_are_bit_identical' tests/test_unity_search_policy.py tests/test_unity_error_attribution.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py tests/test_unity_normalization.py tests/test_unity_head_refit.py tests/test_unity_revised_pixel_identity.py tests/test_unity_near_duplicates.py tests/test_unity_image_sampling.py",
+    "result": "238 passed, 2 deselected in12.98s",
+    "exit_code": 0
+  },
+  "cuda_pool_tests": {
+    "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-resnet50-cuda-pool' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_quality.py::test_cuda_feature_pool_repeated_outputs_are_bit_identical",
+    "result": "2 passed in3.38s",
+    "widths": [
+      512,
+      2048
+    ],
+    "serial_gpu_slot": true
+  },
+  "static_checks": {
+    "commands": [
+      "uv run ruff check src/adaptive_astc/models/unity_quality.py src/adaptive_astc/training/unity_quality_trainer.py src/adaptive_astc/evaluation/unity_inference.py script/refit_unity_image_head.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_head_refit.py",
+      "uv run basedpyright src/adaptive_astc/models/unity_quality.py src/adaptive_astc/training/unity_quality_trainer.py src/adaptive_astc/evaluation/unity_inference.py script/refit_unity_image_head.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_head_refit.py"
+    ],
+    "ruff": "All checks passed",
+    "basedpyright": "0 errors, 0 warnings, 0 notes"
+  },
+  "legacy_cpu_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\resnet50-legacy-cpu-verification.json",
+  "legacy18_cuda_loss_and_untimed_metrics_exact": true,
+  "legacy34_cuda1000_predictions_and_choices_exact": true,
+  "resnet50_cuda_training_smoke_updates": 4,
+  "resnet50_cuda_checkpoint_reload": "passed",
+  "resnet50_streaming_cuda_smoke": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\resnet50-inference-smoke.json",
+    "images": 16,
+    "patches": 128,
+    "all_arrays_exact": true,
+    "all_choices_match": true
+  },
+  "independent_readonly_code_review": "CLEAN",
+  "full_train_images": 10000,
+  "full_validation_images": 1000,
+  "full_training_started": true,
+  "test_opened": false,
+  "full_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\mean-resnet50-full30\\job.json",
+  "full_job_started_utc": "2026-11-12T23:12:15.948323+00:00",
+  "full_training_command": [
+    "E:\\ASTC_Compression\\.venv\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "-u",
+    "E:\\ASTC_Compression\\script\\train_unity_quality.py",
+    "--config",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-full30-config.json"
+  ],
+  "first_observed_completed_epochs": 1,
+  "first_observed_optimizer_updates": 624,
+  "api_documentation": {
+    "official_torchvision_source_url": "https://docs.pytorch.org/vision/0.23/_modules/torchvision/models/resnet.html",
+    "local_version": "0.23.0+cu128",
+    "context7_status": "API environment configuration absent, official source used"
+  }
+}

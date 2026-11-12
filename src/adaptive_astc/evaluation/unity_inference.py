@@ -39,7 +39,7 @@ class UnityQualityInference:
     def run(self, dataset: UnityInferenceInput) -> tuple[dict[str, np.ndarray], JsonDict]:
         self.synchronize()
         started = time.perf_counter()
-        features = np.empty((len(dataset), 512), dtype=np.float32)
+        features = np.empty((len(dataset), self.model.channel_head.in_features), dtype=np.float32)
         logs = np.empty((len(dataset), 20, 4), dtype=np.float64)
         input_seconds = forward_seconds = 0.0
         loader = iter(DataLoader(dataset, batch_size=self.batch_size, num_workers=0))

@@ -77,7 +77,7 @@ class UnityTrainConfig:
             or self.initialization not in ("scratch", "pretrained")
             or not 0 <= self.ema_decay < 1
             or self.selection_metric not in ("accuracy", "near_rmse")
-            or self.backbone_name not in ("resnet18", "resnet34")
+            or self.backbone_name not in ("resnet18", "resnet34", "resnet50")
         ):
             raise ValueError("Invalid native training configuration")
         if not self.smoke and self.train_image_indices:
@@ -513,7 +513,7 @@ class UnityQualityTrainer:
     ) -> tuple[JsonDict, dict[str, np.ndarray], list[JsonDict]]:
         started = time.perf_counter()
         model.eval()
-        features = np.empty((len(dataset), 512), dtype=np.float32)
+        features = np.empty((len(dataset), model.channel_head.in_features), dtype=np.float32)
         logs = np.empty((len(dataset), 20, 4), dtype=np.float64)
         loader = DataLoader(dataset, batch_size=self.config.validation_batch_size, num_workers=0)
         with torch.inference_mode():

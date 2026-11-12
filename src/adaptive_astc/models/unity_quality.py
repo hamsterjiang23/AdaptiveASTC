@@ -6,7 +6,7 @@ import math
 
 import torch
 from torch import Tensor, nn
-from torchvision.models.resnet import BasicBlock, ResNet
+from torchvision.models.resnet import BasicBlock, Bottleneck, ResNet
 
 from adaptive_astc.config import JsonDict
 
@@ -24,17 +24,18 @@ class UnityQualityRegressor(nn.Module):
         super().__init__()
         if image_pooling not in ("mean_max", "mean"):
             raise ValueError("Native image pooling must be mean_max or mean")
-        if backbone_name not in ("resnet18", "resnet34"):
-            raise ValueError("Native backbone must be resnet18 or resnet34")
+        if backbone_name not in ("resnet18", "resnet34", "resnet50"):
+            raise ValueError("Native backbone must be resnet18, resnet34 or resnet50")
         self.image_pooling = image_pooling
+        feature_dim = 2048 if backbone_name == "resnet50" else 512
         self.backbone = self._make_backbone(
             [2, 2, 2, 2], backbone_weights if backbone_name == "resnet18" else None
         )
-        self.metadata_conditioner = nn.Linear(8, 1024)
+        self.metadata_conditioner = nn.Linear(8, 2 * feature_dim)
         nn.init.zeros_(self.metadata_conditioner.weight)
         nn.init.zeros_(self.metadata_conditioner.bias)
-        self.channel_head = nn.Linear(512, 80)
-        self.image_head = nn.Linear(2 * 512 + 8, 140)
+        self.channel_head = nn.Linear(feature_dim, 80)
+        self.image_head = nn.Linear(2 * feature_dim + 8, 140)
         nn.init.normal_(self.channel_head.weight, std=0.001)
         nn.init.constant_(self.channel_head.bias, -3.5)
         nn.init.normal_(self.image_head.weight, std=0.001)
@@ -44,18 +45,29 @@ class UnityQualityRegressor(nn.Module):
                 self.image_head.bias[80 + index :: 3].fill_(math.log(math.expm1(initial)))
         if image_pooling == "mean":
             # Initialize the paired control identically, then retain mean and metadata columns.
-            self.image_head.in_features = 512 + 8
+            self.image_head.in_features = feature_dim + 8
             self.image_head.weight = nn.Parameter(
-                torch.cat((self.image_head.weight[:, :512], self.image_head.weight[:, -8:]), dim=1)
+                torch.cat(
+                    (self.image_head.weight[:, :feature_dim], self.image_head.weight[:, -8:]), dim=1
+                )
             )
-        if backbone_name == "resnet34":
-            # Pair the shared heads and subsequent CPU RNG sequence with the ResNet-18 control.
+        if backbone_name in ("resnet34", "resnet50"):
+            # Preserve the initialized heads and following CPU RNG when replacing the encoder.
             with torch.random.fork_rng(devices=[]):
-                self.backbone = self._make_backbone([3, 4, 6, 3], backbone_weights)
+                self.backbone = self._make_backbone(
+                    [3, 4, 6, 3],
+                    backbone_weights,
+                    block=Bottleneck if backbone_name == "resnet50" else BasicBlock,
+                )
 
     @staticmethod
-    def _make_backbone(blocks: list[int], weights: dict[str, Tensor] | None) -> nn.Sequential:
-        backbone = ResNet(BasicBlock, blocks)
+    def _make_backbone(
+        blocks: list[int],
+        weights: dict[str, Tensor] | None,
+        *,
+        block: type[BasicBlock] | type[Bottleneck] = BasicBlock,
+    ) -> nn.Sequential:
+        backbone = ResNet(block, blocks)
         rgb_weights = None
         if weights is not None:
             backbone.load_state_dict(weights, strict=True)
@@ -112,7 +124,7 @@ class UnityQualityRegressor(nn.Module):
     ) -> Tensor:
         if (
             features.ndim != 2
-            or features.shape[1] != 512
+            or features.shape[1] not in (512, 2048)
             or len(features) == 0
             or image_ids.shape != (len(features),)
             or image_ids.dtype != torch.int64
@@ -127,7 +139,7 @@ class UnityQualityRegressor(nn.Module):
             or image_pooling not in ("mean_max", "mean")
         ):
             raise ValueError(
-                "Require image-indexed finite512 features and positive valid-pixel counts"
+                "Require image-indexed finite512/2048 features and positive valid-pixel counts"
             )
         weights = valid_pixels.to(device=features.device, dtype=torch.float32)
         ids = image_ids.to(features.device)
@@ -145,8 +157,9 @@ class UnityQualityRegressor(nn.Module):
         means = sums / totals[:, None]
         if image_pooling == "mean":
             return means
-        maxima = features.new_full((count, 512), -torch.inf).scatter_reduce_(
-            0, ids[:, None].expand(-1, 512), features, reduce="amax", include_self=True
+        width = features.shape[1]
+        maxima = features.new_full((count, width), -torch.inf).scatter_reduce_(
+            0, ids[:, None].expand(-1, width), features, reduce="amax", include_self=True
         )
         return torch.cat((means, maxima), dim=1)
 
@@ -157,8 +170,16 @@ class UnityQualityRegressor(nn.Module):
         image_ids: Tensor,
         metadata: Tensor,
     ) -> dict[str, Tensor]:
-        if metadata.ndim != 2 or metadata.shape[1] != 8 or not torch.isfinite(metadata).all():
-            raise ValueError("Require eight input-only metadata values per image")
+        if (
+            metadata.ndim != 2
+            or metadata.shape[1] != 8
+            or not torch.isfinite(metadata).all()
+            or features.ndim != 2
+            or features.shape[1] != self.channel_head.in_features
+        ):
+            raise ValueError(
+                "Require matching encoder features and eight metadata values per image"
+            )
         pooled = self.pool_features(
             features, valid_pixels, image_ids, len(metadata), image_pooling=self.image_pooling
         )

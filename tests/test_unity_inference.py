@@ -122,14 +122,15 @@ def test_nonboolean_importer_flags_rejected() -> None:
 
 
 class FakeModel(UnityQualityRegressor):
-    def __init__(self) -> None:
+    def __init__(self, feature_dim: int = 512) -> None:
         nn.Module.__init__(self)
+        self.channel_head = nn.Linear(feature_dim, 80)
         self.batch_lengths: list[int] = []
 
     def encode(self, rgba: Tensor, valid_mask: Tensor, metadata: Tensor) -> dict[str, Tensor]:
         self.batch_lengths.append(len(rgba))
         return {
-            "features": torch.ones((len(rgba), 512)),
+            "features": torch.ones((len(rgba), self.channel_head.in_features)),
             "channel_log_mse": torch.full((len(rgba), 20, 4), -3.0),
         }
 
@@ -142,8 +143,11 @@ class FakeModel(UnityQualityRegressor):
         }
 
 
-def test_streamed_prediction_covers_all_patches_and_aggregates_mse(tmp_path: Path) -> None:
-    inputs, model = make_inputs(tmp_path), FakeModel()
+@pytest.mark.parametrize("feature_dim", [512, 2048])
+def test_streamed_prediction_covers_all_patches_and_aggregates_mse(
+    tmp_path: Path, feature_dim: int
+) -> None:
+    inputs, model = make_inputs(tmp_path), FakeModel(feature_dim)
     predictions, timing = UnityQualityInference(model, torch.device("cpu"), 2).run(inputs)
     assert model.batch_lengths == [2, 1] and not model.training
     assert predictions["channel_mse"].shape == (2, 20, 4)

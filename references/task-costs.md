@@ -155,3 +155,8 @@ Unity V2原生图像采样预检已完成，关闭模式／资产族cap2／法�
 |---|---|---|
 | ResNet-34整图头完整训练 | 10000／1000图，30轮 | 训练器357.66s，18,746更新、4跳步，准备210.85s。与初始训练合计2381.22s。`[verified: experiment report/unity-v2-20261112/imagenet-resnet34-head-sampled4-result.json trainer_wall_seconds、updates、amp_skips、preparation_seconds、total_two_stage_trainer_seconds]` |
 | ResNet-34整图头验证推理 | 同1000图／7173patch，1预热3测量 | 批量摊销18.8732ms／图，patch forward／transfer摊销5.3351ms／图。`[verified: experiment report/unity-v2-20261112/inference-cost-imagenet-r34-head-full1000.json amortized_preprocess_inference_decision_seconds_per_image、amortized_patch_forward_and_transfer_seconds_per_image]` |
+
+| Unity V2 ResNet-50核验 | 实测范围 | 观测成本 |
+|---|---|---|
+| 原生CUDA训练预检 | 32训练／16验证图，2轮4更新 | 训练器11.98s，峰值张量显存3,749,087,232字节，重载通过。`[verified: experiment report/unity-v2-20261112/mean-resnet50-smoke.json wall_seconds、peak_vram_bytes、training_updates、checkpoint_audit]` |
+| 实际流式CUDA预检 | 16图／128patch，1预热3测量 | 数组与选参重放一致，进程耗时见job receipt，完整训练效果待测。`[verified: experiment report/unity-v2-20261112/resnet50-inference-smoke.json status、validation_images、input_patches、measurements]` |

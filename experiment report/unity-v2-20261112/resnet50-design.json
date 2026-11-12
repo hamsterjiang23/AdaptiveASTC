@@ -1,0 +1,54 @@
+{
+  "status": "full_training_running",
+  "architecture": "Torchvision ResNet50 Bottleneck [3,4,6,3]",
+  "official_source_url": "https://docs.pytorch.org/vision/0.23/_modules/torchvision/models/resnet.html",
+  "installed_torchvision": "0.23.0+cu128",
+  "feature_width": 2048,
+  "parameters_mean_pooling": 24003068,
+  "parameters_mean_max_pooling": 24289788,
+  "mean_image_head_parameters": 287980,
+  "metadata_conditioner_output_width": 4096,
+  "input_channels": 5,
+  "input_metadata_fields": 8,
+  "candidate_count": 20,
+  "initialization": "scratch",
+  "training_recipe_parent": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30-config.json",
+  "changed_full_config_fields": [
+    "backbone_name",
+    "output",
+    "report"
+  ],
+  "capacity_scope": "Bottleneck encoder with2048 features and corresponding metadata, patch and image heads",
+  "legacy_cpu_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\resnet50-legacy-cpu-verification.json",
+  "component_cpu_tests": "88 passed, 2 CUDA cases deselected in8.71s",
+  "full_cpu_tests": "238 passed, 2 CUDA cases deselected in12.98s",
+  "configs": {
+    "resnet50-legacy18-smoke": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\resnet50-legacy18-smoke-config.json",
+    "mean-resnet50-smoke": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-smoke-config.json",
+    "mean-resnet50-full30": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-full30-config.json"
+  },
+  "model_source_sha256": "0a49302ab3ac621d9ea3f9cc0c01e12112e9b4419875d298fdbad06b907ee0ac",
+  "pretrained_cpu_transfer_scope": "Synthetic RGB ResNet50 state, strict matching-depth transfer, stem and deep-block verification",
+  "test_opened": false,
+  "independent_readonly_review": "CLEAN",
+  "cuda_pool_regression": {
+    "result": "2 passed in3.38s",
+    "widths": [
+      512,
+      2048
+    ]
+  },
+  "cuda_capacity_smoke": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-smoke.json",
+    "updates": 4,
+    "checkpoint_audit": "passed",
+    "trainer_seconds": 11.984580600001209,
+    "peak_allocated_vram_bytes": 3749087232
+  },
+  "legacy18_cuda_metrics_exact": true,
+  "actual_streaming_cuda_smoke": "passed_16images128patches_exact",
+  "legacy34_full_validation_replay": "passed_1000images7173patches_exact",
+  "full_training_started": true,
+  "full_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\mean-resnet50-full30\\job.json",
+  "full_job_started_utc": "2026-11-12T23:12:15.948323+00:00"
+}

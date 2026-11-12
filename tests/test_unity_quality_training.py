@@ -106,6 +106,7 @@ def test_native_backbone_defaults_and_explicit_capacity(tmp_path: Path) -> None:
     config = configuration(tmp_path)
     assert config.backbone_name == "resnet18"
     replace(config, backbone_name="resnet34").validate()
+    replace(config, backbone_name="resnet50").validate()
     with pytest.raises(ValueError, match="Invalid native training"):
         replace(config, backbone_name="unknown").validate()
 

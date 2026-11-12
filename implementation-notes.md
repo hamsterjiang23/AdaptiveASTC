@@ -462,3 +462,5 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 - ResNet-34 ImageNet完成30轮／18,742更新，epoch29 raw为86.2%、近阈值RMSE1.6128dB，同验证集余量拟合86.8%，原生重载通过。真实MSE与MS-SSIM单独替换分别为92.6%与92.2%，继续复用sampled4整图头再训练协议，冻结encoder和channel head。确认集forward保持0。`[verified: imagenet-resnet34-full30-result.json；imagenet-resnet34-head-design.json；opinion: 下一项单项对照选择]`
 
 - ResNet-34 ImageNet sampled4整图头完成30轮／18,746更新，选中epoch15／image_head_refit，原始Top-1为86.9%，同验证集拟合87.1%，同权重近阈值RMSE1.6135dB。冻结非头部状态和原生重载通过，正式模型准入以低于90%拒绝、forward为0。当前源码及绑定输入53份／333226055字节已归档，后续按V2容量路线准备ResNet-50。`[verified: imagenet-resnet34-head-sampled4-result.json；imagenet-resnet34-head-evidence.json；resnet50-source-readiness.json；opinion: 后续容量选择]`
+
+- ResNet-50采用2048维Bottleneck编码器和配套FiLM／预测头，三处特征缓冲区统一由channel_head.in_features获取，均值模型24,003,068参数。旧18／34四组初始化状态和RNG、实际旧权重CPU恢复、旧18CUDA训练及旧34完整1000图CUDA预测重放均精确一致。新50模型4更新／重载及实际16图流式CUDA预检通过，完整30轮已启动。`[verified: resnet50-design.json；resnet50-legacy-cpu-verification.json；resnet50-verification.json；opinion: 容量实现选择]`

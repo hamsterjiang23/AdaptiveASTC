@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 import torch
-from torchvision.models.resnet import BasicBlock, ResNet
+from torchvision.models.resnet import BasicBlock, Bottleneck, ResNet
 
 from adaptive_astc.config import JsonDict
 from adaptive_astc.evaluation.unity_quality import UnityQualityPrediction, UnityTextureInput
@@ -354,8 +354,9 @@ def test_pretrained_checkpoint_restore_is_self_contained(tmp_path: Path) -> None
 
 
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA pool replay regression")
-def test_cuda_feature_pool_repeated_outputs_are_bit_identical() -> None:
-    features = torch.randn(4096, 512, device="cuda")
+@pytest.mark.parametrize("feature_dim", [512, 2048])
+def test_cuda_feature_pool_repeated_outputs_are_bit_identical(feature_dim: int) -> None:
+    features = torch.randn(4096, feature_dim, device="cuda")
     pixels = torch.randint(1, 57601, (4096,), device="cuda")
     ids = torch.arange(4096, device="cuda") % 128
     expected = UnityQualityRegressor.pool_features(features, pixels, ids, 128)
@@ -418,3 +419,82 @@ def test_prediction_boundary_rejects_invalid_inputs(damage: str) -> None:
         quality[0, 0] = float("nan")
     with pytest.raises(ValueError):
         UnityQualityPrediction.score([row], [policy()], mse[None], zero[None], quality[None])
+
+
+@pytest.mark.parametrize("pooling,parameters", [("mean", 24003068), ("mean_max", 24289788)])
+def test_resnet50_feature_width_and_checkpoint_round_trip(pooling: str, parameters: int) -> None:
+    torch.set_num_threads(2)
+    model = UnityQualityRegressor(image_pooling=pooling, backbone_name="resnet50").eval()
+    assert sum(p.numel() for p in model.parameters()) == parameters
+    assert model.channel_head.in_features == 2048
+    assert model.metadata_conditioner.out_features == 4096
+    assert isinstance(model.backbone, torch.nn.Sequential)
+    last_stage = model.backbone[-1]
+    assert isinstance(last_stage, torch.nn.Sequential)
+    assert isinstance(last_stage[0], Bottleneck)
+    checkpoint = {
+        "config": {"image_pooling": pooling, "backbone_name": "resnet50"},
+        "model": model.state_dict(),
+    }
+    restored = UnityQualityRegressor.from_checkpoint(checkpoint, torch.device("cpu")).eval()
+    for name, value in model.state_dict().items():
+        assert torch.equal(value, restored.state_dict()[name])
+    inputs = (
+        torch.zeros(2, 4, 32, 32),
+        torch.ones(2, 1, 32, 32, dtype=torch.bool),
+        torch.zeros(2, dtype=torch.int64),
+        torch.zeros(1, 8),
+    )
+    with torch.inference_mode():
+        actual, expected = restored(*inputs), model(*inputs)
+    assert actual["features"].shape == (2, 2048)
+    assert actual["channel_log_mse"].shape == (2, 20, 4)
+    assert actual["image_quality"].shape == (1, 20, 3)
+    for name, values in actual.items():
+        torch.testing.assert_close(values, expected[name], rtol=0, atol=0)
+        assert torch.isfinite(values).all()
+
+
+def test_resnet50_pretrained_state_transfers_stem_and_deep_encoder() -> None:
+    weights = ResNet(Bottleneck, [3, 4, 6, 3]).state_dict()
+    model = UnityQualityRegressor(
+        image_pooling="mean", backbone_name="resnet50", backbone_weights=weights
+    )
+    assert isinstance(model.backbone, torch.nn.Sequential)
+    stem, last_stage = model.backbone[0], model.backbone[-1]
+    assert isinstance(stem, torch.nn.Conv2d)
+    assert isinstance(last_stage, torch.nn.Sequential)
+    last_block = last_stage[0]
+    assert isinstance(last_block, Bottleneck)
+    torch.testing.assert_close(stem.weight[:, :3], weights["conv1.weight"], rtol=0, atol=0)
+    assert torch.count_nonzero(stem.weight[:, 3:]) == 0
+    torch.testing.assert_close(
+        last_block.conv3.weight, weights["layer4.0.conv3.weight"], rtol=0, atol=0
+    )
+    with pytest.raises(RuntimeError):
+        UnityQualityRegressor(backbone_name="resnet34", backbone_weights=weights)
+
+
+@pytest.mark.parametrize("backbone_name,width", [("resnet18", 2048), ("resnet50", 512)])
+def test_image_head_rejects_features_from_different_encoder_width(
+    backbone_name: str, width: int
+) -> None:
+    model = UnityQualityRegressor(backbone_name=backbone_name)
+    with pytest.raises(ValueError, match="matching encoder features"):
+        model.predict_images(
+            torch.ones(2, width),
+            torch.ones(2),
+            torch.zeros(2, dtype=torch.int64),
+            torch.zeros(1, 8),
+        )
+
+
+def test_resnet50_pooling_preserves_negative_tied_maximum_gradients() -> None:
+    features = torch.ones(3, 2048, requires_grad=True)
+    pooled = UnityQualityRegressor.pool_features(
+        features, torch.ones(3), torch.tensor([0, 0, 1]), 2
+    )
+    assert pooled.shape == (2, 4096)
+    gradient = torch.autograd.grad(-pooled[:, 2048:].sum(), features)[0]
+    expected = torch.tensor([-0.5, -0.5, -1.0])[:, None].expand(-1, 2048)
+    torch.testing.assert_close(gradient, expected, rtol=0, atol=0)

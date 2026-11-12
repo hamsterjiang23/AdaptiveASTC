@@ -278,3 +278,11 @@ ResNet-34 ImageNet完整对照完成30轮、18,742次更新及8次AMP跳步，�
 ResNet-34 sampled4整图头完整对照完成30轮、18,746次更新及4次AMP跳步，选中epoch15／image_head_refit，原始／同验证集拟合Top-1为86.9%／87.1%。同权重近阈值RMSE1.6135dB，严格质量68.2%、质量回退192张，payload31,392,800字节。整图头训练器357.66秒，与初始完整训练合计2381.22秒；72940参数参与头部更新，encoder与channel head保持，原生重载通过。当前39份模型血缘证据通过只读核验，正式准入以低于90%拒绝，forward为0。`[verified: imagenet-resnet34-head-sampled4-result.json；imagenet-resnet34-head-evidence.json；imagenet-resnet34-head-verification.json]`
 
 新头部权重的1000图／7173patch成本测量完成，批量摊销18.8732ms／图，PNG身份与顺序同前四臂，预测数组差为0、选参一致。下一项按V2容量路线准备ResNet-50，当前实现尚未启动；已归档53份当前源码和绑定输入，共333,226,055字节，全部SHA核对通过，并通过24份头部及13份初始原生源码／输入的归档绑定核验。`[verified: inference-cost-imagenet-r34-head-full1000.json；imagenet-resnet34-head-verification.json；resnet50-source-readiness.json；opinion: 后续容量选择]`
+
+## ResNet-50容量对照
+
+ResNet-50采用Torchvision Bottleneck的[3,4,6,3]布局，编码特征为2048维，FiLM、patch头及整图头按该宽度配套；均值池化模型24,003,068参数，整图头287,980参数。训练验证、流式推理及特征缓存三处缓冲区按模型宽度分配。完整配置相对scratch ResNet-34只改变backbone_name及输出位置。`[verified: resnet50-design.json；resnet50-legacy-cpu-verification.json resnet50_capacity；opinion: 容量实现选择]`
+
+四组ResNet-18／34与mean／mean_max的初始化状态及后续CPU RNG逐位复现，两个实际历史检查点的CPU状态和探针输出一致。旧ResNet-18 CUDA预检全部逐轮损失与非计时指标复现，旧ResNet-34的1000图／7173patch新运行库预测数组及选参均完全一致。238项CPU检查、2项独立CUDA池化检查和静态检查通过，代码只读审阅CLEAN。`[verified: resnet50-legacy-cpu-verification.json；resnet50-verification.json cpu_tests、cuda_pool_tests、static_checks、independent_readonly_code_review]`
+
+ResNet-50原生32图CUDA预检完成4次更新与重载，峰值张量显存3,749,087,232字节，训练器11.98秒；16图／128patch实际流式CUDA推理与原保存数组、选参一致。随后启动10000／1000图、30轮随机初始化容量对照，当前训练效果等待终态结果。接口核对使用已安装Torchvision0.23.0及对应官方源码。`[verified: mean-resnet50-smoke.json；resnet50-inference-smoke.json；resnet50-verification.json full_training_started；resnet50-verification.json api_documentation]`

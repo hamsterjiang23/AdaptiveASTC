@@ -82,7 +82,7 @@ class NativeFeatureCache:
         source_patches = np.flatnonzero(image_lookup[dataset.image_ids] >= 0)
         patch_lookup = np.full(len(dataset), -1, dtype=np.int64)
         patch_lookup[source_patches] = np.arange(len(source_patches))
-        features = np.empty((len(source_patches), 512), dtype=np.float32)
+        features = np.empty((len(source_patches), model.channel_head.in_features), dtype=np.float32)
         logs = np.empty((len(source_patches), 20, 4), dtype=np.float64)
         model.eval()
         with torch.inference_mode():
