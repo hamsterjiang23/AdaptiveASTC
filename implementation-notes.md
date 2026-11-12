@@ -460,3 +460,5 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 - ResNet-34完整30轮重载通过，Top-1为79.2%、所选权重近阈值RMSE2.7386dB，同验证集拟合79.4%。保留负结果及原81.3%参照。推理计时新增显式历史源码归档绑定，完整输入与训练Dataset逐patch核对，批量耗时按图数摊销，加载与绑定审计成本单列。`[verified: mean-resnet34-full30-result.json；inference-cost-input-readiness.json；reproductions/unity_search_baseline/inference_benchmark.py bind_training_sources、timing_summary]`
 
 - ResNet-34 ImageNet完成30轮／18,742更新，epoch29 raw为86.2%、近阈值RMSE1.6128dB，同验证集余量拟合86.8%，原生重载通过。真实MSE与MS-SSIM单独替换分别为92.6%与92.2%，继续复用sampled4整图头再训练协议，冻结encoder和channel head。确认集forward保持0。`[verified: imagenet-resnet34-full30-result.json；imagenet-resnet34-head-design.json；opinion: 下一项单项对照选择]`
+
+- ResNet-34 ImageNet sampled4整图头完成30轮／18,746更新，选中epoch15／image_head_refit，原始Top-1为86.9%，同验证集拟合87.1%，同权重近阈值RMSE1.6135dB。冻结非头部状态和原生重载通过，正式模型准入以低于90%拒绝、forward为0。当前源码及绑定输入53份／333226055字节已归档，后续按V2容量路线准备ResNet-50。`[verified: imagenet-resnet34-head-sampled4-result.json；imagenet-resnet34-head-evidence.json；resnet50-source-readiness.json；opinion: 后续容量选择]`

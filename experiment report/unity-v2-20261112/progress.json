@@ -1,6 +1,6 @@
 {
-  "status": "imagenet_resnet34_head_full30_running",
-  "updated_utc": "2026-11-12T22:31:03.677413+00:00",
+  "status": "resnet34_capacity_controls_completed_resnet50_pending",
+  "updated_utc": "2026-11-12T22:43:52.672524+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,9 +10,9 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Complete independent ImageNet ResNet34 head full30 and native checkpoint audit",
-    "Attribute/calibrate selected frozen head predictions and measure validation inference cost",
-    "Resolve pending mainline promotion, confirmation replacements and public publication decisions"
+    "Implement planned ResNet50 capacity control with legacy ResNet18/34 replay preservation",
+    "CPU and CUDA smoke before any new full training",
+    "Resolve pending initialization promotion, confirmation replacements and public publication decisions"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
   "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
@@ -87,7 +87,8 @@
     "before_ema": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\manifest.json",
     "before_psnr_preparation": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-psnr-warmup\\manifest.json",
     "before_image_sampling": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-image-sampling",
-    "before_resnet34": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-resnet34"
+    "before_resnet34": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-resnet34",
+    "before_resnet50": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-resnet50"
   },
   "pretrained_mainline_promotion": "pending_user_decision",
   "current_bn_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30-bn.json",
@@ -95,7 +96,7 @@
   "next_training_config": null,
   "external_push": {
     "status": "pending_explicit_approval_after_auto_review_rejection",
-    "local_commit": "e3fa9c9",
+    "local_commit": "836cf92",
     "destination": "hamsterjiang23/AdaptiveASTC main",
     "authenticated_login": "hamsterjiang23",
     "repository_owner": "hamsterjiang23",
@@ -141,13 +142,7 @@
   },
   "resnet34_full30_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30-result.json",
   "inference_cost_comparison": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-capacity-comparison.json",
-  "active_job": {
-    "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet34-head-sampled4\\job.json",
-    "runner_pid": 13992,
-    "child_pid": 6328,
-    "started_utc": "2026-11-12T22:30:12.591958+00:00",
-    "status": "running"
-  },
+  "active_job": null,
   "imagenet_resnet34_observation": {
     "status": "completed",
     "completed_epochs": 30,
@@ -157,5 +152,12 @@
     "job_status": "passed"
   },
   "resource_monitor": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet34-full30\\resource-monitor-v1.jsonl",
-  "imagenet_resnet34_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-result.json"
+  "imagenet_resnet34_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-result.json",
+  "best_independent_control": {
+    "model": "imagenet_resnet34_head_sampled4",
+    "raw_top1": 0.869,
+    "same_validation_fit_top1": 0.871,
+    "selected_near_rmse_db": 1.613473737825021,
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-result.json"
+  }
 }

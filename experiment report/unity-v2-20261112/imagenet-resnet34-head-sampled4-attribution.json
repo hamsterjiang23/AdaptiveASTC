@@ -1,0 +1,1327 @@
+{
+  "status": "completed",
+  "config": {
+    "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4.json",
+    "training_report_sha256": "06bc32f645e0034f08bcc8ab835d9dde86a3f183ad08efc035c204b918c643a6",
+    "smoke": false,
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-attribution",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-attribution.json"
+  },
+  "sources_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4.json": "06bc32f645e0034f08bcc8ab835d9dde86a3f183ad08efc035c204b918c643a6",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-attribution-config.json": "9e1269eb3ed2fecd77b26e2a23ba4d180a468a55a6024d5cf4462803d7150095",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+    "E:\\ASTC_Compression\\script\\attribute_unity_errors.py": "c405702ba6f7c0d02dbfe0ef491f3cd2c576e7c45014174b1d5af6d384707cc3",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "E:\\ASTC_Compression\\script\\audit_unity_normalization.py": "e9236ca4332ef9424aad97337d516b94ca2fdf4236437ebd346f556cca2d8ad9",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "1770193dbde602ffc163efe81c3c788cdeeb7f03dad62048adb934ef1c58d084",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30.json": "3bc53fd4654551d3ed33b167f2659bb94025eec4b7aab3f5ee4b850f6d61fad5",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_loss.py": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d",
+    "E:\\ASTC_Compression\\script\\refit_unity_image_head.py": "fd7300f6ac7d4a03d84573f2e29d386e1697ecce9a868e9f2576ce8474053a1b",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_sampling.py": "6b24c5e1c2d59430d59de4516567dd8300966b32440b10cfba916c99ca53a331",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-config.json": "74cdc9b9fef9b62be95be906d3d0dc54f74d7e37b2eb68c75ce136652e3974e7",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-config.json": "47796892f3907b61904cb61905b374cfb11f90904935710e079a2cdf2eb0e68c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\patch_normalization.py": "74151a5e93f99755f5f90ede3bebd01a63b1d018a14c3a94ba64b52872e3b7e1",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_bags.py": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "53f432b27728cd83bf92d27eba676adaf746fc6ce899457d17e892277f6d674c",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\train-features.npy": "65842256933d8e856e5f2a4b5ae13de23be19f8f7126b3fa58e9e50c4c652f15",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\train-indexes.npz": "96470aa8a84779ccb89025b6dd855871c64c6c864fcd7492a0997299c6c39511",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\validation-features.npy": "169e1380fc164a9573fbb725aebdf0659b3f1115c60d44c632c51251db481043",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\validation-indexes.npz": "d8d4835c5a2cd3c54380caabf914c150f7095aab70ee855e718e3a8f1ef6d2e4",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\best.pt": "8e8945fcb0e1b71c6d9cf8e26eb2110eca2f2a918f3c96eaabc11a38cfa8788b",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\best-validation.npz": "fed4a9f572757000d120f9636283e316235156f9db8169263d391aa71e407626",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\best-decisions.json": "5a595dfbfc0a2c1b9fde62d20d26ef4b63d400c2decb1b7c1d83bc9f068e4ce8"
+  },
+  "training_source_binding": {
+    "archive": null,
+    "sources": [
+      {
+        "relative_path": "reproductions/unity_search_baseline/prediction_audit.py",
+        "training_sha256": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+        "verified_source": "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py",
+        "current_sha256": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46"
+      },
+      {
+        "relative_path": "script/audit_unity_normalization.py",
+        "training_sha256": "e9236ca4332ef9424aad97337d516b94ca2fdf4236437ebd346f556cca2d8ad9",
+        "verified_source": "E:\\ASTC_Compression\\script\\audit_unity_normalization.py",
+        "current_sha256": "e9236ca4332ef9424aad97337d516b94ca2fdf4236437ebd346f556cca2d8ad9"
+      },
+      {
+        "relative_path": "reproductions/unity_search_baseline/policy.py",
+        "training_sha256": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+        "verified_source": "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py",
+        "current_sha256": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b"
+      },
+      {
+        "relative_path": "src/adaptive_astc/models/unity_quality.py",
+        "training_sha256": "1770193dbde602ffc163efe81c3c788cdeeb7f03dad62048adb934ef1c58d084",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py",
+        "current_sha256": "1770193dbde602ffc163efe81c3c788cdeeb7f03dad62048adb934ef1c58d084"
+      },
+      {
+        "relative_path": "experiment report/unity-v2-20261112/imagenet-resnet34-full30.json",
+        "training_sha256": "3bc53fd4654551d3ed33b167f2659bb94025eec4b7aab3f5ee4b850f6d61fad5",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30.json",
+        "current_sha256": "3bc53fd4654551d3ed33b167f2659bb94025eec4b7aab3f5ee4b850f6d61fad5"
+      },
+      {
+        "relative_path": "src/adaptive_astc/data/unity_patch_dataset.py",
+        "training_sha256": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py",
+        "current_sha256": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008"
+      },
+      {
+        "relative_path": "src/adaptive_astc/utils/artifacts.py",
+        "training_sha256": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\artifacts.py",
+        "current_sha256": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045"
+      },
+      {
+        "relative_path": "src/adaptive_astc/training/unity_quality_loss.py",
+        "training_sha256": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_loss.py",
+        "current_sha256": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37"
+      },
+      {
+        "relative_path": "src/adaptive_astc/data/splitting.py",
+        "training_sha256": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\splitting.py",
+        "current_sha256": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d"
+      },
+      {
+        "relative_path": "script/refit_unity_image_head.py",
+        "training_sha256": "fd7300f6ac7d4a03d84573f2e29d386e1697ecce9a868e9f2576ce8474053a1b",
+        "verified_source": "E:\\ASTC_Compression\\script\\refit_unity_image_head.py",
+        "current_sha256": "fd7300f6ac7d4a03d84573f2e29d386e1697ecce9a868e9f2576ce8474053a1b"
+      },
+      {
+        "relative_path": "src/adaptive_astc/data/unity_image_sampling.py",
+        "training_sha256": "6b24c5e1c2d59430d59de4516567dd8300966b32440b10cfba916c99ca53a331",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_sampling.py",
+        "current_sha256": "6b24c5e1c2d59430d59de4516567dd8300966b32440b10cfba916c99ca53a331"
+      },
+      {
+        "relative_path": "reproductions/unity_search_baseline/policy_audit.py",
+        "training_sha256": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+        "verified_source": "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py",
+        "current_sha256": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c"
+      },
+      {
+        "relative_path": "src/adaptive_astc/utils/runtime.py",
+        "training_sha256": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py",
+        "current_sha256": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5"
+      },
+      {
+        "relative_path": "experiment report/unity-v2-20261112/imagenet-resnet34-head-sampled4-config.json",
+        "training_sha256": "74cdc9b9fef9b62be95be906d3d0dc54f74d7e37b2eb68c75ce136652e3974e7",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-config.json",
+        "current_sha256": "74cdc9b9fef9b62be95be906d3d0dc54f74d7e37b2eb68c75ce136652e3974e7"
+      },
+      {
+        "relative_path": "experiment report/unity-v2-20261112/imagenet-resnet34-full30-config.json",
+        "training_sha256": "47796892f3907b61904cb61905b374cfb11f90904935710e079a2cdf2eb0e68c",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-config.json",
+        "current_sha256": "47796892f3907b61904cb61905b374cfb11f90904935710e079a2cdf2eb0e68c"
+      },
+      {
+        "relative_path": "src/adaptive_astc/evaluation/patch_normalization.py",
+        "training_sha256": "74151a5e93f99755f5f90ede3bebd01a63b1d018a14c3a94ba64b52872e3b7e1",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\patch_normalization.py",
+        "current_sha256": "74151a5e93f99755f5f90ede3bebd01a63b1d018a14c3a94ba64b52872e3b7e1"
+      },
+      {
+        "relative_path": "src/adaptive_astc/evaluation/unity_quality.py",
+        "training_sha256": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py",
+        "current_sha256": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360"
+      },
+      {
+        "relative_path": "src/adaptive_astc/data/unity_image_bags.py",
+        "training_sha256": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_bags.py",
+        "current_sha256": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b"
+      },
+      {
+        "relative_path": "src/adaptive_astc/training/unity_quality_trainer.py",
+        "training_sha256": "53f432b27728cd83bf92d27eba676adaf746fc6ce899457d17e892277f6d674c",
+        "verified_source": "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py",
+        "current_sha256": "53f432b27728cd83bf92d27eba676adaf746fc6ce899457d17e892277f6d674c"
+      },
+      {
+        "relative_path": "experiment report/.local/unity-accuracy90-20261111/development-corpus11000-v2/corpus.json",
+        "training_sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json",
+        "current_sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57"
+      },
+      {
+        "relative_path": "experiment report/.local/unity-v2-20261112/imagenet-resnet34-head-sampled4/train-features.npy",
+        "training_sha256": "65842256933d8e856e5f2a4b5ae13de23be19f8f7126b3fa58e9e50c4c652f15",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\train-features.npy",
+        "current_sha256": "65842256933d8e856e5f2a4b5ae13de23be19f8f7126b3fa58e9e50c4c652f15"
+      },
+      {
+        "relative_path": "experiment report/.local/unity-v2-20261112/imagenet-resnet34-head-sampled4/train-indexes.npz",
+        "training_sha256": "96470aa8a84779ccb89025b6dd855871c64c6c864fcd7492a0997299c6c39511",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\train-indexes.npz",
+        "current_sha256": "96470aa8a84779ccb89025b6dd855871c64c6c864fcd7492a0997299c6c39511"
+      },
+      {
+        "relative_path": "experiment report/.local/unity-v2-20261112/imagenet-resnet34-head-sampled4/validation-features.npy",
+        "training_sha256": "169e1380fc164a9573fbb725aebdf0659b3f1115c60d44c632c51251db481043",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\validation-features.npy",
+        "current_sha256": "169e1380fc164a9573fbb725aebdf0659b3f1115c60d44c632c51251db481043"
+      },
+      {
+        "relative_path": "experiment report/.local/unity-v2-20261112/imagenet-resnet34-head-sampled4/validation-indexes.npz",
+        "training_sha256": "d8d4835c5a2cd3c54380caabf914c150f7095aab70ee855e718e3a8f1ef6d2e4",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\validation-indexes.npz",
+        "current_sha256": "d8d4835c5a2cd3c54380caabf914c150f7095aab70ee855e718e3a8f1ef6d2e4"
+      }
+    ]
+  },
+  "validation_images": 1000,
+  "training_updates": 0,
+  "model_forward_calls": 0,
+  "test_opened": false,
+  "variants": {
+    "frozen_predictions": {
+      "count": 1000,
+      "accuracy": 0.869,
+      "balanced_accuracy": 0.7895835501146891,
+      "full_choice_accuracy": 0.588,
+      "confusion_matrix": [
+        [
+          94,
+          22,
+          0,
+          4
+        ],
+        [
+          16,
+          113,
+          14,
+          0
+        ],
+        [
+          0,
+          22,
+          86,
+          30
+        ],
+        [
+          1,
+          1,
+          21,
+          576
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 0.7833333333333333,
+          "precision": 0.8468468468468469
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 0.7902097902097902,
+          "precision": 0.7151898734177216
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 0.6231884057971014,
+          "precision": 0.7107438016528925
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 0.9616026711185309,
+          "precision": 0.9442622950819672
+        }
+      },
+      "actual_quality_pass_rate": 0.682,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 1.613473737825021,
+      "selected_payload_bytes": 31392800,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "groups": {
+        "srgb_small": {
+          "images": 612,
+          "accuracy": 0.8251633986928104,
+          "full_choice_accuracy": 0.49673202614379086,
+          "actual_quality_pass_rate": 0.6944444444444444
+        },
+        "max_side_le256": {
+          "images": 301,
+          "accuracy": 0.8504983388704319,
+          "full_choice_accuracy": 0.5282392026578073,
+          "actual_quality_pass_rate": 0.7408637873754153
+        },
+        "original_first_valid": {
+          "images": 643,
+          "accuracy": 0.8180404354587869,
+          "full_choice_accuracy": 0.4867807153965785,
+          "actual_quality_pass_rate": 0.7356143079315708
+        },
+        "srgb_large": {
+          "images": 326,
+          "accuracy": 0.9601226993865031,
+          "full_choice_accuracy": 0.7852760736196319,
+          "actual_quality_pass_rate": 0.6411042944785276
+        },
+        "max_side_le512": {
+          "images": 301,
+          "accuracy": 0.9302325581395349,
+          "full_choice_accuracy": 0.7043189368770764,
+          "actual_quality_pass_rate": 0.6511627906976745
+        },
+        "original_size_first_relaxed": {
+          "images": 93,
+          "accuracy": 0.9139784946236559,
+          "full_choice_accuracy": 0.8387096774193549,
+          "actual_quality_pass_rate": 0.0
+        },
+        "max_side_le1024": {
+          "images": 80,
+          "accuracy": 0.95,
+          "full_choice_accuracy": 0.775,
+          "actual_quality_pass_rate": 0.7125
+        },
+        "original_size_first_strict": {
+          "images": 231,
+          "accuracy": 0.9783549783549783,
+          "full_choice_accuracy": 0.7705627705627706,
+          "actual_quality_pass_rate": 0.9047619047619048
+        },
+        "normal": {
+          "images": 45,
+          "accuracy": 0.7777777777777778,
+          "full_choice_accuracy": 0.3333333333333333,
+          "actual_quality_pass_rate": 0.6888888888888889
+        },
+        "max_side_le128": {
+          "images": 299,
+          "accuracy": 0.7959866220735786,
+          "full_choice_accuracy": 0.46488294314381273,
+          "actual_quality_pass_rate": 0.6488294314381271
+        },
+        "original_highest_psnr_fallback": {
+          "images": 33,
+          "accuracy": 0.9696969696969697,
+          "full_choice_accuracy": 0.5757575757575758,
+          "actual_quality_pass_rate": 0.0
+        },
+        "linear": {
+          "images": 17,
+          "accuracy": 0.9411764705882353,
+          "full_choice_accuracy": 0.7647058823529411,
+          "actual_quality_pass_rate": 1.0
+        },
+        "max_side_gt1024": {
+          "images": 19,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.8421052631578947,
+          "actual_quality_pass_rate": 0.631578947368421
+        },
+        "asset_group_macro": {
+          "groups": 487,
+          "accuracy": 0.9151906994040706
+        }
+      },
+      "fixed_error_images": 0,
+      "lost_correct_images": 0
+    },
+    "true_channel_mse": {
+      "count": 1000,
+      "accuracy": 0.933,
+      "balanced_accuracy": 0.8997610286933072,
+      "full_choice_accuracy": 0.729,
+      "confusion_matrix": [
+        [
+          108,
+          11,
+          0,
+          1
+        ],
+        [
+          6,
+          132,
+          5,
+          0
+        ],
+        [
+          0,
+          12,
+          111,
+          15
+        ],
+        [
+          1,
+          1,
+          15,
+          582
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 0.9,
+          "precision": 0.9391304347826087
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 0.9230769230769231,
+          "precision": 0.8461538461538461
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 0.8043478260869565,
+          "precision": 0.8473282442748091
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 0.9716193656093489,
+          "precision": 0.9732441471571907
+        }
+      },
+      "actual_quality_pass_rate": 0.753,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 0.2366701978225021,
+      "selected_payload_bytes": 31563632,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "groups": {
+        "srgb_small": {
+          "images": 612,
+          "accuracy": 0.9084967320261438,
+          "full_choice_accuracy": 0.6879084967320261,
+          "actual_quality_pass_rate": 0.8006535947712419
+        },
+        "max_side_le256": {
+          "images": 301,
+          "accuracy": 0.9235880398671097,
+          "full_choice_accuracy": 0.6976744186046512,
+          "actual_quality_pass_rate": 0.8471760797342193
+        },
+        "original_first_valid": {
+          "images": 643,
+          "accuracy": 0.8973561430793157,
+          "full_choice_accuracy": 0.6656298600311042,
+          "actual_quality_pass_rate": 0.8367029548989113
+        },
+        "srgb_large": {
+          "images": 326,
+          "accuracy": 0.9969325153374233,
+          "full_choice_accuracy": 0.8466257668711656,
+          "actual_quality_pass_rate": 0.6595092024539877
+        },
+        "max_side_le512": {
+          "images": 301,
+          "accuracy": 0.973421926910299,
+          "full_choice_accuracy": 0.7873754152823921,
+          "actual_quality_pass_rate": 0.6777408637873754
+        },
+        "original_size_first_relaxed": {
+          "images": 93,
+          "accuracy": 0.989247311827957,
+          "full_choice_accuracy": 0.9354838709677419,
+          "actual_quality_pass_rate": 0.0
+        },
+        "max_side_le1024": {
+          "images": 80,
+          "accuracy": 0.975,
+          "full_choice_accuracy": 0.8,
+          "actual_quality_pass_rate": 0.725
+        },
+        "original_size_first_strict": {
+          "images": 231,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.8095238095238095,
+          "actual_quality_pass_rate": 0.9307359307359307
+        },
+        "normal": {
+          "images": 45,
+          "accuracy": 0.7777777777777778,
+          "full_choice_accuracy": 0.3333333333333333,
+          "actual_quality_pass_rate": 0.6888888888888889
+        },
+        "max_side_le128": {
+          "images": 299,
+          "accuracy": 0.8862876254180602,
+          "full_choice_accuracy": 0.6755852842809364,
+          "actual_quality_pass_rate": 0.7491638795986622
+        },
+        "original_highest_psnr_fallback": {
+          "images": 33,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.8181818181818182,
+          "actual_quality_pass_rate": 0.0
+        },
+        "linear": {
+          "images": 17,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 1.0
+        },
+        "max_side_gt1024": {
+          "images": 19,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.8421052631578947,
+          "actual_quality_pass_rate": 0.631578947368421
+        },
+        "asset_group_macro": {
+          "groups": 487,
+          "accuracy": 0.9531669794754105
+        }
+      },
+      "fixed_error_images": 66,
+      "lost_correct_images": 2
+    },
+    "true_zero_mask": {
+      "count": 1000,
+      "accuracy": 0.87,
+      "balanced_accuracy": 0.7917302259026692,
+      "full_choice_accuracy": 0.592,
+      "confusion_matrix": [
+        [
+          95,
+          21,
+          0,
+          4
+        ],
+        [
+          16,
+          112,
+          15,
+          0
+        ],
+        [
+          0,
+          22,
+          87,
+          29
+        ],
+        [
+          1,
+          1,
+          21,
+          576
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 0.7916666666666666,
+          "precision": 0.8482142857142857
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 0.7832167832167832,
+          "precision": 0.717948717948718
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 0.6304347826086957,
+          "precision": 0.7073170731707317
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 0.9616026711185309,
+          "precision": 0.9458128078817734
+        }
+      },
+      "actual_quality_pass_rate": 0.683,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 1.5597626073030986,
+      "selected_payload_bytes": 31343600,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "groups": {
+        "srgb_small": {
+          "images": 612,
+          "accuracy": 0.8251633986928104,
+          "full_choice_accuracy": 0.49836601307189543,
+          "actual_quality_pass_rate": 0.696078431372549
+        },
+        "max_side_le256": {
+          "images": 301,
+          "accuracy": 0.8538205980066446,
+          "full_choice_accuracy": 0.5249169435215947,
+          "actual_quality_pass_rate": 0.7408637873754153
+        },
+        "original_first_valid": {
+          "images": 643,
+          "accuracy": 0.8180404354587869,
+          "full_choice_accuracy": 0.48833592534992226,
+          "actual_quality_pass_rate": 0.7371695178849145
+        },
+        "srgb_large": {
+          "images": 326,
+          "accuracy": 0.9631901840490797,
+          "full_choice_accuracy": 0.7944785276073619,
+          "actual_quality_pass_rate": 0.6411042944785276
+        },
+        "max_side_le512": {
+          "images": 301,
+          "accuracy": 0.9302325581395349,
+          "full_choice_accuracy": 0.7109634551495017,
+          "actual_quality_pass_rate": 0.6511627906976745
+        },
+        "original_size_first_relaxed": {
+          "images": 93,
+          "accuracy": 0.9247311827956989,
+          "full_choice_accuracy": 0.8709677419354839,
+          "actual_quality_pass_rate": 0.0
+        },
+        "max_side_le1024": {
+          "images": 80,
+          "accuracy": 0.9625,
+          "full_choice_accuracy": 0.7875,
+          "actual_quality_pass_rate": 0.7125
+        },
+        "original_size_first_strict": {
+          "images": 231,
+          "accuracy": 0.9783549783549783,
+          "full_choice_accuracy": 0.7705627705627706,
+          "actual_quality_pass_rate": 0.9047619047619048
+        },
+        "normal": {
+          "images": 45,
+          "accuracy": 0.7777777777777778,
+          "full_choice_accuracy": 0.3333333333333333,
+          "actual_quality_pass_rate": 0.6888888888888889
+        },
+        "max_side_le128": {
+          "images": 299,
+          "accuracy": 0.7926421404682275,
+          "full_choice_accuracy": 0.47157190635451507,
+          "actual_quality_pass_rate": 0.6521739130434783
+        },
+        "original_highest_psnr_fallback": {
+          "images": 33,
+          "accuracy": 0.9696969696969697,
+          "full_choice_accuracy": 0.5757575757575758,
+          "actual_quality_pass_rate": 0.0
+        },
+        "linear": {
+          "images": 17,
+          "accuracy": 0.9411764705882353,
+          "full_choice_accuracy": 0.7647058823529411,
+          "actual_quality_pass_rate": 1.0
+        },
+        "max_side_gt1024": {
+          "images": 19,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.8421052631578947,
+          "actual_quality_pass_rate": 0.631578947368421
+        },
+        "asset_group_macro": {
+          "groups": 487,
+          "accuracy": 0.9168761887948988
+        }
+      },
+      "fixed_error_images": 3,
+      "lost_correct_images": 2
+    },
+    "true_channel_mse_and_zero": {
+      "count": 1000,
+      "accuracy": 0.933,
+      "balanced_accuracy": 0.8984301392155062,
+      "full_choice_accuracy": 0.732,
+      "confusion_matrix": [
+        [
+          108,
+          11,
+          0,
+          1
+        ],
+        [
+          6,
+          131,
+          6,
+          0
+        ],
+        [
+          0,
+          12,
+          111,
+          15
+        ],
+        [
+          1,
+          1,
+          14,
+          583
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 0.9,
+          "precision": 0.9391304347826087
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 0.916083916083916,
+          "precision": 0.8451612903225807
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 0.8043478260869565,
+          "precision": 0.8473282442748091
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 0.9732888146911519,
+          "precision": 0.9732888146911519
+        }
+      },
+      "actual_quality_pass_rate": 0.752,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 7.730035540316226e-07,
+      "selected_payload_bytes": 31510832,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "groups": {
+        "srgb_small": {
+          "images": 612,
+          "accuracy": 0.9068627450980392,
+          "full_choice_accuracy": 0.6895424836601307,
+          "actual_quality_pass_rate": 0.7990196078431373
+        },
+        "max_side_le256": {
+          "images": 301,
+          "accuracy": 0.9235880398671097,
+          "full_choice_accuracy": 0.6976744186046512,
+          "actual_quality_pass_rate": 0.8471760797342193
+        },
+        "original_first_valid": {
+          "images": 643,
+          "accuracy": 0.895800933125972,
+          "full_choice_accuracy": 0.6656298600311042,
+          "actual_quality_pass_rate": 0.8351477449455676
+        },
+        "srgb_large": {
+          "images": 326,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.852760736196319,
+          "actual_quality_pass_rate": 0.6595092024539877
+        },
+        "max_side_le512": {
+          "images": 301,
+          "accuracy": 0.973421926910299,
+          "full_choice_accuracy": 0.7906976744186046,
+          "actual_quality_pass_rate": 0.6777408637873754
+        },
+        "original_size_first_relaxed": {
+          "images": 93,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.956989247311828,
+          "actual_quality_pass_rate": 0.0
+        },
+        "max_side_le1024": {
+          "images": 80,
+          "accuracy": 0.9875,
+          "full_choice_accuracy": 0.8125,
+          "actual_quality_pass_rate": 0.725
+        },
+        "original_size_first_strict": {
+          "images": 231,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.8095238095238095,
+          "actual_quality_pass_rate": 0.9307359307359307
+        },
+        "normal": {
+          "images": 45,
+          "accuracy": 0.7777777777777778,
+          "full_choice_accuracy": 0.3333333333333333,
+          "actual_quality_pass_rate": 0.6888888888888889
+        },
+        "max_side_le128": {
+          "images": 299,
+          "accuracy": 0.882943143812709,
+          "full_choice_accuracy": 0.6789297658862876,
+          "actual_quality_pass_rate": 0.745819397993311
+        },
+        "original_highest_psnr_fallback": {
+          "images": 33,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.8484848484848485,
+          "actual_quality_pass_rate": 0.0
+        },
+        "linear": {
+          "images": 17,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 1.0
+        },
+        "max_side_gt1024": {
+          "images": 19,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.8421052631578947,
+          "actual_quality_pass_rate": 0.631578947368421
+        },
+        "asset_group_macro": {
+          "groups": 487,
+          "accuracy": 0.9537829959025151
+        }
+      },
+      "fixed_error_images": 67,
+      "lost_correct_images": 3
+    },
+    "true_ms_ssim": {
+      "count": 1000,
+      "accuracy": 0.924,
+      "balanced_accuracy": 0.8734519220406024,
+      "full_choice_accuracy": 0.814,
+      "confusion_matrix": [
+        [
+          105,
+          13,
+          1,
+          1
+        ],
+        [
+          11,
+          123,
+          9,
+          0
+        ],
+        [
+          0,
+          13,
+          107,
+          18
+        ],
+        [
+          1,
+          0,
+          9,
+          589
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 0.875,
+          "precision": 0.8974358974358975
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 0.8601398601398601,
+          "precision": 0.825503355704698
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 0.7753623188405797,
+          "precision": 0.8492063492063492
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 0.9833055091819699,
+          "precision": 0.96875
+        }
+      },
+      "actual_quality_pass_rate": 0.789,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 1.613473737825021,
+      "selected_payload_bytes": 31411696,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "groups": {
+        "srgb_small": {
+          "images": 612,
+          "accuracy": 0.9150326797385621,
+          "full_choice_accuracy": 0.7892156862745098,
+          "actual_quality_pass_rate": 0.8431372549019608
+        },
+        "max_side_le256": {
+          "images": 301,
+          "accuracy": 0.9235880398671097,
+          "full_choice_accuracy": 0.8073089700996677,
+          "actual_quality_pass_rate": 0.8870431893687708
+        },
+        "original_first_valid": {
+          "images": 643,
+          "accuracy": 0.9020217729393468,
+          "full_choice_accuracy": 0.7573872472783826,
+          "actual_quality_pass_rate": 0.8771384136858476
+        },
+        "srgb_large": {
+          "images": 326,
+          "accuracy": 0.9601226993865031,
+          "full_choice_accuracy": 0.9294478527607362,
+          "actual_quality_pass_rate": 0.6901840490797546
+        },
+        "max_side_le512": {
+          "images": 301,
+          "accuracy": 0.9368770764119602,
+          "full_choice_accuracy": 0.8372093023255814,
+          "actual_quality_pass_rate": 0.6843853820598007
+        },
+        "original_size_first_relaxed": {
+          "images": 93,
+          "accuracy": 0.9139784946236559,
+          "full_choice_accuracy": 0.8817204301075269,
+          "actual_quality_pass_rate": 0.0
+        },
+        "max_side_le1024": {
+          "images": 80,
+          "accuracy": 0.95,
+          "full_choice_accuracy": 0.925,
+          "actual_quality_pass_rate": 0.8125
+        },
+        "original_size_first_strict": {
+          "images": 231,
+          "accuracy": 0.9783549783549783,
+          "full_choice_accuracy": 0.9567099567099567,
+          "actual_quality_pass_rate": 0.974025974025974
+        },
+        "normal": {
+          "images": 45,
+          "accuracy": 0.7777777777777778,
+          "full_choice_accuracy": 0.3333333333333333,
+          "actual_quality_pass_rate": 0.6888888888888889
+        },
+        "max_side_le128": {
+          "images": 299,
+          "accuracy": 0.8996655518394648,
+          "full_choice_accuracy": 0.7558528428093646,
+          "actual_quality_pass_rate": 0.7959866220735786
+        },
+        "original_highest_psnr_fallback": {
+          "images": 33,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.7272727272727273,
+          "actual_quality_pass_rate": 0.0
+        },
+        "linear": {
+          "images": 17,
+          "accuracy": 0.9411764705882353,
+          "full_choice_accuracy": 0.7647058823529411,
+          "actual_quality_pass_rate": 1.0
+        },
+        "max_side_gt1024": {
+          "images": 19,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.6842105263157895
+        },
+        "asset_group_macro": {
+          "groups": 487,
+          "accuracy": 0.9408755776306205
+        }
+      },
+      "fixed_error_images": 56,
+      "lost_correct_images": 1
+    },
+    "true_angles": {
+      "count": 1000,
+      "accuracy": 0.879,
+      "balanced_accuracy": 0.8056629032154364,
+      "full_choice_accuracy": 0.618,
+      "confusion_matrix": [
+        [
+          97,
+          19,
+          0,
+          4
+        ],
+        [
+          15,
+          114,
+          14,
+          0
+        ],
+        [
+          0,
+          20,
+          90,
+          28
+        ],
+        [
+          1,
+          1,
+          19,
+          578
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 0.8083333333333333,
+          "precision": 0.8584070796460177
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 0.7972027972027972,
+          "precision": 0.7402597402597403
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 0.6521739130434783,
+          "precision": 0.7317073170731707
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 0.9649415692821369,
+          "precision": 0.9475409836065574
+        }
+      },
+      "actual_quality_pass_rate": 0.693,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 1.613473737825021,
+      "selected_payload_bytes": 31531808,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "groups": {
+        "srgb_small": {
+          "images": 612,
+          "accuracy": 0.8251633986928104,
+          "full_choice_accuracy": 0.49673202614379086,
+          "actual_quality_pass_rate": 0.6944444444444444
+        },
+        "max_side_le256": {
+          "images": 301,
+          "accuracy": 0.8571428571428571,
+          "full_choice_accuracy": 0.5415282392026578,
+          "actual_quality_pass_rate": 0.7441860465116279
+        },
+        "original_first_valid": {
+          "images": 643,
+          "accuracy": 0.833592534992224,
+          "full_choice_accuracy": 0.5318818040435459,
+          "actual_quality_pass_rate": 0.7527216174183515
+        },
+        "srgb_large": {
+          "images": 326,
+          "accuracy": 0.9601226993865031,
+          "full_choice_accuracy": 0.7852760736196319,
+          "actual_quality_pass_rate": 0.6411042944785276
+        },
+        "max_side_le512": {
+          "images": 301,
+          "accuracy": 0.9501661129568106,
+          "full_choice_accuracy": 0.7807308970099668,
+          "actual_quality_pass_rate": 0.6810631229235881
+        },
+        "original_size_first_relaxed": {
+          "images": 93,
+          "accuracy": 0.9139784946236559,
+          "full_choice_accuracy": 0.8387096774193549,
+          "actual_quality_pass_rate": 0.0
+        },
+        "max_side_le1024": {
+          "images": 80,
+          "accuracy": 0.9625,
+          "full_choice_accuracy": 0.8,
+          "actual_quality_pass_rate": 0.725
+        },
+        "original_size_first_strict": {
+          "images": 231,
+          "accuracy": 0.9783549783549783,
+          "full_choice_accuracy": 0.7705627705627706,
+          "actual_quality_pass_rate": 0.9047619047619048
+        },
+        "normal": {
+          "images": 45,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.9333333333333333
+        },
+        "max_side_le128": {
+          "images": 299,
+          "accuracy": 0.7993311036789298,
+          "full_choice_accuracy": 0.4682274247491639,
+          "actual_quality_pass_rate": 0.6488294314381271
+        },
+        "original_highest_psnr_fallback": {
+          "images": 33,
+          "accuracy": 0.9696969696969697,
+          "full_choice_accuracy": 0.6060606060606061,
+          "actual_quality_pass_rate": 0.0
+        },
+        "linear": {
+          "images": 17,
+          "accuracy": 0.9411764705882353,
+          "full_choice_accuracy": 0.7647058823529411,
+          "actual_quality_pass_rate": 1.0
+        },
+        "max_side_gt1024": {
+          "images": 19,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 0.8421052631578947,
+          "actual_quality_pass_rate": 0.631578947368421
+        },
+        "asset_group_macro": {
+          "groups": 487,
+          "accuracy": 0.9302488787332972
+        }
+      },
+      "fixed_error_images": 10,
+      "lost_correct_images": 0
+    },
+    "all_true_metrics": {
+      "count": 1000,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "full_choice_accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          120,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          143,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          138,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          599
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 1.0,
+          "precision": 1.0
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 1.0,
+          "precision": 1.0
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 1.0,
+          "precision": 1.0
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 1.0,
+          "precision": 1.0
+        }
+      },
+      "actual_quality_pass_rate": 0.874,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 7.730035540316226e-07,
+      "selected_payload_bytes": 31661520,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "groups": {
+        "srgb_small": {
+          "images": 612,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.954248366013072
+        },
+        "max_side_le256": {
+          "images": 301,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.9966777408637874
+        },
+        "original_first_valid": {
+          "images": 643,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 1.0
+        },
+        "srgb_large": {
+          "images": 326,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.7085889570552147
+        },
+        "max_side_le512": {
+          "images": 301,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.7375415282392026
+        },
+        "original_size_first_relaxed": {
+          "images": 93,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.0
+        },
+        "max_side_le1024": {
+          "images": 80,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.8375
+        },
+        "original_size_first_strict": {
+          "images": 231,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 1.0
+        },
+        "normal": {
+          "images": 45,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.9333333333333333
+        },
+        "max_side_le128": {
+          "images": 299,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.9096989966555183
+        },
+        "original_highest_psnr_fallback": {
+          "images": 33,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.0
+        },
+        "linear": {
+          "images": 17,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 1.0
+        },
+        "max_side_gt1024": {
+          "images": 19,
+          "accuracy": 1.0,
+          "full_choice_accuracy": 1.0,
+          "actual_quality_pass_rate": 0.6842105263157895
+        },
+        "asset_group_macro": {
+          "groups": 487,
+          "accuracy": 1.0
+        }
+      },
+      "fixed_error_images": 131,
+      "lost_correct_images": 0
+    }
+  },
+  "scope": "Frozen validation predictions with one or combined true-quality replacements; diagnostic conditional effects, no retraining or held-out evaluation",
+  "residuals": {
+    "color_psnr_db": {
+      "count": 19100,
+      "rmse": 2.4397473541644508,
+      "bias": 0.45283884264287166
+    },
+    "ms_ssim_db": {
+      "count": 18760,
+      "rmse": 2.9426896508531875,
+      "bias": -0.03050231127850791
+    },
+    "color_psnr_near_threshold_3db": {
+      "count": 4687,
+      "rmse": 1.613473737825021,
+      "bias": 0.563477251821272
+    },
+    "normal_mean_deg": {
+      "count": 900,
+      "rmse": 0.6541971077793136,
+      "bias": -0.08465763439734776
+    },
+    "normal_p95_deg": {
+      "count": 900,
+      "rmse": 1.480783090469099,
+      "bias": -0.25231387866867916
+    },
+    "zero_channel_confusion": {
+      "true_zero_predicted_zero": 796,
+      "true_zero_predicted_nonzero": 12936,
+      "true_nonzero_predicted_zero": 226,
+      "true_nonzero_predicted_nonzero": 66042,
+      "scope": "All validation images x20 candidates x4 supervised channels"
+    }
+  },
+  "policy_origins": [
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch",
+      "cache_sha256": "5d1cc96dddb5480fc42170e8344587e9645fc3acaaa2d184c35beed9ce5db47e",
+      "protocol_sha256": "d95e38874c500c578cd158012100659bd72c2ac9e49a9a836be5537f6425a81d",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 2,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\references\\normalized-batch",
+      "cache_sha256": "0108b26d355310464a3ed2af4a4abe7a5109f03bb9d9ca43c2ceef067369bc13",
+      "protocol_sha256": "bb3a8d3090e99441a52f86c414d12dfaaa1bd6c22801c3e3bfcbb52a7c2ab23f",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-002-20261111\\references\\normalized-batch",
+      "cache_sha256": "7c521dc19cfc5d1e5934e2f0d93c3bf7bbeeda78ea02c29eae208d7cbd18a122",
+      "protocol_sha256": "f9097b34fd435afaad67d3a76aaaa766e9cee4a65543c758534c7d9a014ff9df",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-003-20261111\\references\\normalized-batch",
+      "cache_sha256": "17eb8c5d67467020fdf93dc16d91230a5571cc4b082825a4359008302f5547fb",
+      "protocol_sha256": "6b6c744e2519f34f18f498c3838432957e46856f36cf619af4944a6422f7b482",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-development-replacement-validation-v2\\references\\normalized-batch",
+      "cache_sha256": "ba447aa653f181ce06de7fb29bde4e52321b0c250beaba275780eb97b4abc0b0",
+      "protocol_sha256": "6b674db20a5b9cc1aa87024b3e9b38d4a868568625ebf6bcdd74d58278b3e411",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 5,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-004-20261111\\references\\normalized-batch",
+      "cache_sha256": "c5cbf15ec1a996372316e038d4c9bd5740a54c0ee61aac5f8f974ce3e6d7b523",
+      "protocol_sha256": "9dbd1664daa2028b883e31fc59abf9b9943835e0514b68e44bdbc56fe9f8649d",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 230,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    }
+  ],
+  "decisions": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-attribution\\decisions.json",
+  "decisions_sha256": "9ae123eb6f81ffe46ac76627104a8613e632db94ed66d1ac3564760a9d7c482a",
+  "wall_seconds": 4.064513600002101
+}

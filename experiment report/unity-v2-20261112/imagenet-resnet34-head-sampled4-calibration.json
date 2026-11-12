@@ -1,0 +1,2133 @@
+{
+  "status": "completed",
+  "config": {
+    "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-attribution.json",
+    "attribution_report_sha256": "e9d8bba9081611fe9f8778476bd55feecbeb9c10fdf51a8ffd510cd773fe0a41",
+    "smoke": false,
+    "passes": 2,
+    "grids": {
+      "zero_probability_threshold": [
+        0.1,
+        0.25,
+        0.5,
+        0.75,
+        0.9
+      ],
+      "psnr_margin_db": [
+        -3.0,
+        -2.75,
+        -2.5,
+        -2.25,
+        -2.0,
+        -1.75,
+        -1.5,
+        -1.25,
+        -1.0,
+        -0.75,
+        -0.5,
+        -0.25,
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0,
+        1.25,
+        1.5,
+        1.75,
+        2.0,
+        2.25,
+        2.5,
+        2.75,
+        3.0
+      ],
+      "ssim_margin_db": [
+        -3.0,
+        -2.75,
+        -2.5,
+        -2.25,
+        -2.0,
+        -1.75,
+        -1.5,
+        -1.25,
+        -1.0,
+        -0.75,
+        -0.5,
+        -0.25,
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0,
+        1.25,
+        1.5,
+        1.75,
+        2.0,
+        2.25,
+        2.5,
+        2.75,
+        3.0
+      ],
+      "mean_angle_margin_deg": [
+        -1.5,
+        -1.25,
+        -1.0,
+        -0.75,
+        -0.5,
+        -0.25,
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0,
+        1.25,
+        1.5
+      ],
+      "p95_angle_margin_deg": [
+        -3.0,
+        -2.5,
+        -2.0,
+        -1.5,
+        -1.0,
+        -0.5,
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0
+      ]
+    },
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-calibration",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-calibration.json"
+  },
+  "sources_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4.json": "06bc32f645e0034f08bcc8ab835d9dde86a3f183ad08efc035c204b918c643a6",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-attribution-config.json": "9e1269eb3ed2fecd77b26e2a23ba4d180a468a55a6024d5cf4462803d7150095",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+    "E:\\ASTC_Compression\\script\\attribute_unity_errors.py": "c405702ba6f7c0d02dbfe0ef491f3cd2c576e7c45014174b1d5af6d384707cc3",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "E:\\ASTC_Compression\\script\\audit_unity_normalization.py": "e9236ca4332ef9424aad97337d516b94ca2fdf4236437ebd346f556cca2d8ad9",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "1770193dbde602ffc163efe81c3c788cdeeb7f03dad62048adb934ef1c58d084",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30.json": "3bc53fd4654551d3ed33b167f2659bb94025eec4b7aab3f5ee4b850f6d61fad5",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_loss.py": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d",
+    "E:\\ASTC_Compression\\script\\refit_unity_image_head.py": "fd7300f6ac7d4a03d84573f2e29d386e1697ecce9a868e9f2576ce8474053a1b",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_sampling.py": "6b24c5e1c2d59430d59de4516567dd8300966b32440b10cfba916c99ca53a331",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-config.json": "74cdc9b9fef9b62be95be906d3d0dc54f74d7e37b2eb68c75ce136652e3974e7",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-config.json": "47796892f3907b61904cb61905b374cfb11f90904935710e079a2cdf2eb0e68c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\patch_normalization.py": "74151a5e93f99755f5f90ede3bebd01a63b1d018a14c3a94ba64b52872e3b7e1",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_bags.py": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "53f432b27728cd83bf92d27eba676adaf746fc6ce899457d17e892277f6d674c",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\train-features.npy": "65842256933d8e856e5f2a4b5ae13de23be19f8f7126b3fa58e9e50c4c652f15",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\train-indexes.npz": "96470aa8a84779ccb89025b6dd855871c64c6c864fcd7492a0997299c6c39511",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\validation-features.npy": "169e1380fc164a9573fbb725aebdf0659b3f1115c60d44c632c51251db481043",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\validation-indexes.npz": "d8d4835c5a2cd3c54380caabf914c150f7095aab70ee855e718e3a8f1ef6d2e4",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\best.pt": "8e8945fcb0e1b71c6d9cf8e26eb2110eca2f2a918f3c96eaabc11a38cfa8788b",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\best-validation.npz": "fed4a9f572757000d120f9636283e316235156f9db8169263d391aa71e407626",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4\\best-decisions.json": "5a595dfbfc0a2c1b9fde62d20d26ef4b63d400c2decb1b7c1d83bc9f068e4ce8",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-attribution.json": "e9d8bba9081611fe9f8778476bd55feecbeb9c10fdf51a8ffd510cd773fe0a41",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-calibration-config.json": "301cf84a8cd3f471b89ebb1ba17b49f9e154f06f548332e21d790d08c9315f04",
+    "E:\\ASTC_Compression\\script\\calibrate_unity_decisions.py": "43e04c6468135b7dd72b3d4f2bfa6ee24726696a9347afc0641768dca872031c",
+    "E:\\ASTC_Compression\\script\\diagnose_unity_rules.py": "3dc5681effc2dd36d346caea66bfe58f938b3fa963a92c0c343318013938658d",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-attribution\\decisions.json": "9ae123eb6f81ffe46ac76627104a8613e632db94ed66d1ac3564760a9d7c482a"
+  },
+  "baseline_accuracy": 0.869,
+  "validation_images": 1000,
+  "trace": [
+    {
+      "pass": 1,
+      "parameter": "zero_probability_threshold",
+      "parameters": {
+        "zero_probability_threshold": 0.1,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.868
+    },
+    {
+      "pass": 1,
+      "parameter": "zero_probability_threshold",
+      "parameters": {
+        "zero_probability_threshold": 0.25,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.869
+    },
+    {
+      "pass": 1,
+      "parameter": "zero_probability_threshold",
+      "parameters": {
+        "zero_probability_threshold": 0.5,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.869
+    },
+    {
+      "pass": 1,
+      "parameter": "zero_probability_threshold",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.87
+    },
+    {
+      "pass": 1,
+      "parameter": "zero_probability_threshold",
+      "parameters": {
+        "zero_probability_threshold": 0.9,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.87
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -3.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.817
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -2.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.821
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -2.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.825
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -2.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.828
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -2.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.833
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -1.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.834
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -1.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.836
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -1.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.839
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -1.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.843
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -0.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.858
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -0.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.863
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.868
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.87
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.869
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.858
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 1.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.853
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 1.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.839
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 1.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.822
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 1.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.803
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 2.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.79
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 2.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.765
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 2.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.746
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 2.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.732
+    },
+    {
+      "pass": 1,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 3.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.711
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -3.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.776
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -2.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.776
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -2.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.779
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -2.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.781
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -2.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.79
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -1.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.797
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -1.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.808
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -1.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.816
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -1.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.832
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -0.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.844
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -0.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.857
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -0.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.866
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.867
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.857
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.843
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 1.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.833
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 1.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.81
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 1.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.792
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 1.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.773
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 2.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.764
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 2.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.748
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 2.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.733
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 2.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.719
+    },
+    {
+      "pass": 1,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 3.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.708
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -1.5,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -1.25,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -1.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -0.75,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -0.5,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -0.25,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.25,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.87
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.5,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.868
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.75,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.865
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 1.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.856
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 1.25,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.852
+    },
+    {
+      "pass": 1,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 1.5,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.848
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -3.0
+      },
+      "accuracy": 0.855
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -2.5
+      },
+      "accuracy": 0.855
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -2.0
+      },
+      "accuracy": 0.856
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -1.5
+      },
+      "accuracy": 0.859
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -1.0
+      },
+      "accuracy": 0.863
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -0.5
+      },
+      "accuracy": 0.868
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.5
+      },
+      "accuracy": 0.863
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 1.0
+      },
+      "accuracy": 0.861
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 1.5
+      },
+      "accuracy": 0.856
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 2.0
+      },
+      "accuracy": 0.849
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 2.5
+      },
+      "accuracy": 0.847
+    },
+    {
+      "pass": 1,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 3.0
+      },
+      "accuracy": 0.847
+    },
+    {
+      "pass": 2,
+      "parameter": "zero_probability_threshold",
+      "parameters": {
+        "zero_probability_threshold": 0.1,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.868
+    },
+    {
+      "pass": 2,
+      "parameter": "zero_probability_threshold",
+      "parameters": {
+        "zero_probability_threshold": 0.25,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.869
+    },
+    {
+      "pass": 2,
+      "parameter": "zero_probability_threshold",
+      "parameters": {
+        "zero_probability_threshold": 0.5,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.87
+    },
+    {
+      "pass": 2,
+      "parameter": "zero_probability_threshold",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "zero_probability_threshold",
+      "parameters": {
+        "zero_probability_threshold": 0.9,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -3.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.817
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -2.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.821
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -2.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.825
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -2.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.828
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -2.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.833
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -1.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.834
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -1.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.836
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -1.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.839
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -1.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.843
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -0.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.858
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -0.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.863
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": -0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.868
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.87
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.869
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.858
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 1.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.853
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 1.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.839
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 1.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.822
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 1.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.803
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 2.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.79
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 2.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.765
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 2.5,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.746
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 2.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.732
+    },
+    {
+      "pass": 2,
+      "parameter": "psnr_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 3.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.711
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -3.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.776
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -2.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.776
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -2.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.779
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -2.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.781
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -2.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.79
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -1.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.797
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -1.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.808
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -1.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.816
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -1.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.832
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -0.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.844
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -0.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.857
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": -0.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.866
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.867
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.857
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.843
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 1.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.833
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 1.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.81
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 1.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.792
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 1.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.773
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 2.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.764
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 2.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.748
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 2.5,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.733
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 2.75,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.719
+    },
+    {
+      "pass": 2,
+      "parameter": "ssim_margin_db",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 3.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.708
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -1.5,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -1.25,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -1.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -0.75,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -0.5,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -0.25,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.25,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.87
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.5,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.868
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.75,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.865
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 1.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.856
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 1.25,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.852
+    },
+    {
+      "pass": 2,
+      "parameter": "mean_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 1.5,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.848
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -3.0
+      },
+      "accuracy": 0.855
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -2.5
+      },
+      "accuracy": 0.855
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -2.0
+      },
+      "accuracy": 0.856
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -1.5
+      },
+      "accuracy": 0.859
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -1.0
+      },
+      "accuracy": 0.863
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -0.5
+      },
+      "accuracy": 0.868
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "accuracy": 0.871
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.5
+      },
+      "accuracy": 0.863
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 1.0
+      },
+      "accuracy": 0.861
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 1.5
+      },
+      "accuracy": 0.856
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 2.0
+      },
+      "accuracy": 0.849
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 2.5
+      },
+      "accuracy": 0.847
+    },
+    {
+      "pass": 2,
+      "parameter": "p95_angle_margin_deg",
+      "parameters": {
+        "zero_probability_threshold": 0.75,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 3.0
+      },
+      "accuracy": 0.847
+    }
+  ],
+  "training_updates": 0,
+  "model_forward_calls": 0,
+  "test_opened": false,
+  "scope": "Coordinate search over explicit grids using the same validation data; first-encountered ties; no independent evaluation",
+  "margin_convention": "Positive PSNR/SSIM margins subtract from predicted dB; positive angle margins add to predicted degrees; candidates are passed to the original native policy",
+  "best_accuracy": 0.871,
+  "best_parameters": {
+    "zero_probability_threshold": 0.75,
+    "psnr_margin_db": 0.25,
+    "ssim_margin_db": 0.0,
+    "mean_angle_margin_deg": 0.0,
+    "p95_angle_margin_deg": 0.0
+  },
+  "wall_seconds": 9.177727900001628,
+  "baseline_metrics": {
+    "images": 1000,
+    "accuracy": 0.869,
+    "full_choice_accuracy": 0.588,
+    "actual_strict_quality_pass_rate": 0.682,
+    "quality_regression_images": 192,
+    "larger_block_images": 70,
+    "smaller_block_images": 61,
+    "payload_bytes": 31392800,
+    "original_payload_bytes": 31661520,
+    "fixed8_medium_payload_bytes": 59761616,
+    "payload_ratio_to_original": 0.9915127258577605,
+    "payload_ratio_to_fixed8": 0.5253003867900761
+  },
+  "selected_metrics": {
+    "images": 1000,
+    "accuracy": 0.871,
+    "full_choice_accuracy": 0.593,
+    "actual_strict_quality_pass_rate": 0.695,
+    "quality_regression_images": 180,
+    "larger_block_images": 62,
+    "smaller_block_images": 67,
+    "payload_bytes": 31601488,
+    "original_payload_bytes": 31661520,
+    "fixed8_medium_payload_bytes": 59761616,
+    "payload_ratio_to_original": 0.9981039444726596,
+    "payload_ratio_to_fixed8": 0.5287923941012572
+  },
+  "decisions": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-calibration\\decisions.json",
+  "decisions_sha256": "124c8fb07ea0d895bbf6054a215bfc238395f80415ae2872bca9877369bdc350"
+}

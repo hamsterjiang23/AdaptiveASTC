@@ -1,0 +1,128 @@
+{
+  "status": "completed",
+  "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4.json",
+  "training_report_sha256": "06bc32f645e0034f08bcc8ab835d9dde86a3f183ad08efc035c204b918c643a6",
+  "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-attribution.json",
+  "attribution_report_sha256": "e9d8bba9081611fe9f8778476bd55feecbeb9c10fdf51a8ffd510cd773fe0a41",
+  "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-calibration.json",
+  "calibration_report_sha256": "2d6ee44e8c0d2d6b4c889ae2ff639a93fefb09c0e673bf375f50a77aeacbc8f7",
+  "epochs": 30,
+  "updates": 18746,
+  "optimizer_attempts": 18750,
+  "amp_skips": 4,
+  "selected_checkpoint_epoch": 15,
+  "selected_variant": "image_head_refit",
+  "selected_checkpoint_metrics": {
+    "count": 1000,
+    "accuracy": 0.869,
+    "balanced_accuracy": 0.7895835501146891,
+    "full_choice_accuracy": 0.588,
+    "confusion_matrix": [
+      [
+        94,
+        22,
+        0,
+        4
+      ],
+      [
+        16,
+        113,
+        14,
+        0
+      ],
+      [
+        0,
+        22,
+        86,
+        30
+      ],
+      [
+        1,
+        1,
+        21,
+        576
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 120,
+        "recall": 0.7833333333333333
+      },
+      "8x8": {
+        "support": 143,
+        "recall": 0.7902097902097902
+      },
+      "10x10": {
+        "support": 138,
+        "recall": 0.6231884057971014
+      },
+      "12x12": {
+        "support": 599,
+        "recall": 0.9616026711185309
+      }
+    },
+    "actual_quality_pass_rate": 0.682,
+    "no_strict_feasible_images": 34,
+    "color_near_threshold_candidate_count": 4687,
+    "color_near_threshold_rmse_db": 1.613473737825021,
+    "selected_payload_bytes": 31392800,
+    "original_payload_bytes": 31661520,
+    "fixed8_payload_bytes": 59761616,
+    "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+    "seconds": 13.139018500005477
+  },
+  "same_validation_fitted_top1": 0.871,
+  "same_validation_fitted_parameters": {
+    "zero_probability_threshold": 0.75,
+    "psnr_margin_db": 0.25,
+    "ssim_margin_db": 0.0,
+    "mean_angle_margin_deg": 0.0,
+    "p95_angle_margin_deg": 0.0
+  },
+  "same_validation_fitted_metrics": {
+    "images": 1000,
+    "accuracy": 0.871,
+    "full_choice_accuracy": 0.593,
+    "actual_strict_quality_pass_rate": 0.695,
+    "quality_regression_images": 180,
+    "larger_block_images": 62,
+    "smaller_block_images": 67,
+    "payload_bytes": 31601488,
+    "original_payload_bytes": 31661520,
+    "fixed8_medium_payload_bytes": 59761616,
+    "payload_ratio_to_original": 0.9981039444726596,
+    "payload_ratio_to_fixed8": 0.5287923941012572
+  },
+  "quality_regression_images": 192,
+  "trainer_wall_seconds": 357.66366080000444,
+  "parameters": 21414140,
+  "trainable_parameters": 72940,
+  "training_seconds": 106.62741720000486,
+  "validation_seconds": 9.244951999971818,
+  "preparation_seconds": 210.851276100002,
+  "initial_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30.json",
+  "initial_trainer_wall_seconds": 2023.5572775000037,
+  "total_two_stage_trainer_seconds": 2381.220938300008,
+  "encoder_and_channel_head_unchanged": true,
+  "checkpoint_audit": "passed",
+  "deployment_timings": null,
+  "confirmation_test_opened": false,
+  "validation90_achieved": false,
+  "attribution_accuracy": {
+    "frozen_predictions": 0.869,
+    "true_channel_mse": 0.933,
+    "true_zero_mask": 0.87,
+    "true_channel_mse_and_zero": 0.933,
+    "true_ms_ssim": 0.924,
+    "true_angles": 0.879,
+    "all_true_metrics": 1.0
+  },
+  "direct_parent_macro": {
+    "groups": 487,
+    "accuracy": 0.9151906994040706
+  },
+  "inference_cost_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-imagenet-r34-head-full1000.json",
+  "inference_cost_status": "passed",
+  "inference_cost_scope": "Batch-amortized PNG preparation, input batching, CUDA inference and original policy decision. Loading and binding audit separate",
+  "independent_readonly_review": "CLEAN"
+}

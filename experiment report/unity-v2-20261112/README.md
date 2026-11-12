@@ -2,6 +2,10 @@
 
 本轮执行 [V2 计划](<../../experiment plan/V2/README.md>)，使用已交付的新版 train10000／validation1000；独立确认集为2000张。主验收为确认集块大小 Top-1≥90%，质量、完整配置匹配、payload和各阶段耗时一并报告。`[verified: experiment plan/V2/README.md L11–13；launch-binding.json development、confirmation_identity_only]`
 
+## 当前结果
+
+当前独立预训练对照的最佳原始validation1000 Top-1为86.9%，来自ResNet-34 ImageNet加sampled4整图头再训练，选中epoch15／image_head_refit；同一验证集拟合余量后为87.1%。所选权重近阈值RMSE1.6135dB，重载和冻结参数审计通过。开发90%准入尚未达到，确认集模型推理保持封存。随机初始化参照保持81.3%的ResNet-18均值池化模型。`[verified: imagenet-resnet34-head-sampled4-result.json；imagenet-resnet34-head-evidence.json final_model_admission、model_forward_calls；comparison.json reference_model]`
+
 ## 数据与执行身份
 
 - 开发语料 SHA-256 为 `560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57`，包含10000／1000张、67436／7173个patch及220000组候选。启动时已重算开发语料、确认清单及总交接报告哈希。`[verified: launch-binding.json development；本轮 development／confirmation／verification sha256_verified 输出]`
@@ -117,6 +121,7 @@
 | 法线每图每轮重复2次 | 79.2% | 2.2757dB | 79.8%。`[verified: comparison.json results.mean_normalrepeat2]` |
 | ResNet-34随机初始化 | 79.2% | 2.7386dB | 79.4%。`[verified: comparison.json results.mean_resnet34_full30]` |
 | ResNet-34 ImageNet初始化 | 86.2% | 1.6128dB | 86.8%。`[verified: comparison.json results.imagenet_resnet34_full30]` |
+| ResNet-34 ImageNet整图头再训练 | 86.9% | 1.6135dB | 87.1%。`[verified: comparison.json results.imagenet_resnet34_head_sampled4]` |
 
 前三组完成时，仅均值池化作为初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
 
@@ -269,3 +274,7 @@ ResNet-34随机初始化正式对照完成30轮、18,740次更新及10次AMP跳�
 ResNet-34 ImageNet完整对照完成30轮、18,742次更新及8次AMP跳步，选中epoch29 raw，原始／同验证集拟合Top-1为86.2%／86.8%。同一所选权重近阈值RMSE1.6128dB，严格质量66.1%、质量回退213张，训练器2023.56秒，原生重载通过。冻结预测的真实通道MSE、MS-SSIM及角度替换分别为92.6%、92.2%、87.4%，全实测指标重放100%。后续采用既有sampled4整图头再训练协议，冻结encoder与channel head，作为独立预训练容量分支继续检查，主线初始化选择仍待决定。`[verified: imagenet-resnet34-full30-result.json；imagenet-resnet34-head-design.json；opinion: 后续单项对照选择]`
 
 补测的ResNet-18 ImageNet整图头与ResNet-34 ImageNet两臂均完成相同1000图／7173patch的推理核验，摊销预处理／推理／决策成本分别18.5415与18.8399ms／图，四臂全部PNG身份与顺序一致，新两臂的四组预测数组差为0、选参一致，receipt证明串行。ResNet-34整图头32图预检完成4次更新、初始1000图Top-1复现86.2%，encoder与channel head逐位保持，重载通过；完整30轮头部单项对照已启动。`[verified: inference-cost-imagenet-verification.json；inference-cost-capacity-comparison.json；imagenet-resnet34-head-design.json smoke、status；progress.json active_job]`
+
+ResNet-34 sampled4整图头完整对照完成30轮、18,746次更新及4次AMP跳步，选中epoch15／image_head_refit，原始／同验证集拟合Top-1为86.9%／87.1%。同权重近阈值RMSE1.6135dB，严格质量68.2%、质量回退192张，payload31,392,800字节。整图头训练器357.66秒，与初始完整训练合计2381.22秒；72940参数参与头部更新，encoder与channel head保持，原生重载通过。当前39份模型血缘证据通过只读核验，正式准入以低于90%拒绝，forward为0。`[verified: imagenet-resnet34-head-sampled4-result.json；imagenet-resnet34-head-evidence.json；imagenet-resnet34-head-verification.json]`
+
+新头部权重的1000图／7173patch成本测量完成，批量摊销18.8732ms／图，PNG身份与顺序同前四臂，预测数组差为0、选参一致。下一项按V2容量路线准备ResNet-50，当前实现尚未启动；已归档53份当前源码和绑定输入，共333,226,055字节，全部SHA核对通过，并通过24份头部及13份初始原生源码／输入的归档绑定核验。`[verified: inference-cost-imagenet-r34-head-full1000.json；imagenet-resnet34-head-verification.json；resnet50-source-readiness.json；opinion: 后续容量选择]`
