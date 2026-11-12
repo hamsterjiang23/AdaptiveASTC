@@ -26,4 +26,4 @@
 
 ## 数据交接状态
 
-当前原采集 train10000／validation2、完整候选 train9280／validation2；后续验证批次正在采集，独立确认图尚未完成。动态状态以各队列报告为准，整体进展见 [progress.json](progress.json) 的 `data_handoff`。正式训练不再由本 goal 自动启动，后续 V2 使用新实验身份与已验收的数据。`[verified: unity-data-handoff-v1.json data_snapshot、training_auto_start；opinion: V2 交接要求]`
+截至 2026-11-12T04:21:51.439022+00:00，原采集 train10000／validation258、完整候选 train9280／validation2；首个256张验证批次已发布，三项回执哈希、原生记录数及恢复状态核验通过。后续验证批次继续采集，独立确认图尚未完成。`[verified: progress.json data_handoff.latest_capture_milestone]`动态状态以各队列报告为准，整体进展见 [progress.json](progress.json) 的 `data_handoff`。正式训练不再由本 goal 自动启动，后续 V2 使用新实验身份与已验收的数据。`[verified: unity-data-handoff-v1.json data_snapshot、training_auto_start；opinion: V2 交接要求]`

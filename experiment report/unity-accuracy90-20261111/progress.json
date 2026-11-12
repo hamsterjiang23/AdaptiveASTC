@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T04:10:32.025365+00:00",
+  "updated_utc": "2026-11-12T04:21:51.439022+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -1607,16 +1607,16 @@
     "status": "running",
     "counts": {
       "train": 10000,
-      "validation": 2
+      "validation": 258
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-validation-001-20261111",
+    "current_batch": "unity-v1-validation-002-20261111",
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "2c2aa0b61d42273f93844ad92e38429d4eb16759f954b3943a34d8392102cc74"
+    "report_sha256": "bf3f978c57d57fd6bdd72b3e768b31d334d523c50fbbf58530ea4fa11a0be5a4"
   },
   "fixed_capacity_stem": {
     "summary": "patch-fixed-capacity\\scratch-stem2-lr0003-summary.json",
@@ -3015,6 +3015,38 @@
     "training_auto_start": false,
     "goal_complete": false,
     "verification": "unity-data-handoff-verification.json",
-    "verification_sha256": "618411ac2e2a727728819c3762335526a53495d5a2998a0bca2b3bd322f90931"
+    "verification_sha256": "618411ac2e2a727728819c3762335526a53495d5a2998a0bca2b3bd322f90931",
+    "latest_capture_milestone": {
+      "run_id": "unity-v1-validation-001-20261111",
+      "images": 256,
+      "split": "validation",
+      "status": "published_and_receipt_hashes_verified",
+      "reference_counts": {
+        "train": 10000,
+        "validation": 258
+      },
+      "candidate_counts": {
+        "train": 9280,
+        "validation": 2
+      },
+      "bindings": {
+        "phase": {
+          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\batch-receipt.json",
+          "sha256": "cdf6d2fb72a3d949ea484b0937da119c479eed1e8df337d6ab90744383185e24"
+        },
+        "reference": {
+          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\references\\normalized-batch\\receipt.json",
+          "sha256": "c54abdaf6224e75fe2336f4afd667b56e59d5e05e3e00a6e3eccdd248b63e420"
+        },
+        "options": {
+          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\options-receipt.json",
+          "sha256": "c702e1aa2f6d13ef30983b8cb04aac69551784335112fab657a4d7832db61dc6"
+        }
+      },
+      "process_exit_code": 0,
+      "metadata_restore_conflicts": 0,
+      "verified_utc": "2026-11-12T04:21:51.439022+00:00",
+      "model_evaluation_performed": false
+    }
   }
 }
