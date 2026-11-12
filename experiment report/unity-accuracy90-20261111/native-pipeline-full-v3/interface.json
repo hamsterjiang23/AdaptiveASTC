@@ -1,0 +1,675 @@
+{
+  "status": "passed",
+  "config": {
+    "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-pipeline-full-v3\\corpus",
+    "corpus_sha256": "dca29d9336dc7bdd54f616ce14c137a3ef184a0b135a24f0f307b9e8cbf0f906",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-pipeline-full-v3\\interface",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-pipeline-full-v3\\interface.json"
+  },
+  "config_sha256": "87919686d610488ed153e3fc78aebeda5bd6f8b27e179f9806e7e29d61b11e30",
+  "results": {
+    "train": {
+      "exact_targets": {
+        "count": 10000,
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0,
+        "full_choice_accuracy": 1.0,
+        "confusion_matrix": [
+          [
+            1710,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1490,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1366,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            5434
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 1710,
+            "recall": 1.0
+          },
+          "8x8": {
+            "support": 1490,
+            "recall": 1.0
+          },
+          "10x10": {
+            "support": 1366,
+            "recall": 1.0
+          },
+          "12x12": {
+            "support": 5434,
+            "recall": 1.0
+          }
+        },
+        "actual_quality_pass_rate": 0.9125,
+        "no_strict_feasible_images": 379,
+        "color_near_threshold_candidate_count": 51807,
+        "color_near_threshold_rmse_db": 7.777800228899158e-07,
+        "selected_payload_bytes": 331045376,
+        "original_payload_bytes": 331045376,
+        "fixed8_payload_bytes": 601549184,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing"
+      },
+      "positive_floor_without_zero_mask": {
+        "count": 10000,
+        "accuracy": 0.9981,
+        "balanced_accuracy": 0.9968502137407449,
+        "full_choice_accuracy": 0.9903,
+        "confusion_matrix": [
+          [
+            1704,
+            5,
+            1,
+            0
+          ],
+          [
+            1,
+            1483,
+            4,
+            2
+          ],
+          [
+            0,
+            0,
+            1360,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            5434
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 1710,
+            "recall": 0.9964912280701754
+          },
+          "8x8": {
+            "support": 1490,
+            "recall": 0.9953020134228188
+          },
+          "10x10": {
+            "support": 1366,
+            "recall": 0.9956076134699854
+          },
+          "12x12": {
+            "support": 5434,
+            "recall": 1.0
+          }
+        },
+        "actual_quality_pass_rate": 0.9036,
+        "no_strict_feasible_images": 379,
+        "color_near_threshold_candidate_count": 51807,
+        "color_near_threshold_rmse_db": 0.5664650465773443,
+        "selected_payload_bytes": 331013920,
+        "original_payload_bytes": 331045376,
+        "fixed8_payload_bytes": 601549184,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing"
+      },
+      "max_channel_mse_aggregation_difference": 2.220446049250313e-16,
+      "patches": 67105,
+      "zero_full_image_channels": 111602
+    },
+    "validation": {
+      "exact_targets": {
+        "count": 1000,
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0,
+        "full_choice_accuracy": 1.0,
+        "confusion_matrix": [
+          [
+            120,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            144,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            138,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            598
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 1.0
+          },
+          "8x8": {
+            "support": 144,
+            "recall": 1.0
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 1.0
+          },
+          "12x12": {
+            "support": 598,
+            "recall": 1.0
+          }
+        },
+        "actual_quality_pass_rate": 0.875,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4677,
+        "color_near_threshold_rmse_db": 7.734758306571344e-07,
+        "selected_payload_bytes": 31199584,
+        "original_payload_bytes": 31199584,
+        "fixed8_payload_bytes": 58781344,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing"
+      },
+      "positive_floor_without_zero_mask": {
+        "count": 1000,
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0,
+        "full_choice_accuracy": 0.99,
+        "confusion_matrix": [
+          [
+            120,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            144,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            138,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            598
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 1.0
+          },
+          "8x8": {
+            "support": 144,
+            "recall": 1.0
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 1.0
+          },
+          "12x12": {
+            "support": 598,
+            "recall": 1.0
+          }
+        },
+        "actual_quality_pass_rate": 0.868,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4677,
+        "color_near_threshold_rmse_db": 0.599807051116486,
+        "selected_payload_bytes": 31199584,
+        "original_payload_bytes": 31199584,
+        "fixed8_payload_bytes": 58781344,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing"
+      },
+      "max_channel_mse_aggregation_difference": 2.7755575615628914e-17,
+      "patches": 7082,
+      "zero_full_image_channels": 13783
+    }
+  },
+  "policy_origins": [
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-train256-batch001-20261111\\references\\normalized-batch",
+      "cache_sha256": "f22e1efcee7b517f216dbe87e777fef760f379c674d4c0c381585feac8040857",
+      "protocol_sha256": "4216d688f4f0003b8cba014bfed7ad234ebd7669f8dbaee1bc228fe06196f451",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111\\references\\normalized-smoke1",
+      "cache_sha256": "ed893750bfd494e44491776b5c261ca28d7ddbb72fd79f6c4ace37945e8795f4",
+      "protocol_sha256": "a9c0678ce2cc279a2b2cb929efff8ed5fdd209fed824a68a7a57bead80b7fb22",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 64,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-001-20261111\\references\\normalized-batch",
+      "cache_sha256": "d1841093ceacda4d993536e1ffdcfeb9d93e36d50779fb0b37bae9cf4d3cdffe",
+      "protocol_sha256": "6295a25e7d393d595fef94c944eb58361f1b0942e9a325482b499cc79ede28ce",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-002-20261111\\references\\normalized-batch",
+      "cache_sha256": "d1596e359d5b5d4bab504d29856177b0790391ef2a487aacf33c46acc1bcf32a",
+      "protocol_sha256": "d15bfbe62d59addad05ab24ad09dd20f6cf12a0c3d53c7f862cff055a5073576",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-003-20261111\\references\\normalized-batch",
+      "cache_sha256": "9e6e9384b0b3d76ee7453b38ecf8c8d6383bf91c4995ef770300d8c7f1b813a8",
+      "protocol_sha256": "428658cd123c1a97022412c31b8726d864fd20e90e9734e385064f367a3454ad",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-004-20261111\\references\\normalized-batch",
+      "cache_sha256": "0e8b4a9429b0351dddb057a033c2c50c33efb4caf388e794167d8c976e3e8b19",
+      "protocol_sha256": "84253f85592c556f70813d23e1acf878816cdca2711012d83cbd41cb037eaa3e",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-005-20261111\\references\\normalized-batch",
+      "cache_sha256": "e6941f686abe18061b7216fbc55a9babdbe5a1f3b35fe53d4c90b453f504cb39",
+      "protocol_sha256": "5705a9929111cae9e61a2f41ef344071b5f24822eb95bfc0c6232f7a04981b20",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-006-20261111\\references\\normalized-batch",
+      "cache_sha256": "f73f77d75b06235cffb3f55e7de8fdf2d52219e1e9878b2c5a648e14e9f03d0b",
+      "protocol_sha256": "742b05507028e68b896858e285f16e9d0f620e33fc3de4b6f6843c9068c43ab1",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-007-20261111\\references\\normalized-batch",
+      "cache_sha256": "fdbfe8653eb3b5d98d9324620c50145d1c3a6431bad6d349665dfa7159fc25ec",
+      "protocol_sha256": "2ea5cf90dba2320859dc507cb4e6514597620e02486e8554c612a8bba23ab48a",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-008-20261111\\references\\normalized-batch",
+      "cache_sha256": "3a8b9bca7c95e1f5bccda66c285cafdebee35a8261065be16dabe3e3ea4801fa",
+      "protocol_sha256": "1d81957a14011aa5f16ee2da6c32af6b6e0eef9cb55694d2ad753f0e29b4fba3",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-009-20261111\\references\\normalized-batch",
+      "cache_sha256": "37b8608a5fc14ed79c51c2edf770271733f6d505e0ccc24bc2b1722694d19f26",
+      "protocol_sha256": "9f01ad233c7fb988c06b114aa4682ddd5aaf4abb07b387591826b0677a1a993e",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-010-20261111\\references\\normalized-batch",
+      "cache_sha256": "7d3cf0dc4ff59f3a7a5b7317c174f6188b2db24643f188448e79fc3267b0823f",
+      "protocol_sha256": "66d64520773d7939c9556691da4cca8d96e946b7f31f921e57cab24d360e8a7b",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-011-20261111\\references\\normalized-batch",
+      "cache_sha256": "5cac26cebe0d11360cb500c32ba0c7212c6669720d212ae735b5ad92d3d18db2",
+      "protocol_sha256": "ebadbba15dfc3607657125b21187942332fe18c9ccb17cbff25e56a81ae94913",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-012-20261111\\references\\normalized-batch",
+      "cache_sha256": "a07ee3c4d466ad658cedaeb9e1b95dea358e9c304e97b4b203b9a1ac862d2a21",
+      "protocol_sha256": "9c4fa00b993231ff3c6a933385e04aa973f324358a76ef14dbf8b5a55f9371a4",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-013-20261111\\references\\normalized-batch",
+      "cache_sha256": "9dbca4aecc7714eeaf889531a1ae97b7b327344fc67e28083535baa7863e54f5",
+      "protocol_sha256": "e4ec1d78a9166c9bb8e0c3876089deae60450f4299c098635faa2665c0b3e331",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-014-20261111\\references\\normalized-batch",
+      "cache_sha256": "ea6a775fced5d149f89258f76b2a0e09288efc43c37cb0f5df5baa8ab4ec6cab",
+      "protocol_sha256": "280f6a06e70748ac66f5cf0c0ecaa475047e548ec94bbedb98dcdb3e47d8880f",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-015-20261111\\references\\normalized-batch",
+      "cache_sha256": "e9dcb8eaf274b8c55b531ebcd11ecccdd0d5ac3184b4c8493baba1ff8bce7289",
+      "protocol_sha256": "a5efb5e92b201a0a2178cdebae2367f30c83d2373543e0ace5ed156539b4b70f",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-016-20261111\\references\\normalized-batch",
+      "cache_sha256": "63a9551fad280eda3a8c31222a4a8b7d65634a48536ee15da3da5030319e063a",
+      "protocol_sha256": "779e5a97780bca77714aecc0a84d7a217420570bbd14b1009b5ce44f2790857e",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-017-20261111\\references\\normalized-batch",
+      "cache_sha256": "fe99f6540e4da66ecea5bad84faeb4b19482989cde27b4839de1c5b3ad651344",
+      "protocol_sha256": "26628d601f53a8ab2a032c8fdb0edc0e7be8af804fe2f16139f15facea1aa1a0",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-018-20261111\\references\\normalized-batch",
+      "cache_sha256": "724739dc0302cf25b484907fd80481b88cf8d8bf26a6e35b3d96dcbb6e469bf7",
+      "protocol_sha256": "4df48a72c0a724bd728c9727664e4d3e6dc2bc6564e93a10394ddb66f43a9f58",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-019-20261111\\references\\normalized-batch",
+      "cache_sha256": "5e33eaacd79578de5b8a6cb1e3e5ae74cedfe326bc60cfa20b573c2402e21f9f",
+      "protocol_sha256": "0e05ec8cbf15acb23baade2cee787fa39e50df711e20a1f6edb6c50d917882a6",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-020-20261111\\references\\normalized-batch",
+      "cache_sha256": "a7887732233338a88a3fd9b4c33dc0d3fcc755a8f5702bdd6f356a5e64dcbc80",
+      "protocol_sha256": "2ecc10b7cf68c92e58147b8337c4ba0daa4ac7bcdccc8f9b55c0734697ed01ec",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-021-20261111\\references\\normalized-batch",
+      "cache_sha256": "2117fef68ece6fb4134805c7942889a5b0926eee2b59be68af4e6a97b33a2ec9",
+      "protocol_sha256": "0fbf7c28f86d5b979f15d56e0bec9a9dbca5796d834eb762263fd8b1802ac01e",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-022-20261111\\references\\normalized-batch",
+      "cache_sha256": "188ebadf47520ef7df3b4805f51d0ab3b67ea25c5da970c1a71ee5a03f504d51",
+      "protocol_sha256": "3f6cc3b5b86388fca7febcb36c73ebae82318300cd58a159708b1d0fe73e3b14",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-023-20261111\\references\\normalized-batch",
+      "cache_sha256": "e9bdfd7ef7fbe069867fa1979c3df066f41043815897b283c43c0a9c4aed0e7b",
+      "protocol_sha256": "0046b768dc15f66c77abc9d9c215f8a7473d7f564650da43e1b52cf486eeab11",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-024-20261111\\references\\normalized-batch",
+      "cache_sha256": "6be57cbd18a17b99aa8faf776471aa26ddfc7255bcff2f4c87c5bcc2424b2dad",
+      "protocol_sha256": "da67c2e6c2bd01fb28028bca77f44a1b1064f85e4ccee3b43c1103db1ce29fb9",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-025-20261111\\references\\normalized-batch",
+      "cache_sha256": "355a9ad2289388a33484227c8c506f40c4213dbefc8158e92716a3198ba5ebc7",
+      "protocol_sha256": "95bfc83607a3a3d9d27ffe3d497f42e36f24d4181964454c4e1631fc013bffd9",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-026-20261111\\references\\normalized-batch",
+      "cache_sha256": "f4ca27c19dba8e1136f6ed3dedd8500fd9825625aab365e44bbc5f921f565063",
+      "protocol_sha256": "4848a75aae055a2a82b428850e4181c9d5141e99c883126e05db6379c467965c",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-027-20261111\\references\\normalized-batch",
+      "cache_sha256": "882ce15ec8027b06f138c7ca52f3b5d908dcc94f3eb408781270f8680ec39107",
+      "protocol_sha256": "9a671b211a4e73da1729b4cd42f5c827b1b4457e3d0179cf64efc84fb6d654b0",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-028-20261111\\references\\normalized-batch",
+      "cache_sha256": "b114d3b5667eccd294377c7624b6fd406b391b0e642c83fcf7a89818ada3f13e",
+      "protocol_sha256": "3c6f54db13f244d6de9327e0f095f8861e66867d0577d0ee9cf4f4c27f0fcea9",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-029-20261111\\references\\normalized-batch",
+      "cache_sha256": "42d3f96aacd18c1875c167ccd864fed110aadc5d3fe1ed5e8eea2b1d4a2360c4",
+      "protocol_sha256": "57a48a9b3e00ef3b44584d31ad78feff4b1ad8fd036293917eb6b8ccea555f3d",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-030-20261111\\references\\normalized-batch",
+      "cache_sha256": "adc47f6f88cace851a28e3a053a11fe53f2fe9b5bc4de048dacd145c8640d13a",
+      "protocol_sha256": "9a1d0751cad586834ff113d3db9f75fb0ee4c9994395c9a7bd6ef0d8b8e03968",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-031-20261111\\references\\normalized-batch",
+      "cache_sha256": "9e626f8efdd0f4cb736ac25676bc7e3e5d7d15af57c3604dfaf8f3f8832554fb",
+      "protocol_sha256": "d7aaf7fea60bc59484329551f1edef357ed4609fafa720bd3f36fa9d49c61ee1",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-032-20261111\\references\\normalized-batch",
+      "cache_sha256": "eadd7bcbcfa378f61c0bedc57b2c35233dfa1de769559cea0bc07a2c01a83312",
+      "protocol_sha256": "3dfe91fc06b9d6cf322ff22d9b0adda90f6b86c41dbda71b7ad0e2ace55dc4cd",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-033-20261111\\references\\normalized-batch",
+      "cache_sha256": "74b5f35b34cb91b44f71c667608cacab2b7e37e468a14fde300b199d7c4d7725",
+      "protocol_sha256": "5e38375ffbde2fcfb0a8b3fbc604c80bfe826cbe5aa25aa882ad71e1109f63bf",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-034-20261111\\references\\normalized-batch",
+      "cache_sha256": "8d62875cad0760dde27147a182fa744b1c312ae1de753ade5ccfecb7ffd88556",
+      "protocol_sha256": "db68dbb8090739a9f700436f2d4039e8aadfd287e2e91ee2d0170106278b2595",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-035-20261111\\references\\normalized-batch",
+      "cache_sha256": "cfab00b22bd62085ae2a51c9f8a367627e4f32f9a854858e7ff18c2fd6d8f3f8",
+      "protocol_sha256": "5ab1f918238fc73f135f31357d9eae68f37f4f570efac1c499f414d53758b697",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-036-20261111\\references\\normalized-batch",
+      "cache_sha256": "a50bcd54690affc8d46aa0a87b83091607cec11c2417aece6f83b563a72708bb",
+      "protocol_sha256": "6afb20dee453e09f1a896a5f5bdf8ffaea3efb5e041f2cea8863f7586f94f4d6",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-037-20261111\\references\\normalized-batch",
+      "cache_sha256": "59dfefc8d671a534a6de25296edb7b4e40bbc5514a33f97f707013bb6d97c49b",
+      "protocol_sha256": "fc3b67d36e74fecf8e15bfaa7e6362dc0ec907cb7abaa2d7cd83d99cda3dc7b8",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-038-20261111\\references\\normalized-batch",
+      "cache_sha256": "7c466810df72df5ab8f9217b1b313f710d8c9cdc9a6cab90608cbde8d265d3f3",
+      "protocol_sha256": "c7e859c4f766ef6a1e857f955a45b604db5c9c1af91010b278dddd9f7c682892",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 208,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch",
+      "cache_sha256": "5d1cc96dddb5480fc42170e8344587e9645fc3acaaa2d184c35beed9ce5db47e",
+      "protocol_sha256": "d95e38874c500c578cd158012100659bd72c2ac9e49a9a836be5537f6425a81d",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 2,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\references\\normalized-batch",
+      "cache_sha256": "0108b26d355310464a3ed2af4a4abe7a5109f03bb9d9ca43c2ceef067369bc13",
+      "protocol_sha256": "bb3a8d3090e99441a52f86c414d12dfaaa1bd6c22801c3e3bfcbb52a7c2ab23f",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-002-20261111\\references\\normalized-batch",
+      "cache_sha256": "7c521dc19cfc5d1e5934e2f0d93c3bf7bbeeda78ea02c29eae208d7cbd18a122",
+      "protocol_sha256": "f9097b34fd435afaad67d3a76aaaa766e9cee4a65543c758534c7d9a014ff9df",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-003-20261111\\references\\normalized-batch",
+      "cache_sha256": "17eb8c5d67467020fdf93dc16d91230a5571cc4b082825a4359008302f5547fb",
+      "protocol_sha256": "6b6c744e2519f34f18f498c3838432957e46856f36cf619af4944a6422f7b482",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-004-20261111\\references\\normalized-batch",
+      "cache_sha256": "c5cbf15ec1a996372316e038d4c9bd5740a54c0ee61aac5f8f974ce3e6d7b523",
+      "protocol_sha256": "9dbd1664daa2028b883e31fc59abf9b9943835e0514b68e44bdbc56fe9f8649d",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 230,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    }
+  ],
+  "sources_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c"
+  },
+  "model_accuracy": null,
+  "training_updates": 0,
+  "test_opened": false,
+  "scope": "Exact-target interface verification and numeric diagnostic only; no learned predictions",
+  "wall_seconds": 98.85549739999988,
+  "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-pipeline-full-v3\\interface\\receipt.json",
+  "raw_receipt_sha256": "67d3d245189c672244acb40a2208954f95b6917919b9d262937c5da00c706898"
+}

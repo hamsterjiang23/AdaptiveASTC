@@ -33,7 +33,8 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 - **开发划分**：沿用已冻结的 coverage-v2 资产名单，train10000／validation1000。只复用名单和划分，像素、标签和候选质量全部按 Unity 协议采集。`[verified: evidence.json capture_protocol.manifest、source_split_count；unity-reference-series.md] [opinion: 复用边界]`
 - **每张图的数据**：参考 RGBA；8 项导入属性，即 log2 宽、log2 高、sRGB、法线、需要 Alpha、Alpha 恒定、法线评价 mip 数和纯黑像素比例；原搜索标签和计时；20 候选补测的解码图与原生质量；非重叠 240×240 patch 的 RGBA 逐通道 SSE，patch 原点为 240 的倍数，四种块网格都对齐；整图 MS-SSIM 与法线角度。`[verified: unity_patch_dataset.py METADATA_NAMES；data/patch_targets.py boxes；unity-patch-targets.md]`
 - **确认集**：预留 2000 张主名单和 500 张备用，主名单覆盖 1227 个不在历史清单中的资产组；按种子化路径哈希选择，不按标签或质量筛样。详见 [确认集预留](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-cohort.md>)。`[verified: evidence.json isolation.confirmation]`
-- **当前进度**（2026-11-12 03:46 UTC 快照）：参考图和原标签 train9792／validation2，20 候选补测 train9280／validation2；数据衔接等待上游，正式训练等待数据，确认采集等待预检，像素审计等待采集。`[verified: evidence.json live_snapshot]`
+- **初版进度快照**（2026-11-12 03:46 UTC）：参考图和原标签 train9792／validation2，20 候选补测 train9280／validation2；数据衔接等待上游，正式训练等待数据，确认采集等待预检，像素审计等待采集。`[verified: evidence.json live_snapshot]`
+- **数据收尾进度**（2026-11-12 07:20 UTC）：train10000／validation1000的20候选、74187个patch、语料合并及Dataset全读通过，11000张的块大小、preset、选择原因和候选测量次数（candidates_measured）重放全部一致。确认集采集及完整像素审计继续执行，E0尚未完成；当前goal不启动训练。详见[开发语料验收](<../../experiment report/unity-accuracy90-20261111/unity-development-data11000-verification.json>)。`[verified: unity-development-data11000-verification.json counts、patch_counts、exact_policy_replay、e0_complete；用户数据收尾范围]`
 
 ### 已知分布
 

@@ -1,10 +1,10 @@
 {
-  "status": "waiting_dependencies",
+  "status": "passed",
   "images": 2,
   "source_split": "confirmation",
   "test_opened": false,
   "training_updates": 0,
-  "native_labels_collected": false,
+  "native_labels_collected": true,
   "config_sha256": "3b2efb618397a8534d087f7d727c1a6bb11f4bb97e46c6e84f8f0ec886b691d5",
   "configuration_path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-capture-smoke2-data-v1-config.json",
   "source_files_sha256": {
@@ -29,21 +29,114 @@
   "dependencies": [
     {
       "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
-      "status": "running",
-      "pid": 41024,
-      "created": 1794409642.5245771
+      "status": "passed",
+      "receipt_sha256": "5f3c42da104c29f6a895707a74650e5b2d41906e7f5deb4920011535a1b7274f"
     },
     {
       "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
-      "status": "running",
-      "pid": 33060,
-      "created": 1794443373.3538325
+      "status": "passed",
+      "receipt_sha256": "4e60e10880c168983121072c85d46316407578d61d2991ffd4c1ab8113b5c76c"
     },
     {
       "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
-      "status": "running",
-      "pid": 37368,
-      "created": 1794443383.9480257
+      "status": "passed",
+      "receipt_sha256": "02212e8fe425515a71dedbc127482dbf4033def5bc0a9c6fe3ccbde9bf78a43f"
     }
-  ]
+  ],
+  "dependency_wait_seconds": 11543.509678000002,
+  "options_audit": {
+    "status": "passed",
+    "images": 2,
+    "candidate_callbacks": 8,
+    "rows": [
+      {
+        "index": 0,
+        "path": "Assets/RuledAssets/Act_Exocist3_Draw/UI/UITexture/Atlas_add/Atlas_Exocist3_Draw05_add/Atlas_Exocist3_Draw05_add_main.jpg",
+        "need_alpha": false,
+        "profile": 0,
+        "normal_pack": false,
+        "channel": 4,
+        "rgba_sha256": "11350a3b0f9587a0c1089065f4a48bc6e3bddf1dd942273645fba3dfca1575fc",
+        "width": 1024,
+        "height": 1024,
+        "srgb_importer": true,
+        "texture_type_importer": "Default",
+        "candidates_recorded": 4,
+        "candidate_keys": [
+          [
+            "12x12",
+            "fast"
+          ],
+          [
+            "12x12",
+            "fastest"
+          ],
+          [
+            "12x12",
+            "medium"
+          ],
+          [
+            "12x12",
+            "thorough"
+          ]
+        ],
+        "input_hash_ms": 743.6353,
+        "metadata_source": "actual optimized encoder callback; raw RGBA hash matches archived PNG"
+      },
+      {
+        "index": 1,
+        "path": "Assets/CustomMode/MagicChess/UI/UITexture/Common_Atlas/Atlas_Map1900291_MC/Map1900291_L.png",
+        "need_alpha": false,
+        "profile": 0,
+        "normal_pack": false,
+        "channel": 4,
+        "rgba_sha256": "98a4857302e5c80943813217ee0718a121e1cdf34d877e06e4bc92e7de12463a",
+        "width": 704,
+        "height": 126,
+        "srgb_importer": true,
+        "texture_type_importer": "Default",
+        "candidates_recorded": 4,
+        "candidate_keys": [
+          [
+            "12x12",
+            "fast"
+          ],
+          [
+            "12x12",
+            "fastest"
+          ],
+          [
+            "12x12",
+            "medium"
+          ],
+          [
+            "12x12",
+            "thorough"
+          ]
+        ],
+        "input_hash_ms": 62.036500000000004,
+        "metadata_source": "actual optimized encoder callback; raw RGBA hash matches archived PNG"
+      }
+    ],
+    "options_sha256": "086b0b8d036776f321162e5a550b8b6bfd0bcbc947adc1892dabdd05a3cf87e1",
+    "audit_source_sha256": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+    "capture_receipt_sha256": "573983f44fbd1670c2bf5144a7922f0a9b1fe3747bc11209363cb20dc727e38f",
+    "native_provenance": {
+      "protocol_sha256": "1e0089e7eb369d23407f6f629be7ba7bbae686a5249a2f97756c9756dd8e63b9",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 2,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    "run_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-capture-smoke2-data-v1"
+  },
+  "managed_source_restoration": {
+    "status": "restored",
+    "source": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\astccustom.cs",
+    "original_sha256": "64dfbd63ce9baf390299ff70881b38fb6505bacab8d1ff42e0a8507447ef7265",
+    "instrumented_sha256": "f6578a1104eb3228687a9d7dc8bb2a6a50e55cc1a8ecc320773c9df35b559903",
+    "restored_sha256": "64dfbd63ce9baf390299ff70881b38fb6505bacab8d1ff42e0a8507447ef7265"
+  },
+  "run_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-capture-smoke2-data-v1",
+  "wall_seconds": 11986.323404500014
 }

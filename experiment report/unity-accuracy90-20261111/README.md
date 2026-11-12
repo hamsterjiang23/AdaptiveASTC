@@ -8,7 +8,7 @@
 
 ## 验收与执行顺序
 
-[开发集原始采集](<unity-development-capture11000-v1.json>)已完成train10000／validation1000，45批次的名单、MD4、原搜索、实际属性及恢复记录核验通过。[全部开发图20候选](<unity-development-candidates11000-v1.json>)已完成11000张／220000候选：原搜索84770、额外补测135230；逐图候选顺序、原选择和325份输入绑定通过检查。完整数据流水线已进入patch整理；完整像素／patch读取、规则重放和确认集采集仍需完成，候选记录齐备与完整训练语料就绪分别验收。`[verified: unity-development-capture11000-v1.json；unity-development-candidates11000-v1.json totals_by_split、inputs_sha256；unity-native-pipeline-full-v3.json current_stage；opinion: 验收边界]`
+[开发集原始采集](<unity-development-capture11000-v1.json>)与[全部20候选](<unity-development-candidates11000-v1.json>)已完成train10000／validation1000，共220000候选。完整数据流水线的patch整理、合并、Dataset全读和原规则重放均通过：训练67105个patch、验证7082个patch；11000张的块大小、preset、选择原因、候选测量次数（candidates_measured）全部一致，见[开发语料验收](<unity-development-data11000-verification.json>)。确认集2000张采集和完整像素审计仍待完成，因此V2的E0与本goal尚未完成；重放一致不代表模型准确率。`[verified: unity-development-data11000-verification.json counts、patch_counts、exact_policy_replay、e0_complete；opinion: 验收边界]`
 
 [原生训练图采集与标签分布](unity-native-label-distribution.md)已覆盖10000训练图／40批次，208个输入SHA及完整名单核对通过；四类计数1710／1490／1366／5434，大图放宽498、最高PSNR回退377。原采集转入验证图，补测完成9280训练图＋2验证图；正式CUDA训练仍等待完整数据。旧9792条派生记录保持，本次未改变冻结配置或分析验证／确认标签。`[verified: unity-native-labels10000-v1.json summary；unity-native-labels10000-verification.json live_reports、unchanged_prior_rows；opinion: 完成边界]`
 

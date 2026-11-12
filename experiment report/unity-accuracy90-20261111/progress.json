@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T04:42:48.539732+00:00",
+  "updated_utc": "2026-11-12T07:33:44.403070+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -12,7 +12,7 @@
     "model_training_required": false,
     "model_accuracy_required": false
   },
-  "phase": "Data-only handoff: continue original capture,20candidate completion,patch corpus and integrity checks; V1 formal training cancelled by user scope change",
+  "phase": "Development corpus prepared and verified; collecting reserved confirmation images before full pixel audit and V2 handoff",
   "initialization": "scratch",
   "model": "ResNet-18",
   "new_test_accuracy": null,
@@ -63,8 +63,6 @@
     }
   ],
   "next": [
-    "Complete train10000/validation1000 original Unity capture and20candidate targets",
-    "Complete11000 patch preparation,assembly,Dataset and original-policy replay audits",
     "Capture reserved confirmation2000 after native2-image smoke, without training dependency",
     "Complete13000 exact/near pixel audit, preserve findings and raw artifacts",
     "Publish verified V2 data handoff, sync repository, then complete this goal"
@@ -1976,35 +1974,51 @@
     "scope": "Completed GDC source-RGB validation control; no Unity or test accuracy claim"
   },
   "unity_native_data_pipeline": {
-    "status": "running",
+    "status": "passed",
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_stage": "prepare",
-    "stages": [],
+    "current_stage": null,
+    "stages": [
+      {
+        "name": "prepare",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-pipeline-full-v3\\prepare.json",
+        "report_sha256": "003d7bee6c57a5387e9deafab9a952dea8296e49fba6cfc2b54a03ef3d125c08",
+        "config_sha256": "ddd27c3e2ffd9094cff3f39b15f1a39491c0b2a6ddb6dea728b9a32c8a112ca4",
+        "stage_wall_seconds": 5343.718611300006
+      },
+      {
+        "name": "assembly",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-pipeline-full-v3\\assembly.json",
+        "report_sha256": "01eaae1415e8fdf1a7b4d570c003ef7ca005468d4366b00e3d44588cbd55bf3a",
+        "config_sha256": "3afeab962fc2b2771ed2e3dbc6837cae9805f31146bfc4fb28a042a8f2a01706",
+        "stage_wall_seconds": 245.9224758000055
+      },
+      {
+        "name": "dataset",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-pipeline-full-v3\\dataset.json",
+        "report_sha256": "d530a163356245e44113d2c61b3c705f7a0f19892109edc6bb259450a5aad954",
+        "config_sha256": "b8365c67ac6ab1b64249af6d102dd1ad595e7f1da735788d230955dadb5818e4",
+        "stage_wall_seconds": 390.0043125000084
+      },
+      {
+        "name": "interface",
+        "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-pipeline-full-v3\\interface.json",
+        "report_sha256": "58ddd3f7896d2f64df8479dfa7b830177be01ffb644220d203ec711f54fbae42",
+        "config_sha256": "87919686d610488ed153e3fc78aebeda5bd6f8b27e179f9806e7e29d61b11e30",
+        "stage_wall_seconds": 99.33179380001093
+      }
+    ],
     "test_opened": false,
     "training_updates": 0,
+    "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-pipeline-full-v3\\corpus",
+    "corpus_sha256": "dca29d9336dc7bdd54f616ce14c137a3ef184a0b135a24f0f307b9e8cbf0f906",
+    "execution_seconds": 6078.977193400031,
+    "waiting_seconds": 18565.0838746,
     "report": "unity-native-pipeline-full-v3.json",
-    "report_sha256": "1238ce72d578374eae35b028a118f0675fe8f4c570189f770a714d03a2d78fb5",
-    "observed_utc": "2026-11-12T05:41:49.225535+00:00",
-    "current_stage_snapshot": {
-      "report": "native-pipeline-full-v3/prepare.json",
-      "report_sha256": "92f645c45a131e6dc18055c4f32875e5c02c8b863dd7b7b252a3162fa635c42a",
-      "observed_utc": "2026-11-12T07:00:53.456562+00:00",
-      "status": "running",
-      "counts": {
-        "train": 10000,
-        "validation": 2
-      },
-      "patch_counts": {
-        "train": 67105,
-        "validation": 13
-      },
-      "current_batch": "unity-v1-validation-001-20261111",
-      "snapshot_only": true,
-      "git_normalized_report_sha256": "e933d2a15d4956e56c032ec3cf6324d43e6a737fae01ed792d794d39d8c5077f"
-    }
+    "report_sha256": "c292bd3cccffff4721b7d916f396968668b39f90130fcd97547b5fe7c648dfc1",
+    "observed_utc": "2026-11-12T07:26:04.196549+00:00"
   },
   "fixed_capacity_metadata": {
     "status": "completed_negative_control",
@@ -2430,12 +2444,14 @@
     "verification": "unity-confirmation-reservation-verification.json"
   },
   "unity_confirmation_capture": {
-    "status": "waiting_dependencies",
+    "status": "passed",
     "test_opened": false,
     "training_updates": 0,
-    "native_labels_collected": false,
+    "native_labels_collected": true,
+    "images": 2,
     "report": "unity-confirmation-capture-smoke2-data-v1.json",
-    "report_sha256": "aa0650f7477f77c10bd82970dd9057f98605c77247880bf0396644f1b22f910d"
+    "report_sha256": "57d85728792c16a1a785ae138d015fdc1a96898e7adb61b9fdef4876aade9a66",
+    "observed_utc": "2026-11-12T07:33:44.403070+00:00"
   },
   "unity_pixel_identity": {
     "status": "passed",
@@ -2530,13 +2546,15 @@
     }
   },
   "unity_confirmation_series": {
-    "status": "waiting_smoke",
+    "status": "collecting",
     "test_opened": false,
     "training_updates": 0,
-    "captured_images": 0,
     "native_labels_collected": false,
+    "captured_images": 2,
+    "expected_images": 2000,
     "report": "unity-confirmation-series2000-data-v1.json",
-    "report_sha256": "956d226129510117f779e75c41ff3385a303d3685f804b0112bb92ec6e62d520"
+    "report_sha256": "293affa284637858ddf53683391394045efded2a6f42b4990e7cfc9b93b5e1a5",
+    "observed_utc": "2026-11-12T07:33:44.403070+00:00"
   },
   "unity_capture_input_parity": {
     "status": "passed",
@@ -3192,6 +3210,41 @@
             "report_sha256": "41218a4bb7575e3753b92a2b3d950111d4f92d7337823d7de671d236e1853942"
           }
         }
+      },
+      {
+        "archived_utc": "2026-11-12T07:26:04.196549+00:00",
+        "reason": "Completed all four native development data stages",
+        "unity_native_data_pipeline": {
+          "status": "running",
+          "expected_counts": {
+            "train": 10000,
+            "validation": 1000
+          },
+          "current_stage": "prepare",
+          "stages": [],
+          "test_opened": false,
+          "training_updates": 0,
+          "report": "unity-native-pipeline-full-v3.json",
+          "report_sha256": "1238ce72d578374eae35b028a118f0675fe8f4c570189f770a714d03a2d78fb5",
+          "observed_utc": "2026-11-12T05:41:49.225535+00:00",
+          "current_stage_snapshot": {
+            "report": "native-pipeline-full-v3/prepare.json",
+            "report_sha256": "92f645c45a131e6dc18055c4f32875e5c02c8b863dd7b7b252a3162fa635c42a",
+            "observed_utc": "2026-11-12T07:00:53.456562+00:00",
+            "status": "running",
+            "counts": {
+              "train": 10000,
+              "validation": 2
+            },
+            "patch_counts": {
+              "train": 67105,
+              "validation": 13
+            },
+            "current_batch": "unity-v1-validation-001-20261111",
+            "snapshot_only": true,
+            "git_normalized_report_sha256": "e933d2a15d4956e56c032ec3cf6324d43e6a737fae01ed792d794d39d8c5077f"
+          }
+        }
       }
     ],
     "development_candidate_completion": {
@@ -3350,6 +3403,36 @@
       },
       "full_development_data_ready": false,
       "note": "All training patch targets prepared; validation, assembly, full Dataset read and policy replay remain pending."
+    },
+    "development_corpus": {
+      "report": "unity-development-data11000-verification.json",
+      "report_sha256": "5b953eeae52655f696d33010cdc3cf2645e3eafd7707046edece05f458883f1f",
+      "counts": {
+        "train": 10000,
+        "validation": 1000
+      },
+      "patch_counts": {
+        "train": 67105,
+        "validation": 7082
+      },
+      "candidate_count": 220000,
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-pipeline-full-v3\\corpus\\corpus.json",
+      "corpus_sha256": "dca29d9336dc7bdd54f616ce14c137a3ef184a0b135a24f0f307b9e8cbf0f906",
+      "development_corpus_ready": true,
+      "e0_complete": false,
+      "full_development_data_ready": false,
+      "observed_utc": "2026-11-12T07:26:04.196549+00:00",
+      "delivery_checks": {
+        "ruff_format": "passed",
+        "ruff_check": "passed",
+        "basedpyright": "0 errors, 0 warnings",
+        "independent_data_review": "CLEAN; 88000 decision field comparisons, zero mismatches",
+        "document_review": "CLEAN after candidates_measured wording correction",
+        "local_links": 389,
+        "anchors": 27,
+        "external_urls_checked": false,
+        "git_diff_check": "passed"
+      }
     }
   }
 }

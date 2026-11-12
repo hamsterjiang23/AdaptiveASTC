@@ -15,9 +15,9 @@
 
 | 工作 | 当前入口与依赖 |
 |---|---|
-| 开发集原始采集 | 沿用 [reference series](unity-reference-series.json)，任务 `unity-reference-series-v2` 持续运行。`[verified: unity-data-handoff-v1.json retained_jobs]` |
-| 开发集 20 候选补测 | 沿用 [candidate queue](unity-candidate-queue-sprite-v3.json)，持续消费已发布原始批次。`[verified: unity-data-handoff-v1.json retained_jobs]` |
-| patch 整理与完整开发数据验收 | 沿用 [完整数据流水线](unity-native-pipeline-full-v3.json)；上游成功后自动执行。`[verified: unity-data-handoff-v1.json retained_jobs；unity-native-pipeline-full-v3-config.json dependencies]` |
+| 开发集原始采集 | 沿用 [reference series](unity-reference-series.json)，任务 `unity-reference-series-v2` 已完成10000／1000张。`[verified: unity-reference-series.json status、counts]` |
+| 开发集 20 候选补测 | 沿用 [candidate queue](unity-candidate-queue-sprite-v3.json)，已完成11000张／220000候选。`[verified: unity-candidate-queue-sprite-v3.json status、counts；unity-development-candidates11000-v1.json]` |
+| patch 整理与完整开发数据验收 | 沿用 [完整数据流水线](unity-native-pipeline-full-v3.json)；四个阶段均通过，训练67105个patch、验证7082个patch。`[verified: unity-native-pipeline-full-v3.json status、stages；native-pipeline-full-v3/prepare.json patch_counts]` |
 | 确认集两图预检 | 新 [配置](unity-confirmation-capture-smoke2-data-v1-config.json) 与 [进度](unity-confirmation-capture-smoke2-data-v1.json)，只等待原始采集、补测和完整数据流水线，不再等待训练。`[verified: 对应配置 dependencies；unity-data-handoff-v1.json jobs]` |
 | 确认集 2000 图 | 新 [配置](unity-confirmation-series2000-data-v1-config.json) 与 [进度](unity-confirmation-series2000-data-v1.json)，两图实际预检通过后，按原主名单补采其余 1998 张。`[verified: 对应配置 smoke_config、expected_images；unity-data-handoff-v1.json checks.series_plan]` |
 | 完整像素审计 | 新 [配置](unity-pixel-pipeline-full13000-data-v1-config.json) 与 [进度](unity-pixel-pipeline-full13000-data-v1.json)，等待开发集和新确认采集完成，沿用已通过的 66 图检查与冻结源码。`[verified: 对应配置 development、confirmation、smoke_provenance；unity-data-handoff-v1.json checks.pixel_config]` |
@@ -26,4 +26,13 @@
 
 ## 数据交接状态
 
-截至 2026-11-12T05:39:39.718633+00:00，[开发集原始采集](unity-development-capture11000-v1.json)和[全部开发图20候选](unity-development-candidates11000-v1.json)均已完成：train10000／validation1000，共220000候选，原搜索84770、额外补测135230。完整数据流水线已开始patch整理；确认图与全量像素审计尚待完成。这两份记录核验没有重新解码全部图片，完整像素／patch读取与规则重放由数据流水线验收。历史[训练图候选报告](unity-training-candidates10000-v1.json)保持原样；动态状态见 [progress.json](progress.json) 的 `data_handoff` 及各队列报告。`[verified: unity-development-capture11000-v1.json；unity-development-candidates11000-v1.json；unity-native-pipeline-full-v3.json；opinion: 验收边界]`
+开发集原始采集、20候选、patch整理、合并、Dataset全读和原规则重放均已完成。训练10000张／67105个patch，验证1000张／7082个patch，合计220000个候选。逐图核对块大小、preset、选择原因、候选测量次数（candidates_measured），11000张均与同次原搜索一致；这是实测目标与规则重放验收，没有模型准确率结论。确认图与完整精确／近重复像素审计仍待完成，E0和本goal保持未完成。`[verified: unity-development-data11000-verification.json counts、patch_counts、exact_policy_replay、e0_complete、model_accuracy]`
+
+| 数据入口 | 内容 |
+|---|---|
+| [完整开发语料验收](unity-development-data11000-verification.json) | 59份输入绑定、38份源码核对、完整分片与合并语料哈希、四字段逐图重放核对。`[verified: 对应 inputs_sha256、sources_unchanged、exact_policy_replay]` |
+| [完整数据流水线](unity-native-pipeline-full-v3.json) | 四阶段报告与配置哈希、执行和等待耗时；退出码0。`[verified: 对应 stages、execution_seconds、waiting_seconds；开发语料验收 process_exit_code]` |
+| [统一语料清单](<../.local/unity-accuracy90-20261111/native-pipeline-full-v3/corpus/corpus.json>) | 每张图的参考PNG、patch目标NPZ、实际属性、原搜索标签、候选质量及哈希；大体积文件保留本机，不进入Git。`[verified: corpus.json splits；.gitignore .local规则]` |
+| [动态进度](progress.json) | 数据收尾状态及确认集、像素审计入口；历史失败和取消身份保留。`[verified: progress.json data_handoff及队列字段]` |
+
+统一语料SHA-256为`dca29d9336dc7bdd54f616ce14c137a3ef184a0b135a24f0f307b9e8cbf0f906`。PSNR重建最大误差为`3.8108479145648744e-06 dB`；确认集不做全20候选补测或模型推理，完成采集和像素审计后再交付最终收尾记录。`[verified: 开发语料验收 corpus_sha256、max_psnr_reconstruction_error_db；本文件完成条件]`

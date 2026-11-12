@@ -1,12 +1,41 @@
 {
-  "status": "running",
+  "status": "passed",
   "mode": "complete",
   "config_sha256": "19fac6ce732d83e6abb5e3dfbd0608b851e5861968ccf083d7f1e786b7af7124",
   "expected_counts": {
     "train": 10000,
     "validation": 1000
   },
-  "stages": [],
+  "stages": [
+    {
+      "name": "prepare",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-pipeline-full-v3\\prepare.json",
+      "report_sha256": "003d7bee6c57a5387e9deafab9a952dea8296e49fba6cfc2b54a03ef3d125c08",
+      "config_sha256": "ddd27c3e2ffd9094cff3f39b15f1a39491c0b2a6ddb6dea728b9a32c8a112ca4",
+      "stage_wall_seconds": 5343.718611300006
+    },
+    {
+      "name": "assembly",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-pipeline-full-v3\\assembly.json",
+      "report_sha256": "01eaae1415e8fdf1a7b4d570c003ef7ca005468d4366b00e3d44588cbd55bf3a",
+      "config_sha256": "3afeab962fc2b2771ed2e3dbc6837cae9805f31146bfc4fb28a042a8f2a01706",
+      "stage_wall_seconds": 245.9224758000055
+    },
+    {
+      "name": "dataset",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-pipeline-full-v3\\dataset.json",
+      "report_sha256": "d530a163356245e44113d2c61b3c705f7a0f19892109edc6bb259450a5aad954",
+      "config_sha256": "b8365c67ac6ab1b64249af6d102dd1ad595e7f1da735788d230955dadb5818e4",
+      "stage_wall_seconds": 390.0043125000084
+    },
+    {
+      "name": "interface",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-pipeline-full-v3\\interface.json",
+      "report_sha256": "58ddd3f7896d2f64df8479dfa7b830177be01ffb644220d203ec711f54fbae42",
+      "config_sha256": "87919686d610488ed153e3fc78aebeda5bd6f8b27e179f9806e7e29d61b11e30",
+      "stage_wall_seconds": 99.33179380001093
+    }
+  ],
   "training_updates": 0,
   "test_opened": false,
   "scope": "Native data preparation/audits only; no trained model or production accuracy",
@@ -27,8 +56,12 @@
       "receipt_sha256": "aa2c6bff5f4d5337d9c243021a4fa39a7a7d3022266c2090f2c007e5daf868b3"
     }
   ],
-  "updated_utc": "2026-11-12T05:39:08.954055+00:00",
+  "updated_utc": "2026-11-12T07:20:28.304542+00:00",
   "waiting_seconds": 18565.0838746,
   "candidate_snapshot_sha256": "c891b6a67d5fe0bd8280f2cf88d3ad847f40a467331a59271deabad64f1f9662",
-  "current_stage": "prepare"
+  "current_stage": null,
+  "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-pipeline-full-v3\\corpus",
+  "corpus_sha256": "dca29d9336dc7bdd54f616ce14c137a3ef184a0b135a24f0f307b9e8cbf0f906",
+  "execution_seconds": 6078.977193400031,
+  "wall_seconds": 24644.208463099996
 }
