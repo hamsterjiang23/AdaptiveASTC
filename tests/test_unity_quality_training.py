@@ -102,6 +102,14 @@ def test_native_sampling_defaults_and_single_factor_options(tmp_path: Path) -> N
         replace(config, group_image_cap=64, normal_image_repeats=2).validate()
 
 
+def test_native_backbone_defaults_and_explicit_capacity(tmp_path: Path) -> None:
+    config = configuration(tmp_path)
+    assert config.backbone_name == "resnet18"
+    replace(config, backbone_name="resnet34").validate()
+    with pytest.raises(ValueError, match="Invalid native training"):
+        replace(config, backbone_name="unknown").validate()
+
+
 @pytest.mark.parametrize("decay", [-0.1, 1.0, float("nan"), float("inf")])
 def test_native_ema_rejects_invalid_decay(tmp_path: Path, decay: float) -> None:
     with pytest.raises(ValueError, match="Invalid native training"):

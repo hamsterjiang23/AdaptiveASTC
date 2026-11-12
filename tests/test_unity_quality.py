@@ -13,6 +13,63 @@ from adaptive_astc.training.unity_quality_loss import UnityImageTargets, UnityQu
 from tests.test_unity_search_policy import grid, policy
 
 
+@pytest.mark.parametrize("pooling,parameters", [("mean", 21414140), ("mean_max", 21485820)])
+def test_resnet34_pairs_heads_rng_and_restores_checkpoint(pooling: str, parameters: int) -> None:
+    torch.manual_seed(19)
+    reference = UnityQualityRegressor(image_pooling=pooling)
+    rng = torch.get_rng_state().clone()
+    torch.manual_seed(19)
+    model = UnityQualityRegressor(image_pooling=pooling, backbone_name="resnet34").eval()
+    assert torch.equal(torch.get_rng_state(), rng)
+    assert sum(p.numel() for p in model.parameters()) == parameters
+    assert all(
+        torch.equal(value, model.state_dict()[name])
+        for name, value in reference.state_dict().items()
+        if not name.startswith("backbone.")
+    )
+    checkpoint = {
+        "config": {"image_pooling": pooling, "backbone_name": "resnet34"},
+        "model": model.state_dict(),
+    }
+    restored = UnityQualityRegressor.from_checkpoint(checkpoint, torch.device("cpu")).eval()
+    assert all(
+        torch.equal(value, restored.state_dict()[name])
+        for name, value in model.state_dict().items()
+    )
+    with torch.inference_mode():
+        inputs = (
+            torch.zeros(1, 4, 32, 32),
+            torch.ones(1, 1, 32, 32, dtype=torch.bool),
+            torch.zeros(1, dtype=torch.int64),
+            torch.zeros(1, 8),
+        )
+        actual, expected = restored(*inputs), model(*inputs)
+    assert actual["image_quality"].shape == (1, 20, 3)
+    for name, values in actual.items():
+        torch.testing.assert_close(values, expected[name], rtol=0, atol=0)
+        assert torch.isfinite(values).all()
+
+
+def test_invalid_native_backbone_rejected() -> None:
+    with pytest.raises(ValueError, match="Native backbone"):
+        UnityQualityRegressor(backbone_name="unknown")
+
+
+def test_resnet34_pretrained_state_uses_matching_rgb_encoder() -> None:
+    weights = ResNet(BasicBlock, [3, 4, 6, 3]).state_dict()
+    rgb = weights["conv1.weight"].clone()
+    model = UnityQualityRegressor(
+        image_pooling="mean", backbone_name="resnet34", backbone_weights=weights
+    )
+    assert isinstance(model.backbone, torch.nn.Sequential)
+    stem = model.backbone[0]
+    assert isinstance(stem, torch.nn.Conv2d)
+    torch.testing.assert_close(stem.weight[:, :3], rgb, rtol=0, atol=0)
+    assert torch.count_nonzero(stem.weight[:, 3:]) == 0
+    with pytest.raises(RuntimeError):
+        UnityQualityRegressor(backbone_name="resnet18", backbone_weights=weights)
+
+
 def measured_row(normal: bool = False, srgb: bool = True, width: int = 240) -> JsonDict:
     candidates = grid()
     candidates[10]["metrics"].update(

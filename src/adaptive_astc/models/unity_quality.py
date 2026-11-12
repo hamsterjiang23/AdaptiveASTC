@@ -12,27 +12,24 @@ from adaptive_astc.config import JsonDict
 
 
 class UnityQualityRegressor(nn.Module):
-    """A ResNet-18 backbone with additive patch and nonadditive image quality heads."""
+    """A ResNet encoder with additive patch and nonadditive image quality heads."""
 
     def __init__(
-        self, image_pooling: str = "mean_max", *, backbone_weights: dict[str, Tensor] | None = None
+        self,
+        image_pooling: str = "mean_max",
+        *,
+        backbone_name: str = "resnet18",
+        backbone_weights: dict[str, Tensor] | None = None,
     ) -> None:
         super().__init__()
         if image_pooling not in ("mean_max", "mean"):
             raise ValueError("Native image pooling must be mean_max or mean")
+        if backbone_name not in ("resnet18", "resnet34"):
+            raise ValueError("Native backbone must be resnet18 or resnet34")
         self.image_pooling = image_pooling
-        backbone = ResNet(BasicBlock, [2, 2, 2, 2])
-        rgb_weights = None
-        if backbone_weights is not None:
-            backbone.load_state_dict(backbone_weights, strict=True)
-            rgb_weights = backbone.conv1.weight.detach().clone()
-        backbone.conv1 = nn.Conv2d(5, 64, kernel_size=7, stride=2, padding=3, bias=False)
-        nn.init.kaiming_normal_(backbone.conv1.weight, mode="fan_out", nonlinearity="relu")
-        if rgb_weights is not None:
-            with torch.no_grad():
-                backbone.conv1.weight.zero_()
-                backbone.conv1.weight[:, :3].copy_(rgb_weights)
-        self.backbone = nn.Sequential(*list(backbone.children())[:-2])
+        self.backbone = self._make_backbone(
+            [2, 2, 2, 2], backbone_weights if backbone_name == "resnet18" else None
+        )
         self.metadata_conditioner = nn.Linear(8, 1024)
         nn.init.zeros_(self.metadata_conditioner.weight)
         nn.init.zeros_(self.metadata_conditioner.bias)
@@ -51,10 +48,32 @@ class UnityQualityRegressor(nn.Module):
             self.image_head.weight = nn.Parameter(
                 torch.cat((self.image_head.weight[:, :512], self.image_head.weight[:, -8:]), dim=1)
             )
+        if backbone_name == "resnet34":
+            # Pair the shared heads and subsequent CPU RNG sequence with the ResNet-18 control.
+            with torch.random.fork_rng(devices=[]):
+                self.backbone = self._make_backbone([3, 4, 6, 3], backbone_weights)
+
+    @staticmethod
+    def _make_backbone(blocks: list[int], weights: dict[str, Tensor] | None) -> nn.Sequential:
+        backbone = ResNet(BasicBlock, blocks)
+        rgb_weights = None
+        if weights is not None:
+            backbone.load_state_dict(weights, strict=True)
+            rgb_weights = backbone.conv1.weight.detach().clone()
+        backbone.conv1 = nn.Conv2d(5, 64, kernel_size=7, stride=2, padding=3, bias=False)
+        nn.init.kaiming_normal_(backbone.conv1.weight, mode="fan_out", nonlinearity="relu")
+        if rgb_weights is not None:
+            with torch.no_grad():
+                backbone.conv1.weight.zero_()
+                backbone.conv1.weight[:, :3].copy_(rgb_weights)
+        return nn.Sequential(*list(backbone.children())[:-2])
 
     @classmethod
     def from_checkpoint(cls, checkpoint: JsonDict, device: torch.device) -> UnityQualityRegressor:
-        model = cls(image_pooling=checkpoint["config"].get("image_pooling", "mean_max"))
+        model = cls(
+            image_pooling=checkpoint["config"].get("image_pooling", "mean_max"),
+            backbone_name=checkpoint["config"].get("backbone_name", "resnet18"),
+        )
         model.load_state_dict(checkpoint["model"], strict=True)
         return model.to(device)
 

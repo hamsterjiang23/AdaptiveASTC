@@ -1,0 +1,67 @@
+{
+  "status": "smokes_passed_full_starting",
+  "cpu_tests": {
+    "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-resnet34-full' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_search_policy.py tests/test_unity_error_attribution.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py tests/test_unity_normalization.py tests/test_unity_head_refit.py tests/test_unity_revised_pixel_identity.py tests/test_unity_near_duplicates.py tests/test_unity_image_sampling.py",
+    "result": "229 passed in11.00s",
+    "exit_code": 0
+  },
+  "static_checks": [
+    {
+      "command": "uv run ruff check src/adaptive_astc/models/unity_quality.py src/adaptive_astc/training/unity_quality_trainer.py reproductions/unity_search_baseline/confirmation_evidence.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_confirmation_evaluation.py",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run ruff format --check src/adaptive_astc/models/unity_quality.py src/adaptive_astc/training/unity_quality_trainer.py reproductions/unity_search_baseline/confirmation_evidence.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_confirmation_evaluation.py",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run basedpyright src/adaptive_astc/models/unity_quality.py src/adaptive_astc/training/unity_quality_trainer.py reproductions/unity_search_baseline/confirmation_evidence.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_confirmation_evaluation.py",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "1770193dbde602ffc163efe81c3c788cdeeb7f03dad62048adb934ef1c58d084",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "53f432b27728cd83bf92d27eba676adaf746fc6ce899457d17e892277f6d674c",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation_evidence.py": "1566f9636032880502ddec3a38b260c0db4fccdeac90d8e1fbc896e64c36bf35",
+    "E:\\ASTC_Compression\\tests\\test_unity_quality.py": "19df2d201e00e14d7b87239cbdcb4954563b0605bf3848c0bc2009a289993112",
+    "E:\\ASTC_Compression\\tests\\test_unity_quality_training.py": "ee7d3912930fb59836065189c29f08b8d52cd5ec1585d4a875bb8f81c45dd444",
+    "E:\\ASTC_Compression\\tests\\test_unity_confirmation_evaluation.py": "6a4f4c205917b8620559e1ad9d3b348ee28fceb4e70fce38b5bfbaeb60a1bba3"
+  },
+  "legacy_initialization_and_real_checkpoint_probe": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\resnet34-legacy-initialization-probe.json",
+  "legacy_cuda_loss_and_validation_replay_exact": true,
+  "legacy_cuda_updates": 4,
+  "resnet34_cuda_updates": 4,
+  "resnet34_checkpoint_audit": "passed",
+  "resnet34_parameters": 21414140,
+  "resnet34_smoke_wall_seconds": 11.737250900001527,
+  "resnet34_peak_vram_bytes": 1735203328,
+  "initial_cpu_probe_input_error": "Float valid mask was rejected; bool-mask retry passed before real CUDA tests",
+  "review": "CLEAN",
+  "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-resnet34",
+  "full_preflight": {
+    "status": "passed",
+    "smoke_report_sha256": "8e140e180c1a10f9741ccf2d67d6ae1d40d6e91da8c693172f22f8dcafb7854a",
+    "smoke_updates": 4,
+    "smoke_checkpoint_audit": "passed",
+    "smoke_peak_vram_bytes": 1735203328,
+    "smoke_wall_seconds": 11.737250900001527,
+    "available_ram_gib": 43.58268356323242,
+    "disk_free_gib": 844.6404228210449,
+    "estimated_minutes": 45,
+    "cost_basis": "FullResNet18 runtime and larger encoder; actual full-run costs recorded separately",
+    "parameters": 21414140,
+    "train_images": 10000,
+    "validation_images": 1000,
+    "group_image_cap": 0,
+    "normal_image_repeats": 1,
+    "changed_recipe_fields": {
+      "backbone_name": {
+        "before": "resnet18",
+        "after": "resnet34"
+      }
+    },
+    "serial_gpu": true,
+    "test_opened": false
+  },
+  "test_opened": false
+}

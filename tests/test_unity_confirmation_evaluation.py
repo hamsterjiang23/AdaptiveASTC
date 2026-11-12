@@ -198,6 +198,7 @@ def model_evidence(
         "frozen",
         "archive",
         "lineage",
+        "backbone",
     ],
 )
 def test_head_stage_requires_full_initial_training_and_final_ninety_percent(
@@ -226,6 +227,8 @@ def test_head_stage_requires_full_initial_training_and_final_ninety_percent(
         parent["training_source_archive"] = str(tmp_path / "unrelated-archive")
     if changed == "lineage":
         report["initial_training_updates"] += 1
+    if changed == "backbone":
+        report["config"]["backbone_name"] = "resnet34"
     A.write_json(path, report)
     A.write_json(tmp_path / "head/checkpoint-audit.json", report["checkpoint_audit"])
     item["report"]["sha256"] = A.sha256_file(path)

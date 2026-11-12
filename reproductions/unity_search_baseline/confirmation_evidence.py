@@ -166,6 +166,8 @@ class UnityConfirmationEvidence:
                 )
                 or settings.get("image_pooling", "mean_max")
                 != initial["config"].get("image_pooling", "mean_max")
+                or settings.get("backbone_name", "resnet18")
+                != initial["config"].get("backbone_name", "resnet18")
                 or {
                     str((self.root / row["relative_path"]).resolve()): row["training_sha256"]
                     for row in training["training_source_binding"]["sources"]

@@ -57,6 +57,7 @@ class UnityTrainConfig:
     selection_metric: str = "accuracy"
     group_image_cap: int = 0
     normal_image_repeats: int = 1
+    backbone_name: str = "resnet18"
 
     def validate(self) -> None:
         for name in ["epochs", "image_batch_size", "patches_per_image", "validation_batch_size"]:
@@ -76,6 +77,7 @@ class UnityTrainConfig:
             or self.initialization not in ("scratch", "pretrained")
             or not 0 <= self.ema_decay < 1
             or self.selection_metric not in ("accuracy", "near_rmse")
+            or self.backbone_name not in ("resnet18", "resnet34")
         ):
             raise ValueError("Invalid native training configuration")
         if not self.smoke and self.train_image_indices:
@@ -212,7 +214,9 @@ class UnityQualityTrainer:
             )
             self.verify_pretrained_weights(config)
         model = UnityQualityRegressor(
-            image_pooling=config.image_pooling, backbone_weights=backbone_weights
+            image_pooling=config.image_pooling,
+            backbone_name=config.backbone_name,
+            backbone_weights=backbone_weights,
         ).to(device)
         ema = (
             AveragedModel(

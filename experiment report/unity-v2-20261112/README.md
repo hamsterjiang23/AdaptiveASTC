@@ -114,6 +114,7 @@
 | ImageNet初始化，整图头sampled4再训练 | 86.3% | 1.9180dB | 86.7%。`[verified: comparison.json results.imagenet_head_sampled4]` |
 | PSNR组件准备，再训整图头sampled4 | 76.4% | 2.0084dB | 77.1%。`[verified: comparison.json results.psnr_head_sampled4]` |
 | 每资产族每轮上限64张 | 78.0% | 2.8970dB | 79.0%。`[verified: comparison.json results.mean_familycap64]` |
+| 法线每图每轮重复2次 | 79.2% | 2.2757dB | 79.8%。`[verified: comparison.json results.mean_normalrepeat2]` |
 
 前三组完成时，仅均值池化作为初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
 
@@ -227,13 +228,21 @@ ImageNet头部阶段完成30轮／18,746次更新，选中epoch25，原始／同
 
 两项沿用随机初始化均值池化参照的30轮学习率配方，记录各自实际图像访问、优化器更新和耗时。启用控制时，逐批收集实际original_image_index，每轮与计划顺序逐项比对，保存独立SHA绑定的回执；终态及确认入口核验其身份。整图头再训练明确恢复其每图一次的采样字段。`[verified: unity_quality_trainer.py；unity_image_sampling.py receipt；confirmation_evidence.py；refit_unity_image_head.py]`
 
-关闭控制的两轮CUDA检查完成4次更新，损失、Top-1、完整配置匹配和近阈值RMSE逐项复现旧记录。cap2预检每轮实际11张、完成2次更新；法线重复预检每轮36次访问、完成6次更新，全部重载及实际顺序检查通过。223项CPU检查、静态检查和只读审阅通过。正式cap64已完成，法线重复2次对照随后串行启动。`[verified: image-sampling-verification.json；mean-familycap2-smoke.json；mean-normalrepeat2-smoke.json；progress.json]`
+关闭控制的两轮CUDA检查完成4次更新，损失、Top-1、完整配置匹配和近阈值RMSE逐项复现旧记录。cap2预检每轮实际11张、完成2次更新；法线重复预检每轮36次访问、完成6次更新，全部重载及实际顺序检查通过。223项CPU检查、静态检查和只读审阅通过。两项正式采样对照均已完成。`[verified: image-sampling-verification.json；mean-familycap2-smoke.json；mean-normalrepeat2-smoke.json；progress.json]`
 
 cap64完成30轮、10,553次更新及7次AMP跳步，选中epoch30，原始／同集拟合Top-1为78.0%／79.0%，同权重近阈值RMSE为2.8970dB。完整配置匹配46.1%，严格质量58.3%，回退291张，payload30,620,160字节；训练器1319.44秒，原生重载通过。30份访问回执独立重算通过，共168660次访问、9055张不同训练图，10000张可用图中945张未在本次限额训练中被访问。验证资产族宏平均83.44%，直接父目录宏平均84.69%；保留81.3%的随机初始化参照。`[verified: mean-familycap64-result.json；image-sampling-verification.json；comparison.json reference_model]`
 
 冻结预测分别用实测通道MSE、MS-SSIM及角度替换后，Top-1为87.5%、88.8%和79.7%，全部实测指标为100%。同集拟合严格质量65.1%、回退223张。该模型的52份结构证据及30份采样回执通过绑定，最终确认准入继续因Top-1低于90%拒绝。`[verified: mean-familycap64-result.json；image-sampling-verification.json familycap_bound_evidence_files、familycap_final_admission]`
 
 既有归因报告中的asset_group_macro使用原语料的487个验证父目录。本轮另外按相同资产族规则补算189组，随机初始化参照的资产族宏平均为84.75%，ImageNet加整图头对照为88.53%。后者45张法线中34张块大小正确；固定其余预测、把法线块大小全部替换为原标签时，总体Top-1为87.4%。这些数值由冻结决策重算，forward为0，后续先完成共享模型采样对照。`[verified: sampling-group-normal-diagnostics.json；opinion: 后续顺序]`
+
+法线重复2次完成30轮、19,310次更新及10次AMP跳步，选中epoch30，原始／同集拟合Top-1为79.2%／79.8%，同权重近阈值RMSE为2.2757dB，严格质量62.2%、回退252张。训练器1707.89秒，原生重载通过。30份回执均独立重算，每张普通图每轮一次、每张法线两次，共308970次访问、10000张不同图及17940次法线访问；验证资产族宏平均84.30%。保留81.3%的随机初始化参照。`[verified: mean-normalrepeat2-result.json；image-sampling-verification.json]`
+
+## ResNet-34容量对照
+
+已执行的固定容量对照未达到90%，后续选择计划中的ResNet-34，以随机初始化均值池化参照为起点，只改变backbone_name。参数从11,305,980增至21,414,140，特征维度为512；共同预测头及后续CPU RNG与原ResNet-18配对。历史配置缺少架构字段时恢复ResNet-18，实际旧检查点的全部张量恢复一致。采样阶段23份源码／测试快照已归档，共208843字节。`[verified: resnet34-design.json；resnet34-legacy-initialization-probe.json；source-archive-before-resnet34/manifest.json；opinion: 容量选择]`
+
+229项相关CPU检查、ruff、basedpyright及只读审阅通过。旧默认CUDA检查逐项复现原损失及验证指标，ResNet-34真实32／16图预检完成4次更新及原生重载，训练器11.74秒，峰值分配显存1,735,203,328字节。完整10000／1000、30轮容量训练已启动，推理成本在选中权重后测量。初始CPU合成探针的浮点mask被拒绝，改用bool后通过，初次记录及重试均保留。`[verified: resnet34-verification.json；mean-resnet34-smoke.json；mean-resnet34-full30-config.json；progress.json]`
 
 ## 版本同步状态
 
