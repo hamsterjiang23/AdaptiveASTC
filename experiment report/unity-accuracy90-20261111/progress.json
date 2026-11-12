@@ -1990,20 +1990,20 @@
     "observed_utc": "2026-11-12T05:41:49.225535+00:00",
     "current_stage_snapshot": {
       "report": "native-pipeline-full-v3/prepare.json",
-      "report_sha256": "cb75afb09c4c808620cd0f8be2de0d445b6e6029e174efe8859c79811314c4ab",
-      "observed_utc": "2026-11-12T06:12:55.941452+00:00",
+      "report_sha256": "92f645c45a131e6dc18055c4f32875e5c02c8b863dd7b7b252a3162fa635c42a",
+      "observed_utc": "2026-11-12T07:00:53.456562+00:00",
       "status": "running",
       "counts": {
-        "train": 5440,
+        "train": 10000,
         "validation": 2
       },
       "patch_counts": {
-        "train": 24081,
+        "train": 67105,
         "validation": 13
       },
-      "current_batch": "unity-v1-train-021-20261111",
+      "current_batch": "unity-v1-validation-001-20261111",
       "snapshot_only": true,
-      "git_normalized_report_sha256": "0df0d5dacbff32794ed4848e2bb29f798f38d4f41892674f5fc3c3edc4800d3f"
+      "git_normalized_report_sha256": "e933d2a15d4956e56c032ec3cf6324d43e6a737fae01ed792d794d39d8c5077f"
     }
   },
   "fixed_capacity_metadata": {
@@ -3337,6 +3337,19 @@
       ],
       "observed_utc": "2026-11-12T06:09:31.865495+00:00",
       "full_development_data_ready": false
+    },
+    "latest_patch_milestone": {
+      "observed_utc": "2026-11-12T07:00:53.456562+00:00",
+      "counts": {
+        "train": 10000,
+        "validation": 2
+      },
+      "patch_counts": {
+        "train": 67105,
+        "validation": 13
+      },
+      "full_development_data_ready": false,
+      "note": "All training patch targets prepared; validation, assembly, full Dataset read and policy replay remain pending."
     }
   }
 }
