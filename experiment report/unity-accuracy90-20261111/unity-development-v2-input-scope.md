@@ -13,6 +13,8 @@
 
 修订后的确认集2000张继续独立采集，完整像素审计队列也保持。当前收尾验证器新增开发集Tex2D检查；范围问题解决前不允许宣布V2数据交接完成。随后需按获批的新开发范围核对确认集隔离、实际输入准入与像素审计覆盖。`[verified: unity-data-delivery-verifier-readiness.json status、development_scope_audit；verify_data_delivery_v2.py 开发语料范围断言；opinion: 后续验收范围]`
 
-随后将实际输入适配器检查扩展到全部11000张：9987张训练图、995张验证图通过导入属性、PNG哈希、尺寸及与编码回调的RGBA字节核对；仅上述18张Cube被拒绝，没有新增拒绝。检查耗时130.76秒，原名单和语料未改动。五图预检及完整检查均已运行，检查脚本的格式、lint和类型检查通过；未进行训练或模型forward。`[verified: unity-development-v2-input-all11000.json counts、accepted、rejected、unexpected_rejections、wall_seconds、cohort_modified；unity-development-v2-input-smoke5.json；本轮ruff及basedpyright输出]`
+随后将实际输入适配器检查扩展到全部11000张：9987张训练图、995张验证图通过导入属性、PNG哈希、尺寸及与编码回调的RGBA字节核对；仅上述18张Cube被拒绝，没有新增拒绝。完整复跑检查耗时89.04秒，原名单和语料未改动。五图预检及完整检查均已运行，检查脚本的格式、lint和类型检查通过；未进行训练或模型forward。`[verified: unity-development-v2-input-all11000.json counts、accepted、rejected、unexpected_rejections、wall_seconds、cohort_modified；unity-development-v2-input-smoke5.json；本轮ruff及basedpyright输出]`
 
 证据入口：[逐图范围清单](unity-development-v2-input-scope-initial.json)、[首次实际输入适配器验证](unity-development-v2-input-scope-verification.json)、[完整11000张输入检查](unity-development-v2-input-all11000.json)、[数据交接](unity-data-handoff.md)。`[verified: 对应本地文件]`
+
+检查脚本已明确区分部分检查与全量覆盖：五图预检记录为partial，不能声明V2范围就绪；完整复跑仍为仅18张Cube范围不符。修正前脚本和报告已保留，完整检查报告绑定当前脚本SHA。`[verified: unity-development-v2-input-smoke5.json status、coverage_complete、v2_scope_ready；unity-development-v2-input-all11000.json coverage_complete、rejected；unity-data-milestone1026-check.json prior_development_input_audit、smoke_completion_guard]`
