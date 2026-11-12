@@ -8,7 +8,7 @@
 
 ## 验收与执行顺序
 
-[训练图完整20候选](unity-training-candidates10000-v1.json)已覆盖全部10000张／40批次，共200000候选：原搜索77706、额外补测122294。冻结名单、原选择及回执哈希核验通过；当前原始采集train10000／validation514，候选train10000／validation2。完整开发语料、验证补测和确认图仍待完成，本goal继续数据收尾。`[verified: unity-training-candidates10000-v1.json totals、unique_assets_match_frozen_train10000、original_selections_unchanged；progress.json data_handoff；opinion: 完成边界]`
+[开发集原始采集](<unity-development-capture11000-v1.json>)已完成train10000／validation1000，共45批次；名单、MD4、同次原搜索与实际导入属性逐图配对，230份输入哈希及执行／恢复记录核验通过。[训练图20候选](<unity-training-candidates10000-v1.json>)已完成10000张／200000候选。当前继续验证候选补测、完整patch检查和确认集采集；原始采集完成与完整数据就绪分别验收。`[verified: unity-development-capture11000-v1.json counts、batches、inputs_sha256；unity-training-candidates10000-v1.json totals；opinion: 验收边界]`
 
 [原生训练图采集与标签分布](unity-native-label-distribution.md)已覆盖10000训练图／40批次，208个输入SHA及完整名单核对通过；四类计数1710／1490／1366／5434，大图放宽498、最高PSNR回退377。原采集转入验证图，补测完成9280训练图＋2验证图；正式CUDA训练仍等待完整数据。旧9792条派生记录保持，本次未改变冻结配置或分析验证／确认标签。`[verified: unity-native-labels10000-v1.json summary；unity-native-labels10000-verification.json live_reports、unchanged_prior_rows；opinion: 完成边界]`
 

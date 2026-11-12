@@ -1604,19 +1604,20 @@
     }
   },
   "unity_reference_series": {
-    "status": "running",
+    "status": "passed",
     "counts": {
       "train": 10000,
-      "validation": 514
+      "validation": 1000
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-validation-003-20261111",
+    "current_batch": null,
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "4415177a009cb44521e4d72106557c89ee73116980d39d0cdc202a2e7a352fc3"
+    "report_sha256": "ffbdaad011a55f659bda570bf1f69e438cabf95e6ae501fc2b0c505dcd9ecce0",
+    "observed_utc": "2026-11-12T05:28:42.815410+00:00"
   },
   "fixed_capacity_stem": {
     "summary": "patch-fixed-capacity\\scratch-stem2-lr0003-summary.json",
@@ -1637,16 +1638,17 @@
     "status": "running",
     "counts": {
       "train": 10000,
-      "validation": 2
+      "validation": 770
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-validation-001-20261111",
+    "current_batch": "unity-v1-validation-004-20261111",
     "test_opened": false,
     "report": "unity-candidate-queue-sprite-v3.json",
-    "report_sha256": "f216050e3bf823387355b162f0915545be10070491931946c35a8683811a05bb"
+    "report_sha256": "bfed3500896abad5cc115d139acd42fa1c09646eb169d413ed299dc66b67953f",
+    "observed_utc": "2026-11-12T05:28:42.815410+00:00"
   },
   "fixed_capacity_group_sampling": {
     "status": "completed",
@@ -3017,35 +3019,35 @@
     "verification": "unity-data-handoff-verification.json",
     "verification_sha256": "618411ac2e2a727728819c3762335526a53495d5a2998a0bca2b3bd322f90931",
     "latest_capture_milestone": {
-      "run_id": "unity-v1-validation-003-20261111",
-      "images": 256,
+      "run_id": "unity-v1-validation-004-20261111",
+      "images": 230,
       "split": "validation",
       "status": "published_and_receipt_hashes_verified",
       "bindings": {
         "phase_receipt_sha256": {
-          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-003-20261111\\batch-receipt.json",
-          "sha256": "b8e7bce8410f57dce4c04bf0884d5e9f2a3cde1ecb5e649780b3e6342e8022f1"
+          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-004-20261111\\batch-receipt.json",
+          "sha256": "51b6ac8aed9d903b6f08e75d3711d14eb0ad147f6a743f46ea575d7aa25c5f4f"
         },
         "reference_receipt_sha256": {
-          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-003-20261111\\references\\normalized-batch\\receipt.json",
-          "sha256": "c0e02307310e1f2c71543792f6922b8f5b00900f5a2eb66982939066c35d3ed1"
+          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-004-20261111\\references\\normalized-batch\\receipt.json",
+          "sha256": "6e9685062b59651bdd39130b0783b1feaff538568f8000bb17038cf6fb9b6f1a"
         },
         "options_sha256": {
-          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-003-20261111\\options-receipt.json",
-          "sha256": "c5e712c8ef05832d437d2d5510039765b7715ced772bc108748f89a98652ebb8"
+          "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-004-20261111\\options-receipt.json",
+          "sha256": "49b9c7b9e2cbbad3baf6a8dd5dd817201fe00d407accc201fd3e22a3cfa5e7ba"
         }
       },
       "reference_counts": {
         "train": 10000,
-        "validation": 770
+        "validation": 1000
       },
       "candidate_counts": {
         "train": 10000,
-        "validation": 514
+        "validation": 770
       },
       "process_exit_code": 0,
       "metadata_restore_conflicts": 0,
-      "verified_utc": "2026-11-12T05:02:43.882098+00:00",
+      "verified_utc": "2026-11-12T05:23:29.152490+00:00",
       "model_evaluation_performed": false
     },
     "latest_candidate_milestone": {
@@ -3087,6 +3089,57 @@
       "full_development_data_ready": false,
       "verification": "unity-training-candidates10000-verification.json",
       "verification_sha256": "62a35da6b4876e36f1aa9474f5652d0f4794941985c54067978c3d7695462153"
-    }
+    },
+    "original_development_capture": {
+      "report": "unity-development-capture11000-v1.json",
+      "report_sha256": "ffe6c589bad92a4332a176adc5e2864b809ef8b28e5c8e85b25b97ffba65c95f",
+      "status": "passed_development_capture_receipt_audit",
+      "counts": {
+        "train": 10000,
+        "validation": 1000
+      },
+      "bound_inputs": 230,
+      "full_development_data_ready": false,
+      "verification": "unity-development-capture11000-verification.json",
+      "verification_sha256": "1c59c487a8a3ba82b7c7e6b6ebf5e58779164bddfc05a34b51a2106d74965bc0"
+    },
+    "progress_snapshot_history": [
+      {
+        "archived_utc": "2026-11-12T05:28:42.815410+00:00",
+        "reason": "Refresh stale top-level capture/candidate snapshots after complete original development capture",
+        "entries": {
+          "unity_reference_series": {
+            "status": "running",
+            "counts": {
+              "train": 10000,
+              "validation": 514
+            },
+            "expected_counts": {
+              "train": 10000,
+              "validation": 1000
+            },
+            "current_batch": "unity-v1-validation-003-20261111",
+            "test_opened": false,
+            "report": "unity-reference-series.json",
+            "report_sha256": "4415177a009cb44521e4d72106557c89ee73116980d39d0cdc202a2e7a352fc3"
+          },
+          "unity_candidate_queue": {
+            "status": "running",
+            "counts": {
+              "train": 10000,
+              "validation": 2
+            },
+            "expected_counts": {
+              "train": 10000,
+              "validation": 1000
+            },
+            "current_batch": "unity-v1-validation-001-20261111",
+            "test_opened": false,
+            "report": "unity-candidate-queue-sprite-v3.json",
+            "report_sha256": "f216050e3bf823387355b162f0915545be10070491931946c35a8683811a05bb"
+          }
+        }
+      }
+    ]
   }
 }

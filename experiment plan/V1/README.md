@@ -4,7 +4,7 @@ V1 记录于 2026-11-11。用户于 2026-11-12 将本 goal 收尾范围改为数
 
 核心判断是把块大小选择改写为逐块大小的 PSNR 预测。四分类标签由四个候选 PSNR 按阈值唯一确定，PSNR 预测误差约 0.75 dB 时推出的标签准确率约 90%，整图缩放到 224×224 的输入难以提供这种精度。`[verified: evidence.json label_structure、precision_requirement] [opinion: 方案判断]`
 
-[训练图完整20候选](<../../experiment report/unity-accuracy90-20261111/unity-training-candidates10000-v1.json>)已覆盖全部10000张／40批次，共200000候选：原搜索77706、额外补测122294。冻结名单、原选择及回执哈希核验通过；当前原始采集train10000／validation514，候选train10000／validation2。完整开发语料、验证补测和确认图仍待完成，本goal继续数据收尾。`[verified: unity-training-candidates10000-v1.json totals、unique_assets_match_frozen_train10000、original_selections_unchanged；progress.json data_handoff；opinion: 完成边界]`
+[开发集原始采集](<../../experiment report/unity-accuracy90-20261111/unity-development-capture11000-v1.json>)已完成train10000／validation1000，共45批次；名单、MD4、同次原搜索与实际导入属性逐图配对，230份输入哈希及执行／恢复记录核验通过。[训练图20候选](<../../experiment report/unity-accuracy90-20261111/unity-training-candidates10000-v1.json>)已完成10000张／200000候选。当前继续验证候选补测、完整patch检查和确认集采集；原始采集完成与完整数据就绪分别验收。`[verified: unity-development-capture11000-v1.json counts、batches、inputs_sha256；unity-training-candidates10000-v1.json totals；opinion: 验收边界]`
 
 ## 目标与开发数据
 
