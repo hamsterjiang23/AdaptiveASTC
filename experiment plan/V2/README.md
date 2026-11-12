@@ -30,9 +30,9 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 
 ## 数据
 
-开发语料中的18张Cube已获批准[按V2范围补采](<../../experiment report/unity-accuracy90-20261111/unity-development-v2-revision.md>)：13张训练、5张验证，保持10000／1000，原始语料保留。新版源名单已冻结，E0须等新图片原生采集、20候选、patch及完整审计完成。`[verified: 用户本轮补采选择；unity-development-cohort-v2.json；opinion: 数据验收边界]`
+V2 数据采集与完整性验收已完成：训练10000张、验证1000张、确认2000张。开发集已按批准的18个位置补采并生成新语料，220000组候选、74609个patch；11000张完整读取和原规则四字段重放通过。13,000张实际输入、精确RGBA和同尺寸对齐近重复检查完成，确认集未运行模型。`[verified: unity-data-delivery-v3-verification.json counts、development_candidate_count、development_patch_counts、exact_policy_replay、native_input_eligibility_verified、full_pixel_audit_complete、test_opened]` 数据阶段E0完成，后续训练和模型验收尚待执行；入口见[最终交接](<../../experiment report/unity-accuracy90-20261111/unity-data-delivery-v3.md>)。`[verified: 最终验收 data_collection_complete、v2_training_started]`
 
-确认集以用户批准的[V2范围修订名单](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)为当前采集版本：2000张、1231个资产组，47个范围外样本按原备用顺序替换。源身份检查通过；实际导入准入、完整参考像素审计和模型确认评价仍分别待验收。原始evidence.json保留为计划建立时的快照。`[verified: unity-confirmation2000-v2.json；unity-confirmation-v2-readiness.json；opinion: 验收边界]`
+精确RGBA重复9组，跨划分0组；同尺寸对齐RGBA RMSE≤2的近重复25对，其中跨划分11对。保留原划分及全部问题记录，没有自动删图。审计不覆盖裁剪、缩放或语义近重复，不能据此声称确认集完全独立；模型90%验收仍由后续V2执行。`[verified: unity-data-delivery-v3-verification.json pixel_audit、model_accuracy、v2_training_started；opinion: 审计与模型结论边界]` 原始evidence.json保持为计划建立时的快照。`[verified: 最终验收已核对V1/V2历史证据哈希]`
 
 - **开发划分**：沿用已冻结的 coverage-v2 资产名单，train10000／validation1000。只复用名单和划分，像素、标签和候选质量全部按 Unity 协议采集。`[verified: evidence.json capture_protocol.manifest、source_split_count；unity-reference-series.md] [opinion: 复用边界]`
 - **每张图的数据**：参考 RGBA；8 项导入属性，即 log2 宽、log2 高、sRGB、法线、需要 Alpha、Alpha 恒定、法线评价 mip 数和纯黑像素比例；原搜索标签和计时；20 候选补测的解码图与原生质量；非重叠 240×240 patch 的 RGBA 逐通道 SSE，patch 原点为 240 的倍数，四种块网格都对齐；整图 MS-SSIM 与法线角度。`[verified: unity_patch_dataset.py METADATA_NAMES；data/patch_targets.py boxes；unity-patch-targets.md]`
@@ -42,7 +42,7 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 
 ### 已知分布
 
-以下来自按冻结顺序先完成的 3904 张训练图，属于部分覆盖，完整训练集和 validation 的分布可能不同。`[verified: evidence.json targets3904.scope]`
+最新完整训练／验证分布见[新版分布](<../../experiment report/unity-accuracy90-20261111/unity-development-v2-distribution.json>)。下列3904张统计保留为计划初版快照，不作为完整数据分布。`[verified: unity-development-v2-distribution.json；evidence.json targets3904.scope]`
 
 - **块大小**：12×12 2414 张（61.8%），10×10 549，8×8 512，6×6 429。始终预测 12×12 的 Top-1 为 61.8%，作为最低参照。
 - **preset**：fastest 1159，fast 138，medium 956，thorough 929，exhaustive 722。
@@ -90,7 +90,7 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 
 | 编号 | 内容 | 完成或晋级判据 |
 |---|---|---|
-| E0 数据就绪 | 完成 train10000／validation1000 参考采集与 20 候选补测；patch 目标、合并和 Dataset 读取；全部 11000 张原规则重放；开发集精确与近重复审计 | 覆盖 complete 且 counts 等于完整划分；重放的块大小、preset、选择原因、尝试次数全部一致；失败以新身份重试并保留原记录 |
+| E0 数据就绪 | 完成 train10000／validation1000 参考采集与 20 候选补测；patch 目标、合并和 Dataset 读取；全部 11000 张原规则重放；开发集精确与近重复审计 | 覆盖 complete 且 counts 等于完整划分；重放的块大小、preset、选择原因、候选测量次数（candidates_measured）全部一致；失败以新身份重试并保留原记录 |
 | E1 规则侧诊断（不训练） | validation1000 上统计固定 6×6／8×8／10×10／12×12（medium）、始终 12×12、只看 PSNR 规则的 Top-1、严格通过率和 payload；在训练划分的实测指标上，分别和同时给 PSNR、MS-SSIM、角度加高斯误差并重放规则 | 得到各指标达到 90% 所需的精度，作为 E2–E4 的误差目标 |
 | E2 原生基线 R0 | 按保留的 R0 配方，以新身份在完整开发集上 CUDA 训练，先跑小样本闭环 | validation Top-1≥90% 进入 E6，否则进入 E3 |
 | E3 误差归因（不重训） | 冻结 R0 的 validation 预测，逐项把 PSNR 通道误差、零通道、MS-SSIM、角度换成实测值后重放规则；按分组统计错误 | 得到瓶颈排序，决定 E4 的顺序 |

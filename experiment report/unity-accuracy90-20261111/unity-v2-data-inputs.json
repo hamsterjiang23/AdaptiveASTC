@@ -1,0 +1,51 @@
+{
+  "status": "ready_for_v2_development",
+  "created_utc": "2026-11-12T13:04:07.303063+00:00",
+  "scope": "Completed data handoff; no training or confirmation model evaluation",
+  "development": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json",
+    "sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+    "counts": {
+      "train": 10000,
+      "validation": 1000
+    },
+    "patch_counts": {
+      "train": 67436,
+      "validation": 7173
+    },
+    "candidate_count": 220000,
+    "replacement_count": 18
+  },
+  "confirmation": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2\\manifest.json",
+    "sha256": "906e5b7f27e3f01a15f02e51d6fbdb689a69c28374fd4496034282355471db33",
+    "counts": {
+      "confirmation": 2000
+    },
+    "original_candidates_only": true,
+    "model_evaluation_performed": false
+  },
+  "verification": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-data-delivery-v3-verification.json",
+    "sha256": "7ef87508e87a1454046ca75b79696b2182f3feb7234ac9c5d520d1b1f37ba29d"
+  },
+  "pixel_audit": {
+    "rgba": {
+      "unique_identities": 12991,
+      "duplicate_groups": 9,
+      "images_in_duplicate_groups": 18,
+      "redundant_images": 9,
+      "cross_split_groups": 0,
+      "cross_split_images": {},
+      "groups_with_different_rgba": 0,
+      "groups_with_different_choices": 0
+    },
+    "near_identity_pairs": 25,
+    "cross_split_near_identity_pairs": 11,
+    "scope": "Revised native cohort; exact RGBA and same-size aligned RGBA RMSE<=2 only",
+    "independent_test_isolation_proven": false
+  },
+  "training_auto_start": false,
+  "large_artifacts_location": "Local ignored experiment report/.local; not in Git",
+  "future_training_requires_new_run_identity": true
+}

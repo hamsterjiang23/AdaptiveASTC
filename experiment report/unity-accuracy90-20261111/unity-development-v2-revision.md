@@ -1,6 +1,8 @@
 # V2 开发集18张替补与新版本交接
 
-18张原生补采、实际输入检查、360候选和440个patch目标已完成；新版11000张语料已完成合并、Dataset全读和原规则复核，最终13000张像素审计尚未完成。完成证据见[替补18张验收](unity-development-replacement18-completion.json)。`[verified: unity-development-replacement18-completion.json；目标处理队列当前阶段]`
+V2 数据采集与完整性验收已完成：训练10000张、验证1000张、确认2000张。开发集已按批准的18个位置补采并生成新语料，220000组候选、74609个patch；11000张完整读取和原规则四字段重放通过。13,000张实际输入、精确RGBA和同尺寸对齐近重复检查完成，确认集未运行模型。`[verified: unity-data-delivery-v3-verification.json counts、development_candidate_count、development_patch_counts、exact_policy_replay、native_input_eligibility_verified、full_pixel_audit_complete、test_opened]` [最终交接](unity-data-delivery-v3.md)与[数据入口](unity-v2-data-inputs.json)。
+
+## 历史启动、准备与中间状态记录
 
 补采等待任务最初以waiting_confirmation状态启动，以下启动信息保留为历史记录。确认集完成后自动调用原采集入口；运行前和等待期间核对43份执行源码及冻结配置。启动进程、预检、10项测试和407个本地链接检查保存在[启动验收记录](unity-development-v2-revision-readiness.json)。`[verified: unity-development-replacement18-queue-v2.json status；unity-development-v2-revision-readiness.json processes、execution_sources_verified、checks]`
 

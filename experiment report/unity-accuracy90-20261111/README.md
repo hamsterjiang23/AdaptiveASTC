@@ -1,10 +1,10 @@
 # Unity 90%目标执行记录
 
-开发数据已获批准[补采13张训练图和5张验证图](unity-development-v2-revision.md)，生成10000／1000的新版本。原Cube数据与测量记录保持；确认集继续采集，新版数据Goal尚未完成。`[verified: 用户本轮补采选择；unity-development-cohort-v2.json]`
+V2 数据采集与完整性验收已完成：训练10000张、验证1000张、确认2000张。开发集已按批准的18个位置补采并生成新语料，220000组候选、74609个patch；11000张完整读取和原规则四字段重放通过。13,000张实际输入、精确RGBA和同尺寸对齐近重复检查完成，确认集未运行模型。`[verified: unity-data-delivery-v3-verification.json counts、development_candidate_count、development_patch_counts、exact_policy_replay、native_input_eligibility_verified、full_pixel_audit_complete、test_opened]` [最终交接](unity-data-delivery-v3.md)与[数据入口](unity-v2-data-inputs.json)。
 
-确认集已按用户批准的V2范围完成[47张替换及新队列启动](unity-confirmation-v2-revision.md)：保留原主名单1953张，按原备用顺序补齐2000张，备用剩441张，旧名单／失败归档保留。新名单仍需实际导入准入检查和全13000张像素审计；当前goal继续只完成数据交接。`[verified: unity-confirmation2000-v2.json；unity-confirmation-v2-readiness.json；opinion: 完成边界]`
+精确RGBA重复9组，跨划分0组；同尺寸对齐RGBA RMSE≤2的近重复25对，其中跨划分11对。保留原划分及全部问题记录，没有自动删图。审计不覆盖裁剪、缩放或语义近重复，不能据此声称确认集完全独立；模型90%验收仍由后续V2执行。`[verified: unity-data-delivery-v3-verification.json pixel_audit、model_accuracy、v2_training_started；opinion: 审计与模型结论边界]`
 
-当前 goal 按用户 2026-11-12 最新指示，仅完成[Unity 数据采集与 V2 交接](unity-data-handoff.md)后结束；不再自动启动 V1 正式训练。开发集原始采集、20 候选补测、patch／规则验收和独立确认图采集、像素审计继续运行。`[verified: 用户“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json]`
+本次数据采集与验收已经完成；后续V2训练和模型90%验收另行执行。`[verified: unity-data-delivery-v3-verification.json data_collection_complete、v2_training_started、model_accuracy；用户数据收尾范围]`
 
 以下保留历史执行记录。原方案以用户提供的 [V1：原分辨率 patch 误差回归](<../../experiment plan/V1/README.md>) 为准，诊断依据见 [V1 evidence.json](<../../experiment plan/V1/evidence.json>)。用户清除旧goal后，已按V1重新创建active goal。原来的树模型优先实验和24组SGD搜索不再作为当前执行顺序。`[verified: 用户本轮V1与重建goal要求；create_goal返回active]`
 
@@ -12,7 +12,7 @@
 
 ## 验收与执行顺序
 
-[开发集原始采集](<unity-development-capture11000-v1.json>)与[全部20候选](<unity-development-candidates11000-v1.json>)已完成train10000／validation1000，共220000候选。完整数据流水线的patch整理、合并、Dataset全读和原规则重放均通过：训练67105个patch、验证7082个patch；11000张的块大小、preset、选择原因、候选测量次数（candidates_measured）全部一致，见[开发语料验收](<unity-development-data11000-verification.json>)。确认集2000张采集和完整像素审计仍待完成，因此V2的E0与本goal尚未完成；重放一致不代表模型准确率。`[verified: unity-development-data11000-verification.json counts、patch_counts、exact_policy_replay、e0_complete；opinion: 验收边界]`
+V2 数据采集与完整性验收已完成：训练10000张、验证1000张、确认2000张。开发集已按批准的18个位置补采并生成新语料，220000组候选、74609个patch；11000张完整读取和原规则四字段重放通过。13,000张实际输入、精确RGBA和同尺寸对齐近重复检查完成，确认集未运行模型。`[verified: unity-data-delivery-v3-verification.json counts、development_candidate_count、development_patch_counts、exact_policy_replay、native_input_eligibility_verified、full_pixel_audit_complete、test_opened]`
 
 [原生训练图采集与标签分布](unity-native-label-distribution.md)已覆盖10000训练图／40批次，208个输入SHA及完整名单核对通过；四类计数1710／1490／1366／5434，大图放宽498、最高PSNR回退377。原采集转入验证图，补测完成9280训练图＋2验证图；正式CUDA训练仍等待完整数据。旧9792条派生记录保持，本次未改变冻结配置或分析验证／确认标签。`[verified: unity-native-labels10000-v1.json summary；unity-native-labels10000-verification.json live_reports、unchanged_prior_rows；opinion: 完成边界]`
 

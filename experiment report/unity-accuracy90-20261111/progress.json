@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T12:47:59.740374+00:00",
+  "updated_utc": "2026-11-12T13:04:07.369054+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -12,7 +12,7 @@
     "model_training_required": false,
     "model_accuracy_required": false
   },
-  "phase": "Revised11000 development data and confirmation2000 complete; final full pixel audit pending",
+  "phase": "Data collection and full audit complete; final repository delivery pending",
   "initialization": "scratch",
   "model": "ResNet-18",
   "new_test_accuracy": null,
@@ -62,11 +62,7 @@
       "stderr": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\capture-probe-retry2\\stderr.log"
     }
   ],
-  "next": [
-    "Finish historical full13000 archive/pixel audit.",
-    "Run final exact and aligned near-duplicate audit on revised13000cohort.",
-    "Run frozen delivery checks, update data entry points and complete data-only goal."
-  ],
+  "next": "Commit and push verified data handoff, then complete the data-only goal.",
   "decisions": [
     "User confirmed Unity imported references as main acceptance data",
     "User selected scratch initialization",
@@ -2991,7 +2987,7 @@
   "data_handoff": {
     "report": "unity-data-handoff-v1.json",
     "documentation": "unity-data-handoff.md",
-    "status": "waiting_revised_full_pixel_audit",
+    "status": "data_verified_repository_delivery_pending",
     "required_counts": {
       "train": 10000,
       "validation": 1000,
@@ -2999,8 +2995,8 @@
     },
     "training_auto_start": false,
     "goal_complete": false,
-    "verification": "unity-data-handoff-verification.json",
-    "verification_sha256": "618411ac2e2a727728819c3762335526a53495d5a2998a0bca2b3bd322f90931",
+    "verification": "unity-data-delivery-v3-verification.json",
+    "verification_sha256": "7ef87508e87a1454046ca75b79696b2182f3feb7234ac9c5d520d1b1f37ba29d",
     "latest_capture_milestone": {
       "run_id": "unity-v1-validation-004-20261111",
       "images": 230,
@@ -3716,8 +3712,8 @@
       "full_input_audit": "unity-development-v2-input-all11000.json",
       "full_input_audit_sha256": "746fcd7dae9bef240f78067941ac0d97ff74c02f7540255efa561a4ab2db27b6",
       "actual_inputs_accepted": {
-        "train": 9987,
-        "validation": 995
+        "train": 10000,
+        "validation": 1000
       },
       "decision_utc": "2026-11-12T11:03:50.884260+00:00",
       "revision_report": "unity-development-cohort-v2.json",
@@ -3726,6 +3722,10 @@
       "capture_queue_report": "unity-development-replacement18-queue-v2.json",
       "current_input_audit": "unity-development-corpus11000-v2.json"
     },
-    "next": "Complete approved18 replacements, all20 targets, revised11000 corpus and full13000 pixel audit; then final data handoff."
+    "next": "Repository delivery and goal completion only.",
+    "data_inputs": "unity-v2-data-inputs.json",
+    "data_inputs_sha256": "2ee001de3049cf39af8b541428173a07bb4eaf23abbd332f18b7c57a88fb27f0",
+    "data_collection_complete": true,
+    "full_pixel_audit_complete": true
   }
 }

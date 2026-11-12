@@ -1,5 +1,11 @@
 # Unity 数据采集收尾与 V2 交接
 
+V2 数据采集与完整性验收已完成：训练10000张、验证1000张、确认2000张。开发集已按批准的18个位置补采并生成新语料，220000组候选、74609个patch；11000张完整读取和原规则四字段重放通过。13,000张实际输入、精确RGBA和同尺寸对齐近重复检查完成，确认集未运行模型。`[verified: unity-data-delivery-v3-verification.json counts、development_candidate_count、development_patch_counts、exact_policy_replay、native_input_eligibility_verified、full_pixel_audit_complete、test_opened]` [最终交接](unity-data-delivery-v3.md)与[数据入口](unity-v2-data-inputs.json)。
+
+精确RGBA重复9组，跨划分0组；同尺寸对齐RGBA RMSE≤2的近重复25对，其中跨划分11对。保留原划分及全部问题记录，没有自动删图。审计不覆盖裁剪、缩放或语义近重复，不能据此声称确认集完全独立；模型90%验收仍由后续V2执行。`[verified: unity-data-delivery-v3-verification.json pixel_audit、model_accuracy、v2_training_started；opinion: 审计与模型结论边界]`
+
+以下保留先前安排与时间点记录，当前交付状态以上述最终验收为准。`[verified: unity-data-delivery-v3-verification.json verified_utc]`
+
 2026-11-12，用户将本 chat 的 goal 完成条件改为“完成数据采集”，随后执行 V2。本次指示覆盖旧 goal 正文中的继续训练与达到 90% 要求；旧实验结果保留，当前 goal 在完整数据及验收证据齐备后完成。V2 模型训练、调优和独立准确率验收另行执行。`[verified: 用户“完成数据采集之后goal就能完成了…我要执行V2了”]`
 
 ## 本 Goal 的完成条件

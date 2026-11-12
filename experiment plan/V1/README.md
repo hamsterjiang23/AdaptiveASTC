@@ -1,6 +1,6 @@
 # 实验计划 V1：原分辨率 patch 误差回归
 
-数据交接已获批准[补采18张V2范围内图片](<../../experiment report/unity-accuracy90-20261111/unity-development-v2-revision.md>)，保持开发集10000／1000；原始V1数据和结果保留。确认集采集继续，V1训练不恢复。`[verified: 用户本轮补采选择；unity-development-cohort-v2.json]`
+V2 数据采集与完整性验收已完成：训练10000张、验证1000张、确认2000张。开发集已按批准的18个位置补采并生成新语料，220000组候选、74609个patch；11000张完整读取和原规则四字段重放通过。13,000张实际输入、精确RGBA和同尺寸对齐近重复检查完成，确认集未运行模型。`[verified: unity-data-delivery-v3-verification.json counts、development_candidate_count、development_patch_counts、exact_policy_replay、native_input_eligibility_verified、full_pixel_audit_complete、test_opened]` [最终交接](<../../experiment report/unity-accuracy90-20261111/unity-data-delivery-v3.md>)已绑定新版数据；V1训练不恢复。`[verified: unity-data-handoff-v1.json training_auto_start]`
 
 当前数据采集交接中的确认集已按用户批准的V2范围生成[新版名单与采集链](<../../experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)，替换47张范围外图，旧名单和失败保留；不恢复V1正式训练。`[verified: unity-confirmation2000-v2.json；unity-data-handoff.md；用户本次替换选择]`
 
@@ -8,7 +8,7 @@ V1 记录于 2026-11-11。用户于 2026-11-12 将本 goal 收尾范围改为数
 
 核心判断是把块大小选择改写为逐块大小的 PSNR 预测。四分类标签由四个候选 PSNR 按阈值唯一确定，PSNR 预测误差约 0.75 dB 时推出的标签准确率约 90%，整图缩放到 224×224 的输入难以提供这种精度。`[verified: evidence.json label_structure、precision_requirement] [opinion: 方案判断]`
 
-[开发集原始采集](<../../experiment report/unity-accuracy90-20261111/unity-development-capture11000-v1.json>)与[全部20候选](<../../experiment report/unity-accuracy90-20261111/unity-development-candidates11000-v1.json>)已完成train10000／validation1000，共220000候选。完整数据流水线的patch整理、合并、Dataset全读和原规则重放均通过：训练67105个patch、验证7082个patch；11000张的块大小、preset、选择原因、候选测量次数（candidates_measured）全部一致，见[开发语料验收](<../../experiment report/unity-accuracy90-20261111/unity-development-data11000-verification.json>)。确认集2000张采集和完整像素审计仍待完成，因此V2的E0与本goal尚未完成；重放一致不代表模型准确率。`[verified: unity-development-data11000-verification.json counts、patch_counts、exact_policy_replay、e0_complete；opinion: 验收边界]`
+历史修订前进度：[开发集原始采集](<../../experiment report/unity-accuracy90-20261111/unity-development-capture11000-v1.json>)与[全部20候选](<../../experiment report/unity-accuracy90-20261111/unity-development-candidates11000-v1.json>)已完成train10000／validation1000，共220000候选。完整数据流水线的patch整理、合并、Dataset全读和原规则重放均通过：训练67105个patch、验证7082个patch；11000张的块大小、preset、选择原因、候选测量次数（candidates_measured）全部一致，见[开发语料验收](<../../experiment report/unity-accuracy90-20261111/unity-development-data11000-verification.json>)。确认集2000张采集和完整像素审计仍待完成，因此V2的E0与本goal尚未完成；重放一致不代表模型准确率。`[verified: unity-development-data11000-verification.json counts、patch_counts、exact_policy_replay、e0_complete；opinion: 验收边界]`
 
 ## 目标与开发数据
 
