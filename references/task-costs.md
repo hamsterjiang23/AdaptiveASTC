@@ -95,3 +95,6 @@ Unity原生Dataset检查使用CPU，未进行模型训练。7图小样本循环0
 
 
 Unity V2首次完整R0训练器720.81秒、10轮、6247实际更新，最佳74.9%，结束重载数值审计失败；该成本保留。修复后的32train／16validation CUDA检查为10.82秒、4更新及重载通过，显存分配峰值1,219,232,256字节。正式重跑前空闲RAM45.34GiB、GPU615／12282MiB，原配方、单GPU串行，写新身份目录；归因小样本仅CPU、0次forward。`[verified: ../experiment report/unity-v2-20261112/r0.json wall_seconds、history、training_updates、error；r0-stable-sum-smoke.json wall_seconds、checkpoint_audit；.local/unity-v2-20261112/jobs/r0-stable-sum/launch-preflight.json；attribution-stable-smoke.json model_forward_calls]`
+
+
+修订后V2完整基线8轮，训练器529.26秒（准备80.51、训练321.22、逐轮验证97.32），4996更新、4AMP跳步，最终重载25.32秒通过。完整冻结归因CPU1000图运行6.53秒进程，0次forward。MS-SSIM权重0.03对照的32／16图CUDA检查训练器11.59秒，4更新及重载通过，正式任务继续GPU串行并写独立目录。`[verified: ../experiment report/unity-v2-20261112/baseline-result.json；r0-stable-sum.json checkpoint_audit.wall_seconds；本轮归因命令wall_time_seconds=6.527；ssim-weight003-smoke.json wall_seconds、checkpoint_audit]`

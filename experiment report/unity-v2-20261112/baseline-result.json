@@ -1,0 +1,103 @@
+{
+  "status": "completed_baseline",
+  "created_utc": "2026-11-12T14:09:33.269152+00:00",
+  "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-stable-sum.json",
+  "training_report_sha256": "601b1739842d8533fdc4d2adbd86c570510dc9f4083dc9305b869954eeaae377",
+  "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-attribution.json",
+  "attribution_report_sha256": "7ca8c5a2c7a6aa8e30947263c8e88054f976ecd69931880e676895a58a93f548",
+  "counts": {
+    "train": 10000,
+    "validation": 1000
+  },
+  "epochs": 8,
+  "optimizer_updates": 4996,
+  "amp_skipped_steps": 4,
+  "selected_checkpoint_epoch": 5,
+  "selected_checkpoint_metrics": {
+    "count": 1000,
+    "accuracy": 0.739,
+    "balanced_accuracy": 0.5848084437458938,
+    "full_choice_accuracy": 0.381,
+    "confusion_matrix": [
+      [
+        73,
+        27,
+        13,
+        7
+      ],
+      [
+        27,
+        66,
+        35,
+        15
+      ],
+      [
+        4,
+        30,
+        48,
+        56
+      ],
+      [
+        1,
+        15,
+        31,
+        552
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 120,
+        "recall": 0.6083333333333333
+      },
+      "8x8": {
+        "support": 143,
+        "recall": 0.46153846153846156
+      },
+      "10x10": {
+        "support": 138,
+        "recall": 0.34782608695652173
+      },
+      "12x12": {
+        "support": 599,
+        "recall": 0.9215358931552587
+      }
+    },
+    "actual_quality_pass_rate": 0.617,
+    "no_strict_feasible_images": 34,
+    "color_near_threshold_candidate_count": 4687,
+    "color_near_threshold_rmse_db": 2.9747165580397135,
+    "selected_payload_bytes": 31661760,
+    "original_payload_bytes": 31661520,
+    "fixed8_payload_bytes": 59761616,
+    "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+    "seconds": 14.830558099999962
+  },
+  "quality_regression_images": 257,
+  "quality_improvement_images": 0,
+  "larger_block_errors": 153,
+  "smaller_block_errors": 108,
+  "payload_ratio_to_fixed8": 0.5298009344325628,
+  "payload_ratio_to_original": 1.000007580179347,
+  "training_seconds": 321.22262290000026,
+  "validation_seconds": 97.31758480000053,
+  "preparation_seconds": 80.51498930000025,
+  "trainer_wall_seconds": 529.2559755000002,
+  "deployment_timings": null,
+  "parameters": 11377660,
+  "checkpoint_audit": "passed",
+  "validation90_achieved": false,
+  "test_opened": false,
+  "next_trial": "ssim_weight0.03; same remaining recipe",
+  "verification": {
+    "verified_utc": "2026-11-12T14:12:52.112735+00:00",
+    "all_attribution_bound_sources": "passed",
+    "raw_attribution_decisions_sha256": "passed",
+    "all_three_selected_artifacts_sha256": "passed",
+    "formal_checkpoint_audit": "passed",
+    "oracle_accuracy": 1.0,
+    "tests_passed": 55,
+    "ruff_format_check": "passed",
+    "ruff_check": "passed",
+    "basedpyright": "passed"
+  }
+}

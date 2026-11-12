@@ -50,7 +50,7 @@
 
 ## 进度
 
-CUDA预检和完整规则诊断已完成。首次完整基线完成10轮后在数值重载审计中失败，修订后使用`r0-stable-sum`新身份重跑原配方，继续单GPU串行调度。后续状态与结果写入[本轮进度](progress.json)。`[verified: r0.json status、history；r0-stable-sum-config.json；progress.json]`
+规则诊断、完整原生基线和冻结预测归因已完成，MS-SSIM loss权重0.03的单项对照已启动，继续单GPU串行调度。后续状态与结果写入[本轮进度](progress.json)。`[verified: rules.json status；r0-stable-sum.json status、checkpoint_audit；r0-attribution.json status；ssim-weight003.json status；progress.json]`
 
 全量训练的首轮启动快照为验证Top-1 63.0%、近阈值RMSE 3.4667dB，实际624次更新、1次AMP跳步；训练47.43秒、验证11.67秒，首次数据准备170.30秒。这是训练过程记录，后续最佳权重仍按完整验证和重载审计确定。`[verified: r0.json history中epoch1、preparation_seconds；opinion: 过程与最终选模范围]`
 
@@ -68,4 +68,32 @@ CUDA预检和完整规则诊断已完成。首次完整基线完成10轮后在�
 
 `script/attribute_unity_errors.py`仅接收成功终态训练及通过的最佳权重重载审计，绑定训练报告、原语料、源码及三份最佳产物SHA。分别替换通道MSE、零通道、二者联合、MS-SSIM、法线角度及全部实测指标，报告修复／破坏图数、类型／尺寸／原分支分组、资产组宏平均、逐类precision／recall和残差。`[verified: script/attribute_unity_errors.py run、grouped_metrics、residual_metrics]`
 
-修订后小样本的保存预测完全重放，全部实测指标替换恢复100%块大小及完整配置匹配，模型forward次数为0。完整归因等待成功结束的新版基线。`[verified: attribution-stable-smoke.json variants、model_forward_calls；script/attribute_unity_errors.py 训练终态检查]`
+修订后小样本的保存预测完全重放，全部实测指标替换恢复100%块大小及完整配置匹配，模型forward次数为0；完整1000图归因也已完成。`[verified: attribution-stable-smoke.json variants、model_forward_calls；r0-attribution.json status、validation_images]`
+
+## 成功结束的完整原生基线
+
+修订后基线训练8轮、4996次实际更新、4次AMP跳步，选中epoch5，最佳权重重载和保存预测一致性审计通过。同一选中权重的验证Top-1为73.9%、balanced accuracy为58.48%、近阈值RMSE为2.9747dB，完整配置匹配率38.1%。训练过程的最低近阈值RMSE来自其他轮，汇总采用选中权重的结果。`[verified: baseline-result.json epochs、optimizer_updates、amp_skipped_steps、selected_checkpoint_epoch、selected_checkpoint_metrics；r0-stable-sum.json history]`
+
+所选候选的归档严格质量通过率为61.7%，原标签严格合格而模型选择不合格的图有257张；块大小选大153张、选小108张。mip0 payload为31,661,760字节，相对fixed8／medium为52.9801%、相对原标签为100.0008%。训练器全程529.26秒，其中首次准备80.51秒、训练321.22秒、逐轮验证97.32秒；部署计时单列。`[verified: baseline-result.json selected_checkpoint_metrics、quality_regression_images、larger_block_errors、smaller_block_errors、payload_ratio_to_fixed8、payload_ratio_to_original、trainer_wall_seconds、preparation_seconds、training_seconds、validation_seconds、deployment_timings]`
+
+## 完整验证集的实测量替换归因
+
+以下对照固定同一权重保存的1000张验证预测，逐项替换为实测质量；修复／破坏图数均相对冻结预测，全部实测量替换恢复100%块大小及完整配置匹配。`[verified: r0-attribution.json variants、model_forward_calls]`
+
+| 替换分量 | 块大小Top-1 | 修复图数 | 破坏图数 |
+|---|---|---|---|
+| 冻结预测 | 73.9% | 0 | 0。`[verified: r0-attribution.json variants.frozen_predictions]` |
+| 通道MSE | 84.3% | 104 | 0。`[verified: r0-attribution.json variants.true_channel_mse]` |
+| 零通道掩码 | 73.9% | 0 | 0。`[verified: r0-attribution.json variants.true_zero_mask]` |
+| 通道MSE及零通道 | 84.3% | 104 | 0。`[verified: r0-attribution.json variants.true_channel_mse_and_zero]` |
+| MS-SSIM | 86.4% | 127 | 2。`[verified: r0-attribution.json variants.true_ms_ssim]` |
+| 法线角度 | 76.6% | 27 | 0。`[verified: r0-attribution.json variants.true_angles]` |
+| 全部实测质量 | 100.0% | 261 | 0。`[verified: r0-attribution.json variants.all_true_metrics]` |
+
+冻结预测的sRGB小图为612张／66.50%正确，sRGB大图326张／91.72%，法线45张／40.00%，Linear17张／88.24%；487个资产组的宏平均为80.01%。MS-SSIM实测替换的条件性增量最大，通道误差也影响最终选择。`[verified: r0-attribution.json variants.frozen_predictions.groups、variants.true_ms_ssim、variants.true_channel_mse；opinion: 后续排序]`
+
+## MS-SSIM loss权重单项对照
+
+下一项将`ssim_weight`从0.1改为0.03，其他训练配方字段逐项比较一致，采用独立实验身份。32／16图CUDA预检完成4次更新及最佳权重重载，正式10000／1000训练已启动。`[verified: ssim-weight003-smoke.json status、training_updates、checkpoint_audit；ssim-weight003-config.json；对应job launch-preflight.json changed_training_fields；progress.json current_training_report]`
+
+选择0.03的依据是选中基线轮的patch loss为0.06739、未加权MS-SSIM loss为2.35299；权重0.1时后者贡献约0.2353，权重0.03对应参考量级约0.0706。该系数作为观察任务权衡的单项对照，结果按实际验证评价。`[verified: ssim-weight003-design.json basis；opinion: 系数选择及实验目的]`

@@ -354,3 +354,10 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 ### Questions for review
 
 - The baseline retry remains active; full frozen-prediction attribution requires its successful terminal checkpoint audit. `[verified: progress.json current_training_report; script/attribute_unity_errors.py terminal-status guard]`
+
+
+## 2026-11-12 native baseline completion and SSIM-weight control
+
+- Stable-sum R0 completed8epochs/4996updates, selectedepoch5 gives73.9% and same-checkpoint2.9747dB; full checkpoint/prediction replay passed. Do not mix with epoch3 minimum RMSE2.8848dB. `[verified: baseline-result.json selected_checkpoint_metrics; r0-stable-sum.json history]`
+- Frozen1000 validation replacements give MSE84.3%, zero73.9%, SSIM86.4%, angles76.6%, alltruth100%. These are conditional diagnostic replacements. `[verified: r0-attribution.json variants]`
+- Next single-factor control changes only ssim_weight0.1to0.03, selected heuristically from selected-epoch patchloss0.06739 and weightedSSIM0.2353. Its32/16CUDA smoke passed4updates/reload; full trialstarted. `[verified: ssim-weight003-design.json; ssim-weight003-smoke.json; corresponding launch-preflight.json changed_training_fields]`
