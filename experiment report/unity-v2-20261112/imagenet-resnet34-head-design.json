@@ -1,0 +1,42 @@
+{
+  "status": "full_job_running",
+  "initial_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30.json",
+  "initial_training_report_sha256": "3bc53fd4654551d3ed33b167f2659bb94025eec4b7aab3f5ee4b850f6d61fad5",
+  "initial_selected_epoch": 29,
+  "initial_selected_top1": 0.862,
+  "initial_near_threshold_rmse_db": 1.6127909408433714,
+  "factor": "Image-head-only refit with encoder and channel head frozen",
+  "patches_per_image": 4,
+  "learning_rate": 0.0003,
+  "epochs": 30,
+  "expected_trainable_parameters": 72940,
+  "configs": {
+    "imagenet-resnet34-head-sampled4-smoke": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-smoke-config.json",
+    "imagenet-resnet34-head-sampled4": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-config.json"
+  },
+  "selection": "Native validation1000 footprint accuracy then same-checkpoint near-threshold RMSE",
+  "mainline_promotion": "pending_user_decision",
+  "test_opened": false,
+  "independent_readonly_review": {
+    "verdict": "CLEAN",
+    "initial_report_sources_verified": 13,
+    "existing_sampled4_protocol_matched": true,
+    "image_loss_weights": [
+      0.1,
+      0.1,
+      0.1
+    ],
+    "expected_trainable_parameters": 72940
+  },
+  "smoke": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-smoke.json",
+    "report_sha256": "0a75f5b45b64cd0e02f88f88d0b243c61d63e56936831c83f17f2953c63c2bdd",
+    "updates": 4,
+    "checkpoint_audit": "passed",
+    "encoder_and_channel_head_unchanged": true,
+    "baseline_top1": 0.862,
+    "trainer_seconds": 121.14163869999902
+  },
+  "full_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet34-head-sampled4\\job.json",
+  "started_utc": "2026-11-12T22:30:12.591958+00:00"
+}

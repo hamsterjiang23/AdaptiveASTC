@@ -36,6 +36,32 @@
       "median_patch_forward_and_transfer_seconds": 5.334103399989544,
       "amortized_preprocess_inference_decision_seconds_per_image": 0.01887883050000164,
       "amortized_patch_forward_and_transfer_seconds_per_image": 0.005334103399989545
+    },
+    "r18_imagenet_head": {
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-imagenet-head-full1000.json",
+      "report_sha256": "785418b35815d99f7067ebe3e2fb9abda438a9e586125517c15d518dc74cc236",
+      "parameters": 11305980,
+      "selected_validation_top1": 0.863,
+      "model_load_seconds": 0.10134079999988899,
+      "input_binding_audit_seconds": 52.80329340000026,
+      "process_wall_seconds": 155.829570899994,
+      "median_preprocess_inference_decision_seconds": 18.541531700000633,
+      "median_patch_forward_and_transfer_seconds": 4.839809699966281,
+      "amortized_preprocess_inference_decision_seconds_per_image": 0.018541531700000634,
+      "amortized_patch_forward_and_transfer_seconds_per_image": 0.004839809699966282
+    },
+    "r34_imagenet": {
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-imagenet-r34-full1000.json",
+      "report_sha256": "3d12380ab606a68b871aaf2ff350608218fa1dd614d01b47c5d235f9caa2e4a9",
+      "parameters": 21414140,
+      "selected_validation_top1": 0.862,
+      "model_load_seconds": 0.30455970000184607,
+      "input_binding_audit_seconds": 52.06922889999987,
+      "process_wall_seconds": 154.73090670000238,
+      "median_preprocess_inference_decision_seconds": 18.839875999998185,
+      "median_patch_forward_and_transfer_seconds": 5.3343109000707045,
+      "amortized_preprocess_inference_decision_seconds_per_image": 0.018839875999998184,
+      "amortized_patch_forward_and_transfer_seconds_per_image": 0.005334310900070705
     }
   },
   "test_opened": false,
@@ -43,5 +69,7 @@
   "encoding_calls": 0,
   "individual_texture_latency": null,
   "mip0_encoding_seconds": null,
-  "full_mip_cost": null
+  "full_mip_cost": null,
+  "all_arms_same_frozen_order_and_png_sha256": true,
+  "new_imagenet_arms_after_native_training_and_serial": true
 }

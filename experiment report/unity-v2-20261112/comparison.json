@@ -1074,7 +1074,9 @@
       "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-psnr-warmup",
       "deployment_timings": null,
       "confirmation_test_opened": false,
-      "mainline_promotion": "pending_user_decision"
+      "mainline_promotion": "pending_user_decision",
+      "inference_cost_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-imagenet-head-full1000.json",
+      "inference_cost_scope": "Batch-amortized frozen validation input cost"
     },
     "psnr_head_sampled4": {
       "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\psnr-head-sampled4.json",
@@ -1574,14 +1576,132 @@
       "test_resource_classification_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\test-resource-classification-correction.json",
       "inference_cost_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-r34-full1000.json",
       "inference_cost_scope": "Batch-amortized frozen validation input cost. Individual texture latency and final encoding excluded"
+    },
+    "imagenet_resnet34_full30": {
+      "status": "completed",
+      "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30.json",
+      "training_report_sha256": "3bc53fd4654551d3ed33b167f2659bb94025eec4b7aab3f5ee4b850f6d61fad5",
+      "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-attribution.json",
+      "attribution_report_sha256": "1450cc106068a7273524642c3e1586df7a4c0b1194ee635df38844d0ea6e6cc8",
+      "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-calibration.json",
+      "calibration_report_sha256": "b0eedb90befa5ebc52443afbc9cea5a517357812b98bbfc9b68c228f0d74a8e3",
+      "epochs": 30,
+      "updates": 18742,
+      "optimizer_attempts": 18750,
+      "amp_skips": 8,
+      "selected_checkpoint_epoch": 29,
+      "selected_variant": "raw",
+      "selected_checkpoint_metrics": {
+        "count": 1000,
+        "accuracy": 0.862,
+        "balanced_accuracy": 0.7776808694620083,
+        "full_choice_accuracy": 0.588,
+        "confusion_matrix": [
+          [
+            95,
+            20,
+            1,
+            4
+          ],
+          [
+            16,
+            105,
+            22,
+            0
+          ],
+          [
+            0,
+            22,
+            86,
+            30
+          ],
+          [
+            1,
+            0,
+            22,
+            576
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7916666666666666
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.7342657342657343
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.6231884057971014
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9616026711185309
+          }
+        },
+        "actual_quality_pass_rate": 0.661,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 1.6127909408433714,
+        "selected_payload_bytes": 31203824,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 13.16081209999902
+      },
+      "same_validation_fitted_top1": 0.868,
+      "same_validation_fitted_parameters": {
+        "zero_probability_threshold": 0.9,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.25,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "same_validation_fitted_metrics": {
+        "images": 1000,
+        "accuracy": 0.868,
+        "full_choice_accuracy": 0.583,
+        "actual_strict_quality_pass_rate": 0.706,
+        "quality_regression_images": 169,
+        "larger_block_images": 60,
+        "smaller_block_images": 72,
+        "payload_bytes": 31440704,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 0.9930257296554303,
+        "payload_ratio_to_fixed8": 0.5261019715397254
+      },
+      "quality_regression_images": 213,
+      "trainer_wall_seconds": 2023.5572775000037,
+      "parameters": 21414140,
+      "training_seconds": 1522.5012250000036,
+      "validation_seconds": 380.8057074999997,
+      "preparation_seconds": 80.75132630000007,
+      "checkpoint_audit": "passed",
+      "deployment_timings": null,
+      "confirmation_test_opened": false,
+      "validation90_achieved": false,
+      "attribution_accuracy": {
+        "frozen_predictions": 0.862,
+        "true_channel_mse": 0.926,
+        "true_zero_mask": 0.863,
+        "true_channel_mse_and_zero": 0.928,
+        "true_ms_ssim": 0.922,
+        "true_angles": 0.874,
+        "all_true_metrics": 1.0
+      },
+      "inference_cost_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-imagenet-r34-full1000.json",
+      "inference_cost_status": "passed",
+      "inference_cost_scope": "Batch-amortized PNG preparation, input batching, CUDA inference and original policy decision. Loading and input binding audit separate"
     }
   },
   "reference_model": "mean_full30",
-  "next_experiment": "Finish paired frozen-validation inference cost; evaluate ImageNet initialization as an independent ResNet34 control",
-  "decision": "Keep scratch mean-full30 reference and independent ImageNet controls; ResNet34 scratch did not improve validation agreement",
+  "next_experiment": "Independent ResNet34 ImageNet frozen-encoder image-head refit with sampled4 views after serial inference costs",
+  "decision": "Keep scratch mean-full30 reference. Independent ImageNet ResNet34 improved matched full30 Top1 by0.5pp. Best raw control remains ImageNet ResNet18 head at86.3percent",
   "calibration_scope": "Finite two-pass coordinate fitting on the same1000 validation predictions; no confirmation evaluation",
   "test_opened": false,
-  "updated_utc": "2026-11-12T21:35:24.678594+00:00",
+  "updated_utc": "2026-11-12T22:21:45.223386+00:00",
   "calibration_deployment_integrated": false,
   "best_development_contrast": "imagenet_head_sampled4",
   "postprocessing_results": {

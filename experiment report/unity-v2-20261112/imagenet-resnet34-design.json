@@ -1,5 +1,5 @@
 {
-  "status": "full_job_running",
+  "status": "full30_completed_and_checkpoint_audited",
   "created_utc": "2026-11-12T21:43:04.622795+00:00",
   "comparison": "mean-resnet34-full30",
   "factor": "ImageNet initialization",
@@ -52,5 +52,26 @@
     "shared_heads_and_cpu_rng_exact": true,
     "rgb_transfer_exact_alpha_mask_zero": true,
     "gpu_tasks_run_by_reviewer": 0
+  },
+  "full_training_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-result.json",
+  "resource_observation": {
+    "log": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet34-full30\\resource-monitor-v1.jsonl",
+    "log_sha256": "20600d72223a610949504b2be2a4c161459dcd7ff5a9a2d5ee1b4936d890a882",
+    "observations": 29,
+    "first_observed_utc": "2026-11-12T21:51:18.652512+00:00",
+    "last_observed_utc": "2026-11-12T22:19:20.277949+00:00",
+    "terminal_job_passed": true,
+    "minimum_available_ram_gib": 38.36469650268555,
+    "maximum_observed_device_memory_used_mib": 2787,
+    "device_memory_scope": "nvidia-smi whole GPU usage sampled each60seconds",
+    "trainer_peak_tensor_allocated_bytes": 1735203328,
+    "initial_epochs_before_monitor": 4
+  },
+  "terminal_report_review": {
+    "verdict": "CLEAN",
+    "source_report_sha256_verified": 3,
+    "selected_checkpoint_epoch": 29,
+    "selected_variant": "raw",
+    "near_rmse_equals_checkpoint_audit": true
   }
 }

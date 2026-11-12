@@ -143,3 +143,10 @@ Unity V2原生图像采样预检已完成，关闭模式／资产族cap2／法�
 | ResNet-34验证输入推理 | 同1000图／7173patch，1预热3测量 | 中位整批18.8788s，摊销18.8788ms／图，绑定审计52.3308s另计。`[verified: experiment report/unity-v2-20261112/inference-cost-r34-full1000.json]` |
 
 推理表中的每图成本是整批摊销值。个体纹理延迟、最终编码及完整mip成本仍待相应测量。`[verified: experiment report/unity-v2-20261112/inference-cost-capacity-comparison.json scope、individual_texture_latency、mip0_encoding_seconds、full_mip_cost]`
+
+| Unity V2新增任务 | 实测范围 | 观测成本 |
+|---|---|---|
+| ResNet-34 ImageNet完整训练 | 10000／1000图，30轮 | 训练器2023.56s，18,742更新、8跳步。`[verified: experiment report/unity-v2-20261112/imagenet-resnet34-full30-result.json]` |
+| ResNet-18 ImageNet整图头验证推理 | 同1000图／7173patch，1预热3测量 | 批量摊销18.5415ms／图。`[verified: experiment report/unity-v2-20261112/inference-cost-imagenet-head-full1000.json amortized_preprocess_inference_decision_seconds_per_image]` |
+| ResNet-34 ImageNet验证推理 | 同1000图／7173patch，1预热3测量 | 批量摊销18.8399ms／图。`[verified: experiment report/unity-v2-20261112/inference-cost-imagenet-r34-full1000.json amortized_preprocess_inference_decision_seconds_per_image]` |
+| ResNet-34整图头预检 | 32训练图，1000验证图，2轮 | 训练器121.14s，4更新、初始结果复现、冻结与重载通过。`[verified: experiment report/unity-v2-20261112/imagenet-resnet34-head-sampled4-smoke.json baseline、training_updates、wall_seconds、encoder_and_channel_head_unchanged、checkpoint_audit]` |

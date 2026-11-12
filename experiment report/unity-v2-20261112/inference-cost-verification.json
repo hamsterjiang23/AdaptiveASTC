@@ -33,10 +33,13 @@
   "scope_limit": "Batched throughput amortized per image, loading and binding audit separate. Individual texture latency and final encoding require corresponding measurements",
   "independent_readonly_review": {
     "verdict": "CLEAN",
+    "scope": "All four completed cost arms in current capacity comparison",
     "actual_png_sha256_verified": 1000,
     "ordered_paths_equal": true,
-    "all_four_prediction_arrays_exact": true,
-    "amortized_costs_recomputed": true,
-    "job_receipts_serial": true
+    "patches": 7173,
+    "new_prediction_arrays_exact": true,
+    "all_choices_match": true,
+    "amortized_medians_recomputed": true,
+    "all_four_job_receipts_serial": true
   }
 }
