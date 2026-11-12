@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T04:21:51.439022+00:00",
+  "updated_utc": "2026-11-12T04:28:10.460595+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -1636,17 +1636,17 @@
   "unity_candidate_queue": {
     "status": "running",
     "counts": {
-      "train": 9280,
+      "train": 9536,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-036-20261111",
+    "current_batch": "unity-v1-train-037-20261111",
     "test_opened": false,
     "report": "unity-candidate-queue-sprite-v3.json",
-    "report_sha256": "20ef5e793212d832ea0d1c9428d723fed397ffa8afb5d19bc46e2e765d854364"
+    "report_sha256": "257552421695f9281c05c1908fd6574fac4d3ee192a8056ea3c8c94979fde30d"
   },
   "fixed_capacity_group_sampling": {
     "status": "completed",
@@ -3047,6 +3047,31 @@
       "metadata_restore_conflicts": 0,
       "verified_utc": "2026-11-12T04:21:51.439022+00:00",
       "model_evaluation_performed": false
+    },
+    "latest_candidate_milestone": {
+      "run_id": "unity-v1-train-036-20261111",
+      "images": 256,
+      "candidates": 5120,
+      "new_candidates": 2928,
+      "reused_original_candidates": 2192,
+      "status": "published_summary_and_raw_hashes_verified",
+      "all_rows_twenty_candidates": true,
+      "all_original_selected_payload_and_decode_match": true,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\reports\\unity-v1-train-036-20261111.json",
+      "report_sha256": "cf5a3cebe02ba9c8d0f9bbcaa4deca3e97c9651a43ebf5c102e7b2f14eaa979c",
+      "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\batches\\unity-v1-train-036-20261111\\receipt.json",
+      "raw_receipt_sha256": "760bff2955939f3898abd64e1f1d42bbc47371075ee776f9196b47f9cd1ab25b",
+      "reference_counts": {
+        "train": 10000,
+        "validation": 258
+      },
+      "candidate_counts": {
+        "train": 9536,
+        "validation": 2
+      },
+      "wall_seconds": 2285.0384584999993,
+      "verified_utc": "2026-11-12T04:28:10.460595+00:00",
+      "test_opened": false
     }
   }
 }
