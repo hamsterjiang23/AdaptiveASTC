@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[原生训练标签分布](unity-native-label-distribution.md)已核对9792训练图／39批次和204个输入SHA，四类计数1598／1456／1346／5392。大图放宽497张、最高PSNR回退340张；用途与尺寸分布另列。当前没有新模型准确率，正式CUDA训练等待完整数据，本次统计不修改冻结配置或使用验证／确认标签。`[verified: unity-native-labels9792-v1.json summary、inputs_sha256、training_updates、validation_labels_analyzed、confirmation_labels_analyzed；opinion: 完成边界]`
+
 [独立确认集评价入口](unity-confirmation-evaluation.md)完成75项CPU检查与实际66图报告字段核验，允许同协议技术失败后保留旧产物并换新目录重试，最终报告绑定全部分批结果。只有完整原生训练及验证Top-1≥90%、原始2000图和完整像素检查均通过后才打开推理。当前没有新的训练或确认集准确率结果，完整mip成本仍待完成。`[verified: unity-confirmation-evaluation-readiness.json；confirmation_evidence.py validate_training；opinion: 准入与验收边界]`
 
 [原生采集到最终压缩闭环](unity-capture-deployment.md)完成验证2图的封存CUDA推理、一次最终编码及直接解码质量评价，不依赖候选补测档案；16份ASTC／PNG与原记录一致，预测差0，57项CPU检查通过。沿用旧smoke8模型，预测／固定8×8质量达标1/2、2/2，正式独立模型验收与完整mip成本尚未完成。`[verified: unity-capture-deployment-verification.json；opinion: 验收边界]`

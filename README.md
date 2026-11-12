@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[原生训练标签分布](<experiment report/unity-accuracy90-20261111/unity-native-label-distribution.md>)已核对9792张训练图：6／8／10／12类占16.32%／14.87%／13.75%／55.07%，有497张大图放宽与340张最高PSNR回退。299张法线图按导入用途识别，不能用全部为false的编码参数normal_pack判断。这里只统计训练记录，未增加模型结果或改变当前训练配置，完整训练与确认集验收继续推进。`[verified: unity-native-labels9792-v1.json summary、model_forward_calls；opinion: 完成边界]`
+
 [独立确认集评价入口](<experiment report/unity-accuracy90-20261111/unity-confirmation-evaluation.md>)已实现，75项CPU检查和实际66图报告字段核验通过；完整训练、1000张验证图达90%、原始2000图采集及像素审计通过后才允许推理。共享封存支持同协议失败重试，最终报告绑定全部分批产物。当前尚未运行确认集推理，Unity独立90%与完整mip成本仍待验收。`[verified: unity-confirmation-evaluation-readiness.json；confirmation_evidence.py validate_training；opinion: 验收边界]`
 
 [原生采集到最终压缩闭环](<experiment report/unity-accuracy90-20261111/unity-capture-deployment.md>)已在旧smoke8权重和两张已观察验证图上跑通：16份ASTC／解码图和原质量记录一致，预测数组最大差0；57项CPU检查通过。预测与固定8×8质量达标分别1/2、2/2，两图端到端中位83.09／66.12毫秒；只证明接口闭环，正式确认集、完整mip成本与90%验收仍未完成。`[verified: unity-capture-deployment-verification.json；opinion: 验收边界]`

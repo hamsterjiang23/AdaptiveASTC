@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T03:25:37.367774+00:00",
+  "updated_utc": "2026-11-12T03:41:20.137807+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -2971,6 +2971,62 @@
         "training_updates": 0,
         "report": "experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-v2.json",
         "report_sha256_at_observation": "22421129356c56508664767a7e4b15550509890261700bfa462e45314b63bf81"
+      }
+    }
+  },
+  "unity_native_label_distribution": {
+    "report": "unity-native-labels9792-v1.json",
+    "report_sha256": "e3320213fae3dc890f54c0393c090ec5fd06993ad2a030ecd892e4d4e55f14fc",
+    "verification": "unity-native-labels9792-verification.json",
+    "verification_sha256": "36a3e06ef7792ea817d4c7c1e071845bd6c90a876e578186fed3394b0761f0a0",
+    "status": "passed_train_only_partial",
+    "images": 9792,
+    "block_counts": {
+      "10x10": 1346,
+      "12x12": 5392,
+      "6x6": 1598,
+      "8x8": 1456
+    },
+    "test_opened": false,
+    "live_reports": {
+      "unity-reference-series-v2": {
+        "status": "running",
+        "counts": {
+          "train": 9792,
+          "validation": 2
+        },
+        "current_batch": "unity-v1-train-038-20261111",
+        "test_opened": false
+      },
+      "unity-candidate-queue-sprite-v3": {
+        "status": "running",
+        "counts": {
+          "train": 9024,
+          "validation": 2
+        },
+        "current_batch": "unity-v1-train-035-20261111",
+        "test_opened": false
+      },
+      "unity-native-pipeline-full-v3": {
+        "status": "waiting_upstream",
+        "test_opened": false
+      },
+      "unity-native-training-full-v2": {
+        "status": "waiting_data",
+        "test_opened": false
+      },
+      "unity-confirmation-capture-smoke2-v2": {
+        "status": "waiting_dependencies",
+        "test_opened": false
+      },
+      "unity-confirmation-series2000-v1": {
+        "status": "waiting_smoke",
+        "captured_images": 0,
+        "test_opened": false
+      },
+      "unity-pixel-pipeline-full13000-v2": {
+        "status": "waiting_captures",
+        "test_opened": false
       }
     }
   }
