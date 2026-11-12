@@ -92,3 +92,6 @@ Unity原生Dataset检查使用CPU，未进行模型训练。7图小样本循环0
 ## 2026-11-12 Unity V2启动
 
 完整规则诊断覆盖train10000／validation1000，四种质量扰动×9个标准差×3种子，复用原规则，完整循环65.64秒；只读冻结语料及策略来源，写独立V2报告。CUDA32train／16validation、230／128patch的两轮预检训练器11.37秒，实际4更新、0AMP跳步、最佳权重重载通过，峰值分配显存1,219,232,256字节。正式基线启动前RAM空闲47.31GiB、GPU612／12282MiB，workers2、batch16、单GPU串行。正式训练耗时等待首轮实测；这些准备和训练成本单列。`[verified: ../experiment report/unity-v2-20261112/rules.json counts、curves、wall_seconds；r0-smoke-retry.json history、peak_vram_bytes、checkpoint_audit；.local/unity-v2-20261112/jobs/r0/launch-preflight.json；opinion: 成本范围]`
+
+
+Unity V2首次完整R0训练器720.81秒、10轮、6247实际更新，最佳74.9%，结束重载数值审计失败；该成本保留。修复后的32train／16validation CUDA检查为10.82秒、4更新及重载通过，显存分配峰值1,219,232,256字节。正式重跑前空闲RAM45.34GiB、GPU615／12282MiB，原配方、单GPU串行，写新身份目录；归因小样本仅CPU、0次forward。`[verified: ../experiment report/unity-v2-20261112/r0.json wall_seconds、history、training_updates、error；r0-stable-sum-smoke.json wall_seconds、checkpoint_audit；.local/unity-v2-20261112/jobs/r0-stable-sum/launch-preflight.json；attribution-stable-smoke.json model_forward_calls]`

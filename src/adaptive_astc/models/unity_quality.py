@@ -79,10 +79,17 @@ class UnityQualityRegressor(nn.Module):
             )
         weights = valid_pixels.to(device=features.device, dtype=torch.float32)
         ids = image_ids.to(features.device)
-        totals = features.new_zeros(count).index_add_(0, ids, weights)
+        # Fixed within-image order avoids CUDA atomic accumulation changing half-precision heads.
+        order = torch.argsort(ids, stable=True)
+        lengths = torch.bincount(ids, minlength=count)
+        ordered_features = features[order]
+        ordered_weights = weights[order]
+        totals = torch.segment_reduce(ordered_weights, "sum", lengths=lengths)
         if torch.any(totals <= 0):
             raise ValueError("Each image must contribute at least one patch")
-        sums = features.new_zeros((count, 512)).index_add_(0, ids, features * weights[:, None])
+        sums = torch.segment_reduce(
+            ordered_features * ordered_weights[:, None], "sum", lengths=lengths
+        )
         maxima = features.new_full((count, 512), -torch.inf).scatter_reduce_(
             0, ids[:, None].expand(-1, 512), features, reduce="amax", include_self=True
         )

@@ -1,0 +1,16 @@
+{
+  "status": "resolved_before_full_training",
+  "finding": "C1 negative upstream gradient on three tied maxima is -1 each with segment_reduce max, while previous scatter_reduce amax gives -1/3 each",
+  "initial_smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-stable-pool-smoke.json",
+  "initial_smoke_sha256": "d9c420389014641b59f766e2019dc6bcb23024e2e6eccb95c0feb98e403b6688",
+  "initial_source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\initial-segment-max-source-archive\\manifest.json",
+  "full_training_started": false,
+  "fix": "Keep ordered segment sum/totals; restore original scatter_reduce amax; add tied-negative-gradient test",
+  "resolution": {
+    "original_amax_restored": true,
+    "negative_tied_max_regression": "passed",
+    "tests_passed": 55,
+    "final_smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-stable-sum-smoke.json",
+    "source_sha256": "fad256065aaa33d465d7fc37f2dc8299599451667c3bb09202e9f77386f88337"
+  }
+}

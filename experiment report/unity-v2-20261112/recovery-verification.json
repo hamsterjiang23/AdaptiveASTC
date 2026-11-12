@@ -1,0 +1,68 @@
+{
+  "status": "passed_recovery_launch_checks",
+  "verified_utc": "2026-11-12T13:58:16.634523+00:00",
+  "original_training": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0.json",
+    "sha256": "46d525a1eb4812c652b22e9d32882bad7e5ff9b12f673dc28c4e70f41f97ddae",
+    "status": "failed",
+    "completed_epochs": 10,
+    "training_updates": 6247,
+    "best_validation_accuracy": 0.749,
+    "failure_stage": "numeric_checkpoint_replay"
+  },
+  "original_source_archive": {
+    "manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\r0-source-archive\\manifest.json",
+    "sha256": "8a51f0885716bfdba7f25f5664e0a1f05154731c037ad397bf0113932ca77466"
+  },
+  "final_replay_probe": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-stable-sum-replay.json",
+    "sha256": "506c4cc10b762782271c239fb17b2b9b8d78ef0519e67c8e47281022bac61daa",
+    "same_saved_decisions": 1000,
+    "repeated_array_max_difference": 0.0
+  },
+  "cuda_smoke": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-stable-sum-smoke.json",
+    "sha256": "213040168694796e6c6bde71f9f7a527e1822897582118a1f842dfeba8de5199",
+    "training_updates": 4,
+    "checkpoint_audit": "passed"
+  },
+  "attribution_smoke": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\attribution-stable-smoke.json",
+    "sha256": "e2aaa1883b6fcd09b094be438b01bf1d0e55269b32b2991541d5e5ccc89475ca",
+    "oracle_accuracy": 1.0,
+    "model_forward_calls": 0
+  },
+  "tests": {
+    "command": "uv run pytest -q --tb=short --basetemp \"experiment report/.local/unity-v2-20261112/pytest-stable-sum\" -o \"cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted\" tests/test_unity_error_attribution.py tests/test_unity_search_policy.py tests/test_unity_quality.py tests/test_unity_quality_training.py",
+    "passed": 55,
+    "seconds": 3.98
+  },
+  "review": {
+    "initial_issue": "Negative upstream tied-max gradient changed in segment_reduce max",
+    "resolution": "Restored original scatter_reduce amax, added negative tie regression",
+    "final_verdict": "CLEAN"
+  },
+  "full_retry_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-stable-sum-config.json",
+  "original_recipe_matches": true,
+  "formal_training_completed": false,
+  "test_opened": false,
+  "formal_training_observation": {
+    "observed_utc": "2026-11-12T14:00:06.594591+00:00",
+    "report_status": "running",
+    "completed_epochs": 2,
+    "best_validation_accuracy": 0.685,
+    "batch": {
+      "status": "training",
+      "epoch": 3,
+      "batches": 450,
+      "images": 7200,
+      "optimizer_updates": 1698,
+      "wall_seconds": 219.57763710000017
+    }
+  },
+  "report_local_links": {
+    "checked": 3,
+    "passed": 3
+  },
+  "final_probe_and_attribution_source_recheck": "passed"
+}

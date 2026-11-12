@@ -180,6 +180,49 @@ def test_feature_pool_is_weighted_per_image_and_permutation_invariant() -> None:
     )
 
 
+def test_feature_pool_gradients_match_weighted_mean_and_maximum() -> None:
+    features = torch.randn(7, 512, requires_grad=True)
+    pixels = torch.tensor([3, 5, 7, 2, 8, 9, 4])
+    ids = torch.tensor([1, 0, 1, 0, 1, 0, 1])
+    pooled = UnityQualityRegressor.pool_features(features, pixels, ids, 2)
+    reference = torch.stack(
+        [
+            torch.cat(
+                (
+                    (features[ids == image] * pixels[ids == image, None]).sum(0)
+                    / pixels[ids == image].sum(),
+                    features[ids == image].amax(0),
+                )
+            )
+            for image in range(2)
+        ]
+    )
+    actual_grad = torch.autograd.grad(pooled.square().sum(), features, retain_graph=True)[0]
+    expected_grad = torch.autograd.grad(reference.square().sum(), features)[0]
+    torch.testing.assert_close(pooled, reference)
+    torch.testing.assert_close(actual_grad, expected_grad)
+
+
+def test_feature_pool_tied_maxima_share_negative_upstream_gradient() -> None:
+    features = torch.ones((3, 512), requires_grad=True)
+    pixels = torch.ones(3)
+    ids = torch.zeros(3, dtype=torch.int64)
+    pooled = UnityQualityRegressor.pool_features(features, pixels, ids, 1)
+    gradient = torch.autograd.grad(-pooled[:, 512:].sum(), features)[0]
+    torch.testing.assert_close(gradient, torch.full_like(features, -1 / 3))
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA pool replay regression")
+def test_cuda_feature_pool_repeated_outputs_are_bit_identical() -> None:
+    features = torch.randn(4096, 512, device="cuda")
+    pixels = torch.randint(1, 57601, (4096,), device="cuda")
+    ids = torch.arange(4096, device="cuda") % 128
+    expected = UnityQualityRegressor.pool_features(features, pixels, ids, 128)
+    for _ in range(3):
+        actual = UnityQualityRegressor.pool_features(features, pixels, ids, 128)
+        assert torch.equal(actual, expected)
+
+
 def test_native_model_input_contract_and_trainable_parameter_accounting() -> None:
     torch.set_num_threads(2)
     model = UnityQualityRegressor().eval()

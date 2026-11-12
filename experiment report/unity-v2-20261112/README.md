@@ -50,6 +50,22 @@
 
 ## 进度
 
-CUDA预检和完整规则诊断已完成，完整原生基线已启动，使用单GPU串行调度。后续状态与结果写入[本轮进度](progress.json)。`[verified: r0-smoke-retry.json status；rules.json status；r0.json status；progress.json training_started]`
+CUDA预检和完整规则诊断已完成。首次完整基线完成10轮后在数值重载审计中失败，修订后使用`r0-stable-sum`新身份重跑原配方，继续单GPU串行调度。后续状态与结果写入[本轮进度](progress.json)。`[verified: r0.json status、history；r0-stable-sum-config.json；progress.json]`
 
 全量训练的首轮启动快照为验证Top-1 63.0%、近阈值RMSE 3.4667dB，实际624次更新、1次AMP跳步；训练47.43秒、验证11.67秒，首次数据准备170.30秒。这是训练过程记录，后续最佳权重仍按完整验证和重载审计确定。`[verified: r0.json history中epoch1、preparation_seconds；opinion: 过程与最终选模范围]`
+
+## 完整基线数值重放修复
+
+首次R0完成10轮、6247次实际更新，最佳验证Top-1为74.9%、同权重近阈值RMSE为2.5773dB。训练器全程720.81秒，停止原因是近阈值RMSE patience；随后保存预测的严格重放审计失败。原报告、检查点、历史和11份执行源码均保留。`[verified: r0.json history、training_updates、best_validation_accuracy、stop_reason、wall_seconds、error；.local/unity-v2-20261112/r0-source-archive/manifest.json]`
+
+原始实现的四次完整验证对照均复现1000张保存决策，适用的质量数值逐位相同；其余整图头数值及少量零通道概率存在重复漂移。开启确定性算法的两次重复中，全部预测数组逐位一致。PyTorch 2.8 文档将CUDA `index_add`列入确定性选项覆盖的算子。`[verified: r0-replay-diagnosis.json observations；PyTorch2.8 torch.use_deterministic_algorithms 文档 L78–111]` [PyTorch 2.8文档](https://docs.pytorch.org/docs/2.8/generated/torch.use_deterministic_algorithms.html)
+
+最终修订将权重总数和加权特征和改为稳定排序后的分段求和，保留原`scatter_reduce_(amax)`、输出形状与11,377,660参数。修订后的两次完整验证重复中，所有预测数组逐位一致；1000张最终决策仍与原保存结果一致。`[verified: src/adaptive_astc/models/unity_quality.py pool_features；r0-stable-sum-replay.json observations；tests/test_unity_quality.py 参数检查]`
+
+中间修订曾使用分段max，复核发现其在本机PyTorch中的负向并列最大值梯度为每份−1，旧实现为每份−1／3。已恢复原max路径并新增该反例回归；中间小样本及源码单独归档，完整训练采用修订后的实现。55项接口／梯度／CUDA重复检查通过，修订后32／16图CUDA闭环完成4次更新及最佳权重重载，训练器10.82秒。`[verified: pool-repair-review.json finding、fix；r0-stable-sum-smoke.json status、training_updates、checkpoint_audit、wall_seconds；pytest输出“55 passed in 3.98s”]`
+
+## 冻结预测归因入口
+
+`script/attribute_unity_errors.py`仅接收成功终态训练及通过的最佳权重重载审计，绑定训练报告、原语料、源码及三份最佳产物SHA。分别替换通道MSE、零通道、二者联合、MS-SSIM、法线角度及全部实测指标，报告修复／破坏图数、类型／尺寸／原分支分组、资产组宏平均、逐类precision／recall和残差。`[verified: script/attribute_unity_errors.py run、grouped_metrics、residual_metrics]`
+
+修订后小样本的保存预测完全重放，全部实测指标替换恢复100%块大小及完整配置匹配，模型forward次数为0。完整归因等待成功结束的新版基线。`[verified: attribution-stable-smoke.json variants、model_forward_calls；script/attribute_unity_errors.py 训练终态检查]`

@@ -338,3 +338,19 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 ### Questions for review
 
 - Initialization promotion, production search variants and a fresh confirmation cohort remain the V2 plan's later decisions. `[verified: experiment plan/V2/README.md L111–115]`
+
+
+## 2026-11-12 Unity V2 checkpoint replay repair
+
+### Deviations
+
+- Initial full R0 ended10epochs/6247updates with74.9% best validation but failed numeric checkpoint replay. Preserve its failed identity and11 source snapshots. New R0 retries the same recipe after fixed-order segmented sums remove repeat drift. `[verified: experiment report/unity-v2-20261112/r0.json history、error; recovery-verification.json original_training、original_recipe_matches]`
+
+### Discovered edge cases
+
+- Four old-pool full-validation probes preserve all1000 decisions and active quality values; repeated inactive heads/zero probabilities drift. Corrected sums yield bit-identical full-validation arrays. `[verified: r0-replay-diagnosis.json observations; r0-stable-sum-replay.json observations]`
+- Initial segment-max repair changed negative upstream gradients for tied maxima. Restore original scatter_reduce amax, retain ordered sums, and add negative-tie plus CUDA repeat regressions. Intermediate smoke and code snapshots retained;55 checks and final two-epoch CUDA smoke passed. `[verified: pool-repair-review.json finding、resolution; r0-stable-sum-smoke.json status、checkpoint_audit; pytest55passed]`
+
+### Questions for review
+
+- The baseline retry remains active; full frozen-prediction attribution requires its successful terminal checkpoint audit. `[verified: progress.json current_training_report; script/attribute_unity_errors.py terminal-status guard]`
