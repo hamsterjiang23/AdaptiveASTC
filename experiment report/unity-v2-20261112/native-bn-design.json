@@ -1,0 +1,30 @@
+{
+  "status": "ready_for_serial_cuda_smoke",
+  "created_utc": "2026-11-12T15:49:36.202842+00:00",
+  "script": "E:\\ASTC_Compression\\script\\audit_unity_normalization.py",
+  "source_sha256": "d425d757930e5e836e33c209a193b43266d03bb8b48debce557a5b84f8d0f2a1",
+  "factor": "Train-only BatchNorm running statistics on selected checkpoint",
+  "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-native30",
+  "source_files": 15,
+  "smoke_calibration_images": 32,
+  "full_calibration_images": 10000,
+  "patches_per_image": 4,
+  "validation_images": 1000,
+  "optimizer_updates": 0,
+  "calibration_input": "Native RGBA, valid mask, local image IDs and original input-only metadata",
+  "parameters_unchanged_required": true,
+  "raw_and_reestimated_checkpoint_replay_required": true,
+  "review": "CLEAN after corpus drift fix",
+  "cpu_tests": 9,
+  "cpu_test_command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-native-bn-review' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_normalization.py tests/test_patch_normalization.py",
+  "ruff_check": "passed",
+  "ruff_format_check": "passed",
+  "basedpyright": "0 errors, 0 warnings",
+  "confirmation_deployment_integrated": false,
+  "test_opened": false,
+  "config_serialization_probe": {
+    "tuple_list_direct_equal": false,
+    "canonical_fingerprint_equal": true,
+    "actual_checkpoint": "mean-full30/best.pt"
+  }
+}

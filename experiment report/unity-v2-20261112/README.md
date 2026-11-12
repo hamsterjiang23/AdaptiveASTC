@@ -105,6 +105,8 @@
 | 原生基线 | 73.9% | 2.9747dB | 76.0%。`[verified: comparison.json results.baseline]` |
 | MS-SSIM loss权重0.03 | 72.7% | 3.6068dB | 74.3%。`[verified: comparison.json results.ssim_weight003]` |
 | 仅均值池化 | 75.0% | 3.3833dB | 77.4%。`[verified: comparison.json results.mean_pooling]` |
+| ImageNet初始化 | 81.3% | 3.4176dB | 82.5%。`[verified: comparison.json results.imagenet_mean]` |
+| 随机初始化完整30轮 | 81.3% | 2.1585dB | 81.5%。`[verified: comparison.json results.mean_full30]` |
 
 按当前验证Top-1，仅均值池化作为下一项初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
 
@@ -141,3 +143,23 @@
 ImageNet对照在第8轮达到本组最高Top-1时，触发颜色近阈值RMSE连续5轮未改善的早停。增加随机初始化均值池化的完整30轮对照，仅将patience5改为0，保留30轮上限、学习率日程和选模规则。此项用于检查提前停止的影响。`[verified: imagenet-mean.json history、stop_reason；mean-full30-config.json；.local/unity-v2-20261112/jobs/mean-full30/launch-preflight.json changed_training_fields；opinion: 实验顺序]`
 
 32／16图CUDA预检完成4次更新及重载，训练器10.83秒，峰值分配显存1,218,372,096字节；完整任务随后串行启动。预训练主线晋级已按计划的待决定事项向用户提出，后续依赖该决定的实验按回复执行。`[verified: mean-full30-smoke.json status、training_updates、wall_seconds、peak_vram_bytes、checkpoint_audit；progress.json status、pretrained_mainline_promotion]`
+
+完整30轮对照已完成18,741次更新，AMP跳步9次，选中epoch29，Top-1为81.3%、balanced accuracy为70.86%、完整配置匹配48.8%，同权重近阈值RMSE为2.1585dB，最佳权重重载通过。原始严格质量64.4%，质量回退231张，payload31,177,648字节；训练器1651.94秒。原早停均值池化对照Top-1为75.0%，原始选模规则相同。`[verified: mean-full30-result.json；comparison.json results.mean_pooling]`
+
+同验证集余量拟合Top-1为81.5%，严格质量63.9%，回退236张。实测MSE、MS-SSIM和角度单项替换分别为90.0%、89.2%和82.9%。当前随机初始化完整30轮与ImageNet早停对照的Top-1均为81.3%，后续增加ImageNet完整30轮独立对照，仅关闭其patience5早停，补齐配对训练预算。`[verified: mean-full30-calibration.json；mean-full30-attribution.json variants；comparison.json；imagenet-full30-config.json；opinion: 后续实验顺序]`
+
+## 原生BN重估诊断
+
+入口为`script/audit_unity_normalization.py`，复用`PatchNormalizationAudit.recalibrate`。以已完成训练的选中权重为起点，先重放完整1000图原预测与决策，用训练图按原4patch抽样重估BN统计量，逐项核对学习参数保持，再保存新权重并重载1000图预测。抽样patch索引、输入／配置／源码／原产物哈希全部保存，确认集接入按后续选模处理。`[verified: script/audit_unity_normalization.py UnityNormalizationAudit.run、calibration_inputs、verify_sources；native-bn-design.json]`
+
+审阅发现语料清单的运行结束身份核验缺口后，已将corpus.json及预期SHA加入准备与结束复核，并增加漂移拒绝回归。真实检查点的配置包含tuple，JSON报告对应list，配置比较复用训练器的规范指纹。9项CPU检查和静态检查通过，原生CUDA预检按单GPU串行执行。`[verified: native-bn-design.json cpu_tests、config_serialization_probe、review；tests/test_unity_normalization.py test_native_normalization_rejects_manifest_drift；script/audit_unity_normalization.py checkpoint配置比较；opinion: 执行顺序]`
+
+原生CUDA预检用32张训练图／128patch重估，原始和重估后的1000图数值／完整决策均重载通过，学习参数逐项保持，完整进程120.49秒。随后完整10000图／40000patch重估通过，统计重估88.68秒，完整进程208.80秒。Top-1从81.3%降至80.1%，近阈值RMSE为2.3486dB，严格质量58.9%、回退285张、完整匹配48.0%，因此保留原权重。`[verified: mean-full30-bn-smoke.json；mean-full30-bn.json；native-bn-verification.json full_result；opinion: 保留权重决定]`
+
+## ImageNet完整30轮独立对照
+
+此项从ImageNet早停配置仅改patience5为0，学习率日程仍为30轮。32／16图CUDA预检完成4更新及完整重载，训练器10.69秒；正式任务随后单GPU启动。实验保留初始化对照身份，主线晋级等待计划中的用户决定。`[verified: imagenet-full30-config.json；imagenet-full30-smoke.json status、training_updates、checkpoint_audit、wall_seconds；progress.json status、pretrained_mainline_promotion]`
+
+## 版本同步状态
+
+ImageNet早停对照与完整30轮启动记录已保存为本地提交`0f68d18`。自动审批拒绝向公开仓库`hamsterjiang23/AdaptiveASTC`的`main`推送，并要求明确外部发布授权；GitHub已核对登录账户及仓库所有者均为`hamsterjiang23`，授权请求待用户回复。`[verified: 本轮git commit输出；GitHub get_user_login、get_repo；git push自动审批拒绝理由；progress.json external_push]`

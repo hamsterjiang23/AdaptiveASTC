@@ -1,0 +1,177 @@
+{
+  "status": "passed_full_native_bn_audit",
+  "created_utc": "2026-11-12T15:49:36.202842+00:00",
+  "script": "E:\\ASTC_Compression\\script\\audit_unity_normalization.py",
+  "source_sha256": "d425d757930e5e836e33c209a193b43266d03bb8b48debce557a5b84f8d0f2a1",
+  "factor": "Train-only BatchNorm running statistics on selected checkpoint",
+  "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-native30",
+  "source_files": 15,
+  "smoke_calibration_images": 32,
+  "full_calibration_images": 10000,
+  "patches_per_image": 4,
+  "validation_images": 1000,
+  "optimizer_updates": 0,
+  "calibration_input": "Native RGBA, valid mask, local image IDs and original input-only metadata",
+  "parameters_unchanged_required": true,
+  "raw_and_reestimated_checkpoint_replay_required": true,
+  "review": "CLEAN after corpus drift fix",
+  "cpu_tests": 9,
+  "cpu_test_command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-native-bn-review' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_normalization.py tests/test_patch_normalization.py",
+  "ruff_check": "passed",
+  "ruff_format_check": "passed",
+  "basedpyright": "0 errors, 0 warnings",
+  "confirmation_deployment_integrated": false,
+  "test_opened": false,
+  "config_serialization_probe": {
+    "tuple_list_direct_equal": false,
+    "canonical_fingerprint_equal": true,
+    "actual_checkpoint": "mean-full30/best.pt"
+  },
+  "smoke_report_sha256": "dfe2e208fde8dbab66975ee1ce7f7aa00e540b291a7fe84938dd6b7c7d67cae3",
+  "full_report_sha256": "0722dd4470aa61e9b92a95c86cd7f4839c1bbed360e9ea7eac53758083319deb",
+  "full_result": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30-bn.json",
+    "report_sha256": "0722dd4470aa61e9b92a95c86cd7f4839c1bbed360e9ea7eac53758083319deb",
+    "before": {
+      "count": 1000,
+      "accuracy": 0.813,
+      "balanced_accuracy": 0.7086118931454455,
+      "full_choice_accuracy": 0.488,
+      "confusion_matrix": [
+        [
+          91,
+          23,
+          2,
+          4
+        ],
+        [
+          18,
+          85,
+          34,
+          6
+        ],
+        [
+          0,
+          26,
+          75,
+          37
+        ],
+        [
+          1,
+          5,
+          31,
+          562
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 0.7583333333333333
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 0.5944055944055944
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 0.5434782608695652
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 0.9382303839732888
+        }
+      },
+      "actual_quality_pass_rate": 0.644,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 2.1585451823690764,
+      "selected_payload_bytes": 31177648,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "seconds": 12.439420400000017
+    },
+    "after": {
+      "count": 1000,
+      "accuracy": 0.801,
+      "balanced_accuracy": 0.6693255597865637,
+      "full_choice_accuracy": 0.48,
+      "confusion_matrix": [
+        [
+          81,
+          33,
+          2,
+          4
+        ],
+        [
+          17,
+          77,
+          41,
+          8
+        ],
+        [
+          0,
+          20,
+          70,
+          48
+        ],
+        [
+          1,
+          3,
+          22,
+          573
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 0.675
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 0.5384615384615384
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 0.5072463768115942
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 0.9565943238731218
+        }
+      },
+      "actual_quality_pass_rate": 0.589,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 2.3485935247861267,
+      "selected_payload_bytes": 30545456,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "seconds": 12.570541000000958
+    },
+    "quality_regression_images": 285,
+    "quality_improvement_images": 0,
+    "larger_block_images": 136,
+    "smaller_block_images": 63,
+    "wall_seconds": 208.8040879,
+    "calibration_seconds": 88.67639600000075,
+    "parameters_unchanged": true,
+    "checkpoint_reload": "passed",
+    "optimizer_updates": 0,
+    "test_opened": false,
+    "decision": "Retain original selected weights after lower validation Top1",
+    "confirmation_deployment_integrated": false
+  },
+  "final_checks": {
+    "verified_utc": "2026-11-12T16:08:31.536544+00:00",
+    "pytest_command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-native-bn-final' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_search_policy.py tests/test_unity_error_attribution.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py tests/test_unity_normalization.py",
+    "passed": 138,
+    "seconds": 6.95,
+    "ruff_check": "passed",
+    "ruff_format_check": "passed",
+    "basedpyright": "0 errors, 0 warnings",
+    "git_diff_check": "passed",
+    "BN_full_bound_sources_and_artifacts": "passed"
+  }
+}
