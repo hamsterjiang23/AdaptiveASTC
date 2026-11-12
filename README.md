@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+确认集已按用户批准的V2范围生成[新版2000张名单](<experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)：保留1953张，按原备用顺序替换47张GUI／Cube／HDR范围外图，剩余备用441张。旧名单与失败记录保留，新预检、串行采集和完整像素审计使用独立身份；实际导入准入与像素隔离仍待完成。`[verified: unity-confirmation2000-v2.json；unity-confirmation-v2-readiness.json；opinion: 验收边界]`
+
 2026-11-12 用户将当前 goal 改为**完成 Unity 数据采集及完整性验收后结束**，后续模型训练和 90% 准确率验收交给 V2。数据范围为 train10000／validation1000 的原始采集、20 候选补测、patch 语料与规则重放，以及 confirmation2000 原始采集和完整像素审计。V1 未启动的正式训练已取消；任务依赖与完成条件见[数据交接](<experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)。`[verified: 用户“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json]`
 
 [开发集原始采集](<experiment report/unity-accuracy90-20261111/unity-development-capture11000-v1.json>)与[全部20候选](<experiment report/unity-accuracy90-20261111/unity-development-candidates11000-v1.json>)已完成train10000／validation1000，共220000候选。完整数据流水线的patch整理、合并、Dataset全读和原规则重放均通过：训练67105个patch、验证7082个patch；11000张的块大小、preset、选择原因、候选测量次数（candidates_measured）全部一致，见[开发语料验收](<experiment report/unity-accuracy90-20261111/unity-development-data11000-verification.json>)。确认集2000张采集和完整像素审计仍待完成，因此V2的E0与本goal尚未完成；重放一致不代表模型准确率。`[verified: unity-development-data11000-verification.json counts、patch_counts、exact_policy_replay、e0_complete；opinion: 验收边界]`

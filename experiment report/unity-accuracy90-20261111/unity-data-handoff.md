@@ -11,6 +11,8 @@
 
 ## 队列调整
 
+当前确认集队列已被[新V2范围名单与采集链](unity-confirmation-v2-revision.md)替代：按用户批准替换47张GUI／Cube／HDR范围外图，新2000张保留原顺序位置并使用备用补齐。下表的data-v1任务保留为历史记录，当前采集／审计入口为data-v2；数据goal范围不变。`[verified: unity-confirmation-v2-readiness.json prior_confirmation_series、jobs；用户本次替换选择]`
+
 调整记录在 [unity-data-handoff-v1.json](unity-data-handoff-v1.json)。旧训练队列处于 `waiting_data`，已有 smoke32 成功记录，正式训练任务尚未生成；本轮取消的是等待中的正式训练安排。三个依赖该训练的等待任务同时取消，改用新的数据专用身份。原配置与日志保留，退出码 15 的四个任务在交接记录中明确标为用户缩减范围导致的取消。`[verified: unity-data-handoff-v1.json cancellation_record；对应 cancellation-result.json receipt_before、receipt_after、disposition；unity-native-training-full-v2/smoke-job/receipt.json]`
 
 | 工作 | 当前入口与依赖 |

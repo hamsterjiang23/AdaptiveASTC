@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- 当前数据采集goal的确认集使用[新版V2范围名单](<experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)，用户已批准排除39GUI、7Cube及另1HDR源图，保持原主名单位置并按原备用顺序补47张；旧名单与失败记录保持。源文件准入不替代实际导入类型及像素审计，确认集不做全20候选补测、训练或推理。`[verified: 用户本次范围替换选择；unity-confirmation2000-v2.json；opinion: 完成边界]`
+
 - [原生训练标签分布](<experiment report/unity-accuracy90-20261111/unity-native-label-distribution.md>)已覆盖全部10000张训练图／40批次，208个输入SHA、原生选参与回执一致；四类计数1710／1490／1366／5434，放宽大图498、最高PSNR回退377，旧9792条保持。training_complete仅表示训练图原始标签覆盖，不代表验证／20候选目标或模型训练完成。法线按导入用途识别，299张NormalMap的normal_pack均为false；直接父目录分组与历史资产族分组分开解释。统计不使用验证／确认标签或模型预测，不把配比直接当作错误原因，不热改活动训练配置。`[verified: unity-native-labels10000-v1.json summary、model_forward_calls；unity-native-labels10000-verification.json；opinion: 解释与实验边界]`
 
 - [独立确认集评价](<experiment report/unity-accuracy90-20261111/unity-confirmation-evaluation.md>)使用`script/evaluate_unity_confirmation.py`，要求完整原生训练、同一最佳权重的1000图验证Top-1≥90%、原始2000确认图和完整13000图像素审计。候选补测不参与部署输入或最终输出评分；以原始采集验证标签、完整主名单、顺序与原生规则。75项CPU检查与实际66图报告接口通过，正式确认集推理尚未执行。`[verified: confirmation_evidence.py validate_training/model/pixel_audit/captures；unity-confirmation-evaluation-readiness.json]`

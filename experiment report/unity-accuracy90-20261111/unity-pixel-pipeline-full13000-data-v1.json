@@ -1,5 +1,5 @@
 {
-  "status": "waiting_captures",
+  "status": "failed",
   "config_sha256": "ff89075b08ca176cf30b54498d591f446f8a1782c3bbd9a8ec34239ee0e2de03",
   "sources_sha256": {
     "reproductions/unity_search_baseline/confirmation_capture.py": "c6a1639b5f29d4944f6b73172c4294a850d762728dd579cf4122bf2b4c947f89",
@@ -49,9 +49,8 @@
   "dependencies": [
     {
       "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
-      "status": "running",
-      "pid": 41024,
-      "created": 1794409642.5245771
+      "status": "passed",
+      "receipt_sha256": "5f3c42da104c29f6a895707a74650e5b2d41906e7f5deb4920011535a1b7274f"
     },
     {
       "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-series2000-data-v1\\job.json",
@@ -61,7 +60,10 @@
     }
   ],
   "resources": {
-    "available_ram_bytes": 22679633920,
-    "free_disk_bytes": 935255691264
-  }
+    "available_ram_bytes": 37586227200,
+    "free_disk_bytes": 926670442496
+  },
+  "error": "RuntimeError('Upstream job did not pass: E:\\\\ASTC_Compression\\\\experiment report\\\\.local\\\\unity-accuracy90-20261111\\\\jobs\\\\unity-confirmation-series2000-data-v1\\\\job.json failed')",
+  "wall_seconds": 15321.463755399993,
+  "active_seconds": 0.0
 }

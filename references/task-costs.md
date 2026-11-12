@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+确认集范围修订：核对2500份源文件／meta，2441张范围内图读取RGB，替换47张，内部44.41秒。只读原资产／名单，写新版本，不启动Editor或GPU；后续两图预检与256张串行批次使用独立任务，启动前空闲RAM34.25GiB、E盘863.02GiB、F盘441.85GiB，无Unity进程。历史256张批次Editor1282.91秒、完整采集1417.40秒，仅作当前机器的调度参考。`[verified: unity-confirmation2000-v2.json wall_seconds；jobs/unity-confirmation-capture-smoke2-data-v2/launch-preflight.json；unity-confirmation-series2000-data-v1-from00002.json；opinion: 调度范围]`
+
 原生采集到最终压缩验证2图：旧smoke8权重、CUDA、预热1轮＋正式3轮，每轮每图每分支一次编码；预测／固定8×8两图端到端中位83.09／66.12毫秒，完整进程20.31秒，内部8.58秒。实际16份ASTC与解码PNG另行核对，质量达标1/2与2/2；仅mip0，解码／评分／写文件在部署计时外。读取原采集、已冻结模型及编码／质量DLL，写独立.local；本轮无训练，原采集／归档同机运行，无等质量生产加速结论。`[verified: unity-capture-deployment-verification.json summary、process_seconds、internal_seconds、jobs；capture_deployment.py run；opinion: 成本边界]`
 
 原生封存推理的两张验证图／13patch CUDA检查：证据准备0.960秒、加载0.330秒、单次未预热推理0.752秒、完整进程9.933秒。读取已完成smoke8权重、验证参考图及原规则，写新运行的开发seal／尝试／预测；启动前GPU占用1540／12282MiB、利用率3%，正式训练仍等待数据。本次无训练或编码，正式确认集仍需共享registry和完整评价入口。`[verified: unity-sealed-inference-verification.json；本轮nvidia-smi及训练状态输出；opinion: 成本与接入边界]`

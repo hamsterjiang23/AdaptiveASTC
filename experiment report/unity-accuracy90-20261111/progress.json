@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T07:59:21.339602+00:00",
+  "updated_utc": "2026-11-12T08:44:32.626601+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -12,7 +12,7 @@
     "model_training_required": false,
     "model_accuracy_required": false
   },
-  "phase": "Development corpus prepared and verified; collecting reserved confirmation images before full pixel audit and V2 handoff",
+  "phase": "Revised confirmation smoke passed; serial2000 capture running, full13000 pixel audit waiting",
   "initialization": "scratch",
   "model": "ResNet-18",
   "new_test_accuracy": null,
@@ -63,9 +63,9 @@
     }
   ],
   "next": [
-    "Capture reserved confirmation2000 after native2-image smoke, without training dependency",
-    "Complete13000 exact/near pixel audit, preserve findings and raw artifacts",
-    "Publish verified V2 data handoff, sync repository, then complete this goal"
+    "Finish native smoke and serial capture for revised confirmation2000.",
+    "Verify actual V2 input eligibility and full13000 exact/near pixel audit.",
+    "Complete data-only handoff, sync repository and mark goal complete."
   ],
   "decisions": [
     "User confirmed Unity imported references as main acceptance data",
@@ -2429,29 +2429,16 @@
     "test_opened": false
   },
   "unity_confirmation_reservation": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation2000-v2.json",
     "status": "reserved",
-    "scope": "Unseen source identities only; not a completed native test corpus",
-    "manifest_sha256": "42bed07c6bc668f86a0734f1afda7578fd67293b19635435d941a273c5d7b238",
-    "primary_images": 2000,
-    "primary_groups": 1227,
-    "reserve_images": 500,
-    "test_opened": false,
-    "native_pixels_audited": false,
-    "native_labels_collected": false,
-    "model_sealed": false,
-    "report": "unity-confirmation2000-v1.json",
-    "report_sha256": "e6eb7ada5f373985d0fe190a58de7042b9a16450f3b64f91ad55226f7425b1cd",
-    "verification": "unity-confirmation-reservation-verification.json"
+    "snapshot_utc": "2026-11-12T08:39:10.900835+00:00",
+    "test_opened": false
   },
   "unity_confirmation_capture": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-capture-smoke2-data-v2.json",
     "status": "passed",
-    "test_opened": false,
-    "training_updates": 0,
-    "native_labels_collected": true,
-    "images": 2,
-    "report": "unity-confirmation-capture-smoke2-data-v1.json",
-    "report_sha256": "57d85728792c16a1a785ae138d015fdc1a96898e7adb61b9fdef4876aade9a66",
-    "observed_utc": "2026-11-12T07:33:44.403070+00:00"
+    "snapshot_utc": "2026-11-12T08:44:32.626601+00:00",
+    "test_opened": false
   },
   "unity_pixel_identity": {
     "status": "passed",
@@ -2546,17 +2533,11 @@
     }
   },
   "unity_confirmation_series": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-data-v2.json",
     "status": "collecting",
-    "captured_images": 258,
-    "expected_images": 2000,
-    "current_start": 258,
-    "current_images": 256,
+    "snapshot_utc": "2026-11-12T08:44:32.626601+00:00",
     "test_opened": false,
-    "training_updates": 0,
-    "native_labels_collected": false,
-    "report": "unity-confirmation-series2000-data-v1.json",
-    "report_sha256": "b555cca716789aabb45ce508ecbe7cbccefe477c9bea4f5e03303eda3bdb99e8",
-    "observed_utc": "2026-11-12T07:59:21.339602+00:00"
+    "captured_images": 2
   },
   "unity_capture_input_parity": {
     "status": "passed",
@@ -2688,51 +2669,10 @@
     "splits_modified": false
   },
   "unity_complete_pixel_audit": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-data-v2.json",
     "status": "waiting_captures",
-    "smoke": {
-      "report": "unity-pixel-pipeline-smoke66-v2.json",
-      "report_sha256": "4ccd0873692eb4a75651530ca51c6e64771d4ee994a47357556777a0a068678b",
-      "config_sha256": "9f64e8fadb09da905a3da72b6052ba7a68a6adf8a1dd32af4ece926ee3bb87b9",
-      "counts": {
-        "train": 64,
-        "validation": 2
-      },
-      "internal_seconds": 8.975777900006506,
-      "active_seconds": 8.962950200002524,
-      "archive_audit_seconds": 5.674550299998373,
-      "stages": [
-        {
-          "kind": "exact",
-          "report": "unity-pixel-pipeline-smoke66-v2-exact.json",
-          "sha256": "534ed5e245083619b95de15cbe22b5d31011bbd70d7a3faa9a058ff851aa6662",
-          "wall_seconds": 1.2761726000026101
-        },
-        {
-          "kind": "near",
-          "report": "unity-pixel-pipeline-smoke66-v2-near.json",
-          "sha256": "2020bb2930b89622a5ff5ff81152972b341e6f6e670e006533185060efef7b6d",
-          "wall_seconds": 1.9626490000082413
-        }
-      ],
-      "process_seconds": 12.7085492000042,
-      "process_receipt_sha256": "832caf051c423ae8766b712a1ce407236a0a24b53a4fff1361cffe320311449d",
-      "rgba_duplicate_groups": 0,
-      "near_identity_pairs": 0
-    },
-    "full_queue": {
-      "status": "waiting_captures",
-      "report": "unity-pixel-pipeline-full13000-data-v1.json",
-      "expected_counts": {
-        "train": 10000,
-        "validation": 1000,
-        "confirmation": 2000
-      },
-      "config_sha256": "ff89075b08ca176cf30b54498d591f446f8a1782c3bbd9a8ec34239ee0e2de03"
-    },
-    "verification": "unity-pixel-pipeline-verification.json",
-    "verification_sha256": "acba75eff426716e106731011c280b10c616bc341890b19e5a39e30a6c76d2b1",
-    "test_opened": false,
-    "independent_test_isolation_proven": false
+    "snapshot_utc": "2026-11-12T08:44:32.626601+00:00",
+    "test_opened": false
   },
   "unity_sealed_inference": {
     "status": "passed_development_smoke",
@@ -3448,6 +3388,108 @@
       ],
       "completed_metadata_restore_conflicts": 0,
       "full_confirmation_complete": false
+    },
+    "confirmation_revision_history": [
+      {
+        "recorded_utc": "2026-11-12T08:39:10.900835+00:00",
+        "previous": {
+          "unity_confirmation_reservation": {
+            "status": "reserved",
+            "scope": "Unseen source identities only; not a completed native test corpus",
+            "manifest_sha256": "42bed07c6bc668f86a0734f1afda7578fd67293b19635435d941a273c5d7b238",
+            "primary_images": 2000,
+            "primary_groups": 1227,
+            "reserve_images": 500,
+            "test_opened": false,
+            "native_pixels_audited": false,
+            "native_labels_collected": false,
+            "model_sealed": false,
+            "report": "unity-confirmation2000-v1.json",
+            "report_sha256": "e6eb7ada5f373985d0fe190a58de7042b9a16450f3b64f91ad55226f7425b1cd",
+            "verification": "unity-confirmation-reservation-verification.json"
+          },
+          "unity_confirmation_capture": {
+            "status": "passed",
+            "test_opened": false,
+            "training_updates": 0,
+            "native_labels_collected": true,
+            "images": 2,
+            "report": "unity-confirmation-capture-smoke2-data-v1.json",
+            "report_sha256": "57d85728792c16a1a785ae138d015fdc1a96898e7adb61b9fdef4876aade9a66",
+            "observed_utc": "2026-11-12T07:33:44.403070+00:00"
+          },
+          "unity_confirmation_series": {
+            "status": "collecting",
+            "captured_images": 258,
+            "expected_images": 2000,
+            "current_start": 258,
+            "current_images": 256,
+            "test_opened": false,
+            "training_updates": 0,
+            "native_labels_collected": false,
+            "report": "unity-confirmation-series2000-data-v1.json",
+            "report_sha256": "b555cca716789aabb45ce508ecbe7cbccefe477c9bea4f5e03303eda3bdb99e8",
+            "observed_utc": "2026-11-12T07:59:21.339602+00:00"
+          },
+          "unity_complete_pixel_audit": {
+            "status": "waiting_captures",
+            "smoke": {
+              "report": "unity-pixel-pipeline-smoke66-v2.json",
+              "report_sha256": "4ccd0873692eb4a75651530ca51c6e64771d4ee994a47357556777a0a068678b",
+              "config_sha256": "9f64e8fadb09da905a3da72b6052ba7a68a6adf8a1dd32af4ece926ee3bb87b9",
+              "counts": {
+                "train": 64,
+                "validation": 2
+              },
+              "internal_seconds": 8.975777900006506,
+              "active_seconds": 8.962950200002524,
+              "archive_audit_seconds": 5.674550299998373,
+              "stages": [
+                {
+                  "kind": "exact",
+                  "report": "unity-pixel-pipeline-smoke66-v2-exact.json",
+                  "sha256": "534ed5e245083619b95de15cbe22b5d31011bbd70d7a3faa9a058ff851aa6662",
+                  "wall_seconds": 1.2761726000026101
+                },
+                {
+                  "kind": "near",
+                  "report": "unity-pixel-pipeline-smoke66-v2-near.json",
+                  "sha256": "2020bb2930b89622a5ff5ff81152972b341e6f6e670e006533185060efef7b6d",
+                  "wall_seconds": 1.9626490000082413
+                }
+              ],
+              "process_seconds": 12.7085492000042,
+              "process_receipt_sha256": "832caf051c423ae8766b712a1ce407236a0a24b53a4fff1361cffe320311449d",
+              "rgba_duplicate_groups": 0,
+              "near_identity_pairs": 0
+            },
+            "full_queue": {
+              "status": "waiting_captures",
+              "report": "unity-pixel-pipeline-full13000-data-v1.json",
+              "expected_counts": {
+                "train": 10000,
+                "validation": 1000,
+                "confirmation": 2000
+              },
+              "config_sha256": "ff89075b08ca176cf30b54498d591f446f8a1782c3bbd9a8ec34239ee0e2de03"
+            },
+            "verification": "unity-pixel-pipeline-verification.json",
+            "verification_sha256": "acba75eff426716e106731011c280b10c616bc341890b19e5a39e30a6c76d2b1",
+            "test_opened": false,
+            "independent_test_isolation_proven": false
+          }
+        }
+      }
+    ],
+    "confirmation_revision": {
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-v2-readiness.json",
+      "sha256": "2554344457a7135eb15b291900f1613f2030083bc9bac0cd2040df58b4b3c163",
+      "goal_complete": false
+    },
+    "confirmation_input_audit": {
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-v2-input-audit.json",
+      "snapshot_status": "partial",
+      "images": 2
     }
   }
 }
