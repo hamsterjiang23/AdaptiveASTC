@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- [原始采集规则绑定](<experiment report/unity-accuracy90-20261111/unity-capture-policy.md>)使用`UnityCapturePolicyBinding`直接读取原采集完成回执、原生搜索与缓存规则，不依赖候选补测文件。缓存快照／追加日志及恢复assembly证据均绑定SHA，保留显式划分；缺split仅兼容历史train，不能用作validation／confirmation默认值。真实train64／validation2通过，44项CPU检查通过，首次失败保留；该入口不替代像素隔离、完整恢复审计或独立forward前的模型封存。`[verified: capture_policy.py __init__/verify；unity-capture-policy-verification.json；pytest 44 passed；opinion: 接入边界]`
+
 - [原生采集输入对齐](<experiment report/unity-accuracy90-20261111/unity-capture-inputs.md>)新增`data.unity_capture_input.UnityCaptureInputAdapter`，从参考图／实际回调／导入属性构造输入，保留显式划分；不读取搜索标签和候选监督。按资产路径去重的68张开发图／812patch与训练端张量、决策输入一致，49项CPU检查通过；真实Sprite输入未在本次开发语料覆盖。调用方仍须核验采集来源、像素隔离并在独立forward前冻结模型，本接口不自动开启测试。`[verified: unity-capture-input-verification.json；unity_capture_input.py；pytest 49 passed；opinion: 接入约束]`
 
 - [独立确认集2000张串行采集](<experiment report/unity-accuracy90-20261111/unity-confirmation-series.md>)使用`script/collect_unity_confirmation_series.py`，绑定两图预检及17份源码。真实预检通过并追溯原生证据后复用首两张，剩余1998张分8批；逐批核对原名单、回调、原搜索与恢复，失败保留partial并停止，不自动换用备用图。50项CPU检查与真实配置只读核验通过，实际全量采集和模型测试尚未验收；活动期间保持绑定源码不变。`[verified: confirmation_series.py audit_batch/publish/run；unity-confirmation-series-readiness.json；pytest 50 passed；opinion: 执行边界]`

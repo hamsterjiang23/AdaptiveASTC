@@ -1,0 +1,115 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-12T01:26:31.266381+00:00",
+  "report": "unity-capture-policy66-v2.json",
+  "report_sha256": "a138bc31c3a1c12229e929fa7f1add59e80559a0dd06a9c25558fa8e945054a0",
+  "config_sha256": "f4cb274dc4b09803372617b777b09f520d5ecbb018cb4d7795ad17b96ae01103",
+  "counts": {
+    "train": 64,
+    "validation": 2
+  },
+  "legacy_train_rows_without_split": 64,
+  "native_table": {
+    "schemaVersion": 2,
+    "astcOptimizerEnabled": true,
+    "targetPsnrDb": 30.0,
+    "targetMsSsimDb": 21.0,
+    "targetNormalMeanDeg": 3.2,
+    "targetNormalP95Deg": 9.0,
+    "blackPixelRatioMild": 0.4,
+    "blackElevatedPsnrMildDb": 35.0,
+    "blackPixelRatioStrong": 0.8,
+    "blackElevatedPsnrStrongDb": 37.0,
+    "sizeFirstMinSideLarge": 512,
+    "rdoRefineMarginDb": 0.0,
+    "rdoGlobalEnabled": false,
+    "rdoQualityScalar": 0.5,
+    "rdoLookback": 256
+  },
+  "effective_policy_fingerprint": "0fa5f8884ff8b093172310d71ea220adb8d9a7b9f346e643a24e18f29198065b",
+  "internal_seconds": 1.0336798000062117,
+  "process_seconds": 4.230123900000763,
+  "process_receipt_sha256": "f052a3b038b52562b5a0e07e7213f51f1418fc5cca79c148df20a9d95b641b97",
+  "source_files_sha256": {
+    "reproductions/unity_search_baseline/confirmation_capture.py": "c6a1639b5f29d4944f6b73172c4294a850d762728dd579cf4122bf2b4c947f89",
+    "reproductions/unity_search_baseline/confirmation.py": "a7e6551e3535baa77217a88c407adda523f0a9baafb729d171030c1423d81b0d",
+    "reproductions/unity_search_baseline/benchmark.py": "ab4f36ab64c30905b6e5ecf16abfed3056aeed1de22609e044ba2fff7d183c96",
+    "reproductions/unity_search_baseline/metadata.py": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+    "reproductions/unity_search_baseline/supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "reproductions/unity_search_baseline/collection.py": "134b9d99b5a6eedf5b16e781e0f0999f032f84943302acf7b538d492f0477dc2",
+    "reproductions/unity_search_baseline/native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+    "reproductions/unity_search_baseline/BenchmarkRunner.cs": "bfc79796114d9980a9d7a61962ccd8c4c72a6dcd90d9015c5b1955ebefdce923",
+    "reproductions/unity_search_baseline/ASTCSearchBaseline.asmdef": "3262bee6690723790b0037879ff3d60a01733f9f9e07deb44f0b9093c2807e94",
+    "reproductions/unity_search_baseline/native/capture_options.cs.txt": "c05ab61d53f2e3fd4ea1af5a9cb6d9b259563b4bb2d3f5deaacbb954246e06ad",
+    "reproductions/common/unity_reference.py": "9b597e33ccffd376ad98c2d506c3c6abe3cf14183075c9176b2a55b901d1797d",
+    "reproductions/common/encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "reproductions/common/jobs.py": "a1c6430442fe1b41d83b10ec05189ae8563d91569cf9ba05b19782efccba4177",
+    "src/adaptive_astc/utils/artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "script/capture_unity_confirmation.py": "8c63ec8f7d2222d3e89dcee24caacddbf104b08510df7d4f14fb3a953223f67a",
+    "reproductions/unity_search_baseline/capture_policy.py": "ebd3062dbb5712515d24931d42475fe77aed6898177d7109a2cd88b0f5694619",
+    "reproductions/unity_search_baseline/policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "script/audit_unity_capture_policy.py": "ccdbb9e9beb0c0637bb19b93129d7e8d035d558fd5fe0505645a652271fa2888"
+  },
+  "prior_failure": {
+    "report": "unity-capture-policy66-v1.json",
+    "report_sha256": "a116a21b96108ec8e2e26d864d9fa49f5b4ac20c6c3c59b8fbf7004e5ba39a01",
+    "process_receipt_sha256": "c1c897378c00757676800f0b0d5d861a422d77ba86afa24b2d66c55fad61fe2a",
+    "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\capture-policy66-v1\\prior-source\\capture_policy.py",
+    "source_sha256": "6461ef987cbc69e7c6e154f581a8e11ae77391c881791b03b6f40968b68640ef",
+    "error": "KeyError('source_split')"
+  },
+  "unchanged_active_sources": {
+    "unity-native-pipeline-full-v3-config.json": 14,
+    "unity-native-training-full-v2-config.json": 23,
+    "unity-confirmation-capture-smoke2-v2-config.json": 15,
+    "unity-confirmation-series2000-v1-config.json": 17
+  },
+  "jobs": {
+    "unity-reference-series-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "status": "running",
+      "pid": 41024,
+      "created": 1794409642.5245771
+    },
+    "unity-candidate-queue-sprite-v3": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
+      "status": "running",
+      "pid": 33060,
+      "created": 1794443373.3538325
+    },
+    "unity-native-pipeline-full-v3": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+      "status": "running",
+      "pid": 37368,
+      "created": 1794443383.9480257
+    },
+    "unity-native-training-full-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v2\\job.json",
+      "status": "running",
+      "pid": 8636,
+      "created": 1794443400.968097
+    },
+    "unity-confirmation-capture-smoke2-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v2\\job.json",
+      "status": "running",
+      "pid": 47368,
+      "created": 1794443411.405678
+    },
+    "unity-confirmation-series2000-v1": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-series2000-v1\\job.json",
+      "status": "running",
+      "pid": 60172,
+      "created": 1794444748.3573053
+    }
+  },
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "script_sha256": "09d5c2a7da2ded2248c19fe23dbd3e6f43acf0cd8cec2a41a2cdb2284efcaa27",
+  "cpu_tests": {
+    "passed": 44,
+    "seconds": 4.61
+  },
+  "model_forward_calls": 0,
+  "training_updates": 0,
+  "test_opened": false,
+  "scope": "Real train64/validation2 original-policy provenance only; confirmation/probe/recovery branches covered by synthetic unit tests"
+}

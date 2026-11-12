@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[原始采集规则绑定](unity-capture-policy.md)完成train64／validation2的真实来源核验，直接读取原搜索与缓存，44项CPU检查通过，完整进程4.23秒。首次历史train缺split导致的失败与修复前源码保留；没有模型forward或确认集测试。`[verified: unity-capture-policy-verification.json counts、process_seconds、prior_failure、model_forward_calls；pytest 44 passed]`
+
 [原生采集输入对齐](unity-capture-inputs.md)通过按资产路径去重的68张开发图／812patch检查，输入张量和决策属性与训练端一致；原始70次图像／825次patch比较包含两张重复validation，已分开计数。49项CPU测试通过，完整进程11.76秒，没有模型forward、训练或确认集测试，90%验收仍待完成。`[verified: unity-capture-input-verification.json；pytest 49 passed；opinion: 完成边界]`
 
 [独立确认集2000张串行采集](unity-confirmation-series.md)已实现并启动等待，复用真实两图预检后分8批补采剩余1998张；冻结主名单与confirmation身份保持。50项CPU检查及真实配置只读核验通过；当前waiting_smoke、已采集0张，完整采集、像素隔离和模型独立评价分别验收。`[verified: unity-confirmation-series2000-v1.json status、captured_images；unity-confirmation-series-readiness.json plan；pytest 50 passed；opinion: 完成边界]`
