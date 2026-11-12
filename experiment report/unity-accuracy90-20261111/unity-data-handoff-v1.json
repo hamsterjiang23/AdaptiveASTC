@@ -1,0 +1,168 @@
+{
+  "status": "collecting",
+  "updated_utc": "2026-11-12T04:08:37.451053+00:00",
+  "scope": "Current goal completes on native data collection, targets and integrity handoff; V2 training and model acceptance are outside this goal.",
+  "required_counts": {
+    "train": 10000,
+    "validation": 1000,
+    "confirmation": 2000
+  },
+  "development_candidates_per_image": 20,
+  "confirmation_candidates": "original search only; no supplementary full-candidate targets or model evaluation required",
+  "cancellation_record": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\data-handoff-20261112-v1\\cancellation-result.json",
+  "cancellation_record_sha256": "91bfb197feeddc90cbfa8b025c0c9621a4580e34dd1c20bd792899ebc1bffef1",
+  "jobs": [
+    {
+      "name": "unity-confirmation-capture-smoke2-data-v1",
+      "config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-capture-smoke2-data-v1-config.json",
+      "config_sha256": "3b2efb618397a8534d087f7d727c1a6bb11f4bb97e46c6e84f8f0ec886b691d5",
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-data-v1\\job.json",
+      "job_sha256": "9b696917bfc800e60bfb0a8fdb666ee9553bb5355e87ca2232355f1b91b339cd",
+      "live": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-data-v1\\job.json",
+        "status": "running",
+        "pid": 57500,
+        "created": 1794456497.66114
+      },
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-capture-smoke2-data-v1.json",
+      "status": "waiting_dependencies"
+    },
+    {
+      "name": "unity-confirmation-series2000-data-v1",
+      "config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-data-v1-config.json",
+      "config_sha256": "e2a11f666b2b60ef7b17460c896ef84a897e0f3933ecbcb9d22776f81bb79671",
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-series2000-data-v1\\job.json",
+      "job_sha256": "8ebd2b2c20eddf47430820cc4d68e425ab95b1494d0730c414e2358423aee87e",
+      "live": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-series2000-data-v1\\job.json",
+        "status": "running",
+        "pid": 42024,
+        "created": 1794456497.7095716
+      },
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-data-v1.json",
+      "status": "waiting_smoke"
+    },
+    {
+      "name": "unity-pixel-pipeline-full13000-data-v1",
+      "config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-data-v1-config.json",
+      "config_sha256": "ff89075b08ca176cf30b54498d591f446f8a1782c3bbd9a8ec34239ee0e2de03",
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-pixel-pipeline-full13000-data-v1\\job.json",
+      "job_sha256": "3dd4669109f1f04a33f3b9788ea3aded22c643002523d7baae80280a75ea80ab",
+      "live": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-pixel-pipeline-full13000-data-v1\\job.json",
+        "status": "running",
+        "pid": 21328,
+        "created": 1794456497.716906
+      },
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-data-v1.json",
+      "status": "waiting_captures"
+    }
+  ],
+  "checks": {
+    "capture_plan": {
+      "status": "validated",
+      "images": 2,
+      "source_split": "confirmation",
+      "test_opened": false
+    },
+    "series_plan": {
+      "status": "validated",
+      "images": 2000,
+      "reused_smoke_images": 2,
+      "remaining_batches": [
+        {
+          "start": 2,
+          "images": 256
+        },
+        {
+          "start": 258,
+          "images": 256
+        },
+        {
+          "start": 514,
+          "images": 256
+        },
+        {
+          "start": 770,
+          "images": 256
+        },
+        {
+          "start": 1026,
+          "images": 256
+        },
+        {
+          "start": 1282,
+          "images": 256
+        },
+        {
+          "start": 1538,
+          "images": 256
+        },
+        {
+          "start": 1794,
+          "images": 206
+        }
+      ],
+      "source_split": "confirmation",
+      "test_opened": false,
+      "scope": "Plan/source validation; no completed native smoke or full capture implied"
+    },
+    "pixel_config": "passed",
+    "unchanged_data_pipeline_sources": "passed",
+    "old_configuration_hashes_unchanged": {
+      "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-capture-smoke2-v2-config.json": "99ac3cfbffee50f6ada7249d7d4e1340bfea77f7867b12d388fef19194b2ab50",
+      "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-v1-config.json": "436192aae8d08f839237c29102e180bd6573e0fae80ca6ee6acd48d8cc145969",
+      "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-v2-config.json": "d1a23c877b6b0c7fcbfdc95b50ba4890506d010996d706680827a21c3bac926c"
+    },
+    "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+    "v2_evidence_sha256": "5c9aab644cac10602425ce2caeb52a381b3559d97ce62c19bee3e3f1e5a78670"
+  },
+  "training_auto_start": false,
+  "goal_complete": false,
+  "new_model_forward_calls": 0,
+  "retained_jobs": [
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "status": "running",
+      "pid": 41024,
+      "created": 1794409642.5245771
+    },
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
+      "status": "running",
+      "pid": 33060,
+      "created": 1794443373.3538325
+    },
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+      "status": "running",
+      "pid": 37368,
+      "created": 1794443383.9480257
+    }
+  ],
+  "data_snapshot": {
+    "unity-reference-series": {
+      "status": "running",
+      "counts": {
+        "train": 10000,
+        "validation": 2
+      },
+      "current_batch": "unity-v1-validation-001-20261111"
+    },
+    "unity-candidate-queue-sprite-v3": {
+      "status": "running",
+      "counts": {
+        "train": 9280,
+        "validation": 2
+      },
+      "current_batch": "unity-v1-train-036-20261111"
+    },
+    "unity-native-pipeline-full-v3": {
+      "status": "waiting_upstream"
+    }
+  },
+  "resources": {
+    "available_ram_gib": 24.646812438964844,
+    "free_disk_gib": 871.9069900512695
+  }
+}

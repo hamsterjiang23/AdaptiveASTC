@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+2026-11-12 用户将当前 goal 改为**完成 Unity 数据采集及完整性验收后结束**，后续模型训练和 90% 准确率验收交给 V2。数据范围为 train10000／validation1000 的原始采集、20 候选补测、patch 语料与规则重放，以及 confirmation2000 原始采集和完整像素审计。V1 未启动的正式训练已取消；任务依赖与完成条件见[数据交接](<experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)。`[verified: 用户“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json]`
+
 [原生训练图采集与标签分布](<experiment report/unity-accuracy90-20261111/unity-native-label-distribution.md>)已覆盖全部10000张训练图，队列转入验证图采集。6／8／10／12类占17.10%／14.90%／13.66%／54.34%，大图放宽498张、最高PSNR回退377张；旧9792条记录保持。40个训练批次、208个输入SHA与完整训练名单核验通过。验证图和20候选补测仍未完整，正式CUDA训练与独立90%验收继续等待。`[verified: unity-native-labels10000-v1.json summary；unity-native-labels10000-verification.json；opinion: 完成边界]`
 
 [独立确认集评价入口](<experiment report/unity-accuracy90-20261111/unity-confirmation-evaluation.md>)已实现，75项CPU检查和实际66图报告字段核验通过；完整训练、1000张验证图达90%、原始2000图采集及像素审计通过后才允许推理。共享封存支持同协议失败重试，最终报告绑定全部分批产物。当前尚未运行确认集推理，Unity独立90%与完整mip成本仍待验收。`[verified: unity-confirmation-evaluation-readiness.json；confirmation_evidence.py validate_training；opinion: 验收边界]`
@@ -78,9 +80,9 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 [独立确认集预留](<experiment report/unity-accuracy90-20261111/unity-confirmation-cohort.md>)已预留2000张主名单、500张备用，主名单覆盖1227个未出现于9份历史清单的资产组；2500份实际源文件及meta身份复核通过。仅完成源资产隔离，后续仍需Unity参考像素、同次原搜索标签、像素重复审计，以及模型和决策冻结后的独立测试；当前未打开模型测试。`[verified: unity-confirmation2000-v1.json primary_images、primary_groups、reserve_images、native_pixels_audited、native_labels_collected、model_sealed；unity-confirmation-reservation-verification.json；opinion: 后续验收]`
 
-[冻结预测残差诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)显示，cap512模型在−2.5至+2.5dB的101点全局余量网格上最高仍为84.5%；逐候选均值偏移修正后近阈值RMSE为1.3372dB、准确率83.9%。同验证集拟合的修正不作为泛化收益，也不加入当前部署；尺寸元数据终态见下方，完整Unity训练继续等待原生数据。`[verified: scratch-group512-residuals.json same_validation_best_global_margin、same_validation_offset_diagnostic；opinion: 实验选择与解释边界]`
+[冻结预测残差诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)显示，cap512模型在−2.5至+2.5dB的101点全局余量网格上最高仍为84.5%；逐候选均值偏移修正后近阈值RMSE为1.3372dB、准确率83.9%。同验证集拟合的修正不作为泛化收益，也不加入当前部署；尺寸元数据终态见下方，后续 Unity 训练由 V2 另行启动。`[verified: 用户2026-11-12范围调整]``[verified: scratch-group512-residuals.json same_validation_best_global_margin、same_validation_offset_diagnostic；opinion: 实验选择与解释边界]`
 
-[完整Unity训练衔接](<experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)已完成32训练图／2验证图的CUDA预检：两轮4次实际更新、0次AMP跳步、最佳权重重载通过，完整进程83.45秒。当前等待完整10000／1000数据四阶段核验，正式训练尚未启动；后续GPU任务继续纳入串行调度，独立测试90%仍待验收。`[verified: native-training-full-v1/smoke.json training_updates、checkpoint_audit；unity-native-training-full-v1.json status、stages；opinion: 验收与调度边界]`
+[完整Unity训练衔接](<experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)已完成32训练图／2验证图的CUDA预检：两轮4次实际更新、0次AMP跳步、最佳权重重载通过，完整进程83.45秒。这是先期预检记录；等待数据的正式训练队列已按用户最新指示取消。后续 V2 使用新训练身份，独立测试90%另行验收。`[verified: unity-data-handoff-v1.json training_auto_start；对应 cancellation-result.json]``[verified: native-training-full-v1/smoke.json training_updates、checkpoint_audit；unity-native-training-full-v1.json status、stages；opinion: 验收与调度边界]`
 
 [同次预测与最终编码](<experiment report/unity-accuracy90-20261111/unity-deployment.md>)已完成两图、一次预热及三次配对重复，共16次真实编码。两图合计参考PNG到内存mip0 ASTC的中位数为预测路径48.81ms、fixed8路径38.34ms；质量通过率分别1／2与2／2，payload分别59168与81920字节。使用原生smoke8权重，此小样本没有速度或等质量收益结论，也不代表完整Unity验收。`[verified: unity-deployment-smoke2-v1.json summary、measurements；opinion: 解释边界]`
 
@@ -108,7 +110,7 @@ Unity原生patch已完成[3906图扩展](<experiment report/unity-accuracy90-202
 
 新增 [Unity 原搜索规则重放](<experiment report/unity-accuracy90-20261111/unity-policy-replay.md>)：260 张开发图的块大小、preset、选择分支和候选尝试次数全部复现。只保留真实 PSNR 的诊断仅命中 207 张块大小，表明迁移必须保留 MS-SSIM／法线等原规则信息；该结果不是模型准确率。Unity 模型训练与独立测试 90% 仍待完成。`[verified: unity-policy260-bound-v2.json matching_fields、mismatches、psnr_only_footprint_matches；opinion: 迁移要求与验收边界]`
 
-当前goal按用户的[V1原分辨率patch误差回归计划](<experiment plan/V1/README.md>)执行，证据见[V1 evidence.json](<experiment plan/V1/evidence.json>)，实际状态见[执行记录](<experiment report/unity-accuracy90-20261111/README.md>)。依次完成patch目标／编码核验、正则化分类对照、scratch／pretrained回归对照，再按错误分布改进。训练使用CUDA，最终仍以Unity导入后参考像素与同次原始搜索标签的独立测试Top-1≥90%验收。`[verified: 用户本轮V1与重建goal要求；create_goal返回active；V1“实验步骤”]`
+历史 V1 goal 按[原分辨率patch误差回归计划](<experiment plan/V1/README.md>)推进目标提取、分类对照和回归实验，原始证据见[V1 evidence.json](<experiment plan/V1/evidence.json>)。用户2026-11-12已将本goal收尾范围改为[数据采集与交接](<experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)；训练和独立Unity Top-1≥90%验收由[V2](<experiment plan/V2/README.md>)另行推进。`[verified: 用户2026-11-12最新范围调整；unity-data-handoff-v1.json]`
 
 V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预训练patch回归也已完成，分别为76.0%／88.8%，两组最佳权重重载核验通过。详见[分类对照](<experiment report/unity-accuracy90-20261111/classification-controls/README.md>)与[回归状态](<experiment report/unity-accuracy90-20261111/patch-v1/README.md>)；V1开发联合晋级条件及最终Unity90%验收均未达到。`[verified: classification-controls/comparison.json；patch-v1/summary.json；scratch-result.json；pretrained-result.json]`
 
@@ -130,7 +132,7 @@ V1分类五组已完成，验证Top-1最高68.6%；正式随机初始化／预�
 
 执行顺序更新为Unity搜索耗时baseline、Nah 2023作者代码、Nah 2022论文重实现、TexNN论文重实现、GDC压缩闭环复现，再研究新模型与校准。复现入口与实际状态见[reproductions](reproductions/README.md)。Unity主基线采用LITE配置且关闭RDO，文献原始配置与项目适配配置分别记录。`[verified: 用户2026-11-10确认的实施计划]`
 
-先期研究顺序（2026-11-09）为分类calibration优先、质量预测作为备选；用户后续确认的V1已将主线改为原分辨率patch质量回归与规则决策。分类与校准产物保留原实验身份，当前执行顺序采用上面的V1。`[verified: 用户研究决策（2026-11-09）；用户V1与重建goal要求；experiment plan/V1/README.md]`
+先期研究顺序（2026-11-09）为分类calibration优先、质量预测作为备选；用户后续确认的V1已将主线改为原分辨率patch质量回归与规则决策。分类与校准产物保留原实验身份，该段保留历史路线；当前 goal 仅完成数据交接，后续实验采用 V2。`[verified: 用户2026-11-12范围调整]``[verified: 用户研究决策（2026-11-09）；用户V1与重建goal要求；experiment plan/V1/README.md]`
 
 - **分类基线**。保留以ResNet等网络输出块大小类别的方案，并保存完整logits／类别概率，作为后处理输入。训练标签按候选压缩质量和项目质量标准生成。`[opinion: 分类优先路线的实验设计]`
 - **概率校准**。先以temperature scaling作为后处理基线，在独立校准集上拟合温度，检查置信度与标签正确率的一致性。该方法对所有logits使用同一个正温度缩放，类别排序与argmax预测保持一致。`[verified: Guo等，On Calibration of Modern Neural Networks，§4.2，公式9及其后说明；opinion: 本项目方法选择]` [论文](https://proceedings.mlr.press/v70/guo17a.html)、[方法原文第6页](https://proceedings.mlr.press/v70/guo17a/guo17a.pdf#page=6)
@@ -897,7 +899,7 @@ Std的统计定义、MB计量口径、mip是否计入、逐贴图质量分布及
 
 ## 后续研究方向
 
-- 当前主线采用V1的原分辨率patch质量回归，固定容量下逐项改进，再按独立Unity数据和生产指标验收；先期分类概率校准与决策校准产物保留为对照。`[verified: 用户V1及重建goal要求；experiment plan/V1/README.md“实验步骤”]`
+- 后续模型实验采用[V2 Unity原生协议计划](<experiment plan/V2/README.md>)；本goal只完成[数据交接](<experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)，V1方法与先期分类、校准结果保留为历史记录。`[verified: 用户2026-11-12最新范围调整；unity-data-handoff-v1.json]`
 - 以项目当前固定8×8为生产基线，补充固定6×6、固定12×12与按质量目标穷举的标签对照，冻结编码器版本、质量preset、颜色空间、贴图通道、mip和尺寸取整规则。`[verified: 用户需求说明（2026-11-09）“目前项目全都是统一使用8*8”；opinion: 实验对照设计]`
 - 小样本检查压缩、解压、质量测量和真实字节统计，再扩大到有标签的分类数据集。报告失败样本和不满足质量目标的比例。`[opinion]`
 - 比较模型预测与穷举标签的体积差、质量违规率及处理成本，分别统计数据集生成、训练、推理和最终ASTC编码。`[opinion]`

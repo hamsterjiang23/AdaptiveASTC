@@ -2,7 +2,7 @@
 
 V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使用 Unity 协议，即导入处理后的第一个 image／mip0 参考像素、同次原搜索标签、20 候选补测得到的原生质量，以及原规则重放。GDC 源图 RGB 协议的数据、标签、权重和结果不进入 V2 的训练、选模或验收。引用数字与来源 SHA-256 保存在 [evidence.json](evidence.json)，由归档脚本 `experiment report/.local/unity-accuracy90-20261111/plan_v2_evidence.py` 生成，脚本 SHA-256 记录在同一文件。`[verified: 用户本轮要求“按照我们的UNITY协议指定V2的expreiment plan，不需要使用GDC协议”；evidence.json script、inputs]`
 
-[V1](../V1/README.md) 及其执行记录保持原样。V2 复用 V1 执行期间完成的 Unity 原生组件，包括采集、补测、Dataset、`UnityQualityRegressor`、训练器、规则重放和确认集入口，不复用 GDC 数据、权重或结果。当前 active goal 和活动队列仍以 V1 为执行依据。用户 2026-11-12 确认暂不切换，V2 只作为已指定的计划，开始执行前另行确认。`[verified: AGENTS.md“当前goal以用户的V1原分辨率patch误差回归计划…为准”；用户本轮选择“先不切换，只是指定”] [opinion: 复用范围]`
+[V1](../V1/README.md) 的历史方法与实测结果保留，执行状态按用户最新指示更新。V2 复用 V1 执行期间完成的 Unity 原生组件，包括采集、补测、Dataset、`UnityQualityRegressor`、训练器、规则重放和确认集入口，不复用 GDC 数据、权重或结果。用户最初选择只指定 V2；随后于 2026-11-12 明确本 chat 的 goal 在完成数据采集后结束，后续执行 V2。当前只继续[数据交接](<../../experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)，V1 正式训练自动启动已取消；V2 的 R0 可复用保留的配方，以新的实验身份启动。`[verified: 用户先前“先不切换，只是指定”及后续“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json training_auto_start] [opinion: 复用范围]`
 
 核心做法：对每张图预测 20 个候选在 Unity 口径下的质量，交给原规则 `UnitySearchPolicy` 选出块大小和 preset，最后只编码一次。`[opinion]`
 
@@ -68,7 +68,7 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 ### 模型与训练起点 R0
 
 - **模型**：`UnityQualityRegressor`，ResNet-18 骨干（标准 stem，含 maxpool），5 通道输入（RGBA＋有效像素 mask），导入属性经 FiLM 调节特征并进入整图头，共 11,377,660 参数。随机初始化为主线。`[verified: evidence.json model；unity-accuracy90 README“随机初始化为主线，预训练为独立对照”]`
-- **配方**：沿用已排队的正式配置。30 轮，每批 16 张图，每图每轮有放回抽 4 个 patch；AdamW lr 3e-4、weight decay 0.05，1 轮 warmup 后余弦，FP16 AMP，patience 5，seed 20261112；三项附加 loss 权重均 0.1，零通道门槛 0.5。选模先看 validation 块大小 Top-1，再看颜色图近阈值 RMSE，见 [原生训练报告](<../../experiment report/unity-accuracy90-20261111/unity-native-training.md>)。`[verified: evidence.json model.queued_recipe；unity-native-training.md]`
+- **配方**：沿用原正式队列保留的配置；该队列已按用户数据收尾指示取消，V2 训练使用新身份。`[verified: unity-data-handoff-v1.json training_auto_start]` 30 轮，每批 16 张图，每图每轮有放回抽 4 个 patch；AdamW lr 3e-4、weight decay 0.05，1 轮 warmup 后余弦，FP16 AMP，patience 5，seed 20261112；三项附加 loss 权重均 0.1，零通道门槛 0.5。选模先看 validation 块大小 Top-1，再看颜色图近阈值 RMSE，见 [原生训练报告](<../../experiment report/unity-accuracy90-20261111/unity-native-training.md>)。`[verified: evidence.json model.queued_recipe；unity-native-training.md]`
 - **已知风险**：训练时整图头只看到每图 4 个 patch 的均值和最大值，验证时用全部 patch，大图上两者分布不同；整图目标每图只有一组，法线图约占 6.7%；四项 loss 单位不同，附加权重尚未验证。`[verified: unity-native-training.md；models/unity_quality.py pool_features；evidence.json targets3904.input_conditions] [opinion: 风险判断]`
 
 ### 评估与选模
@@ -87,7 +87,7 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 |---|---|---|
 | E0 数据就绪 | 完成 train10000／validation1000 参考采集与 20 候选补测；patch 目标、合并和 Dataset 读取；全部 11000 张原规则重放；开发集精确与近重复审计 | 覆盖 complete 且 counts 等于完整划分；重放的块大小、preset、选择原因、尝试次数全部一致；失败以新身份重试并保留原记录 |
 | E1 规则侧诊断（不训练） | validation1000 上统计固定 6×6／8×8／10×10／12×12（medium）、始终 12×12、只看 PSNR 规则的 Top-1、严格通过率和 payload；在训练划分的实测指标上，分别和同时给 PSNR、MS-SSIM、角度加高斯误差并重放规则 | 得到各指标达到 90% 所需的精度，作为 E2–E4 的误差目标 |
-| E2 原生基线 R0 | 按已排队配置在完整开发集上 CUDA 训练，先跑小样本闭环 | validation Top-1≥90% 进入 E6，否则进入 E3 |
+| E2 原生基线 R0 | 按保留的 R0 配方，以新身份在完整开发集上 CUDA 训练，先跑小样本闭环 | validation Top-1≥90% 进入 E6，否则进入 E3 |
 | E3 误差归因（不重训） | 冻结 R0 的 validation 预测，逐项把 PSNR 通道误差、零通道、MS-SSIM、角度换成实测值后重放规则；按分组统计错误 | 得到瓶颈排序，决定 E4 的顺序 |
 | E4 单项改进 | 每次只改一项并使用新实验身份。候选项：整图头训练与推理的 patch 数一致，或只用均值池化；附加 loss 权重，含只训 PSNR 部分的 0 权重对照；两阶段训练，先训骨干和 patch 头，再训整图头；ImageNet 预训练初始化，RGB 卷积核照搬，Alpha 和 mask 通道置零；资产组限权与法线过采样；EMA 与 BN 重估；必要时法线专用模型 | 相对当前最优报告 validation Top-1、分组结果、瓶颈指标误差和推理成本 |
 | E5 扩大容量 | E4 各项都没有增益时，再试 ResNet-34／50 或加宽 | 同 E4，另报告参数量和每图推理耗时 |
@@ -101,7 +101,7 @@ V2 记录于 2026-11-12，状态为待执行。开发、选模与验收全部使
 
 - **质量约束**：验收只看块大小 Top-1≥90%；严格通过率、质量回退和 payload 全部报告，不设门槛。`[verified: 用户本轮选择“只看 Top-1≥90%，质量和字节全部报告但不设门槛”]`
 - **preset**：只报告块大小＋preset 完整匹配率，不设目标。preset 不影响字节，只影响质量和编码时间。`[verified: 用户本轮选择“只报告块大小＋preset 完整匹配率，不设门槛”；AGENTS.md“同图同尺寸同blockSize的payload容量相同”]`
-- **执行依据**：暂不切换 active goal，V2 只作为已指定的计划。`[verified: 用户本轮选择“先不切换，只是指定”]`
+- **执行依据**：先前的“暂不切换”决定已由后续指示更新：本 chat 的 goal 仅完成数据采集与验收，之后执行 V2；V1 正式训练自动队列已取消。`[verified: 用户2026-11-12后续范围调整；unity-data-handoff-v1.json]`
 
 以下三项等 E4／E6 有结果再定：
 

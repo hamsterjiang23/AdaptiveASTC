@@ -1,6 +1,6 @@
 # 实验计划 V1：原分辨率 patch 误差回归
 
-V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的执行依据，最终验收口径见 [Unity90%执行记录](<../../experiment report/unity-accuracy90-20261111/README.md>)。诊断数值保存在 [evidence.json](evidence.json)，由归档脚本 `experiment report/.local/unity-accuracy90-20261111/plan_v1_analysis.py` 生成，脚本 SHA-256 记录在同一文件。`[verified: 用户本轮重新创建goal要求；create_goal返回active；evidence.json script]`
+V1 记录于 2026-11-11。用户于 2026-11-12 将本 goal 收尾范围改为数据采集与完整性验收，具体见[数据交接](<../../experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)；模型训练和独立 90% 验收由后续 V2 承接，以下 V1 方案与结果保留为历史记录。`[verified: 用户2026-11-12最新范围调整]` 原始验收口径见 [Unity90%执行记录](<../../experiment report/unity-accuracy90-20261111/README.md>)。诊断数值保存在 [evidence.json](evidence.json)，由归档脚本 `experiment report/.local/unity-accuracy90-20261111/plan_v1_analysis.py` 生成，脚本 SHA-256 记录在同一文件。`[verified: 用户本轮重新创建goal要求；create_goal返回active；evidence.json script]`
 
 核心判断是把块大小选择改写为逐块大小的 PSNR 预测。四分类标签由四个候选 PSNR 按阈值唯一确定，PSNR 预测误差约 0.75 dB 时推出的标签准确率约 90%，整图缩放到 224×224 的输入难以提供这种精度。`[verified: evidence.json label_structure、precision_requirement] [opinion: 方案判断]`
 

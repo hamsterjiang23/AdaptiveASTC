@@ -5,7 +5,7 @@
 - 本文件适用于 `E:\ASTC_Compression` 全目录，执行任务时同时遵循用户提供的全局规则。`[opinion]`
 - 当前研究主题为ASTC纹理压缩块大小自动选择，关注质量、真实字节数与处理成本的权衡。`[verified: README.md“当前状态”“已核实的方法与待核实问题”]`
 - 以固定8×8为当前生产基线，研究机器学习预测参数后执行一次最终压缩。PSNR 35 dB按项目经验判据记录，法线与MSAK贴图的标准和Unity导入后训练数据的获取方式按待明确事项处理。`[verified: README.md“项目需求与优化目标”]`
-- 当前执行用户确认的V1原分辨率patch误差回归计划，分类对照保留为基线；按固定容量诊断、单项训练改进、必要时扩大网络的顺序推进。分别评价标签正确率、质量指标和完整成本，最终采用Unity导入后参考像素与同次原搜索标签验收。`[verified: experiment plan/V1/README.md“目标与开发数据”“实验步骤”；当前active goal objective]`
+- 2026-11-12 用户将当前 goal 改为**完成 Unity 数据采集及完整性验收后结束**，后续模型训练和 90% 准确率验收交给 V2。数据范围为 train10000／validation1000 的原始采集、20 候选补测、patch 语料与规则重放，以及 confirmation2000 原始采集和完整像素审计。V1 未启动的正式训练已取消；任务依赖与完成条件见[数据交接](<experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)。`[verified: 用户“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json]`
 - 开始任务先读 [README.md](README.md)，按任务需要读取对应资料和检查记录。研究题目、算法路线与新增实验范围以用户确认的内容为准。`[opinion]`
 
 ## 文献发展路线与研究定位
@@ -94,7 +94,7 @@
 
 - 同图patch聚合实验见[成组损失报告](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/bag-loss.md>)。`ImagePatchBatchSampler`每组只抽同图patch、保留有效像素数；`PatchRegressionLoss`先加权MSE再取log，目标只对实际抽样组精确。权重0／1配对隔离loss，另比较成组采样本身；不能把期望权重一致称为每轮图覆盖一致。正式两组完成10／7轮，最佳验证71.2%／71.7%，均低于独立采样80.7%；完整串行进程1869.71秒。结果按GDC开发协议记录，不外推Unity效果。`[verified: patch_bags.py；patch_loss.py；bag-sampling-analysis.json；scratch-bag4-comparison.json；opinion: 对照与归因边界]`
 
-- 当前goal以用户的[V1原分辨率patch误差回归计划](<experiment plan/V1/README.md>)和[evidence.json](<experiment plan/V1/evidence.json>)为准，实际状态见[执行记录](<experiment report/unity-accuracy90-20261111/README.md>)。按patch目标／编码核验、分类对照、scratch／pretrained回归、按错误分布改进的顺序执行，训练使用CUDA。GDC train／validation用于开发，最终在Unity导入后参考像素与同次原始搜索标签的独立测试上验收Top-1≥90%。`[verified: 用户本轮V1与重新创建goal要求；V1“目标与开发数据”“实验步骤”]`
+- 当前 goal 的最新完成条件为[数据采集与 V2 交接](<experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)，优先于旧 goal 正文的 V1 训练及 90% 要求。保留 V1 历史结果和 evidence.json；完成开发集采集、20 候选、patch／规则验收及独立确认图采集、像素审计后交付并完成本 goal。后续 V2 训练使用新实验身份，不恢复已取消的 V1 自动训练。`[verified: 用户2026-11-12最新范围调整；unity-data-handoff-v1.json]`
 - V1分类五组最高验证Top-1为68.6%；正式随机初始化／预训练patch回归各14轮完成，最佳Top-1为76.0%／88.8%，阈值附近RMSE为1.7681／0.9736dB，两组最佳权重重载通过。各11,178,564参数，继续固定容量诊断；V1开发联合晋级条件及最终Unity90%均未达到。详见[回归状态](<experiment report/unity-accuracy90-20261111/patch-v1/README.md>)。`[verified: classification-controls/comparison.json；patch-v1/summary.json；scratch-result.json；pretrained-result.json；opinion: 后续顺序]`
 - Unity回归采集保留原搜索提前停止、标签及baseline计时，另行补测块大小×preset缺失候选并记录解码图及原生质量分支。抽样真实编码先作为独立成本／质量对照，主路径保持预测后一次最终编码。方案差异、未完成配置和实际测量分别写入执行记录。`[verified: V1“待决定事项”；opinion: 本轮执行决定]`
 - 实际编码参数采集入口为`script/capture_unity_options.py`，通过临时受保护的managed回调记录Alpha、profile、normal pack及输入RGBA哈希，结束后恢复源码。两图实际参数绑定的40候选补测通过，64图采集另记录558回调，包含63 Default和1 NormalMap，恢复无冲突。NormalMap样本的normal-pack实际为false，用途与pack标志分别记录；真实mip0法线20候选重编码也已通过，HDR／多mip及最终Unity90%均未验收。`[verified: unity-supplement2-actual.json；unity-actual-options64.json；smoke1-receipt.json；metadata.py；unity-normal-replay20.json]`

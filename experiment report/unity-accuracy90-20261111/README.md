@@ -1,6 +1,8 @@
 # Unity 90%目标执行记录
 
-当前方案以用户提供的 [V1：原分辨率 patch 误差回归](<../../experiment plan/V1/README.md>) 为准，诊断依据见 [V1 evidence.json](<../../experiment plan/V1/evidence.json>)。用户清除旧goal后，已按V1重新创建active goal。原来的树模型优先实验和24组SGD搜索不再作为当前执行顺序。`[verified: 用户本轮V1与重建goal要求；create_goal返回active]`
+当前 goal 按用户 2026-11-12 最新指示，仅完成[Unity 数据采集与 V2 交接](unity-data-handoff.md)后结束；不再自动启动 V1 正式训练。开发集原始采集、20 候选补测、patch／规则验收和独立确认图采集、像素审计继续运行。`[verified: 用户“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json]`
+
+以下保留历史执行记录。原方案以用户提供的 [V1：原分辨率 patch 误差回归](<../../experiment plan/V1/README.md>) 为准，诊断依据见 [V1 evidence.json](<../../experiment plan/V1/evidence.json>)。用户清除旧goal后，已按V1重新创建active goal。原来的树模型优先实验和24组SGD搜索不再作为当前执行顺序。`[verified: 用户本轮V1与重建goal要求；create_goal返回active]`
 
 - [Unity原生质量模型与接口](unity-native-model.md)后续完成[CUDA训练链路](unity-native-training.md)：8训练图／2验证图、2轮4次实际更新、权重重载通过、进程23.81秒；35项CPU检查通过。原型11,377,660参数，2370图精确目标重放与小样本训练分别记录，完整Unity训练和独立测试90%尚未完成。`[verified: unity-native-smoke8-v1-result.json；unity-native-training-verification.json；unity-prediction-interface2370.json；opinion: 完成边界]`
 
