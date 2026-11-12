@@ -1,0 +1,70 @@
+{
+  "status": "passed_smokes_full_starting",
+  "source_sha256": {
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_sampling.py": "6b24c5e1c2d59430d59de4516567dd8300966b32440b10cfba916c99ca53a331",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "38972b524d4835e44dc4f9598c762406568c00bfd25863c25ddff0e9465aa753",
+    "E:\\ASTC_Compression\\script\\refit_unity_image_head.py": "fd7300f6ac7d4a03d84573f2e29d386e1697ecce9a868e9f2576ce8474053a1b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation_evidence.py": "4249d83fb7a54cfd8aa8d6c20c17be670668197d8352f9d8ce8d194ba17e19aa",
+    "E:\\ASTC_Compression\\tests\\test_unity_image_sampling.py": "cd51cdd71cd56d2cb10a9a0578a3db8425c9eb410cff9be25ca3a7e1e4d20da9",
+    "E:\\ASTC_Compression\\tests\\test_unity_quality_training.py": "ac01099723ccb0c3011e525b9389cc072bef409ab5eeece76551b8ba303a2d6d",
+    "E:\\ASTC_Compression\\tests\\test_unity_confirmation_evaluation.py": "e0c073ab16e16b78c283568bba003827e394c67f653f3943a1095a12c9659db8"
+  },
+  "cpu_tests": {
+    "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-sampling-final-cpu' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_search_policy.py tests/test_unity_error_attribution.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py tests/test_unity_normalization.py tests/test_unity_head_refit.py tests/test_unity_revised_pixel_identity.py tests/test_unity_near_duplicates.py tests/test_unity_image_sampling.py",
+    "result": "223 passed in9.75s",
+    "exit_code": 0
+  },
+  "static_checks": [
+    {
+      "command": "uv run ruff check src/adaptive_astc/data/unity_image_sampling.py src/adaptive_astc/training/unity_quality_trainer.py script/refit_unity_image_head.py reproductions/unity_search_baseline/confirmation_evidence.py tests/test_unity_image_sampling.py tests/test_unity_quality_training.py tests/test_unity_confirmation_evaluation.py",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run ruff format --check src/adaptive_astc/data/unity_image_sampling.py src/adaptive_astc/training/unity_quality_trainer.py script/refit_unity_image_head.py reproductions/unity_search_baseline/confirmation_evidence.py tests/test_unity_image_sampling.py tests/test_unity_quality_training.py tests/test_unity_confirmation_evaluation.py",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run basedpyright src/adaptive_astc/data/unity_image_sampling.py src/adaptive_astc/training/unity_quality_trainer.py script/refit_unity_image_head.py reproductions/unity_search_baseline/confirmation_evidence.py tests/test_unity_image_sampling.py tests/test_unity_quality_training.py tests/test_unity_confirmation_evaluation.py",
+      "exit_code": 0
+    }
+  ],
+  "default_losses_and_validation_metrics_replayed_exact": true,
+  "default_updates": 4,
+  "smokes": {
+    "mean-sampling-default-smoke": {
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-sampling-default-smoke.json",
+      "sha256": "8dde7a0af9ae33a0857f558b574dfa47b65935e1b530eced0e5e02a13e69f118",
+      "updates": 4,
+      "checkpoint_audit": "passed",
+      "wall_seconds": 11.020814899999095,
+      "epoch_draws": [
+        32,
+        32
+      ]
+    },
+    "mean-familycap2-smoke": {
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-familycap2-smoke.json",
+      "sha256": "5056f592aa6d5b4b9564f1f6b3af1bc7dce1b5bfecf47d8331c42b7f248cc43c",
+      "updates": 2,
+      "checkpoint_audit": "passed",
+      "wall_seconds": 10.767012399999658,
+      "epoch_draws": [
+        11,
+        11
+      ]
+    },
+    "mean-normalrepeat2-smoke": {
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-normalrepeat2-smoke.json",
+      "sha256": "9a67d1a658051885190fd3213fa240c43e2c031c290a4d5d640b2d7532f24c42",
+      "updates": 6,
+      "checkpoint_audit": "passed",
+      "wall_seconds": 10.779957399998239,
+      "epoch_draws": [
+        36,
+        36
+      ]
+    }
+  },
+  "review": "CLEAN",
+  "test_opened": false
+}

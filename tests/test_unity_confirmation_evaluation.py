@@ -259,6 +259,47 @@ def test_initial_stage_cannot_bypass_cycle_or_numeric_checks(tmp_path: Path) -> 
         E.validate_training(report, require_accuracy=False)
 
 
+def test_sampling_controls_require_observed_epoch_receipts() -> None:
+    report = training()
+    report["config"]["normal_image_repeats"] = 2
+    with pytest.raises(ValueError, match="observed-order receipts"):
+        E.validate_training(report)
+    report["history"] = [{"image_sampling": {"path": "order.json", "sha256": "bound"}}]
+    E.validate_training(report)
+
+
+def test_sampling_receipt_identity_stays_bound_through_model_admission(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    item = model_evidence(tmp_path, "sampled")
+    config_path, report_path = Path(item["config"]["path"]), Path(item["report"]["path"])
+    config, report = A.read_json(config_path), A.read_json(report_path)
+    config["normal_image_repeats"] = 2
+    A.write_json(config_path, config)
+    item["config"]["sha256"] = A.sha256_file(config_path)
+    report["config"].update(normal_image_repeats=2)
+    report["config"]["source_sha256"][str(config_path)] = item["config"]["sha256"]
+    receipt = tmp_path / "sampled/epoch-01-image-draws.json"
+    A.write_json(receipt, {"image_indices": [0, 1, 0]})
+    report["history"] = [
+        {"image_sampling": {"path": str(receipt), "sha256": A.sha256_file(receipt)}}
+    ]
+    A.write_json(report_path, report)
+    A.write_json(tmp_path / "sampled/config.json", report["config"])
+    item["report"]["sha256"] = A.sha256_file(report_path)
+
+    def completed_job(self: E, value: JsonDict, script: str, path: Path) -> None:
+        assert script == "script/train_unity_quality.py" and path == config_path
+
+    monkeypatch.setattr(E, "job", completed_job)
+    evidence = E(tmp_path)
+    evidence.model(item)
+    evidence.verify()
+    A.write_json(receipt, {"image_indices": [0, 1]})
+    with pytest.raises(ValueError, match="changed"):
+        evidence.verify()
+
+
 @pytest.mark.parametrize("changed", ["split", "hash", "order"])
 def test_only_confirmation_cross_split_pairs_block(changed: str) -> None:
     fields = {

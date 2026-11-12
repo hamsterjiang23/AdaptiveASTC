@@ -123,3 +123,5 @@ ImageNet头部阶段完整30轮356.51秒，18,746更新，初始模型1647.19秒
 Unity V2 PSNR组件准备完成30轮、18,742次更新，训练器1636.34秒；后续冻结编码器的32训练图／1000验证图整图头预检完成4次更新、原生重载及冻结状态核验，训练器117.64秒。整图头显式恢复三项0.1监督，正式30轮阶段成本另计；开发检查及训练成本分别记录。`[verified: psnr-preparation-result.json；psnr-head-sampled4-smoke.json；psnr-head-sampled4-verification.json]`
 
 PSNR两阶段的正式整图头训练完成30轮、18,747次更新、3次AMP跳步，训练器352.19秒；准备与头部训练器合计1988.53秒。所选权重原生重载和全部非图像头状态核验通过，冻结归因及同验证集余量拟合另外记录。`[verified: psnr-head-sampled4-result.json trainer_wall_seconds、two_stage_trainer_wall_seconds；psnr-head-sampled4-verification.json]`
+
+Unity V2原生图像采样预检已完成，关闭模式／资产族cap2／法线重复2次的两轮CUDA训练器分别11.02／10.77／10.78秒，实际更新4／2／6次，均通过原生重载。正式cap64每轮5622图、352次优化器尝试，按旧训练成本缩放并保留验证与启动成本，估计20分钟；法线重复2次每轮10299次图像访问，待串行执行。启动前空闲RAM43.50GiB、磁盘845.91GiB，GPU604／12282MiB、利用率0%。两个正式任务只读冻结开发语料和原策略，写各自独立输出；GPU串行。`[verified: image-sampling-verification.json smokes；image-sampling-design.json；jobs/mean-familycap64/launch-preflight.json；启动前nvidia-smi输出；opinion: 正式耗时估计]`

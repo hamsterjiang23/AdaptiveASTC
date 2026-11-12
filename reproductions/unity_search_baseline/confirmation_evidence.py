@@ -107,6 +107,13 @@ class UnityConfirmationEvidence:
         accuracy = audit["metrics"]["accuracy"]
         if not 0 <= accuracy <= 1.0 or (require_accuracy and accuracy < 0.90):
             raise ValueError("Selected model has not reached90% on the development validation set")
+        if (
+            settings.get("group_image_cap", 0) or settings.get("normal_image_repeats", 1) != 1
+        ) and (
+            not training.get("history")
+            or any(not epoch.get("image_sampling") for epoch in training["history"])
+        ):
+            raise ValueError("Native sampling controls require complete observed-order receipts")
 
     def model(self, item: JsonDict) -> JsonDict:
         return self._model(item, require_accuracy=True, ancestors=set())
@@ -178,6 +185,10 @@ class UnityConfirmationEvidence:
         )
         for source in source_binding["sources"]:
             self.bind(Path(source["verified_source"]), source["training_sha256"])
+        for epoch in training.get("history", []):
+            if "image_sampling" in epoch:
+                receipt = epoch["image_sampling"]
+                self.bind(Path(receipt["path"]), receipt["sha256"])
         run = Path(settings["output"])
         for name, digest in training["best_artifacts_sha256"].items():
             self.bind(run / name, digest)

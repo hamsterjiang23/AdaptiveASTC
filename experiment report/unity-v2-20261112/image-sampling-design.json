@@ -1,0 +1,59 @@
+{
+  "status": "smokes_passed_full_familycap64_starting",
+  "reference_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30-config.json",
+  "reference_config_sha256": "6e9d5dda200f4e6d67a648e82dc8113764c01ef8ca20a4a2624c428a93e71d8e",
+  "reference_top1": 0.813,
+  "corpus_sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+  "train_images": 10000,
+  "validation_images": 1000,
+  "grouping": "DatasetSplitter.asset_group(path with POSIX separators), then casefold; source row.group retained",
+  "direct_parent_group_count": 2325,
+  "asset_family_group_count": 1318,
+  "normal_images": 299,
+  "choices": {
+    "group_image_cap": 64,
+    "normal_image_repeats": 2,
+    "basis": "Finite single-factor controls selected for this experiment [opinion]"
+  },
+  "epoch_semantics": {
+    "familycap64": "At most64 distinct images per asset family, uniformly sampled without replacement each epoch",
+    "normalrepeat2": "Every image once plus one additional visit for each normal image; reshuffle all visits each epoch"
+  },
+  "epoch_draw_cpu_probe": {
+    "familycap64": {
+      "image_draws": 5622,
+      "unique_images": 5622,
+      "normal_image_draws": 295,
+      "asset_groups": 1318,
+      "maximum_asset_group_draws": 64,
+      "group_image_cap": 64,
+      "normal_image_repeats": 1
+    },
+    "normalrepeat2": {
+      "image_draws": 10299,
+      "unique_images": 10000,
+      "normal_image_draws": 598,
+      "asset_groups": 1318,
+      "maximum_asset_group_draws": 2081,
+      "group_image_cap": 0,
+      "normal_image_repeats": 2
+    }
+  },
+  "budget_scope": "Same30-epoch ceiling and learning-rate recipe as reference; report actual image draws, optimizer updates and costs",
+  "source_sha256": {
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_sampling.py": "6b24c5e1c2d59430d59de4516567dd8300966b32440b10cfba916c99ca53a331",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "38972b524d4835e44dc4f9598c762406568c00bfd25863c25ddff0e9465aa753",
+    "E:\\ASTC_Compression\\script\\refit_unity_image_head.py": "fd7300f6ac7d4a03d84573f2e29d386e1697ecce9a868e9f2576ce8474053a1b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation_evidence.py": "4249d83fb7a54cfd8aa8d6c20c17be670668197d8352f9d8ce8d194ba17e19aa"
+  },
+  "cpu_tests": "223 passed in9.75s",
+  "review": "CLEAN",
+  "official_sampler_documentation": "https://docs.pytorch.org/docs/2.8/data.html#torch.utils.data.Sampler",
+  "resources_before_smokes": {
+    "available_ram_gib": 42.70471954345703,
+    "disk_free_gib": 846.6783332824707
+  },
+  "model_parameters": 11305980,
+  "test_opened": false
+}

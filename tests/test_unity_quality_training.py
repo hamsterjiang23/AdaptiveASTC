@@ -93,6 +93,15 @@ def configuration(tmp_path: Path) -> UnityTrainConfig:
     return UnityTrainConfig(tmp_path / "corpus", "a" * 64, tmp_path / "output", tmp_path / "report")
 
 
+def test_native_sampling_defaults_and_single_factor_options(tmp_path: Path) -> None:
+    config = configuration(tmp_path)
+    assert config.group_image_cap == 0 and config.normal_image_repeats == 1
+    replace(config, group_image_cap=64).validate()
+    replace(config, normal_image_repeats=2).validate()
+    with pytest.raises(ValueError, match="individually"):
+        replace(config, group_image_cap=64, normal_image_repeats=2).validate()
+
+
 @pytest.mark.parametrize("decay", [-0.1, 1.0, float("nan"), float("inf")])
 def test_native_ema_rejects_invalid_decay(tmp_path: Path, decay: float) -> None:
     with pytest.raises(ValueError, match="Invalid native training"):

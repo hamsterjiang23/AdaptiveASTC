@@ -220,6 +220,14 @@ ImageNet头部阶段完成30轮／18,746次更新，选中epoch25，原始／同
 
 冻结预测分别替换实测通道MSE、零通道、MS-SSIM和角度后，Top-1为86.1%、76.3%、87.2%和78.5%，全部实测指标为100%。同集余量拟合的严格质量为60.2%、回退272张。以上保留为本开发协议的条件替换和拟合结果。后续按计划继续固定容量的资产组限权与法线过采样对照。当前准备和头部阶段的22份源码／输入已按SHA归档，共317,919,625字节。`[verified: psnr-head-sampled4-result.json；progress.json source_archives.before_image_sampling；source-archive-before-image-sampling/manifest.json；opinion: 后续实验顺序]`
 
+## 资产族限额与法线重复采样
+
+训练语料包含2325个直接父目录。采样器复用`DatasetSplitter.asset_group`并统一结果大小写，得到1318个资产族，合并SD／HD／FHD及角色子目录；原语料的group字段保持其原始定义。每轮每族上限64张的对照均匀无放回选取5622张，单族最多64张；法线重复2次的对照保留全部10000图，再为299张法线各增加一次访问，共10299次。64与2为本轮单项对照的参数选择。`[verified: image-sampling-design.json；unity_image_sampling.py；opinion: 参数选择]`
+
+两项沿用随机初始化均值池化参照的30轮学习率配方，记录各自实际图像访问、优化器更新和耗时。启用控制时，逐批收集实际original_image_index，每轮与计划顺序逐项比对，保存独立SHA绑定的回执；终态及确认入口核验其身份。整图头再训练明确恢复其每图一次的采样字段。`[verified: unity_quality_trainer.py；unity_image_sampling.py receipt；confirmation_evidence.py；refit_unity_image_head.py]`
+
+关闭控制的两轮CUDA检查完成4次更新，损失、Top-1、完整配置匹配和近阈值RMSE逐项复现旧记录。cap2预检每轮实际11张、完成2次更新；法线重复预检每轮36次访问、完成6次更新，全部重载及实际顺序检查通过。223项CPU检查、静态检查和只读审阅通过。正式cap64对照已启动，法线重复2次随后串行执行。`[verified: image-sampling-verification.json；mean-familycap2-smoke.json；mean-normalrepeat2-smoke.json；progress.json]`
+
 ## 版本同步状态
 
 ImageNet早停对照与完整30轮启动记录已保存为本地提交`0f68d18`。自动审批拒绝向公开仓库`hamsterjiang23/AdaptiveASTC`的`main`推送，并要求明确外部发布授权；GitHub已核对登录账户及仓库所有者均为`hamsterjiang23`，授权请求待用户回复。`[verified: 本轮git commit输出；GitHub get_user_login、get_repo；git push自动审批拒绝理由；progress.json external_push]`

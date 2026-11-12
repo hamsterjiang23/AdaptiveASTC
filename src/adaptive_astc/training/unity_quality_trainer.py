@@ -17,6 +17,7 @@ from torch.utils.data import DataLoader
 
 from adaptive_astc.config import JsonDict
 from adaptive_astc.data.unity_image_bags import UnityImageBags
+from adaptive_astc.data.unity_image_sampling import UnityImageSampler
 from adaptive_astc.data.unity_patch_dataset import UnityPatchDataset
 from adaptive_astc.evaluation.unity_quality import UnityQualityPrediction
 from adaptive_astc.models.unity_quality import UnityQualityRegressor
@@ -54,6 +55,8 @@ class UnityTrainConfig:
     pretrained_weights_sha256: str | None = None
     ema_decay: float = 0.0
     selection_metric: str = "accuracy"
+    group_image_cap: int = 0
+    normal_image_repeats: int = 1
 
     def validate(self) -> None:
         for name in ["epochs", "image_batch_size", "patches_per_image", "validation_batch_size"]:
@@ -85,6 +88,7 @@ class UnityTrainConfig:
         ):
             raise ValueError("Require a valid seed and unique nonnegative train image indices")
         UnityQualityLossConfig(self.zero_weight, self.ssim_weight, self.angle_weight).validate()
+        UnityImageSampler.validate(self.group_image_cap, self.normal_image_repeats)
         if self.initialization == "pretrained":
             if (
                 self.pretrained_weights is None
@@ -176,11 +180,23 @@ class UnityQualityTrainer:
         )
         indices = list(config.train_image_indices) or list(range(len(train.rows)))
         bags = UnityImageBags(train, indices, config.patches_per_image)
+        generator = torch.Generator().manual_seed(config.seed)
+        sampler = (
+            UnityImageSampler(
+                [train.rows[i] for i in indices],
+                generator,
+                group_image_cap=config.group_image_cap,
+                normal_image_repeats=config.normal_image_repeats,
+            )
+            if config.group_image_cap or config.normal_image_repeats != 1
+            else None
+        )
         loader = DataLoader(
             bags,
             batch_size=config.image_batch_size,
-            shuffle=True,
-            generator=torch.Generator().manual_seed(config.seed),
+            shuffle=sampler is None,
+            sampler=sampler,
+            generator=generator,
             num_workers=config.workers,
             pin_memory=True,
             persistent_workers=config.workers > 0,
@@ -219,6 +235,8 @@ class UnityQualityTrainer:
             Path(__file__),
             self.config_path,
             self.root / "src/adaptive_astc/data/unity_image_bags.py",
+            self.root / "src/adaptive_astc/data/unity_image_sampling.py",
+            self.root / "src/adaptive_astc/data/splitting.py",
             self.root / "src/adaptive_astc/data/unity_patch_dataset.py",
             self.root / "src/adaptive_astc/models/unity_quality.py",
             self.root / "src/adaptive_astc/training/unity_quality_loss.py",
@@ -240,9 +258,13 @@ class UnityQualityTrainer:
             source_sha256={str(path): ArtifactStore.sha256_file(path) for path in source_files},
             corpus_fingerprint=train.fingerprint,
             train_images=len(bags),
+            train_epoch_image_draws=len(sampler) if sampler is not None else len(bags),
             validation_images=len(validation.rows),
             sampling=(
-                "Each selected train image once per epoch, shuffled; "
+                "Shuffled per-epoch asset-group cap or explicit normal repeats; "
+                "within-image patches with replacement, observed image order recorded"
+                if sampler is not None
+                else "Each selected train image once per epoch, shuffled; "
                 "within-image patches with replacement"
             ),
             image_target_scope=(
@@ -298,7 +320,10 @@ class UnityQualityTrainer:
                 model.train()
                 totals = dict.fromkeys(["total", "patch", "zero", "ssim", "angle"], 0.0)
                 images_seen, attempts, before = 0, 0, updates
+                observed_images: list[int] = []
                 for batch, targets in loader:
+                    if sampler is not None:
+                        observed_images.extend(batch["original_image_index"].tolist())
                     batch = {k: v.to(device) for k, v in batch.items()}
                     targets = {k: v.to(device) for k, v in targets.items()}
                     count, views = batch["rgba"].shape[:2]
@@ -374,6 +399,15 @@ class UnityQualityTrainer:
                     "ema_updates": int(ema.n_averaged.item()) if ema is not None else 0,
                     "learning_rate": optimizer.param_groups[0]["lr"],
                 }
+                if sampler is not None:
+                    receipt = sampler.receipt(indices, observed_images)
+                    path = config.output / f"epoch-{epoch + 1:02d}-image-draws.json"
+                    ArtifactStore.write_json(path, receipt)
+                    row["image_sampling"] = {
+                        "path": str(path),
+                        "sha256": ArtifactStore.sha256_file(path),
+                        **{key: value for key, value in receipt.items() if key != "image_indices"},
+                    }
                 state["history"].append(row)
                 rmse = selected_metrics["color_near_threshold_rmse_db"]
                 rmse_key = min(self.selection_key(value[1])[1] for value in variants.values())
@@ -456,6 +490,11 @@ class UnityQualityTrainer:
         self.verify_input_files([train.rows[i] for i in indices])
         audit = self.audit_best(validation, device, state["best_artifacts_sha256"])
         self.verify_pretrained_weights(config)
+        if sampler is not None:
+            for epoch in state["history"]:
+                receipt = epoch["image_sampling"]
+                if ArtifactStore.sha256_file(Path(receipt["path"])) != receipt["sha256"]:
+                    raise ValueError("Native training image sampling receipt changed")
         state.update(
             status="passed_smoke" if config.smoke else "completed",
             checkpoint_audit=audit,
