@@ -1,6 +1,6 @@
 {
-  "status": "resnet34_full30_running",
-  "updated_utc": "2026-11-12T20:50:55.206631+00:00",
+  "status": "imagenet_resnet34_full30_running",
+  "updated_utc": "2026-11-12T21:45:16.810711+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,9 +10,9 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Complete ResNet34 full30 training and native checkpoint audit",
-    "Run frozen attribution and margin fit, report per-image inference cost for capacity control",
-    "Resolve pending initialization promotion and10confirmation replacements before final admission"
+    "Complete independent ResNet34 ImageNet full30 training and checkpoint audit",
+    "Attribute and calibrate frozen validation predictions after terminal training",
+    "Resolve pending mainline initialization, confirmation replacements and public publication decisions"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
   "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
@@ -133,5 +133,19 @@
   "completed_familycap64_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-familycap64-result.json",
   "completed_normalrepeat2_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-normalrepeat2-result.json",
   "resnet34_design": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\resnet34-design.json",
-  "resnet34_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\resnet34-verification.json"
+  "resnet34_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\resnet34-verification.json",
+  "separated_resource_checks": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\test-resource-classification-correction.json",
+    "cpu_passed": 230,
+    "cuda_serial_passed": 1
+  },
+  "resnet34_full30_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30-result.json",
+  "inference_cost_comparison": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-capacity-comparison.json",
+  "active_job": {
+    "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet34-full30\\job.json",
+    "runner_pid": 30824,
+    "child_pid": 18152,
+    "started_utc": "2026-11-12T21:44:44.059032+00:00",
+    "status": "running"
+  }
 }

@@ -1,0 +1,56 @@
+{
+  "status": "full_job_running",
+  "created_utc": "2026-11-12T21:43:04.622795+00:00",
+  "comparison": "mean-resnet34-full30",
+  "factor": "ImageNet initialization",
+  "controlled_changed_config_fields": [
+    "initialization",
+    "output",
+    "pretrained_weights",
+    "pretrained_weights_sha256",
+    "report"
+  ],
+  "parameters": 21414140,
+  "actual_weight_sha256": "b627a593bcbe140c234610266fe4f8ae95ea42fc881d091c9b6052e6b1d0590f",
+  "rgb_first_conv_exact": true,
+  "alpha_mask_first_conv_zero": true,
+  "shared_head_tensor_count": 6,
+  "shared_heads_exact": true,
+  "following_cpu_rng_exact": true,
+  "full_train_images": 10000,
+  "full_validation_images": 1000,
+  "epochs": 30,
+  "configs": {
+    "imagenet-resnet34-smoke": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-smoke-config.json",
+    "imagenet-resnet34-full30": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-config.json"
+  },
+  "mainline_initialization_promotion": "pending_user_decision",
+  "test_opened": false,
+  "preflight": {
+    "active_gpu_jobs": [],
+    "ram_available_gib": 42.79169464111328,
+    "disk_free_gib": 844.0536193847656,
+    "expected_trainer_seconds_from_scratch34_observation": 2019.3156911000005,
+    "expected_peak_allocated_vram_bytes_from_scratch34_smoke": 1735203328
+  },
+  "smoke": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-smoke.json",
+    "report_sha256": "213b2210a83dd7567e9a4490391670c89e4e38d4bb5134a04396c01fb134b955",
+    "training_updates": 4,
+    "checkpoint_audit": "passed",
+    "trainer_seconds": 11.69701829999758,
+    "parameters": 21414140,
+    "peak_vram_bytes": 1735203328
+  },
+  "full_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet34-full30\\job.json",
+  "full_job_config_sha256": "89484118ae0a230e5b20c5e6a54f42c4cbc5b297d08a80775fc171b9287ca3d3",
+  "started_utc": "2026-11-12T21:44:44.059032+00:00",
+  "independent_readonly_review": {
+    "verdict": "CLEAN",
+    "changed_fields_exact": true,
+    "weight_sha256_verified": true,
+    "shared_heads_and_cpu_rng_exact": true,
+    "rgb_transfer_exact_alpha_mask_zero": true,
+    "gpu_tasks_run_by_reviewer": 0
+  }
+}

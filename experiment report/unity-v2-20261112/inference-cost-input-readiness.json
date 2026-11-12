@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "scope": "CPU input parity and historical source binding before scheduled CUDA inference measurements",
+  "arms": {
+    "r18-smoke": {
+      "status": "passed_readonly_cpu_preflight",
+      "images": 16,
+      "patches": 128,
+      "seconds": 1.6122495000017807,
+      "training_source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-resnet34",
+      "bound_files": 37,
+      "model_forward_calls": 0,
+      "test_opened": false
+    },
+    "r34-smoke": {
+      "status": "passed_readonly_cpu_preflight",
+      "images": 16,
+      "patches": 128,
+      "seconds": 1.705955699999322,
+      "training_source_archive": null,
+      "bound_files": 33,
+      "model_forward_calls": 0,
+      "test_opened": false
+    },
+    "r18-full1000": {
+      "status": "passed_readonly_cpu_preflight",
+      "images": 1000,
+      "patches": 7173,
+      "seconds": 55.44569590000174,
+      "bound_files": 2041,
+      "input_rgba_masks_metadata_exact": true,
+      "reference_and_target_file_hashes_verified": true,
+      "training_source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema",
+      "model_forward_calls": 0,
+      "test_opened": false
+    }
+  },
+  "model_forward_calls": 0,
+  "training_updates": 0,
+  "test_opened": false,
+  "benchmark_source_sha256": "93146a6a0915395751890ce5ed4f63f2ddcb93676965705b9b4719d476e1952e"
+}

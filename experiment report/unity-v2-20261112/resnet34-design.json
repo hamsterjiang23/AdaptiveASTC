@@ -1,5 +1,5 @@
 {
-  "status": "cuda_smokes_passed_full_starting",
+  "status": "scratch_full30_and_inference_cost_completed",
   "capacity_decision_basis": {
     "scratch_reference_top1": 0.813,
     "latest_psnr_two_stage_top1": 0.764,
@@ -46,5 +46,11 @@
   "cpu_tests": "229 passed in11.00s",
   "official_model_doc": "https://docs.pytorch.org/vision/0.23/models/generated/torchvision.models.resnet34.html",
   "official_rng_doc": "https://docs.pytorch.org/docs/2.8/random.html#torch.random.fork_rng",
-  "test_opened": false
+  "test_opened": false,
+  "test_resource_classification": {
+    "legacy_field": "cpu_tests",
+    "scope": "mixed_cpu_cuda",
+    "cpu_cases": 228,
+    "cuda_cases": 1
+  }
 }

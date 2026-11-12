@@ -14,6 +14,7 @@ import torch
 from adaptive_astc.config import JsonDict
 from adaptive_astc.data.unity_inference import UnityInferenceInput, UnityInferenceTexture
 from adaptive_astc.data.unity_patch_dataset import UnityPatchDataset
+from adaptive_astc.evaluation.patch_normalization import PatchNormalizationAudit
 from adaptive_astc.evaluation.unity_inference import UnityQualityInference
 from adaptive_astc.evaluation.unity_quality import UnityQualityPrediction, UnityTextureInput
 from adaptive_astc.models.unity_quality import UnityQualityRegressor
@@ -37,6 +38,8 @@ class UnityInferenceBenchmark:
             "src/adaptive_astc/data/patch_targets.py",
             "src/adaptive_astc/models/unity_quality.py",
             "src/adaptive_astc/utils/runtime.py",
+            "src/adaptive_astc/utils/artifacts.py",
+            "src/adaptive_astc/evaluation/patch_normalization.py",
             "reproductions/unity_search_baseline/inference_benchmark.py",
             "reproductions/unity_search_baseline/native_data_pipeline.py",
             "script/benchmark_unity_inference.py",
@@ -44,6 +47,38 @@ class UnityInferenceBenchmark:
         return UnityFinalEncoding.execution_sources(root) | {
             str((root / name).resolve()): A.sha256_file(root / name) for name in names
         }
+
+    @staticmethod
+    def timing_summary(measurements: list[JsonDict], images: int) -> JsonDict:
+        measured = [row for row in measurements if not row["warmup"]]
+        total = float(np.median([row["preprocess_inference_decision_seconds"] for row in measured]))
+        forward = float(
+            np.median([row["inference"]["patch_forward_and_transfer_seconds"] for row in measured])
+        )
+        return {
+            "validation_images": images,
+            "input_patches": measured[0]["inference"]["patches"],
+            "median_preprocess_inference_decision_seconds": total,
+            "median_patch_forward_and_transfer_seconds": forward,
+            "amortized_preprocess_inference_decision_seconds_per_image": total / images,
+            "amortized_patch_forward_and_transfer_seconds_per_image": forward / images,
+        }
+
+    def bind_training_sources(
+        self, binding: UnityFinalEncoding, settings: JsonDict
+    ) -> JsonDict | None:
+        if not self.config.get("training_source_archive"):
+            for path, digest in settings["source_sha256"].items():
+                binding.bind(Path(path), digest)
+            return None
+        archived = PatchNormalizationAudit.bind_training_sources(
+            {"source_files_sha256": settings["source_sha256"]},
+            self.root,
+            Path(self.config["training_source_archive"]),
+        )
+        for source in archived["sources"]:
+            binding.bind(Path(source["verified_source"]), source["training_sha256"])
+        return archived
 
     def run(self) -> JsonDict:
         config = self.config
@@ -101,8 +136,7 @@ class UnityInferenceBenchmark:
             binding = UnityFinalEncoding(self.root, encoding_config)
             rows, decisions, policies, training = binding.prepare()
             settings = training["config"]
-            for path, digest in settings["source_sha256"].items():
-                binding.bind(Path(path), digest)
+            training_source_binding = self.bind_training_sources(binding, settings)
             for row in rows:
                 binding.bind(Path(row["reference"]), row["reference_sha256"])
                 binding.bind(Path(row["targets"]), row["target_sha256"])
@@ -148,9 +182,10 @@ class UnityInferenceBenchmark:
                 free_vram_before_bytes=free,
                 total_vram_bytes=total,
                 source_files_sha256=config["sources_sha256"],
+                training_source_binding=training_source_binding,
                 scope=(
-                    "Saved smoke validation inputs; fresh CUDA inference only; "
-                    "encoding and independent test pending"
+                    "Frozen development validation PNG/import inputs, fresh CUDA prediction "
+                    "and original-policy selection; batched costs amortized by image count"
                 ),
             )
             predictor = UnityQualityInference(
@@ -227,15 +262,12 @@ class UnityInferenceBenchmark:
                 "sources_sha256"
             ] != self.execution_sources(self.root):
                 raise ValueError("Inference configuration or execution sources changed")
-            measured = [row for row in state["measurements"] if not row["warmup"]]
             state.update(
                 status="passed",
                 wall_seconds=time.perf_counter() - started,
                 active_seconds=time.perf_counter() - active_started,
                 peak_vram_bytes=torch.cuda.max_memory_allocated(device),
-                median_preprocess_inference_decision_seconds=float(
-                    np.median([row["preprocess_inference_decision_seconds"] for row in measured])
-                ),
+                **self.timing_summary(state["measurements"], len(rows)),
                 deployment_end_to_end_seconds=None,
                 encoding_calls=0,
                 inputs_sha256=binding.inputs,

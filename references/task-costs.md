@@ -129,3 +129,17 @@ Unity V2原生图像采样预检已完成，关闭模式／资产族cap2／法�
 资产族cap64正式30轮完成，训练器1319.44秒，10,553次更新、7次AMP跳步；共168660次访问及9055张不同训练图，完整可用语料仍为10000张。实际训练／验证／准备时间分项见结果，当前单项对照成本单列。法线重复2次在其成功退出后串行启动，预计30分钟，启动前空闲RAM43.36GiB、磁盘845.66GiB、GPU604／12282MiB。`[verified: mean-familycap64-result.json；jobs/mean-normalrepeat2/launch-preflight.json；启动前nvidia-smi输出；opinion: 后续耗时估计]`
 
 法线重复2次正式30轮训练器1707.89秒，19,310次更新、10次AMP跳步，累计308970次图像访问，覆盖10000张，法线访问17940次。ResNet-34两轮32／16图CUDA预检训练器11.74秒、4次更新、峰值分配显存1735203328字节；旧默认重放10.92秒。正式ResNet-34沿用每轮10000图和30轮配方，启动前空闲RAM43.58GiB、磁盘844.64GiB，按45分钟调度估计，完整训练及每图推理成本后续实测。`[verified: mean-normalrepeat2-result.json；mean-resnet34-smoke.json；mean-resnet34-default-smoke.json；jobs/mean-resnet34-full30/launch-preflight.json；opinion: 正式耗时估计]`
+
+### Unity V2历史测试资源分类
+
+包含`test_cuda_feature_pool_repeated_outputs_are_bit_identical`的旧整组检查使用CPU及CUDA。206／223／229项记录已补记资源分类，历史混合检查窗口的GPU独占性未完整证明，训练耗时保留实际观察值。后续CPU套件显式排除此项，GPU空闲后单独串行执行。`[verified: tests/test_unity_quality.py L356–360；confirmation-stage-interface-verification.json cpu_tests；image-sampling-verification.json cpu_tests；resnet34-verification.json cpu_tests]`
+
+### Unity V2 ResNet-34与验证推理实测
+
+| 任务 | 实测范围 | 观测成本 |
+|---|---|---|
+| ResNet-34 scratch训练 | 10000／1000图，30轮 | 训练器2019.32s，18,740更新，峰值张量显存1,735,203,328字节。`[verified: experiment report/unity-v2-20261112/mean-resnet34-full30.json wall_seconds、training_updates、peak_vram_bytes]` |
+| ResNet-18验证输入推理 | 1000图／7173patch，1预热3测量 | 中位整批18.3130s，摊销18.3130ms／图，绑定审计51.9783s另计。`[verified: experiment report/unity-v2-20261112/inference-cost-r18-full1000.json]` |
+| ResNet-34验证输入推理 | 同1000图／7173patch，1预热3测量 | 中位整批18.8788s，摊销18.8788ms／图，绑定审计52.3308s另计。`[verified: experiment report/unity-v2-20261112/inference-cost-r34-full1000.json]` |
+
+推理表中的每图成本是整批摊销值。个体纹理延迟、最终编码及完整mip成本仍待相应测量。`[verified: experiment report/unity-v2-20261112/inference-cost-capacity-comparison.json scope、individual_texture_latency、mip0_encoding_seconds、full_mip_cost]`

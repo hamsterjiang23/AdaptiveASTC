@@ -115,6 +115,7 @@
 | PSNR组件准备，再训整图头sampled4 | 76.4% | 2.0084dB | 77.1%。`[verified: comparison.json results.psnr_head_sampled4]` |
 | 每资产族每轮上限64张 | 78.0% | 2.8970dB | 79.0%。`[verified: comparison.json results.mean_familycap64]` |
 | 法线每图每轮重复2次 | 79.2% | 2.2757dB | 79.8%。`[verified: comparison.json results.mean_normalrepeat2]` |
+| ResNet-34随机初始化 | 79.2% | 2.7386dB | 79.4%。`[verified: comparison.json results.mean_resnet34_full30]` |
 
 前三组完成时，仅均值池化作为初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
 
@@ -212,7 +213,7 @@ ImageNet头部阶段完成30轮／18,746次更新，选中epoch25，原始／同
 
 阶段模型准入绑定整图头任务、完整初始训练、双方选中产物与源码归档，并核对语料身份、初始更新数和冻结状态。初始准备阶段允许低于90%，最终模型继续要求同一权重的1000图重载Top-1≥90%。历史配置缺少池化字段时按mean_max恢复，循环来源、归档差异及未完成初始训练均拒绝。实际86.3%模型的52份结构来源核验通过，最终准入因低于90%被拒绝，forward为0。`[verified: confirmation_evidence.py validate_training、_model；confirmation-stage-interface-verification.json]`
 
-新版像素入口复用原审批、原始／补采像素及修订语料，重建13张训练图和5张验证图的批准替换，要求确认图身份及顺序一致。完整13000行核验通过，近重复阈值固定为RGBA8 RMSE 2.0；正式外层检查继续因11对训练—确认近重复拒绝。206项相关CPU检查、ruff、basedpyright及只读审阅通过。`[verified: confirmation-v2-pixel-interface-verification.json；confirmation-stage-interface-verification.json cpu_tests、static_checks；confirmation_evidence.py revised_pixels、pixel_audit]`
+新版像素入口复用原审批、原始／补采像素及修订语料，重建13张训练图和5张验证图的批准替换，要求确认图身份及顺序一致。完整13000行核验通过，近重复阈值固定为RGBA8 RMSE 2.0；正式外层检查继续因11对训练—确认近重复拒绝。206项混合检查（205项CPU、1项CUDA）、ruff、basedpyright及只读审阅通过。`[verified: confirmation-v2-pixel-interface-verification.json；confirmation-stage-interface-verification.json cpu_tests、static_checks；confirmation_evidence.py revised_pixels、pixel_audit]`
 
 ## PSNR准备与整图头衔接
 
@@ -228,7 +229,7 @@ ImageNet头部阶段完成30轮／18,746次更新，选中epoch25，原始／同
 
 两项沿用随机初始化均值池化参照的30轮学习率配方，记录各自实际图像访问、优化器更新和耗时。启用控制时，逐批收集实际original_image_index，每轮与计划顺序逐项比对，保存独立SHA绑定的回执；终态及确认入口核验其身份。整图头再训练明确恢复其每图一次的采样字段。`[verified: unity_quality_trainer.py；unity_image_sampling.py receipt；confirmation_evidence.py；refit_unity_image_head.py]`
 
-关闭控制的两轮CUDA检查完成4次更新，损失、Top-1、完整配置匹配和近阈值RMSE逐项复现旧记录。cap2预检每轮实际11张、完成2次更新；法线重复预检每轮36次访问、完成6次更新，全部重载及实际顺序检查通过。223项CPU检查、静态检查和只读审阅通过。两项正式采样对照均已完成。`[verified: image-sampling-verification.json；mean-familycap2-smoke.json；mean-normalrepeat2-smoke.json；progress.json]`
+关闭控制的两轮CUDA检查完成4次更新，损失、Top-1、完整配置匹配和近阈值RMSE逐项复现旧记录。cap2预检每轮实际11张、完成2次更新；法线重复预检每轮36次访问、完成6次更新，全部重载及实际顺序检查通过。223项混合检查（222项CPU、1项CUDA）、静态检查和只读审阅通过。两项正式采样对照均已完成。`[verified: image-sampling-verification.json；mean-familycap2-smoke.json；mean-normalrepeat2-smoke.json；progress.json]`
 
 cap64完成30轮、10,553次更新及7次AMP跳步，选中epoch30，原始／同集拟合Top-1为78.0%／79.0%，同权重近阈值RMSE为2.8970dB。完整配置匹配46.1%，严格质量58.3%，回退291张，payload30,620,160字节；训练器1319.44秒，原生重载通过。30份访问回执独立重算通过，共168660次访问、9055张不同训练图，10000张可用图中945张未在本次限额训练中被访问。验证资产族宏平均83.44%，直接父目录宏平均84.69%；保留81.3%的随机初始化参照。`[verified: mean-familycap64-result.json；image-sampling-verification.json；comparison.json reference_model]`
 
@@ -242,8 +243,24 @@ cap64完成30轮、10,553次更新及7次AMP跳步，选中epoch30，原始／�
 
 已执行的固定容量对照未达到90%，后续选择计划中的ResNet-34，以随机初始化均值池化参照为起点，只改变backbone_name。参数从11,305,980增至21,414,140，特征维度为512；共同预测头及后续CPU RNG与原ResNet-18配对。历史配置缺少架构字段时恢复ResNet-18，实际旧检查点的全部张量恢复一致。采样阶段23份源码／测试快照已归档，共208843字节。`[verified: resnet34-design.json；resnet34-legacy-initialization-probe.json；source-archive-before-resnet34/manifest.json；opinion: 容量选择]`
 
-229项相关CPU检查、ruff、basedpyright及只读审阅通过。旧默认CUDA检查逐项复现原损失及验证指标，ResNet-34真实32／16图预检完成4次更新及原生重载，训练器11.74秒，峰值分配显存1,735,203,328字节。完整10000／1000、30轮容量训练已启动，推理成本在选中权重后测量。初始CPU合成探针的浮点mask被拒绝，改用bool后通过，初次记录及重试均保留。`[verified: resnet34-verification.json；mean-resnet34-smoke.json；mean-resnet34-full30-config.json；progress.json]`
+229项混合检查（228项CPU、1项CUDA）、ruff、basedpyright及只读审阅通过。旧默认CUDA检查逐项复现原损失及验证指标，ResNet-34真实32／16图预检完成4次更新及原生重载，训练器11.74秒，峰值分配显存1,735,203,328字节。完整10000／1000、30轮容量训练已启动，推理成本在选中权重后测量。初始CPU合成探针的浮点mask被拒绝，改用bool后通过，初次记录及重试均保留。`[verified: resnet34-verification.json；mean-resnet34-smoke.json；mean-resnet34-full30-config.json；progress.json]`
 
 ## 版本同步状态
 
 ImageNet早停对照与完整30轮启动记录已保存为本地提交`0f68d18`。自动审批拒绝向公开仓库`hamsterjiang23/AdaptiveASTC`的`main`推送，并要求明确外部发布授权；GitHub已核对登录账户及仓库所有者均为`hamsterjiang23`，授权请求待用户回复。`[verified: 本轮git commit输出；GitHub get_user_login、get_repo；git push自动审批拒绝理由；progress.json external_push]`
+
+## 测试资源分类修正
+
+此前包含`test_cuda_feature_pool_repeated_outputs_are_bit_identical`的整组检查曾统称CPU检查。该项实际在CUDA创建张量，已为206／223／229项记录补充CPU与CUDA数量。历史混合测试窗口的GPU独占性未完整证明，对应训练时间按实际观察保留。后续训练期间显式排除此项，训练结束后独立串行执行。`[verified: tests/test_unity_quality.py L356–360；confirmation-stage-interface-verification.json cpu_tests；image-sampling-verification.json cpu_tests；resnet34-verification.json cpu_tests]`
+
+ResNet-34随机初始化正式对照完成30轮、18,740次更新及10次AMP跳步，选中epoch30 raw。原始／同验证集拟合Top-1为79.2%／79.4%，同一所选权重近阈值RMSE为2.7386dB，完整配置匹配48.1%、严格质量61.7%、质量回退257张，payload30,692,176字节。训练器耗时2019.32秒，参数21,414,140，重载通过。训练报告的best_color_near_threshold_rmse_db是跨轮追踪值，当前汇总使用checkpoint_audit.metrics中的所选权重误差。随机初始化参照保持81.3%均值池化ResNet-18。`[verified: mean-resnet34-full30-result.json；mean-resnet34-full30.json checkpoint_audit；comparison.json reference_model]`
+
+更正资源分类后，显式排除CUDA项的完整套件230项通过、1项排除；GPU空闲后独立CUDA回归1项通过。两种骨干的16图／128patch推理smoke均通过，完整1000图成本测量按相同验证输入串行执行，计时按整批总成本除以图数报告。`[verified: test-resource-classification-correction.json cpu_only、cuda_serial；inference-cost-r18-smoke.json status、validation_images、input_patches；inference-cost-r34-smoke.json status、validation_images、input_patches；inference-cost-r18-full1000-config.json；inference-cost-r34-full1000-config.json]`
+
+## 完整开发验证输入的推理成本
+
+两组均完成1000图／7173patch，PNG路径及SHA、验证顺序完全一致，patch batch为16，先预热1次再测量3次，GPU串行。新预测四组数组最大绝对差均为0，全部选参重放一致。ResNet-18与ResNet-34的整批预处理／推理／决策中位成本分别为18.3130秒与18.8788秒，摊销18.3130与18.8788ms／图；其中patch forward／transfer分别摊销4.7695与5.3341ms／图。该口径按整批耗时除以图数，单纹理延迟分布未测。加载、输入绑定审计、最终编码和完整mip成本另计。`[verified: inference-cost-capacity-comparison.json；inference-cost-r18-full1000.json measurements；inference-cost-r34-full1000.json measurements]`
+
+## ResNet-34预训练初始化独立对照
+
+官方权重87,319,819字节，完整SHA256为`b627a593bcbe140c234610266fe4f8ae95ea42fc881d091c9b6052e6b1d0590f`。对照相对scratch ResNet-34只改变初始化及对应权重身份，路径字段另设新实验身份。真实权重RGB首卷积完全复制、Alpha／mask为零，6个公共预测头张量和后续CPU RNG与scratch配对。32／16图CUDA预检完成4次更新及重载，训练器11.70秒，峰值张量显存1,735,203,328字节，随后启动完整30轮。预训练主线晋级仍待用户决定。`[verified: imagenet-resnet34-weights.json；imagenet-resnet34-design.json；imagenet-resnet34-smoke.json；progress.json active_job]`

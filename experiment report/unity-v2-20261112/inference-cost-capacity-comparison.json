@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "scope": "Frozen development validation batch throughput; total measured batch median divided by image count",
+  "validation_images": 1000,
+  "input_patches": 7173,
+  "same_ordered_validation_paths": true,
+  "same_reference_png_paths_and_sha256": true,
+  "ordered_validation_paths_sha256": "02cf893285a688ad0663fa08b83f2387cc9cd2423b69e577b8428ee4b00c14a9",
+  "patch_batch_size": 16,
+  "warmups": 1,
+  "measured_repetitions": 3,
+  "gpu_serial_jobs": true,
+  "arms": {
+    "r18": {
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-r18-full1000.json",
+      "report_sha256": "9f26ddd343cb4d541d0fc01d45ae5e47061c041ed6766b3e3bbc6b27e78debf6",
+      "parameters": 11305980,
+      "selected_validation_top1": 0.813,
+      "model_load_seconds": 0.13428940000085277,
+      "input_binding_audit_seconds": 51.978308599998854,
+      "process_wall_seconds": 152.14084150000053,
+      "median_preprocess_inference_decision_seconds": 18.31304100000125,
+      "median_patch_forward_and_transfer_seconds": 4.769486299959681,
+      "amortized_preprocess_inference_decision_seconds_per_image": 0.018313041000001248,
+      "amortized_patch_forward_and_transfer_seconds_per_image": 0.004769486299959681
+    },
+    "r34": {
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-r34-full1000.json",
+      "report_sha256": "62712559ea799a1ef52a7c2cfd6035f11a0d09fada64035187cbb88ba112ab0c",
+      "parameters": 21414140,
+      "selected_validation_top1": 0.792,
+      "model_load_seconds": 0.3057307999988552,
+      "input_binding_audit_seconds": 52.33078509999905,
+      "process_wall_seconds": 154.56110819999958,
+      "median_preprocess_inference_decision_seconds": 18.87883050000164,
+      "median_patch_forward_and_transfer_seconds": 5.334103399989544,
+      "amortized_preprocess_inference_decision_seconds_per_image": 0.01887883050000164,
+      "amortized_patch_forward_and_transfer_seconds_per_image": 0.005334103399989545
+    }
+  },
+  "test_opened": false,
+  "training_updates": 0,
+  "encoding_calls": 0,
+  "individual_texture_latency": null,
+  "mip0_encoding_seconds": null,
+  "full_mip_cost": null
+}

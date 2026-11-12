@@ -36,6 +36,8 @@
 
 ## 实现与实验
 
+- Unity测试中的`tests/test_unity_quality.py::test_cuda_feature_pool_repeated_outputs_are_bit_identical`实际使用GPU。GPU训练活动期间用`-k "not test_cuda_feature_pool_repeated_outputs_are_bit_identical"`排除，训练完成后独立串行运行；整组测试按实际资源分类记录。`[verified: tests/test_unity_quality.py L356–360；opinion: 执行顺序]`
+
 - 后续V2实验使用[新版数据入口](<experiment report/unity-accuracy90-20261111/unity-v2-data-inputs.json>)绑定的10000／1000开发语料。18张Cube补采、新语料、20候选、Dataset、原规则和完整像素审计均已完成；旧语料仅保留为历史，确认集保持封存。`[verified: unity-data-delivery-v3-verification.json counts、revised_development_replacements、full_pixel_audit_complete、test_opened；opinion: 后续实验约定]`
 
 - 当前数据采集goal的确认集使用[新版V2范围名单](<experiment report/unity-accuracy90-20261111/unity-confirmation-v2-revision.md>)，用户已批准排除39GUI、7Cube及另1HDR源图，保持原主名单位置并按原备用顺序补47张；旧名单与失败记录保持。源文件准入不替代实际导入类型及像素审计，确认集不做全20候选补测、训练或推理。`[verified: 用户本次范围替换选择；unity-confirmation2000-v2.json；opinion: 完成边界]`

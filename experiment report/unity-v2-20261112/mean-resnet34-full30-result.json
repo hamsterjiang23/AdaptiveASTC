@@ -1,0 +1,119 @@
+{
+  "status": "completed",
+  "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30.json",
+  "training_report_sha256": "7febf918e68f8a7498fd8c213749fec9769308e00d77b021b405df461aaaad84",
+  "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30-attribution.json",
+  "attribution_report_sha256": "d72f5097f940f439ff249dc4a543808684135c77faec093777727807fb54f22d",
+  "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30-calibration.json",
+  "calibration_report_sha256": "f31743e96389b4dd6fbb39eb30413f77701d51e38878b21b07c9e5bf9feaead6",
+  "epochs": 30,
+  "updates": 18740,
+  "optimizer_attempts": 18750,
+  "amp_skips": 10,
+  "selected_checkpoint_epoch": 30,
+  "selected_variant": "raw",
+  "selected_checkpoint_metrics": {
+    "count": 1000,
+    "accuracy": 0.792,
+    "balanced_accuracy": 0.6638677920093504,
+    "full_choice_accuracy": 0.481,
+    "confusion_matrix": [
+      [
+        85,
+        28,
+        3,
+        4
+      ],
+      [
+        21,
+        77,
+        37,
+        8
+      ],
+      [
+        0,
+        21,
+        64,
+        53
+      ],
+      [
+        1,
+        6,
+        26,
+        566
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 120,
+        "recall": 0.7083333333333334
+      },
+      "8x8": {
+        "support": 143,
+        "recall": 0.5384615384615384
+      },
+      "10x10": {
+        "support": 138,
+        "recall": 0.463768115942029
+      },
+      "12x12": {
+        "support": 599,
+        "recall": 0.9449081803005008
+      }
+    },
+    "actual_quality_pass_rate": 0.617,
+    "no_strict_feasible_images": 34,
+    "color_near_threshold_candidate_count": 4687,
+    "color_near_threshold_rmse_db": 2.7385975194689856,
+    "selected_payload_bytes": 30692176,
+    "original_payload_bytes": 31661520,
+    "fixed8_payload_bytes": 59761616,
+    "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+    "seconds": 12.834818200000882
+  },
+  "same_validation_fitted_top1": 0.794,
+  "same_validation_fitted_parameters": {
+    "zero_probability_threshold": 0.5,
+    "psnr_margin_db": 0.0,
+    "ssim_margin_db": 0.0,
+    "mean_angle_margin_deg": 0.0,
+    "p95_angle_margin_deg": -0.5
+  },
+  "same_validation_fitted_metrics": {
+    "images": 1000,
+    "accuracy": 0.794,
+    "full_choice_accuracy": 0.483,
+    "actual_strict_quality_pass_rate": 0.611,
+    "quality_regression_images": 263,
+    "larger_block_images": 135,
+    "smaller_block_images": 71,
+    "payload_bytes": 30374416,
+    "original_payload_bytes": 31661520,
+    "fixed8_medium_payload_bytes": 59761616,
+    "payload_ratio_to_original": 0.9593480035070963,
+    "payload_ratio_to_fixed8": 0.508259616005029
+  },
+  "quality_regression_images": 257,
+  "trainer_wall_seconds": 2019.3156911000005,
+  "parameters": 21414140,
+  "training_seconds": 1522.0184107000023,
+  "validation_seconds": 377.3435353999994,
+  "preparation_seconds": 82.50594979999732,
+  "checkpoint_audit": "passed",
+  "deployment_timings": null,
+  "confirmation_test_opened": false,
+  "validation90_achieved": false,
+  "attribution_accuracy": {
+    "frozen_predictions": 0.792,
+    "true_channel_mse": 0.884,
+    "true_zero_mask": 0.792,
+    "true_channel_mse_and_zero": 0.884,
+    "true_ms_ssim": 0.887,
+    "true_angles": 0.809,
+    "all_true_metrics": 1.0
+  },
+  "metric_provenance": "Near-threshold RMSE comes from selected checkpoint audit; report best_color_near_threshold_rmse_db is a cross-epoch tracker",
+  "test_resource_classification_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\test-resource-classification-correction.json",
+  "inference_cost_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-r34-full1000.json",
+  "inference_cost_scope": "Batch-amortized frozen validation input cost. Individual texture latency and final encoding excluded"
+}

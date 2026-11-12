@@ -1,9 +1,13 @@
 {
-  "status": "smokes_passed_full_starting",
+  "status": "scratch_full30_and_inference_cost_completed",
   "cpu_tests": {
     "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-resnet34-full' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_search_policy.py tests/test_unity_error_attribution.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py tests/test_unity_normalization.py tests/test_unity_head_refit.py tests/test_unity_revised_pixel_identity.py tests/test_unity_near_duplicates.py tests/test_unity_image_sampling.py",
     "result": "229 passed in11.00s",
-    "exit_code": 0
+    "exit_code": 0,
+    "resource_scope": "Mixed CPU and CUDA suite; legacy key retained with corrected classification",
+    "cpu_case_count": 228,
+    "cuda_case_count": 1,
+    "cuda_case": "tests/test_unity_quality.py::test_cuda_feature_pool_repeated_outputs_are_bit_identical"
   },
   "static_checks": [
     {
@@ -63,5 +67,8 @@
     "serial_gpu": true,
     "test_opened": false
   },
-  "test_opened": false
+  "test_opened": false,
+  "full_training_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30-result.json",
+  "separated_resource_checks": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\test-resource-classification-correction.json",
+  "inference_cost_comparison": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-capacity-comparison.json"
 }

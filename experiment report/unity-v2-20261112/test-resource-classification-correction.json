@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "updated_utc": "2026-11-12T21:35:24.640039+00:00",
+  "identified_cuda_case": {
+    "file": "tests/test_unity_quality.py",
+    "lines": [
+      356,
+      360
+    ],
+    "name": "test_cuda_feature_pool_repeated_outputs_are_bit_identical"
+  },
+  "corrected_legacy_suites": [
+    {
+      "report": "resnet34-verification.json",
+      "cpu_cases": 228,
+      "cuda_cases": 1,
+      "original_total": 229
+    },
+    {
+      "report": "image-sampling-verification.json",
+      "cpu_cases": 222,
+      "cuda_cases": 1,
+      "original_total": 223
+    },
+    {
+      "report": "confirmation-stage-interface-verification.json",
+      "cpu_cases": 205,
+      "cuda_cases": 1,
+      "original_total": 206
+    }
+  ],
+  "cpu_only": {
+    "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-inference-cpu-corrected' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' -k 'not test_cuda_feature_pool_repeated_outputs_are_bit_identical' tests/test_unity_search_policy.py tests/test_unity_error_attribution.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py tests/test_unity_normalization.py tests/test_unity_head_refit.py tests/test_unity_revised_pixel_identity.py tests/test_unity_near_duplicates.py tests/test_unity_image_sampling.py",
+    "result": "230 passed, 1 deselected in 10.81s",
+    "exit_code": 0
+  },
+  "cuda_serial": {
+    "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-inference-cuda-corrected' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_quality.py::test_cuda_feature_pool_repeated_outputs_are_bit_identical",
+    "result": "1 passed in 3.22s",
+    "exit_code": 0,
+    "native_training_completed_before_execution": true
+  },
+  "historical_gpu_exclusivity": "Not fully established for windows containing mixed suites; retain observed training wall times",
+  "test_opened": false
+}

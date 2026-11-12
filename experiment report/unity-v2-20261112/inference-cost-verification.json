@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "scope": "Frozen development inference cost with explicit archived training source binding and batch amortization",
+  "implementation_files_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\inference_benchmark.py": "93146a6a0915395751890ce5ed4f63f2ddcb93676965705b9b4719d476e1952e",
+    "E:\\ASTC_Compression\\tests\\test_unity_inference.py": "3fed91b74f9f04148a74e33677f5d16135f8457fbeb200dae8e8d4196ab362e0"
+  },
+  "resource_checks_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\test-resource-classification-correction.json",
+  "cpu_checks": "230 passed, 1 CUDA test deselected in 10.81s",
+  "cuda_serial_regression": "1 passed in 3.22s",
+  "static_checks": {
+    "commands": [
+      "uv run ruff check reproductions/unity_search_baseline/inference_benchmark.py tests/test_unity_inference.py",
+      "uv run basedpyright reproductions/unity_search_baseline/inference_benchmark.py tests/test_unity_inference.py"
+    ],
+    "ruff": "All checks passed",
+    "basedpyright": "0 errors, 0 warnings, 0 notes"
+  },
+  "review": "CLEAN",
+  "smoke_reports": [
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-r18-smoke.json",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-r34-smoke.json"
+  ],
+  "full_comparison": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-capacity-comparison.json",
+  "full1000_receipts_serial": true,
+  "r18_ended_utc": "2026-11-12T21:37:08.309426+00:00",
+  "r34_started_utc": "2026-11-12T21:37:23.674437+00:00",
+  "source_archive_explicit_only": true,
+  "numerical_tolerance": "rtol=0,atol=1e-5, exact decisions",
+  "actual_max_abs_differences": 0.0,
+  "test_opened": false,
+  "encoding_calls": 0,
+  "scope_limit": "Batched throughput amortized per image, loading and binding audit separate. Individual texture latency and final encoding require corresponding measurements",
+  "independent_readonly_review": {
+    "verdict": "CLEAN",
+    "actual_png_sha256_verified": 1000,
+    "ordered_paths_equal": true,
+    "all_four_prediction_arrays_exact": true,
+    "amortized_costs_recomputed": true,
+    "job_receipts_serial": true
+  }
+}

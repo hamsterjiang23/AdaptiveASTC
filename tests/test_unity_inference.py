@@ -19,6 +19,51 @@ from reproductions.unity_search_baseline.inference_benchmark import UnityInferen
 from reproductions.unity_search_baseline.native_data_pipeline import UnityNativeDataPipeline
 
 
+def test_timing_summary_reports_batched_amortization_and_ignores_warmup() -> None:
+    measurements = [
+        {
+            "warmup": warmup,
+            "preprocess_inference_decision_seconds": seconds,
+            "inference": {"patch_forward_and_transfer_seconds": seconds / 10, "patches": 30},
+        }
+        for warmup, seconds in [(True, 100), (False, 6), (False, 2), (False, 4)]
+    ]
+    result = UnityInferenceBenchmark.timing_summary(measurements, 2)
+    assert result["validation_images"] == 2 and result["input_patches"] == 30
+    assert result["median_preprocess_inference_decision_seconds"] == 4
+    assert result["amortized_preprocess_inference_decision_seconds_per_image"] == 2
+    assert result["median_patch_forward_and_transfer_seconds"] == pytest.approx(0.4)
+    assert result["amortized_patch_forward_and_transfer_seconds_per_image"] == pytest.approx(0.2)
+
+
+def test_benchmark_requires_explicit_matching_training_source_archive(tmp_path: Path) -> None:
+    source = tmp_path / "source.py"
+    source.write_text("original training source", encoding="utf-8")
+    digest = A.sha256_file(source)
+    archive = tmp_path / "archive"
+    archive.mkdir()
+    historical = archive / "source.py"
+    historical.write_bytes(source.read_bytes())
+    source.write_text("current runtime source", encoding="utf-8")
+    path = tmp_path / "config.json"
+    A.write_json(path, {})
+    settings = {"source_sha256": {str(source): digest}}
+    with pytest.raises(ValueError, match="changed"):
+        UnityInferenceBenchmark(tmp_path, path).bind_training_sources(
+            UnityFinalEncoding(tmp_path, path), settings
+        )
+    A.write_json(path, {"training_source_archive": str(archive)})
+    runner, binding = UnityInferenceBenchmark(tmp_path, path), UnityFinalEncoding(tmp_path, path)
+    result = runner.bind_training_sources(binding, settings)
+    assert result is not None and result["archive"] == str(archive)
+    assert binding.inputs[str(historical)] == digest
+    historical.write_text("changed archive", encoding="utf-8")
+    with pytest.raises(ValueError, match="changed"):
+        binding.bind(historical, digest)
+    with pytest.raises(ValueError, match="source snapshot"):
+        runner.bind_training_sources(UnityFinalEncoding(tmp_path, path), settings)
+
+
 def make_inputs(tmp_path: Path) -> UnityInferenceInput:
     paths = [tmp_path / "wide.png", tmp_path / "normal.png"]
     wide = np.zeros((123, 250, 4), dtype=np.uint8)
