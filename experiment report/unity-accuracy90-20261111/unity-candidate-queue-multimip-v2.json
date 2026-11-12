@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "failed",
   "started_utc": "2026-11-11T16:41:00.922705+00:00",
   "config_sha256": "54066e5194a684c81b2b8bc6168be1e1052495690ce348c18864d89d2b7c7ca5",
   "implementation_sha256": "aa4b6ffbd2e4822272dedcb71867d304529f84e13275752e4250e113adf4f932",
@@ -10,7 +10,7 @@
   },
   "coverage": "complete",
   "counts": {
-    "train": 7488,
+    "train": 7744,
     "validation": 2
   },
   "batches": [
@@ -974,12 +974,44 @@
         "decode_seconds": 39.68890269957774,
         "quality_seconds": 247.87344389971258
       }
+    },
+    {
+      "run_id": "unity-v1-train-029-20261111",
+      "source_split": "train",
+      "reference": {
+        "run_id": "unity-v1-train-029-20261111",
+        "source_split": "train",
+        "images": 256,
+        "callbacks": 1190,
+        "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-029-20261111\\options-receipt.json",
+        "options_sha256": "69a4108f8001b61bb66c3e8f492fc469b01dc07d0bfd5e63ab370e64b4b34df9",
+        "reference_receipt_sha256": "3e4bb3e29d572b8df8508e6a84c7c2af9d1dbe8d6b95a4f26887c69d68d048d5",
+        "phase_receipt_sha256": "3b9eb351134794a89a3ef3aa0119ac356516b966d1708015b53477a86ae9dc0a",
+        "editor_process_seconds": 1506.5361954000036
+      },
+      "prior_attempts": [],
+      "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+      "images": 256,
+      "candidates": 5120,
+      "new_candidates": 3930,
+      "original_candidates": 1190,
+      "normal_images": 4,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2\\reports\\unity-v1-train-029-20261111.json",
+      "report_sha256": "356a6eb5b4c4843d59b640f69fa0b76410b299ae64b4f38c80507eb1c490dcb8",
+      "raw_receipt_sha256": "a49033e48b6c322da0375517d00eb5a2a59419afad4107816e026483ef5c1a7d",
+      "wall_seconds": 1424.504603100002,
+      "cost": {
+        "encode_seconds": 817.4793203001173,
+        "decode_seconds": 39.38297239986423,
+        "quality_seconds": 218.6557669003014
+      }
     }
   ],
   "test_opened": false,
   "invocation_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2\\invocations\\02529dfaed964d438220ab772717dcdd\\receipt.json",
   "scope": "native20 candidate targets paired to original imported references and search choices",
-  "current_batch": "unity-v1-train-029-20261111",
-  "updated_utc": "2026-11-11T23:53:56.097761+00:00",
-  "wall_seconds": 25975.174321499995
+  "current_batch": "unity-v1-train-030-20261111",
+  "updated_utc": "2026-11-12T00:20:43.822665+00:00",
+  "wall_seconds": 27582.8987672,
+  "error": "ValueError('Current supplemental pilot supports LDR Default textures only')"
 }

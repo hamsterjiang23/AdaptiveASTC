@@ -1,0 +1,28 @@
+{
+  "status": "validated",
+  "native_sprite_candidates": 20,
+  "original_candidate_metric_matches": 16,
+  "new_candidates": 4,
+  "winner_astc_and_decode_match": true,
+  "smoke_process_seconds": 1.0475794000012684,
+  "reused_completed_batches": 32,
+  "reused_images": {
+    "train": 7744,
+    "validation": 2
+  },
+  "sources": {
+    "pipeline": 14,
+    "training": 23,
+    "confirmation": 15
+  },
+  "old_supplement_source_sha256": "aff26c333f70a30b12a21920ab8b892d5b43e69910befd1603aebf488e029781",
+  "new_supplement_source_sha256": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+  "tests": {
+    "passed": 20,
+    "seconds": 0.27,
+    "command": "uv run pytest tests/test_unity_sprite_completion.py tests/test_unity_candidate_completion.py -q"
+  },
+  "training_recipe_changed": false,
+  "test_opened": false,
+  "state": "Configs validated; new jobs have not been started by this check"
+}

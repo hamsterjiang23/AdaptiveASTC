@@ -1,10 +1,14 @@
 # 实验成本与读写依赖
 
-独立确认集采集入口：30项CPU检查20.15秒，真实两图配置及源／meta／Editor／DLL核验0.108秒。等待任务不运行Editor或模型；开发采集、补测、完整数据和首轮原生训练成功后，先取得工程锁再要求20GiB空闲RAM、相关卷40GiB磁盘。实际Editor阶段预计5–15分钟，依据历史validation2进程370.06秒；等待与采集分开记录。冻结15份源码，读预留主名单前两项，写独立`.local/unity-confirmation-capture-smoke2-v1`，不读取模型预测，内存峰值待实测。`[verified: 本轮pytest30passed in20.15s；unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status；opinion: 成本预算与范围]`
+Sprite恢复的真实128²图完成20候选，内部0.763秒／进程1.048秒，原16项指标及winner一致。新候选队列先逐批复核32份已完成归档，完整复核耗时待结束后单列；失败批52图部分产物保留但不计作完整复用。下游训练按原门槛在新目录重做32图CUDA预检，再等待全量数据；四个旧任务总时长含等待和已完成工作，见恢复报告，不全部算作重试浪费。`[verified: unity-sprite-recovery-readiness.json；unity-sprite-recovery.json prior_jobs；opinion: 成本解释]`
+
+原生像素审计只读已完成归档PNG和SHA绑定的receipt，单CPU进程，写独立.local明细和公开摘要，不占GPU；7746图内部74.43秒／进程74.64秒。首次66图方向检查失败0.24秒，修正后2.06秒；输出保护补强后的66图复跑1.49秒。启动时空闲内存／磁盘见独立preflight；未采集进程树峰值内存。原采集、补测及后续训练的读写目录保持隔离，这些是审计成本，不作为部署耗时。`[verified: unity-pixel-identity-completed-v1.json；对应jobs/receipt.json及launch-preflight.json；unity-pixel-identity-verification.json jobs；opinion: 成本与并发范围]`
+
+历史首次任务成本（等待队列后因上游失败结束）：独立确认集采集入口：30项CPU检查20.15秒，真实两图配置及源／meta／Editor／DLL核验0.108秒。等待任务不运行Editor或模型；开发采集、补测、完整数据和首轮原生训练成功后，先取得工程锁再要求20GiB空闲RAM、相关卷40GiB磁盘。实际Editor阶段预计5–15分钟，依据历史validation2进程370.06秒；等待与采集分开记录。冻结15份源码，读预留主名单前两项，写独立`.local/unity-confirmation-capture-smoke2-v1`，不读取模型预测，内存峰值待实测。`[verified: 本轮pytest30passed in20.15s；unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status；opinion: 成本预算与范围]`
 
 独立确认集预留：2000主名单＋500备用，CPU内部47.03秒、完整进程52.71秒；2500份源文件／meta再次复核10.03秒。读取9份历史清单及参数快照的资产身份字段，写独立.local名单和公开摘要，不运行模型、不采集Unity标签。峰值内存未测；不与后续原生采集成本混合。`[verified: unity-confirmation2000-v1.json wall_seconds、primary_images、reserve_images；unity-confirmation-reservation-verification.json wall_seconds、reservation_process_seconds；opinion: 成本范围]`
 
-完整Unity训练衔接的32图CUDA预检已完成：2轮4次更新、0次AMP跳步，训练器75.44秒、完整进程83.45秒。image batch16×4patch、workers2、validation batch16、11,377,660参数；正式训练仍等待完整数据四阶段通过，预计最多30轮1–4小时仅为预算。活动期间冻结23份源码，其他GPU任务须纳入串行调度。`[verified: native-training-full-v1/smoke.json wall_seconds、history；unity-native-training-full-v1.json stages、status；opinion: 预算与调度]`
+历史首次任务成本（等待队列后因上游失败结束）：完整Unity训练衔接的32图CUDA预检已完成：2轮4次更新、0次AMP跳步，训练器75.44秒、完整进程83.45秒。image batch16×4patch、workers2、validation batch16、11,377,660参数；正式训练仍等待完整数据四阶段通过，预计最多30轮1–4小时仅为预算。活动期间冻结23份源码，其他GPU任务须纳入串行调度。`[verified: native-training-full-v1/smoke.json wall_seconds、history；unity-native-training-full-v1.json stages、status；opinion: 预算与调度]`
 
 Unity同次预测与编码已完成两图一次预热＋三次配对重复，共16次编码；活动3.34秒、依赖等待3032.84秒、完整进程3041.19秒。两图合计预测路径中位数48.81ms，fixed8为38.34ms，质量通过分别1／2、2／2。读取原生smoke8权重，模型／DLL加载、解码核验和写盘单列；不代表等质量部署收益。`[verified: unity-deployment-smoke2-v1.json summary、active_seconds、dependency_wait_seconds；对应job receipt；opinion: 解释范围]`
 
@@ -22,7 +26,7 @@ Unity保存验证预测的最终编码检查：两图、两条路径共四次DLL
 
 3906图精确目标决策接口检查循环62.50秒／进程67.29秒，17个原策略来源核对，0次训练更新。4674图扩展已完成，复用17批3906图目标、新增3批768图，循环1845.25秒／进程1849.48秒，超过启动时10–20分钟估计。单CPU进程只读已发布归档，写共享shard目录并持有独占锁，运行期间与CUDA训练和参考采集并行；这些数据准备成本不用于部署加速比。`[verified: unity-prediction-interface3906.json；jobs/unity-prediction-interface3906/receipt.json；unity-patch-batches4674.json；jobs/unity-patch-batches4674/receipt.json、launch-preflight.json；opinion: 估时与并发范围]`
 
-完整原生数据流水线等待时只检查上游进程和哈希，成功退出后按顺序调用原准备／组装／Dataset／决策检查，复用既有目标。三次66图进程依次71.14／24.85／22.70秒，后两次复用首次目标；最终源码阶段合计22.02秒。首个全量等待身份因退出竞态修复主动停止，226.26秒未进入数据阶段，记录单列；当前full-v2任务继续等待。执行阶段要求22GiB空闲RAM／40GiB磁盘；waiting_seconds、execution_seconds和总wall_seconds分开，等待时长不当作处理耗时或加速比。`[verified: unity-native-pipeline-smoke66-v1.json、v2.json、v3.json；对应jobs receipts；unity-native-pipeline-full-v2-config.json prior_attempt；opinion: 成本边界]`
+完整原生数据流水线等待时只检查上游进程和哈希，成功退出后按顺序调用原准备／组装／Dataset／决策检查，复用既有目标。三次66图进程依次71.14／24.85／22.70秒，后两次复用首次目标；最终源码阶段合计22.02秒。首个全量等待身份因退出竞态修复主动停止，226.26秒未进入数据阶段，记录单列；后续full-v2因上游Sprite失败结束，当前改由full-v3等待。执行阶段要求22GiB空闲RAM／40GiB磁盘；waiting_seconds、execution_seconds和总wall_seconds分开，等待时长不当作处理耗时或加速比。`[verified: unity-native-pipeline-smoke66-v1.json、v2.json、v3.json；对应jobs receipts；unity-native-pipeline-full-v2-config.json prior_attempt；opinion: 成本边界]`
 
 像素比例采样10轮训练2389.30秒／完整进程2419.23秒，最佳82.0%。后续有效区域池化也完成10轮，训练2289.52秒／含重载进程2323.97秒，最佳78.0%，3126次实际更新、4次AMP跳步。两项均为负结果，早停轮数与原26轮基准不同，不解释为部署加速。有效区域池化先期CUDA检查2轮4更新、进程21.21秒；正式单GPU训练与Unity采集并行。`[verified: scratch-group512-pixels-result.json；scratch-group512-validpool-result.json；mask-pooling-integration.json；opinion: 调度与计时口径]`
 

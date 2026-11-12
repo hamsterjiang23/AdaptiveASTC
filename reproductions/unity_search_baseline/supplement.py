@@ -340,6 +340,14 @@ class UnitySupplementalCapture:
         ArtifactStore.write_json(Path(config["report"]), public)
         return public
 
+    def validate_color_input(self, row: JsonDict, item: JsonDict) -> None:
+        if row["texture_type"] not in {"Default", "Sprite"} or item["is_hdr"] or item["is_normal"]:
+            raise ValueError("Color completion requires a supported LDR color texture")
+        if row["texture_type"] == "Sprite" and self.config.get("options_receipt") is None:
+            raise ValueError("Sprite completion requires captured actual encoder options")
+        if type(item["need_alpha"]) is not bool or not item["metadata_source"]:
+            raise ValueError("Explicit Alpha contract and provenance required")
+
     def collect_image(
         self,
         archive: Path,
@@ -353,10 +361,7 @@ class UnitySupplementalCapture:
         row = receipt["rows"][index]
         if row["path"] != item["path"]:
             raise ValueError("Supplemental sample identity changed")
-        if row["texture_type"] != "Default" or item["is_hdr"] or item["is_normal"]:
-            raise ValueError("Current supplemental pilot supports LDR Default textures only")
-        if type(item["need_alpha"]) is not bool or not item["metadata_source"]:
-            raise ValueError("Explicit Alpha contract and provenance required")
+        self.validate_color_input(row, item)
         folder = archive / f"{index:05d}"
         for name in ["original.png", "unity.astc", "unity-native.png", "parameter_test_report.txt"]:
             if ArtifactStore.sha256_file(folder / name) != row["artifacts_sha256"][name]:

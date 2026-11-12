@@ -6,6 +6,10 @@
 
 ## 验收与执行顺序
 
+[Sprite补测恢复](unity-sprite-recovery.md)通过20候选实测，原16项指标及选中输出一致；候选sprite-v3、数据full-v3、训练full-v2和确认smoke2-v2已启动，复核复用旧7744／2图候选。旧等待任务因上游Sprite限制失败，原记录保留，以下先前状态按历史阅读；当前进度见progress.json与恢复验证。`[verified: unity-sprite-recovery-readiness.json；unity-sprite-recovery-verification.json；opinion: 状态边界]`
+
+[原生像素重复审计](unity-pixel-identity.md)完成7744训练／2验证图核验：5组RGBA精确重复、10张均在训练集内，当前两张验证图未见重复；仅RGB的18组中13组Alpha不同。进程74.64秒，最终21项CPU测试及66图复跑通过。开发划分保持，完整验证／确认集及近重复隔离尚未完成。`[verified: unity-pixel-identity-completed-v1.json；unity-pixel-identity-verification.json；opinion: 覆盖边界]`
+
 [独立确认集采集入口](unity-confirmation-capture.md)完成30项CPU检查及两图只读配置核验，独立confirmation身份不进入开发划分。两图任务已启动等待原采集、补测、完整数据和首轮原生训练成功；15份源码冻结，当前没有新确认集像素／标签或模型测试。后续需要真实Editor预检、全量采集、像素重复审计和最终冻结评价。`[verified: unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status、native_labels_collected、test_opened；opinion: 后续验收]`
 
 [独立确认集预留](<unity-confirmation-cohort.md>)已预留2000张主名单、500张备用，主名单覆盖1227个未出现于9份历史清单的资产组；2500份实际源文件及meta身份复核通过。仅完成源资产隔离，后续仍需Unity参考像素、同次原搜索标签、像素重复审计，以及模型和决策冻结后的独立测试；当前未打开模型测试。`[verified: unity-confirmation2000-v1.json primary_images、primary_groups、reserve_images、native_pixels_audited、native_labels_collected、model_sealed；unity-confirmation-reservation-verification.json；opinion: 后续验收]`

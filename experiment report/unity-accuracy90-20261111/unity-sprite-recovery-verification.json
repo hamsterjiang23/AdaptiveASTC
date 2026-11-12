@@ -1,0 +1,157 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-12T00:37:23.574666+00:00",
+  "scope": "Recovery launched; no full corpus, formal model or independent test acceptance",
+  "jobs": {
+    "unity-candidate-queue-sprite-v3": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
+        "status": "running",
+        "pid": 33060,
+        "created": 1794443373.3538325
+      },
+      "status": "running",
+      "counts": {
+        "train": 1344,
+        "validation": 2
+      },
+      "current_batch": "unity-v1-train-005-20261111",
+      "config_sha256": "11f217d967857430bb1906c66671ce8e8f836c970e4f169770a4bbecba687c92"
+    },
+    "unity-native-pipeline-full-v3": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+        "status": "running",
+        "pid": 37368,
+        "created": 1794443383.9480257
+      },
+      "status": "waiting_upstream",
+      "counts": null,
+      "current_batch": null,
+      "config_sha256": "19fac6ce732d83e6abb5e3dfbd0608b851e5861968ccf083d7f1e786b7af7124"
+    },
+    "unity-native-training-full-v2": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v2\\job.json",
+        "status": "running",
+        "pid": 8636,
+        "created": 1794443400.968097
+      },
+      "status": "waiting_data",
+      "counts": null,
+      "current_batch": null,
+      "config_sha256": "8dc98d66ee2bc08257e8ef9ebb5c4f030f9ecab3a7fc0a58c0a068de291febb3"
+    },
+    "unity-confirmation-capture-smoke2-v2": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v2\\job.json",
+        "status": "running",
+        "pid": 47368,
+        "created": 1794443411.405678
+      },
+      "status": "waiting_dependencies",
+      "counts": null,
+      "current_batch": null,
+      "config_sha256": "99ac3cfbffee50f6ada7249d7d4e1340bfea77f7867b12d388fef19194b2ab50"
+    }
+  },
+  "reference_counts": {
+    "train": 8256,
+    "validation": 2
+  },
+  "source_bindings": {
+    "unity-native-pipeline-full-v3": 14,
+    "unity-native-training-full-v2": 23,
+    "unity-confirmation-capture-smoke2-v2": 15
+  },
+  "sprite_candidates": 20,
+  "sprite_winner_complete_astc_sha256": "8443ddac29834620d44c904e229d4c333466cbbfd0966a5ed41ee8686af15ff8",
+  "sprite_winner_decoded_pixels_exact": true,
+  "cuda_smoke": {
+    "name": "smoke",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-training-full-v2\\smoke.json",
+    "report_sha256": "ca8146bcf3c49cb3bb8eca84e8dde0f0cf95d8a564023745928dde88997ebbb5",
+    "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-training-full-v2\\smoke-job\\job.json",
+    "job_receipt_sha256": "9fa2d2268acc61adb7c5ef1c4184625ee2ad000f907baa3a9276bf5444f8a116",
+    "process_seconds": 45.523354899996775,
+    "training_updates": 4,
+    "checkpoint_sha256": "d7f5972361234044fadc882802e455cdc9830ac5f2af27c4d5d7f2a635774f3a",
+    "validation_metrics": {
+      "count": 2,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "full_choice_accuracy": 0.0,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          1
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 0,
+          "recall": null
+        },
+        "8x8": {
+          "support": 0,
+          "recall": null
+        },
+        "10x10": {
+          "support": 0,
+          "recall": null
+        },
+        "12x12": {
+          "support": 2,
+          "recall": 0.5
+        }
+      },
+      "actual_quality_pass_rate": 0.5,
+      "no_strict_feasible_images": 0,
+      "color_near_threshold_candidate_count": 2,
+      "color_near_threshold_rmse_db": 2.969733341196751,
+      "selected_payload_bytes": 45968,
+      "original_payload_bytes": 37328,
+      "fixed8_payload_bytes": 81920,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "seconds": 0.015630599998985417
+    }
+  },
+  "local_file_links": 339,
+  "internal_anchors": 26,
+  "docs_sha256": {
+    "README.md": "56687615508c601b0e71d8e6e610a6d6298bcec4caca55efcec4f316d85ef3c4",
+    "AGENTS.md": "a18ed40669a91d31dce9bc270189915c641a814bfac243ab92c0341fcb74c601",
+    "experiment plan\\V1\\README.md": "8962f375b46efbe87390c8f27f8f50c324146e8540e5a7b10f48ec57804ab43d",
+    "experiment report\\unity-accuracy90-20261111\\README.md": "cb6d05799ea40d0115cdcfd2e660f0f1324224fabc90a0020354bec75f2c6069",
+    "experiment report\\unity-accuracy90-20261111\\unity-pixel-identity.md": "80abb36826821cc8381ceae425e869d25b178b5713af4f732d21237a5d98dee9",
+    "experiment report\\unity-accuracy90-20261111\\unity-sprite-recovery.md": "8391ffaabfa21274f1f8c9fe51ccc212d68914a046fdff1b772106f9d7aefaf2",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-pipeline.md": "a9da4770018ae5ea08d090d951cd3de9dc7acaf3db6400f1049186f7496c7ce0",
+    "experiment report\\unity-accuracy90-20261111\\unity-native-training-queue.md": "e679b69364275d021a3da59573ada052b6b275c9ddc0d516a2c131e41beefd99",
+    "experiment report\\unity-accuracy90-20261111\\unity-confirmation-capture.md": "de4e573d0e51bb119c8b24e59dc0cb0f2ea3c785b14fd10a835bed9db00dea9e",
+    "references\\task-costs.md": "03c2f9ce030b7ea81ddef026b9259a51ac6597b2032b8e56ef8c1d0099ed33e7"
+  },
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "script_sha256": "324ffad7276b94f519a2630c5bc8b70b1239cab1e096031558f8448ed0d8855d",
+  "test_opened": false,
+  "goal_complete": false
+}

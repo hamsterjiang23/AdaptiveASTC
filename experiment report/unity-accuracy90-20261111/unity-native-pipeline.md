@@ -1,5 +1,7 @@
 # Unity 全量原生数据衔接
 
+当前使用[Sprite恢复后的full-v3](unity-sprite-recovery.md)，绑定新补测队列并复用原shards。此前full-v2因上游补测失败退出；下文v2等待记录是历史状态，当前见[full-v3报告](unity-native-pipeline-full-v3.json)。`[verified: 对应任务报告status、error；opinion: 历史边界]`
+
 新增[全量数据入口](../../script/finish_unity_native_data.py)，在原参考采集、20候选补测和当前4674图目标准备都成功退出后，依次准备完整patch、合并语料、完整读取Dataset并验证精确目标能重建原选择。完整模式要求10000训练图／1000验证图；该入口不训练模型，不打开测试图，也不将数据检查通过当成90%生产验收。`[verified: native_data_pipeline.py __init__、run、execute_stage；opinion: 验收边界]`
 
 ```mermaid

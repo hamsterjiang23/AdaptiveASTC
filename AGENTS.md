@@ -36,13 +36,17 @@
 
 ## 实现与实验
 
-- [独立确认集采集入口](<experiment report/unity-accuracy90-20261111/unity-confirmation-capture.md>)已通过30项CPU检查及两张真实源图的只读协议核验，并启动等待任务；保留confirmation身份，开发入口仍只允许train／validation。绑定15份源码，等原采集、补测、完整数据和首轮原生训练成功后才启动Editor；当前尚未采到新确认集像素或标签，也未打开模型测试。`[verified: unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status、dependencies、native_labels_collected；opinion: 验收边界]` 活动期间保持采集配置绑定源码不变；超过两图的扩展先追溯smoke原生收据、参考归档和恢复证据。`[opinion]`
+- 第30批Sprite触发旧补测Default限制后，已验证20候选并以新身份恢复：候选sprite-v3、数据full-v3、训练full-v2、确认smoke2-v2。当前颜色补测仅放行Default／Sprite LDR，Sprite必须绑定实际回调；保留原类型、标签和失败产物。旧32批7744／2图通过原SHA复核后复用，新队列计数是本轮重新核验进度；不得覆盖旧失败身份。`[verified: experiment report/unity-accuracy90-20261111/unity-sprite-recovery.md；reproductions/unity_search_baseline/supplement.py validate_color_input；opinion: 恢复约束]`
+
+- 原生重复像素用[像素审计入口](script/audit_unity_pixel_identity.py)读取SHA绑定的已完成归档，精确身份包含RGBA和尺寸，RGB相同／Alpha不同单列。PNG显示顺序用于重复分组，callback哈希需翻转上下行核对。已完成7744训练／2验证图部分审计，不改冻结划分；完整开发／确认集及近重复审计仍待完成。报告与明细路径分离并独占创建，失败保留原身份。`[verified: reproductions/unity_search_baseline/pixel_identity.py；experiment report/unity-accuracy90-20261111/unity-pixel-identity.md；opinion: 验收边界]`
+
+- 历史首次启动记录（该队列后因上游Sprite失败结束）：[独立确认集采集入口](<experiment report/unity-accuracy90-20261111/unity-confirmation-capture.md>)已通过30项CPU检查及两张真实源图的只读协议核验，并启动等待任务；保留confirmation身份，开发入口仍只允许train／validation。绑定15份源码，等原采集、补测、完整数据和首轮原生训练成功后才启动Editor；当前尚未采到新确认集像素或标签，也未打开模型测试。`[verified: unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status、dependencies、native_labels_collected；opinion: 验收边界]` 活动期间保持采集配置绑定源码不变；超过两图的扩展先追溯smoke原生收据、参考归档和恢复证据。`[opinion]`
 
 - [独立确认集预留](<experiment report/unity-accuracy90-20261111/unity-confirmation-cohort.md>)已预留2000张主名单、500张备用，主名单覆盖1227个未出现于9份历史清单的资产组；2500份实际源文件及meta身份复核通过。仅完成源资产隔离，后续仍需Unity参考像素、同次原搜索标签、像素重复审计，以及模型和决策冻结后的独立测试；当前未打开模型测试。`[verified: unity-confirmation2000-v1.json primary_images、primary_groups、reserve_images、native_pixels_audited、native_labels_collected、model_sealed；unity-confirmation-reservation-verification.json；opinion: 后续验收]` 主名单和备用顺序冻结；任何身份或像素重复替换须在预测前留痕，禁止按质量或错误筛样。`[opinion]`
 
 - 冻结预测的[残差与余量诊断](<experiment report/unity-accuracy90-20261111/patch-fixed-capacity/README.md#固定预测的残差与阈值诊断>)只使用原cap512验证1000。101点全局余量扫描最高84.5%；逐候选平均偏移修正RMSE为1.3372dB、准确率83.9%，不进入部署。校正参数和计分使用同一验证集，不能称独立泛化收益或准确率上限；候选PSNR误差分组与最终标签召回分别解释，继续保留原模型和终态训练验收。`[verified: scratch-group512-residuals.json；opinion: 使用与解释要求]`
 
-- [完整Unity训练衔接](<experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)已完成32训练图／2验证图的CUDA预检：两轮4次实际更新、0次AMP跳步、最佳权重重载通过，完整进程83.45秒。当前等待完整10000／1000数据四阶段核验，正式训练尚未启动；后续GPU任务继续纳入串行调度，独立测试90%仍待验收。`[verified: native-training-full-v1/smoke.json training_updates、checkpoint_audit；unity-native-training-full-v1.json status、stages；opinion: 验收与调度边界]` 配置绑定23份源码，活动期间禁止热改；预检与正式输出分开。`[opinion]`
+- 历史首次启动记录（该队列后因上游Sprite失败结束）：[完整Unity训练衔接](<experiment report/unity-accuracy90-20261111/unity-native-training-queue.md>)已完成32训练图／2验证图的CUDA预检：两轮4次实际更新、0次AMP跳步、最佳权重重载通过，完整进程83.45秒。当时等待完整10000／1000数据四阶段核验，正式训练尚未启动；后续GPU任务继续纳入串行调度，独立测试90%仍待验收。`[verified: native-training-full-v1/smoke.json training_updates、checkpoint_audit；unity-native-training-full-v1.json status、stages；opinion: 验收与调度边界]` 配置绑定23份源码，活动期间禁止热改；预检与正式输出分开。`[opinion]`
 
 - [同次预测与编码计时](<experiment report/unity-accuracy90-20261111/unity-deployment.md>)已完成两图、一次预热及三次配对重复，共16次真实编码。两图合计参考PNG到内存mip0 ASTC的中位数为预测路径48.81ms、fixed8路径38.34ms；质量通过率分别1／2与2／2，payload分别59168与81920字节。使用原生smoke8权重，此小样本没有速度或等质量收益结论，也不代表完整Unity验收。`[verified: unity-deployment-smoke2-v1.json summary、measurements；opinion: 解释边界]` 模型／DLL加载、解码质量核验及写盘单列；不包含Unity导入和完整mip链。`[verified: deployment.py run timings.scope]`
 

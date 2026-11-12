@@ -1,0 +1,165 @@
+{
+  "status": "running",
+  "reuse_images": {
+    "train": 7744,
+    "validation": 2
+  },
+  "reuse_batches": 32,
+  "jobs": [
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v2\\job.json",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v2\\job.json"
+  ],
+  "prior_jobs": [
+    {
+      "job_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-multimip-v2\\receipt.json",
+      "job_receipt_sha256": "be26446125f4c05c3af0f538320c45df87b5d870cf5150820c9447ddd6a23720",
+      "process_seconds": 27583.4900692,
+      "reason": "Upstream Sprite color guard failure"
+    },
+    {
+      "job_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v2\\receipt.json",
+      "job_receipt_sha256": "edaf333babb544a164a03f24f298a38c7c3a8b4db20595817cbe1009dc36d3fa",
+      "process_seconds": 11953.401056900002,
+      "reason": "Upstream Sprite color guard failure"
+    },
+    {
+      "job_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v1\\receipt.json",
+      "job_receipt_sha256": "79e36a8bc1f65e515d42a74a4b8deeb4720d7b5462daf7d9908ea7b47b9ded07",
+      "process_seconds": 5314.240611699999,
+      "reason": "Upstream Sprite color guard failure"
+    },
+    {
+      "job_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v1\\receipt.json",
+      "job_receipt_sha256": "0d158dbe4d1f30767d98997b8d03f6d56fb9bfd8f87bfb81e56922aedb938a47",
+      "process_seconds": 1312.4018419999993,
+      "reason": "Upstream Sprite color guard failure"
+    }
+  ],
+  "test_opened": false,
+  "training_recipe_changed": false,
+  "updated_utc": "2026-11-12T00:37:23.539665+00:00",
+  "observed_jobs": {
+    "unity-candidate-queue-sprite-v3": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
+        "status": "running",
+        "pid": 33060,
+        "created": 1794443373.3538325
+      },
+      "status": "running",
+      "counts": {
+        "train": 1344,
+        "validation": 2
+      },
+      "current_batch": "unity-v1-train-005-20261111",
+      "config_sha256": "11f217d967857430bb1906c66671ce8e8f836c970e4f169770a4bbecba687c92"
+    },
+    "unity-native-pipeline-full-v3": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+        "status": "running",
+        "pid": 37368,
+        "created": 1794443383.9480257
+      },
+      "status": "waiting_upstream",
+      "counts": null,
+      "current_batch": null,
+      "config_sha256": "19fac6ce732d83e6abb5e3dfbd0608b851e5861968ccf083d7f1e786b7af7124"
+    },
+    "unity-native-training-full-v2": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v2\\job.json",
+        "status": "running",
+        "pid": 8636,
+        "created": 1794443400.968097
+      },
+      "status": "waiting_data",
+      "counts": null,
+      "current_batch": null,
+      "config_sha256": "8dc98d66ee2bc08257e8ef9ebb5c4f030f9ecab3a7fc0a58c0a068de291febb3"
+    },
+    "unity-confirmation-capture-smoke2-v2": {
+      "process": {
+        "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v2\\job.json",
+        "status": "running",
+        "pid": 47368,
+        "created": 1794443411.405678
+      },
+      "status": "waiting_dependencies",
+      "counts": null,
+      "current_batch": null,
+      "config_sha256": "99ac3cfbffee50f6ada7249d7d4e1340bfea77f7867b12d388fef19194b2ab50"
+    }
+  },
+  "cuda_smoke": {
+    "name": "smoke",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-training-full-v2\\smoke.json",
+    "report_sha256": "ca8146bcf3c49cb3bb8eca84e8dde0f0cf95d8a564023745928dde88997ebbb5",
+    "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-training-full-v2\\smoke-job\\job.json",
+    "job_receipt_sha256": "9fa2d2268acc61adb7c5ef1c4184625ee2ad000f907baa3a9276bf5444f8a116",
+    "process_seconds": 45.523354899996775,
+    "training_updates": 4,
+    "checkpoint_sha256": "d7f5972361234044fadc882802e455cdc9830ac5f2af27c4d5d7f2a635774f3a",
+    "validation_metrics": {
+      "count": 2,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "full_choice_accuracy": 0.0,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          1
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 0,
+          "recall": null
+        },
+        "8x8": {
+          "support": 0,
+          "recall": null
+        },
+        "10x10": {
+          "support": 0,
+          "recall": null
+        },
+        "12x12": {
+          "support": 2,
+          "recall": 0.5
+        }
+      },
+      "actual_quality_pass_rate": 0.5,
+      "no_strict_feasible_images": 0,
+      "color_near_threshold_candidate_count": 2,
+      "color_near_threshold_rmse_db": 2.969733341196751,
+      "selected_payload_bytes": 45968,
+      "original_payload_bytes": 37328,
+      "fixed8_payload_bytes": 81920,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "seconds": 0.015630599998985417
+    }
+  }
+}

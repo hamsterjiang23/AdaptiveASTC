@@ -1,0 +1,93 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-12T00:25:04.248977+00:00",
+  "tests": {
+    "command": "uv run pytest tests/test_unity_pixel_identity.py -q",
+    "passed": 21,
+    "seconds": 0.99
+  },
+  "checks": {
+    "ruff": "passed",
+    "basedpyright": "passed",
+    "code_review": "CLEAN"
+  },
+  "counts": {
+    "train": 7744,
+    "validation": 2
+  },
+  "exact_duplicate_images_independently_decoded": 10,
+  "jobs": {
+    "unity-pixel-identity-smoke66-v1": {
+      "status": "failed",
+      "process_seconds": 0.2427739999984624,
+      "report_sha256": "d9cdc0bb4afc2446f9753f890805be4ce4739c6441ea334acf1d4c79fb43c1ae"
+    },
+    "unity-pixel-identity-smoke66-v2": {
+      "status": "passed",
+      "process_seconds": 2.0551160000031814,
+      "report_sha256": "e06ee339db021b79548e206d378031efc16aa8fe3aa425b5b351fdb1ed9d7036"
+    },
+    "unity-pixel-identity-smoke66-v3": {
+      "status": "passed",
+      "process_seconds": 1.4931377999964752,
+      "report_sha256": "4f636353cc820260fc5fca94cd1629761cd117760384029ddbc3dbd1c81deaeb"
+    },
+    "unity-pixel-identity-completed-v1": {
+      "status": "passed",
+      "process_seconds": 74.64262090000557,
+      "report_sha256": "7562dde43bffae2bef9ddd854db9a219ba98fba1b9bbc0ebe751e022e21eaa2f"
+    }
+  },
+  "live_jobs": {
+    "unity-reference-series-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "status": "running",
+      "pid": 41024,
+      "created": 1794409642.5245771
+    },
+    "unity-candidate-queue-multimip-v2": {
+      "status": "failed",
+      "process_exit_code": 1,
+      "receipt_sha256": "be26446125f4c05c3af0f538320c45df87b5d870cf5150820c9447ddd6a23720"
+    },
+    "unity-native-pipeline-full-v2": {
+      "status": "failed",
+      "process_exit_code": 1,
+      "receipt_sha256": "edaf333babb544a164a03f24f298a38c7c3a8b4db20595817cbe1009dc36d3fa"
+    },
+    "unity-native-training-full-v1": {
+      "status": "failed",
+      "process_exit_code": 1,
+      "receipt_sha256": "79e36a8bc1f65e515d42a74a4b8deeb4720d7b5462daf7d9908ea7b47b9ded07"
+    },
+    "unity-confirmation-capture-smoke2-v1": {
+      "status": "failed",
+      "process_exit_code": 1,
+      "receipt_sha256": "0d158dbe4d1f30767d98997b8d03f6d56fb9bfd8f87bfb81e56922aedb938a47"
+    }
+  },
+  "protected_sources_unchanged": {
+    "unity-native-pipeline-full-v2": 14,
+    "unity-native-training-full-v1": 23,
+    "unity-confirmation-capture-smoke2-v1": 15
+  },
+  "executed_source_sha256": "f03ec17742b9d2393e8c4cf765dd6ba3fc348d77b9849fdad2df3c3354328624",
+  "executed_source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-pixel-identity-completed-v1\\executed-source\\pixel_identity.py",
+  "current_source_sha256": "a720b8144d0b0099a8bb3f1b7193476d09da70208665b7949f4f06c8550cacaf",
+  "local_file_links": 311,
+  "internal_anchors": 26,
+  "docs_sha256": {
+    "README.md": "56457863b550da84229eeacd5b48633daf0c89d96b5d1f38d746438ab68829b5",
+    "AGENTS.md": "3954b7981976bb9c6fbc79a2e18bc2f6fde54107a140875d611b27edca1d8df9",
+    "experiment plan\\V1\\README.md": "e4584ff84515f81e9095d700dcbcedf38343fe15970a39395342afa128048468",
+    "experiment report\\unity-accuracy90-20261111\\README.md": "e661f05f551629ccb3ce54e3948368394ae288dade238f73b0d1179cc36870a0",
+    "experiment report\\unity-accuracy90-20261111\\unity-pixel-identity.md": "80abb36826821cc8381ceae425e869d25b178b5713af4f732d21237a5d98dee9",
+    "references\\task-costs.md": "761439a80de429dd15e5c2c039f92ba90f3759ab9530e856114b864066b71210"
+  },
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "script_sha256": "63abf3d1ca3e49acf13dce03fff0f242d9d83eba14f88e7537e30f78076ddc80",
+  "test_opened": false,
+  "training_updates": 0,
+  "splits_modified": false,
+  "scope": "Completed native development subset only; independent test remains unvalidated"
+}

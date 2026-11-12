@@ -52,6 +52,10 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[Sprite补测恢复](<experiment report/unity-accuracy90-20261111/unity-sprite-recovery.md>)已完成失败样本20候选重编，原16项指标及选中ASTC／解码一致。已恢复候选sprite-v3、数据full-v3、训练full-v2和确认集smoke2-v2；旧7744／2图候选归档继续复核复用，训练配方和确认名单不变。以下旧队列等待记录保留为历史，新状态见progress.json。`[verified: unity-sprite-candidates20-v1.json；unity-sprite-recovery.json；unity-sprite-recovery-verification.json；opinion: 历史与当前边界]`
+
+[原生像素重复审计](<experiment report/unity-accuracy90-20261111/unity-pixel-identity.md>)核对7744训练图／2验证图，发现5组精确RGBA重复、共10张，均在训练集内；仅RGB重复18组，其中13组Alpha不同。21项CPU检查及最终66图复跑通过，冻结划分保持；完整验证集、确认集和近重复隔离仍待完成。`[verified: unity-pixel-identity-completed-v1.json counts、rgba、rgb_only；unity-pixel-identity-verification.json；opinion: 覆盖边界]`
+
 [独立确认集采集入口](<experiment report/unity-accuracy90-20261111/unity-confirmation-capture.md>)已通过30项CPU检查及两张真实源图的只读协议核验，并启动等待任务；保留confirmation身份，开发入口仍只允许train／validation。绑定15份源码，等原采集、补测、完整数据和首轮原生训练成功后才启动Editor；当前尚未采到新确认集像素或标签，也未打开模型测试。`[verified: unity-confirmation-capture-readiness.json；unity-confirmation-capture-smoke2-v1.json status、dependencies、native_labels_collected；opinion: 验收边界]`
 
 [独立确认集预留](<experiment report/unity-accuracy90-20261111/unity-confirmation-cohort.md>)已预留2000张主名单、500张备用，主名单覆盖1227个未出现于9份历史清单的资产组；2500份实际源文件及meta身份复核通过。仅完成源资产隔离，后续仍需Unity参考像素、同次原搜索标签、像素重复审计，以及模型和决策冻结后的独立测试；当前未打开模型测试。`[verified: unity-confirmation2000-v1.json primary_images、primary_groups、reserve_images、native_pixels_audited、native_labels_collected、model_sealed；unity-confirmation-reservation-verification.json；opinion: 后续验收]`

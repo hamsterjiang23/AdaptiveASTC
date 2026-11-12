@@ -1,0 +1,139 @@
+{
+  "status": "passed",
+  "config": {
+    "capture": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-030-20261111\\references\\normalized-batch",
+    "capture_run": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-030-20261111",
+    "capture_phase": "batch",
+    "capture_receipt_sha256": "7867f3fcf2a25ba24b199206cb6e9a47e4247366b66e450902fac32d662f6b24",
+    "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-030-20261111\\options-receipt.json",
+    "options_receipt_sha256": "a07c5f17a32ed5e1279e51851155a2d7dc7ef21fdb984d257e596ec01eb022e5",
+    "imports_sha256": "bcfe87b8848057cd63c633f4943bc130c9eb7223bae0ad490fbab21312044e0c",
+    "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+    "encoder_dll": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-shared.dll",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+    "quality_build_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-sprite-candidates20-v1",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-sprite-candidates20-v1.json",
+    "scope": "Imported development references; all20candidate targets; original search choices preserved; cost separate",
+    "items": [
+      {
+        "index": 52,
+        "path": "Assets/CustomMode/DisOrderNewMode/Art/Prefabs/Effect/Common/touzi/gold/9.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "mip_count": 1,
+        "metadata_source": "Verified frozen reference series and actual callback; normal metric mip depth inferred from captured Tex2D mipmaps and dimensions"
+      }
+    ],
+    "prior_failed_batch": {
+      "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-multimip-v2\\configs\\unity-v1-train-030-20261111.json",
+      "sha256": "cd3472bbbe57844d92cf30319322f89003bb31c0a096f00f194d88ddaa8a7cc4"
+    }
+  },
+  "config_sha256": "0d51f47ff3404fcdae1284c9bec9c32feb1fb5328eee4e6fcd6989e6b5e88d83",
+  "quality_build": {
+    "status": "passed",
+    "binding": {
+      "engine_source": "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp",
+      "engine_source_sha256": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+      "engine_first_line": 2182,
+      "engine_last_line": 2675,
+      "extracted_sha256": "6c35c61f99982f22c2971bd8ed1b8cfa840c925a6dd73eb2d82b0517ec02ec31",
+      "wrapper_sha256": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+      "cmake_sha256": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+      "arithmetic": "MSVC fp:precise; unchanged engine functions; parity checked separately"
+    },
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native",
+        "-B",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64",
+        "-DMETRICS_SOURCE=E:/ASTC_Compression/experiment report/.local/unity-accuracy90-20261111/unity-quality-native-retry1/metrics.cpp"
+      ],
+      [
+        "cmake",
+        "--build",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build",
+        "--config",
+        "Release",
+        "--parallel",
+        "1"
+      ]
+    ],
+    "dll": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+    "dll_sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+    "generated_sha256": "317966c31f0b8fda57a4e5cab7946d6b3f9118cdcda24d9683c0a99cca0de94a"
+  },
+  "capture_binding": {
+    "protocol_sha256": "9a1d0751cad586834ff113d3db9f75fb0ee4c9994395c9a7bd6ef0d8b8e03968",
+    "identity_sha256": "4fc252b4c5a27cbab1e6c8a729190b6c8e8d6130eeb06a4ed01980c986d1b528",
+    "phase_config_sha256": "61efcb785a26c20d7c06cd0604463ba158962d3ac79e2ff02584006fb6fc1fb7",
+    "encoder_dll_sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64"
+  },
+  "metadata_binding": {
+    "status": "verified_actual_callback",
+    "receipt_sha256": "a07c5f17a32ed5e1279e51851155a2d7dc7ef21fdb984d257e596ec01eb022e5",
+    "raw_options_sha256": "ebbe1820be9c7a09ef65cbc9138d6b36bb6fb40b323ac26b1e3a1321f40fc241",
+    "audit_source_sha256": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+    "imports_sha256": "bcfe87b8848057cd63c633f4943bc130c9eb7223bae0ad490fbab21312044e0c",
+    "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+    "normal_scope": "Linear RGBA8, normal_pack=false, mip0 encoded; angular evaluation depth inferred from captured mipmaps and dimensions, clamped to4, checked against every original candidate's rounded native metrics"
+  },
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03"
+  },
+  "rows": [
+    {
+      "index": 52,
+      "path": "Assets/CustomMode/DisOrderNewMode/Art/Prefabs/Effect/Common/touzi/gold/9.png",
+      "metadata": {
+        "index": 52,
+        "path": "Assets/CustomMode/DisOrderNewMode/Art/Prefabs/Effect/Common/touzi/gold/9.png",
+        "need_alpha": true,
+        "is_hdr": false,
+        "is_normal": false,
+        "mip_count": 1,
+        "metadata_source": "Verified frozen reference series and actual callback; normal metric mip depth inferred from captured Tex2D mipmaps and dimensions"
+      },
+      "original_selection": {
+        "asset": "Assets/CustomMode/DisOrderNewMode/Art/Prefabs/Effect/Common/touzi/gold/9.png",
+        "block_size": "6x6",
+        "preset": "fastest",
+        "selection_reason": "first_valid",
+        "search_ms": 576.2821,
+        "format_ms": 578.7935,
+        "select_and_encode_ms": 578.8066,
+        "candidates_attempted": 16,
+        "candidates_measured": 16,
+        "payload_reuses": 1,
+        "cache_hit": false,
+        "search_executed": true,
+        "success": true
+      },
+      "candidate_count": 20,
+      "original_search_candidates": 16,
+      "new_candidates": 4,
+      "selected_payload_and_decode_match": true,
+      "native_metric_comparisons": 16,
+      "native_record_tolerance_db": 0.00501,
+      "cost": {
+        "encode_seconds": 0.3301449999999022,
+        "decode_seconds": 0.13164759999199305,
+        "quality_seconds": 0.01942049997887807
+      },
+      "candidate_receipt_sha256": "4f60908ba8356cc9b1bb8703891c537bc8c19f8191463c603a8dafef1273ec23"
+    }
+  ],
+  "test_opened": false,
+  "wall_seconds": 0.7632426000054693,
+  "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-sprite-candidates20-v1\\receipt.json",
+  "raw_receipt_sha256": "274b1abeb3bc45e55f1e60ae3f70965c5669edf23b73279d10093c0ff645f87b"
+}

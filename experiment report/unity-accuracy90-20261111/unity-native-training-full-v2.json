@@ -1,0 +1,93 @@
+{
+  "status": "waiting_data",
+  "stages": [
+    {
+      "name": "smoke",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\native-training-full-v2\\smoke.json",
+      "report_sha256": "ca8146bcf3c49cb3bb8eca84e8dde0f0cf95d8a564023745928dde88997ebbb5",
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-training-full-v2\\smoke-job\\job.json",
+      "job_receipt_sha256": "9fa2d2268acc61adb7c5ef1c4184625ee2ad000f907baa3a9276bf5444f8a116",
+      "process_seconds": 45.523354899996775,
+      "training_updates": 4,
+      "checkpoint_sha256": "d7f5972361234044fadc882802e455cdc9830ac5f2af27c4d5d7f2a635774f3a",
+      "validation_metrics": {
+        "count": 2,
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "full_choice_accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 0,
+            "recall": null
+          },
+          "8x8": {
+            "support": 0,
+            "recall": null
+          },
+          "10x10": {
+            "support": 0,
+            "recall": null
+          },
+          "12x12": {
+            "support": 2,
+            "recall": 0.5
+          }
+        },
+        "actual_quality_pass_rate": 0.5,
+        "no_strict_feasible_images": 0,
+        "color_near_threshold_candidate_count": 2,
+        "color_near_threshold_rmse_db": 2.969733341196751,
+        "selected_payload_bytes": 45968,
+        "original_payload_bytes": 37328,
+        "fixed8_payload_bytes": 81920,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.015630599998985417
+      }
+    }
+  ],
+  "test_opened": false,
+  "config_sha256": "8dc98d66ee2bc08257e8ef9ebb5c4f030f9ecab3a7fc0a58c0a068de291febb3",
+  "goal_complete": false,
+  "dependencies": [
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+      "status": "running",
+      "pid": 37368,
+      "created": 1794443383.9480257
+    }
+  ],
+  "resources": {
+    "ready": true
+  },
+  "wait_seconds": {
+    "cuda": 0.09091970000008587
+  },
+  "current_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-training-full-v2\\smoke-job\\job.json",
+  "current_config_sha256": "c07edb2b108e8c741e986b9037ae26c50b5cf5742c65184c3c645c80f1b01d95"
+}
