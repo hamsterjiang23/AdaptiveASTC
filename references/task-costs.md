@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+原生采集到最终压缩验证2图：旧smoke8权重、CUDA、预热1轮＋正式3轮，每轮每图每分支一次编码；预测／固定8×8两图端到端中位83.09／66.12毫秒，完整进程20.31秒，内部8.58秒。实际16份ASTC与解码PNG另行核对，质量达标1/2与2/2；仅mip0，解码／评分／写文件在部署计时外。读取原采集、已冻结模型及编码／质量DLL，写独立.local；本轮无训练，原采集／归档同机运行，无等质量生产加速结论。`[verified: unity-capture-deployment-verification.json summary、process_seconds、internal_seconds、jobs；capture_deployment.py run；opinion: 成本边界]`
+
 原生封存推理的两张验证图／13patch CUDA检查：证据准备0.960秒、加载0.330秒、单次未预热推理0.752秒、完整进程9.933秒。读取已完成smoke8权重、验证参考图及原规则，写新运行的开发seal／尝试／预测；启动前GPU占用1540／12282MiB、利用率3%，正式训练仍等待数据。本次无训练或编码，正式确认集仍需共享registry和完整评价入口。`[verified: unity-sealed-inference-verification.json；本轮nvidia-smi及训练状态输出；opinion: 成本与接入边界]`
 
 完整像素审计队列的真实66图检查：归档复核5.675秒、精确身份1.276秒、近重复1.963秒，完整进程12.709秒。读取已完成参考／回调归档，写独立.local明细与公开报告；全量10000／1000／2000必须等待两个采集系列成功退出，并在启动像素检查前保留8GiB RAM／5GiB磁盘。等待控制器每15秒检查，不启动Editor或CUDA；确认集真实投影与全量耗时仍待实测。`[verified: unity-pixel-pipeline-verification.json smoke、full_queue；pixel_audit_pipeline.py wait/run；opinion: 成本边界]`

@@ -1,0 +1,239 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-11-12T02:54:19.176311+00:00",
+  "report": "unity-capture-deployment-smoke2-v2.json",
+  "report_sha256": "ee2e1f93bb5325ef7334953b2cae6d7cbeacc1992eb4cb4695530c72a6519c20",
+  "config_sha256": "5b1a1efcbd95b2ba65a71a6de86252b64834ee57a0505325c44a8d7525098993",
+  "images": 2,
+  "patches": 13,
+  "compared_native_outputs": 16,
+  "decoded_pixels_and_metrics_match": true,
+  "max_prediction_difference": 0.0,
+  "sealed_prediction_attempts": 4,
+  "summary": {
+    "prediction": {
+      "images": 2,
+      "classes": [
+        "6x6",
+        "8x8",
+        "10x10",
+        "12x12"
+      ],
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 0,
+          "predicted": 1,
+          "recall": null,
+          "precision": 0.0
+        },
+        "8x8": {
+          "support": 0,
+          "predicted": 0,
+          "recall": null,
+          "precision": null
+        },
+        "10x10": {
+          "support": 0,
+          "predicted": 0,
+          "recall": null,
+          "precision": null
+        },
+        "12x12": {
+          "support": 2,
+          "predicted": 1,
+          "recall": 0.5,
+          "precision": 1.0
+        }
+      },
+      "footprint_accuracy": 0.5,
+      "full_choice_accuracy": 0.0,
+      "balanced_accuracy": 0.5,
+      "strict_quality_pass_rate": 0.5,
+      "quality_violation_count": 1,
+      "payload_bytes": 59168,
+      "container_bytes": 59200,
+      "selected_color_near_threshold_count": 1,
+      "selected_color_near_threshold_rmse_db": 2.9454808430396042,
+      "all_candidate_rmse_db": null,
+      "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets",
+      "median_end_to_end_seconds": 0.08308759999636095,
+      "measured_encoding_calls": 6,
+      "warmup_encoding_calls": 2
+    },
+    "fixed8": {
+      "images": 2,
+      "classes": [
+        "6x6",
+        "8x8",
+        "10x10",
+        "12x12"
+      ],
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 0,
+          "predicted": 0,
+          "recall": null,
+          "precision": null
+        },
+        "8x8": {
+          "support": 0,
+          "predicted": 2,
+          "recall": null,
+          "precision": 0.0
+        },
+        "10x10": {
+          "support": 0,
+          "predicted": 0,
+          "recall": null,
+          "precision": null
+        },
+        "12x12": {
+          "support": 2,
+          "predicted": 0,
+          "recall": 0.0,
+          "precision": null
+        }
+      },
+      "footprint_accuracy": 0.0,
+      "full_choice_accuracy": 0.0,
+      "balanced_accuracy": 0.0,
+      "strict_quality_pass_rate": 1.0,
+      "quality_violation_count": 0,
+      "payload_bytes": 81920,
+      "container_bytes": 81952,
+      "selected_color_near_threshold_count": 0,
+      "selected_color_near_threshold_rmse_db": null,
+      "all_candidate_rmse_db": null,
+      "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets",
+      "median_end_to_end_seconds": 0.06612260000838432,
+      "measured_encoding_calls": 6,
+      "warmup_encoding_calls": 2
+    }
+  },
+  "parameters": 11377660,
+  "weights_bytes": 45549200,
+  "internal_seconds": 8.576151599991135,
+  "process_seconds": 20.305795199994463,
+  "process_receipt_sha256": "030f2799e60a55dcbc21efe36cb5e4f57893b3f60f462e5bf4e620fc50baf8f0",
+  "unchanged_active_sources": {
+    "unity-native-pipeline-full-v3": 14,
+    "unity-native-training-full-v2": 23,
+    "unity-confirmation-capture-smoke2-v2": 15,
+    "unity-confirmation-series2000-v1": 17,
+    "unity-pixel-pipeline-full13000-v2": 25
+  },
+  "v1_evidence_sha256": "d9f17eb3d083002c9f7e6379448f21610e6572309df7c67a10a98ecd82cf25b5",
+  "jobs": {
+    "unity-reference-series-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "status": "running",
+      "pid": 41024,
+      "created": 1794409642.5245771
+    },
+    "unity-candidate-queue-sprite-v3": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
+      "status": "running",
+      "pid": 33060,
+      "created": 1794443373.3538325
+    },
+    "unity-native-pipeline-full-v3": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+      "status": "running",
+      "pid": 37368,
+      "created": 1794443383.9480257
+    },
+    "unity-native-training-full-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v2\\job.json",
+      "status": "running",
+      "pid": 8636,
+      "created": 1794443400.968097
+    },
+    "unity-confirmation-capture-smoke2-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v2\\job.json",
+      "status": "running",
+      "pid": 47368,
+      "created": 1794443411.405678
+    },
+    "unity-confirmation-series2000-v1": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-series2000-v1\\job.json",
+      "status": "running",
+      "pid": 60172,
+      "created": 1794444748.3573053
+    },
+    "unity-pixel-pipeline-full13000-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-pixel-pipeline-full13000-v2\\job.json",
+      "status": "running",
+      "pid": 57104,
+      "created": 1794449302.7315347
+    },
+    "unity-capture-deployment-smoke2-v2": {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-capture-deployment-smoke2-v2\\job.json",
+      "status": "passed",
+      "receipt_sha256": "030f2799e60a55dcbc21efe36cb5e4f57893b3f60f462e5bf4e620fc50baf8f0"
+    }
+  },
+  "cpu_tests": {
+    "passed": 57,
+    "seconds": 10.78
+  },
+  "prior_pass": {
+    "report": "unity-capture-deployment-smoke2-v1.json",
+    "archived_source_sha256": "3e30eaea02d6ef08c9e93263ff89f28ae1f9cda551d62486279a014c09d148c8"
+  },
+  "test_opened": false,
+  "training_updates": 0,
+  "scope": "Known validation2 and oldsmoke8 model; original capture-only inputs; no new quality/accuracy claim or confirmation acceptance",
+  "script_sha256": "6451923b36c5e0770cd5c6e617c248cac60cd6e1e2471dc67360b7bd51ef2a67"
+}

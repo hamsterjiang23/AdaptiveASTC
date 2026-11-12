@@ -72,6 +72,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 实验步骤
 
+[原生采集到最终压缩闭环](<../../experiment report/unity-accuracy90-20261111/unity-capture-deployment.md>)完成旧smoke8权重的验证2图CUDA预测、每图一次编码与质量复算，16份ASTC／PNG及指标和原记录一致，57项CPU检查通过。两图预测／固定8×8质量达标1/2、2/2，中位83.09／66.12毫秒；本轮没有新训练、confirmation测试或模型增益，完整独立验收继续推进。`[verified: unity-capture-deployment-verification.json；opinion: 验收范围]`
+
 [原生模型封存与推理](<../../experiment report/unity-accuracy90-20261111/unity-sealed-inference.md>)完成两张已观察验证图／13patch的CUDA接口检查，预测数组和选参与原smoke权重结果一致，进程9.93秒；73项CPU检查通过。首次配置tuple／list差异在forward前失败，修复后新身份复跑；原始证据和活动任务源码保持。正式确认集评价、完整压缩对照与90%验收仍未完成。`[verified: unity-sealed-inference-verification.json；opinion: 验收范围]`
 
 [完整像素审计队列](<../../experiment report/unity-accuracy90-20261111/unity-pixel-pipeline.md>)已完成真实66图归档与两种像素检查，完整进程12.71秒，74项CPU检查通过；10000训练／1000验证／2000确认图任务已启动等待上游采集，25份文件冻结。当前没有确认集模型结果，检查本身不修改划分，也不证明裁剪／缩放或历史语料的像素隔离；V1原始证据保持。`[verified: unity-pixel-pipeline-verification.json smoke、full_queue、v1_evidence_sha256；opinion: 完成边界]`

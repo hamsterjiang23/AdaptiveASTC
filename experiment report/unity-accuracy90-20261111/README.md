@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[原生采集到最终压缩闭环](unity-capture-deployment.md)完成验证2图的封存CUDA推理、一次最终编码及直接解码质量评价，不依赖候选补测档案；16份ASTC／PNG与原记录一致，预测差0，57项CPU检查通过。沿用旧smoke8模型，预测／固定8×8质量达标1/2、2/2，正式独立模型验收与完整mip成本尚未完成。`[verified: unity-capture-deployment-verification.json；opinion: 验收边界]`
+
 [原生模型封存与推理](unity-sealed-inference.md)完成模型／输入／规则固定后的验证2图CUDA检查，13patch、四组预测最大差0、选参一致，进程9.93秒。73项CPU检查通过，首次配置类型误判失败与修复前源码保留；该入口只运行开发验证图，正式confirmation评价和新的生产准确率尚未取得。`[verified: unity-sealed-inference-verification.json；opinion: 验收边界]`
 
 [完整像素审计队列](unity-pixel-pipeline.md)通过真实64训练／2验证图的归档、精确RGBA和近重复检查，0组精确重复／0对近重复，完整进程12.71秒。74项CPU检查通过，全量10000／1000／2000任务已启动等待开发与确认采集完成。确认集报告转换仅完成合成归档检查，完整隔离及模型90%尚未验收。`[verified: unity-pixel-pipeline-verification.json smoke、full_queue、cpu_tests；opinion: 验收范围]`

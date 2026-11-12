@@ -1,0 +1,1942 @@
+{
+  "status": "passed",
+  "config_sha256": "4e74c733ed641ef4a5d13ff8a6379e12d5f897174b86797a9877a2b0b7988031",
+  "evidence_and_backend_seconds": 0.8922181999951135,
+  "measurements": [
+    {
+      "repetition": 0,
+      "warmup": true,
+      "order": [
+        "prediction",
+        "fixed8"
+      ],
+      "arms": {
+        "prediction": {
+          "timings": {
+            "end_to_end_seconds": 0.4548483000107808,
+            "reference_and_metadata_seconds": 0.0168159999884665,
+            "reference_load_and_flip_seconds": 0.0003062999894609675,
+            "inference": {
+              "total_seconds": 0.4110986000014236,
+              "patch_input_seconds": 0.04436179999902379,
+              "patch_forward_and_transfer_seconds": 0.3288336999976309,
+              "image_head_and_transfer_seconds": 0.0373293000011472,
+              "mse_aggregation_seconds": 0.00021239998750388622,
+              "images": 2,
+              "patches": 13,
+              "batch_size": 16,
+              "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+            },
+            "policy_seconds": 0.003770099996472709,
+            "native_encode_seconds": 0.021054900003946386,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "source_split": "validation",
+                "width": 256,
+                "height": 256,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 18,
+                "block_size": "6x6",
+                "preset": "thorough",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                  "block_size": "12x12",
+                  "preset": "fastest",
+                  "selection_reason": "first_valid",
+                  "search_ms": 47.8803,
+                  "format_ms": 51.7249,
+                  "select_and_encode_ms": 51.7383,
+                  "candidates_attempted": 1,
+                  "candidates_measured": 1,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 37.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 58.02772903442383,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 42.70477294921875,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "predicted_psnr": 35.607054509312746,
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "decode_seconds": 0.0041265000036219135,
+                "astc_sha256": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+                "decoded_png_sha256": "afd5b2e55a24ddd64d6f67f5dba17785f671c2c3294f39bca9f73c28d28e57c7"
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "source_split": "validation",
+                "width": 512,
+                "height": 512,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 0,
+                "block_size": "12x12",
+                "preset": "fastest",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                  "block_size": "12x12",
+                  "preset": "exhaustive",
+                  "selection_reason": "size_first_relaxed",
+                  "search_ms": 1171.7495,
+                  "format_ms": 1175.8039,
+                  "select_and_encode_ms": 1175.8192,
+                  "candidates_attempted": 6,
+                  "candidates_measured": 6,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": true,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 30.0,
+                "strict_quality_met": false,
+                "metrics": {
+                  "psnr": 32.06110763549805,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 15.372034072875977,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "predicted_psnr": 35.00658847853765,
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "decode_seconds": 0.011285300002782606,
+                "astc_sha256": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+                "decoded_png_sha256": "07efd4e7dc0667368c0ed5ac87d7556c0439103017f14d5745d3df916ac6e268"
+              }
+            ],
+            "summary": {
+              "images": 2,
+              "classes": [
+                "6x6",
+                "8x8",
+                "10x10",
+                "12x12"
+              ],
+              "confusion": [
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  1
+                ]
+              ],
+              "per_class": {
+                "6x6": {
+                  "support": 0,
+                  "predicted": 1,
+                  "recall": null,
+                  "precision": 0.0
+                },
+                "8x8": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "10x10": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "12x12": {
+                  "support": 2,
+                  "predicted": 1,
+                  "recall": 0.5,
+                  "precision": 1.0
+                }
+              },
+              "footprint_accuracy": 0.5,
+              "full_choice_accuracy": 0.0,
+              "balanced_accuracy": 0.5,
+              "strict_quality_pass_rate": 0.5,
+              "quality_violation_count": 1,
+              "payload_bytes": 59168,
+              "container_bytes": 59200,
+              "selected_color_near_threshold_count": 1,
+              "selected_color_near_threshold_rmse_db": 2.9454808430396042,
+              "all_candidate_rmse_db": null,
+              "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets"
+            },
+            "outputs_sha256": {
+              "00000.astc": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+              "00000.png": "afd5b2e55a24ddd64d6f67f5dba17785f671c2c3294f39bca9f73c28d28e57c7",
+              "00001.astc": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+              "00001.png": "07efd4e7dc0667368c0ed5ac87d7556c0439103017f14d5745d3df916ac6e268",
+              "choices.json": "9abb0f93f1cadd42afa686175dba991981335b531451a39b2fc0bfec2b46d015",
+              "predictions.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379",
+              "rows.json": "604fb6d99f79ea6fad30aebdb9214d8b16030959d97b5cd179f643f62080537c"
+            }
+          },
+          "audit_and_write_seconds": 0.16812889999710023
+        },
+        "fixed8": {
+          "timings": {
+            "end_to_end_seconds": 0.04273010000179056,
+            "reference_and_metadata_seconds": 0.0,
+            "reference_load_and_flip_seconds": 0.007101800001692027,
+            "inference": {},
+            "policy_seconds": 8.700008038431406e-06,
+            "native_encode_seconds": 0.03507900000840891,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "source_split": "validation",
+                "width": 256,
+                "height": 256,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 12,
+                "block_size": "8x8",
+                "preset": "medium",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                  "block_size": "12x12",
+                  "preset": "fastest",
+                  "selection_reason": "first_valid",
+                  "search_ms": 47.8803,
+                  "format_ms": 51.7249,
+                  "select_and_encode_ms": 51.7383,
+                  "candidates_attempted": 1,
+                  "candidates_measured": 1,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 37.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 49.99437713623047,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 35.098873138427734,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "predicted_psnr": null,
+                "payload_bytes": 16384,
+                "container_bytes": 16400,
+                "decode_seconds": 0.005916599999181926,
+                "astc_sha256": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+                "decoded_png_sha256": "a5da01ba6e7bd9038c66a75a9a16101831fabed4dbe9a25df3fddee767cdab8a"
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "source_split": "validation",
+                "width": 512,
+                "height": 512,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 12,
+                "block_size": "8x8",
+                "preset": "medium",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                  "block_size": "12x12",
+                  "preset": "exhaustive",
+                  "selection_reason": "size_first_relaxed",
+                  "search_ms": 1171.7495,
+                  "format_ms": 1175.8039,
+                  "select_and_encode_ms": 1175.8192,
+                  "candidates_attempted": 6,
+                  "candidates_measured": 6,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 30.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 38.30811309814453,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 23.100170135498047,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "predicted_psnr": null,
+                "payload_bytes": 65536,
+                "container_bytes": 65552,
+                "decode_seconds": 0.006205900004715659,
+                "astc_sha256": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+                "decoded_png_sha256": "6090a660efd1b7daf60c4c30704bb5a03f2ea587b80c8f4faf5b7cf5c12163d5"
+              }
+            ],
+            "summary": {
+              "images": 2,
+              "classes": [
+                "6x6",
+                "8x8",
+                "10x10",
+                "12x12"
+              ],
+              "confusion": [
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  2,
+                  0,
+                  0
+                ]
+              ],
+              "per_class": {
+                "6x6": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "8x8": {
+                  "support": 0,
+                  "predicted": 2,
+                  "recall": null,
+                  "precision": 0.0
+                },
+                "10x10": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "12x12": {
+                  "support": 2,
+                  "predicted": 0,
+                  "recall": 0.0,
+                  "precision": null
+                }
+              },
+              "footprint_accuracy": 0.0,
+              "full_choice_accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "strict_quality_pass_rate": 1.0,
+              "quality_violation_count": 0,
+              "payload_bytes": 81920,
+              "container_bytes": 81952,
+              "selected_color_near_threshold_count": 0,
+              "selected_color_near_threshold_rmse_db": null,
+              "all_candidate_rmse_db": null,
+              "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets"
+            },
+            "outputs_sha256": {
+              "00000.astc": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+              "00000.png": "a5da01ba6e7bd9038c66a75a9a16101831fabed4dbe9a25df3fddee767cdab8a",
+              "00001.astc": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+              "00001.png": "6090a660efd1b7daf60c4c30704bb5a03f2ea587b80c8f4faf5b7cf5c12163d5",
+              "choices.json": "8e1bec149849455e07094844f5982d1305302ec5ee493fc865f1baee2474f1a6",
+              "rows.json": "1a8d6a57990e4771ff12b2b323f4cae21f96d6cfc671f3665c7cb6a0139841a0"
+            }
+          },
+          "audit_and_write_seconds": 0.11205339999287389
+        }
+      }
+    },
+    {
+      "repetition": 1,
+      "warmup": false,
+      "order": [
+        "fixed8",
+        "prediction"
+      ],
+      "arms": {
+        "fixed8": {
+          "timings": {
+            "end_to_end_seconds": 0.06746239999483805,
+            "reference_and_metadata_seconds": 0.0,
+            "reference_load_and_flip_seconds": 0.0076662000064970925,
+            "inference": {},
+            "policy_seconds": 4.599991370923817e-06,
+            "native_encode_seconds": 0.05932359999860637,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "source_split": "validation",
+                "width": 256,
+                "height": 256,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 12,
+                "block_size": "8x8",
+                "preset": "medium",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                  "block_size": "12x12",
+                  "preset": "fastest",
+                  "selection_reason": "first_valid",
+                  "search_ms": 47.8803,
+                  "format_ms": 51.7249,
+                  "select_and_encode_ms": 51.7383,
+                  "candidates_attempted": 1,
+                  "candidates_measured": 1,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 37.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 49.99437713623047,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 35.098873138427734,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "predicted_psnr": null,
+                "payload_bytes": 16384,
+                "container_bytes": 16400,
+                "decode_seconds": 0.009144099996774457,
+                "astc_sha256": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+                "decoded_png_sha256": "a5da01ba6e7bd9038c66a75a9a16101831fabed4dbe9a25df3fddee767cdab8a"
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "source_split": "validation",
+                "width": 512,
+                "height": 512,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 12,
+                "block_size": "8x8",
+                "preset": "medium",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                  "block_size": "12x12",
+                  "preset": "exhaustive",
+                  "selection_reason": "size_first_relaxed",
+                  "search_ms": 1171.7495,
+                  "format_ms": 1175.8039,
+                  "select_and_encode_ms": 1175.8192,
+                  "candidates_attempted": 6,
+                  "candidates_measured": 6,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 30.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 38.30811309814453,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 23.100170135498047,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "predicted_psnr": null,
+                "payload_bytes": 65536,
+                "container_bytes": 65552,
+                "decode_seconds": 0.0096415000007255,
+                "astc_sha256": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+                "decoded_png_sha256": "6090a660efd1b7daf60c4c30704bb5a03f2ea587b80c8f4faf5b7cf5c12163d5"
+              }
+            ],
+            "summary": {
+              "images": 2,
+              "classes": [
+                "6x6",
+                "8x8",
+                "10x10",
+                "12x12"
+              ],
+              "confusion": [
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  2,
+                  0,
+                  0
+                ]
+              ],
+              "per_class": {
+                "6x6": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "8x8": {
+                  "support": 0,
+                  "predicted": 2,
+                  "recall": null,
+                  "precision": 0.0
+                },
+                "10x10": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "12x12": {
+                  "support": 2,
+                  "predicted": 0,
+                  "recall": 0.0,
+                  "precision": null
+                }
+              },
+              "footprint_accuracy": 0.0,
+              "full_choice_accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "strict_quality_pass_rate": 1.0,
+              "quality_violation_count": 0,
+              "payload_bytes": 81920,
+              "container_bytes": 81952,
+              "selected_color_near_threshold_count": 0,
+              "selected_color_near_threshold_rmse_db": null,
+              "all_candidate_rmse_db": null,
+              "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets"
+            },
+            "outputs_sha256": {
+              "00000.astc": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+              "00000.png": "a5da01ba6e7bd9038c66a75a9a16101831fabed4dbe9a25df3fddee767cdab8a",
+              "00001.astc": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+              "00001.png": "6090a660efd1b7daf60c4c30704bb5a03f2ea587b80c8f4faf5b7cf5c12163d5",
+              "choices.json": "8e1bec149849455e07094844f5982d1305302ec5ee493fc865f1baee2474f1a6",
+              "rows.json": "3a1cc8d6627c7a449b823982b786bd6b6854fbc51e860931e484987e76f90658"
+            }
+          },
+          "audit_and_write_seconds": 0.20676410000305623
+        },
+        "prediction": {
+          "timings": {
+            "end_to_end_seconds": 0.08121020000544377,
+            "reference_and_metadata_seconds": 0.016445199988083914,
+            "reference_load_and_flip_seconds": 0.000364200008334592,
+            "inference": {
+              "total_seconds": 0.019869499999913387,
+              "patch_input_seconds": 0.00995120000152383,
+              "patch_forward_and_transfer_seconds": 0.007675100001506507,
+              "image_head_and_transfer_seconds": 0.0018644000083440915,
+              "mse_aggregation_seconds": 0.00019920000340789557,
+              "images": 2,
+              "patches": 13,
+              "batch_size": 16,
+              "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+            },
+            "policy_seconds": 0.006477699993411079,
+            "native_encode_seconds": 0.03734910000639502,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "source_split": "validation",
+                "width": 256,
+                "height": 256,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 18,
+                "block_size": "6x6",
+                "preset": "thorough",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                  "block_size": "12x12",
+                  "preset": "fastest",
+                  "selection_reason": "first_valid",
+                  "search_ms": 47.8803,
+                  "format_ms": 51.7249,
+                  "select_and_encode_ms": 51.7383,
+                  "candidates_attempted": 1,
+                  "candidates_measured": 1,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 37.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 58.02772903442383,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 42.70477294921875,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "predicted_psnr": 35.607054509312746,
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "decode_seconds": 0.006352199998218566,
+                "astc_sha256": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+                "decoded_png_sha256": "afd5b2e55a24ddd64d6f67f5dba17785f671c2c3294f39bca9f73c28d28e57c7"
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "source_split": "validation",
+                "width": 512,
+                "height": 512,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 0,
+                "block_size": "12x12",
+                "preset": "fastest",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                  "block_size": "12x12",
+                  "preset": "exhaustive",
+                  "selection_reason": "size_first_relaxed",
+                  "search_ms": 1171.7495,
+                  "format_ms": 1175.8039,
+                  "select_and_encode_ms": 1175.8192,
+                  "candidates_attempted": 6,
+                  "candidates_measured": 6,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": true,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 30.0,
+                "strict_quality_met": false,
+                "metrics": {
+                  "psnr": 32.06110763549805,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 15.372034072875977,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "predicted_psnr": 35.00658847853765,
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "decode_seconds": 0.016787700005806983,
+                "astc_sha256": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+                "decoded_png_sha256": "07efd4e7dc0667368c0ed5ac87d7556c0439103017f14d5745d3df916ac6e268"
+              }
+            ],
+            "summary": {
+              "images": 2,
+              "classes": [
+                "6x6",
+                "8x8",
+                "10x10",
+                "12x12"
+              ],
+              "confusion": [
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  1
+                ]
+              ],
+              "per_class": {
+                "6x6": {
+                  "support": 0,
+                  "predicted": 1,
+                  "recall": null,
+                  "precision": 0.0
+                },
+                "8x8": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "10x10": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "12x12": {
+                  "support": 2,
+                  "predicted": 1,
+                  "recall": 0.5,
+                  "precision": 1.0
+                }
+              },
+              "footprint_accuracy": 0.5,
+              "full_choice_accuracy": 0.0,
+              "balanced_accuracy": 0.5,
+              "strict_quality_pass_rate": 0.5,
+              "quality_violation_count": 1,
+              "payload_bytes": 59168,
+              "container_bytes": 59200,
+              "selected_color_near_threshold_count": 1,
+              "selected_color_near_threshold_rmse_db": 2.9454808430396042,
+              "all_candidate_rmse_db": null,
+              "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets"
+            },
+            "outputs_sha256": {
+              "00000.astc": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+              "00000.png": "afd5b2e55a24ddd64d6f67f5dba17785f671c2c3294f39bca9f73c28d28e57c7",
+              "00001.astc": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+              "00001.png": "07efd4e7dc0667368c0ed5ac87d7556c0439103017f14d5745d3df916ac6e268",
+              "choices.json": "9abb0f93f1cadd42afa686175dba991981335b531451a39b2fc0bfec2b46d015",
+              "predictions.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379",
+              "rows.json": "62fd01f62f412745ce3b2b10c43bb4285d2f4abe10da976e3cca17d71c42c1a5"
+            }
+          },
+          "audit_and_write_seconds": 0.17768039999646135
+        }
+      }
+    },
+    {
+      "repetition": 2,
+      "warmup": false,
+      "order": [
+        "prediction",
+        "fixed8"
+      ],
+      "arms": {
+        "prediction": {
+          "timings": {
+            "end_to_end_seconds": 0.09253939999325667,
+            "reference_and_metadata_seconds": 0.016428300004918128,
+            "reference_load_and_flip_seconds": 0.0003971999976783991,
+            "inference": {
+              "total_seconds": 0.02807270000630524,
+              "patch_input_seconds": 0.007881900004576892,
+              "patch_forward_and_transfer_seconds": 0.006805299999541603,
+              "image_head_and_transfer_seconds": 0.013005300002987497,
+              "mse_aggregation_seconds": 0.00021579999884124845,
+              "images": 2,
+              "patches": 13,
+              "batch_size": 16,
+              "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+            },
+            "policy_seconds": 0.006316700004390441,
+            "native_encode_seconds": 0.03914809999696445,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "source_split": "validation",
+                "width": 256,
+                "height": 256,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 18,
+                "block_size": "6x6",
+                "preset": "thorough",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                  "block_size": "12x12",
+                  "preset": "fastest",
+                  "selection_reason": "first_valid",
+                  "search_ms": 47.8803,
+                  "format_ms": 51.7249,
+                  "select_and_encode_ms": 51.7383,
+                  "candidates_attempted": 1,
+                  "candidates_measured": 1,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 37.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 58.02772903442383,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 42.70477294921875,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "predicted_psnr": 35.607054509312746,
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "decode_seconds": 0.00622129999101162,
+                "astc_sha256": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+                "decoded_png_sha256": "afd5b2e55a24ddd64d6f67f5dba17785f671c2c3294f39bca9f73c28d28e57c7"
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "source_split": "validation",
+                "width": 512,
+                "height": 512,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 0,
+                "block_size": "12x12",
+                "preset": "fastest",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                  "block_size": "12x12",
+                  "preset": "exhaustive",
+                  "selection_reason": "size_first_relaxed",
+                  "search_ms": 1171.7495,
+                  "format_ms": 1175.8039,
+                  "select_and_encode_ms": 1175.8192,
+                  "candidates_attempted": 6,
+                  "candidates_measured": 6,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": true,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 30.0,
+                "strict_quality_met": false,
+                "metrics": {
+                  "psnr": 32.06110763549805,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 15.372034072875977,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "predicted_psnr": 35.00658847853765,
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "decode_seconds": 0.01695340000151191,
+                "astc_sha256": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+                "decoded_png_sha256": "07efd4e7dc0667368c0ed5ac87d7556c0439103017f14d5745d3df916ac6e268"
+              }
+            ],
+            "summary": {
+              "images": 2,
+              "classes": [
+                "6x6",
+                "8x8",
+                "10x10",
+                "12x12"
+              ],
+              "confusion": [
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  1
+                ]
+              ],
+              "per_class": {
+                "6x6": {
+                  "support": 0,
+                  "predicted": 1,
+                  "recall": null,
+                  "precision": 0.0
+                },
+                "8x8": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "10x10": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "12x12": {
+                  "support": 2,
+                  "predicted": 1,
+                  "recall": 0.5,
+                  "precision": 1.0
+                }
+              },
+              "footprint_accuracy": 0.5,
+              "full_choice_accuracy": 0.0,
+              "balanced_accuracy": 0.5,
+              "strict_quality_pass_rate": 0.5,
+              "quality_violation_count": 1,
+              "payload_bytes": 59168,
+              "container_bytes": 59200,
+              "selected_color_near_threshold_count": 1,
+              "selected_color_near_threshold_rmse_db": 2.9454808430396042,
+              "all_candidate_rmse_db": null,
+              "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets"
+            },
+            "outputs_sha256": {
+              "00000.astc": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+              "00000.png": "afd5b2e55a24ddd64d6f67f5dba17785f671c2c3294f39bca9f73c28d28e57c7",
+              "00001.astc": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+              "00001.png": "07efd4e7dc0667368c0ed5ac87d7556c0439103017f14d5745d3df916ac6e268",
+              "choices.json": "9abb0f93f1cadd42afa686175dba991981335b531451a39b2fc0bfec2b46d015",
+              "predictions.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379",
+              "rows.json": "0e078aee040ba24b64737d1dea8ca0ba7aa271e1b1cc4e170ebe3a0788ad2e46"
+            }
+          },
+          "audit_and_write_seconds": 0.18108740000752732
+        },
+        "fixed8": {
+          "timings": {
+            "end_to_end_seconds": 0.053606600005878136,
+            "reference_and_metadata_seconds": 0.0,
+            "reference_load_and_flip_seconds": 0.010591700003715232,
+            "inference": {},
+            "policy_seconds": 6.600006599910557e-06,
+            "native_encode_seconds": 0.04242179999710061,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "source_split": "validation",
+                "width": 256,
+                "height": 256,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 12,
+                "block_size": "8x8",
+                "preset": "medium",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                  "block_size": "12x12",
+                  "preset": "fastest",
+                  "selection_reason": "first_valid",
+                  "search_ms": 47.8803,
+                  "format_ms": 51.7249,
+                  "select_and_encode_ms": 51.7383,
+                  "candidates_attempted": 1,
+                  "candidates_measured": 1,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 37.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 49.99437713623047,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 35.098873138427734,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "predicted_psnr": null,
+                "payload_bytes": 16384,
+                "container_bytes": 16400,
+                "decode_seconds": 0.009407899997313507,
+                "astc_sha256": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+                "decoded_png_sha256": "a5da01ba6e7bd9038c66a75a9a16101831fabed4dbe9a25df3fddee767cdab8a"
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "source_split": "validation",
+                "width": 512,
+                "height": 512,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 12,
+                "block_size": "8x8",
+                "preset": "medium",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                  "block_size": "12x12",
+                  "preset": "exhaustive",
+                  "selection_reason": "size_first_relaxed",
+                  "search_ms": 1171.7495,
+                  "format_ms": 1175.8039,
+                  "select_and_encode_ms": 1175.8192,
+                  "candidates_attempted": 6,
+                  "candidates_measured": 6,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 30.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 38.30811309814453,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 23.100170135498047,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "predicted_psnr": null,
+                "payload_bytes": 65536,
+                "container_bytes": 65552,
+                "decode_seconds": 0.009543699998175725,
+                "astc_sha256": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+                "decoded_png_sha256": "6090a660efd1b7daf60c4c30704bb5a03f2ea587b80c8f4faf5b7cf5c12163d5"
+              }
+            ],
+            "summary": {
+              "images": 2,
+              "classes": [
+                "6x6",
+                "8x8",
+                "10x10",
+                "12x12"
+              ],
+              "confusion": [
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  2,
+                  0,
+                  0
+                ]
+              ],
+              "per_class": {
+                "6x6": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "8x8": {
+                  "support": 0,
+                  "predicted": 2,
+                  "recall": null,
+                  "precision": 0.0
+                },
+                "10x10": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "12x12": {
+                  "support": 2,
+                  "predicted": 0,
+                  "recall": 0.0,
+                  "precision": null
+                }
+              },
+              "footprint_accuracy": 0.0,
+              "full_choice_accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "strict_quality_pass_rate": 1.0,
+              "quality_violation_count": 0,
+              "payload_bytes": 81920,
+              "container_bytes": 81952,
+              "selected_color_near_threshold_count": 0,
+              "selected_color_near_threshold_rmse_db": null,
+              "all_candidate_rmse_db": null,
+              "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets"
+            },
+            "outputs_sha256": {
+              "00000.astc": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+              "00000.png": "a5da01ba6e7bd9038c66a75a9a16101831fabed4dbe9a25df3fddee767cdab8a",
+              "00001.astc": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+              "00001.png": "6090a660efd1b7daf60c4c30704bb5a03f2ea587b80c8f4faf5b7cf5c12163d5",
+              "choices.json": "8e1bec149849455e07094844f5982d1305302ec5ee493fc865f1baee2474f1a6",
+              "rows.json": "dc89e41dd7751869328ff983f6e5a829b23fc2ef86de5e961d899c873e1a82f5"
+            }
+          },
+          "audit_and_write_seconds": 0.20379119999415707
+        }
+      }
+    },
+    {
+      "repetition": 3,
+      "warmup": false,
+      "order": [
+        "fixed8",
+        "prediction"
+      ],
+      "arms": {
+        "fixed8": {
+          "timings": {
+            "end_to_end_seconds": 0.057838699998683296,
+            "reference_and_metadata_seconds": 0.0,
+            "reference_load_and_flip_seconds": 0.01061949999711942,
+            "inference": {},
+            "policy_seconds": 6.499991286545992e-06,
+            "native_encode_seconds": 0.04662430001189932,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "source_split": "validation",
+                "width": 256,
+                "height": 256,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 12,
+                "block_size": "8x8",
+                "preset": "medium",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                  "block_size": "12x12",
+                  "preset": "fastest",
+                  "selection_reason": "first_valid",
+                  "search_ms": 47.8803,
+                  "format_ms": 51.7249,
+                  "select_and_encode_ms": 51.7383,
+                  "candidates_attempted": 1,
+                  "candidates_measured": 1,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 37.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 49.99437713623047,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 35.098873138427734,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "predicted_psnr": null,
+                "payload_bytes": 16384,
+                "container_bytes": 16400,
+                "decode_seconds": 0.009456500003580004,
+                "astc_sha256": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+                "decoded_png_sha256": "a5da01ba6e7bd9038c66a75a9a16101831fabed4dbe9a25df3fddee767cdab8a"
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "source_split": "validation",
+                "width": 512,
+                "height": 512,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 12,
+                "block_size": "8x8",
+                "preset": "medium",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                  "block_size": "12x12",
+                  "preset": "exhaustive",
+                  "selection_reason": "size_first_relaxed",
+                  "search_ms": 1171.7495,
+                  "format_ms": 1175.8039,
+                  "select_and_encode_ms": 1175.8192,
+                  "candidates_attempted": 6,
+                  "candidates_measured": 6,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 30.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 38.30811309814453,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 23.100170135498047,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "predicted_psnr": null,
+                "payload_bytes": 65536,
+                "container_bytes": 65552,
+                "decode_seconds": 0.009390799998072907,
+                "astc_sha256": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+                "decoded_png_sha256": "6090a660efd1b7daf60c4c30704bb5a03f2ea587b80c8f4faf5b7cf5c12163d5"
+              }
+            ],
+            "summary": {
+              "images": 2,
+              "classes": [
+                "6x6",
+                "8x8",
+                "10x10",
+                "12x12"
+              ],
+              "confusion": [
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  2,
+                  0,
+                  0
+                ]
+              ],
+              "per_class": {
+                "6x6": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "8x8": {
+                  "support": 0,
+                  "predicted": 2,
+                  "recall": null,
+                  "precision": 0.0
+                },
+                "10x10": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "12x12": {
+                  "support": 2,
+                  "predicted": 0,
+                  "recall": 0.0,
+                  "precision": null
+                }
+              },
+              "footprint_accuracy": 0.0,
+              "full_choice_accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "strict_quality_pass_rate": 1.0,
+              "quality_violation_count": 0,
+              "payload_bytes": 81920,
+              "container_bytes": 81952,
+              "selected_color_near_threshold_count": 0,
+              "selected_color_near_threshold_rmse_db": null,
+              "all_candidate_rmse_db": null,
+              "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets"
+            },
+            "outputs_sha256": {
+              "00000.astc": "c84b7d0d9f886e40c34a66e4d9bd23ee669d8cdf316d0bf7c7741be6de4220ab",
+              "00000.png": "a5da01ba6e7bd9038c66a75a9a16101831fabed4dbe9a25df3fddee767cdab8a",
+              "00001.astc": "1ac0e34f492258d88ad12684c297fc7e6f5d44006cdea5815f716c752569a380",
+              "00001.png": "6090a660efd1b7daf60c4c30704bb5a03f2ea587b80c8f4faf5b7cf5c12163d5",
+              "choices.json": "8e1bec149849455e07094844f5982d1305302ec5ee493fc865f1baee2474f1a6",
+              "rows.json": "7970f48d36670004d5661303a9933ec76c9de1a5512f21230bf28d21d5650263"
+            }
+          },
+          "audit_and_write_seconds": 0.2662686000112444
+        },
+        "prediction": {
+          "timings": {
+            "end_to_end_seconds": 0.11247329998877831,
+            "reference_and_metadata_seconds": 0.017228099997737445,
+            "reference_load_and_flip_seconds": 0.0004243000003043562,
+            "inference": {
+              "total_seconds": 0.043624400001135655,
+              "patch_input_seconds": 0.010544700009631924,
+              "patch_forward_and_transfer_seconds": 0.030868500005453825,
+              "image_head_and_transfer_seconds": 0.0018460999999660999,
+              "mse_aggregation_seconds": 0.00019720000273082405,
+              "images": 2,
+              "patches": 13,
+              "batch_size": 16,
+              "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+            },
+            "policy_seconds": 0.006472100008977577,
+            "native_encode_seconds": 0.04210120000061579,
+            "encoding_calls": 2,
+            "images": 2,
+            "scope": "Reference PNG to in-memory mip0 ASTC; excludes model/DLL load, audit and writes"
+          },
+          "audit": {
+            "rows": [
+              {
+                "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                "source_split": "validation",
+                "width": 256,
+                "height": 256,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 18,
+                "block_size": "6x6",
+                "preset": "thorough",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+                  "block_size": "12x12",
+                  "preset": "fastest",
+                  "selection_reason": "first_valid",
+                  "search_ms": 47.8803,
+                  "format_ms": 51.7249,
+                  "select_and_encode_ms": 51.7383,
+                  "candidates_attempted": 1,
+                  "candidates_measured": 1,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": false,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 37.0,
+                "strict_quality_met": true,
+                "metrics": {
+                  "psnr": 58.02772903442383,
+                  "black_pixel_ratio": 0.821044921875,
+                  "ms_ssim_db": 42.70477294921875,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": false
+                },
+                "predicted_psnr": 35.607054509312746,
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "decode_seconds": 0.0063812000007601455,
+                "astc_sha256": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+                "decoded_png_sha256": "afd5b2e55a24ddd64d6f67f5dba17785f671c2c3294f39bca9f73c28d28e57c7"
+              },
+              {
+                "path": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                "source_split": "validation",
+                "width": 512,
+                "height": 512,
+                "normal": false,
+                "srgb": true,
+                "selected_index": 0,
+                "block_size": "12x12",
+                "preset": "fastest",
+                "original_selection": {
+                  "asset": "Assets/Art/Characters/123_cici/Show/skin_high/123_Cici_skin_high_03_d.tga",
+                  "block_size": "12x12",
+                  "preset": "exhaustive",
+                  "selection_reason": "size_first_relaxed",
+                  "search_ms": 1171.7495,
+                  "format_ms": 1175.8039,
+                  "select_and_encode_ms": 1175.8192,
+                  "candidates_attempted": 6,
+                  "candidates_measured": 6,
+                  "payload_reuses": 1,
+                  "cache_hit": false,
+                  "search_executed": true,
+                  "success": true
+                },
+                "footprint_match": true,
+                "full_choice_match": false,
+                "effective_psnr_threshold": 30.0,
+                "strict_quality_met": false,
+                "metrics": {
+                  "psnr": 32.06110763549805,
+                  "black_pixel_ratio": 0.0,
+                  "ms_ssim_db": 15.372034072875977,
+                  "normal_mean_deg": null,
+                  "normal_p95_deg": null,
+                  "mip_count": 1,
+                  "need_alpha": true
+                },
+                "predicted_psnr": 35.00658847853765,
+                "payload_bytes": 29584,
+                "container_bytes": 29600,
+                "decode_seconds": 0.016856499991263263,
+                "astc_sha256": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+                "decoded_png_sha256": "07efd4e7dc0667368c0ed5ac87d7556c0439103017f14d5745d3df916ac6e268"
+              }
+            ],
+            "summary": {
+              "images": 2,
+              "classes": [
+                "6x6",
+                "8x8",
+                "10x10",
+                "12x12"
+              ],
+              "confusion": [
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  1
+                ]
+              ],
+              "per_class": {
+                "6x6": {
+                  "support": 0,
+                  "predicted": 1,
+                  "recall": null,
+                  "precision": 0.0
+                },
+                "8x8": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "10x10": {
+                  "support": 0,
+                  "predicted": 0,
+                  "recall": null,
+                  "precision": null
+                },
+                "12x12": {
+                  "support": 2,
+                  "predicted": 1,
+                  "recall": 0.5,
+                  "precision": 1.0
+                }
+              },
+              "footprint_accuracy": 0.5,
+              "full_choice_accuracy": 0.0,
+              "balanced_accuracy": 0.5,
+              "strict_quality_pass_rate": 0.5,
+              "quality_violation_count": 1,
+              "payload_bytes": 59168,
+              "container_bytes": 59200,
+              "selected_color_near_threshold_count": 1,
+              "selected_color_near_threshold_rmse_db": 2.9454808430396042,
+              "all_candidate_rmse_db": null,
+              "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets"
+            },
+            "outputs_sha256": {
+              "00000.astc": "3d4bb7fb747e287efe3775fec1d4a039bbcbbf96c033aa797f9fdf357e49e459",
+              "00000.png": "afd5b2e55a24ddd64d6f67f5dba17785f671c2c3294f39bca9f73c28d28e57c7",
+              "00001.astc": "ebdfa2617f7c385bfc7efcaba0a7a3873f4907cd804def3a2609802a4dfd5ffc",
+              "00001.png": "07efd4e7dc0667368c0ed5ac87d7556c0439103017f14d5745d3df916ac6e268",
+              "choices.json": "9abb0f93f1cadd42afa686175dba991981335b531451a39b2fc0bfec2b46d015",
+              "predictions.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379",
+              "rows.json": "e31933db4e7adae777833902eb029faf4b7a9ae5565ebcac3f9c3d27dd18b288"
+            }
+          },
+          "audit_and_write_seconds": 0.2060083999967901
+        }
+      }
+    }
+  ],
+  "test_opened": false,
+  "training_updates": 0,
+  "scope": "Observed validation2; mip0 only; confirmation evaluator pending",
+  "model_load_and_cuda_seconds": 0.28162280000105966,
+  "seal": {
+    "identity": {
+      "schema": "unity_native_inference_v1",
+      "split": "validation",
+      "cohort_fingerprint": "39ace3bd4c3ab1a5200cba23a51d827013a2437c0f31a971f63ba680b8730540",
+      "inputs_fingerprint": "39ace3bd4c3ab1a5200cba23a51d827013a2437c0f31a971f63ba680b8730540",
+      "policies_fingerprint": "1e2c2e33691aea36a9874d8f56bfaf02cf23a03d6542cb30602a458c718412cf",
+      "model": {
+        "checkpoint_sha256": "b4679b4fa48f66ec04e0c9f87f40571d669d459feb7bae33642376ae5c5d99ec",
+        "epoch": 1
+      },
+      "decision": {
+        "patch_size": 240,
+        "batch_size": 16,
+        "zero_probability_threshold": 0.5,
+        "fixed8_preset": "medium",
+        "warmups": 1,
+        "repetitions": 3,
+        "policy": "original_native_search_order"
+      },
+      "runtime": {
+        "torch": "2.8.0+cu128",
+        "numpy": "2.5.4",
+        "device": "cuda"
+      },
+      "files_sha256": {
+        "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-capture-deployment-smoke2-v1-config.json": "4e74c733ed641ef4a5d13ff8a6379e12d5f897174b86797a9877a2b0b7988031",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation_capture.py": "c6a1639b5f29d4944f6b73172c4294a850d762728dd579cf4122bf2b4c947f89",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation.py": "a7e6551e3535baa77217a88c407adda523f0a9baafb729d171030c1423d81b0d",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\benchmark.py": "ab4f36ab64c30905b6e5ecf16abfed3056aeed1de22609e044ba2fff7d183c96",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\metadata.py": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\collection.py": "134b9d99b5a6eedf5b16e781e0f0999f032f84943302acf7b538d492f0477dc2",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\BenchmarkRunner.cs": "bfc79796114d9980a9d7a61962ccd8c4c72a6dcd90d9015c5b1955ebefdce923",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\ASTCSearchBaseline.asmdef": "3262bee6690723790b0037879ff3d60a01733f9f9e07deb44f0b9093c2807e94",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native\\capture_options.cs.txt": "c05ab61d53f2e3fd4ea1af5a9cb6d9b259563b4bb2d3f5deaacbb954246e06ad",
+        "E:\\ASTC_Compression\\reproductions\\common\\unity_reference.py": "9b597e33ccffd376ad98c2d506c3c6abe3cf14183075c9176b2a55b901d1797d",
+        "E:\\ASTC_Compression\\reproductions\\common\\encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+        "E:\\ASTC_Compression\\reproductions\\common\\jobs.py": "a1c6430442fe1b41d83b10ec05189ae8563d91569cf9ba05b19782efccba4177",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+        "E:\\ASTC_Compression\\script\\capture_unity_confirmation.py": "8c63ec8f7d2222d3e89dcee24caacddbf104b08510df7d4f14fb3a953223f67a",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\capture_policy.py": "ebd3062dbb5712515d24931d42475fe77aed6898177d7109a2cd88b0f5694619",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+        "E:\\ASTC_Compression\\script\\audit_unity_capture_policy.py": "ccdbb9e9beb0c0637bb19b93129d7e8d035d558fd5fe0505645a652271fa2888",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_capture_input.py": "d3de1264d6a495941d00fc4824dadaaf054e71644320c43bca1d48ca1317e7fb",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_inference.py": "639c4a52c7fda9208bdfa3c208b7bae268db10fb20caf014333294a854babfe7",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "8bf6b36441d052e1f1733c09a5983c22ff7f9c09a5836f6171a052dd443f014c",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\unity_evaluation_seal.py": "b10a2e420acfb90eaf97c677b0b25d62e732645717ad01a79451afc66c8cd143",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\sealed_inference.py": "fce91bf0559f691e8831056c238d17edfa80ae9df1e3db49cac2c87ba0b0ddac",
+        "E:\\ASTC_Compression\\script\\verify_unity_sealed_inference.py": "6006754b2e8b5adbb2b7a388e7c4165d1ff90a6169cdc24a485a8a78a519b3de",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\capture_output.py": "3e30eaea02d6ef08c9e93263ff89f28ae1f9cda551d62486279a014c09d148c8",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\capture_deployment.py": "a41bd23352fa377faff7dea1004240444e7fa1ed0517c730089ec0100931d555",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\deployment.py": "0f1eb725b178de32acddb53826a4cfaffec33d4144134226923b5914210351b1",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native\\quality_wrapper.cpp": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native\\CMakeLists.txt": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+        "E:\\ASTC_Compression\\script\\benchmark_unity_capture_deployment.py": "df9eb10481a40dac55f896e80ebdea992c6d7fddc650fd99ac4b64ed6ad20710",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-smoke8-v1\\job.json": "b7e746d6dcb9a79fc6eedb89402979e9d963746b3fba6f6bae4e29683b442df9",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-smoke8-v1\\receipt.json": "735ad1a020cad87835172af48cdae88fff278c4d24d3b34bfd08f8f8c7cadec1",
+        "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-native-smoke8-v1.json": "0b6a61132de82f7b4d1dae2f32fe2a1a452392b3b6e32f7d712b90e8c8931014",
+        "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-native-smoke8-v1-config.json": "aa8949f690d6b876e07d29edb3d8c1a53e30fb58061452300ad6e0466088a991",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "da8cfed7a2ec6d87a724f9ead8120242eaca87ee5c37d8874eb1ae191c410986",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_bags.py": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b",
+        "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_loss.py": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+        "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best.pt": "b4679b4fa48f66ec04e0c9f87f40571d669d459feb7bae33642376ae5c5d99ec",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best-validation.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best-decisions.json": "b3801f9488f1df6c52ee1723cbbd9c880bcba1304a39c9be4ceb0165e1a7138a",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\config.json": "6889c26fa89007c6b42b69403167fb9c25db20f0d5527d8426d44d4d4d94f2b7",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\reference-series-plan-v2\\smoke.json": "421beecd07fbd0dd3e027f0057e00ae933e96dd83b593a84a45ae2a50468c3b1",
+        "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-reference-series-smoke.json": "b0b5496aeef06fd6a98f3ec434650048b28cf4445c2a1cd237c679b8fd91612a",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-reference-series-smoke-v2\\manifest.json": "ad03d3cf083e04a6ecc231b53c030c47ed750b04bb2b2186b7e3e8e4e869ee8f",
+        "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-validation2-config.json": "e09554c163b5757647cb6a13c5af09feda0d2584f206e8515c57946873328073",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\options-receipt.json": "cf47bdfcc105d970f1efd871a4facd80c1d4d2ab822a5a42f040ed100c19cfd9",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\receipt.json": "1028f3114a156e759c35d57fe7a4248292639ebc9db2b20ed39efdad401c6409",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-receipt.json": "71ee8c1c0729a5db130a9c6144ef0048aa4cf44420c416a2e1a8dbba0c376c86",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-config.json": "b09576ef8ded4b16e9074863080e996b47624c4c5630e2b566e92eeb695aca1d",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\identity.json": "5498e2fc6c11b268a53ef5f257681afa64276b05f43960261b598486c86b7a37",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\protocol-lock.json": "d95e38874c500c578cd158012100659bd72c2ac9e49a9a836be5537f6425a81d",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-launch.json": "4ea0dd499db8501fdc054066dde6cd1c2cc3d174ba2a4719c6a6f9566354e332",
+        "E:\\ASTC_Compression\\experiment report\\.local\\gdc-lite-rgb-resnet18-seed20261109\\coverage-v2\\manifest.json": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-native.jsonl": "adbdb12833e015d42c215bc6f069ae194bf46a6c21da700f57936360bee0a570",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-assembly.json": null,
+        "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\ASTC_Cache\\benchmark\\unity-validation2-20261111\\batch\\parameter_cache_detail.jsonl": "5d1cc96dddb5480fc42170e8344587e9645fc3acaaa2d184c35beed9ce5db47e",
+        "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\ASTC_Cache\\benchmark\\unity-validation2-20261111\\batch\\parameter_cache_detail.json": null,
+        "E:\\hamster_unity\\unity20190433\\build\\WindowsEditor\\Unity.exe": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-shared.dll": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+        "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-static.dll": "c7cbe0077409640717032779bbfa6d8b09b4f5bd8293a56f7459abf9251db6e9",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\00000\\original.png": "f0fe4b22726ba3558c84d7f020dd9a02d3d5f04e2e669ae5f129f91377816da3",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\00001\\original.png": "9f9941b36d008200d88356ae0a8fc8e27b81cff4747c3c410447b9d4cbc63d63",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json": "870ad425363c6e415a9504020f7e72424ed03b5aac5401a615c240d5bfb902f9",
+        "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3"
+      }
+    },
+    "fingerprint": "5f777fc7ae8870d48598e1fa32fafeb60ede1c7097e723ebd8566a3f6ae7143b",
+    "created_utc": "2026-11-12T02:47:49.729351+00:00",
+    "schema": "unity_native_seal_v1"
+  },
+  "seal_path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-capture-deployment-smoke2-v1\\validation-seal\\39ace3bd4c3ab1a5200cba23a51d827013a2437c0f31a971f63ba680b8730540\\seal.json",
+  "parameters": 11377660,
+  "weights_bytes": 45549200,
+  "checkpoint_sha256": "b4679b4fa48f66ec04e0c9f87f40571d669d459feb7bae33642376ae5c5d99ec",
+  "gpu": "NVIDIA GeForce RTX 4070",
+  "summary": {
+    "prediction": {
+      "images": 2,
+      "classes": [
+        "6x6",
+        "8x8",
+        "10x10",
+        "12x12"
+      ],
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 0,
+          "predicted": 1,
+          "recall": null,
+          "precision": 0.0
+        },
+        "8x8": {
+          "support": 0,
+          "predicted": 0,
+          "recall": null,
+          "precision": null
+        },
+        "10x10": {
+          "support": 0,
+          "predicted": 0,
+          "recall": null,
+          "precision": null
+        },
+        "12x12": {
+          "support": 2,
+          "predicted": 1,
+          "recall": 0.5,
+          "precision": 1.0
+        }
+      },
+      "footprint_accuracy": 0.5,
+      "full_choice_accuracy": 0.0,
+      "balanced_accuracy": 0.5,
+      "strict_quality_pass_rate": 0.5,
+      "quality_violation_count": 1,
+      "payload_bytes": 59168,
+      "container_bytes": 59200,
+      "selected_color_near_threshold_count": 1,
+      "selected_color_near_threshold_rmse_db": 2.9454808430396042,
+      "all_candidate_rmse_db": null,
+      "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets",
+      "median_end_to_end_seconds": 0.09253939999325667,
+      "measured_encoding_calls": 6,
+      "warmup_encoding_calls": 2
+    },
+    "fixed8": {
+      "images": 2,
+      "classes": [
+        "6x6",
+        "8x8",
+        "10x10",
+        "12x12"
+      ],
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 0,
+          "predicted": 0,
+          "recall": null,
+          "precision": null
+        },
+        "8x8": {
+          "support": 0,
+          "predicted": 2,
+          "recall": null,
+          "precision": 0.0
+        },
+        "10x10": {
+          "support": 0,
+          "predicted": 0,
+          "recall": null,
+          "precision": null
+        },
+        "12x12": {
+          "support": 2,
+          "predicted": 0,
+          "recall": 0.0,
+          "precision": null
+        }
+      },
+      "footprint_accuracy": 0.0,
+      "full_choice_accuracy": 0.0,
+      "balanced_accuracy": 0.0,
+      "strict_quality_pass_rate": 1.0,
+      "quality_violation_count": 0,
+      "payload_bytes": 81920,
+      "container_bytes": 81952,
+      "selected_color_near_threshold_count": 0,
+      "selected_color_near_threshold_rmse_db": null,
+      "all_candidate_rmse_db": null,
+      "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets",
+      "median_end_to_end_seconds": 0.057838699998683296,
+      "measured_encoding_calls": 6,
+      "warmup_encoding_calls": 2
+    }
+  },
+  "inputs_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-capture-deployment-smoke2-v1-config.json": "4e74c733ed641ef4a5d13ff8a6379e12d5f897174b86797a9877a2b0b7988031",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation_capture.py": "c6a1639b5f29d4944f6b73172c4294a850d762728dd579cf4122bf2b4c947f89",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\confirmation.py": "a7e6551e3535baa77217a88c407adda523f0a9baafb729d171030c1423d81b0d",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\benchmark.py": "ab4f36ab64c30905b6e5ecf16abfed3056aeed1de22609e044ba2fff7d183c96",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\metadata.py": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\collection.py": "134b9d99b5a6eedf5b16e781e0f0999f032f84943302acf7b538d492f0477dc2",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\BenchmarkRunner.cs": "bfc79796114d9980a9d7a61962ccd8c4c72a6dcd90d9015c5b1955ebefdce923",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\ASTCSearchBaseline.asmdef": "3262bee6690723790b0037879ff3d60a01733f9f9e07deb44f0b9093c2807e94",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native\\capture_options.cs.txt": "c05ab61d53f2e3fd4ea1af5a9cb6d9b259563b4bb2d3f5deaacbb954246e06ad",
+    "E:\\ASTC_Compression\\reproductions\\common\\unity_reference.py": "9b597e33ccffd376ad98c2d506c3c6abe3cf14183075c9176b2a55b901d1797d",
+    "E:\\ASTC_Compression\\reproductions\\common\\encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "E:\\ASTC_Compression\\reproductions\\common\\jobs.py": "a1c6430442fe1b41d83b10ec05189ae8563d91569cf9ba05b19782efccba4177",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "E:\\ASTC_Compression\\script\\capture_unity_confirmation.py": "8c63ec8f7d2222d3e89dcee24caacddbf104b08510df7d4f14fb3a953223f67a",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\capture_policy.py": "ebd3062dbb5712515d24931d42475fe77aed6898177d7109a2cd88b0f5694619",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "E:\\ASTC_Compression\\script\\audit_unity_capture_policy.py": "ccdbb9e9beb0c0637bb19b93129d7e8d035d558fd5fe0505645a652271fa2888",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_capture_input.py": "d3de1264d6a495941d00fc4824dadaaf054e71644320c43bca1d48ca1317e7fb",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_inference.py": "639c4a52c7fda9208bdfa3c208b7bae268db10fb20caf014333294a854babfe7",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "8bf6b36441d052e1f1733c09a5983c22ff7f9c09a5836f6171a052dd443f014c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\unity_evaluation_seal.py": "b10a2e420acfb90eaf97c677b0b25d62e732645717ad01a79451afc66c8cd143",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\sealed_inference.py": "fce91bf0559f691e8831056c238d17edfa80ae9df1e3db49cac2c87ba0b0ddac",
+    "E:\\ASTC_Compression\\script\\verify_unity_sealed_inference.py": "6006754b2e8b5adbb2b7a388e7c4165d1ff90a6169cdc24a485a8a78a519b3de",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\capture_output.py": "3e30eaea02d6ef08c9e93263ff89f28ae1f9cda551d62486279a014c09d148c8",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\capture_deployment.py": "a41bd23352fa377faff7dea1004240444e7fa1ed0517c730089ec0100931d555",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\deployment.py": "0f1eb725b178de32acddb53826a4cfaffec33d4144134226923b5914210351b1",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native\\quality_wrapper.cpp": "c8ad6ac5b561924f2731f81e2930634dc56c9fff437a31d68161bae0e2d94a77",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native\\CMakeLists.txt": "8b0cd3655e7ea8c432dd4027ff9403534ae2aa03d2de97a855876bd43a932c7a",
+    "E:\\ASTC_Compression\\script\\benchmark_unity_capture_deployment.py": "df9eb10481a40dac55f896e80ebdea992c6d7fddc650fd99ac4b64ed6ad20710",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-smoke8-v1\\job.json": "b7e746d6dcb9a79fc6eedb89402979e9d963746b3fba6f6bae4e29683b442df9",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-smoke8-v1\\receipt.json": "735ad1a020cad87835172af48cdae88fff278c4d24d3b34bfd08f8f8c7cadec1",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-native-smoke8-v1.json": "0b6a61132de82f7b4d1dae2f32fe2a1a452392b3b6e32f7d712b90e8c8931014",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-native-smoke8-v1-config.json": "aa8949f690d6b876e07d29edb3d8c1a53e30fb58061452300ad6e0466088a991",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "da8cfed7a2ec6d87a724f9ead8120242eaca87ee5c37d8874eb1ae191c410986",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_bags.py": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_loss.py": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best.pt": "b4679b4fa48f66ec04e0c9f87f40571d669d459feb7bae33642376ae5c5d99ec",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best-validation.npz": "c169fec9379788bbdbe998b0916c63a9ebabeccf57aa2a1b25f03b3ad4f9f379",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\best-decisions.json": "b3801f9488f1df6c52ee1723cbbd9c880bcba1304a39c9be4ceb0165e1a7138a",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-native-smoke8-v1\\config.json": "6889c26fa89007c6b42b69403167fb9c25db20f0d5527d8426d44d4d4d94f2b7",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\reference-series-plan-v2\\smoke.json": "421beecd07fbd0dd3e027f0057e00ae933e96dd83b593a84a45ae2a50468c3b1",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-reference-series-smoke.json": "b0b5496aeef06fd6a98f3ec434650048b28cf4445c2a1cd237c679b8fd91612a",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-reference-series-smoke-v2\\manifest.json": "ad03d3cf083e04a6ecc231b53c030c47ed750b04bb2b2186b7e3e8e4e869ee8f",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-validation2-config.json": "e09554c163b5757647cb6a13c5af09feda0d2584f206e8515c57946873328073",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\options-receipt.json": "cf47bdfcc105d970f1efd871a4facd80c1d4d2ab822a5a42f040ed100c19cfd9",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\receipt.json": "1028f3114a156e759c35d57fe7a4248292639ebc9db2b20ed39efdad401c6409",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-receipt.json": "71ee8c1c0729a5db130a9c6144ef0048aa4cf44420c416a2e1a8dbba0c376c86",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-config.json": "b09576ef8ded4b16e9074863080e996b47624c4c5630e2b566e92eeb695aca1d",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\identity.json": "5498e2fc6c11b268a53ef5f257681afa64276b05f43960261b598486c86b7a37",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\protocol-lock.json": "d95e38874c500c578cd158012100659bd72c2ac9e49a9a836be5537f6425a81d",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-launch.json": "4ea0dd499db8501fdc054066dde6cd1c2cc3d174ba2a4719c6a6f9566354e332",
+    "E:\\ASTC_Compression\\experiment report\\.local\\gdc-lite-rgb-resnet18-seed20261109\\coverage-v2\\manifest.json": "f27c3c6186dfef939a4ba82954cd9a6faad89e6ed15cc0c480f6955ae504fe7f",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-native.jsonl": "adbdb12833e015d42c215bc6f069ae194bf46a6c21da700f57936360bee0a570",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-assembly.json": null,
+    "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\ASTC_Cache\\benchmark\\unity-validation2-20261111\\batch\\parameter_cache_detail.jsonl": "5d1cc96dddb5480fc42170e8344587e9645fc3acaaa2d184c35beed9ce5db47e",
+    "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\ASTC_Cache\\benchmark\\unity-validation2-20261111\\batch\\parameter_cache_detail.json": null,
+    "E:\\hamster_unity\\unity20190433\\build\\WindowsEditor\\Unity.exe": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+    "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-shared.dll": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+    "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-static.dll": "c7cbe0077409640717032779bbfa6d8b09b4f5bd8293a56f7459abf9251db6e9",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\00000\\original.png": "f0fe4b22726ba3558c84d7f020dd9a02d3d5f04e2e669ae5f129f91377816da3",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\00001\\original.png": "9f9941b36d008200d88356ae0a8fc8e27b81cff4747c3c410447b9d4cbc63d63",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json": "870ad425363c6e415a9504020f7e72424ed03b5aac5401a615c240d5bfb902f9",
+    "E:\\hamster_unity\\unity20190433\\Editor\\Src\\AssetPipeline\\TextureImporting\\ASTCCompressor.cpp": "48bf3b9bdc5d7c62d610343187e0c6edbc5a26c5572be7e4eaa085143f8f8467",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3"
+  },
+  "original_search_seconds": 1.2196297999999999,
+  "original_select_and_encode_seconds": 1.2275574999999999,
+  "latency_scope": "Warm model/DLL, reference PNG to mip0 ASTC memory; audit/writes excluded; original import timing is separate and not a paired speedup",
+  "wall_seconds": 8.030230399992433
+}

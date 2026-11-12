@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T02:30:19.920596+00:00",
+  "updated_utc": "2026-11-12T02:56:58.099000+00:00",
   "goal_status": "active",
   "target": {
     "dataset": "Unity imported mip0 reference pixels with same-search footprint labels",
@@ -315,6 +315,30 @@
     },
     {
       "status": "passed",
+      "started_utc": "2026-11-12T02:47:37.951706+00:00",
+      "ended_utc": "2026-11-12T02:47:58.587671+00:00",
+      "wall_seconds": 20.63386360000004,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-capture-deployment-smoke2-v1",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-capture-deployment-smoke2-v1\\receipt.json",
+      "sha256": "136affc38056bf8f18db47554c9cfb637d3ccfce79c242397a97104e840811e0",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
+      "started_utc": "2026-11-12T02:51:27.361185+00:00",
+      "ended_utc": "2026-11-12T02:51:47.668422+00:00",
+      "wall_seconds": 20.305795199994463,
+      "process_exit_code": 0,
+      "last_observed_alive_utc": null,
+      "name": "unity-capture-deployment-smoke2-v2",
+      "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-capture-deployment-smoke2-v2\\receipt.json",
+      "sha256": "030f2799e60a55dcbc21efe36cb5e4f57893b3f60f462e5bf4e620fc50baf8f0",
+      "observed_processes": []
+    },
+    {
+      "status": "passed",
       "started_utc": "2026-11-12T02:03:37.613398+00:00",
       "ended_utc": "2026-11-12T02:03:53.556406+00:00",
       "wall_seconds": 15.940857599998708,
@@ -343,10 +367,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-12T02:29:53.402646+00:00",
+      "last_observed_alive_utc": "2026-11-12T02:56:56.792002+00:00",
       "name": "unity-pixel-pipeline-full13000-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-pixel-pipeline-full13000-v2\\receipt.json",
-      "sha256": "b57a74bfcba7c021102c3c21e53bd073cc127ce726ed85c7490877e545ed3bb8",
+      "sha256": "431f3b4e32355882973a14ce316a7383a16e5b3bb22d884ea7876643e68f5e09",
       "observed_processes": [
         {
           "pid": 41200,
@@ -654,10 +678,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-12T02:30:13.223335+00:00",
+      "last_observed_alive_utc": "2026-11-12T02:56:44.441503+00:00",
       "name": "unity-reference-series-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\receipt.json",
-      "sha256": "50fbe96725d9622b88e3786d1a0a003c47a6f3d0d63687d2ef8b91d043339d09",
+      "sha256": "3db4edbaa8776cdef7c3f4814e2876677751cf1eda4348cca67978a63e62a943",
       "observed_processes": [
         {
           "pid": 51744,
@@ -909,7 +933,13 @@
       "name": "unity-dataset260",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-dataset260\\receipt.json",
       "sha256": "294949bcbf3deb210f683d574ca68b76548196fc7feeee75cce683239c000695",
-      "observed_processes": []
+      "observed_processes": [
+        {
+          "pid": 4508,
+          "name": "python.exe",
+          "create_time": 1794452217.9478283
+        }
+      ]
     },
     {
       "status": "passed",
@@ -1143,7 +1173,13 @@
       "name": "unity-prediction-interface3906",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-prediction-interface3906\\receipt.json",
       "sha256": "ec2a53144e32b078448824e2c67b2d5b979f926deccc71661c72420cb89f27eb",
-      "observed_processes": []
+      "observed_processes": [
+        {
+          "pid": 55056,
+          "name": "UnityCrashHandler64.exe",
+          "create_time": 1794451845.8334076
+        }
+      ]
     },
     {
       "status": "passed",
@@ -1263,13 +1299,7 @@
       "name": "scratch-group512-validpool",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\scratch-group512-validpool\\receipt.json",
       "sha256": "5638c1784e734a7c24f7361664b86f8f0607b107c6b0fe2784a20f51a33f6f3c",
-      "observed_processes": [
-        {
-          "pid": 67332,
-          "name": "chrome.exe",
-          "create_time": 1794450615.59266
-        }
-      ]
+      "observed_processes": []
     },
     {
       "status": "passed",
@@ -1397,10 +1427,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-12T02:30:06.917144+00:00",
+      "last_observed_alive_utc": "2026-11-12T02:56:38.101448+00:00",
       "name": "unity-candidate-queue-sprite-v3",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\receipt.json",
-      "sha256": "c1176e894e15ab398b276bc705d11b0d995e856d0d9f148fd82596f3677d7d19",
+      "sha256": "e4d207f3878e8ef5967ba9c5ee9313b171461c02513f8146bf39cde356faf0ec",
       "observed_processes": [
         {
           "pid": 15052,
@@ -1420,10 +1450,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-12T02:30:18.483793+00:00",
+      "last_observed_alive_utc": "2026-11-12T02:56:49.576270+00:00",
       "name": "unity-native-pipeline-full-v3",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\receipt.json",
-      "sha256": "e8e7a517ca4129f0d4cf18ed49304a597a03dd05ad7de716cdb47e49812a8b56",
+      "sha256": "0dfcc6ad00fbbeb815d038f7db8b121fd8af1194865af5db0b342e06c7e025a6",
       "observed_processes": [
         {
           "pid": 64780,
@@ -1443,10 +1473,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-12T02:30:04.795559+00:00",
+      "last_observed_alive_utc": "2026-11-12T02:56:35.686210+00:00",
       "name": "unity-native-training-full-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-training-full-v2\\receipt.json",
-      "sha256": "f7dada0a36eaf9b038dc83bfd189a5d287ac4a2a1ea440ed4ddbbe54f42a438b",
+      "sha256": "03cbe1939dac913bcdf9e0108269af9e6a0080a6ed68e35825184f290a17dec8",
       "observed_processes": [
         {
           "pid": 43336,
@@ -1466,10 +1496,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-12T02:30:15.961858+00:00",
+      "last_observed_alive_utc": "2026-11-12T02:56:46.957019+00:00",
       "name": "unity-confirmation-capture-smoke2-v2",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-capture-smoke2-v2\\receipt.json",
-      "sha256": "0269e8ea0f7fd0a420de09cd4feebd804ee562f805020a625e5b294aab11badc",
+      "sha256": "aac775f4d22fe8750bf179191bfdbbedc3c73730eac48271adf01cb7a7d2e505",
       "observed_processes": [
         {
           "pid": 53512,
@@ -1489,10 +1519,10 @@
       "ended_utc": null,
       "wall_seconds": null,
       "process_exit_code": null,
-      "last_observed_alive_utc": "2026-11-12T02:30:01.571765+00:00",
+      "last_observed_alive_utc": "2026-11-12T02:56:32.946564+00:00",
       "name": "unity-confirmation-series2000-v1",
       "receipt": "experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-series2000-v1\\receipt.json",
-      "sha256": "6cd82b874f35137318de00d7f923109f304fdecc521df212b1b31aaaaffa1439",
+      "sha256": "1b2e35f739c33c79b9bf2740a92cab139ac82fab25ae18438c9814aa0863d7fa",
       "observed_processes": [
         {
           "pid": 42884,
@@ -1556,17 +1586,17 @@
   "unity_reference_series": {
     "status": "running",
     "counts": {
-      "train": 9280,
+      "train": 9536,
       "validation": 2
     },
     "expected_counts": {
       "train": 10000,
       "validation": 1000
     },
-    "current_batch": "unity-v1-train-036-20261111",
+    "current_batch": "unity-v1-train-037-20261111",
     "test_opened": false,
     "report": "unity-reference-series.json",
-    "report_sha256": "5e29beee09678c8df541534a68bbeb65f490b0f02e02642056667a1679ec8618",
+    "report_sha256": "8011949b0538d7e7a5737c524264d1bfb78bec687b8476bd9c9b579e6936a1d9",
     "scope": "original imported references/choices only; supplemental targets pending"
   },
   "fixed_capacity_stem": {
@@ -1940,7 +1970,7 @@
     "training_updates": 0,
     "test_opened": false,
     "report": "unity-native-pipeline-full-v3.json",
-    "report_sha256": "9cf36e8f2dd0274157c8d42a40c6947856446bd60d1ff33d94d837203dddc5e2",
+    "report_sha256": "9b2d42c7d739999a5338a0fb2fbf69fcf6bd036d0ea62065233e5276b2f81589",
     "final_smoke": "unity-native-pipeline-smoke66-v3.json"
   },
   "fixed_capacity_metadata": {
@@ -2715,6 +2745,166 @@
     "verification_sha256": "64e6d3d18ae108c28965550711335b054e79dfa7cb9a8a6b6d75250d93dd5e50",
     "images": 2,
     "patches": 13,
+    "test_opened": false,
+    "production_evaluation_pending": true
+  },
+  "unity_capture_deployment": {
+    "status": "passed_development_smoke",
+    "verification": "unity-capture-deployment-verification.json",
+    "verification_sha256": "5f0a3c9c396a5bc1985fe9fd1105903acdca805c6b9ad56ddcb89edc73023f63",
+    "summary": {
+      "prediction": {
+        "images": 2,
+        "classes": [
+          "6x6",
+          "8x8",
+          "10x10",
+          "12x12"
+        ],
+        "confusion": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 0,
+            "predicted": 1,
+            "recall": null,
+            "precision": 0.0
+          },
+          "8x8": {
+            "support": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null
+          },
+          "10x10": {
+            "support": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null
+          },
+          "12x12": {
+            "support": 2,
+            "predicted": 1,
+            "recall": 0.5,
+            "precision": 1.0
+          }
+        },
+        "footprint_accuracy": 0.5,
+        "full_choice_accuracy": 0.0,
+        "balanced_accuracy": 0.5,
+        "strict_quality_pass_rate": 0.5,
+        "quality_violation_count": 1,
+        "payload_bytes": 59168,
+        "container_bytes": 59200,
+        "selected_color_near_threshold_count": 1,
+        "selected_color_near_threshold_rmse_db": 2.9454808430396042,
+        "all_candidate_rmse_db": null,
+        "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets",
+        "median_end_to_end_seconds": 0.08308759999636095,
+        "measured_encoding_calls": 6,
+        "warmup_encoding_calls": 2
+      },
+      "fixed8": {
+        "images": 2,
+        "classes": [
+          "6x6",
+          "8x8",
+          "10x10",
+          "12x12"
+        ],
+        "confusion": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null
+          },
+          "8x8": {
+            "support": 0,
+            "predicted": 2,
+            "recall": null,
+            "precision": 0.0
+          },
+          "10x10": {
+            "support": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null
+          },
+          "12x12": {
+            "support": 2,
+            "predicted": 0,
+            "recall": 0.0,
+            "precision": null
+          }
+        },
+        "footprint_accuracy": 0.0,
+        "full_choice_accuracy": 0.0,
+        "balanced_accuracy": 0.0,
+        "strict_quality_pass_rate": 1.0,
+        "quality_violation_count": 0,
+        "payload_bytes": 81920,
+        "container_bytes": 81952,
+        "selected_color_near_threshold_count": 0,
+        "selected_color_near_threshold_rmse_db": null,
+        "all_candidate_rmse_db": null,
+        "rmse_scope": "Only the selected candidate was encoded; no unselected quality targets",
+        "median_end_to_end_seconds": 0.06612260000838432,
+        "measured_encoding_calls": 6,
+        "warmup_encoding_calls": 2
+      }
+    },
+    "compared_native_outputs": 16,
     "test_opened": false,
     "production_evaluation_pending": true
   }
