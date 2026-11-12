@@ -46,3 +46,5 @@
 2026-11-12 11:35 UTC：已归档并核对1538／2000张实际输入，类型分布为Default 1519、Sprite 10、NormalMap 9。from01282批次256张，Editor进程1308.79秒、完整采集1417.13秒、候选回调1384次，退出码0、无导入错误或meta恢复冲突。18张开发替补仍等待确认采集结束。`[verified: progress.json latest_confirmation_milestone；from01282报告及batch-receipt.json；unity-development-replacement18-queue-v2.json]`
 
 2026-11-12 11:50 UTC：已归档并核对1794／2000张实际输入，进入末批206张。from01538的256张Editor进程耗时1471.58秒、候选回调1361次；退出码0，无导入错误或meta恢复冲突。`[verified: progress.json latest_confirmation_milestone；from01538报告及batch-receipt.json]`
+
+2026-11-12 12:10 UTC：确认集2000张全部原生采集、归档和实际输入检查完成，9批退出码均为0，无导入错误或meta恢复冲突。[完成记录](unity-confirmation2000-v2-completion.json)保存逐批来源及成本。原13000张像素审计已启动，18张开发替补已开始；新版开发语料及最终像素审计仍待完成，未进行模型推理。`[verified: unity-confirmation2000-v2-completion.json；progress.json phase]`

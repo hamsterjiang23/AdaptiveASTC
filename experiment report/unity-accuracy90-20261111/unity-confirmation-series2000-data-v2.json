@@ -1,5 +1,5 @@
 {
-  "status": "collecting",
+  "status": "passed",
   "config_sha256": "c04b9b30b67d1996c079a805852d3a6bd76a2552eb7e906a8bdd614c9824beaa",
   "source_files_sha256": {
     "reproductions/unity_search_baseline/confirmation_capture.py": "c6a1639b5f29d4944f6b73172c4294a850d762728dd579cf4122bf2b4c947f89",
@@ -21,8 +21,8 @@
     "script/collect_unity_confirmation_series.py": "d71e3f19562546e07fbe04c87a21b669c0528034d340fc1fe9e5969a68ef424d"
   },
   "expected_images": 2000,
-  "captured_images": 1794,
-  "coverage": "partial",
+  "captured_images": 2000,
+  "coverage": "complete",
   "source_split": "confirmation",
   "batches": [
     {
@@ -144,10 +144,25 @@
       "editor_process_seconds": 1471.5760802000004,
       "capture_wall_seconds": 1576.8904914000013,
       "callbacks": 1361
+    },
+    {
+      "start": 1794,
+      "images": 206,
+      "run_id": "unity-confirmation-series2000-data-v2-from01794",
+      "config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-data-v2-batches\\unity-confirmation-series2000-data-v2-from01794-config.json",
+      "config_sha256": "22d06e9f726f8f96bf890ba3bc19daa9f29f33d69c0dda5a5b22a5cb992f13d8",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-data-v2-batches\\unity-confirmation-series2000-data-v2-from01794.json",
+      "report_sha256": "6db99e8d62d79d33c7aeae6123a4a87c22b2b29de6416d5f8f875c8148dd4215",
+      "reference_receipt_sha256": "663acbe89b6e11672bb29ef60a78dc5d725458f365e49ceda51db4af5bcbae42",
+      "phase_receipt_sha256": "91ad18bde3c994fe9b412ce2c657878b1cb7ad4c6f511b4392e1eea5bda5d47c",
+      "managed_restoration_sha256": "910918214a69e78155ac257e6028f04877fda7ed093ef8d2b728f9040bdcd66c",
+      "editor_process_seconds": 1140.7581857999903,
+      "capture_wall_seconds": 1217.4890678999946,
+      "callbacks": 1188
     }
   ],
   "test_opened": false,
-  "native_labels_collected": false,
+  "native_labels_collected": true,
   "training_updates": 0,
   "model_sealed": false,
   "scope": "Serial reserved-primary capture; no model evaluation or training",
@@ -158,7 +173,9 @@
   },
   "dependency_wait_seconds": 165.17902930000855,
   "manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2\\manifest.json",
-  "manifest_sha256": "46cbb2c926f0d2090b7483fb1069c623932cc84f5570f39ebebdeab841d84c3d",
-  "current_start": 1794,
-  "current_images": 206
+  "manifest_sha256": "906e5b7f27e3f01a15f02e51d6fbdb689a69c28374fd4496034282355471db33",
+  "current_start": null,
+  "current_images": null,
+  "editor_process_seconds": 11444.574684599997,
+  "wall_seconds": 12705.364209200008
 }

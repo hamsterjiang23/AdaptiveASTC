@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T11:50:07.501539+00:00",
+  "updated_utc": "2026-11-12T12:12:13.354335+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -12,7 +12,7 @@
     "model_training_required": false,
     "model_accuracy_required": false
   },
-  "phase": "Revised confirmation smoke passed; serial2000 capture running, full13000 pixel audit waiting",
+  "phase": "Confirmation2000 captured and input-verified; approved18 development replacements collecting",
   "initialization": "scratch",
   "model": "ResNet-18",
   "new_test_accuracy": null,
@@ -63,9 +63,9 @@
     }
   ],
   "next": [
-    "Resolve18 Cube development samples with user-approved replacement or exclusion; preserve original corpus.",
-    "Continue revisedconfirmation2000 native collection and input audit.",
-    "Complete full pixel audit and final data handoff under the resolved V2 scope."
+    "Finish approved13train/5validation native replacements and20candidate targets.",
+    "Merge and audit revised10000/1000 development corpus.",
+    "Audit revised13000 pixels and complete data-only handoff."
   ],
   "decisions": [
     "User confirmed Unity imported references as main acceptance data",
@@ -2534,10 +2534,12 @@
   },
   "unity_confirmation_series": {
     "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-data-v2.json",
-    "status": "collecting",
+    "status": "passed",
     "snapshot_utc": "2026-11-12T10:08:51.971498+00:00",
     "test_opened": false,
-    "captured_images": 770
+    "captured_images": 2000,
+    "report_sha256": "9eaea881c2b349a6dc98b48eecb39d2615ab3720373c316b5fed5ac19ef4927f",
+    "observed_utc": "2026-11-12T12:12:13.354335+00:00"
   },
   "unity_capture_input_parity": {
     "status": "passed",
@@ -2670,9 +2672,10 @@
   },
   "unity_complete_pixel_audit": {
     "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-data-v2.json",
-    "status": "waiting_captures",
+    "status": "auditing_archives",
     "snapshot_utc": "2026-11-12T08:44:32.626601+00:00",
-    "test_opened": false
+    "test_opened": false,
+    "scope": "Historical development11000 plus confirmation2000; revised final cohort audit still required"
   },
   "unity_sealed_inference": {
     "status": "passed_development_smoke",
@@ -2988,7 +2991,7 @@
   "data_handoff": {
     "report": "unity-data-handoff-v1.json",
     "documentation": "unity-data-handoff.md",
-    "status": "collecting",
+    "status": "collecting_approved_development_replacements",
     "required_counts": {
       "train": 10000,
       "validation": 1000,
@@ -3187,6 +3190,27 @@
             "git_normalized_report_sha256": "e933d2a15d4956e56c032ec3cf6324d43e6a737fae01ed792d794d39d8c5077f"
           }
         }
+      },
+      {
+        "recorded_utc": "2026-11-12T12:12:13.354335+00:00",
+        "previous": {
+          "unity_confirmation_series": {
+            "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-data-v2.json",
+            "status": "passed",
+            "snapshot_utc": "2026-11-12T10:08:51.971498+00:00",
+            "test_opened": false,
+            "captured_images": 2000,
+            "report_sha256": "9eaea881c2b349a6dc98b48eecb39d2615ab3720373c316b5fed5ac19ef4927f",
+            "observed_utc": "2026-11-12T12:12:13.354335+00:00"
+          },
+          "unity_complete_pixel_audit": {
+            "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-data-v2.json",
+            "status": "auditing_archives",
+            "snapshot_utc": "2026-11-12T08:44:32.626601+00:00",
+            "test_opened": false,
+            "scope": "Historical development11000 plus confirmation2000; revised final cohort audit still required"
+          }
+        }
       }
     ],
     "development_candidate_completion": {
@@ -3378,21 +3402,51 @@
       "v2_input_scope_ready": false
     },
     "latest_confirmation_milestone": {
-      "snapshot_utc": "2026-11-12T11:50:07.501539+00:00",
+      "status": "passed_native_capture",
+      "snapshot_utc": "2026-11-12T12:12:13.354335+00:00",
       "cohort_version": "unity-confirmation2000-v2",
-      "captured_images": 1794,
-      "completed_batches": 8,
-      "manifest_sha256": "46cbb2c926f0d2090b7483fb1069c623932cc84f5570f39ebebdeab841d84c3d",
-      "input_eligibility_images": 1794,
+      "captured_images": 2000,
+      "completed_batches": 9,
+      "manifest_sha256": "906e5b7f27e3f01a15f02e51d6fbdb689a69c28374fd4496034282355471db33",
+      "input_eligibility_images": 2000,
       "input_types": {
-        "Default": 1772,
+        "Default": 1975,
         "Sprite": 12,
-        "NormalMap": 10
+        "NormalMap": 13
       },
-      "batch_report_sha256": "ae771a197efc120bd77b82b2b24f2ca47aaf82ef0435ffd6d2bd3269861bbfd5",
-      "phase_receipt_sha256": "073dc9d70cd8ee57f436056438661b686d151c5551c674ce31d02f09ffded420",
-      "native_process_exit_code": 0,
-      "metadata_restore_conflicts": []
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-data-v2.json",
+      "report_sha256": "9eaea881c2b349a6dc98b48eecb39d2615ab3720373c316b5fed5ac19ef4927f",
+      "wall_seconds": 12705.364209200008,
+      "editor_process_seconds": 11444.574684599997,
+      "capture_wall_seconds": 12339.270062199997,
+      "candidate_callbacks": 11209,
+      "native_process_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "metadata_restore_conflicts": [],
+      "batch_phase_receipts_sha256": {
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-capture-smoke2-data-v2\\batch-receipt.json": "e887c97bfa5f878596a099d97a44912c108553b66e91af2744ac5080f985d288",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2-from00002\\batch-receipt.json": "4d9d9586eb134f3d9dfbb0a1daf59a2c7b5626297173f5846fd3a73b6ab84450",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2-from00258\\batch-receipt.json": "67b12cb2e5d1682f844b9a59d34018220dc440dd33b8c2d8dcfbaacc8665d8de",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2-from00514\\batch-receipt.json": "32d9bc7951144023afc8046bcaf41babfce27051f6a16fb62d36b0e8c0faedfb",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2-from00770\\batch-receipt.json": "32ae5bfbdb0d07148a2b40e1fc1f4c984fb9762d0fe683d2cb9ada2706f1c39f",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2-from01026\\batch-receipt.json": "f41847adf688f6d6884fdb1c54f468d4565d443c074a92e56b26d154264bf556",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2-from01282\\batch-receipt.json": "669becd4084c2b36da782dd87b5cca36e2c849050d0365fc7e2a5371ef649221",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2-from01538\\batch-receipt.json": "073dc9d70cd8ee57f436056438661b686d151c5551c674ce31d02f09ffded420",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2-from01794\\batch-receipt.json": "91ad18bde3c994fe9b412ce2c657878b1cb7ad4c6f511b4392e1eea5bda5d47c"
+      },
+      "training_updates": 0,
+      "test_opened": false,
+      "revised_development_collection_complete": false,
+      "revised_full_pixel_audit_complete": false
     },
     "confirmation_revision_history": [
       {
@@ -3493,16 +3547,16 @@
     },
     "confirmation_input_audit": {
       "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-v2-input-audit.json",
-      "snapshot_status": "partial",
-      "images": 1794
+      "snapshot_status": "passed",
+      "images": 2000
     },
     "latest_native_capture_snapshot": {
-      "snapshot_utc": "2026-11-12T11:50:07.501539+00:00",
-      "archived_images": 1794,
-      "actual_input_verified": 1794,
-      "current_batch_start": 1794,
-      "current_batch_expected": 206,
-      "full_capture_complete": false,
+      "snapshot_utc": "2026-11-12T12:12:13.354335+00:00",
+      "archived_images": 2000,
+      "actual_input_verified": 2000,
+      "current_batch_start": null,
+      "current_batch_expected": 0,
+      "full_capture_complete": true,
       "test_opened": false
     },
     "confirmation_milestones": [
@@ -3607,6 +3661,23 @@
         "phase_receipt_sha256": "669becd4084c2b36da782dd87b5cca36e2c849050d0365fc7e2a5371ef649221",
         "native_process_exit_code": 0,
         "metadata_restore_conflicts": []
+      },
+      {
+        "snapshot_utc": "2026-11-12T11:50:07.501539+00:00",
+        "cohort_version": "unity-confirmation2000-v2",
+        "captured_images": 1794,
+        "completed_batches": 8,
+        "manifest_sha256": "46cbb2c926f0d2090b7483fb1069c623932cc84f5570f39ebebdeab841d84c3d",
+        "input_eligibility_images": 1794,
+        "input_types": {
+          "Default": 1772,
+          "Sprite": 12,
+          "NormalMap": 10
+        },
+        "batch_report_sha256": "ae771a197efc120bd77b82b2b24f2ca47aaf82ef0435ffd6d2bd3269861bbfd5",
+        "phase_receipt_sha256": "073dc9d70cd8ee57f436056438661b686d151c5551c674ce31d02f09ffded420",
+        "native_process_exit_code": 0,
+        "metadata_restore_conflicts": []
       }
     ],
     "development_scope_issue": {
@@ -3627,9 +3698,9 @@
       "decision_utc": "2026-11-12T11:03:50.884260+00:00",
       "revision_report": "unity-development-cohort-v2.json",
       "revision_report_sha256": "d5cfe21a81c481dbab9ced656b92f1ced651c9f4179284725f2c284def3377a7",
-      "status": "replacement_capture_waiting_confirmation",
+      "status": "collecting_approved_replacements",
       "capture_queue_report": "unity-development-replacement18-queue-v2.json"
     },
-    "next": "Finish confirmation collection; capture approved18replacements; supplement20candidates; assemble and audit revised10000/1000corpus; final pixel audit and handoff."
+    "next": "Complete approved18 replacements, all20 targets, revised11000 corpus and full13000 pixel audit; then final data handoff."
   }
 }
