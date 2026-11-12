@@ -1,0 +1,68 @@
+{
+  "mode": "confirmation_complete",
+  "development": {
+    "config": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\reference-series-plan-v2\\complete.json",
+      "sha256": "519df9a08a326067bd5a6467a3be355b648acf92709afb21539e596feff004b8"
+    },
+    "job": {
+      "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "sha256": "7570b20925e439439cdd3f4e3bface7643be185af9dfed7922441818078029d8"
+    }
+  },
+  "expected_counts": {
+    "train": 10000,
+    "validation": 1000,
+    "confirmation": 2000
+  },
+  "sources_sha256": {
+    "reproductions/unity_search_baseline/confirmation_capture.py": "c6a1639b5f29d4944f6b73172c4294a850d762728dd579cf4122bf2b4c947f89",
+    "reproductions/unity_search_baseline/confirmation.py": "a7e6551e3535baa77217a88c407adda523f0a9baafb729d171030c1423d81b0d",
+    "reproductions/unity_search_baseline/benchmark.py": "ab4f36ab64c30905b6e5ecf16abfed3056aeed1de22609e044ba2fff7d183c96",
+    "reproductions/unity_search_baseline/metadata.py": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+    "reproductions/unity_search_baseline/supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "reproductions/unity_search_baseline/collection.py": "134b9d99b5a6eedf5b16e781e0f0999f032f84943302acf7b538d492f0477dc2",
+    "reproductions/unity_search_baseline/native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+    "reproductions/unity_search_baseline/BenchmarkRunner.cs": "bfc79796114d9980a9d7a61962ccd8c4c72a6dcd90d9015c5b1955ebefdce923",
+    "reproductions/unity_search_baseline/ASTCSearchBaseline.asmdef": "3262bee6690723790b0037879ff3d60a01733f9f9e07deb44f0b9093c2807e94",
+    "reproductions/unity_search_baseline/native/capture_options.cs.txt": "c05ab61d53f2e3fd4ea1af5a9cb6d9b259563b4bb2d3f5deaacbb954246e06ad",
+    "reproductions/common/unity_reference.py": "9b597e33ccffd376ad98c2d506c3c6abe3cf14183075c9176b2a55b901d1797d",
+    "reproductions/common/encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "reproductions/common/jobs.py": "a1c6430442fe1b41d83b10ec05189ae8563d91569cf9ba05b19782efccba4177",
+    "src/adaptive_astc/utils/artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "script/capture_unity_confirmation.py": "8c63ec8f7d2222d3e89dcee24caacddbf104b08510df7d4f14fb3a953223f67a",
+    "reproductions/unity_search_baseline/confirmation_series.py": "18d9ed18114c9a197926c1f0f42584a790300a8ba5dd1caa38e6c3b96f870c68",
+    "script/collect_unity_confirmation_series.py": "d71e3f19562546e07fbe04c87a21b669c0528034d340fc1fe9e5969a68ef424d",
+    "reproductions/unity_search_baseline/near_duplicates.py": "4d5bd163dadd82285e74b4ae4e5ae4290336f81b7fb890cb73d3b810337dc913",
+    "script/audit_unity_near_duplicates.py": "40629b17d2417bc8274d422a06a50281b10d53a01c760124443499a633c2c7c3",
+    "pyproject.toml": "56cf9ef015a848712715ab882da1cb690187f607956efb9208163efde0c8ff9d",
+    "uv.lock": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+    "reproductions/unity_search_baseline/pixel_audit_pipeline.py": "5c7615c4a27480b8aaba838427345720c683be32cbf592857065b024f80f6c39",
+    "reproductions/unity_search_baseline/pixel_identity.py": "a720b8144d0b0099a8bb3f1b7193476d09da70208665b7949f4f06c8550cacaf",
+    "script/queue_unity_pixel_audit.py": "308458548fa101228fa57250d181506e2ffd536a572e7d6401ff81ff6ffe8682",
+    "script/audit_unity_pixel_identity.py": "df68c603d9e3a844551dbb82c3c0c1747e18eca7a0ecef2c8df951cccb381305"
+  },
+  "runtime": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "pillow": "12.3.0"
+  },
+  "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-v2",
+  "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-full13000-v2.json",
+  "confirmation": {
+    "config": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-confirmation-series2000-v1-config.json",
+      "sha256": "436192aae8d08f839237c29102e180bd6573e0fae80ca6ee6acd48d8cc145969"
+    },
+    "job": {
+      "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-confirmation-series2000-v1\\job.json",
+      "sha256": "5fdd28fdad63271cfe6610e04734375fa629225fd14f155758a45ce6cf4946c2"
+    }
+  },
+  "smoke_provenance": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2.json",
+    "report_sha256": "4ccd0873692eb4a75651530ca51c6e64771d4ee994a47357556777a0a068678b",
+    "process_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-pixel-pipeline-smoke66-v2\\receipt.json",
+    "process_receipt_sha256": "832caf051c423ae8766b712a1ce407236a0a24b53a4fff1361cffe320311449d"
+  }
+}

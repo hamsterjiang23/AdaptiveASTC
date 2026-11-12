@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "config_sha256": "67f350693793cd0b8faa9143e06dfbdbe1208afbda1ff5a482821caa904592fd",
+  "sources_sha256": {
+    "reproductions/unity_search_baseline/near_duplicates.py": "4d5bd163dadd82285e74b4ae4e5ae4290336f81b7fb890cb73d3b810337dc913",
+    "src/adaptive_astc/utils/artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "script/audit_unity_near_duplicates.py": "40629b17d2417bc8274d422a06a50281b10d53a01c760124443499a633c2c7c3",
+    "pyproject.toml": "56cf9ef015a848712715ab882da1cb690187f607956efb9208163efde0c8ff9d",
+    "uv.lock": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953"
+  },
+  "runtime": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "pillow": "12.3.0"
+  },
+  "rgba_rmse_8bit": 2.0,
+  "cell_grid": 8,
+  "test_opened": false,
+  "training_updates": 0,
+  "model_forward_calls": 0,
+  "splits_modified": false,
+  "independent_test_isolation_proven": false,
+  "scope": "Same native dimensions and pixel alignment, RGBA8 RMSE only; no resize/crop/rotation/semantic invariance, no label-based filtering",
+  "phase": "complete",
+  "unique_rgba_identities": 66,
+  "loaded_identities": 66,
+  "counts": {
+    "train": 64,
+    "validation": 2
+  },
+  "exact_duplicate_groups": 0,
+  "eligible_identity_pairs": 120,
+  "all_identity_pairs": 2145,
+  "retrieved_candidate_pairs": 0,
+  "measured_candidate_pairs": 0,
+  "near_identity_pairs": 0,
+  "near_image_pairs": 0,
+  "cross_split_near_identity_pairs": 0,
+  "exact_cross_split_groups": 0,
+  "details": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2\\near\\near-duplicates.json",
+  "details_sha256": "97b38f286c442d3be85e4ecc44bdffe8211110a8d6a1188f00fd8f2b7c980fde",
+  "inputs_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2\\near-config.json": "67f350693793cd0b8faa9143e06dfbdbe1208afbda1ff5a482821caa904592fd",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2-exact.json": "534ed5e245083619b95de15cbe22b5d31011bbd70d7a3faa9a058ff851aa6662",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2\\exact\\pixel-identities.json": "14328e513d01c8f00e6985f5c50eb0c2ad3fb5ffa2130068210976b9b85a0162",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2\\exact-config.json": "2e3dce06086b323e05f14c491da8aa55cc332a2a35c255340a5f7b0d27b01c91",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111\\references\\normalized-smoke1\\receipt.json": "722b8c87790a71dac06785c476062061fe5482bdeb88b55d24f5272eea9641dc",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111\\options-receipt.json": "c382e972f80ab2e0065c1aebc0f0ea41e52c38c06a724460368ea84c60443409",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111\\smoke1-receipt.json": "34566f9be21ac1c9cb9af51faf8807a365873a4b6bec282b98d4059b5635f5d5",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111\\references\\normalized-smoke1\\manifest.json": "aaeb719de4bd2ae530a3f89b2af3961d2f625f724928ff215d6bba08819b0c60",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\receipt.json": "1028f3114a156e759c35d57fe7a4248292639ebc9db2b20ed39efdad401c6409",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\options-receipt.json": "cf47bdfcc105d970f1efd871a4facd80c1d4d2ab822a5a42f040ed100c19cfd9",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-receipt.json": "71ee8c1c0729a5db130a9c6144ef0048aa4cf44420c416a2e1a8dbba0c376c86",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\manifest.json": "4b433a32f225e827d98640c56d11db60442e466e588302583cc7185581272a6c"
+  },
+  "wall_seconds": 1.9626490000082413
+}

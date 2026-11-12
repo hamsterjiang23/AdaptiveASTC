@@ -6,6 +6,8 @@
 
 ## 验收与执行顺序
 
+[完整像素审计队列](unity-pixel-pipeline.md)通过真实64训练／2验证图的归档、精确RGBA和近重复检查，0组精确重复／0对近重复，完整进程12.71秒。74项CPU检查通过，全量10000／1000／2000任务已启动等待开发与确认采集完成。确认集报告转换仅完成合成归档检查，完整隔离及模型90%尚未验收。`[verified: unity-pixel-pipeline-verification.json smoke、full_queue、cpu_tests；opinion: 验收范围]`
+
 [原生RGBA近重复筛查](unity-near-duplicates.md)完成7744训练／2验证图的同尺寸、同坐标低RMSE检查，92对候选中6对达到≤2/255，涉及12张训练图。47项CPU检查与6对独立重算通过，进程122.28秒；不删图、不改变划分或进行模型测试，完整独立确认集隔离仍未完成。`[verified: unity-near-duplicates-verification.json results.completed7746；pytest 47 passed；opinion: 验收边界]`
 
 [原始采集规则绑定](unity-capture-policy.md)完成train64／validation2的真实来源核验，直接读取原搜索与缓存，44项CPU检查通过，完整进程4.23秒。首次历史train缺split导致的失败与修复前源码保留；没有模型forward或确认集测试。`[verified: unity-capture-policy-verification.json counts、process_seconds、prior_failure、model_forward_calls；pytest 44 passed]`

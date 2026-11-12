@@ -72,6 +72,8 @@ V1 记录于 2026-11-11，当前执行中。本计划是重新创建的goal的�
 
 ## 实验步骤
 
+[完整像素审计队列](<../../experiment report/unity-accuracy90-20261111/unity-pixel-pipeline.md>)已完成真实66图归档与两种像素检查，完整进程12.71秒，74项CPU检查通过；10000训练／1000验证／2000确认图任务已启动等待上游采集，25份文件冻结。当前没有确认集模型结果，检查本身不修改划分，也不证明裁剪／缩放或历史语料的像素隔离；V1原始证据保持。`[verified: unity-pixel-pipeline-verification.json smoke、full_queue、v1_evidence_sha256；opinion: 完成边界]`
+
 [原生RGBA近重复筛查](<../../experiment report/unity-accuracy90-20261111/unity-near-duplicates.md>)完成7744训练／2验证图的同尺寸、同坐标检查，找到6对低RMSE候选、共12张训练图；47项CPU检查和6对独立重算通过。此次不修改开发划分或标签、不运行模型，完整验证／确认范围及缩放、裁剪等相似性仍未证明隔离，V1原始证据保持。`[verified: unity-near-duplicates-verification.json results.completed7746、v1_evidence_sha256、splits_modified；pytest 47 passed；opinion: 覆盖限制]`
 
 [原始采集规则绑定](<../../experiment report/unity-accuracy90-20261111/unity-capture-policy.md>)已在train64／validation2的真实记录上通过，直接绑定原生LITE规则与选参来源，独立于候选补测文件。44项CPU检查通过，首次历史train缺split失败及旧源码保留；未进行模型forward、确认集评价或新增编码，原V1证据保持不变。`[verified: unity-capture-policy-verification.json counts、prior_failure、model_forward_calls、v1_evidence_sha256；pytest 44 passed]`

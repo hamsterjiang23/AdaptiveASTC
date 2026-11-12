@@ -52,6 +52,8 @@ PSNR 35 dB在此记录为项目当前采用的经验判据，其与实际视觉�
 
 ### 研究顺序与分类校准
 
+[完整像素审计队列](<experiment report/unity-accuracy90-20261111/unity-pixel-pipeline.md>)已通过真实64训练／2验证图的归档、精确重复和近重复检查，完整进程12.71秒；74项CPU检查通过。全量10000／1000／2000任务已启动等待开发与确认采集完成，25份执行文件冻结；不改划分、不进行模型测试，完整像素隔离与Unity90%验收仍待完成。`[verified: unity-pixel-pipeline-verification.json smoke、full_queue、cpu_tests；opinion: 验收边界]`
+
 [原生RGBA近重复筛查](<experiment report/unity-accuracy90-20261111/unity-near-duplicates.md>)完成7744训练／2验证图的同尺寸、同坐标检查，完整像素RMSE≤2/255的候选有6对、涉及12张训练图；没有改变划分或进行模型测试。47项CPU检查及6对独立重算通过，缩放／裁剪相似性、完整验证集与确认集隔离仍待后续核验。`[verified: unity-near-duplicates-verification.json results.completed7746；pytest 47 passed；opinion: 覆盖边界]`
 
 [原始采集规则绑定](<experiment report/unity-accuracy90-20261111/unity-capture-policy.md>)已在64张训练图和2张验证图的真实记录上通过，直接从原搜索回执与缓存绑定有效LITE规则，不依赖候选补测文件。44项相关CPU检查通过，首次历史train缺split失败及修复前源码保留；没有模型forward或确认集评价。`[verified: unity-capture-policy-verification.json counts、prior_failure、model_forward_calls；pytest 44 passed]`

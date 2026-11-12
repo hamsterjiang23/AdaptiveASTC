@@ -1,0 +1,114 @@
+{
+  "status": "passed",
+  "config_sha256": "9f64e8fadb09da905a3da72b6052ba7a68a6adf8a1dd32af4ece926ee3bb87b9",
+  "sources_sha256": {
+    "reproductions/unity_search_baseline/confirmation_capture.py": "c6a1639b5f29d4944f6b73172c4294a850d762728dd579cf4122bf2b4c947f89",
+    "reproductions/unity_search_baseline/confirmation.py": "a7e6551e3535baa77217a88c407adda523f0a9baafb729d171030c1423d81b0d",
+    "reproductions/unity_search_baseline/benchmark.py": "ab4f36ab64c30905b6e5ecf16abfed3056aeed1de22609e044ba2fff7d183c96",
+    "reproductions/unity_search_baseline/metadata.py": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+    "reproductions/unity_search_baseline/supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "reproductions/unity_search_baseline/collection.py": "134b9d99b5a6eedf5b16e781e0f0999f032f84943302acf7b538d492f0477dc2",
+    "reproductions/unity_search_baseline/native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+    "reproductions/unity_search_baseline/BenchmarkRunner.cs": "bfc79796114d9980a9d7a61962ccd8c4c72a6dcd90d9015c5b1955ebefdce923",
+    "reproductions/unity_search_baseline/ASTCSearchBaseline.asmdef": "3262bee6690723790b0037879ff3d60a01733f9f9e07deb44f0b9093c2807e94",
+    "reproductions/unity_search_baseline/native/capture_options.cs.txt": "c05ab61d53f2e3fd4ea1af5a9cb6d9b259563b4bb2d3f5deaacbb954246e06ad",
+    "reproductions/common/unity_reference.py": "9b597e33ccffd376ad98c2d506c3c6abe3cf14183075c9176b2a55b901d1797d",
+    "reproductions/common/encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "reproductions/common/jobs.py": "a1c6430442fe1b41d83b10ec05189ae8563d91569cf9ba05b19782efccba4177",
+    "src/adaptive_astc/utils/artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "script/capture_unity_confirmation.py": "8c63ec8f7d2222d3e89dcee24caacddbf104b08510df7d4f14fb3a953223f67a",
+    "reproductions/unity_search_baseline/confirmation_series.py": "18d9ed18114c9a197926c1f0f42584a790300a8ba5dd1caa38e6c3b96f870c68",
+    "script/collect_unity_confirmation_series.py": "d71e3f19562546e07fbe04c87a21b669c0528034d340fc1fe9e5969a68ef424d",
+    "reproductions/unity_search_baseline/near_duplicates.py": "4d5bd163dadd82285e74b4ae4e5ae4290336f81b7fb890cb73d3b810337dc913",
+    "script/audit_unity_near_duplicates.py": "40629b17d2417bc8274d422a06a50281b10d53a01c760124443499a633c2c7c3",
+    "pyproject.toml": "56cf9ef015a848712715ab882da1cb690187f607956efb9208163efde0c8ff9d",
+    "uv.lock": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+    "reproductions/unity_search_baseline/pixel_audit_pipeline.py": "5c7615c4a27480b8aaba838427345720c683be32cbf592857065b024f80f6c39",
+    "reproductions/unity_search_baseline/pixel_identity.py": "a720b8144d0b0099a8bb3f1b7193476d09da70208665b7949f4f06c8550cacaf",
+    "script/queue_unity_pixel_audit.py": "308458548fa101228fa57250d181506e2ffd536a572e7d6401ff81ff6ffe8682",
+    "script/audit_unity_pixel_identity.py": "df68c603d9e3a844551dbb82c3c0c1747e18eca7a0ecef2c8df951cccb381305"
+  },
+  "runtime": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "pillow": "12.3.0"
+  },
+  "expected_counts": {
+    "train": 64,
+    "validation": 2
+  },
+  "mode": "development_smoke",
+  "stages": [
+    {
+      "kind": "exact",
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2-exact.json",
+      "sha256": "534ed5e245083619b95de15cbe22b5d31011bbd70d7a3faa9a058ff851aa6662",
+      "wall_seconds": 1.2761726000026101
+    },
+    {
+      "kind": "near",
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2-near.json",
+      "sha256": "2020bb2930b89622a5ff5ff81152972b341e6f6e670e006533185060efef7b6d",
+      "wall_seconds": 1.9626490000082413
+    }
+  ],
+  "test_opened": false,
+  "model_forward_calls": 0,
+  "training_updates": 0,
+  "splits_modified": false,
+  "independent_test_isolation_proven": false,
+  "scope": "Bound native cohorts only; exact RGBA and same-size aligned RMSE. No historical-cohort, resize/crop/semantic isolation claim or automatic removal",
+  "dependencies": [
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-smoke-v2\\job.json",
+      "status": "passed",
+      "receipt_sha256": "390c0d7888e0985e370a2fc265e8cc9a3488cd624c9164f3d0c18546df9bfdf6"
+    }
+  ],
+  "resources": {
+    "available_ram_bytes": 26568073216,
+    "free_disk_bytes": 953338449920
+  },
+  "wait_seconds": 0.01282770000398159,
+  "archive_audit_seconds": 5.674550299998373,
+  "counts": {
+    "train": 64,
+    "validation": 2
+  },
+  "rgba": {
+    "unique_identities": 66,
+    "duplicate_groups": 0,
+    "images_in_duplicate_groups": 0,
+    "redundant_images": 0,
+    "cross_split_groups": 0,
+    "cross_split_images": {},
+    "groups_with_different_rgba": 0,
+    "groups_with_different_choices": 0
+  },
+  "near_identity_pairs": 0,
+  "cross_split_near_identity_pairs": 0,
+  "inputs_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2-config.json": "9f64e8fadb09da905a3da72b6052ba7a68a6adf8a1dd32af4ece926ee3bb87b9",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\reference-series-plan-v2\\smoke.json": "421beecd07fbd0dd3e027f0057e00ae933e96dd83b593a84a45ae2a50468c3b1",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-smoke-v2\\job.json": "961e4384994471e5c4c9954c1605b93072f4af8f0d0755b45a87fd4cf6c00844",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-smoke-v2\\receipt.json": "390c0d7888e0985e370a2fc265e8cc9a3488cd624c9164f3d0c18546df9bfdf6",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-reference-series-smoke.json": "b0b5496aeef06fd6a98f3ec434650048b28cf4445c2a1cd237c679b8fd91612a",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-reference-series-smoke-v2\\manifest.json": "ad03d3cf083e04a6ecc231b53c030c47ed750b04bb2b2186b7e3e8e4e869ee8f",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-actual-options64-config.json": "ce65eb144aeb41eaf0f4f61ae9f1ed45be8d00edeeb8a2b34315704e60d5e1dc",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111\\options-receipt.json": "c382e972f80ab2e0065c1aebc0f0ea41e52c38c06a724460368ea84c60443409",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-actual-options64.json": "c382e972f80ab2e0065c1aebc0f0ea41e52c38c06a724460368ea84c60443409",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111\\references\\normalized-smoke1\\receipt.json": "722b8c87790a71dac06785c476062061fe5482bdeb88b55d24f5272eea9641dc",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-actual-options64-20261111\\smoke1-receipt.json": "34566f9be21ac1c9cb9af51faf8807a365873a4b6bec282b98d4059b5635f5d5",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-validation2-config.json": "e09554c163b5757647cb6a13c5af09feda0d2584f206e8515c57946873328073",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\options-receipt.json": "cf47bdfcc105d970f1efd871a4facd80c1d4d2ab822a5a42f040ed100c19cfd9",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-validation2.json": "cf47bdfcc105d970f1efd871a4facd80c1d4d2ab822a5a42f040ed100c19cfd9",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch\\receipt.json": "1028f3114a156e759c35d57fe7a4248292639ebc9db2b20ed39efdad401c6409",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\batch-receipt.json": "71ee8c1c0729a5db130a9c6144ef0048aa4cf44420c416a2e1a8dbba0c376c86",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2\\exact-config.json": "2e3dce06086b323e05f14c491da8aa55cc332a2a35c255340a5f7b0d27b01c91",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2-exact.json": "534ed5e245083619b95de15cbe22b5d31011bbd70d7a3faa9a058ff851aa6662",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2\\near-config.json": "67f350693793cd0b8faa9143e06dfbdbe1208afbda1ff5a482821caa904592fd",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-pixel-pipeline-smoke66-v2-near.json": "2020bb2930b89622a5ff5ff81152972b341e6f6e670e006533185060efef7b6d"
+  },
+  "wall_seconds": 8.975777900006506,
+  "active_seconds": 8.962950200002524
+}

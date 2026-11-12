@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+完整像素审计队列的真实66图检查：归档复核5.675秒、精确身份1.276秒、近重复1.963秒，完整进程12.709秒。读取已完成参考／回调归档，写独立.local明细与公开报告；全量10000／1000／2000必须等待两个采集系列成功退出，并在启动像素检查前保留8GiB RAM／5GiB磁盘。等待控制器每15秒检查，不启动Editor或CUDA；确认集真实投影与全量耗时仍待实测。`[verified: unity-pixel-pipeline-verification.json smoke、full_queue；pixel_audit_pipeline.py wait/run；opinion: 成本边界]`
+
 Sprite恢复的真实128²图完成20候选，内部0.763秒／进程1.048秒，原16项指标及winner一致。新候选队列先逐批复核32份已完成归档，完整复核耗时待结束后单列；失败批52图部分产物保留但不计作完整复用。下游训练按原门槛在新目录重做32图CUDA预检，再等待全量数据；四个旧任务总时长含等待和已完成工作，见恢复报告，不全部算作重试浪费。`[verified: unity-sprite-recovery-readiness.json；unity-sprite-recovery.json prior_jobs；opinion: 成本解释]`
 
 原生RGBA近重复筛查：66图内部2.32秒／进程2.99秒；7746图内部121.48秒／进程122.28秒，输入约10.41亿像素、最大4096²图像，92对候选完整比较。单CPU计算进程，不占GPU；只读已完成归档和冻结回执，写独立.local明细与公开摘要，不修改采集／训练输入。完整运行前空闲RAM24.90GiB、E盘893.08GiB，未测峰值内存；成本属于数据审计，不作为部署耗时。`[verified: unity-near-duplicates-verification.json results.*的total_input_pixels、max_input_pixels、initial_resources及耗时；对应job scope；opinion: 成本边界]`
