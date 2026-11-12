@@ -113,3 +113,5 @@ ImageNet初始化正式8轮训练器669.33秒，4998更新、2AMP跳步，最佳
 随机初始化完整30轮训练器1651.94秒、18,741更新，9次AMP跳步，最佳权重重载24.94秒通过。原生BN诊断的9项CPU检查3.77秒，完整CUDA诊断成本随后按运行记录补充。`[verified: ../experiment report/unity-v2-20261112/mean-full30-result.json；mean-full30.json checkpoint_audit.wall_seconds；本轮pytest“9 passed in 3.77s”]`
 
 原生BN的32图／128patch预检完整进程120.49秒，完整10000图／40000patch诊断208.80秒，其中统计重估88.68秒，均含完整1000图的原预测和新权重重载核对。ImageNet完整30轮配置的32／16图CUDA预检10.69秒、4更新及重载通过，随后正式任务串行启动。`[verified: ../experiment report/unity-v2-20261112/mean-full30-bn-smoke.json；mean-full30-bn.json；imagenet-full30-smoke.json；对应jobs/launch-preflight.json]`
+
+ImageNet完整30轮训练器1647.19秒，18,743更新、7AMP跳步，选中权重重载通过。EMA原生扩展73项组件检查4.71秒、71项调用方检查5.11秒，训练和额外验证成本随后实测。`[verified: ../experiment report/unity-v2-20261112/imagenet-full30-result.json；本轮pytest输出]`

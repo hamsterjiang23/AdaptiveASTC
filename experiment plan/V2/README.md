@@ -4,7 +4,7 @@ V2 初版记录于 2026-11-12，当时状态为待执行。开发、选模与验
 
 [V1](../V1/README.md) 的历史方法与实测结果保留，执行状态按用户最新指示更新。V2 复用 V1 执行期间完成的 Unity 原生组件，包括采集、补测、Dataset、`UnityQualityRegressor`、训练器、规则重放和确认集入口，不复用 GDC 数据、权重或结果。用户最初选择只指定 V2；随后于 2026-11-12 明确数据 goal 在完成采集后结束，后续执行 V2。当时只继续[数据交接](<../../experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)，V1 正式训练自动启动已取消；V2 的 R0 复用保留的配方，以新的实验身份启动。`[verified: 用户先前“先不切换，只是指定”及后续“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json training_auto_start]`
 
-当前V2 goal已启动，完整原生基线、权重0.03、仅均值池化及ImageNet初始化对照、冻结预测归因和验证余量拟合已完成。ImageNet初始化原始／同集拟合Top-1为81.3%／82.5%，主线晋级等待用户决定；随机初始化完整30轮对照已完成，Top-1为81.3%，原生BN重估为80.1%，ImageNet完整30轮对照正在执行。结果与活动状态见[执行报告](<../../experiment report/unity-v2-20261112/README.md>)；计划初版源码哈希和归档位置见[执行绑定](<../../experiment report/unity-v2-20261112/plan-execution-binding.json>)。`[verified: 用户“查看V2版本的实验之后，创建一个goal开始实验”；experiment report/unity-v2-20261112/comparison.json、progress.json]`
+当前V2 goal已启动，完整原生基线、权重0.03、仅均值池化及ImageNet初始化对照、冻结预测归因和验证余量拟合已完成。完整30轮随机初始化原始／同集拟合Top-1为81.3%／81.5%，ImageNet为85.7%／86.4%，主线晋级等待用户决定；原生BN重估为80.1%，随机初始化EMA对照正在训练。结果与活动状态见[执行报告](<../../experiment report/unity-v2-20261112/README.md>)；计划初版源码哈希和归档位置见[执行绑定](<../../experiment report/unity-v2-20261112/plan-execution-binding.json>)。`[verified: 用户“查看V2版本的实验之后，创建一个goal开始实验”；experiment report/unity-v2-20261112/comparison.json、progress.json]`
 
 核心做法：对每张图预测 20 个候选在 Unity 口径下的质量，交给原规则 `UnitySearchPolicy` 选出块大小和 preset，最后只编码一次。`[opinion]`
 

@@ -7,10 +7,12 @@ import os
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
+from typing import cast
 
 import numpy as np
 import torch
 from torch.amp.grad_scaler import GradScaler
+from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
 from torch.utils.data import DataLoader
 
 from adaptive_astc.config import JsonDict
@@ -50,6 +52,7 @@ class UnityTrainConfig:
     initialization: str = "scratch"
     pretrained_weights: Path | None = None
     pretrained_weights_sha256: str | None = None
+    ema_decay: float = 0.0
 
     def validate(self) -> None:
         for name in ["epochs", "image_batch_size", "patches_per_image", "validation_batch_size"]:
@@ -67,6 +70,7 @@ class UnityTrainConfig:
             or not 0 < self.zero_probability_threshold < 1
             or self.image_pooling not in ("mean_max", "mean")
             or self.initialization not in ("scratch", "pretrained")
+            or not 0 <= self.ema_decay < 1
         ):
             raise ValueError("Invalid native training configuration")
         if not self.smoke and self.train_image_indices:
@@ -112,6 +116,11 @@ class UnityQualityTrainer:
             ArtifactStore.sha256_file(config.pretrained_weights) != config.pretrained_weights_sha256
         ):
             raise ValueError("Native initialization weight file changed")
+
+    @staticmethod
+    def selection_key(metrics: JsonDict) -> tuple[float, float]:
+        rmse = metrics["color_near_threshold_rmse_db"]
+        return -float(metrics["accuracy"]), math.inf if rmse is None else float(rmse)
 
     @staticmethod
     def validate_coverage(document: JsonDict, config: UnityTrainConfig) -> None:
@@ -183,6 +192,16 @@ class UnityQualityTrainer:
         model = UnityQualityRegressor(
             image_pooling=config.image_pooling, backbone_weights=backbone_weights
         ).to(device)
+        ema = (
+            AveragedModel(
+                model,
+                device=device,
+                multi_avg_fn=get_ema_multi_avg_fn(config.ema_decay),
+                use_buffers=True,
+            )
+            if config.ema_decay
+            else None
+        )
         criterion = UnityQualityLoss(
             UnityQualityLossConfig(config.zero_weight, config.ssim_weight, config.angle_weight)
         )
@@ -228,6 +247,7 @@ class UnityQualityTrainer:
                 "margin and zero threshold fixed"
             ),
             augmentations=[],
+            ema="Parameters and buffers after each applied optimizer update" if ema else False,
             policy_origins=self.resolver.origins,
         )
         ArtifactStore.write_json(config.output / "config.json", settings)
@@ -245,6 +265,9 @@ class UnityQualityTrainer:
             nonlocal updates
             updates += 1
             state["training_updates"] = updates
+            if ema is not None:
+                ema.update_parameters(model)
+                state["ema_updates"] = int(ema.n_averaged.item())
 
         hook = optimizer.register_step_post_hook(track_update)
         best_key = (math.inf, math.inf)
@@ -308,6 +331,22 @@ class UnityQualityTrainer:
                 if updates == before:
                     raise RuntimeError("Native epoch applied no optimizer updates")
                 metrics, predictions, decisions = self.evaluate(model, validation, device)
+                variants = {"raw": (model, metrics, predictions, decisions)}
+                if ema is not None:
+                    ema_model = cast(UnityQualityRegressor, ema.module)
+                    ema_metrics, ema_predictions, ema_decisions = self.evaluate(
+                        ema_model, validation, device
+                    )
+                    variants["ema"] = (
+                        ema_model,
+                        ema_metrics,
+                        ema_predictions,
+                        ema_decisions,
+                    )
+                winner = min(variants, key=lambda name: self.selection_key(variants[name][1]))
+                selected_model, selected_metrics, selected_predictions, selected_decisions = (
+                    variants[winner]
+                )
                 row = {
                     "epoch": epoch + 1,
                     "loss": {k: v / images_seen for k, v in totals.items()},
@@ -318,12 +357,15 @@ class UnityQualityTrainer:
                     "amp_skipped_steps": attempts - (updates - before),
                     "training_seconds": training_seconds,
                     "validation": metrics,
+                    "validation_variants": {name: value[1] for name, value in variants.items()},
+                    "selected_validation_variant": winner,
+                    "ema_updates": int(ema.n_averaged.item()) if ema is not None else 0,
                     "learning_rate": optimizer.param_groups[0]["lr"],
                 }
                 state["history"].append(row)
-                rmse = metrics["color_near_threshold_rmse_db"]
-                rmse_key = math.inf if rmse is None else float(rmse)
-                key = (-metrics["accuracy"], rmse_key)
+                rmse = selected_metrics["color_near_threshold_rmse_db"]
+                rmse_key = min(self.selection_key(value[1])[1] for value in variants.values())
+                key = self.selection_key(selected_metrics)
                 checkpoint = {
                     "model": model.state_dict(),
                     "optimizer": optimizer.state_dict(),
@@ -331,28 +373,37 @@ class UnityQualityTrainer:
                     "config": settings,
                     "epoch": epoch + 1,
                     "history": state["history"],
+                    "ema": ema.state_dict() if ema is not None else None,
                 }
                 temporary = config.output / "last.tmp"
                 torch.save(checkpoint, temporary)
                 temporary.replace(config.output / "last.pt")
                 if key < best_key:
                     best_key = key
-                    torch.save(checkpoint, config.output / "best.pt")
+                    torch.save(
+                        {
+                            **checkpoint,
+                            "model": selected_model.state_dict(),
+                            "selected_variant": winner,
+                        },
+                        config.output / "best.pt",
+                    )
                     np.savez_compressed(
                         config.output / "best-validation.npz",
-                        channel_mse=predictions["channel_mse"],
-                        channel_zero=predictions["channel_zero"],
-                        zero_probability=predictions["zero_probability"],
-                        image_quality=predictions["image_quality"],
+                        channel_mse=selected_predictions["channel_mse"],
+                        channel_zero=selected_predictions["channel_zero"],
+                        zero_probability=selected_predictions["zero_probability"],
+                        image_quality=selected_predictions["image_quality"],
                     )
                     ArtifactStore.write_json(
                         config.output / "best-decisions.json",
-                        {"rows": decisions, "metrics": metrics},
+                        {"rows": selected_decisions, "metrics": selected_metrics},
                     )
                     state["best_artifacts_sha256"] = {
                         name: ArtifactStore.sha256_file(config.output / name)
                         for name in ["best.pt", "best-validation.npz", "best-decisions.json"]
                     }
+                    state["best_validation_variant"] = winner
                 if rmse_key < best_rmse:
                     best_rmse, stale = rmse_key, 0
                 elif math.isfinite(rmse_key):
@@ -373,7 +424,8 @@ class UnityQualityTrainer:
                         "epoch": epoch + 1,
                         "updates": updates,
                         "loss": row["loss"],
-                        "accuracy": metrics["accuracy"],
+                        "accuracy": selected_metrics["accuracy"],
+                        "selected_variant": winner,
                         "near_rmse": rmse,
                     },
                     flush=True,
@@ -515,6 +567,7 @@ class UnityQualityTrainer:
         result = {
             "status": "passed",
             "epoch": checkpoint["epoch"],
+            "selected_variant": checkpoint.get("selected_variant", "raw"),
             "metrics": metrics,
             "checkpoint_sha256": ArtifactStore.sha256_file(config.output / "best.pt"),
             "predictions_sha256": ArtifactStore.sha256_file(config.output / "best-validation.npz"),

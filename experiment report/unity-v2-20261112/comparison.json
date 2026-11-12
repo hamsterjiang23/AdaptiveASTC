@@ -1,5 +1,5 @@
 {
-  "status": "full30_scratch_control_completed",
+  "status": "paired_full30_controls_completed",
   "created_utc": "2026-11-12T14:40:16.378356+00:00",
   "results": {
     "baseline": {
@@ -486,16 +486,113 @@
       "parameters": 11305980,
       "deployment_timings": null,
       "confirmation_test_opened": false
+    },
+    "imagenet_full30": {
+      "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-full30.json",
+      "training_report_sha256": "ccf8bd7729fe5f0d10a3c844a71c84984f7708180e3bc5de0c241ad1d85cb038",
+      "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-full30-attribution.json",
+      "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-full30-calibration.json",
+      "calibration_report_sha256": "78dd8e610a8919dd585b434828c061d2fea6125d12b7241a606350a26336f4d4",
+      "epochs": 30,
+      "updates": 18743,
+      "amp_skips": 7,
+      "selected_checkpoint_epoch": 22,
+      "selected_checkpoint_metrics": {
+        "count": 1000,
+        "accuracy": 0.857,
+        "balanced_accuracy": 0.7630909438605237,
+        "full_choice_accuracy": 0.584,
+        "confusion_matrix": [
+          [
+            94,
+            20,
+            3,
+            3
+          ],
+          [
+            14,
+            100,
+            26,
+            3
+          ],
+          [
+            0,
+            22,
+            83,
+            33
+          ],
+          [
+            1,
+            2,
+            16,
+            580
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7833333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.6993006993006993
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.6014492753623188
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9682804674457429
+          }
+        },
+        "actual_quality_pass_rate": 0.645,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 1.9216913044714306,
+        "selected_payload_bytes": 31150304,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 12.144341299999724
+      },
+      "same_validation_fitted_top1": 0.864,
+      "same_validation_fitted_parameters": {
+        "zero_probability_threshold": 0.5,
+        "psnr_margin_db": -0.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.5
+      },
+      "same_validation_fitted_metrics": {
+        "images": 1000,
+        "accuracy": 0.864,
+        "full_choice_accuracy": 0.574,
+        "actual_strict_quality_pass_rate": 0.616,
+        "quality_regression_images": 258,
+        "larger_block_images": 98,
+        "smaller_block_images": 38,
+        "payload_bytes": 31064832,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 0.9811541581073808,
+        "payload_ratio_to_fixed8": 0.5198124495160907
+      },
+      "quality_regression_images": 230,
+      "trainer_wall_seconds": 1647.1942708999995,
+      "parameters": 11305980,
+      "deployment_timings": null,
+      "confirmation_test_opened": false
     }
   },
   "reference_model": "mean_full30",
-  "next_experiment": "Independent ImageNet full30 initialization contrast",
-  "decision": "Scratch full30 and early-stopped ImageNet both81.3%; scratch lower selected-checkpoint near-threshold RMSE; pretrained promotion pending matched-budget result and user decision",
+  "next_experiment": "EMA control on scratch full30 mainline while pretrained promotion remains pending",
+  "decision": "Independent ImageNet full30 control85.7%, fitted86.4%; scratch mainline81.3%, fitted81.5%; confirmation90 gate remains unmet",
   "calibration_scope": "Finite two-pass coordinate fitting on the same1000 validation predictions; no confirmation evaluation",
   "test_opened": false,
-  "updated_utc": "2026-11-12T16:00:44.328710+00:00",
+  "updated_utc": "2026-11-12T16:35:52.471966+00:00",
   "calibration_deployment_integrated": false,
-  "best_development_contrast": "imagenet_mean",
+  "best_development_contrast": "imagenet_full30",
   "postprocessing_results": {
     "mean_full30_bn": {
       "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30-bn.json",

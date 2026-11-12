@@ -1,6 +1,6 @@
 {
-  "status": "imagenet_full30_contrast_running",
-  "updated_utc": "2026-11-12T16:07:48.141486+00:00",
+  "status": "native_ema_control_running",
+  "updated_utc": "2026-11-12T16:46:04.137091+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,9 +10,9 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Complete independent ImageNet full30 training and selected-checkpoint audit",
-    "Run frozen attribution and same-validation margin fitting",
-    "Continue fixed-capacity controls and resolve pending user decisions before mainline promotion or external push"
+    "Complete scratch EMA full30 training and selected-checkpoint audit",
+    "Run frozen validation attribution and same-validation margin fitting",
+    "Continue fixed-capacity controls toward validation90; resolve pending initialization-promotion and external-push decisions"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
   "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
@@ -61,25 +61,26 @@
     "full_status": "completed",
     "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\attribution-stable-smoke.json"
   },
-  "current_training_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-full30-config.json",
-  "current_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-full30.json",
-  "current_training_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-full30\\receipt.json",
+  "current_training_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-ema099-config.json",
+  "current_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-ema099.json",
+  "current_training_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\mean-ema099\\receipt.json",
   "recovery_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\recovery-verification.json",
-  "current_training_completed_epochs": 0,
-  "current_training_best_validation_accuracy": null,
+  "current_training_completed_epochs": 1,
+  "current_training_best_validation_accuracy": 0.654,
   "current_training_observation": null,
   "completed_baseline_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\baseline-result.json",
   "completed_attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-attribution.json",
   "validation90_achieved": false,
   "comparison_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\comparison.json",
   "reference_model_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30.json",
-  "best_raw_validation_accuracy": 0.813,
-  "best_same_validation_fitted_accuracy": 0.825,
+  "best_raw_validation_accuracy": 0.857,
+  "best_same_validation_fitted_accuracy": 0.864,
   "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-mean\\manifest.json",
   "source_archives": {
     "before_mean": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-mean\\manifest.json",
     "before_imagenet": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-imagenet\\manifest.json",
-    "native30": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-native30\\manifest.json"
+    "native30": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-native30\\manifest.json",
+    "before_ema": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\manifest.json"
   },
   "pretrained_mainline_promotion": "pending_user_decision",
   "current_bn_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30-bn.json",
@@ -92,5 +93,18 @@
     "authenticated_login": "hamsterjiang23",
     "repository_owner": "hamsterjiang23",
     "visibility": "public"
-  }
+  },
+  "paired_prefix_check": {
+    "reference": "imagenet-mean.json",
+    "matching_epochs": 8,
+    "loss_and_optimizer_updates_equal": true,
+    "matching_validation_fields": [
+      "accuracy",
+      "color_near_threshold_rmse_db",
+      "full_choice_accuracy"
+    ]
+  },
+  "completed_imagenet_full30_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-full30-result.json",
+  "current_training_best_variant": "ema",
+  "current_training_ema_updates": 623
 }

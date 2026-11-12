@@ -93,6 +93,33 @@ def configuration(tmp_path: Path) -> UnityTrainConfig:
     return UnityTrainConfig(tmp_path / "corpus", "a" * 64, tmp_path / "output", tmp_path / "report")
 
 
+@pytest.mark.parametrize("decay", [-0.1, 1.0, float("nan"), float("inf")])
+def test_native_ema_rejects_invalid_decay(tmp_path: Path, decay: float) -> None:
+    with pytest.raises(ValueError, match="Invalid native training"):
+        replace(configuration(tmp_path), ema_decay=decay).validate()
+
+
+def test_native_ema_defaults_off_and_accepts_explicit_decay(tmp_path: Path) -> None:
+    config = configuration(tmp_path)
+    assert config.ema_decay == 0.0
+    config.validate()
+    replace(config, ema_decay=0.99).validate()
+
+
+def test_native_variant_selection_keeps_accuracy_then_rmse_order() -> None:
+    raw = {"accuracy": 0.80, "color_near_threshold_rmse_db": 1.0}
+    ema = {"accuracy": 0.81, "color_near_threshold_rmse_db": 2.0}
+    assert UnityQualityTrainer.selection_key(ema) < UnityQualityTrainer.selection_key(raw)
+    ema["accuracy"] = raw["accuracy"]
+    assert UnityQualityTrainer.selection_key(raw) < UnityQualityTrainer.selection_key(ema)
+    variants = {"raw": raw, "ema": dict(raw)}
+    winner = min(variants, key=lambda name: UnityQualityTrainer.selection_key(variants[name]))
+    assert winner == "raw"
+    assert UnityQualityTrainer.selection_key(
+        {"accuracy": 0.80, "color_near_threshold_rmse_db": None}
+    ) == (-0.80, float("inf"))
+
+
 @pytest.mark.parametrize(
     "changes",
     [

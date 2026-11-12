@@ -1,0 +1,52 @@
+{
+  "status": "passed_native_ema_launch_checks",
+  "created_utc": "2026-11-12T16:39:15.742841+00:00",
+  "baseline": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30.json",
+  "baseline_sha256": "b5b5ecbdaae964e7b9e9002912e6e5159b3c53521e3cce70910dae40a81e4583",
+  "factor": "EMA parameters and buffers after applied optimizer updates",
+  "ema_decay": 0.99,
+  "decay_choice": "Heuristic single control setting",
+  "implementation_reuse": "Existing PatchTrainer AveragedModel/get_ema_multi_avg_fn/use_buffers=True and optimizer post-hook",
+  "selection": "Validation footprint Top1, then color near-threshold RMSE; raw retained on ties",
+  "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\manifest.json",
+  "mainline_initialization": "scratch while pretrained promotion is pending",
+  "parameters": 11305980,
+  "component_tests": 73,
+  "test_opened": false,
+  "review": "CLEAN",
+  "consumer_tests": 71,
+  "review_cpu_probe": {
+    "AMP_attempts": 3,
+    "applied_optimizer_updates": 2,
+    "ema_updates": 2,
+    "selected_ema_checkpoint_round_trip": true,
+    "variant_selection": "passed"
+  },
+  "cpu_actual_ema_checkpoint_round_trip": {
+    "status": "passed",
+    "ema_updates": 4,
+    "tensors": 126,
+    "ema_differs_from_raw": true,
+    "probe_sha256": "81dfa8f8f2e7ef91120f30d951f9ce05e7ae8df2d8603fa9b740319c0b53b98f"
+  },
+  "cuda_smoke_selected_variant": "raw",
+  "raw_legacy_smoke_exact": true,
+  "ema_smoke_raw_training_exact": true,
+  "cuda_smoke_report_sha256": "43aa7422e25d052d02fda8c2f675a7213e0c284ab80db9c3c7ed240cc0506902",
+  "raw_smoke_report_sha256": "1265289f08e06cd407a3f941cb291406dfbe093afe05f8ad11b5ecfacd57004b",
+  "verified_utc": "2026-11-12T16:45:13.766936+00:00",
+  "component_command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-native-ema-components' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_normalization.py tests/test_unity_error_attribution.py tests/test_unity_search_policy.py",
+  "consumer_command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-native-ema-consumers' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py",
+  "ruff_format_check": "passed",
+  "ruff_check": "passed",
+  "basedpyright": "0 errors, 0 warnings",
+  "completed_training_archives_verified": 3,
+  "active_training_observation": {
+    "status": "running",
+    "epochs": 1,
+    "updates": 623,
+    "ema_updates": 623,
+    "best_accuracy": 0.654,
+    "best_variant": "ema"
+  }
+}

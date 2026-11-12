@@ -404,3 +404,11 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 
 - NativeBN smoke32images/128patch and full10000images/40000patch passed learnedparameter and double checkpoint replay checks. Full208.80s, BNstats88.68s, Top1fell81.3%to80.1%, RMSE2.3486dB, strictquality58.9%, regressions285. Retain the original weights. `[verified: native-bn-verification.json full_result; mean-full30-bn.json]`
 - IndependentImageNet full30 smoke4updates/reload passed10.69s. Fulltrainingstartedserially, keeping mainlinepromotion pending. `[verified: imagenet-full30-smoke.json; progress.json]`
+
+## 2026-11-13 ImageNet full30 completion and native EMA control
+
+- ImageNetfull30 completed18743updates/7AMPskips, selectedepoch22raw85.7%/1.9217dB, selectedcheckpoint replay passed. Same-validation fit86.4%, strictquality64.5%raw/61.6%fit, regressions230/258. Nativeconfirmation remains sealed. `[verified: imagenet-full30-result.json; progress.json test_opened]`
+- Existing PatchTrainer EMA code is reused for native parameters/buffers, with optimizer post-hook updates and raw/EMA Top1/RMSE selection. Default0 preserves legacy behavior. Decay0.99 is a heuristic singlecontrol.73component+71consumerchecks passed,19sources archived before extension. `[verified: mean-ema099-design.json; corresponding pytest outputs; source-archive-before-ema/manifest.json]`
+- EMA follows the current scratch mainline while initializationpromotion awaits user decision. Both full30 controls use the same epochbudget, with ImageNet prefix8 matching original losses/updates/selectionmetrics exactly. `[verified: progress.json pretrained_mainline_promotion、paired_prefix_check; mean-ema099-config.json]`
+
+- EMAoff CUDA smoke matches legacyloss/selectionmetrics for both epochs. EMAon smoke has4optimizer/4EMAupdates and identicalrawloss/metrics. Its selectedvariant israw, with selectedcheckpoint replay passed. ActualEMA126tensor checkpoint restoration is separately CPUverified and differsfromraw. The launch justification initially described the selectedvariant asEMA, corrected to the observedraw. `[verified: mean-ema099-design.json; mean-ema099-smoke.json checkpoint_audit.selected_variant; actual EMAcheckpoint probe output]`

@@ -107,8 +107,9 @@
 | 仅均值池化 | 75.0% | 3.3833dB | 77.4%。`[verified: comparison.json results.mean_pooling]` |
 | ImageNet初始化 | 81.3% | 3.4176dB | 82.5%。`[verified: comparison.json results.imagenet_mean]` |
 | 随机初始化完整30轮 | 81.3% | 2.1585dB | 81.5%。`[verified: comparison.json results.mean_full30]` |
+| ImageNet完整30轮 | 85.7% | 1.9217dB | 86.4%。`[verified: comparison.json results.imagenet_full30]` |
 
-按当前验证Top-1，仅均值池化作为下一项初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
+前三组完成时，仅均值池化作为初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
 
 余量拟合使用`script/calibrate_unity_decisions.py`，绑定已完成归因、原检查点产物和完整1000张validation预测。五个全局参数分别为零通道概率门槛、PSNR／MS-SSIM dB余量、平均／p95角度余量，执行两轮显式网格坐标搜索，仅在Top-1严格提高时更新。正PSNR／MS-SSIM余量从预测dB中扣除，正角度余量加到预测度数，再交原规则选参。结果属于同验证集拟合。`[verified: script/calibrate_unity_decisions.py；r0-calibration-config.json；r0-calibration.json scope、margin_convention]`
 
@@ -159,6 +160,18 @@ ImageNet对照在第8轮达到本组最高Top-1时，触发颜色近阈值RMSE�
 ## ImageNet完整30轮独立对照
 
 此项从ImageNet早停配置仅改patience5为0，学习率日程仍为30轮。32／16图CUDA预检完成4更新及完整重载，训练器10.69秒；正式任务随后单GPU启动。实验保留初始化对照身份，主线晋级等待计划中的用户决定。`[verified: imagenet-full30-config.json；imagenet-full30-smoke.json status、training_updates、checkpoint_audit、wall_seconds；progress.json status、pretrained_mainline_promotion]`
+
+正式30轮已完成18,743次更新、7次AMP跳步，选中epoch22，最佳权重重载通过。Top-1为85.7%，balanced accuracy76.31%，完整匹配58.4%，同权重近阈值RMSE1.9217dB，严格质量64.5%，质量回退230张，payload31,150,304字节。训练器1647.19秒；末轮近阈值RMSE1.8697dB单独记录。`[verified: imagenet-full30-result.json；imagenet-full30.json history、checkpoint_audit]`
+
+同验证集余量拟合为86.4%，严格质量61.6%，回退258张。实测通道MSE、MS-SSIM和角度单项替换分别为93.0%、91.1%和87.1%，全部实测指标为100%。前8轮loss、更新数、Top-1、完整匹配及近阈值RMSE与原ImageNet早停对照逐项一致。`[verified: imagenet-full30-calibration.json；imagenet-full30-attribution.json variants；progress.json paired_prefix_check]`
+
+## 随机初始化EMA对照
+
+在完整30轮随机初始化参照上增加EMA，decay选0.99作为单项启发式设置。复用已有`PatchTrainer`的`AveragedModel`与optimizer后置hook，用实际完成的更新平均参数及buffer；AMP跳步保持EMA计数。每轮分别评价raw／EMA，同Top-1下看同一颜色近阈值RMSE，完全相同时保留raw。best.pt保存所选模型，last.pt保存训练模型及EMA状态。`[verified: src/adaptive_astc/training/patch_trainer.py L189–198、L284–290、L380–415；src/adaptive_astc/training/unity_quality_trainer.py；mean-ema099-design.json；opinion: decay选择]`
+
+EMA默认关闭，历史配置继续恢复其完整保存权重。73项组件和71项调用方CPU检查及静态检查通过，旧完成实验19份相关源码已冻结；CUDA预检随后按单GPU串行执行。预训练主线晋级等待用户决定，当前EMA基于随机初始化参照。`[verified: mean-ema099-design.json component_tests、source_archive、mainline_initialization；本轮pytest“71 passed in 5.11s”；UnityTrainConfig.ema_decay、UnityQualityRegressor.from_checkpoint；opinion: 预检顺序]`
+
+关闭／开启EMA的两组CUDA预检均完成4次优化器更新，开启组EMA更新同为4次。关闭组两轮loss及选模指标与扩展前预检逐项一致；开启组的raw训练路径也与关闭组逐项一致。CUDA预检选中raw并通过重载，实际EMA状态另在CPU完成126个张量的保存／恢复核对，且与raw权重存在差异。完整30轮EMA任务随后串行启动。`[verified: mean-ema099-design.json raw_legacy_smoke_exact、ema_smoke_raw_training_exact、cuda_smoke_selected_variant、cpu_actual_ema_checkpoint_round_trip；mean-ema099-smoke.json training_updates、ema_updates、checkpoint_audit；progress.json status]`
 
 ## 版本同步状态
 
