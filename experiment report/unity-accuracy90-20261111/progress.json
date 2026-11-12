@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T07:33:44.403070+00:00",
+  "updated_utc": "2026-11-12T07:59:21.339602+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -2547,14 +2547,16 @@
   },
   "unity_confirmation_series": {
     "status": "collecting",
+    "captured_images": 258,
+    "expected_images": 2000,
+    "current_start": 258,
+    "current_images": 256,
     "test_opened": false,
     "training_updates": 0,
     "native_labels_collected": false,
-    "captured_images": 2,
-    "expected_images": 2000,
     "report": "unity-confirmation-series2000-data-v1.json",
-    "report_sha256": "293affa284637858ddf53683391394045efded2a6f42b4990e7cfc9b93b5e1a5",
-    "observed_utc": "2026-11-12T07:33:44.403070+00:00"
+    "report_sha256": "b555cca716789aabb45ce508ecbe7cbccefe477c9bea4f5e03303eda3bdb99e8",
+    "observed_utc": "2026-11-12T07:59:21.339602+00:00"
   },
   "unity_capture_input_parity": {
     "status": "passed",
@@ -3433,6 +3435,19 @@
         "external_urls_checked": false,
         "git_diff_check": "passed"
       }
+    },
+    "latest_confirmation_milestone": {
+      "observed_utc": "2026-11-12T07:59:21.339602+00:00",
+      "captured_images": 258,
+      "completed_batches": 2,
+      "next_start": 258,
+      "batch_config_report_hashes_verified": true,
+      "completed_import_exit_codes": [
+        0,
+        0
+      ],
+      "completed_metadata_restore_conflicts": 0,
+      "full_confirmation_complete": false
     }
   }
 }
