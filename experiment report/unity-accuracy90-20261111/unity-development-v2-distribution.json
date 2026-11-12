@@ -1,0 +1,83 @@
+{
+  "status": "complete_development_statistics",
+  "verified_utc": "2026-11-12T12:42:54.830901+00:00",
+  "scope": "Descriptive development counts; no model fit or confirmation statistics",
+  "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json",
+  "corpus_sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+  "merger_report_sha256": "0b66fddfff5a5f65f7fa2f82443abfcd010eae994096673263ab3063b543662e",
+  "splits": {
+    "train": {
+      "images": 10000,
+      "patches": 67436,
+      "selected_block_size": {
+        "8x8": 1492,
+        "12x12": 5435,
+        "10x10": 1363,
+        "6x6": 1710
+      },
+      "selected_preset": {
+        "thorough": 2461,
+        "fastest": 2912,
+        "medium": 2364,
+        "exhaustive": 1812,
+        "fast": 451
+      },
+      "selection_reason": {
+        "first_valid": 7354,
+        "size_first_relaxed": 500,
+        "size_first_strict": 1768,
+        "highest_psnr_fallback": 378
+      },
+      "texture_types": {
+        "Default": 9696,
+        "NormalMap": 299,
+        "Sprite": 5
+      },
+      "srgb_images": 9651,
+      "need_alpha_images": 5019,
+      "single_patch_images": 4679,
+      "area_at_least512_squared": 2556,
+      "maximum_width": 4096,
+      "maximum_height": 4096
+    },
+    "validation": {
+      "images": 1000,
+      "patches": 7173,
+      "selected_block_size": {
+        "12x12": 599,
+        "10x10": 138,
+        "8x8": 143,
+        "6x6": 120
+      },
+      "selected_preset": {
+        "fastest": 283,
+        "exhaustive": 194,
+        "thorough": 263,
+        "medium": 221,
+        "fast": 39
+      },
+      "selection_reason": {
+        "first_valid": 643,
+        "size_first_relaxed": 93,
+        "size_first_strict": 231,
+        "highest_psnr_fallback": 33
+      },
+      "texture_types": {
+        "Default": 953,
+        "NormalMap": 45,
+        "Sprite": 2
+      },
+      "srgb_images": 938,
+      "need_alpha_images": 363,
+      "single_patch_images": 307,
+      "area_at_least512_squared": 377,
+      "maximum_width": 2048,
+      "maximum_height": 2048
+    }
+  },
+  "model_accuracy": null,
+  "training_updates": 0,
+  "test_opened": false,
+  "script": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\summarize_revised_development.py",
+  "script_sha256": "72a002d3887d3a2c45286a467bdcaae329442bfbbcdcbe86fef4a55cf18c3577"
+}

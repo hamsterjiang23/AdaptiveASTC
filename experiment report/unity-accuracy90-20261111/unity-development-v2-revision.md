@@ -1,6 +1,6 @@
 # V2 开发集18张替补与新版本交接
 
-18张原生补采、实际输入检查、360候选和440个patch目标已完成；新版11000张语料已合并，当前正在Dataset全读和原规则复核，最终13000张像素审计尚未完成。完成证据见[替补18张验收](unity-development-replacement18-completion.json)。`[verified: unity-development-replacement18-completion.json；目标处理队列当前阶段]`
+18张原生补采、实际输入检查、360候选和440个patch目标已完成；新版11000张语料已完成合并、Dataset全读和原规则复核，最终13000张像素审计尚未完成。完成证据见[替补18张验收](unity-development-replacement18-completion.json)。`[verified: unity-development-replacement18-completion.json；目标处理队列当前阶段]`
 
 补采等待任务最初以waiting_confirmation状态启动，以下启动信息保留为历史记录。确认集完成后自动调用原采集入口；运行前和等待期间核对43份执行源码及冻结配置。启动进程、预检、10项测试和407个本地链接检查保存在[启动验收记录](unity-development-v2-revision-readiness.json)。`[verified: unity-development-replacement18-queue-v2.json status；unity-development-v2-revision-readiness.json processes、execution_sources_verified、checks]`
 
@@ -33,4 +33,6 @@
 
 补采期间同机运行了修订前13000张的归档／像素审计。补采原搜索与额外候选成本分别保留，不能把这些耗时当作新的独占性能基线。`[verified: unity-development-replacement18-completion.json timing_context；两个任务的实际运行时段；opinion: 性能结论边界]`
 
-新版语料已生成，保留10982张并替换18张，实际输入准入11000张全部通过。训练67436个patch、验证7173个patch，共74609个；[新版语料报告](unity-development-corpus11000-v2.json)绑定统一清单与原始目标来源。完整Dataset读取和原规则重放仍在执行，尚未交付最终验收。`[verified: unity-development-corpus11000-v2.json counts、patch_counts、input_eligibility_images、retained_images、replaced_images；目标处理队列status]`
+新版语料已生成，保留10982张并替换18张，实际输入准入11000张全部通过。训练67436个patch、验证7173个patch，共74609个；[新版语料报告](unity-development-corpus11000-v2.json)绑定统一清单与原始目标来源。完整Dataset读取和原规则重放已通过，最终像素审计及总交接仍待完成。`[verified: unity-development-corpus11000-v2.json counts、patch_counts、input_eligibility_images、retained_images、replaced_images；目标处理队列status]`
+
+[新版Dataset全读](unity-development-corpus11000-v2-dataset.json)和[原规则重放](unity-development-corpus11000-v2-interface.json)均通过。独立逐图核对4个决策字段，与原记录合计88000次比较一致；此处评价实测目标和规则一致性，model_accuracy保持null。[开发集分布](unity-development-v2-distribution.json)仅统计训练／验证，不分析确认集标签。`[verified: Dataset、interface报告；独立新版11000核对输出；分布报告scope]`
