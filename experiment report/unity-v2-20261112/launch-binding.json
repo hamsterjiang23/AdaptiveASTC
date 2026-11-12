@@ -1,0 +1,127 @@
+{
+  "status": "prepared",
+  "created_utc": "2026-11-12T13:25:20.345271+00:00",
+  "sources_sha256": {
+    "E:\\ASTC_Compression\\experiment plan\\V2\\README.md": "bb1a8e5b09ca2332d3ee743a31b896b1356fd37c95b78d63748aafbd14e6a370",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json": "2ee001de3049cf39af8b541428173a07bb4eaf23abbd332f18b7c57a88fb27f0",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-native-training-full-v2-config.json": "8dc98d66ee2bc08257e8ef9ebb5c4f030f9ecab3a7fc0a58c0a068de291febb3",
+    "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-data-delivery-v3-verification.json": "7ef87508e87a1454046ca75b79696b2182f3feb7234ac9c5d520d1b1f37ba29d",
+    "E:\\ASTC_Compression\\script\\diagnose_unity_rules.py": "3dc5681effc2dd36d346caea66bfe58f938b3fa963a92c0c343318013938658d"
+  },
+  "development": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json",
+    "sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+    "counts": {
+      "train": 10000,
+      "validation": 1000
+    },
+    "patch_counts": {
+      "train": 67436,
+      "validation": 7173
+    },
+    "candidate_count": 220000,
+    "replacement_count": 18
+  },
+  "confirmation_identity_only": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-series2000-data-v2\\manifest.json",
+    "sha256": "906e5b7f27e3f01a15f02e51d6fbdb689a69c28374fd4496034282355471db33",
+    "counts": {
+      "confirmation": 2000
+    },
+    "original_candidates_only": true,
+    "model_evaluation_performed": false
+  },
+  "smoke_source_indices": {
+    "train": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      57,
+      64,
+      65,
+      75,
+      110,
+      216,
+      378,
+      706,
+      1513,
+      5285
+    ],
+    "validation": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      15,
+      21,
+      52,
+      176,
+      239,
+      673,
+      740
+    ]
+  },
+  "smoke_counts": {
+    "train": 32,
+    "validation": 16
+  },
+  "smoke_patch_counts": {
+    "train": 230,
+    "validation": 128
+  },
+  "recipe_source": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-native-training-full-v2-config.json",
+  "recipe": {
+    "epochs": 30,
+    "image_batch_size": 16,
+    "patches_per_image": 4,
+    "validation_batch_size": 16,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.05,
+    "warmup_epochs": 1,
+    "patience": 5,
+    "workers": 2,
+    "seed": 20261112,
+    "zero_probability_threshold": 0.5,
+    "zero_weight": 0.1,
+    "ssim_weight": 0.1,
+    "angle_weight": 0.1
+  },
+  "always12_baseline_preset": "fastest",
+  "noise_model": "Independent Gaussian errors in native units; all uses equal numerical sigma in dB/degrees; no clipping; three seeds for full diagnostics",
+  "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+  "test_opened": false,
+  "smoke_input_types": {
+    "train": {
+      "Default": 28,
+      "NormalMap": 4
+    },
+    "validation": {
+      "Default": 12,
+      "NormalMap": 4
+    }
+  }
+}

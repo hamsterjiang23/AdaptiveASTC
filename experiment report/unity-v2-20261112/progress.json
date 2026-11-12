@@ -1,0 +1,47 @@
+{
+  "status": "r0_training_running",
+  "updated_utc": "2026-11-12T13:35:20.469220+00:00",
+  "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
+  "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
+  "smoke_counts": {
+    "train": 32,
+    "validation": 16
+  },
+  "training_started": true,
+  "test_opened": false,
+  "next": [
+    "Monitor R0 CUDA training and verify its selected checkpoint",
+    "If validation is below90%, freeze predictions and diagnose real-metric replacements",
+    "Seal eligible validation-selected model before confirmation evaluation"
+  ],
+  "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
+  "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
+  "smoke_training_updates": 4,
+  "smoke_checkpoint_audit": "passed",
+  "cpu_checks": {
+    "command": "uv run pytest -q --tb=short --basetemp <unique-local-path> -o cache_dir=<local-path> tests/test_unity_search_policy.py tests/test_unity_quality.py tests/test_unity_quality_training.py",
+    "passed": 50
+  },
+  "rules_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\rules.json",
+  "rules_status": "completed",
+  "rules_report_sha256": "54260f1cdaddfa7148dee9bb878e2818c7e077fc96d9184c6862b35b5ced1f66",
+  "rules_exact_replay_mismatches": 0,
+  "r0_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-config.json",
+  "r0_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0.json",
+  "r0_observed_status": "training",
+  "r0_training_updates": 1548,
+  "review": {
+    "scope": "New rule diagnostics and launch configs",
+    "verdict": "CLEAN"
+  },
+  "r0_batch_observation": {
+    "status": "training",
+    "epoch": 3,
+    "batches": 300,
+    "images": 4800,
+    "optimizer_updates": 1548,
+    "wall_seconds": 300.6008247
+  },
+  "r0_completed_epochs": 2,
+  "r0_best_validation_accuracy": 0.691
+}

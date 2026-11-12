@@ -1,0 +1,670 @@
+{
+  "status": "completed",
+  "created_utc": "2026-11-12T13:31:25.203457+00:00",
+  "source": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\rules.json",
+  "source_sha256": "54260f1cdaddfa7148dee9bb878e2818c7e077fc96d9184c6862b35b5ced1f66",
+  "noise_split": "train",
+  "trials_per_level": 3,
+  "scope": "Descriptive finite-grid references conditional on the recorded independent Gaussian model; no learned model evaluation",
+  "references": {
+    "psnr": {
+      "all_images": {
+        "largest_tested_sigma_with_mean_top1_ge90": {
+          "sigma": 1.6,
+          "mean_accuracy": 0.9207,
+          "min_seed_accuracy": 0.9193,
+          "max_seed_accuracy": 0.9215,
+          "images_per_trial": 10000
+        },
+        "next_tested_sigma_below90": {
+          "sigma": 3.2,
+          "mean_accuracy": 0.8685,
+          "min_seed_accuracy": 0.8649,
+          "max_seed_accuracy": 0.8708,
+          "images_per_trial": 10000
+        },
+        "upper_crossing_unobserved_on_tested_grid": false,
+        "points": [
+          {
+            "sigma": 0.0,
+            "mean_accuracy": 1.0,
+            "min_seed_accuracy": 1.0,
+            "max_seed_accuracy": 1.0,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.05,
+            "mean_accuracy": 0.9971,
+            "min_seed_accuracy": 0.9971,
+            "max_seed_accuracy": 0.9971,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.1,
+            "mean_accuracy": 0.9946,
+            "min_seed_accuracy": 0.9939,
+            "max_seed_accuracy": 0.995,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.2,
+            "mean_accuracy": 0.9899,
+            "min_seed_accuracy": 0.989,
+            "max_seed_accuracy": 0.9904,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.4,
+            "mean_accuracy": 0.9808,
+            "min_seed_accuracy": 0.9802,
+            "max_seed_accuracy": 0.9815,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.8,
+            "mean_accuracy": 0.9587333333333333,
+            "min_seed_accuracy": 0.9573,
+            "max_seed_accuracy": 0.9595,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 1.6,
+            "mean_accuracy": 0.9207,
+            "min_seed_accuracy": 0.9193,
+            "max_seed_accuracy": 0.9215,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 3.2,
+            "mean_accuracy": 0.8685,
+            "min_seed_accuracy": 0.8649,
+            "max_seed_accuracy": 0.8708,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 6.4,
+            "mean_accuracy": 0.8205333333333333,
+            "min_seed_accuracy": 0.8183,
+            "max_seed_accuracy": 0.8234,
+            "images_per_trial": 10000
+          }
+        ]
+      },
+      "applicable_images": {
+        "largest_tested_sigma_with_mean_top1_ge90": {
+          "sigma": 1.6,
+          "mean_accuracy": 0.9207,
+          "min_seed_accuracy": 0.9193,
+          "max_seed_accuracy": 0.9215,
+          "images_per_trial": 10000
+        },
+        "next_tested_sigma_below90": {
+          "sigma": 3.2,
+          "mean_accuracy": 0.8685,
+          "min_seed_accuracy": 0.8649,
+          "max_seed_accuracy": 0.8708,
+          "images_per_trial": 10000
+        },
+        "upper_crossing_unobserved_on_tested_grid": false,
+        "points": [
+          {
+            "sigma": 0.0,
+            "mean_accuracy": 1.0,
+            "min_seed_accuracy": 1.0,
+            "max_seed_accuracy": 1.0,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.05,
+            "mean_accuracy": 0.9971,
+            "min_seed_accuracy": 0.9971,
+            "max_seed_accuracy": 0.9971,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.1,
+            "mean_accuracy": 0.9946,
+            "min_seed_accuracy": 0.9939,
+            "max_seed_accuracy": 0.995,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.2,
+            "mean_accuracy": 0.9899,
+            "min_seed_accuracy": 0.989,
+            "max_seed_accuracy": 0.9904,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.4,
+            "mean_accuracy": 0.9808,
+            "min_seed_accuracy": 0.9802,
+            "max_seed_accuracy": 0.9815,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.8,
+            "mean_accuracy": 0.9587333333333333,
+            "min_seed_accuracy": 0.9573,
+            "max_seed_accuracy": 0.9595,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 1.6,
+            "mean_accuracy": 0.9207,
+            "min_seed_accuracy": 0.9193,
+            "max_seed_accuracy": 0.9215,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 3.2,
+            "mean_accuracy": 0.8685,
+            "min_seed_accuracy": 0.8649,
+            "max_seed_accuracy": 0.8708,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 6.4,
+            "mean_accuracy": 0.8205333333333333,
+            "min_seed_accuracy": 0.8183,
+            "max_seed_accuracy": 0.8234,
+            "images_per_trial": 10000
+          }
+        ]
+      }
+    },
+    "ms_ssim": {
+      "all_images": {
+        "largest_tested_sigma_with_mean_top1_ge90": {
+          "sigma": 1.6,
+          "mean_accuracy": 0.9103333333333333,
+          "min_seed_accuracy": 0.9087,
+          "max_seed_accuracy": 0.9112,
+          "images_per_trial": 10000
+        },
+        "next_tested_sigma_below90": {
+          "sigma": 3.2,
+          "mean_accuracy": 0.8736666666666667,
+          "min_seed_accuracy": 0.872,
+          "max_seed_accuracy": 0.8755,
+          "images_per_trial": 10000
+        },
+        "upper_crossing_unobserved_on_tested_grid": false,
+        "points": [
+          {
+            "sigma": 0.0,
+            "mean_accuracy": 1.0,
+            "min_seed_accuracy": 1.0,
+            "max_seed_accuracy": 1.0,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.05,
+            "mean_accuracy": 0.996,
+            "min_seed_accuracy": 0.995,
+            "max_seed_accuracy": 0.9968,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.1,
+            "mean_accuracy": 0.9924333333333333,
+            "min_seed_accuracy": 0.9918,
+            "max_seed_accuracy": 0.9932,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.2,
+            "mean_accuracy": 0.9853,
+            "min_seed_accuracy": 0.9852,
+            "max_seed_accuracy": 0.9855,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.4,
+            "mean_accuracy": 0.9729,
+            "min_seed_accuracy": 0.9722,
+            "max_seed_accuracy": 0.9743,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.8,
+            "mean_accuracy": 0.9499333333333333,
+            "min_seed_accuracy": 0.9498,
+            "max_seed_accuracy": 0.95,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 1.6,
+            "mean_accuracy": 0.9103333333333333,
+            "min_seed_accuracy": 0.9087,
+            "max_seed_accuracy": 0.9112,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 3.2,
+            "mean_accuracy": 0.8736666666666667,
+            "min_seed_accuracy": 0.872,
+            "max_seed_accuracy": 0.8755,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 6.4,
+            "mean_accuracy": 0.8496333333333334,
+            "min_seed_accuracy": 0.8477,
+            "max_seed_accuracy": 0.8508,
+            "images_per_trial": 10000
+          }
+        ]
+      },
+      "applicable_images": {
+        "largest_tested_sigma_with_mean_top1_ge90": {
+          "sigma": 1.6,
+          "mean_accuracy": 0.9070908023348185,
+          "min_seed_accuracy": 0.9053984043104342,
+          "max_seed_accuracy": 0.907988809449798,
+          "images_per_trial": 9651
+        },
+        "next_tested_sigma_below90": {
+          "sigma": 3.2,
+          "mean_accuracy": 0.8690981936241495,
+          "min_seed_accuracy": 0.8673712568645736,
+          "max_seed_accuracy": 0.870997824059683,
+          "images_per_trial": 9651
+        },
+        "upper_crossing_unobserved_on_tested_grid": false,
+        "points": [
+          {
+            "sigma": 0.0,
+            "mean_accuracy": 1.0,
+            "min_seed_accuracy": 1.0,
+            "max_seed_accuracy": 1.0,
+            "images_per_trial": 9651
+          },
+          {
+            "sigma": 0.05,
+            "mean_accuracy": 0.9958553517770179,
+            "min_seed_accuracy": 0.9948191897212724,
+            "max_seed_accuracy": 0.9966842814216144,
+            "images_per_trial": 9651
+          },
+          {
+            "sigma": 0.1,
+            "mean_accuracy": 0.9921597071115256,
+            "min_seed_accuracy": 0.9915034711428867,
+            "max_seed_accuracy": 0.9929540980209305,
+            "images_per_trial": 9651
+          },
+          {
+            "sigma": 0.2,
+            "mean_accuracy": 0.9847684177805408,
+            "min_seed_accuracy": 0.9846648015749663,
+            "max_seed_accuracy": 0.98497565019169,
+            "images_per_trial": 9651
+          },
+          {
+            "sigma": 0.4,
+            "mean_accuracy": 0.9719200082892964,
+            "min_seed_accuracy": 0.9711946948502745,
+            "max_seed_accuracy": 0.9733706351673401,
+            "images_per_trial": 9651
+          },
+          {
+            "sigma": 0.8,
+            "mean_accuracy": 0.948122819742341,
+            "min_seed_accuracy": 0.947984664801575,
+            "max_seed_accuracy": 0.9481918972127241,
+            "images_per_trial": 9651
+          },
+          {
+            "sigma": 1.6,
+            "mean_accuracy": 0.9070908023348185,
+            "min_seed_accuracy": 0.9053984043104342,
+            "max_seed_accuracy": 0.907988809449798,
+            "images_per_trial": 9651
+          },
+          {
+            "sigma": 3.2,
+            "mean_accuracy": 0.8690981936241495,
+            "min_seed_accuracy": 0.8673712568645736,
+            "max_seed_accuracy": 0.870997824059683,
+            "images_per_trial": 9651
+          },
+          {
+            "sigma": 6.4,
+            "mean_accuracy": 0.8441957655510655,
+            "min_seed_accuracy": 0.8421925189099575,
+            "max_seed_accuracy": 0.8454046212827686,
+            "images_per_trial": 9651
+          }
+        ]
+      }
+    },
+    "angles": {
+      "all_images": {
+        "largest_tested_sigma_with_mean_top1_ge90": {
+          "sigma": 6.4,
+          "mean_accuracy": 0.9820666666666666,
+          "min_seed_accuracy": 0.9817,
+          "max_seed_accuracy": 0.9824,
+          "images_per_trial": 10000
+        },
+        "next_tested_sigma_below90": null,
+        "upper_crossing_unobserved_on_tested_grid": true,
+        "points": [
+          {
+            "sigma": 0.0,
+            "mean_accuracy": 1.0,
+            "min_seed_accuracy": 1.0,
+            "max_seed_accuracy": 1.0,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.05,
+            "mean_accuracy": 0.9998666666666667,
+            "min_seed_accuracy": 0.9997,
+            "max_seed_accuracy": 1.0,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.1,
+            "mean_accuracy": 0.9996,
+            "min_seed_accuracy": 0.9994,
+            "max_seed_accuracy": 0.9997,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.2,
+            "mean_accuracy": 0.999,
+            "min_seed_accuracy": 0.9986,
+            "max_seed_accuracy": 0.9993,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.4,
+            "mean_accuracy": 0.998,
+            "min_seed_accuracy": 0.9977,
+            "max_seed_accuracy": 0.9982,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.8,
+            "mean_accuracy": 0.9956333333333334,
+            "min_seed_accuracy": 0.9951,
+            "max_seed_accuracy": 0.996,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 1.6,
+            "mean_accuracy": 0.9914666666666667,
+            "min_seed_accuracy": 0.9908,
+            "max_seed_accuracy": 0.9921,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 3.2,
+            "mean_accuracy": 0.9867666666666667,
+            "min_seed_accuracy": 0.9864,
+            "max_seed_accuracy": 0.9874,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 6.4,
+            "mean_accuracy": 0.9820666666666666,
+            "min_seed_accuracy": 0.9817,
+            "max_seed_accuracy": 0.9824,
+            "images_per_trial": 10000
+          }
+        ]
+      },
+      "applicable_images": {
+        "largest_tested_sigma_with_mean_top1_ge90": {
+          "sigma": 0.4,
+          "mean_accuracy": 0.9331103678929766,
+          "min_seed_accuracy": 0.9230769230769231,
+          "max_seed_accuracy": 0.939799331103679,
+          "images_per_trial": 299
+        },
+        "next_tested_sigma_below90": {
+          "sigma": 0.8,
+          "mean_accuracy": 0.8539576365663322,
+          "min_seed_accuracy": 0.8361204013377926,
+          "max_seed_accuracy": 0.8662207357859532,
+          "images_per_trial": 299
+        },
+        "upper_crossing_unobserved_on_tested_grid": false,
+        "points": [
+          {
+            "sigma": 0.0,
+            "mean_accuracy": 1.0,
+            "min_seed_accuracy": 1.0,
+            "max_seed_accuracy": 1.0,
+            "images_per_trial": 299
+          },
+          {
+            "sigma": 0.05,
+            "mean_accuracy": 0.9955406911928651,
+            "min_seed_accuracy": 0.9899665551839465,
+            "max_seed_accuracy": 1.0,
+            "images_per_trial": 299
+          },
+          {
+            "sigma": 0.1,
+            "mean_accuracy": 0.9866220735785953,
+            "min_seed_accuracy": 0.979933110367893,
+            "max_seed_accuracy": 0.9899665551839465,
+            "images_per_trial": 299
+          },
+          {
+            "sigma": 0.2,
+            "mean_accuracy": 0.9665551839464883,
+            "min_seed_accuracy": 0.9531772575250836,
+            "max_seed_accuracy": 0.9765886287625418,
+            "images_per_trial": 299
+          },
+          {
+            "sigma": 0.4,
+            "mean_accuracy": 0.9331103678929766,
+            "min_seed_accuracy": 0.9230769230769231,
+            "max_seed_accuracy": 0.939799331103679,
+            "images_per_trial": 299
+          },
+          {
+            "sigma": 0.8,
+            "mean_accuracy": 0.8539576365663322,
+            "min_seed_accuracy": 0.8361204013377926,
+            "max_seed_accuracy": 0.8662207357859532,
+            "images_per_trial": 299
+          },
+          {
+            "sigma": 1.6,
+            "mean_accuracy": 0.7146042363433668,
+            "min_seed_accuracy": 0.6923076923076923,
+            "max_seed_accuracy": 0.7357859531772575,
+            "images_per_trial": 299
+          },
+          {
+            "sigma": 3.2,
+            "mean_accuracy": 0.5574136008918618,
+            "min_seed_accuracy": 0.5451505016722408,
+            "max_seed_accuracy": 0.5785953177257525,
+            "images_per_trial": 299
+          },
+          {
+            "sigma": 6.4,
+            "mean_accuracy": 0.40022296544035674,
+            "min_seed_accuracy": 0.3879598662207358,
+            "max_seed_accuracy": 0.411371237458194,
+            "images_per_trial": 299
+          }
+        ]
+      }
+    },
+    "all": {
+      "all_images": {
+        "largest_tested_sigma_with_mean_top1_ge90": {
+          "sigma": 0.8,
+          "mean_accuracy": 0.9072,
+          "min_seed_accuracy": 0.9052,
+          "max_seed_accuracy": 0.9097,
+          "images_per_trial": 10000
+        },
+        "next_tested_sigma_below90": {
+          "sigma": 1.6,
+          "mean_accuracy": 0.8245,
+          "min_seed_accuracy": 0.8206,
+          "max_seed_accuracy": 0.8284,
+          "images_per_trial": 10000
+        },
+        "upper_crossing_unobserved_on_tested_grid": false,
+        "points": [
+          {
+            "sigma": 0.0,
+            "mean_accuracy": 1.0,
+            "min_seed_accuracy": 1.0,
+            "max_seed_accuracy": 1.0,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.05,
+            "mean_accuracy": 0.993,
+            "min_seed_accuracy": 0.9925,
+            "max_seed_accuracy": 0.9933,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.1,
+            "mean_accuracy": 0.9860666666666666,
+            "min_seed_accuracy": 0.986,
+            "max_seed_accuracy": 0.9862,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.2,
+            "mean_accuracy": 0.9750666666666666,
+            "min_seed_accuracy": 0.974,
+            "max_seed_accuracy": 0.9767,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.4,
+            "mean_accuracy": 0.9527,
+            "min_seed_accuracy": 0.9505,
+            "max_seed_accuracy": 0.9551,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.8,
+            "mean_accuracy": 0.9072,
+            "min_seed_accuracy": 0.9052,
+            "max_seed_accuracy": 0.9097,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 1.6,
+            "mean_accuracy": 0.8245,
+            "min_seed_accuracy": 0.8206,
+            "max_seed_accuracy": 0.8284,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 3.2,
+            "mean_accuracy": 0.7198666666666667,
+            "min_seed_accuracy": 0.7137,
+            "max_seed_accuracy": 0.7249,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 6.4,
+            "mean_accuracy": 0.6246666666666667,
+            "min_seed_accuracy": 0.6191,
+            "max_seed_accuracy": 0.6276,
+            "images_per_trial": 10000
+          }
+        ]
+      },
+      "applicable_images": {
+        "largest_tested_sigma_with_mean_top1_ge90": {
+          "sigma": 0.8,
+          "mean_accuracy": 0.9072,
+          "min_seed_accuracy": 0.9052,
+          "max_seed_accuracy": 0.9097,
+          "images_per_trial": 10000
+        },
+        "next_tested_sigma_below90": {
+          "sigma": 1.6,
+          "mean_accuracy": 0.8245,
+          "min_seed_accuracy": 0.8206,
+          "max_seed_accuracy": 0.8284,
+          "images_per_trial": 10000
+        },
+        "upper_crossing_unobserved_on_tested_grid": false,
+        "points": [
+          {
+            "sigma": 0.0,
+            "mean_accuracy": 1.0,
+            "min_seed_accuracy": 1.0,
+            "max_seed_accuracy": 1.0,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.05,
+            "mean_accuracy": 0.993,
+            "min_seed_accuracy": 0.9925,
+            "max_seed_accuracy": 0.9933,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.1,
+            "mean_accuracy": 0.9860666666666666,
+            "min_seed_accuracy": 0.986,
+            "max_seed_accuracy": 0.9862,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.2,
+            "mean_accuracy": 0.9750666666666666,
+            "min_seed_accuracy": 0.974,
+            "max_seed_accuracy": 0.9767,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.4,
+            "mean_accuracy": 0.9527,
+            "min_seed_accuracy": 0.9505,
+            "max_seed_accuracy": 0.9551,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 0.8,
+            "mean_accuracy": 0.9072,
+            "min_seed_accuracy": 0.9052,
+            "max_seed_accuracy": 0.9097,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 1.6,
+            "mean_accuracy": 0.8245,
+            "min_seed_accuracy": 0.8206,
+            "max_seed_accuracy": 0.8284,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 3.2,
+            "mean_accuracy": 0.7198666666666667,
+            "min_seed_accuracy": 0.7137,
+            "max_seed_accuracy": 0.7249,
+            "images_per_trial": 10000
+          },
+          {
+            "sigma": 6.4,
+            "mean_accuracy": 0.6246666666666667,
+            "min_seed_accuracy": 0.6191,
+            "max_seed_accuracy": 0.6276,
+            "images_per_trial": 10000
+          }
+        ]
+      }
+    }
+  },
+  "test_opened": false
+}

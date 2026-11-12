@@ -2,6 +2,8 @@
 
 根据最终压缩质量，为每张贴图选择合适的ASTC块大小，在项目质量要求下减少纹理体积，并研究通过机器学习实现预测选参后单次压缩的生产流程。相关资料从网易雷火GDC 2023演讲及其公开字幕、视频画面开始整理。`[verified: 用户需求说明（2026-11-09）“主要目的就是通过最终压缩质量选择合适的压缩参数”“一张图压缩一次”；本文“从这里阅读”]`
 
+V2 原生实验已启动，完整规则诊断和32训练／16验证图CUDA闭环通过，完整10000／1000图随机初始化基线正在执行，确认集模型评价保持封存。配置、诊断结果和活动进度见[V2执行报告](<experiment report/unity-v2-20261112/README.md>)。`[verified: experiment report/unity-v2-20261112/rules.json status、counts；r0-smoke-retry.json status、checkpoint_audit；progress.json training_started、test_opened]`
+
 ## 项目需求与优化目标
 
 ### 当前生产基线与优化空间

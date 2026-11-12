@@ -1,0 +1,741 @@
+{
+  "status": "passed_smoke",
+  "config": {
+    "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\smoke-corpus",
+    "corpus_sha256": "34978d03e1213139b25c1f32e331fbb1d09fdc62b51d66d6be89b5e99cb08151",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\rules-smoke",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\rules-smoke.json",
+    "smoke": true,
+    "sigmas": [
+      0.0,
+      0.2,
+      1.0
+    ],
+    "seeds": [
+      20261112
+    ]
+  },
+  "sources_sha256": {
+    "E:\\ASTC_Compression\\script\\diagnose_unity_rules.py": "3dc5681effc2dd36d346caea66bfe58f938b3fa963a92c0c343318013938658d",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\rules-smoke-config.json": "b6d0635d6547111459a277c8fa524332fd64178cf718353a7c99bd9a7ca4b886",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\smoke-corpus\\corpus.json": "34978d03e1213139b25c1f32e331fbb1d09fdc62b51d66d6be89b5e99cb08151"
+  },
+  "training_updates": 0,
+  "model_forward_calls": 0,
+  "test_opened": false,
+  "noise_scope": "Independent zero-mean Gaussian candidate errors in native dB/degrees, unclipped; all mode uses the same numerical sigma for each applicable metric. Common random numbers across sigma levels within each mode/seed. Simulation precision references are conditional on this noise model.",
+  "noise_split": "train",
+  "baselines_split": "validation",
+  "curves": {
+    "psnr": [
+      {
+        "sigma": 0.0,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "injected_rmse": {
+              "ms_ssim_db": null,
+              "normal_mean_deg": null,
+              "normal_p95_deg": null,
+              "psnr": 0.0
+            }
+          }
+        ]
+      },
+      {
+        "sigma": 0.2,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "injected_rmse": {
+              "ms_ssim_db": null,
+              "normal_mean_deg": null,
+              "normal_p95_deg": null,
+              "psnr": 0.18997634704290792
+            }
+          }
+        ]
+      },
+      {
+        "sigma": 1.0,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.90625,
+              "actual_strict_quality_pass_rate": 0.875,
+              "quality_regression_images": 2,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.90625,
+              "actual_strict_quality_pass_rate": 0.875,
+              "quality_regression_images": 2,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "injected_rmse": {
+              "ms_ssim_db": null,
+              "normal_mean_deg": null,
+              "normal_p95_deg": null,
+              "psnr": 0.9498817352145387
+            }
+          }
+        ]
+      }
+    ],
+    "ms_ssim": [
+      {
+        "sigma": 0.0,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 25,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.92,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 460096,
+              "original_payload_bytes": 460096,
+              "fixed8_medium_payload_bytes": 991232,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.46416580578512395
+            },
+            "injected_rmse": {
+              "ms_ssim_db": 0.0,
+              "normal_mean_deg": null,
+              "normal_p95_deg": null,
+              "psnr": null
+            }
+          }
+        ]
+      },
+      {
+        "sigma": 0.2,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 25,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.92,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 460096,
+              "original_payload_bytes": 460096,
+              "fixed8_medium_payload_bytes": 991232,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.46416580578512395
+            },
+            "injected_rmse": {
+              "ms_ssim_db": 0.18991889161085526,
+              "normal_mean_deg": null,
+              "normal_p95_deg": null,
+              "psnr": null
+            }
+          }
+        ]
+      },
+      {
+        "sigma": 1.0,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.875,
+              "actual_strict_quality_pass_rate": 0.875,
+              "quality_regression_images": 2,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 25,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.84,
+              "actual_strict_quality_pass_rate": 0.84,
+              "quality_regression_images": 2,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 460096,
+              "original_payload_bytes": 460096,
+              "fixed8_medium_payload_bytes": 991232,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.46416580578512395
+            },
+            "injected_rmse": {
+              "ms_ssim_db": 0.9495944580542759,
+              "normal_mean_deg": null,
+              "normal_p95_deg": null,
+              "psnr": null
+            }
+          }
+        ]
+      }
+    ],
+    "angles": [
+      {
+        "sigma": 0.0,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 4,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 1.0,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 395968,
+              "original_payload_bytes": 395968,
+              "fixed8_medium_payload_bytes": 360448,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 1.0985440340909092
+            },
+            "injected_rmse": {
+              "ms_ssim_db": null,
+              "normal_mean_deg": 0.0,
+              "normal_p95_deg": 0.0,
+              "psnr": null
+            }
+          }
+        ]
+      },
+      {
+        "sigma": 0.2,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.96875,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 4,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.75,
+              "actual_strict_quality_pass_rate": 1.0,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 395968,
+              "original_payload_bytes": 395968,
+              "fixed8_medium_payload_bytes": 360448,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 1.0985440340909092
+            },
+            "injected_rmse": {
+              "ms_ssim_db": null,
+              "normal_mean_deg": 0.18926685075838567,
+              "normal_p95_deg": 0.19678710700614274,
+              "psnr": null
+            }
+          }
+        ]
+      },
+      {
+        "sigma": 1.0,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.96875,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 4,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.75,
+              "actual_strict_quality_pass_rate": 1.0,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 395968,
+              "original_payload_bytes": 395968,
+              "fixed8_medium_payload_bytes": 360448,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 1.0985440340909092
+            },
+            "injected_rmse": {
+              "ms_ssim_db": null,
+              "normal_mean_deg": 0.9463342537919283,
+              "normal_p95_deg": 0.983935535030714,
+              "psnr": null
+            }
+          }
+        ]
+      }
+    ],
+    "all": [
+      {
+        "sigma": 0.0,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 1.0,
+              "actual_strict_quality_pass_rate": 0.9375,
+              "quality_regression_images": 0,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "injected_rmse": {
+              "ms_ssim_db": 0.0,
+              "normal_mean_deg": 0.0,
+              "normal_p95_deg": 0.0,
+              "psnr": 0.0
+            }
+          }
+        ]
+      },
+      {
+        "sigma": 0.2,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.9375,
+              "actual_strict_quality_pass_rate": 0.90625,
+              "quality_regression_images": 1,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.9375,
+              "actual_strict_quality_pass_rate": 0.90625,
+              "quality_regression_images": 1,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "injected_rmse": {
+              "ms_ssim_db": 0.1940099052550159,
+              "normal_mean_deg": 0.1971208199336958,
+              "normal_p95_deg": 0.1689821404940866,
+              "psnr": 0.18940311084305117
+            }
+          }
+        ]
+      },
+      {
+        "sigma": 1.0,
+        "mean_accuracy": 1.0,
+        "trials": [
+          {
+            "seed": 20261112,
+            "all_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.75,
+              "actual_strict_quality_pass_rate": 0.8125,
+              "quality_regression_images": 4,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "applicable_images": {
+              "images": 32,
+              "accuracy": 1.0,
+              "full_choice_accuracy": 0.75,
+              "actual_strict_quality_pass_rate": 0.8125,
+              "quality_regression_images": 4,
+              "larger_block_images": 0,
+              "smaller_block_images": 0,
+              "payload_bytes": 984080,
+              "original_payload_bytes": 984080,
+              "fixed8_medium_payload_bytes": 1634304,
+              "payload_ratio_to_original": 1.0,
+              "payload_ratio_to_fixed8": 0.602140115914787
+            },
+            "injected_rmse": {
+              "ms_ssim_db": 0.9700495262750798,
+              "normal_mean_deg": 0.9856040996684787,
+              "normal_p95_deg": 0.844910702470433,
+              "psnr": 0.9470155542152557
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "validation_baselines": {
+    "fixed6_medium": {
+      "images": 16,
+      "accuracy": 0.0,
+      "full_choice_accuracy": 0.0,
+      "actual_strict_quality_pass_rate": 1.0,
+      "quality_regression_images": 0,
+      "larger_block_images": 0,
+      "smaller_block_images": 16,
+      "payload_bytes": 1771808,
+      "original_payload_bytes": 640528,
+      "fixed8_medium_payload_bytes": 987136,
+      "payload_ratio_to_original": 2.7661679114730346,
+      "payload_ratio_to_fixed8": 1.794897562240664
+    },
+    "fixed8_medium": {
+      "images": 16,
+      "accuracy": 0.125,
+      "full_choice_accuracy": 0.0,
+      "actual_strict_quality_pass_rate": 1.0,
+      "quality_regression_images": 0,
+      "larger_block_images": 0,
+      "smaller_block_images": 14,
+      "payload_bytes": 987136,
+      "original_payload_bytes": 640528,
+      "fixed8_medium_payload_bytes": 987136,
+      "payload_ratio_to_original": 1.5411285689306322,
+      "payload_ratio_to_fixed8": 1.0
+    },
+    "fixed10_medium": {
+      "images": 16,
+      "accuracy": 0.25,
+      "full_choice_accuracy": 0.0,
+      "actual_strict_quality_pass_rate": 0.4375,
+      "quality_regression_images": 6,
+      "larger_block_images": 2,
+      "smaller_block_images": 10,
+      "payload_bytes": 645040,
+      "original_payload_bytes": 640528,
+      "fixed8_medium_payload_bytes": 987136,
+      "payload_ratio_to_original": 1.0070441885444508,
+      "payload_ratio_to_fixed8": 0.6534459284232366
+    },
+    "fixed12_medium": {
+      "images": 16,
+      "accuracy": 0.625,
+      "full_choice_accuracy": 0.125,
+      "actual_strict_quality_pass_rate": 0.3125,
+      "quality_regression_images": 8,
+      "larger_block_images": 6,
+      "smaller_block_images": 0,
+      "payload_bytes": 448480,
+      "original_payload_bytes": 640528,
+      "fixed8_medium_payload_bytes": 987136,
+      "payload_ratio_to_original": 0.700172357804811,
+      "payload_ratio_to_fixed8": 0.45432442946058094
+    },
+    "always12_fastest": {
+      "images": 16,
+      "accuracy": 0.625,
+      "full_choice_accuracy": 0.1875,
+      "actual_strict_quality_pass_rate": 0.1875,
+      "quality_regression_images": 10,
+      "larger_block_images": 6,
+      "smaller_block_images": 0,
+      "payload_bytes": 448480,
+      "original_payload_bytes": 640528,
+      "fixed8_medium_payload_bytes": 987136,
+      "payload_ratio_to_original": 0.700172357804811,
+      "payload_ratio_to_fixed8": 0.45432442946058094
+    },
+    "original_rule_measured": {
+      "images": 16,
+      "accuracy": 1.0,
+      "full_choice_accuracy": 1.0,
+      "actual_strict_quality_pass_rate": 0.8125,
+      "quality_regression_images": 0,
+      "larger_block_images": 0,
+      "smaller_block_images": 0,
+      "payload_bytes": 640528,
+      "original_payload_bytes": 640528,
+      "fixed8_medium_payload_bytes": 987136,
+      "payload_ratio_to_original": 1.0,
+      "payload_ratio_to_fixed8": 0.6488751296680498
+    },
+    "psnr_only": {
+      "images": 16,
+      "accuracy": 0.625,
+      "full_choice_accuracy": 0.3125,
+      "actual_strict_quality_pass_rate": 0.25,
+      "quality_regression_images": 9,
+      "larger_block_images": 6,
+      "smaller_block_images": 0,
+      "payload_bytes": 448480,
+      "original_payload_bytes": 640528,
+      "fixed8_medium_payload_bytes": 987136,
+      "payload_ratio_to_original": 0.700172357804811,
+      "payload_ratio_to_fixed8": 0.45432442946058094
+    }
+  },
+  "counts": {
+    "train": 32,
+    "validation": 16
+  },
+  "exact_four_field_replay_mismatches": 0,
+  "wall_seconds": 2.5176229999999578,
+  "policy_origins": [
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch",
+      "cache_sha256": "5d1cc96dddb5480fc42170e8344587e9645fc3acaaa2d184c35beed9ce5db47e",
+      "protocol_sha256": "d95e38874c500c578cd158012100659bd72c2ac9e49a9a836be5537f6425a81d",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 2,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\references\\normalized-batch",
+      "cache_sha256": "0108b26d355310464a3ed2af4a4abe7a5109f03bb9d9ca43c2ceef067369bc13",
+      "protocol_sha256": "bb3a8d3090e99441a52f86c414d12dfaaa1bd6c22801c3e3bfcbb52a7c2ab23f",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-003-20261111\\references\\normalized-batch",
+      "cache_sha256": "17eb8c5d67467020fdf93dc16d91230a5571cc4b082825a4359008302f5547fb",
+      "protocol_sha256": "6b6c744e2519f34f18f498c3838432957e46856f36cf619af4944a6422f7b482",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-train256-batch001-20261111\\references\\normalized-batch",
+      "cache_sha256": "f22e1efcee7b517f216dbe87e777fef760f379c674d4c0c381585feac8040857",
+      "protocol_sha256": "4216d688f4f0003b8cba014bfed7ad234ebd7669f8dbaee1bc228fe06196f451",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-001-20261111\\references\\normalized-batch",
+      "cache_sha256": "d1841093ceacda4d993536e1ffdcfeb9d93e36d50779fb0b37bae9cf4d3cdffe",
+      "protocol_sha256": "6295a25e7d393d595fef94c944eb58361f1b0942e9a325482b499cc79ede28ce",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-002-20261111\\references\\normalized-batch",
+      "cache_sha256": "d1596e359d5b5d4bab504d29856177b0790391ef2a487aacf33c46acc1bcf32a",
+      "protocol_sha256": "d15bfbe62d59addad05ab24ad09dd20f6cf12a0c3d53c7f862cff055a5073576",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-005-20261111\\references\\normalized-batch",
+      "cache_sha256": "e6941f686abe18061b7216fbc55a9babdbe5a1f3b35fe53d4c90b453f504cb39",
+      "protocol_sha256": "5705a9929111cae9e61a2f41ef344071b5f24822eb95bfc0c6232f7a04981b20",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    {
+      "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-train-020-20261111\\references\\normalized-batch",
+      "cache_sha256": "a7887732233338a88a3fd9b4c33dc0d3fcc755a8f5702bdd6f356a5e64dcbc80",
+      "protocol_sha256": "2ecc10b7cf68c92e58147b8337c4ba0daa4ac7bcdccc8f9b55c0734697ed01ec",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 256,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    }
+  ],
+  "raw_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\rules-smoke\\receipt.json",
+  "raw_receipt_sha256": "d496dd493710ed16e777abe8f5da517279bc5ab524018f73a8f3f4ec4ddb9e7b"
+}

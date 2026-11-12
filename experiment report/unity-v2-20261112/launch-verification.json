@@ -1,0 +1,79 @@
+{
+  "status": "passed_launch_checks",
+  "verified_utc": "2026-11-12T13:32:15.059231+00:00",
+  "data_input_hashes_verified": [
+    "development",
+    "confirmation",
+    "verification"
+  ],
+  "smoke": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
+    "sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
+    "training_updates": 4,
+    "amp_skipped_steps": 0,
+    "checkpoint_audit": "passed"
+  },
+  "rules": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\rules.json",
+    "sha256": "54260f1cdaddfa7148dee9bb878e2818c7e077fc96d9184c6862b35b5ced1f66",
+    "counts": {
+      "train": 10000,
+      "validation": 1000
+    },
+    "exact_four_field_replay_mismatches": 0
+  },
+  "cpu_tests": {
+    "command": "uv run pytest -q --tb=short --basetemp \"experiment report/.local/unity-v2-20261112/pytest-start-permitted\" -o \"cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted\" tests/test_unity_search_policy.py tests/test_unity_quality.py tests/test_unity_quality_training.py",
+    "passed": 50,
+    "seconds": 3.68
+  },
+  "static_checks": [
+    "uv run ruff format --check script/diagnose_unity_rules.py",
+    "uv run ruff check script/diagnose_unity_rules.py",
+    "uv run basedpyright script/diagnose_unity_rules.py",
+    "git diff --check"
+  ],
+  "review": {
+    "scope": "New diagnostic script and V2 run configurations",
+    "verdict": "CLEAN"
+  },
+  "formal_training_completed": false,
+  "validation90_achieved": false,
+  "confirmation_model_evaluation_performed": false,
+  "formal_training_observation": {
+    "observed_utc": "2026-11-12T13:35:20.478213+00:00",
+    "progress": {
+      "status": "training",
+      "epoch": 3,
+      "batches": 300,
+      "images": 4800,
+      "optimizer_updates": 1548,
+      "wall_seconds": 300.6008247
+    },
+    "source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\r0\\progress.json",
+    "completed_epochs": 2,
+    "epoch_history": [
+      {
+        "epoch": 1,
+        "validation_accuracy": 0.63,
+        "training_seconds": 47.42671080000014,
+        "validation_seconds": 11.672003199999835,
+        "optimizer_updates": 624,
+        "amp_skipped_steps": 1
+      },
+      {
+        "epoch": 2,
+        "validation_accuracy": 0.691,
+        "training_seconds": 38.95318309999993,
+        "validation_seconds": 12.233719599999858,
+        "optimizer_updates": 624,
+        "amp_skipped_steps": 1
+      }
+    ]
+  },
+  "source_and_receipt_rechecks": "passed for rules smoke and full rules; all bound source files and raw receipt hashes matched",
+  "new_report_local_links": {
+    "checked": 3,
+    "passed": 3
+  }
+}

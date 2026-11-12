@@ -322,3 +322,19 @@
 两张开启mipmap的法线触发旧补测限制，保留首轮队列失败和已完成576train／2validation。扩展按导入设置与尺寸推导角度评价层数，逐原候选比较仍强制执行；真实40候选和原winner一致后启动新队列。历史完成producer只允许显式SHA绑定的归档复用，不重新执行旧版本。`[verified: unity-normal-multimip2.json；candidate_queue.py verify_capture_binding、run；unity-candidate-queue-multimip-v2-config.json]`
 
 RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha／非零误差通道规则。258图5160候选最大PSNR差3.74e-6dB。审查发现并修正manifest的candidate_receipt_sha256实际指向candidates.json、非单图receipt.json；补上公开报告→raw→单图内容身份链和缓存／元数据／test行反例。整图MS-SSIM与角度保留，后续模型聚合待实现。`[verified: patch_targets.py measured_image、prepare_image；test_unity_patch_targets.py；unity-patches-train256.json；opinion: 后续模型范围]`
+
+
+## 2026-11-12 Unity V2 execution
+
+### Deviations
+
+- The always12 reference uses fastest; fixed12/medium is separately reported. Gaussian perturbations use three seeds, native dB/degrees, unbounded independent candidate noise and equal numerical sigma in the joint curve. These are explicit execution choices for the V2 precision diagnostic. `[verified: experiment report/unity-v2-20261112/launch-binding.json always12_baseline_preset、noise_model; rules-config.json seeds、sigmas]`
+
+### Discovered edge cases
+
+- Restricted execution denied Windows DataLoader worker pipes before any update. Preserve r0-smoke failure; the new r0-smoke-retry identity uses the same workers2 recipe with required execution permission and passed two epochs, four updates, zero AMP skips and checkpoint replay. Pytest temp access required the same execution-permission recovery and then passed50checks. `[verified: r0-smoke.json error、training_updates; r0-smoke-retry.json history、checkpoint_audit; pytest output 50passed]`
+- Validation original native selections strictly pass87.4%; measured complete-quality rule replay matches100%. Keep these separate fields in reports. `[verified: experiment report/unity-v2-20261112/rules.json validation_baselines.original_rule_measured]`
+
+### Questions for review
+
+- Initialization promotion, production search variants and a fresh confirmation cohort remain the V2 plan's later decisions. `[verified: experiment plan/V2/README.md L111–115]`

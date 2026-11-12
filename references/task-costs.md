@@ -87,3 +87,8 @@ Unity原生Dataset检查使用CPU，未进行模型训练。7图小样本循环0
 连续候选队列读取参考队列已发布批次的归档、原DLL和原生指标构建，写独立.local目录；候选队列持有工程级candidates.lock，参考队列持有series.lock。每批至少20GiB空闲RAM／40GiB输出磁盘，只启动一个补测工作进程；全11000图为重型批处理，256图测量用于预算参考，尺寸与用途分布不同会改变耗时。`[verified: candidate_queue.py lock、require_resources、run；unity-candidate-queue-full-config.json；opinion: 成本分类及外推边界]`
 
 去maxpool正式训练15轮3345.85秒，包含权重重载的进程3385.97秒；末轮BN诊断另用599.74秒。下一项组限权训练的48train／16validation CUDA检查用34.44秒，正式启动前空闲RAM30.25GiB、GPU1229／12282MiB。训练继续单GPU串行，原生采集与候选补测的CPU／磁盘成本重叠，正式训练时间待结束后记录。`[verified: patch-fixed-capacity/scratch-stem2-lr0003-result.json；对应jobs/receipt；normalization-scratch-stem2-lr0003.json；jobs/scratch-group512/launch-preflight.json及启动前nvidia-smi输出；opinion: 成本范围]`
+
+
+## 2026-11-12 Unity V2启动
+
+完整规则诊断覆盖train10000／validation1000，四种质量扰动×9个标准差×3种子，复用原规则，完整循环65.64秒；只读冻结语料及策略来源，写独立V2报告。CUDA32train／16validation、230／128patch的两轮预检训练器11.37秒，实际4更新、0AMP跳步、最佳权重重载通过，峰值分配显存1,219,232,256字节。正式基线启动前RAM空闲47.31GiB、GPU612／12282MiB，workers2、batch16、单GPU串行。正式训练耗时等待首轮实测；这些准备和训练成本单列。`[verified: ../experiment report/unity-v2-20261112/rules.json counts、curves、wall_seconds；r0-smoke-retry.json history、peak_vram_bytes、checkpoint_audit；.local/unity-v2-20261112/jobs/r0/launch-preflight.json；opinion: 成本范围]`
