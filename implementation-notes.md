@@ -381,3 +381,16 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 
 - Mean-only completed10epochs/6246updates, selectedepoch9raw75.0%/3.3833dB, fullcheckpoint replay passed. Same-validation coordinatefit77.4%, withstrictquality52.0%raw/61.2%fit and354/262qualityregressions. Reports preserve both accuracy andquality under the existing Top1-only acceptance. `[verified: comparison.json results.mean_pooling; mean-pooling.json checkpoint_audit]`
 - Mean-only becomes the current validation reference byTop1. Next planned factor is ImageNet initialization, with any mainline promotion governed by the plan's pending decision. Current implementation19sources preserved before initialization extensions. `[verified: comparison.json reference_model; progress.json next、source_archives; experiment plan/V2/README.md 待决定事项]`
+
+
+## 2026-11-12 ImageNet initialization contrast
+
+- Added optional RGB backbone state initialization. Raw officialResNet18 V1 weights are loaded before expandingconv1; RGBkernel copied exactly, Alpha/mask initializedzero. Actualcached44.7MiB artifactSHAf37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec,100backbone tensors verified. Nativeheads andnextRNGdraw match pairedscratchseed20261112. `[verified: imagenet-mean-design.json]`
+- Trainerdefaults scratch; pretrained mode requires explicitfile+SHA, verifiedbefore/afterread andafterfinalaudit. Savedcheckpoints restore their selfcontainedstate, including when theinitializationfile isunavailable.64core/71caller checks passed andCUDA32/16smoke4updates/reload passed. `[verified: imagenet-mean-verification.json; tests/test_unity_quality.py; tests/test_unity_quality_training.py]`
+- The fullImageNetmean-only contraststarted with the same otherrecipe fields. Mainlinepromotion remains the plan's pendingdecision after validation evidence. `[verified: corresponding launch-preflight.json; experiment plan/V2/README.md 待决定事项]`
+
+## 2026-11-12 completed ImageNet contrast and full30 control
+
+- ImageNet mean-only completed8epochs/4998updates, selectedepoch8 gives81.3% and3.4176dB, fullreload passed. Same-validation fit82.5%. The global minimumRMSE3.1267dB belongs to another epoch. `[verified: imagenet-mean-result.json; imagenet-mean.json history]`
+- TrueMSE replacement90.3%, trueSSIM89.1%, trueangles83.1%, alltruth100%. Raw/fitted strictquality67.1%/70.3%, regressions203/171, costs andpayload retained. `[verified: imagenet-mean-attribution.json variants; imagenet-mean-result.json]`
+- Early stopping tracks RMSE while modelselection tracksTop1. The finalepoch improvedTop1 but triggeredRMSEpatience. New scratchmean-full30 control changes onlypatience5to0 within the original30epochcap. Smoke4updates/reload passed beforefull launch. Pretrainedpromotion is pending the existing plan decision. `[verified: imagenet-mean.json history、stop_reason; mean-full30-config.json; mean-full30-smoke.json; progress.json]`

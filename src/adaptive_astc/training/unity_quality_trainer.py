@@ -47,6 +47,9 @@ class UnityTrainConfig:
     ssim_weight: float = 0.1
     angle_weight: float = 0.1
     image_pooling: str = "mean_max"
+    initialization: str = "scratch"
+    pretrained_weights: Path | None = None
+    pretrained_weights_sha256: str | None = None
 
     def validate(self) -> None:
         for name in ["epochs", "image_batch_size", "patches_per_image", "validation_batch_size"]:
@@ -63,6 +66,7 @@ class UnityTrainConfig:
             or self.weight_decay < 0
             or not 0 < self.zero_probability_threshold < 1
             or self.image_pooling not in ("mean_max", "mean")
+            or self.initialization not in ("scratch", "pretrained")
         ):
             raise ValueError("Invalid native training configuration")
         if not self.smoke and self.train_image_indices:
@@ -75,6 +79,16 @@ class UnityTrainConfig:
         ):
             raise ValueError("Require a valid seed and unique nonnegative train image indices")
         UnityQualityLossConfig(self.zero_weight, self.ssim_weight, self.angle_weight).validate()
+        if self.initialization == "pretrained":
+            if (
+                self.pretrained_weights is None
+                or not isinstance(self.pretrained_weights_sha256, str)
+                or len(self.pretrained_weights_sha256) != 64
+                or any(c not in "0123456789abcdef" for c in self.pretrained_weights_sha256)
+            ):
+                raise ValueError("Pretrained initialization requires a weight file and its SHA256")
+        elif self.pretrained_weights is not None or self.pretrained_weights_sha256 is not None:
+            raise ValueError("Scratch initialization cannot carry unused pretrained weights")
 
 
 class UnityQualityTrainer:
@@ -84,11 +98,20 @@ class UnityQualityTrainer:
         values = ArtifactStore.read_json(config_path)
         for name in ["corpus", "output", "report"]:
             values[name] = Path(values[name]).resolve()
+        if values.get("pretrained_weights") is not None:
+            values["pretrained_weights"] = Path(values["pretrained_weights"]).resolve()
         if "train_image_indices" in values:
             values["train_image_indices"] = tuple(values["train_image_indices"])
         self.config = UnityTrainConfig(**values)
         self.config.validate()
         self.resolver = UnityPredictionAudit(self.root, self.config_path)
+
+    @staticmethod
+    def verify_pretrained_weights(config: UnityTrainConfig) -> None:
+        if config.pretrained_weights is not None and (
+            ArtifactStore.sha256_file(config.pretrained_weights) != config.pretrained_weights_sha256
+        ):
+            raise ValueError("Native initialization weight file changed")
 
     @staticmethod
     def validate_coverage(document: JsonDict, config: UnityTrainConfig) -> None:
@@ -150,7 +173,16 @@ class UnityQualityTrainer:
         # Verify native policy provenance before optimizing any parameter.
         for row in validation.rows:
             self.resolver.policy_for(row)
-        model = UnityQualityRegressor(image_pooling=config.image_pooling).to(device)
+        backbone_weights: dict[str, torch.Tensor] | None = None
+        self.verify_pretrained_weights(config)
+        if config.pretrained_weights is not None:
+            backbone_weights = torch.load(
+                config.pretrained_weights, map_location="cpu", weights_only=True
+            )
+            self.verify_pretrained_weights(config)
+        model = UnityQualityRegressor(
+            image_pooling=config.image_pooling, backbone_weights=backbone_weights
+        ).to(device)
         criterion = UnityQualityLoss(
             UnityQualityLossConfig(config.zero_weight, config.ssim_weight, config.angle_weight)
         )
@@ -196,7 +228,6 @@ class UnityQualityTrainer:
                 "margin and zero threshold fixed"
             ),
             augmentations=[],
-            initialization="scratch",
             policy_origins=self.resolver.origins,
         )
         ArtifactStore.write_json(config.output / "config.json", settings)
@@ -360,6 +391,7 @@ class UnityQualityTrainer:
         ArtifactStore.write_json(config.output / "history.json", state)
         self.verify_input_files([train.rows[i] for i in indices])
         audit = self.audit_best(validation, device, state["best_artifacts_sha256"])
+        self.verify_pretrained_weights(config)
         state.update(
             status="passed_smoke" if config.smoke else "completed",
             checkpoint_audit=audit,

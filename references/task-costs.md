@@ -104,3 +104,8 @@ MS-SSIM权重0.03正式6轮训练器421.97秒，3749更新、1AMP跳步，重载
 
 
 仅均值池化正式10轮训练器630.16秒，6246更新、4AMP跳步，完整最佳权重重载通过。冻结归因1000图CPU进程7.53秒，同验证集余量拟合循环9.14秒，均0次模型forward。训练时长按本组10轮及源核验记录，部署时延另测。`[verified: ../experiment report/unity-v2-20261112/mean-pooling.json wall_seconds、training_updates、history、checkpoint_audit；本轮归因命令wall_time_seconds=7.5327511；mean-pooling-calibration.json wall_seconds、model_forward_calls]`
+
+
+ImageNet初始化32／16图CUDA检查训练器11.19秒，4更新、重载通过，峰值分配显存1,218,372,096字节。原生64项组件检查5.23秒，71项调用方检查5.10秒。正式启动前RAM44.16GiB、GPU600／12282MiB，仅读已缓存官方初始化文件和冻结Unity语料，写独立imagenet-mean目录，GPU串行。`[verified: ../experiment report/unity-v2-20261112/imagenet-mean-smoke.json；本轮pytest输出；对应launch-preflight.json]`
+
+ImageNet初始化正式8轮训练器669.33秒，4998更新、2AMP跳步，最佳权重重载30.11秒通过。随机初始化完整30轮对照的CUDA预检10.83秒，4更新及重载通过，峰值分配显存1,218,372,096字节；正式启动前RAM43.97GiB、磁盘851.82GiB、GPU613／12282MiB。该对照仅关闭早停，GPU串行，独立输出。`[verified: ../experiment report/unity-v2-20261112/imagenet-mean-result.json；imagenet-mean.json checkpoint_audit.wall_seconds；mean-full30-smoke.json；对应launch-preflight.json及本轮nvidia-smi输出]`

@@ -12,16 +12,26 @@ from adaptive_astc.config import JsonDict
 
 
 class UnityQualityRegressor(nn.Module):
-    """A scratch ResNet-18 backbone; image heads consume pooled features, not patch scores."""
+    """A ResNet-18 backbone with additive patch and nonadditive image quality heads."""
 
-    def __init__(self, image_pooling: str = "mean_max") -> None:
+    def __init__(
+        self, image_pooling: str = "mean_max", *, backbone_weights: dict[str, Tensor] | None = None
+    ) -> None:
         super().__init__()
         if image_pooling not in ("mean_max", "mean"):
             raise ValueError("Native image pooling must be mean_max or mean")
         self.image_pooling = image_pooling
         backbone = ResNet(BasicBlock, [2, 2, 2, 2])
+        rgb_weights = None
+        if backbone_weights is not None:
+            backbone.load_state_dict(backbone_weights, strict=True)
+            rgb_weights = backbone.conv1.weight.detach().clone()
         backbone.conv1 = nn.Conv2d(5, 64, kernel_size=7, stride=2, padding=3, bias=False)
         nn.init.kaiming_normal_(backbone.conv1.weight, mode="fan_out", nonlinearity="relu")
+        if rgb_weights is not None:
+            with torch.no_grad():
+                backbone.conv1.weight.zero_()
+                backbone.conv1.weight[:, :3].copy_(rgb_weights)
         self.backbone = nn.Sequential(*list(backbone.children())[:-2])
         self.metadata_conditioner = nn.Linear(8, 1024)
         nn.init.zeros_(self.metadata_conditioner.weight)

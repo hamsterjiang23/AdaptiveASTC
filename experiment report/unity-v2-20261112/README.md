@@ -50,7 +50,7 @@
 
 ## 进度
 
-规则诊断、完整原生基线、权重0.03及仅均值池化对照、冻结预测归因及同验证集余量拟合已完成。下一项按计划进行ImageNet初始化对照。后续状态与结果写入[本轮进度](progress.json)。`[verified: rules.json status；comparison.json；mean-pooling.json status；progress.json next]`
+规则诊断、完整原生基线、权重0.03及仅均值池化对照、冻结预测归因及同验证集余量拟合已完成。ImageNet初始化对照已启动。后续状态与结果写入[本轮进度](progress.json)。`[verified: rules.json status；comparison.json；imagenet-mean.json status；progress.json]`
 
 全量训练的首轮启动快照为验证Top-1 63.0%、近阈值RMSE 3.4667dB，实际624次更新、1次AMP跳步；训练47.43秒、验证11.67秒，首次数据准备170.30秒。这是训练过程记录，后续最佳权重仍按完整验证和重载审计确定。`[verified: r0.json history中epoch1、preparation_seconds；opinion: 过程与最终选模范围]`
 
@@ -121,3 +121,23 @@
 仅均值池化的原始／拟合Top-1为75.0%／77.4%，原始／拟合严格质量通过率为52.0%／61.2%。原始选择的质量回退354张，拟合选择262张；报告同时保留balanced accuracy、逐类结果及payload。实测通道MSE替换为87.7%、MS-SSIM替换为87.1%，全部实测质量替换为100%。`[verified: comparison.json results.mean_pooling；mean-pooling-attribution.json variants]`
 
 扩展前17份相关源码已按SHA归档。冻结归因复用既有`PatchNormalizationAudit.bind_training_sources`，通过显式配置验证历史源码，同时记录当前执行源码；完整基线的全部归因指标与归档前逐项相同。`[verified: .local/unity-v2-20261112/source-archive-before-mean/manifest.json；r0-attribution-archive.json training_source_binding；mean-pooling-design.json attribution_archive_replay_exact]`
+
+## ImageNet初始化独立对照
+
+本轮使用Torchvision的`ResNet18_Weights.IMAGENET1K_V1`，本机缓存文件为`resnet18-f37072fd.pth`，46,830,571字节，实测SHA-256为`f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec`。官方权重来源及文件身份记录于[初始化设计](imagenet-mean-design.json)。`[verified: imagenet-mean-design.json weights_name、official_url、cached_file_bytes、cached_file_sha256；Torchvision0.23 resnet18文档 L43–47]` [Torchvision权重说明](https://docs.pytorch.org/vision/0.23/models/generated/torchvision.models.resnet18.html)
+
+初始化先载入RGB骨干，再把首层RGB卷积核复制到五通道卷积的前3通道，新增Alpha与mask通道初始为0。100个骨干张量逐项验证通过，原生质量头及后续RNG抽样与seed20261112的配对scratch模型逐位一致。模型输入为Unity原生RGBA变换、有效像素mask和8项导入属性，模型参数11,305,980。`[verified: imagenet-mean-design.json transferred_backbone_tensors_verified、rgb_kernel_exact、alpha_mask_initial_weights_zero、shared_head_initial_weights_equal、next_rng_draw_equal、input_preprocessing、parameters]`
+
+训练配置显式绑定初始化文件与SHA，读取前、读取后及最终审计后复核。检查点恢复直接加载已保存的完整模型状态，相关离线恢复与历史默认配置检查通过。64项组件和71项调用方检查通过，CUDA32／16图预检完成4次更新、最佳权重重载通过，训练器11.19秒。正式10000／1000图训练完成8轮、4998次更新、2次AMP跳步，选中epoch8，完整重载审计通过。`[verified: UnityQualityTrainer.verify_pretrained_weights、fit；UnityQualityRegressor.from_checkpoint；imagenet-mean-verification.json；imagenet-mean-result.json epochs、updates、amp_skips、selected_checkpoint_epoch、checkpoint_audit]`
+
+本轮为计划内初始化对照，主线晋级按V2待决定事项在验证证据完成后处理。`[verified: experiment plan/V2/README.md 待决定事项“初始化”；imagenet-mean-design.json mainline_promotion]`
+
+选中权重Top-1为81.3%，balanced accuracy为69.70%，完整配置匹配53.1%，同权重近阈值RMSE为3.4176dB，严格质量通过率67.1%，质量回退203张。payload为31,366,736字节，训练器669.33秒。最低近阈值RMSE为3.1267dB，发生于另一轮次。`[verified: imagenet-mean-result.json selected_checkpoint_metrics、quality_regression_images、trainer_wall_seconds；imagenet-mean.json best_color_near_threshold_rmse_db、history]`
+
+冻结预测分别用实测通道MSE、MS-SSIM和角度替换后，Top-1为90.3%、89.1%和83.1%，全部实测指标为100%。同验证集余量拟合为82.5%，严格质量70.3%，回退171张；这些结果记录条件替换和验证拟合的表现。`[verified: imagenet-mean-attribution.json variants；imagenet-mean-calibration.json best_accuracy、selected_metrics、scope]`
+
+## 完整30轮训练对照
+
+ImageNet对照在第8轮达到本组最高Top-1时，触发颜色近阈值RMSE连续5轮未改善的早停。增加随机初始化均值池化的完整30轮对照，仅将patience5改为0，保留30轮上限、学习率日程和选模规则。此项用于检查提前停止的影响。`[verified: imagenet-mean.json history、stop_reason；mean-full30-config.json；.local/unity-v2-20261112/jobs/mean-full30/launch-preflight.json changed_training_fields；opinion: 实验顺序]`
+
+32／16图CUDA预检完成4次更新及重载，训练器10.83秒，峰值分配显存1,218,372,096字节；完整任务随后串行启动。预训练主线晋级已按计划的待决定事项向用户提出，后续依赖该决定的实验按回复执行。`[verified: mean-full30-smoke.json status、training_updates、wall_seconds、peak_vram_bytes、checkpoint_audit；progress.json status、pretrained_mainline_promotion]`

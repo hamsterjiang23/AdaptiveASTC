@@ -1,8 +1,10 @@
 from dataclasses import asdict
+from pathlib import Path
 
 import numpy as np
 import pytest
 import torch
+from torchvision.models.resnet import BasicBlock, ResNet
 
 from adaptive_astc.config import JsonDict
 from adaptive_astc.evaluation.unity_quality import UnityQualityPrediction, UnityTextureInput
@@ -253,6 +255,44 @@ def test_checkpoint_factory_restores_pooling_and_legacy_default(pooling: str) ->
     assert restored.image_pooling == pooling
     assert restored.image_head.in_features == original.image_head.in_features
     for name, value in original.state_dict().items():
+        assert torch.equal(value, restored.state_dict()[name])
+
+
+def test_backbone_transfer_zeroes_added_channels_and_preserves_paired_heads() -> None:
+    source = ResNet(BasicBlock, [2, 2, 2, 2]).state_dict()
+    source["conv1.weight"].fill_(0.125)
+    source["bn1.running_mean"].fill_(2.0)
+    torch.manual_seed(20261112)
+    scratch = UnityQualityRegressor(image_pooling="mean")
+    next_scratch = torch.rand(3)
+    torch.manual_seed(20261112)
+    transferred = UnityQualityRegressor(image_pooling="mean", backbone_weights=source)
+    next_transferred = torch.rand(3)
+    transferred_state = transferred.backbone.state_dict()
+    assert torch.equal(transferred_state["0.weight"][:, :3], source["conv1.weight"])
+    assert torch.count_nonzero(transferred_state["0.weight"][:, 3:]) == 0
+    assert torch.equal(transferred_state["1.running_mean"], source["bn1.running_mean"])
+    assert torch.equal(transferred_state["4.0.conv1.weight"], source["layer1.0.conv1.weight"])
+    for name, value in scratch.state_dict().items():
+        if not name.startswith("backbone."):
+            assert torch.equal(value, transferred.state_dict()[name])
+    assert torch.equal(next_scratch, next_transferred)
+
+
+def test_pretrained_checkpoint_restore_is_self_contained(tmp_path: Path) -> None:
+    model = UnityQualityRegressor(image_pooling="mean")
+    restored = UnityQualityRegressor.from_checkpoint(
+        {
+            "config": {
+                "image_pooling": "mean",
+                "initialization": "pretrained",
+                "pretrained_weights": str(tmp_path / "unavailable-initialization-weights.pth"),
+            },
+            "model": model.state_dict(),
+        },
+        torch.device("cpu"),
+    )
+    for name, value in model.state_dict().items():
         assert torch.equal(value, restored.state_dict()[name])
 
 

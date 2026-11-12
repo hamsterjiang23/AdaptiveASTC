@@ -16,6 +16,30 @@ from adaptive_astc.utils.artifacts import ArtifactStore
 from tests.test_unity_patch_dataset import DatasetFixture
 
 
+def test_pretrained_initialization_requires_bound_weight_identity(tmp_path: Path) -> None:
+    config = UnityTrainConfig(
+        tmp_path / "corpus", "0" * 64, tmp_path / "output", tmp_path / "report.json", smoke=True
+    )
+    config.validate()
+    with pytest.raises(ValueError, match="weight file and its SHA256"):
+        replace(config, initialization="pretrained").validate()
+    weights = tmp_path / "weights.pth"
+    weights.write_bytes(b"initialization fixture")
+    pretrained = replace(
+        config,
+        initialization="pretrained",
+        pretrained_weights=weights,
+        pretrained_weights_sha256=ArtifactStore.sha256_file(weights),
+    )
+    pretrained.validate()
+    UnityQualityTrainer.verify_pretrained_weights(pretrained)
+    weights.write_bytes(b"changed weights")
+    with pytest.raises(ValueError, match="initialization weight file changed"):
+        UnityQualityTrainer.verify_pretrained_weights(pretrained)
+    with pytest.raises(ValueError, match="unused pretrained weights"):
+        replace(pretrained, initialization="scratch").validate()
+
+
 def paired_dataset(tmp_path: Path) -> UnityPatchDataset:
     fixture = DatasetFixture(tmp_path)
     first = fixture.document["splits"]["train"][0]

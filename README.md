@@ -2,7 +2,7 @@
 
 根据最终压缩质量，为每张贴图选择合适的ASTC块大小，在项目质量要求下减少纹理体积，并研究通过机器学习实现预测选参后单次压缩的生产流程。相关资料从网易雷火GDC 2023演讲及其公开字幕、视频画面开始整理。`[verified: 用户需求说明（2026-11-09）“主要目的就是通过最终压缩质量选择合适的压缩参数”“一张图压缩一次”；本文“从这里阅读”]`
 
-V2 原生基线验证Top-1为73.9%，同验证集余量拟合为76.0%；MS-SSIM权重0.03对照为72.7%／74.3%，仅均值池化为75.0%／77.4%，三组最佳权重重载通过。当前继续开发集单项改进，确认集模型评价尚待准入。配置、结果和活动进度见[V2执行报告](<experiment report/unity-v2-20261112/README.md>)。`[verified: experiment report/unity-v2-20261112/comparison.json；mean-pooling.json checkpoint_audit；progress.json next、test_opened]`
+V2 原生基线验证Top-1为73.9%，同验证集余量拟合为76.0%；MS-SSIM权重0.03对照为72.7%／74.3%，仅均值池化为75.0%／77.4%，ImageNet初始化为81.3%／82.5%，四组最佳权重重载通过。随机初始化完整30轮对照正在训练，预训练主线晋级等待用户决定，确认集模型评价尚待准入。配置、结果和活动进度见[V2执行报告](<experiment report/unity-v2-20261112/README.md>)。`[verified: experiment report/unity-v2-20261112/comparison.json；imagenet-mean.json checkpoint_audit；progress.json status、pretrained_mainline_promotion、test_opened]`
 
 ## 项目需求与优化目标
 
