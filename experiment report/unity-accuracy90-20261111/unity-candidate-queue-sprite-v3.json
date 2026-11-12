@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "waiting_references",
   "started_utc": "2026-11-12T00:29:33.947429+00:00",
   "config_sha256": "11f217d967857430bb1906c66671ce8e8f836c970e4f169770a4bbecba687c92",
   "implementation_sha256": "aa4b6ffbd2e4822272dedcb71867d304529f84e13275752e4250e113adf4f932",
@@ -11,7 +11,7 @@
   "coverage": "complete",
   "counts": {
     "train": 10000,
-    "validation": 514
+    "validation": 770
   },
   "batches": [
     {
@@ -1346,12 +1346,43 @@
         "decode_seconds": 36.586762999751954,
         "quality_seconds": 27.205876999374595
       }
+    },
+    {
+      "run_id": "unity-v1-validation-003-20261111",
+      "source_split": "validation",
+      "reference": {
+        "run_id": "unity-v1-validation-003-20261111",
+        "source_split": "validation",
+        "images": 256,
+        "callbacks": 1468,
+        "options_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-003-20261111\\options-receipt.json",
+        "options_sha256": "c5e712c8ef05832d437d2d5510039765b7715ced772bc108748f89a98652ebb8",
+        "reference_receipt_sha256": "c0e02307310e1f2c71543792f6922b8f5b00900f5a2eb66982939066c35d3ed1",
+        "phase_receipt_sha256": "b8e7bce8410f57dce4c04bf0884d5e9f2a3cde1ecb5e649780b3e6342e8022f1",
+        "editor_process_seconds": 1063.486481800006
+      },
+      "prior_attempts": [],
+      "completion_source_sha256": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+      "images": 256,
+      "candidates": 5120,
+      "new_candidates": 3652,
+      "original_candidates": 1468,
+      "normal_images": 3,
+      "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\reports\\unity-v1-validation-003-20261111.json",
+      "report_sha256": "cbe0a03e7b15db492e49d62d3879ae0283f1e566caadcd98ea34560f1d998a1e",
+      "raw_receipt_sha256": "5535c073948231efb3efc943b56c90f038f313185919bcc2fe3361a43967e31d",
+      "wall_seconds": 525.436426500004,
+      "cost": {
+        "encode_seconds": 278.0061027998454,
+        "decode_seconds": 37.39273039948603,
+        "quality_seconds": 59.290640099774464
+      }
     }
   ],
   "test_opened": false,
   "invocation_receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\candidate-queue-sprite-v3\\invocations\\6edd92efaa9d48c8939abf93786b3852\\receipt.json",
   "scope": "native20 candidate targets paired to original imported references and search choices",
-  "current_batch": "unity-v1-validation-003-20261111",
-  "updated_utc": "2026-11-12T05:01:32.985879+00:00",
-  "wall_seconds": 16319.037450899996
+  "current_batch": null,
+  "updated_utc": "2026-11-12T05:11:27.323547+00:00",
+  "wall_seconds": 16913.3749198
 }
