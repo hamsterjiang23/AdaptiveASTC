@@ -23,9 +23,11 @@
 
 名单修订阶段只完成源文件层面的准入检查。实际导入后的Default／Sprite／NormalMap、Tex2D、RGBA、颜色空间及参考像素一致性另行逐批验证，源身份无重叠不能证明像素独立。确认集不补测全20候选，不训练、不推理；Goal待完整采集、像素审计和交接完成后结束。`[verified: unity-confirmation-v2-readiness.json native_input_eligibility_verified、native_pixel_isolation_audit_complete、training_updates、test_opened、goal_complete；unity_capture_input.py project；opinion: 验收边界]`
 
-## 采集进度（2026-11-12 09:07 UTC）
+## 采集进度
 
-新版已归档258／2000张，两图预检及首个256张批次均通过，实际输入检查覆盖全部258张：251张Default、5张Sprite、2张NormalMap。256张批次完整采集1479.70秒，原生候选回调1479次；退出码0、无导入错误或meta恢复冲突，临时采集源码恢复到原SHA。下一批从索引258继续；13000张完整像素审计仍等待，尚未完成数据Goal。`[verified: unity-confirmation-series2000-data-v2.json；unity-confirmation-v2-input-audit.json texture_types、images；from00002报告wall_seconds、options_audit、managed_source_restoration；对应batch-receipt.json]`
+2026-11-12 09:34 UTC：新版已归档并验证实际输入514／2000张，包括504张Default、6张Sprite、4张NormalMap。第二个256张批次完整采集1634.02秒、原生候选回调1435次；退出码0、无导入错误或meta恢复冲突，临时采集源码已恢复。旧版同一批次范围曾在HDR源图归档时失败，新版已通过该范围，下一批从索引514继续。完整像素审计仍等待。`[verified: progress.json data_handoff.latest_confirmation_milestone；unity-confirmation-v2-input-audit.json；新版from00258报告及batch-receipt.json；旧版from00258错误记录]`
+
+09:07 UTC历史快照：新版已归档258／2000张，两图预检及首个256张批次均通过，实际输入检查覆盖全部258张：251张Default、5张Sprite、2张NormalMap。256张批次完整采集1479.70秒，原生候选回调1479次；退出码0、无导入错误或meta恢复冲突，临时采集源码恢复到原SHA。当时下一批从索引258继续，完整像素审计仍等待。`[verified: progress.json data_handoff.confirmation_milestones；from00002报告wall_seconds、options_audit、managed_source_restoration；对应batch-receipt.json]`
 
 收尾验收增加对像素审计原始明细、实际名单、PNG／patch目标文件及最终输入哈希的核对；观察脚本以同一份清单字节计算哈希并解析，缓存同时冻结实际导入属性。旧观察脚本和部分结果保留，原采集进程与冻结源码未重启或修改。[收尾检查准备记录](unity-data-delivery-verifier-readiness.json)的未完成任务拒绝检查已通过；完整交付检查要等采集、像素审计和观察进程全部完成后运行。`[verified: unity-data-delivery-verifier-readiness.json checks、completion_checks、observer_corrections、full_data_verification_executed；opinion: 完成边界]`
 
