@@ -6,6 +6,7 @@ import numpy as np
 import pytest
 import torch
 
+from adaptive_astc.config import JsonDict
 from adaptive_astc.utils.artifacts import ArtifactStore
 from script.audit_unity_normalization import UnityNormalizationAudit
 
@@ -44,3 +45,32 @@ def test_native_normalization_rejects_manifest_drift(tmp_path: Path) -> None:
     manifest.write_text('{"metadata":"changed"}', encoding="utf-8")
     with pytest.raises(ValueError, match="source changed"):
         UnityNormalizationAudit.verify_sources(sources)
+
+
+def test_native_trainer_config_legacy_resolution_and_drift(tmp_path: Path) -> None:
+    config = tmp_path / "trainer.json"
+    config.write_text("{}", encoding="utf-8")
+    settings = {"source_sha256": {str(config): ArtifactStore.sha256_file(config)}}
+    assert UnityNormalizationAudit.training_config_path(settings) == config
+    config.write_text('{"changed":true}', encoding="utf-8")
+    with pytest.raises(ValueError, match="changed or is unbound"):
+        UnityNormalizationAudit.training_config_path(settings)
+
+
+def test_staged_trainer_config_requires_a_bound_explicit_path(tmp_path: Path) -> None:
+    trainer, stage = tmp_path / "trainer.json", tmp_path / "stage.json"
+    trainer.write_text("{}", encoding="utf-8")
+    stage.write_text("{}", encoding="utf-8")
+    settings: JsonDict = {
+        "source_sha256": {
+            str(trainer): ArtifactStore.sha256_file(trainer),
+            str(stage): ArtifactStore.sha256_file(stage),
+        }
+    }
+    with pytest.raises(ValueError, match="configuration path"):
+        UnityNormalizationAudit.training_config_path(settings)
+    settings["training_config_path"] = str(trainer)
+    assert UnityNormalizationAudit.training_config_path(settings) == trainer
+    settings["source_sha256"].pop(str(trainer))
+    with pytest.raises(ValueError, match="changed or is unbound"):
+        UnityNormalizationAudit.training_config_path(settings)

@@ -108,6 +108,10 @@
 | ImageNet初始化 | 81.3% | 3.4176dB | 82.5%。`[verified: comparison.json results.imagenet_mean]` |
 | 随机初始化完整30轮 | 81.3% | 2.1585dB | 81.5%。`[verified: comparison.json results.mean_full30]` |
 | ImageNet完整30轮 | 85.7% | 1.9217dB | 86.4%。`[verified: comparison.json results.imagenet_full30]` |
+| EMA启用后的raw／EMA选模 | 81.3% | 2.1585dB | 81.5%。`[verified: comparison.json results.mean_ema099]` |
+| 冻结编码器，整图头sampled4再训练 | 81.2% | 2.1532dB | 81.3%。`[verified: comparison.json results.mean_head_sampled4]` |
+| 冻结编码器，整图头全部patch再训练 | 81.1% | 2.1432dB | 81.4%。`[verified: comparison.json results.mean_head_all]` |
+| ImageNet初始化，整图头sampled4再训练 | 86.3% | 1.9180dB | 86.7%。`[verified: comparison.json results.imagenet_head_sampled4]` |
 
 前三组完成时，仅均值池化作为初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
 
@@ -172,6 +176,36 @@ ImageNet对照在第8轮达到本组最高Top-1时，触发颜色近阈值RMSE�
 EMA默认关闭，历史配置继续恢复其完整保存权重。73项组件和71项调用方CPU检查及静态检查通过，旧完成实验19份相关源码已冻结；CUDA预检随后按单GPU串行执行。预训练主线晋级等待用户决定，当前EMA基于随机初始化参照。`[verified: mean-ema099-design.json component_tests、source_archive、mainline_initialization；本轮pytest“71 passed in 5.11s”；UnityTrainConfig.ema_decay、UnityQualityRegressor.from_checkpoint；opinion: 预检顺序]`
 
 关闭／开启EMA的两组CUDA预检均完成4次优化器更新，开启组EMA更新同为4次。关闭组两轮loss及选模指标与扩展前预检逐项一致；开启组的raw训练路径也与关闭组逐项一致。CUDA预检选中raw并通过重载，实际EMA状态另在CPU完成126个张量的保存／恢复核对，且与raw权重存在差异。完整30轮EMA任务随后串行启动。`[verified: mean-ema099-design.json raw_legacy_smoke_exact、ema_smoke_raw_training_exact、cuda_smoke_selected_variant、cpu_actual_ema_checkpoint_round_trip；mean-ema099-smoke.json training_updates、ema_updates、checkpoint_audit；progress.json status]`
+
+正式EMA对照完成30轮、18,741次优化器及EMA更新，最终选中epoch29的raw，验证81.3%／2.1585dB，重载通过。所选模型全部参数／buffer及保存预测与原完整30轮参照逐项一致。EMA分支自身最高80.7%，发生于epoch30，近阈值RMSE2.2188dB；后续使用原参照。训练器2107.69秒，训练累计1244.16秒，raw／EMA验证分别354.48／390.92秒。`[verified: mean-ema099-result.json；mean-ema099-verification.json；opinion: 参照选择]`
+
+## 冻结编码器后的整图头输入对照
+
+入口为`script/refit_unity_image_head.py`，当前已完成150项CPU检查、静态检查和只读审阅，CUDA预检等待EMA任务结束。初始模型按已完成随机初始化对照的审计Top-1及同权重近阈值RMSE选择，两个分支从同一完整检查点开始。方案见[对照配置](image-head-refit-design.json)，执行核验见[检查记录](image-head-refit-verification.json)。`[verified: image-head-refit-design.json source_model_selection、paired_initial_weights；image-head-refit-verification.json status、cpu_checks、review、cuda_smoke_status；opinion: 后续顺序]`
+
+编码器、FiLM、逐通道误差头和BN统计量冻结，训练／验证特征取实际RGBA、mask与导入属性的原生编码。图像头分别使用每图有放回抽4patch、每图全部patch，依原有效像素数聚合；图像访问顺序与patch抽样使用独立generator。零通道、MS-SSIM与角度监督复用原生损失定义。两组均计划30轮、batch16、AdamW lr0.0003及weight decay0.05，图像头阶段使用恒定学习率。`[verified: script/refit_unity_image_head.py NativeFeatureCache.prepare、predict、UnityImageHeadRefit.image_losses、run；image-head-refit-design.json；opinion: 训练配方选择]`
+
+训练前要求缓存完整重放原1000图预测与决策；选模后使用既有`UnityQualityTrainer.audit_best`重新读取原生验证输入，核对保存预测、决策与权重，逐项检查全部非图像头状态。阶段报告绑定初始训练、代码、语料和特征缓存。BN入口支持显式`training_config_path`及历史单配置来源，并从原编码器训练配置确定重估patch数。`[verified: script/refit_unity_image_head.py UnityImageHeadRefit.run；script/audit_unity_normalization.py training_config_path、run]`
+
+两个分支的32图预检均完成4次更新及完整1000图重载，覆盖180个训练patch、30张多patch图，最大每图6patch。正式两组各完成30轮／18,746次更新，全部冻结状态和最佳权重原生重载通过，两个分支的完整训练／验证特征文件逐字节一致。各阶段仅训练72,940个图像头参数，阶段时长353.17／353.99秒，初始完整模型训练1651.94秒另计。`[verified: image-head-refit-verification.json；mean-head-sampled4-result.json；mean-head-all-result.json]`
+
+sampled4原始／拟合Top-1为81.2%／81.3%，全部patch为81.1%／81.4%，原参照为81.3%／81.5%。ImageNet初始化独立对照使用同一sampled4再训练配方，32图预检完成4更新及完整重载，正式阶段随后启动。该模式按两项随机初始化头部对照的原始Top-1选择，预训练主线晋级仍待用户决定。`[verified: comparison.json；imagenet-head-sampled4-smoke.json；imagenet-head-sampled4-config.json；对应launch-preflight.json head_mode_selection；progress.json pretrained_mainline_promotion]`
+
+ImageNet头部阶段完成30轮／18,746次更新，选中epoch25，原始／同集拟合Top-1为86.3%／86.7%，原生重载通过。原始严格质量68.2%、回退193张，拟合严格质量64.9%、回退225张，完整配置匹配57.9%，原始payload31,528,624字节；阶段时长356.51秒，初始模型1647.19秒另计。`[verified: imagenet-head-sampled4-result.json]`
+
+## PSNR组件准备与整图头训练
+
+下一项按两阶段方式执行，准备阶段保留通道log-MSE与零通道监督，zero权重0.1，MS-SSIM／角度权重0。准备权重按颜色近阈值RMSE、再按块大小Top-1选择；图像头阶段显式恢复三项附加权重为0.1，按块大小Top-1、再按近阈值RMSE选模。当前准备阶段采用随机初始化、均值池化、30轮及原学习率日程。`[verified: psnr-preparation-config.json；psnr-preparation-design.json；UnityTrainConfig.selection_metric、UnityImageHeadRefit.loss_config；opinion: 两阶段选模与训练顺序]`
+
+默认accuracy选模保持旧配置行为，CUDA两轮的loss与选模指标逐项复现。PSNR准备分支预检完成4更新、所选权重重载通过，报告中的准确率与同一权重审计值一致。154项CPU检查、静态检查及只读审阅通过，完整准备训练已启动。前一版实现及输入共39份、623,924,481字节已按SHA归档。`[verified: psnr-preparation-verification.json；source-archive-before-psnr-warmup/manifest.json；psnr-preparation-smoke.json；对应launch-preflight.json]`
+
+## 确认集准入与新版证据适配
+
+完整近重复审计的11对跨划分候选均位于训练与确认之间，涉及10张确认图和11张训练图。精确RGBA跨确认／开发重复为0。已核对前10张冻结备用图的源文件、字节数及meta SHA，形成按原位置与备用顺序替换的[提案](<../.local/unity-v2-20261112/confirmation-near-replacement-proposal.json>)，当前名单修订待用户决定。提案只读取输入身份和像素审计，model forward为0。`[verified: confirmation-overlap-readiness.json overlap、unique_confirmation_images、unique_training_images、replacement_source_checks_all_passed、proposal、model_forward_calls]`
+
+现有确认入口会拒绝跨确认／开发的精确或检测近重复，V2交接则记录当前冻结名单的独立隔离尚未证明。后续正式确认须处理这一准入差异。新版修订像素证据与11000开发图全部匹配，旧管线的像素证据缺少18个新版资产身份，正式入口的证据映射及阶段训练模型接入仍待适配。`[verified: confirmation_evidence.py pixel_audit；unity-v2-data-inputs.json pixel_audit；confirmation-job-interface-verification.json pixel_evidence_corpus_comparison、staged_model_evidence_adapter、v2_pixel_handoff_adapter]`
+
+已修复上游任务识别对UTF-8参数与绝对脚本路径的兼容。原有相对路径及`-u`命令可用，额外执行参数会被拒绝；三份实际已完成任务的命令／receipt身份核验通过，此项核验的forward为0。相关34项CPU检查和只读审阅通过，完整相关检查为152项。`[verified: confirmation-job-interface-verification.json completed_jobs、cpu_tests、model_forward_calls；tests/test_unity_confirmation_evaluation.py test_completed_job_binding；本轮pytest“152 passed in 6.96s”]`
 
 ## 版本同步状态
 

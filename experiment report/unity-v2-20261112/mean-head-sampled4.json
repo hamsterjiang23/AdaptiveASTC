@@ -1,0 +1,2539 @@
+{
+  "status": "completed",
+  "training_updates": 18746,
+  "test_opened": false,
+  "config": {
+    "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2",
+    "corpus_sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\mean-head-sampled4",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-sampled4.json",
+    "smoke": false,
+    "train_image_indices": [],
+    "epochs": 30,
+    "image_batch_size": 16,
+    "patches_per_image": 4,
+    "validation_batch_size": 16,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.05,
+    "warmup_epochs": 0,
+    "patience": 0,
+    "workers": 2,
+    "seed": 20261112,
+    "zero_probability_threshold": 0.5,
+    "zero_weight": 0.1,
+    "ssim_weight": 0.1,
+    "angle_weight": 0.1,
+    "image_pooling": "mean",
+    "initialization": "scratch",
+    "pretrained_weights": null,
+    "pretrained_weights_sha256": null,
+    "parameters": 11305980,
+    "fp32_parameter_bytes": 45223920,
+    "gpu": "NVIDIA GeForce RTX 4070",
+    "torch": "2.8.0+cu128",
+    "source_sha256": {
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+      "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-sampled4-config.json": "06eff7725aec7b46c49746e636cc3a4f501e25aa851ca242f36b5c43363cfced",
+      "E:\\ASTC_Compression\\script\\audit_unity_normalization.py": "e9236ca4332ef9424aad97337d516b94ca2fdf4236437ebd346f556cca2d8ad9",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_loss.py": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\patch_normalization.py": "74151a5e93f99755f5f90ede3bebd01a63b1d018a14c3a94ba64b52872e3b7e1",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+      "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30-config.json": "6e9d5dda200f4e6d67a648e82dc8113764c01ef8ca20a4a2624c428a93e71d8e",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "3b73aaed2a06a9dc18e5073dbee1e4f50c5750a159253fbd40152d285e6532dc",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+      "E:\\ASTC_Compression\\script\\refit_unity_image_head.py": "e47b0e8352c9417e88a87665e801ee8a5e246550d03f56c8b92539ea5e9c5c5f",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "b0dd5003352e58776a9180c87204aae5d0a7c5fd1e64ec2d18d12bc92e9b243d",
+      "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30.json": "b5b5ecbdaae964e7b9e9002912e6e5159b3c53521e3cce70910dae40a81e4583",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_bags.py": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+      "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+      "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\mean-head-sampled4\\train-features.npy": "84dce6011f30bda38c97b9ffc2b99d95522f804d69c160bb8d2c319d43bef24b",
+      "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\mean-head-sampled4\\train-indexes.npz": "96470aa8a84779ccb89025b6dd855871c64c6c864fcd7492a0997299c6c39511",
+      "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\mean-head-sampled4\\validation-features.npy": "2eb923320c7b12619316d82c1e51ef3d96b4db9e30369e53243021d6f5269b51",
+      "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\mean-head-sampled4\\validation-indexes.npz": "d8d4835c5a2cd3c54380caabf914c150f7095aab70ee855e718e3a8f1ef6d2e4"
+    },
+    "corpus_fingerprint": "04a41d31e89cc904859bce98234b24ee9cbe286646b201e6902bd61d1374fc79",
+    "train_images": 10000,
+    "validation_images": 1000,
+    "sampling": "Each selected image once per epoch; independent fixed-seed patch generator",
+    "image_target_scope": "Full-image targets with frozen native patch encodings",
+    "selection": "Validation footprint Top1 then color near-threshold RMSE",
+    "augmentations": [],
+    "policy_origins": [
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch",
+        "cache_sha256": "5d1cc96dddb5480fc42170e8344587e9645fc3acaaa2d184c35beed9ce5db47e",
+        "protocol_sha256": "d95e38874c500c578cd158012100659bd72c2ac9e49a9a836be5537f6425a81d",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 2,
+        "native_policy_verified": true,
+        "assembly_sha256": null
+      },
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\references\\normalized-batch",
+        "cache_sha256": "0108b26d355310464a3ed2af4a4abe7a5109f03bb9d9ca43c2ceef067369bc13",
+        "protocol_sha256": "bb3a8d3090e99441a52f86c414d12dfaaa1bd6c22801c3e3bfcbb52a7c2ab23f",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 256,
+        "native_policy_verified": true,
+        "assembly_sha256": null
+      },
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-002-20261111\\references\\normalized-batch",
+        "cache_sha256": "7c521dc19cfc5d1e5934e2f0d93c3bf7bbeeda78ea02c29eae208d7cbd18a122",
+        "protocol_sha256": "f9097b34fd435afaad67d3a76aaaa766e9cee4a65543c758534c7d9a014ff9df",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 256,
+        "native_policy_verified": true,
+        "assembly_sha256": null
+      },
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-003-20261111\\references\\normalized-batch",
+        "cache_sha256": "17eb8c5d67467020fdf93dc16d91230a5571cc4b082825a4359008302f5547fb",
+        "protocol_sha256": "6b6c744e2519f34f18f498c3838432957e46856f36cf619af4944a6422f7b482",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 256,
+        "native_policy_verified": true,
+        "assembly_sha256": null
+      },
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-development-replacement-validation-v2\\references\\normalized-batch",
+        "cache_sha256": "ba447aa653f181ce06de7fb29bde4e52321b0c250beaba275780eb97b4abc0b0",
+        "protocol_sha256": "6b674db20a5b9cc1aa87024b3e9b38d4a868568625ebf6bcdd74d58278b3e411",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 5,
+        "native_policy_verified": true,
+        "assembly_sha256": null
+      },
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-004-20261111\\references\\normalized-batch",
+        "cache_sha256": "c5cbf15ec1a996372316e038d4c9bd5740a54c0ee61aac5f8f974ce3e6d7b523",
+        "protocol_sha256": "9dbd1664daa2028b883e31fc59abf9b9943835e0514b68e44bdbc56fe9f8649d",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 230,
+        "native_policy_verified": true,
+        "assembly_sha256": null
+      }
+    ],
+    "learning_rate_schedule": "Constant during the image-head stage",
+    "ema_decay": 0.0,
+    "ema": false,
+    "training_config_path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30-config.json",
+    "stage": "Frozen encoder image-head refit",
+    "head_patch_views": 4,
+    "initial_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30.json",
+    "initial_training_report_sha256": "b5b5ecbdaae964e7b9e9002912e6e5159b3c53521e3cce70910dae40a81e4583",
+    "trainable_parameters": 72940
+  },
+  "baseline": {
+    "count": 1000,
+    "accuracy": 0.813,
+    "balanced_accuracy": 0.7086118931454455,
+    "full_choice_accuracy": 0.488,
+    "confusion_matrix": [
+      [
+        91,
+        23,
+        2,
+        4
+      ],
+      [
+        18,
+        85,
+        34,
+        6
+      ],
+      [
+        0,
+        26,
+        75,
+        37
+      ],
+      [
+        1,
+        5,
+        31,
+        562
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 120,
+        "recall": 0.7583333333333333
+      },
+      "8x8": {
+        "support": 143,
+        "recall": 0.5944055944055944
+      },
+      "10x10": {
+        "support": 138,
+        "recall": 0.5434782608695652
+      },
+      "12x12": {
+        "support": 599,
+        "recall": 0.9382303839732888
+      }
+    },
+    "actual_quality_pass_rate": 0.644,
+    "no_strict_feasible_images": 34,
+    "color_near_threshold_candidate_count": 4687,
+    "color_near_threshold_rmse_db": 2.1585451823690764,
+    "selected_payload_bytes": 31177648,
+    "original_payload_bytes": 31661520,
+    "fixed8_payload_bytes": 59761616,
+    "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+    "seconds": 1.3732839000003878
+  },
+  "initial_training_updates": 18741,
+  "training_source_binding": {
+    "archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema",
+    "sources": [
+      {
+        "relative_path": "src/adaptive_astc/training/unity_quality_trainer.py",
+        "training_sha256": "22e903c5dc348787f42f57e2eddeaf43e49edaf7de4d3e6290aef0e137579eda",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\src\\adaptive_astc\\training\\unity_quality_trainer.py",
+        "current_sha256": "3b73aaed2a06a9dc18e5073dbee1e4f50c5750a159253fbd40152d285e6532dc"
+      },
+      {
+        "relative_path": "experiment report/unity-v2-20261112/mean-full30-config.json",
+        "training_sha256": "6e9d5dda200f4e6d67a648e82dc8113764c01ef8ca20a4a2624c428a93e71d8e",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\experiment report\\unity-v2-20261112\\mean-full30-config.json",
+        "current_sha256": "6e9d5dda200f4e6d67a648e82dc8113764c01ef8ca20a4a2624c428a93e71d8e"
+      },
+      {
+        "relative_path": "src/adaptive_astc/data/unity_image_bags.py",
+        "training_sha256": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\src\\adaptive_astc\\data\\unity_image_bags.py",
+        "current_sha256": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b"
+      },
+      {
+        "relative_path": "src/adaptive_astc/data/unity_patch_dataset.py",
+        "training_sha256": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\src\\adaptive_astc\\data\\unity_patch_dataset.py",
+        "current_sha256": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008"
+      },
+      {
+        "relative_path": "src/adaptive_astc/models/unity_quality.py",
+        "training_sha256": "b0dd5003352e58776a9180c87204aae5d0a7c5fd1e64ec2d18d12bc92e9b243d",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\src\\adaptive_astc\\models\\unity_quality.py",
+        "current_sha256": "b0dd5003352e58776a9180c87204aae5d0a7c5fd1e64ec2d18d12bc92e9b243d"
+      },
+      {
+        "relative_path": "src/adaptive_astc/training/unity_quality_loss.py",
+        "training_sha256": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\src\\adaptive_astc\\training\\unity_quality_loss.py",
+        "current_sha256": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37"
+      },
+      {
+        "relative_path": "src/adaptive_astc/evaluation/unity_quality.py",
+        "training_sha256": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\src\\adaptive_astc\\evaluation\\unity_quality.py",
+        "current_sha256": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360"
+      },
+      {
+        "relative_path": "reproductions/unity_search_baseline/prediction_audit.py",
+        "training_sha256": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\reproductions\\unity_search_baseline\\prediction_audit.py",
+        "current_sha256": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46"
+      },
+      {
+        "relative_path": "reproductions/unity_search_baseline/policy.py",
+        "training_sha256": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\reproductions\\unity_search_baseline\\policy.py",
+        "current_sha256": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b"
+      },
+      {
+        "relative_path": "reproductions/unity_search_baseline/policy_audit.py",
+        "training_sha256": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\reproductions\\unity_search_baseline\\policy_audit.py",
+        "current_sha256": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c"
+      },
+      {
+        "relative_path": "src/adaptive_astc/utils/runtime.py",
+        "training_sha256": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+        "verified_source": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-ema\\src\\adaptive_astc\\utils\\runtime.py",
+        "current_sha256": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5"
+      }
+    ]
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": {
+        "total": 0.13157446420788765,
+        "zero": 0.04154406963810325,
+        "ssim": 1.074880690574646,
+        "angle": 0.19931985961124302
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.812,
+        "balanced_accuracy": 0.7073976827955379,
+        "full_choice_accuracy": 0.501,
+        "confusion_matrix": [
+          [
+            89,
+            25,
+            2,
+            4
+          ],
+          [
+            18,
+            89,
+            30,
+            6
+          ],
+          [
+            0,
+            28,
+            73,
+            37
+          ],
+          [
+            1,
+            5,
+            32,
+            561
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.6223776223776224
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5289855072463768
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9365609348914858
+          }
+        },
+        "actual_quality_pass_rate": 0.657,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1532494983286794,
+        "selected_payload_bytes": 31043872,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.30599120000078983
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.781121500000154
+    },
+    {
+      "epoch": 2,
+      "loss": {
+        "total": 0.13043428878188132,
+        "zero": 0.039693542680516836,
+        "ssim": 1.0604799708366395,
+        "angle": 0.20416934800818562
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.809,
+        "balanced_accuracy": 0.7028864331755926,
+        "full_choice_accuracy": 0.493,
+        "confusion_matrix": [
+          [
+            91,
+            23,
+            2,
+            4
+          ],
+          [
+            17,
+            83,
+            37,
+            6
+          ],
+          [
+            0,
+            26,
+            74,
+            38
+          ],
+          [
+            1,
+            5,
+            32,
+            561
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7583333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5804195804195804
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5362318840579711
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9365609348914858
+          }
+        },
+        "actual_quality_pass_rate": 0.632,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1387445656933077,
+        "selected_payload_bytes": 31241824,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3013467999990098
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.6624239000011585
+    },
+    {
+      "epoch": 3,
+      "loss": {
+        "total": 0.12771491944789887,
+        "zero": 0.040032473859935996,
+        "ssim": 1.0659334538936616,
+        "angle": 0.1711832435145974
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.808,
+        "balanced_accuracy": 0.6988204165061427,
+        "full_choice_accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            89,
+            26,
+            1,
+            4
+          ],
+          [
+            20,
+            88,
+            29,
+            6
+          ],
+          [
+            0,
+            32,
+            69,
+            37
+          ],
+          [
+            1,
+            7,
+            29,
+            562
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.6153846153846154
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9382303839732888
+          }
+        },
+        "actual_quality_pass_rate": 0.659,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1376964212017318,
+        "selected_payload_bytes": 31242368,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.31271949999973003
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.6505032000004576
+    },
+    {
+      "epoch": 4,
+      "loss": {
+        "total": 0.12760186331272125,
+        "zero": 0.039175521675497295,
+        "ssim": 1.0636929255485534,
+        "angle": 0.17315016351565718
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.805,
+        "balanced_accuracy": 0.6934306070402463,
+        "full_choice_accuracy": 0.495,
+        "confusion_matrix": [
+          [
+            88,
+            27,
+            1,
+            4
+          ],
+          [
+            20,
+            83,
+            34,
+            6
+          ],
+          [
+            0,
+            29,
+            72,
+            37
+          ],
+          [
+            1,
+            5,
+            31,
+            562
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7333333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5804195804195804
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5217391304347826
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9382303839732888
+          }
+        },
+        "actual_quality_pass_rate": 0.649,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.140868442053535,
+        "selected_payload_bytes": 31078192,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.30673290000049747
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.7229100999993534
+    },
+    {
+      "epoch": 5,
+      "loss": {
+        "total": 0.12966647703647613,
+        "zero": 0.039772987470403316,
+        "ssim": 1.0753655485153197,
+        "angle": 0.1815262147113681
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.804,
+        "balanced_accuracy": 0.6904148082688404,
+        "full_choice_accuracy": 0.495,
+        "confusion_matrix": [
+          [
+            88,
+            26,
+            2,
+            4
+          ],
+          [
+            17,
+            80,
+            40,
+            6
+          ],
+          [
+            0,
+            26,
+            73,
+            39
+          ],
+          [
+            1,
+            5,
+            30,
+            563
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7333333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5594405594405595
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5289855072463768
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9398998330550918
+          }
+        },
+        "actual_quality_pass_rate": 0.636,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.156525174858855,
+        "selected_payload_bytes": 30865936,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3020804000007047
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.5620906000003743
+    },
+    {
+      "epoch": 6,
+      "loss": {
+        "total": 0.12953452140688895,
+        "zero": 0.03988133364524692,
+        "ssim": 1.0857482408046721,
+        "angle": 0.16971561819314956
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.805,
+        "balanced_accuracy": 0.6965541524902235,
+        "full_choice_accuracy": 0.49,
+        "confusion_matrix": [
+          [
+            89,
+            25,
+            2,
+            4
+          ],
+          [
+            18,
+            82,
+            37,
+            6
+          ],
+          [
+            0,
+            27,
+            74,
+            37
+          ],
+          [
+            1,
+            5,
+            33,
+            560
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5734265734265734
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5362318840579711
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9348914858096828
+          }
+        },
+        "actual_quality_pass_rate": 0.639,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.158939775758624,
+        "selected_payload_bytes": 31016112,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.30835469999874476
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.6283183000014105
+    },
+    {
+      "epoch": 7,
+      "loss": {
+        "total": 0.12671823120713233,
+        "zero": 0.03849581951647997,
+        "ssim": 1.0530517880916594,
+        "angle": 0.17563468589745462
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.805,
+        "balanced_accuracy": 0.6937656886253278,
+        "full_choice_accuracy": 0.494,
+        "confusion_matrix": [
+          [
+            89,
+            26,
+            1,
+            4
+          ],
+          [
+            20,
+            82,
+            35,
+            6
+          ],
+          [
+            1,
+            28,
+            72,
+            37
+          ],
+          [
+            1,
+            6,
+            30,
+            562
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5734265734265734
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5217391304347826
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9382303839732888
+          }
+        },
+        "actual_quality_pass_rate": 0.644,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1548800535916657,
+        "selected_payload_bytes": 31103760,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3026055999998789
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.5707816000012826
+    },
+    {
+      "epoch": 8,
+      "loss": {
+        "total": 0.12688843967914581,
+        "zero": 0.03975792677868158,
+        "ssim": 1.0725053147792816,
+        "angle": 0.15662113585099577
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.804,
+        "balanced_accuracy": 0.6939551470703935,
+        "full_choice_accuracy": 0.488,
+        "confusion_matrix": [
+          [
+            91,
+            23,
+            2,
+            4
+          ],
+          [
+            20,
+            81,
+            36,
+            6
+          ],
+          [
+            1,
+            29,
+            71,
+            37
+          ],
+          [
+            1,
+            5,
+            32,
+            561
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7583333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5664335664335665
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5144927536231884
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9365609348914858
+          }
+        },
+        "actual_quality_pass_rate": 0.646,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.155175835276679,
+        "selected_payload_bytes": 31374288,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3123975000016799
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.5268993000008777
+    },
+    {
+      "epoch": 9,
+      "loss": {
+        "total": 0.12722637380957602,
+        "zero": 0.03948533540442586,
+        "ssim": 1.073030421447754,
+        "angle": 0.15974795769825578
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.809,
+        "balanced_accuracy": 0.6981602591173797,
+        "full_choice_accuracy": 0.501,
+        "confusion_matrix": [
+          [
+            89,
+            26,
+            1,
+            4
+          ],
+          [
+            20,
+            83,
+            34,
+            6
+          ],
+          [
+            1,
+            27,
+            73,
+            37
+          ],
+          [
+            1,
+            7,
+            27,
+            564
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5804195804195804
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5289855072463768
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9415692821368948
+          }
+        },
+        "actual_quality_pass_rate": 0.653,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.153220076258598,
+        "selected_payload_bytes": 31032096,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3134038000007422
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.8353274000000965
+    },
+    {
+      "epoch": 10,
+      "loss": {
+        "total": 0.1321069167137146,
+        "zero": 0.03995337141528726,
+        "ssim": 1.0771559513568878,
+        "angle": 0.20395982455983758
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.804,
+        "balanced_accuracy": 0.6916823552919946,
+        "full_choice_accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            88,
+            26,
+            2,
+            4
+          ],
+          [
+            17,
+            82,
+            38,
+            6
+          ],
+          [
+            1,
+            26,
+            72,
+            39
+          ],
+          [
+            1,
+            5,
+            31,
+            562
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7333333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5734265734265734
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5217391304347826
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9382303839732888
+          }
+        },
+        "actual_quality_pass_rate": 0.65,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1594010353070097,
+        "selected_payload_bytes": 30990096,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3105247999992571
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.721956500001397
+    },
+    {
+      "epoch": 11,
+      "loss": {
+        "total": 0.13060745089054107,
+        "zero": 0.03862673962041736,
+        "ssim": 1.0787269958972932,
+        "angle": 0.18872075420320034
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.804,
+        "balanced_accuracy": 0.6917456977466414,
+        "full_choice_accuracy": 0.504,
+        "confusion_matrix": [
+          [
+            88,
+            26,
+            2,
+            4
+          ],
+          [
+            19,
+            81,
+            37,
+            6
+          ],
+          [
+            1,
+            27,
+            73,
+            37
+          ],
+          [
+            1,
+            5,
+            31,
+            562
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7333333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5664335664335665
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5289855072463768
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9382303839732888
+          }
+        },
+        "actual_quality_pass_rate": 0.656,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1524593274712553,
+        "selected_payload_bytes": 31025376,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3013567000016337
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.5276205999998638
+    },
+    {
+      "epoch": 12,
+      "loss": {
+        "total": 0.12829243764281273,
+        "zero": 0.03891519332956523,
+        "ssim": 1.0585785544395447,
+        "angle": 0.1854306064069271
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.804,
+        "balanced_accuracy": 0.6903514658141936,
+        "full_choice_accuracy": 0.499,
+        "confusion_matrix": [
+          [
+            88,
+            26,
+            2,
+            4
+          ],
+          [
+            17,
+            81,
+            39,
+            6
+          ],
+          [
+            1,
+            25,
+            72,
+            40
+          ],
+          [
+            1,
+            5,
+            30,
+            563
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7333333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5664335664335665
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5217391304347826
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9398998330550918
+          }
+        },
+        "actual_quality_pass_rate": 0.645,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1460674455618727,
+        "selected_payload_bytes": 30875376,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3019410999986576
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.4853524999998626
+    },
+    {
+      "epoch": 13,
+      "loss": {
+        "total": 0.12734097195863725,
+        "zero": 0.038670989830233156,
+        "ssim": 1.0583885766983032,
+        "angle": 0.17635013476088643
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.804,
+        "balanced_accuracy": 0.6923525184621577,
+        "full_choice_accuracy": 0.489,
+        "confusion_matrix": [
+          [
+            90,
+            25,
+            1,
+            4
+          ],
+          [
+            20,
+            80,
+            38,
+            5
+          ],
+          [
+            1,
+            28,
+            72,
+            37
+          ],
+          [
+            1,
+            5,
+            31,
+            562
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.75
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5594405594405595
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5217391304347826
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9382303839732888
+          }
+        },
+        "actual_quality_pass_rate": 0.636,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1373361489942853,
+        "selected_payload_bytes": 31139904,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.31411819999993895
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.5306997999996383
+    },
+    {
+      "epoch": 14,
+      "loss": {
+        "total": 0.12476272332072258,
+        "zero": 0.03770923683810979,
+        "ssim": 1.0527118467330934,
+        "angle": 0.15720613068938255
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.8,
+        "balanced_accuracy": 0.6864370311283645,
+        "full_choice_accuracy": 0.49,
+        "confusion_matrix": [
+          [
+            90,
+            24,
+            2,
+            4
+          ],
+          [
+            20,
+            81,
+            37,
+            5
+          ],
+          [
+            1,
+            30,
+            68,
+            39
+          ],
+          [
+            1,
+            5,
+            32,
+            561
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.75
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5664335664335665
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.4927536231884058
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9365609348914858
+          }
+        },
+        "actual_quality_pass_rate": 0.645,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1506649815917798,
+        "selected_payload_bytes": 31320960,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3003869999993185
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.455280700000003
+    },
+    {
+      "epoch": 15,
+      "loss": {
+        "total": 0.13311331022381784,
+        "zero": 0.03904946861620993,
+        "ssim": 1.087463501548767,
+        "angle": 0.20462011306583883
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.805,
+        "balanced_accuracy": 0.693702346170681,
+        "full_choice_accuracy": 0.495,
+        "confusion_matrix": [
+          [
+            89,
+            26,
+            1,
+            4
+          ],
+          [
+            20,
+            83,
+            35,
+            5
+          ],
+          [
+            1,
+            29,
+            71,
+            37
+          ],
+          [
+            1,
+            7,
+            29,
+            562
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5804195804195804
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5144927536231884
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9382303839732888
+          }
+        },
+        "actual_quality_pass_rate": 0.647,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1466787156977616,
+        "selected_payload_bytes": 31084160,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3010432999999466
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.512300000000323
+    },
+    {
+      "epoch": 16,
+      "loss": {
+        "total": 0.1253132638603449,
+        "zero": 0.037670742039196195,
+        "ssim": 1.0532646578788758,
+        "angle": 0.16219721773117782
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.805,
+        "balanced_accuracy": 0.6920997175624453,
+        "full_choice_accuracy": 0.496,
+        "confusion_matrix": [
+          [
+            88,
+            26,
+            2,
+            4
+          ],
+          [
+            17,
+            82,
+            39,
+            5
+          ],
+          [
+            1,
+            26,
+            72,
+            39
+          ],
+          [
+            1,
+            5,
+            30,
+            563
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7333333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5734265734265734
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5217391304347826
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9398998330550918
+          }
+        },
+        "actual_quality_pass_rate": 0.632,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1614278092150085,
+        "selected_payload_bytes": 30976464,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3030074999987846
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.4855695000005653
+    },
+    {
+      "epoch": 17,
+      "loss": {
+        "total": 0.12685759594738483,
+        "zero": 0.03748759663645178,
+        "ssim": 1.0545085038661957,
+        "angle": 0.17657983754687012
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.801,
+        "balanced_accuracy": 0.6852517647905796,
+        "full_choice_accuracy": 0.475,
+        "confusion_matrix": [
+          [
+            89,
+            25,
+            2,
+            4
+          ],
+          [
+            18,
+            80,
+            39,
+            6
+          ],
+          [
+            1,
+            26,
+            69,
+            42
+          ],
+          [
+            1,
+            5,
+            30,
+            563
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5594405594405595
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9398998330550918
+          }
+        },
+        "actual_quality_pass_rate": 0.612,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.151862286988273,
+        "selected_payload_bytes": 30880368,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.30746839999847
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.5196869999999763
+    },
+    {
+      "epoch": 18,
+      "loss": {
+        "total": 0.1268378047645092,
+        "zero": 0.03824409394916147,
+        "ssim": 1.075305332660675,
+        "angle": 0.1548286036118865
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.804,
+        "balanced_accuracy": 0.6902247809049,
+        "full_choice_accuracy": 0.502,
+        "confusion_matrix": [
+          [
+            88,
+            27,
+            1,
+            4
+          ],
+          [
+            19,
+            83,
+            36,
+            5
+          ],
+          [
+            1,
+            29,
+            70,
+            38
+          ],
+          [
+            1,
+            7,
+            28,
+            563
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7333333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5804195804195804
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5072463768115942
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9398998330550918
+          }
+        },
+        "actual_quality_pass_rate": 0.647,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1456116486685683,
+        "selected_payload_bytes": 30931584,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3056475000012142
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.568087400000877
+    },
+    {
+      "epoch": 19,
+      "loss": {
+        "total": 0.12828837656974793,
+        "zero": 0.03754791602436453,
+        "ssim": 1.063991520690918,
+        "angle": 0.18134430889785288
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.805,
+        "balanced_accuracy": 0.692163060017092,
+        "full_choice_accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            88,
+            27,
+            1,
+            4
+          ],
+          [
+            18,
+            81,
+            39,
+            5
+          ],
+          [
+            1,
+            26,
+            73,
+            38
+          ],
+          [
+            1,
+            6,
+            29,
+            563
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7333333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5664335664335665
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5289855072463768
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9398998330550918
+          }
+        },
+        "actual_quality_pass_rate": 0.644,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.147703809148702,
+        "selected_payload_bytes": 30895008,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.30969359999835433
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 624,
+      "amp_skipped_steps": 1,
+      "training_seconds": 3.514349500001117
+    },
+    {
+      "epoch": 20,
+      "loss": {
+        "total": 0.1314583541214466,
+        "zero": 0.038371943546645346,
+        "ssim": 1.075529332447052,
+        "angle": 0.20068224381506444
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.8,
+        "balanced_accuracy": 0.6861652919979297,
+        "full_choice_accuracy": 0.494,
+        "confusion_matrix": [
+          [
+            89,
+            26,
+            1,
+            4
+          ],
+          [
+            20,
+            81,
+            37,
+            5
+          ],
+          [
+            1,
+            30,
+            69,
+            38
+          ],
+          [
+            1,
+            6,
+            31,
+            561
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5664335664335665
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9365609348914858
+          }
+        },
+        "actual_quality_pass_rate": 0.653,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.142474482175328,
+        "selected_payload_bytes": 31227312,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.314656799999284
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.614128499999424
+    },
+    {
+      "epoch": 21,
+      "loss": {
+        "total": 0.1288421944886446,
+        "zero": 0.0379944421518594,
+        "ssim": 1.06848687915802,
+        "angle": 0.18194060217142105
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.8,
+        "balanced_accuracy": 0.6907647811468491,
+        "full_choice_accuracy": 0.495,
+        "confusion_matrix": [
+          [
+            91,
+            24,
+            1,
+            4
+          ],
+          [
+            21,
+            83,
+            34,
+            5
+          ],
+          [
+            1,
+            32,
+            68,
+            37
+          ],
+          [
+            1,
+            7,
+            33,
+            558
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7583333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5804195804195804
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.4927536231884058
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9315525876460768
+          }
+        },
+        "actual_quality_pass_rate": 0.665,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.145655181357982,
+        "selected_payload_bytes": 31380464,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.30895109999983106
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.6331202999990637
+    },
+    {
+      "epoch": 22,
+      "loss": {
+        "total": 0.1293904886305332,
+        "zero": 0.03727262906115502,
+        "ssim": 1.080138851261139,
+        "angle": 0.17649338034167886
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.802,
+        "balanced_accuracy": 0.6903953011192432,
+        "full_choice_accuracy": 0.479,
+        "confusion_matrix": [
+          [
+            91,
+            24,
+            1,
+            4
+          ],
+          [
+            21,
+            80,
+            37,
+            5
+          ],
+          [
+            1,
+            29,
+            70,
+            38
+          ],
+          [
+            1,
+            6,
+            31,
+            561
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7583333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5594405594405595
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5072463768115942
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9365609348914858
+          }
+        },
+        "actual_quality_pass_rate": 0.638,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.144005881652625,
+        "selected_payload_bytes": 31216128,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3029467999986082
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 624,
+      "amp_skipped_steps": 1,
+      "training_seconds": 3.5355569000003015
+    },
+    {
+      "epoch": 23,
+      "loss": {
+        "total": 0.12693291192650796,
+        "zero": 0.03771424538772553,
+        "ssim": 1.0568229855060578,
+        "angle": 0.17479186664670707
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.801,
+        "balanced_accuracy": 0.6852517647905796,
+        "full_choice_accuracy": 0.48,
+        "confusion_matrix": [
+          [
+            89,
+            25,
+            2,
+            4
+          ],
+          [
+            19,
+            80,
+            39,
+            5
+          ],
+          [
+            1,
+            26,
+            69,
+            42
+          ],
+          [
+            1,
+            5,
+            30,
+            563
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5594405594405595
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9398998330550918
+          }
+        },
+        "actual_quality_pass_rate": 0.622,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1311507989782874,
+        "selected_payload_bytes": 30974640,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.29969139999957406
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.5250534000006155
+    },
+    {
+      "epoch": 24,
+      "loss": {
+        "total": 0.128161771607399,
+        "zero": 0.037825444602873175,
+        "ssim": 1.057167347383499,
+        "angle": 0.1866249034896493
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.798,
+        "balanced_accuracy": 0.6883907704523586,
+        "full_choice_accuracy": 0.498,
+        "confusion_matrix": [
+          [
+            90,
+            25,
+            1,
+            4
+          ],
+          [
+            20,
+            81,
+            37,
+            5
+          ],
+          [
+            1,
+            30,
+            70,
+            37
+          ],
+          [
+            1,
+            6,
+            35,
+            557
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.75
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5664335664335665
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5072463768115942
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9298831385642737
+          }
+        },
+        "actual_quality_pass_rate": 0.655,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.161284442040668,
+        "selected_payload_bytes": 31292480,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3015221000005113
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.495338900000206
+    },
+    {
+      "epoch": 25,
+      "loss": {
+        "total": 0.126839917242527,
+        "zero": 0.03711122643109411,
+        "ssim": 1.0572775619506836,
+        "angle": 0.17401036195755004
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.804,
+        "balanced_accuracy": 0.6892923154668273,
+        "full_choice_accuracy": 0.488,
+        "confusion_matrix": [
+          [
+            89,
+            26,
+            1,
+            4
+          ],
+          [
+            19,
+            80,
+            39,
+            5
+          ],
+          [
+            1,
+            27,
+            71,
+            39
+          ],
+          [
+            1,
+            6,
+            28,
+            564
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5594405594405595
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5144927536231884
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9415692821368948
+          }
+        },
+        "actual_quality_pass_rate": 0.631,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.145537505794731,
+        "selected_payload_bytes": 30902304,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3049475000007078
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.542370299999675
+    },
+    {
+      "epoch": 26,
+      "loss": {
+        "total": 0.12470599117279053,
+        "zero": 0.0368272475367412,
+        "ssim": 1.0569428206920624,
+        "angle": 0.15328982183858753
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.8,
+        "balanced_accuracy": 0.6831050890025994,
+        "full_choice_accuracy": 0.486,
+        "confusion_matrix": [
+          [
+            88,
+            26,
+            2,
+            4
+          ],
+          [
+            18,
+            81,
+            39,
+            5
+          ],
+          [
+            1,
+            27,
+            68,
+            42
+          ],
+          [
+            1,
+            6,
+            29,
+            563
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7333333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5664335664335665
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.4927536231884058
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9398998330550918
+          }
+        },
+        "actual_quality_pass_rate": 0.631,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.15849818308146,
+        "selected_payload_bytes": 30980208,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3129006999988633
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.5822340000013355
+    },
+    {
+      "epoch": 27,
+      "loss": {
+        "total": 0.1272231727451086,
+        "zero": 0.037379983517806976,
+        "ssim": 1.061077909374237,
+        "angle": 0.17377381259351968
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.803,
+        "balanced_accuracy": 0.6930760183055675,
+        "full_choice_accuracy": 0.484,
+        "confusion_matrix": [
+          [
+            90,
+            25,
+            1,
+            4
+          ],
+          [
+            21,
+            84,
+            33,
+            5
+          ],
+          [
+            1,
+            31,
+            69,
+            37
+          ],
+          [
+            1,
+            7,
+            31,
+            560
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.75
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5874125874125874
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9348914858096828
+          }
+        },
+        "actual_quality_pass_rate": 0.644,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1359553724271727,
+        "selected_payload_bytes": 31207776,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.32055270000091696
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 624,
+      "amp_skipped_steps": 1,
+      "training_seconds": 3.8057578000007197
+    },
+    {
+      "epoch": 28,
+      "loss": {
+        "total": 0.1309215485483408,
+        "zero": 0.03742108933944255,
+        "ssim": 1.0735390988349915,
+        "angle": 0.1982552759371698
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.799,
+        "balanced_accuracy": 0.6858112721821259,
+        "full_choice_accuracy": 0.49,
+        "confusion_matrix": [
+          [
+            89,
+            26,
+            1,
+            4
+          ],
+          [
+            20,
+            80,
+            38,
+            5
+          ],
+          [
+            1,
+            28,
+            70,
+            39
+          ],
+          [
+            1,
+            6,
+            32,
+            560
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5594405594405595
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5072463768115942
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9348914858096828
+          }
+        },
+        "actual_quality_pass_rate": 0.648,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.167996203573296,
+        "selected_payload_bytes": 31088064,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3060507000009238
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.7311325000009674
+    },
+    {
+      "epoch": 29,
+      "loss": {
+        "total": 0.12711077461242676,
+        "zero": 0.03661242271512747,
+        "ssim": 1.067232512331009,
+        "angle": 0.16726278830245137
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.803,
+        "balanced_accuracy": 0.6955294005853816,
+        "full_choice_accuracy": 0.505,
+        "confusion_matrix": [
+          [
+            89,
+            27,
+            0,
+            4
+          ],
+          [
+            20,
+            85,
+            33,
+            5
+          ],
+          [
+            2,
+            28,
+            71,
+            37
+          ],
+          [
+            1,
+            7,
+            33,
+            558
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5944055944055944
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5144927536231884
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9315525876460768
+          }
+        },
+        "actual_quality_pass_rate": 0.66,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1563157009439076,
+        "selected_payload_bytes": 31081328,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.3056840999997803
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 625,
+      "amp_skipped_steps": 0,
+      "training_seconds": 3.540266800000609
+    },
+    {
+      "epoch": 30,
+      "loss": {
+        "total": 0.12709274933934211,
+        "zero": 0.036560454394854607,
+        "ssim": 1.056816339826584,
+        "angle": 0.17755067986175418
+      },
+      "validation": {
+        "count": 1000,
+        "accuracy": 0.799,
+        "balanced_accuracy": 0.6876856399207963,
+        "full_choice_accuracy": 0.492,
+        "confusion_matrix": [
+          [
+            91,
+            24,
+            1,
+            4
+          ],
+          [
+            20,
+            81,
+            37,
+            5
+          ],
+          [
+            1,
+            30,
+            68,
+            39
+          ],
+          [
+            1,
+            8,
+            31,
+            559
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7583333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5664335664335665
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.4927536231884058
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9332220367278798
+          }
+        },
+        "actual_quality_pass_rate": 0.657,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1453146497983773,
+        "selected_payload_bytes": 31339952,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 0.30229099999996834
+      },
+      "images_seen": 10000,
+      "step_attempts": 625,
+      "optimizer_updates": 624,
+      "amp_skipped_steps": 1,
+      "training_seconds": 3.6058912000007695
+    }
+  ],
+  "preparation_seconds": 208.3545654999998,
+  "best_artifacts_sha256": {
+    "best.pt": "76e68740e318182666b1ce2544d2f9661877978f7497653ad192325f00b184bf",
+    "best-validation.npz": "4dbf4ad481be1fccaf089722f7be95263c192bb4d9e16153e599f1bff543aa69",
+    "best-decisions.json": "a7c23574b5416d2658e7b14b4d681b2da7a6e00a4c054d3adf79a1f3151b6f41"
+  },
+  "best_validation_accuracy": 0.812,
+  "wall_seconds": 353.16593769999963,
+  "peak_vram_bytes": 270627840,
+  "checkpoint_audit": {
+    "status": "passed",
+    "epoch": 1,
+    "selected_variant": "image_head_refit",
+    "metrics": {
+      "count": 1000,
+      "accuracy": 0.812,
+      "balanced_accuracy": 0.7073976827955379,
+      "full_choice_accuracy": 0.501,
+      "confusion_matrix": [
+        [
+          89,
+          25,
+          2,
+          4
+        ],
+        [
+          18,
+          89,
+          30,
+          6
+        ],
+        [
+          0,
+          28,
+          73,
+          37
+        ],
+        [
+          1,
+          5,
+          32,
+          561
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 120,
+          "recall": 0.7416666666666667
+        },
+        "8x8": {
+          "support": 143,
+          "recall": 0.6223776223776224
+        },
+        "10x10": {
+          "support": 138,
+          "recall": 0.5289855072463768
+        },
+        "12x12": {
+          "support": 599,
+          "recall": 0.9365609348914858
+        }
+      },
+      "actual_quality_pass_rate": 0.657,
+      "no_strict_feasible_images": 34,
+      "color_near_threshold_candidate_count": 4687,
+      "color_near_threshold_rmse_db": 2.1532494983286794,
+      "selected_payload_bytes": 31043872,
+      "original_payload_bytes": 31661520,
+      "fixed8_payload_bytes": 59761616,
+      "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+      "seconds": 12.260811699999977
+    },
+    "checkpoint_sha256": "76e68740e318182666b1ce2544d2f9661877978f7497653ad192325f00b184bf",
+    "predictions_sha256": "4dbf4ad481be1fccaf089722f7be95263c192bb4d9e16153e599f1bff543aa69",
+    "selected_artifacts_sha256": {
+      "best.pt": "76e68740e318182666b1ce2544d2f9661877978f7497653ad192325f00b184bf",
+      "best-validation.npz": "4dbf4ad481be1fccaf089722f7be95263c192bb4d9e16153e599f1bff543aa69",
+      "best-decisions.json": "a7c23574b5416d2658e7b14b4d681b2da7a6e00a4c054d3adf79a1f3151b6f41"
+    },
+    "test_opened": false,
+    "wall_seconds": 22.327949599999556
+  },
+  "checkpoint_sha256": "76e68740e318182666b1ce2544d2f9661877978f7497653ad192325f00b184bf",
+  "encoder_and_channel_head_unchanged": true,
+  "stop_reason": "epoch_budget"
+}

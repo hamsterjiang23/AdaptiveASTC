@@ -1,0 +1,170 @@
+{
+  "status": "completed_control",
+  "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-ema099.json",
+  "training_report_sha256": "55b46a5a7784137e8572e01238cdf97714766c76f1c9797a26696e248d46f4f1",
+  "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-ema099-attribution.json",
+  "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-ema099-calibration.json",
+  "calibration_report_sha256": "bfbcb7ed094bcee268ca8035f515dbc9e2bee1042f70d0ddb39f71839dee41f4",
+  "epochs": 30,
+  "updates": 18741,
+  "amp_skips": 9,
+  "selected_checkpoint_epoch": 29,
+  "selected_variant": "raw",
+  "selected_checkpoint_metrics": {
+    "count": 1000,
+    "accuracy": 0.813,
+    "balanced_accuracy": 0.7086118931454455,
+    "full_choice_accuracy": 0.488,
+    "confusion_matrix": [
+      [
+        91,
+        23,
+        2,
+        4
+      ],
+      [
+        18,
+        85,
+        34,
+        6
+      ],
+      [
+        0,
+        26,
+        75,
+        37
+      ],
+      [
+        1,
+        5,
+        31,
+        562
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 120,
+        "recall": 0.7583333333333333
+      },
+      "8x8": {
+        "support": 143,
+        "recall": 0.5944055944055944
+      },
+      "10x10": {
+        "support": 138,
+        "recall": 0.5434782608695652
+      },
+      "12x12": {
+        "support": 599,
+        "recall": 0.9382303839732888
+      }
+    },
+    "actual_quality_pass_rate": 0.644,
+    "no_strict_feasible_images": 34,
+    "color_near_threshold_candidate_count": 4687,
+    "color_near_threshold_rmse_db": 2.1585451823690764,
+    "selected_payload_bytes": 31177648,
+    "original_payload_bytes": 31661520,
+    "fixed8_payload_bytes": 59761616,
+    "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+    "seconds": 12.258040400000027
+  },
+  "same_validation_fitted_top1": 0.815,
+  "same_validation_fitted_parameters": {
+    "zero_probability_threshold": 0.1,
+    "psnr_margin_db": 0.0,
+    "ssim_margin_db": 0.0,
+    "mean_angle_margin_deg": 0.0,
+    "p95_angle_margin_deg": -0.5
+  },
+  "same_validation_fitted_metrics": {
+    "images": 1000,
+    "accuracy": 0.815,
+    "full_choice_accuracy": 0.493,
+    "actual_strict_quality_pass_rate": 0.639,
+    "quality_regression_images": 236,
+    "larger_block_images": 108,
+    "smaller_block_images": 77,
+    "payload_bytes": 30901504,
+    "original_payload_bytes": 31661520,
+    "fixed8_medium_payload_bytes": 59761616,
+    "payload_ratio_to_original": 0.9759955933890729,
+    "payload_ratio_to_fixed8": 0.5170794578245675
+  },
+  "quality_regression_images": 231,
+  "trainer_wall_seconds": 2107.688197700001,
+  "parameters": 11305980,
+  "trainable_parameters": 11305980,
+  "training_seconds": 1244.155155100003,
+  "preparation_seconds": 82.98343940000086,
+  "checkpoint_audit": "passed",
+  "deployment_timings": null,
+  "confirmation_test_opened": false,
+  "best_ema_epoch": 30,
+  "best_ema_metrics": {
+    "count": 1000,
+    "accuracy": 0.807,
+    "balanced_accuracy": 0.6889417736699437,
+    "full_choice_accuracy": 0.492,
+    "confusion_matrix": [
+      [
+        88,
+        26,
+        2,
+        4
+      ],
+      [
+        18,
+        79,
+        37,
+        9
+      ],
+      [
+        0,
+        25,
+        72,
+        41
+      ],
+      [
+        1,
+        5,
+        25,
+        568
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 120,
+        "recall": 0.7333333333333333
+      },
+      "8x8": {
+        "support": 143,
+        "recall": 0.5524475524475524
+      },
+      "10x10": {
+        "support": 138,
+        "recall": 0.5217391304347826
+      },
+      "12x12": {
+        "support": 599,
+        "recall": 0.9482470784641068
+      }
+    },
+    "actual_quality_pass_rate": 0.622,
+    "no_strict_feasible_images": 34,
+    "color_near_threshold_candidate_count": 4687,
+    "color_near_threshold_rmse_db": 2.218805749913343,
+    "selected_payload_bytes": 30905344,
+    "original_payload_bytes": 31661520,
+    "fixed8_payload_bytes": 59761616,
+    "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+    "seconds": 12.778260700000828
+  },
+  "ema_updates": 18741,
+  "validation_seconds_by_variant": {
+    "raw": 354.4805684000039,
+    "ema": 390.9181688999979
+  },
+  "selected_model_and_predictions_equal_to_baseline": true,
+  "validation90_achieved": false
+}

@@ -1,0 +1,109 @@
+{
+  "status": "completed_control",
+  "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-sampled4.json",
+  "training_report_sha256": "e4f0b2380ba5b38feba03e6f2316a7386d0de5c060651d3d4d7a6ff084390394",
+  "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-sampled4-attribution.json",
+  "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-sampled4-calibration.json",
+  "calibration_report_sha256": "b37b4bb7eb4b144a6b623ce55b8e3d99092539399a3df75528c8111b597751bf",
+  "epochs": 30,
+  "updates": 18746,
+  "amp_skips": 4,
+  "selected_checkpoint_epoch": 1,
+  "selected_variant": "image_head_refit",
+  "selected_checkpoint_metrics": {
+    "count": 1000,
+    "accuracy": 0.812,
+    "balanced_accuracy": 0.7073976827955379,
+    "full_choice_accuracy": 0.501,
+    "confusion_matrix": [
+      [
+        89,
+        25,
+        2,
+        4
+      ],
+      [
+        18,
+        89,
+        30,
+        6
+      ],
+      [
+        0,
+        28,
+        73,
+        37
+      ],
+      [
+        1,
+        5,
+        32,
+        561
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 120,
+        "recall": 0.7416666666666667
+      },
+      "8x8": {
+        "support": 143,
+        "recall": 0.6223776223776224
+      },
+      "10x10": {
+        "support": 138,
+        "recall": 0.5289855072463768
+      },
+      "12x12": {
+        "support": 599,
+        "recall": 0.9365609348914858
+      }
+    },
+    "actual_quality_pass_rate": 0.657,
+    "no_strict_feasible_images": 34,
+    "color_near_threshold_candidate_count": 4687,
+    "color_near_threshold_rmse_db": 2.1532494983286794,
+    "selected_payload_bytes": 31043872,
+    "original_payload_bytes": 31661520,
+    "fixed8_payload_bytes": 59761616,
+    "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+    "seconds": 12.260811699999977
+  },
+  "same_validation_fitted_top1": 0.813,
+  "same_validation_fitted_parameters": {
+    "zero_probability_threshold": 0.1,
+    "psnr_margin_db": 0.0,
+    "ssim_margin_db": 0.0,
+    "mean_angle_margin_deg": 0.0,
+    "p95_angle_margin_deg": 0.0
+  },
+  "same_validation_fitted_metrics": {
+    "images": 1000,
+    "accuracy": 0.813,
+    "full_choice_accuracy": 0.503,
+    "actual_strict_quality_pass_rate": 0.658,
+    "quality_regression_images": 217,
+    "larger_block_images": 103,
+    "smaller_block_images": 84,
+    "payload_bytes": 31057552,
+    "original_payload_bytes": 31661520,
+    "fixed8_medium_payload_bytes": 59761616,
+    "payload_ratio_to_original": 0.9809242260005205,
+    "payload_ratio_to_fixed8": 0.5196906321944172
+  },
+  "quality_regression_images": 218,
+  "trainer_wall_seconds": 353.16593769999963,
+  "parameters": 11305980,
+  "trainable_parameters": 72940,
+  "training_seconds": 107.87213000001248,
+  "preparation_seconds": 208.3545654999998,
+  "checkpoint_audit": "passed",
+  "deployment_timings": null,
+  "confirmation_test_opened": false,
+  "initial_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30.json",
+  "initial_training_report_sha256": "b5b5ecbdaae964e7b9e9002912e6e5159b3c53521e3cce70910dae40a81e4583",
+  "initial_stage_wall_seconds": 1651.9367597,
+  "encoder_and_channel_head_unchanged": true,
+  "validation_seconds": 9.201015399996322,
+  "validation90_achieved": false
+}

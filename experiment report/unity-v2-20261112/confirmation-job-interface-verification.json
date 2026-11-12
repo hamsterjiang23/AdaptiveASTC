@@ -1,0 +1,44 @@
+{
+  "status": "passed_command_binding_checks",
+  "completed_jobs": [
+    {
+      "name": "imagenet-full30",
+      "script": "script/train_unity_quality.py",
+      "status": "passed",
+      "bound_files": 2
+    },
+    {
+      "name": "mean-head-sampled4-smoke",
+      "script": "script/refit_unity_image_head.py",
+      "status": "passed",
+      "bound_files": 2
+    },
+    {
+      "name": "mean-head-all-smoke",
+      "script": "script/refit_unity_image_head.py",
+      "status": "passed",
+      "bound_files": 2
+    }
+  ],
+  "cpu_tests": 34,
+  "ruff_check": "passed",
+  "ruff_format_check": "passed",
+  "basedpyright": "0 errors, 0 warnings",
+  "model_forward_calls": 0,
+  "test_opened": false,
+  "scope": "Job command identity only; model and pixel admission remain separate",
+  "staged_model_evidence_adapter": "pending",
+  "v2_pixel_handoff_adapter": "requires current evidence mapping",
+  "pixel_evidence_corpus_comparison": {
+    "original_pipeline": {
+      "missing_development_images": 18,
+      "changed_development_images": 0
+    },
+    "revised_v2": {
+      "missing_development_images": 0,
+      "changed_development_images": 0
+    }
+  },
+  "revised_pixel_details": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-revised-pixels13000-v2\\pixel-identities.json",
+  "revised_pixel_details_sha256": "5b1488165af7e0fbf8c69aa0d115fe8b33d8b673a02d9971445e30a3fc7f17dc"
+}

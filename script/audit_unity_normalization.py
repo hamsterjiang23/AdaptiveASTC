@@ -24,6 +24,18 @@ from adaptive_astc.utils.runtime import ExperimentRuntime
 
 class UnityNormalizationAudit:
     @staticmethod
+    def training_config_path(settings: JsonDict) -> Path:
+        explicit = settings.get("training_config_path")
+        candidates = [Path(name) for name in settings["source_sha256"] if name.endswith(".json")]
+        if explicit is None and len(candidates) != 1:
+            raise ValueError("Require the original native trainer configuration path")
+        path = Path(explicit).resolve() if explicit is not None else candidates[0]
+        expected = settings["source_sha256"].get(str(path))
+        if expected is None or A.sha256_file(path) != expected:
+            raise ValueError("Original native training configuration changed or is unbound")
+        return path
+
+    @staticmethod
     def verify_sources(sources: dict[str, str]) -> None:
         for name, digest in sources.items():
             if A.sha256_file(Path(name)) != digest:
@@ -90,14 +102,13 @@ class UnityNormalizationAudit:
         binding = PatchNormalizationAudit.bind_training_sources(binding_settings, root, archive)
         training_output = Path(settings["output"])
         UnityQualityTrainer.verify_artifacts(training_output, training["best_artifacts_sha256"])
-        config_sources = [
-            Path(name) for name in settings["source_sha256"] if name.endswith(".json")
-        ]
-        if len(config_sources) != 1:
-            raise ValueError("Require the original native training configuration identity")
-        if A.sha256_file(config_sources[0]) != settings["source_sha256"][str(config_sources[0])]:
-            raise ValueError("Original native training configuration changed")
-        trainer = UnityQualityTrainer(config_sources[0], root)
+        trainer = UnityQualityTrainer(UnityNormalizationAudit.training_config_path(settings), root)
+        if (
+            trainer.config.corpus != Path(settings["corpus"]).resolve()
+            or trainer.config.corpus_sha256 != settings["corpus_sha256"]
+            or trainer.config.zero_probability_threshold != settings["zero_probability_threshold"]
+        ):
+            raise ValueError("Native trainer configuration differs from the selected model inputs")
         device = ExperimentRuntime.configure(settings["seed"])
         if device.type != "cuda":
             raise RuntimeError("Native normalization diagnosis requires CUDA")
@@ -165,7 +176,8 @@ class UnityNormalizationAudit:
                 raise ValueError("Original selected-weight decisions did not replay")
             state["before_metrics"] = before
             image_indices = list(range(32 if config["smoke"] else len(train.rows)))
-            bags = UnityImageBags(train, image_indices, settings["patches_per_image"])
+            views = trainer.config.patches_per_image
+            bags = UnityImageBags(train, image_indices, views)
             loader = DataLoader(bags, batch_size=settings["image_batch_size"], num_workers=0)
             draws: list[np.ndarray] = []
 
@@ -178,7 +190,7 @@ class UnityNormalizationAudit:
             count = PatchNormalizationAudit.recalibrate(model, batches(), device)
             torch.cuda.synchronize()
             state["calibration_seconds"] = time.perf_counter() - calibration_started
-            expected_count = len(image_indices) * settings["patches_per_image"]
+            expected_count = len(image_indices) * views
             if count != expected_count:
                 raise ValueError("Native calibration patch coverage mismatch")
             for name, parameter in model.named_parameters():
@@ -219,6 +231,7 @@ class UnityNormalizationAudit:
                 status="passed_smoke" if config["smoke"] else "passed",
                 after_metrics=after,
                 calibration_images=len(image_indices),
+                calibration_patch_views=views,
                 calibration_patches=count,
                 parameters_unchanged=True,
                 checkpoint_reload="passed",

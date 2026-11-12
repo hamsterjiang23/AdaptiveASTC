@@ -1,5 +1,5 @@
 {
-  "status": "paired_full30_controls_completed",
+  "status": "image_head_controls_completed",
   "created_utc": "2026-11-12T14:40:16.378356+00:00",
   "results": {
     "baseline": {
@@ -583,16 +583,506 @@
       "parameters": 11305980,
       "deployment_timings": null,
       "confirmation_test_opened": false
+    },
+    "mean_ema099": {
+      "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-ema099.json",
+      "training_report_sha256": "55b46a5a7784137e8572e01238cdf97714766c76f1c9797a26696e248d46f4f1",
+      "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-ema099-attribution.json",
+      "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-ema099-calibration.json",
+      "calibration_report_sha256": "bfbcb7ed094bcee268ca8035f515dbc9e2bee1042f70d0ddb39f71839dee41f4",
+      "epochs": 30,
+      "updates": 18741,
+      "amp_skips": 9,
+      "selected_checkpoint_epoch": 29,
+      "selected_variant": "raw",
+      "selected_checkpoint_metrics": {
+        "count": 1000,
+        "accuracy": 0.813,
+        "balanced_accuracy": 0.7086118931454455,
+        "full_choice_accuracy": 0.488,
+        "confusion_matrix": [
+          [
+            91,
+            23,
+            2,
+            4
+          ],
+          [
+            18,
+            85,
+            34,
+            6
+          ],
+          [
+            0,
+            26,
+            75,
+            37
+          ],
+          [
+            1,
+            5,
+            31,
+            562
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7583333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5944055944055944
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5434782608695652
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9382303839732888
+          }
+        },
+        "actual_quality_pass_rate": 0.644,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1585451823690764,
+        "selected_payload_bytes": 31177648,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 12.258040400000027
+      },
+      "same_validation_fitted_top1": 0.815,
+      "same_validation_fitted_parameters": {
+        "zero_probability_threshold": 0.1,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -0.5
+      },
+      "same_validation_fitted_metrics": {
+        "images": 1000,
+        "accuracy": 0.815,
+        "full_choice_accuracy": 0.493,
+        "actual_strict_quality_pass_rate": 0.639,
+        "quality_regression_images": 236,
+        "larger_block_images": 108,
+        "smaller_block_images": 77,
+        "payload_bytes": 30901504,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 0.9759955933890729,
+        "payload_ratio_to_fixed8": 0.5170794578245675
+      },
+      "quality_regression_images": 231,
+      "trainer_wall_seconds": 2107.688197700001,
+      "parameters": 11305980,
+      "trainable_parameters": 11305980,
+      "training_seconds": 1244.155155100003,
+      "preparation_seconds": 82.98343940000086,
+      "checkpoint_audit": "passed",
+      "deployment_timings": null,
+      "confirmation_test_opened": false,
+      "best_ema_epoch": 30,
+      "best_ema_metrics": {
+        "count": 1000,
+        "accuracy": 0.807,
+        "balanced_accuracy": 0.6889417736699437,
+        "full_choice_accuracy": 0.492,
+        "confusion_matrix": [
+          [
+            88,
+            26,
+            2,
+            4
+          ],
+          [
+            18,
+            79,
+            37,
+            9
+          ],
+          [
+            0,
+            25,
+            72,
+            41
+          ],
+          [
+            1,
+            5,
+            25,
+            568
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7333333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5524475524475524
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5217391304347826
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9482470784641068
+          }
+        },
+        "actual_quality_pass_rate": 0.622,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.218805749913343,
+        "selected_payload_bytes": 30905344,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 12.778260700000828
+      },
+      "ema_updates": 18741,
+      "validation_seconds_by_variant": {
+        "raw": 354.4805684000039,
+        "ema": 390.9181688999979
+      },
+      "selected_model_and_predictions_equal_to_baseline": true
+    },
+    "mean_head_sampled4": {
+      "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-sampled4.json",
+      "training_report_sha256": "e4f0b2380ba5b38feba03e6f2316a7386d0de5c060651d3d4d7a6ff084390394",
+      "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-sampled4-attribution.json",
+      "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-sampled4-calibration.json",
+      "calibration_report_sha256": "b37b4bb7eb4b144a6b623ce55b8e3d99092539399a3df75528c8111b597751bf",
+      "epochs": 30,
+      "updates": 18746,
+      "amp_skips": 4,
+      "selected_checkpoint_epoch": 1,
+      "selected_variant": "image_head_refit",
+      "selected_checkpoint_metrics": {
+        "count": 1000,
+        "accuracy": 0.812,
+        "balanced_accuracy": 0.7073976827955379,
+        "full_choice_accuracy": 0.501,
+        "confusion_matrix": [
+          [
+            89,
+            25,
+            2,
+            4
+          ],
+          [
+            18,
+            89,
+            30,
+            6
+          ],
+          [
+            0,
+            28,
+            73,
+            37
+          ],
+          [
+            1,
+            5,
+            32,
+            561
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7416666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.6223776223776224
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5289855072463768
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9365609348914858
+          }
+        },
+        "actual_quality_pass_rate": 0.657,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1532494983286794,
+        "selected_payload_bytes": 31043872,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 12.260811699999977
+      },
+      "same_validation_fitted_top1": 0.813,
+      "same_validation_fitted_parameters": {
+        "zero_probability_threshold": 0.1,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "same_validation_fitted_metrics": {
+        "images": 1000,
+        "accuracy": 0.813,
+        "full_choice_accuracy": 0.503,
+        "actual_strict_quality_pass_rate": 0.658,
+        "quality_regression_images": 217,
+        "larger_block_images": 103,
+        "smaller_block_images": 84,
+        "payload_bytes": 31057552,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 0.9809242260005205,
+        "payload_ratio_to_fixed8": 0.5196906321944172
+      },
+      "quality_regression_images": 218,
+      "trainer_wall_seconds": 353.16593769999963,
+      "parameters": 11305980,
+      "trainable_parameters": 72940,
+      "training_seconds": 107.87213000001248,
+      "preparation_seconds": 208.3545654999998,
+      "checkpoint_audit": "passed",
+      "deployment_timings": null,
+      "confirmation_test_opened": false,
+      "initial_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30.json",
+      "initial_training_report_sha256": "b5b5ecbdaae964e7b9e9002912e6e5159b3c53521e3cce70910dae40a81e4583",
+      "initial_stage_wall_seconds": 1651.9367597,
+      "encoder_and_channel_head_unchanged": true,
+      "validation_seconds": 9.201015399996322
+    },
+    "mean_head_all": {
+      "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-all.json",
+      "training_report_sha256": "6d3179ea9420cc1865c03bc3edabd5e2b9ad89724f82ff83bf9e7612f515c0a1",
+      "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-all-attribution.json",
+      "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-head-all-calibration.json",
+      "calibration_report_sha256": "1a50d55e7d9ac5454a93d16aa8679d69303e1f26828832abd0394dd0d92d125c",
+      "epochs": 30,
+      "updates": 18746,
+      "amp_skips": 4,
+      "selected_checkpoint_epoch": 2,
+      "selected_variant": "image_head_refit",
+      "selected_checkpoint_metrics": {
+        "count": 1000,
+        "accuracy": 0.811,
+        "balanced_accuracy": 0.7035944728072006,
+        "full_choice_accuracy": 0.493,
+        "confusion_matrix": [
+          [
+            91,
+            23,
+            2,
+            4
+          ],
+          [
+            19,
+            85,
+            33,
+            6
+          ],
+          [
+            0,
+            29,
+            72,
+            37
+          ],
+          [
+            1,
+            5,
+            30,
+            563
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7583333333333333
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5944055944055944
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5217391304347826
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9398998330550918
+          }
+        },
+        "actual_quality_pass_rate": 0.644,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.1431869149624965,
+        "selected_payload_bytes": 31191088,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 12.522003299996868
+      },
+      "same_validation_fitted_top1": 0.814,
+      "same_validation_fitted_parameters": {
+        "zero_probability_threshold": 0.1,
+        "psnr_margin_db": 0.25,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": -1.5,
+        "p95_angle_margin_deg": 0.0
+      },
+      "same_validation_fitted_metrics": {
+        "images": 1000,
+        "accuracy": 0.814,
+        "full_choice_accuracy": 0.501,
+        "actual_strict_quality_pass_rate": 0.656,
+        "quality_regression_images": 219,
+        "larger_block_images": 97,
+        "smaller_block_images": 89,
+        "payload_bytes": 31316368,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 0.989098691408372,
+        "payload_ratio_to_fixed8": 0.524021438777693
+      },
+      "quality_regression_images": 231,
+      "trainer_wall_seconds": 353.9945028999973,
+      "parameters": 11305980,
+      "trainable_parameters": 72940,
+      "training_seconds": 105.11383860002388,
+      "preparation_seconds": 211.52387109999836,
+      "checkpoint_audit": "passed",
+      "deployment_timings": null,
+      "confirmation_test_opened": false,
+      "initial_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30.json",
+      "initial_training_report_sha256": "b5b5ecbdaae964e7b9e9002912e6e5159b3c53521e3cce70910dae40a81e4583",
+      "initial_stage_wall_seconds": 1651.9367597,
+      "encoder_and_channel_head_unchanged": true,
+      "validation_seconds": 9.291238299985707
+    },
+    "imagenet_head_sampled4": {
+      "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-head-sampled4.json",
+      "training_report_sha256": "e37796dcc3bd3b356c7b683530758699e258c000c7e680878e2fe02ccc46ca60",
+      "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-head-sampled4-attribution.json",
+      "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-head-sampled4-calibration.json",
+      "calibration_report_sha256": "4f4f3439d2c70311fb903f345a513856e7433cda7e12c435af838e419abc6941",
+      "epochs": 30,
+      "updates": 18746,
+      "amp_skips": 4,
+      "selected_checkpoint_epoch": 25,
+      "selected_variant": "image_head_refit",
+      "selected_checkpoint_metrics": {
+        "count": 1000,
+        "accuracy": 0.863,
+        "balanced_accuracy": 0.7768490540211525,
+        "full_choice_accuracy": 0.579,
+        "confusion_matrix": [
+          [
+            96,
+            17,
+            4,
+            3
+          ],
+          [
+            15,
+            107,
+            18,
+            3
+          ],
+          [
+            0,
+            28,
+            82,
+            28
+          ],
+          [
+            1,
+            2,
+            18,
+            578
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.8
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.7482517482517482
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5942028985507246
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9649415692821369
+          }
+        },
+        "actual_quality_pass_rate": 0.682,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 1.9179798752273953,
+        "selected_payload_bytes": 31528624,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 14.992361799999344
+      },
+      "same_validation_fitted_top1": 0.867,
+      "same_validation_fitted_parameters": {
+        "zero_probability_threshold": 0.1,
+        "psnr_margin_db": -0.75,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": 0.0
+      },
+      "same_validation_fitted_metrics": {
+        "images": 1000,
+        "accuracy": 0.867,
+        "full_choice_accuracy": 0.576,
+        "actual_strict_quality_pass_rate": 0.649,
+        "quality_regression_images": 225,
+        "larger_block_images": 89,
+        "smaller_block_images": 44,
+        "payload_bytes": 31190240,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 0.9851150544888558,
+        "payload_ratio_to_fixed8": 0.5219109202134026
+      },
+      "quality_regression_images": 193,
+      "trainer_wall_seconds": 356.50670639999953,
+      "parameters": 11305980,
+      "trainable_parameters": 72940,
+      "training_seconds": 108.16867390001062,
+      "validation_seconds": 9.270540299996355,
+      "preparation_seconds": 208.1229491999984,
+      "initial_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-full30.json",
+      "initial_stage_wall_seconds": 1647.1942708999995,
+      "encoder_and_channel_head_unchanged": true,
+      "checkpoint_audit": "passed",
+      "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-psnr-warmup",
+      "deployment_timings": null,
+      "confirmation_test_opened": false,
+      "mainline_promotion": "pending_user_decision"
     }
   },
   "reference_model": "mean_full30",
-  "next_experiment": "EMA control on scratch full30 mainline while pretrained promotion remains pending",
-  "decision": "Independent ImageNet full30 control85.7%, fitted86.4%; scratch mainline81.3%, fitted81.5%; confirmation90 gate remains unmet",
+  "next_experiment": "Scratch PSNR-component preparation, then image-head training",
+  "decision": "Keep original scratch full30 reference after EMA and both head refits; ImageNet promotion remains pending",
   "calibration_scope": "Finite two-pass coordinate fitting on the same1000 validation predictions; no confirmation evaluation",
   "test_opened": false,
-  "updated_utc": "2026-11-12T16:35:52.471966+00:00",
+  "updated_utc": "2026-11-12T18:39:33.713497+00:00",
   "calibration_deployment_integrated": false,
-  "best_development_contrast": "imagenet_full30",
+  "best_development_contrast": "imagenet_head_sampled4",
   "postprocessing_results": {
     "mean_full30_bn": {
       "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30-bn.json",

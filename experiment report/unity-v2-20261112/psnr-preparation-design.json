@@ -1,0 +1,23 @@
+{
+  "status": "preparing_cuda_smokes",
+  "created_utc": "2026-11-12T18:29:41.736791+00:00",
+  "scope": "V2 planned two-stage training, channel-error and zero-channel preparation followed by image-quality heads",
+  "initialization": "scratch",
+  "parameters": 11305980,
+  "epochs": 30,
+  "zero_weight": 0.1,
+  "ssim_weight": 0.0,
+  "angle_weight": 0.0,
+  "selection_metric": "near_rmse",
+  "phase1_selection": "Color near-threshold RMSE then blockTop1",
+  "phase2_selection": "BlockTop1 then color near-threshold RMSE",
+  "phase2_loss_weights": {
+    "zero_weight": 0.1,
+    "ssim_weight": 0.1,
+    "angle_weight": 0.1
+  },
+  "selection_rationale": "Choose the preparation checkpoint by the trained PSNR-related target before fitting structural/angle heads",
+  "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-psnr-warmup",
+  "cpu_tests": 68,
+  "test_opened": false
+}

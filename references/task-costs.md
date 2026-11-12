@@ -115,3 +115,7 @@ ImageNet初始化正式8轮训练器669.33秒，4998更新、2AMP跳步，最佳
 原生BN的32图／128patch预检完整进程120.49秒，完整10000图／40000patch诊断208.80秒，其中统计重估88.68秒，均含完整1000图的原预测和新权重重载核对。ImageNet完整30轮配置的32／16图CUDA预检10.69秒、4更新及重载通过，随后正式任务串行启动。`[verified: ../experiment report/unity-v2-20261112/mean-full30-bn-smoke.json；mean-full30-bn.json；imagenet-full30-smoke.json；对应jobs/launch-preflight.json]`
 
 ImageNet完整30轮训练器1647.19秒，18,743更新、7AMP跳步，选中权重重载通过。EMA原生扩展73项组件检查4.71秒、71项调用方检查5.11秒，训练和额外验证成本随后实测。`[verified: ../experiment report/unity-v2-20261112/imagenet-full30-result.json；本轮pytest输出]`
+
+EMA完整30轮训练器2107.69秒，18,741次优化器／EMA更新；训练1244.16秒，raw／EMA逐轮验证分别354.48／390.92秒。整图头sampled4／全部patch的预检完整进程121.11／118.30秒，正式各30轮353.17／353.99秒，仅更新72,940个图像头参数；初始模型1651.94秒单列。ImageNet整图头独立对照预检118.63秒、4更新及原生重载通过，随后完整阶段串行启动。`[verified: ../experiment report/unity-v2-20261112/mean-ema099-result.json；mean-head-sampled4-smoke.json；mean-head-all-smoke.json；对应result.json；imagenet-head-sampled4-smoke.json]`
+
+ImageNet头部阶段完整30轮356.51秒，18,746更新，初始模型1647.19秒单列。PSNR准备分支CUDA预检10.57秒、4更新及所选模型重载通过，完整准备任务随后单GPU启动。154项相关CPU检查7.18秒。`[verified: ../experiment report/unity-v2-20261112/imagenet-head-sampled4-result.json；psnr-preparation-smoke.json；psnr-preparation-verification.json]`

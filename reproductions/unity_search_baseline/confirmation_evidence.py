@@ -54,13 +54,24 @@ class UnityConfirmationEvidence:
 
     def job(self, item: JsonDict, script: str, config_path: Path) -> None:
         path = self.bind(Path(item["job_config"]), item["sha256"])
-        if self.read(path)["command"] != [
-            sys.executable,
-            "-u",
-            script,
-            "--config",
-            str(config_path.resolve()),
-        ]:
+        command = self.read(path).get("command")
+        if (
+            not isinstance(command, list)
+            or not command
+            or not all(isinstance(value, str) for value in command)
+        ):
+            raise ValueError("Completed job does not execute the bound configuration")
+        arguments = command[1:]
+        if arguments[:2] == ["-X", "utf8"]:
+            arguments = arguments[2:]
+        if (
+            len(arguments) != 4
+            or arguments[0] != "-u"
+            or arguments[2] != "--config"
+            or Path(command[0]).resolve() != Path(sys.executable).resolve()
+            or (self.root / arguments[1]).resolve() != (self.root / script).resolve()
+            or (self.root / arguments[3]).resolve() != config_path.resolve()
+        ):
             raise ValueError("Completed job does not execute the bound configuration")
         observed = P.dependency_status(item)
         if observed["status"] != "passed":

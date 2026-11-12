@@ -53,6 +53,7 @@ class UnityTrainConfig:
     pretrained_weights: Path | None = None
     pretrained_weights_sha256: str | None = None
     ema_decay: float = 0.0
+    selection_metric: str = "accuracy"
 
     def validate(self) -> None:
         for name in ["epochs", "image_batch_size", "patches_per_image", "validation_batch_size"]:
@@ -71,6 +72,7 @@ class UnityTrainConfig:
             or self.image_pooling not in ("mean_max", "mean")
             or self.initialization not in ("scratch", "pretrained")
             or not 0 <= self.ema_decay < 1
+            or self.selection_metric not in ("accuracy", "near_rmse")
         ):
             raise ValueError("Invalid native training configuration")
         if not self.smoke and self.train_image_indices:
@@ -118,9 +120,13 @@ class UnityQualityTrainer:
             raise ValueError("Native initialization weight file changed")
 
     @staticmethod
-    def selection_key(metrics: JsonDict) -> tuple[float, float]:
+    def selection_key(metrics: JsonDict, metric: str = "accuracy") -> tuple[float, float]:
+        if metric not in ("accuracy", "near_rmse"):
+            raise ValueError("Unknown native checkpoint selection metric")
         rmse = metrics["color_near_threshold_rmse_db"]
-        return -float(metrics["accuracy"]), math.inf if rmse is None else float(rmse)
+        accuracy_key = -float(metrics["accuracy"])
+        rmse_key = math.inf if rmse is None else float(rmse)
+        return (accuracy_key, rmse_key) if metric == "accuracy" else (rmse_key, accuracy_key)
 
     @staticmethod
     def validate_coverage(document: JsonDict, config: UnityTrainConfig) -> None:
@@ -245,6 +251,9 @@ class UnityQualityTrainer:
             selection=(
                 "Validation footprint accuracy, then color near-threshold RMSE; "
                 "margin and zero threshold fixed"
+                if config.selection_metric == "accuracy"
+                else "Validation color near-threshold RMSE, then footprint accuracy; "
+                "margin and zero threshold fixed"
             ),
             augmentations=[],
             ema="Parameters and buffers after each applied optimizer update" if ema else False,
@@ -343,7 +352,10 @@ class UnityQualityTrainer:
                         ema_predictions,
                         ema_decisions,
                     )
-                winner = min(variants, key=lambda name: self.selection_key(variants[name][1]))
+                winner = min(
+                    variants,
+                    key=lambda name: self.selection_key(variants[name][1], config.selection_metric),
+                )
                 selected_model, selected_metrics, selected_predictions, selected_decisions = (
                     variants[winner]
                 )
@@ -365,7 +377,7 @@ class UnityQualityTrainer:
                 state["history"].append(row)
                 rmse = selected_metrics["color_near_threshold_rmse_db"]
                 rmse_key = min(self.selection_key(value[1])[1] for value in variants.values())
-                key = self.selection_key(selected_metrics)
+                key = self.selection_key(selected_metrics, config.selection_metric)
                 checkpoint = {
                     "model": model.state_dict(),
                     "optimizer": optimizer.state_dict(),
@@ -404,13 +416,13 @@ class UnityQualityTrainer:
                         for name in ["best.pt", "best-validation.npz", "best-decisions.json"]
                     }
                     state["best_validation_variant"] = winner
+                    state["best_validation_accuracy"] = selected_metrics["accuracy"]
                 if rmse_key < best_rmse:
                     best_rmse, stale = rmse_key, 0
                 elif math.isfinite(rmse_key):
                     stale += 1
                 state.update(
                     training_updates=updates,
-                    best_validation_accuracy=-best_key[0],
                     best_color_near_threshold_rmse_db=best_rmse
                     if math.isfinite(best_rmse)
                     else None,

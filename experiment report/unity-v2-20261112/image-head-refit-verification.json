@@ -1,0 +1,61 @@
+{
+  "status": "passed_paired_native_head_controls",
+  "created_utc": "2026-11-12T17:09:43.069435+00:00",
+  "script": "E:\\ASTC_Compression\\script\\refit_unity_image_head.py",
+  "script_sha256": "e47b0e8352c9417e88a87665e801ee8a5e246550d03f56c8b92539ea5e9c5c5f",
+  "factor": "Image-head training patch scope under a shared frozen encoder",
+  "paired_patch_views": [
+    4,
+    0
+  ],
+  "zero_views_mean": "All patches",
+  "source_model_selection": "Best completed scratch control by audited validation Top1, then same-checkpoint near-threshold RMSE",
+  "paired_initial_weights": "Same complete selected checkpoint, including image head",
+  "epochs": 30,
+  "smoke_epochs": 2,
+  "image_batch_size": 16,
+  "learning_rate": 0.0003,
+  "learning_rate_schedule": "constant in the head stage",
+  "weight_decay": 0.05,
+  "loss_weights": "Inherited native zero/SSIM/angle weights",
+  "seed": 20261112,
+  "patch_generator_seed": 20261113,
+  "encoder_channel_head_and_buffers_frozen": true,
+  "fresh_native_selected_checkpoint_audit_required": true,
+  "complete_original_validation_replay_required": true,
+  "validation_images": 1000,
+  "smoke_train_images": 32,
+  "formal_train_images": 10000,
+  "cpu_tests": 66,
+  "ruff_check": "passed",
+  "ruff_format_check": "passed",
+  "basedpyright": "0 errors, 0 warnings",
+  "review": "CLEAN",
+  "test_opened": false,
+  "source_sha256": {
+    "E:\\ASTC_Compression\\script\\refit_unity_image_head.py": "e47b0e8352c9417e88a87665e801ee8a5e246550d03f56c8b92539ea5e9c5c5f",
+    "E:\\ASTC_Compression\\script\\audit_unity_normalization.py": "e9236ca4332ef9424aad97337d516b94ca2fdf4236437ebd346f556cca2d8ad9",
+    "E:\\ASTC_Compression\\tests\\test_unity_head_refit.py": "9bad377e604d0cce98afd1e2ae3b0aa3d3ca1e74519cc973ba1ca958871a4f46",
+    "E:\\ASTC_Compression\\tests\\test_unity_normalization.py": "3b2f976b690abd27bf6791ac8b68ab72003403472dbd4188f93428e3e7f6ea73"
+  },
+  "cpu_checks": {
+    "passed": 150,
+    "seconds": 7.47,
+    "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-native-head-final' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_search_policy.py tests/test_unity_error_attribution.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py tests/test_unity_normalization.py tests/test_unity_head_refit.py"
+  },
+  "cuda_smoke_status": "pending",
+  "full_controls": {
+    "sampled4": "completed",
+    "all": "completed"
+  },
+  "full_paired_feature_files_byte_identical": true,
+  "smoke_train_patches": 180,
+  "smoke_multi_patch_images": 30,
+  "smoke_max_patches_per_image": 6,
+  "full_frozen_state_checks": "passed",
+  "full_fresh_native_checkpoint_audits": "passed",
+  "all_related_cpu_checks": {
+    "passed": 152,
+    "seconds": 6.96
+  }
+}

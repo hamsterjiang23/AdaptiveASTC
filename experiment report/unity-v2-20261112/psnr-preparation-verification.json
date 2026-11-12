@@ -1,0 +1,44 @@
+{
+  "status": "passed_cuda_smokes_full_preparation_started",
+  "created_utc": "2026-11-12T18:29:41.736791+00:00",
+  "scope": "V2 planned two-stage training, channel-error and zero-channel preparation followed by image-quality heads",
+  "initialization": "scratch",
+  "parameters": 11305980,
+  "epochs": 30,
+  "zero_weight": 0.1,
+  "ssim_weight": 0.0,
+  "angle_weight": 0.0,
+  "selection_metric": "near_rmse",
+  "phase1_selection": "Color near-threshold RMSE then blockTop1",
+  "phase2_selection": "BlockTop1 then color near-threshold RMSE",
+  "phase2_loss_weights": {
+    "zero_weight": 0.1,
+    "ssim_weight": 0.1,
+    "angle_weight": 0.1
+  },
+  "selection_rationale": "Choose the preparation checkpoint by the trained PSNR-related target before fitting structural/angle heads",
+  "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-psnr-warmup",
+  "cpu_tests": 68,
+  "test_opened": false,
+  "review": "CLEAN",
+  "cpu_checks": {
+    "passed": 154,
+    "seconds": 7.18,
+    "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-psnr-final' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-permitted' tests/test_unity_search_policy.py tests/test_unity_error_attribution.py tests/test_unity_quality.py tests/test_unity_quality_training.py tests/test_unity_inference.py tests/test_unity_deployment.py tests/test_unity_sealed_inference.py tests/test_unity_confirmation_evaluation.py tests/test_patch_normalization.py tests/test_unity_normalization.py tests/test_unity_head_refit.py"
+  },
+  "ruff_check": "passed",
+  "ruff_format_check": "passed",
+  "basedpyright": "0 errors, 0 warnings",
+  "default_cuda_loss_and_selection_exact": true,
+  "psnr_smoke_training_updates": 4,
+  "psnr_smoke_checkpoint_audit": "passed",
+  "selected_accuracy_matches_audit": true,
+  "smoke_report_sha256": "c8e05a7f27e0dc1d28307feb61257ef4e9acb408b3284bae8b15e190c3ceccc0",
+  "active_sources_sha256": "passed",
+  "active_training_observation": {
+    "status": "running",
+    "completed_epochs": 10,
+    "training_updates": 6248,
+    "selection_metric": "near_rmse"
+  }
+}

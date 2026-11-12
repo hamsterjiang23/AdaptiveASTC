@@ -177,7 +177,9 @@ def test_entire_confirmation_protocol_is_required(changed: str) -> None:
             V.validate_config(config)
 
 
-@pytest.mark.parametrize("case", ["passed", "running", "other_command", "changed_job"])
+@pytest.mark.parametrize(
+    "case", ["passed", "utf8_absolute", "running", "other_command", "changed_job", "extra_flags"]
+)
 def test_completed_job_binding(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, case: str) -> None:
     job, config = tmp_path / "job.json", tmp_path / "config.json"
     A.write_json(
@@ -192,6 +194,36 @@ def test_completed_job_binding(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, 
             ]
         },
     )
+    if case == "utf8_absolute":
+        A.write_json(
+            job,
+            {
+                "command": [
+                    sys.executable,
+                    "-X",
+                    "utf8",
+                    "-u",
+                    str(tmp_path / "script/train_unity_quality.py"),
+                    "--config",
+                    str(config),
+                ]
+            },
+        )
+    elif case == "extra_flags":
+        A.write_json(
+            job,
+            {
+                "command": [
+                    sys.executable,
+                    "-c",
+                    "print('unrelated')",
+                    "-u",
+                    "script/train_unity_quality.py",
+                    "--config",
+                    str(config),
+                ]
+            },
+        )
     receipt = job.with_name("receipt.json")
     A.write_json(receipt, {"status": "passed"})
     item = {"job_config": str(job), "sha256": A.sha256_file(job)}
@@ -207,7 +239,7 @@ def test_completed_job_binding(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, 
 
     monkeypatch.setattr(P, "dependency_status", staticmethod(observe))
     evidence = E(tmp_path)
-    if case == "passed":
+    if case in {"passed", "utf8_absolute"}:
         evidence.job(item, "script/train_unity_quality.py", config)
         evidence.verify()
         A.write_json(receipt, {"status": "changed"})

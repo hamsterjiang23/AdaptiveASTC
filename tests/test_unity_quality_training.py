@@ -120,6 +120,22 @@ def test_native_variant_selection_keeps_accuracy_then_rmse_order() -> None:
     ) == (-0.80, float("inf"))
 
 
+def test_native_psnr_preparation_uses_explicit_rmse_selection(tmp_path: Path) -> None:
+    config = configuration(tmp_path)
+    assert config.selection_metric == "accuracy"
+    replace(config, selection_metric="near_rmse").validate()
+    with pytest.raises(ValueError, match="Invalid native training"):
+        replace(config, selection_metric="unknown").validate()
+    accurate = {"accuracy": 0.81, "color_near_threshold_rmse_db": 2.0}
+    precise = {"accuracy": 0.80, "color_near_threshold_rmse_db": 1.0}
+    assert UnityQualityTrainer.selection_key(accurate) < UnityQualityTrainer.selection_key(precise)
+    assert UnityQualityTrainer.selection_key(
+        precise, "near_rmse"
+    ) < UnityQualityTrainer.selection_key(accurate, "near_rmse")
+    with pytest.raises(ValueError, match="Unknown native"):
+        UnityQualityTrainer.selection_key(precise, "unknown")
+
+
 @pytest.mark.parametrize(
     "changes",
     [
