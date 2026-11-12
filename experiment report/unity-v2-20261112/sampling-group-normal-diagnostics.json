@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "scope": "Frozen validation footprint bookkeeping with original normal labels substituted and all other decisions fixed",
+  "source_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d"
+  },
+  "validation_images": 1000,
+  "normal_images": 45,
+  "model_forward_calls": 0,
+  "training_updates": 0,
+  "test_opened": false,
+  "results": {
+    "mean-full30": {
+      "training_report_sha256": "b5b5ecbdaae964e7b9e9002912e6e5159b3c53521e3cce70910dae40a81e4583",
+      "best_decisions_sha256": "e54c77746143bdf13d96cefc106a9937398fbaea9f8dcd852a1acfdceadc4305",
+      "correct_images": 813,
+      "top1": 0.813,
+      "normal_images": 45,
+      "normal_correct": 29,
+      "normal_errors": 16,
+      "normal_footprints_all_correct_with_other_decisions_frozen_top1": 0.829,
+      "direct_parent_macro": {
+        "groups": 487,
+        "accuracy": 0.8621281100762319
+      },
+      "asset_family_macro": {
+        "groups": 189,
+        "accuracy": 0.8475003333237662
+      }
+    },
+    "imagenet-head-sampled4": {
+      "training_report_sha256": "e37796dcc3bd3b356c7b683530758699e258c000c7e680878e2fe02ccc46ca60",
+      "best_decisions_sha256": "d74d33067ffceac7c9290ad3b601c0635e8b74a84c7c435c5d7e03b45c28e3cb",
+      "correct_images": 863,
+      "top1": 0.863,
+      "normal_images": 45,
+      "normal_correct": 34,
+      "normal_errors": 11,
+      "normal_footprints_all_correct_with_other_decisions_frozen_top1": 0.874,
+      "direct_parent_macro": {
+        "groups": 487,
+        "accuracy": 0.9069480367306192
+      },
+      "asset_family_macro": {
+        "groups": 189,
+        "accuracy": 0.8853098671436352
+      }
+    },
+    "psnr-head-sampled4": {
+      "training_report_sha256": "a5986528cb9736b575b4728b2bd2385065558b56d7f324f06d8c1237f305a328",
+      "best_decisions_sha256": "c50018227aefc96587d4756cd143b436a202a308d3a118cfe1bce2b6d50387cf",
+      "correct_images": 764,
+      "top1": 0.764,
+      "normal_images": 45,
+      "normal_correct": 24,
+      "normal_errors": 21,
+      "normal_footprints_all_correct_with_other_decisions_frozen_top1": 0.785,
+      "direct_parent_macro": {
+        "groups": 487,
+        "accuracy": 0.8352576966657774
+      },
+      "asset_family_macro": {
+        "groups": 189,
+        "accuracy": 0.8371910253978254
+      }
+    },
+    "mean-familycap64": {
+      "training_report_sha256": "91cfad949476cd68be681f093d3a2639b83ea974c09d8f1849ac9e82ee4f93d2",
+      "best_decisions_sha256": "9bd303036208971c688b18a3e5d04e6ca793a0da44981784bb07d26810aeb673",
+      "correct_images": 780,
+      "top1": 0.78,
+      "normal_images": 45,
+      "normal_correct": 28,
+      "normal_errors": 17,
+      "normal_footprints_all_correct_with_other_decisions_frozen_top1": 0.797,
+      "direct_parent_macro": {
+        "groups": 487,
+        "accuracy": 0.8468927860197941
+      },
+      "asset_family_macro": {
+        "groups": 189,
+        "accuracy": 0.8343876452777254
+      }
+    }
+  },
+  "next_priority": "Complete shared-model sampling controls before specialization [opinion]"
+}

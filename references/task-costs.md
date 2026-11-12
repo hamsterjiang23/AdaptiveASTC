@@ -125,3 +125,5 @@ Unity V2 PSNR组件准备完成30轮、18,742次更新，训练器1636.34秒；�
 PSNR两阶段的正式整图头训练完成30轮、18,747次更新、3次AMP跳步，训练器352.19秒；准备与头部训练器合计1988.53秒。所选权重原生重载和全部非图像头状态核验通过，冻结归因及同验证集余量拟合另外记录。`[verified: psnr-head-sampled4-result.json trainer_wall_seconds、two_stage_trainer_wall_seconds；psnr-head-sampled4-verification.json]`
 
 Unity V2原生图像采样预检已完成，关闭模式／资产族cap2／法线重复2次的两轮CUDA训练器分别11.02／10.77／10.78秒，实际更新4／2／6次，均通过原生重载。正式cap64每轮5622图、352次优化器尝试，按旧训练成本缩放并保留验证与启动成本，估计20分钟；法线重复2次每轮10299次图像访问，待串行执行。启动前空闲RAM43.50GiB、磁盘845.91GiB，GPU604／12282MiB、利用率0%。两个正式任务只读冻结开发语料和原策略，写各自独立输出；GPU串行。`[verified: image-sampling-verification.json smokes；image-sampling-design.json；jobs/mean-familycap64/launch-preflight.json；启动前nvidia-smi输出；opinion: 正式耗时估计]`
+
+资产族cap64正式30轮完成，训练器1319.44秒，10,553次更新、7次AMP跳步；共168660次访问及9055张不同训练图，完整可用语料仍为10000张。实际训练／验证／准备时间分项见结果，当前单项对照成本单列。法线重复2次在其成功退出后串行启动，预计30分钟，启动前空闲RAM43.36GiB、磁盘845.66GiB、GPU604／12282MiB。`[verified: mean-familycap64-result.json；jobs/mean-normalrepeat2/launch-preflight.json；启动前nvidia-smi输出；opinion: 后续耗时估计]`
