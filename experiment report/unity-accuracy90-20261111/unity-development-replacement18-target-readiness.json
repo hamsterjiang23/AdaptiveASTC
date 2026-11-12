@@ -1,0 +1,39 @@
+{
+  "status": "waiting_replacement_capture",
+  "verified_utc": "2026-11-12T11:50:07.501539+00:00",
+  "processes": [
+    {
+      "pid": 57404,
+      "created": 1794483673.6020525,
+      "command": [
+        "C:\\Users\\admin\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+        "-u",
+        "script/run_reproduction_job.py",
+        "--config",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-development-replacement18-target-execution-v2\\job.json"
+      ]
+    },
+    {
+      "pid": 50560,
+      "created": 1794483673.7505825,
+      "command": [
+        "E:\\ASTC_Compression\\.venv\\Scripts\\python.exe",
+        "-u",
+        "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\finish_development_replacement18.py",
+        "--config",
+        "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-development-replacement18-target-execution-v2-config.json"
+      ]
+    }
+  ],
+  "sources_verified": 46,
+  "config_sha256": "efaa0a8170e3c969f06f7c893c0668a3c48cea0fead392a6a666ed2d86f7f101",
+  "checks": {
+    "ruff": "passed",
+    "basedpyright": "passed",
+    "positive_source_preflight": "passed",
+    "missing_merge_source_rejected": true,
+    "independent_review": "C1 closed; no bugs found"
+  },
+  "training_updates": 0,
+  "test_opened": false
+}

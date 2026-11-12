@@ -24,3 +24,7 @@
 [合并检查记录](unity-development-corpus-revision-readiness.json)区分实现与正式数据完成。合并器会绑定批准的源manifest、MD4、源SHA、原始meta备份，并检查保留图片的patch和候选来源；8项来源链测试、格式、lint、类型检查及独立审查通过。原11000张的90份来源文件也已重核。`[verified: unity-development-corpus-revision-readiness.json checks；unity-development-origin11000-check.json]`
 
 先期2图、4图结构预检使用已有实测目标与模拟成员关系，Dataset和原规则重放通过；它们产生于新增严格来源检查之前，产生版本已归档，不作为18张补采完成的证据。正式合并仍等待实际补采、20候选和patch目标完成。`[verified: unity-development-corpus-revision-readiness.json historical_structural_smokes、formal_revision_complete]`
+
+补采后处理队列已实际启动，等待补采的实际输入检查通过，再运行候选补测、patch、语料合并、Dataset全读与原规则重放。[启动记录](unity-development-replacement18-target-readiness.json)绑定46份源码，遗漏后续merge依赖的预检问题已修正并复查；[动态状态](unity-development-replacement18-target-execution-v2.json)不代表全部数据完成。`[verified: 启动记录processes、checks；动态状态status]`
+
+新版像素审计的11项测试通过，包含真实PNG读取、变更拒绝及报告不覆盖；均为小型模拟数据测试，正式13000张审计仍待数据就绪。最终交接检查器的[准备记录](unity-data-delivery-v3-readiness.json)绑定当前脚本，正式运行尚未执行。`[verified: tests/test_unity_revised_pixel_identity.py；本轮pytest“11 passed”；unity-data-delivery-v3-readiness.json]`
