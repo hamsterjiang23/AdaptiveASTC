@@ -1,14 +1,29 @@
 {
-  "status": "waiting_replacement_capture",
+  "status": "reading_revised_dataset11000",
   "config_sha256": "efaa0a8170e3c969f06f7c893c0668a3c48cea0fead392a6a666ed2d86f7f101",
-  "stages": [],
+  "stages": [
+    {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-development-replacement18-candidates-v2.json",
+      "sha256": "606898657c7a1e341350b7bef955c773001a47219ad1179843899bab4ef5758d",
+      "status": "passed"
+    },
+    {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-development-replacement18-patches-v2.json",
+      "sha256": "fed85ce1f018c9099ff3a0804488ac8af23670bbb93db5559c0e10bfd704ab4d",
+      "status": "passed_smoke"
+    },
+    {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-development-corpus11000-v2.json",
+      "sha256": "0b66fddfff5a5f65f7fa2f82443abfcd010eae994096673263ab3063b543662e",
+      "status": "passed"
+    }
+  ],
   "training_updates": 0,
   "test_opened": false,
   "final_pixel_audit_complete": false,
   "dependency": {
     "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-development-replacement18-queue-v2\\job.json",
-    "status": "running",
-    "pid": 62096,
-    "created": 1794481791.7107496
+    "status": "passed",
+    "receipt_sha256": "58349fa8b01f246c21d47f0559108e5cea5d8420e5be3e584529bc13877e7df8"
   }
 }

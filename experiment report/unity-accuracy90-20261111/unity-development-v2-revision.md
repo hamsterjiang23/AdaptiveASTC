@@ -1,6 +1,8 @@
 # V2 开发集18张替补与新版本交接
 
-补采等待任务已实际启动，状态为waiting_confirmation。确认集完成后自动调用原采集入口；运行前和等待期间核对43份执行源码及冻结配置。启动进程、预检、10项测试和407个本地链接检查保存在[启动验收记录](unity-development-v2-revision-readiness.json)。`[verified: unity-development-replacement18-queue-v2.json status；unity-development-v2-revision-readiness.json processes、execution_sources_verified、checks]`
+18张原生补采、实际输入检查、360候选和440个patch目标已完成；新版11000张语料已合并，当前正在Dataset全读和原规则复核，最终13000张像素审计尚未完成。完成证据见[替补18张验收](unity-development-replacement18-completion.json)。`[verified: unity-development-replacement18-completion.json；目标处理队列当前阶段]`
+
+补采等待任务最初以waiting_confirmation状态启动，以下启动信息保留为历史记录。确认集完成后自动调用原采集入口；运行前和等待期间核对43份执行源码及冻结配置。启动进程、预检、10项测试和407个本地链接检查保存在[启动验收记录](unity-development-v2-revision-readiness.json)。`[verified: unity-development-replacement18-queue-v2.json status；unity-development-v2-revision-readiness.json processes、execution_sources_verified、checks]`
 
 用户已批准替换原开发语料的18张Cube：训练13张、验证5张，保持10000／1000规模。原图片、搜索标签、候选测量、成本和语料不覆盖。原始范围问题及全11000张输入检查见[范围检查](unity-development-v2-input-scope.md)。`[verified: 用户本轮补采选择；unity-development-v2-input-all11000.json accepted、rejected、cohort_modified]`
 
@@ -28,3 +30,7 @@
 补采后处理队列已实际启动，等待补采的实际输入检查通过，再运行候选补测、patch、语料合并、Dataset全读与原规则重放。[启动记录](unity-development-replacement18-target-readiness.json)绑定46份源码，遗漏后续merge依赖的预检问题已修正并复查；[动态状态](unity-development-replacement18-target-execution-v2.json)不代表全部数据完成。`[verified: 启动记录processes、checks；动态状态status]`
 
 新版像素审计的11项测试通过，包含真实PNG读取、变更拒绝及报告不覆盖；均为小型模拟数据测试，正式13000张审计仍待数据就绪。最终交接检查器的[准备记录](unity-data-delivery-v3-readiness.json)绑定当前脚本，正式运行尚未执行。`[verified: tests/test_unity_revised_pixel_identity.py；本轮pytest“11 passed”；unity-data-delivery-v3-readiness.json]`
+
+补采期间同机运行了修订前13000张的归档／像素审计。补采原搜索与额外候选成本分别保留，不能把这些耗时当作新的独占性能基线。`[verified: unity-development-replacement18-completion.json timing_context；两个任务的实际运行时段；opinion: 性能结论边界]`
+
+新版语料已生成，保留10982张并替换18张，实际输入准入11000张全部通过。训练67436个patch、验证7173个patch，共74609个；[新版语料报告](unity-development-corpus11000-v2.json)绑定统一清单与原始目标来源。完整Dataset读取和原规则重放仍在执行，尚未交付最终验收。`[verified: unity-development-corpus11000-v2.json counts、patch_counts、input_eligibility_images、retained_images、replaced_images；目标处理队列status]`

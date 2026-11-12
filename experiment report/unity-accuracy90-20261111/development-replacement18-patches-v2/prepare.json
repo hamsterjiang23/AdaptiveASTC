@@ -1,0 +1,112 @@
+{
+  "status": "passed",
+  "config": {
+    "candidate_queue_config": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-development-replacement18-candidates-v2-config.json",
+    "candidate_queue_config_sha256": "7db2714a666a712acb307905c998baaeb185de24c10e0eaa2151b68bd0918a21",
+    "candidate_snapshot": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-replacement18-patches-v2\\candidate-snapshot.json",
+    "candidate_snapshot_sha256": "606898657c7a1e341350b7bef955c773001a47219ad1179843899bab4ef5758d",
+    "patch_source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+    "shards": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-replacement18-patch-shards-v2",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\development-replacement18-patches-v2\\prepare.json",
+    "run_ids": [
+      "unity-development-replacement-train-v2",
+      "unity-development-replacement-validation-v2"
+    ]
+  },
+  "config_sha256": "23b8bdc0f0fe2841567a1eb8f14765b5f5896aefb4fca3cc10b85582b68d36df",
+  "implementation_sha256": "ab97dc294f6287f19ae885bf208a72478c9dfee218dc136c45a93e176001dc21",
+  "dataset_validator_sha256": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+  "expected_full_counts": {
+    "train": 13,
+    "validation": 5
+  },
+  "expected_plan_counts": {
+    "train": 13,
+    "validation": 5
+  },
+  "coverage": "complete",
+  "counts": {
+    "train": 13,
+    "validation": 5
+  },
+  "patch_counts": {
+    "train": 344,
+    "validation": 96
+  },
+  "shards": [
+    {
+      "run_id": "unity-development-replacement-train-v2",
+      "source_split": "train",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-replacement18-patch-shards-v2\\manifests\\unity-development-replacement-train-v2.json",
+        "candidate_manifest_sha256": "653e0b7334c488f58fd992fbd4128968c838668c194b2c306a16d290a0293e98",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-replacement18-patch-shards-v2\\corpora\\unity-development-replacement-train-v2",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-replacement18-patch-shards-v2\\reports\\unity-development-replacement-train-v2.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "23bfca68e2ca9a0c226261017a8195e042ad546ebdbefe90c699fa6316ccce85",
+      "counts": {
+        "train": 13,
+        "validation": 0
+      },
+      "patch_counts": {
+        "train": 344,
+        "validation": 0
+      },
+      "candidate_count": 260,
+      "max_psnr_reconstruction_error_db": 1.8793150644569323e-06,
+      "normal_images": 0,
+      "multimip_normal_images": 0,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 8.087854600002174,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "984ab3b98c53e947d2c64bac45476f2419f08e148d22c186f61bdfcfca5022e4",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-replacement18-patch-shards-v2\\corpora\\unity-development-replacement-train-v2\\corpus.json",
+      "corpus_sha256": "ba2bbb32a24d2428467126e19427d930b87fcf02a7f8b5118721c91a34c16ede"
+    },
+    {
+      "run_id": "unity-development-replacement-validation-v2",
+      "source_split": "validation",
+      "status": "passed",
+      "config": {
+        "candidate_manifest": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-replacement18-patch-shards-v2\\manifests\\unity-development-replacement-validation-v2.json",
+        "candidate_manifest_sha256": "48e7ada11bca9f049e86e7de2d2e7665ade683fc0df3533137f97d40cadb6cfd",
+        "patch_size": 240,
+        "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-replacement18-patch-shards-v2\\corpora\\unity-development-replacement-validation-v2",
+        "report": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-replacement18-patch-shards-v2\\reports\\unity-development-replacement-validation-v2.json",
+        "schema": "unity-rgba-channel-sse-v1",
+        "source_sha256": "a28344938c6e5d54a626a954a127f8d3c220ecc2c8e03eb6e11d4648f2551466",
+        "grid_source_sha256": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0"
+      },
+      "binding": "a5087b1ce4de90fca6a24c57b4c39a420ac2ed1bb4dbf8234a53c7cb41c0a208",
+      "counts": {
+        "train": 0,
+        "validation": 5
+      },
+      "patch_counts": {
+        "train": 0,
+        "validation": 96
+      },
+      "candidate_count": 100,
+      "max_psnr_reconstruction_error_db": 1.8724998014363337e-06,
+      "normal_images": 0,
+      "multimip_normal_images": 0,
+      "test_opened": false,
+      "coverage": "partial",
+      "wall_seconds": 2.2925684999936493,
+      "scope": "Native mip0 RGBA channel SSE; original20-candidate image quality and policy labels; SSIM and angular metrics are NOT patch averages",
+      "fingerprint": "2c4883f031a27f5b3a393f9186166c635752e32d73da176b735cbb7284317f90",
+      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-replacement18-patch-shards-v2\\corpora\\unity-development-replacement-validation-v2\\corpus.json",
+      "corpus_sha256": "4ee71681991e0f5be26cbb10dbb93ada1761d6154a96b6ff0027758ffa9bd68a"
+    }
+  ],
+  "test_opened": false,
+  "training_updates": 0,
+  "current_batch": null,
+  "wall_seconds": 12.668055000001914
+}

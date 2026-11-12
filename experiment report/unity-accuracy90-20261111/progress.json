@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-12T12:12:13.354335+00:00",
+  "updated_utc": "2026-11-12T12:28:05.293875+00:00",
   "goal_status": "active",
   "target": {
     "completion": "native data collection and integrity handoff for V2",
@@ -12,7 +12,7 @@
     "model_training_required": false,
     "model_accuracy_required": false
   },
-  "phase": "Confirmation2000 captured and input-verified; approved18 development replacements collecting",
+  "phase": "Approved18 replacements and revised11000 corpus assembled; full Dataset/policy and pixel audits running",
   "initialization": "scratch",
   "model": "ResNet-18",
   "new_test_accuracy": null,
@@ -2991,7 +2991,7 @@
   "data_handoff": {
     "report": "unity-data-handoff-v1.json",
     "documentation": "unity-data-handoff.md",
-    "status": "collecting_approved_development_replacements",
+    "status": "auditing_revised_development",
     "required_counts": {
       "train": 10000,
       "validation": 1000,
@@ -3211,6 +3211,40 @@
             "scope": "Historical development11000 plus confirmation2000; revised final cohort audit still required"
           }
         }
+      },
+      {
+        "recorded_utc": "2026-11-12T12:28:05.292876+00:00",
+        "previous_development_corpus": {
+          "report": "unity-development-data11000-verification.json",
+          "report_sha256": "5b953eeae52655f696d33010cdc3cf2645e3eafd7707046edece05f458883f1f",
+          "counts": {
+            "train": 10000,
+            "validation": 1000
+          },
+          "patch_counts": {
+            "train": 67105,
+            "validation": 7082
+          },
+          "candidate_count": 220000,
+          "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-pipeline-full-v3\\corpus\\corpus.json",
+          "corpus_sha256": "dca29d9336dc7bdd54f616ce14c137a3ef184a0b135a24f0f307b9e8cbf0f906",
+          "development_corpus_ready": true,
+          "e0_complete": false,
+          "full_development_data_ready": false,
+          "observed_utc": "2026-11-12T07:26:04.196549+00:00",
+          "delivery_checks": {
+            "ruff_format": "passed",
+            "ruff_check": "passed",
+            "basedpyright": "0 errors, 0 warnings",
+            "independent_data_review": "CLEAN; 88000 decision field comparisons, zero mismatches",
+            "document_review": "CLEAN after candidates_measured wording correction",
+            "local_links": 389,
+            "anchors": 27,
+            "external_urls_checked": false,
+            "git_diff_check": "passed"
+          },
+          "v2_input_scope_ready": false
+        }
       }
     ],
     "development_candidate_completion": {
@@ -3371,35 +3405,21 @@
       "note": "All training patch targets prepared; validation, assembly, full Dataset read and policy replay remain pending."
     },
     "development_corpus": {
-      "report": "unity-development-data11000-verification.json",
-      "report_sha256": "5b953eeae52655f696d33010cdc3cf2645e3eafd7707046edece05f458883f1f",
+      "status": "revised_corpus_assembled_audits_running",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-development-corpus11000-v2.json",
+      "report_sha256": "0b66fddfff5a5f65f7fa2f82443abfcd010eae994096673263ab3063b543662e",
+      "corpus_sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
       "counts": {
         "train": 10000,
         "validation": 1000
       },
       "patch_counts": {
-        "train": 67105,
-        "validation": 7082
+        "train": 67436,
+        "validation": 7173
       },
       "candidate_count": 220000,
-      "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\native-pipeline-full-v3\\corpus\\corpus.json",
-      "corpus_sha256": "dca29d9336dc7bdd54f616ce14c137a3ef184a0b135a24f0f307b9e8cbf0f906",
-      "development_corpus_ready": true,
-      "e0_complete": false,
-      "full_development_data_ready": false,
-      "observed_utc": "2026-11-12T07:26:04.196549+00:00",
-      "delivery_checks": {
-        "ruff_format": "passed",
-        "ruff_check": "passed",
-        "basedpyright": "0 errors, 0 warnings",
-        "independent_data_review": "CLEAN; 88000 decision field comparisons, zero mismatches",
-        "document_review": "CLEAN after candidates_measured wording correction",
-        "local_links": 389,
-        "anchors": 27,
-        "external_urls_checked": false,
-        "git_diff_check": "passed"
-      },
-      "v2_input_scope_ready": false
+      "v2_input_scope_ready": true,
+      "full_dataset_and_policy_audits_complete": false
     },
     "latest_confirmation_milestone": {
       "status": "passed_native_capture",
@@ -3687,7 +3707,7 @@
         "train": 13,
         "validation": 5
       },
-      "v2_input_scope_ready": false,
+      "v2_input_scope_ready": true,
       "decision": "approved_replace13train5validation",
       "full_input_audit": "unity-development-v2-input-all11000.json",
       "full_input_audit_sha256": "746fcd7dae9bef240f78067941ac0d97ff74c02f7540255efa561a4ab2db27b6",
@@ -3698,8 +3718,9 @@
       "decision_utc": "2026-11-12T11:03:50.884260+00:00",
       "revision_report": "unity-development-cohort-v2.json",
       "revision_report_sha256": "d5cfe21a81c481dbab9ced656b92f1ced651c9f4179284725f2c284def3377a7",
-      "status": "collecting_approved_replacements",
-      "capture_queue_report": "unity-development-replacement18-queue-v2.json"
+      "status": "replaced18_input_scope_passed",
+      "capture_queue_report": "unity-development-replacement18-queue-v2.json",
+      "current_input_audit": "unity-development-corpus11000-v2.json"
     },
     "next": "Complete approved18 replacements, all20 targets, revised11000 corpus and full13000 pixel audit; then final data handoff."
   }
