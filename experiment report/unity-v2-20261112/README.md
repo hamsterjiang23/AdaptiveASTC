@@ -4,6 +4,8 @@
 
 ## 当前结果
 
+当前goal按用户最新要求结束于v3确认数据与系统协议准备完成，正式确认模型评价为0。后续正式独立确认作为单独授权的工作继续记录。`[verified: 用户“goal可以先结束”；progress.json goal_completion]`
+
 获批的10图确认范围修订、1＋2＋7图Unity原生补采及完整13000图复审均已完成。主名单2000张、复用1990张、备用余431张，精确RGBA与同尺寸对齐RGBA近重复的跨划分关系均为0。新协议准备入口已绑定2000张确认图与12个规则上下文，模型构造／forward、优化器、编码器、CUDA及检查点反序列化六类guard均0，正式执行开关为false。详见[修订确认集结果](confirmation-cohort-v3.md)、[数据交付](confirmation-cohort-v3-result.json)与[协议准备](forward-system-protocol-readiness-v4.json)。`[verified: confirmation-cohort-v3-result.json；forward-system-protocol-readiness-v4.json；jobs/forward-system-protocol-prepare-revised-v4/guard.json]`
 
 此前确认集身份元数据只读核验已完成。10份元数据SHA、2000张有序采集身份及13000张精确／近重复审计身份对应通过，11条训练—确认近重复关系涉及10张确认图。逐位置修订方案沿用冻结备用顺序，保留1990个原位置，应用后备用余431张；当时方案及10张补入图的原生补采／像素复审待批准，后续已按用户授权完成。模型、训练和编码调用均为0。详见[确认集范围提案](confirmation-scope-proposal-v1.md)与[结构化核验](confirmation-identity-metadata-review-v1.json)。`[verified: confirmation-identity-metadata-review-v1.json metadata_files_verified、ordered_capture_reservation_identity_matches、ordered_exact_near_audit_identity_matches、near_confirmation_training_pair_records、in_memory_proposal_checks、model_forward_calls、training_updates、actual_encoding_calls；confirmation-cohort-v3-result.json status]`
