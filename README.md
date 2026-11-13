@@ -2,7 +2,7 @@
 
 根据最终压缩质量，为每张贴图选择合适的ASTC块大小，在项目质量要求下减少纹理体积，并研究通过机器学习实现预测选参后单次压缩的生产流程。相关资料从网易雷火GDC 2023演讲及其公开字幕、视频画面开始整理。`[verified: 用户需求说明（2026-11-09）“主要目的就是通过最终压缩质量选择合适的压缩参数”“一张图压缩一次”；本文“从这里阅读”]`
 
-V2单次预测最佳原始validation1000 Top-1为86.9%，来自ResNet34 ImageNet整图头。用户选定的预测起点向后续搜系统已完成真实验证，Top-1为93.6%，平均1.627次编码，严格质量通过87.5%，相对原标签质量回退0张。系统独立确认协议已完成开发证据准备和8图原生闭环，CPU1014项、串行GPU2项检查通过。确认集范围及正式执行授权为后续待定项。配置、结果和进度见[V2执行报告](<experiment report/unity-v2-20261112/README.md>)。`[verified: experiment report/unity-v2-20261112/imagenet-resnet34-head-sampled4.json；forward-search-full1000-v1.json summary；forward-system-protocol-verification.json；progress.json next]`
+V2单次预测最佳原始validation1000 Top-1为86.9%，来自ResNet34 ImageNet整图头。用户选定的预测起点向后续搜系统已完成真实验证，Top-1为93.6%，平均1.627次编码，严格质量通过87.5%，相对原标签质量回退0张。系统独立确认协议完成开发验证后，获批的10图确认范围修订、原生补采和13000图完整复审已通过，两类跨划分像素关系均为0。修订来源的协议准备入口已绑定2000图与12个原生规则上下文，模型／训练／编码准备调用为0，正式确认执行授权为后续待定项。配置、结果和进度见[V2执行报告](<experiment report/unity-v2-20261112/README.md>)。`[verified: experiment report/unity-v2-20261112/imagenet-resnet34-head-sampled4.json；forward-search-full1000-v1.json summary；confirmation-cohort-v3-result.json；forward-system-protocol-readiness-v4.json；progress.json next]`
 
 ## 项目需求与优化目标
 

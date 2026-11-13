@@ -1,6 +1,6 @@
 {
-  "status": "confirmation_identity_metadata_review_completed_scope_approval_pending",
-  "updated_utc": "2026-11-13T08:55:11.221190+00:00",
+  "status": "revised_confirmation_data_and_protocol_ready_pending_execution_approval",
+  "updated_utc": "2026-11-13T10:53:30.017186+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,8 +10,7 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Obtain approval for the concrete ten slot-preserving confirmation replacements, native capture and full pixel re-audit",
-    "Bind approved full cohort capture/pixel evidence and obtain separate formal confirmation execution authorization"
+    "Obtain explicit authorization for one full frozen ResNet34 raw plus B1 system evaluation on approved revised confirmation2000, including predefined warmup and paired repetitions"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
   "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
@@ -130,7 +129,7 @@
   "head_refit_status": "paired_scratch_and_independent_imagenet_controls_completed",
   "head_refit_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\image-head-refit-verification.json",
   "confirmation_overlap_readiness": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-overlap-readiness.json",
-  "confirmation_overlap_decision": "pending_user_decision_on_10_primary_replacements",
+  "confirmation_overlap_decision": "approved_ten_replacements_completed_full_exact_and_near_cross_split_zero",
   "confirmation_interface_pending": [],
   "best_development_contrast_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-result.json",
   "current_training_selection_metric": "accuracy",
@@ -370,6 +369,72 @@
     "test_opened": false,
     "replacement_native_pixel_isolation_verified": false,
     "verification_sha256": "f391e85fce6c1efcfedc71e12377e3384f9257ac3e4c026aafb18cbd2c0eeede",
+    "independent_review": "CLEAN"
+  },
+  "confirmation_scope_revision": {
+    "approved_by_user": true,
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation2000-near-revision-v3.json",
+    "report_sha256": "750b16049ac14a45d4e4c0ff0b7b72adb6b54fd632a9c3f0eab23e7b5b4ac29d",
+    "replaced_images": 10,
+    "retained_images": 1990,
+    "remaining_reserves": 431,
+    "first_native_smoke_status": "passed",
+    "first_native_smoke_images": 1,
+    "capture_plan": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-near-v3-capture-plan-v4.json",
+    "model_forward_calls": 0,
+    "training_updates": 0,
+    "test_opened": false,
+    "status": "passed",
+    "data_result": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-cohort-v3-result.json",
+      "sha256": "c225515e350cd641be58d6c418a898fc965ca648eee071e01574d724d2358ef6"
+    },
+    "exact_cross_split_groups": 0,
+    "near_cross_split_pairs": 0,
+    "new_native_capture_images": 10,
+    "new_native_candidate_callbacks": 57,
+    "full_pixel_counts": {
+      "train": 10000,
+      "validation": 1000,
+      "confirmation": 2000
+    },
+    "verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-cohort-v3-verification.json",
+    "verification_sha256": "6b17c1b236aa5cc0ee568f96344d90c52d027f1e66be1e7060da30f9071cbe0e"
+  },
+  "revised_cohort_protocol": {
+    "status": "passed_revised_cohort_protocol_preparation",
+    "config": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-system-protocol-config-v4.json",
+      "sha256": "ecd275e7568316d6548c1691d4ebde8f7d76ff0ce501193c930b3c13565a9c14"
+    },
+    "readiness": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-system-protocol-readiness-v4.json",
+      "sha256": "a5d8c6f0b8a6ff2219155ff4a8fdeee4e3b07b7c3ecc436e8923c3312b058a19"
+    },
+    "guard": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\forward-system-protocol-prepare-revised-v4\\guard.json",
+      "sha256": "9e52083d511521b56618ec37d005840ccd4e77c0c30f385b5f980ab0969852fa"
+    },
+    "cohort_evidence_ready": true,
+    "formal_confirmation_execution_authorized": false,
+    "confirmation_images": 2000,
+    "native_policy_contexts": 12,
+    "bound_files": 28747,
+    "optional_absent_bindings": 24,
+    "system_validation_top1": 0.936,
+    "pure_model_validation_top1": 0.869,
+    "native_input_fingerprint": "4bf92bf4e4659afa6c5d733f92d9125af69a2ae0fb215eb3bcb0fc5bfb5abc92",
+    "registry_parent_manifest_sha256": "c1c5e2493de8fb875665c98d8faadf2936c20a4f500ad75889806938be7d4398",
+    "model_forward_calls": 0,
+    "training_updates": 0,
+    "test_opened": false,
+    "focused_cpu_tests_passed": 156,
+    "production_test_ruff": "passed",
+    "basedpyright": "passed",
+    "verification": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-cohort-v3-verification.json",
+      "sha256": "6b17c1b236aa5cc0ee568f96344d90c52d027f1e66be1e7060da30f9071cbe0e"
+    },
     "independent_review": "CLEAN"
   }
 }

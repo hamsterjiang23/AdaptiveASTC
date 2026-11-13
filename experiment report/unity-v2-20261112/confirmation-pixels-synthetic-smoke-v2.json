@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "config_sha256": "49b8d9e238d06b7120d0c8c0e4ae725179afebe92b3ddfb07a5c5ed79efcf524",
+  "sources_sha256": {
+    "reproductions/unity_search_baseline/revised_pixel_identity.py": "a6955f208d0481dfc209d90bbd58132452f30761df1edc2b331ed6fb2f9303e0",
+    "reproductions/unity_search_baseline/pixel_identity.py": "a720b8144d0b0099a8bb3f1b7193476d09da70208665b7949f4f06c8550cacaf",
+    "src/adaptive_astc/utils/artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "script/audit_unity_revised_pixels.py": "5e7f0abbd52e433af5100f1f3b9e573b0e232b0771dcab3d154e343d30bc7b30",
+    "pyproject.toml": "56cf9ef015a848712715ab882da1cb690187f607956efb9208163efde0c8ff9d",
+    "uv.lock": "6a69959600e376c0724bd9518aea52a1cbb5d59d0c7fe6444409d16db3ca7953",
+    "reproductions/unity_search_baseline/confirmation_revision_pixels.py": "cddf2457ed4480c7d860ada6f4420b0853312ab6976ac5d26083bf5293c4aff9",
+    "reproductions/unity_search_baseline/confirmation_near_revision.py": "3748591499dbb4fbe07fc4ea12aff5f1b8aa5bfdcbc6b63b810aa09fa562684d",
+    "src/adaptive_astc/data/unity_capture_input.py": "d3de1264d6a495941d00fc4824dadaaf054e71644320c43bca1d48ca1317e7fb",
+    "src/adaptive_astc/data/unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+    "src/adaptive_astc/evaluation/unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "script/audit_unity_confirmation_revision_pixels.py": "03078e42f80adcaeb0ef2fb052060b530158b9b3c49839e3ba20ad0022b0f93f"
+  },
+  "coverage": "approved_revised_confirmation_native_cohort",
+  "scope": "Exact dimensions plus RGBA8 and native input validation, near audit separate",
+  "cohort_revision_applied_before_audit": true,
+  "splits_modified": false,
+  "model_forward_calls": 0,
+  "training_updates": 0,
+  "actual_encoding_calls": 0,
+  "test_opened": false,
+  "independent_test_isolation_proven": false,
+  "counts": {
+    "train": 1,
+    "validation": 1,
+    "confirmation": 2
+  },
+  "rgba": {
+    "unique_identities": 4,
+    "duplicate_groups": 0,
+    "images_in_duplicate_groups": 0,
+    "redundant_images": 0,
+    "cross_split_groups": 0,
+    "cross_split_images": {},
+    "groups_with_different_rgba": 0,
+    "groups_with_different_choices": 0
+  },
+  "rgb_only": {
+    "unique_identities": 4,
+    "duplicate_groups": 0,
+    "images_in_duplicate_groups": 0,
+    "redundant_images": 0,
+    "cross_split_groups": 0,
+    "cross_split_images": {},
+    "groups_with_different_rgba": 0,
+    "groups_with_different_choices": 0
+  },
+  "details": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\result\\pixel-identities.json",
+  "details_sha256": "09ccaed76e24a6d54eed713ee5ec8633f7abb1aa7ee5c94ab293b50424522017",
+  "native_png_bindings": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\result\\png-bindings.json",
+  "native_png_bindings_sha256": "30094c7f4670dbc5b1bca6971919c96d66fab51af0e0b0550cc1615fdbd18aa2",
+  "inputs_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2-config.json": "49b8d9e238d06b7120d0c8c0e4ae725179afebe92b3ddfb07a5c5ed79efcf524",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\revision.json": "63830b120bacb59ec855b6640673ade961bce43b0b522d32dc2690b41e9f2876",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\primary.json": "6150c7d33640d494ae2c98fee0694f994daab26ee1ad43bb49515ee3ed1d5241",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\proposal.json": "a7d808dd89caf530f3b66d12fc3f28c722edcc22d29c27ec20f8d9a723e09689",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\capture-report.json": "b4eab27ea9f501d060aa08a324460c47349c5a48fbedeaabcf086ae19a698c37",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\captured.json": "cdf6e3eed84e3fcf767e51d61e7c99a01f00e18d76a820853ed3b718a9ba5226",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\old.json": "aee34efb2d84f07260fa2836280535ce7bc4290677d73b141924583bfef5e698",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\old-details.json": "d92c349c018e5c359b67d3050ab4183e03e0759fec29be3a6835483eab4412f6",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\added.json": "2f8e6d410fac5c2b1d838042bacc3693f40f9d59e8a8b201f8ac9efab8324e8c",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-pixels-synthetic-smoke-v2\\experiment report\\.local\\added-details.json": "f944adc5be6949448d423cc5f3a709035f63436f11d2cc8741e71f8a4457e83d"
+  },
+  "constant_rgba_images": 4,
+  "replacement_counts": {
+    "confirmation": 1
+  },
+  "native_confirmation_input_images": 2,
+  "native_confirmation_input_fingerprint": "8c71f829e8286b98cd53efb0b080c37c0179539e28863ff04fbb4d5815221638",
+  "wall_seconds": 0.038193000000319444
+}

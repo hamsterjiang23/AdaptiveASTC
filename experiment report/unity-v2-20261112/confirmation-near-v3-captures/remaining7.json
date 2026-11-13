@@ -1,0 +1,320 @@
+{
+  "status": "passed",
+  "images": 7,
+  "source_split": "confirmation",
+  "test_opened": false,
+  "training_updates": 0,
+  "native_labels_collected": true,
+  "config_sha256": "d3aff0b923573507841e2ce4c4c803db4b344d9d185f4b5f2da91b470f9ccde3",
+  "configuration_path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-near-v3-captures\\remaining7-config.json",
+  "source_files_sha256": {
+    "reproductions/unity_search_baseline/confirmation_capture.py": "c6a1639b5f29d4944f6b73172c4294a850d762728dd579cf4122bf2b4c947f89",
+    "reproductions/unity_search_baseline/confirmation.py": "a7e6551e3535baa77217a88c407adda523f0a9baafb729d171030c1423d81b0d",
+    "reproductions/unity_search_baseline/benchmark.py": "ab4f36ab64c30905b6e5ecf16abfed3056aeed1de22609e044ba2fff7d183c96",
+    "reproductions/unity_search_baseline/metadata.py": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+    "reproductions/unity_search_baseline/supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "reproductions/unity_search_baseline/collection.py": "134b9d99b5a6eedf5b16e781e0f0999f032f84943302acf7b538d492f0477dc2",
+    "reproductions/unity_search_baseline/native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+    "reproductions/unity_search_baseline/BenchmarkRunner.cs": "bfc79796114d9980a9d7a61962ccd8c4c72a6dcd90d9015c5b1955ebefdce923",
+    "reproductions/unity_search_baseline/ASTCSearchBaseline.asmdef": "3262bee6690723790b0037879ff3d60a01733f9f9e07deb44f0b9093c2807e94",
+    "reproductions/unity_search_baseline/native/capture_options.cs.txt": "c05ab61d53f2e3fd4ea1af5a9cb6d9b259563b4bb2d3f5deaacbb954246e06ad",
+    "reproductions/common/unity_reference.py": "9b597e33ccffd376ad98c2d506c3c6abe3cf14183075c9176b2a55b901d1797d",
+    "reproductions/common/encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "reproductions/common/jobs.py": "a1c6430442fe1b41d83b10ec05189ae8563d91569cf9ba05b19782efccba4177",
+    "src/adaptive_astc/utils/artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "script/capture_unity_confirmation.py": "8c63ec8f7d2222d3e89dcee24caacddbf104b08510df7d4f14fb3a953223f67a"
+  },
+  "reservation_manifest_sha256": "3b42d2210b079e1511e21d329c75529352b5ca24d2905a73bb6c4d3a5598bc18",
+  "scope": "Reserved primary pixels and original search labels only; no model evaluation",
+  "dependencies": [
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-reference-series-v2\\job.json",
+      "status": "passed",
+      "receipt_sha256": "5f3c42da104c29f6a895707a74650e5b2d41906e7f5deb4920011535a1b7274f"
+    },
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-candidate-queue-sprite-v3\\job.json",
+      "status": "passed",
+      "receipt_sha256": "4e60e10880c168983121072c85d46316407578d61d2991ffd4c1ab8113b5c76c"
+    },
+    {
+      "job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\jobs\\unity-native-pipeline-full-v3\\job.json",
+      "status": "passed",
+      "receipt_sha256": "02212e8fe425515a71dedbc127482dbf4033def5bc0a9c6fe3ccbde9bf78a43f"
+    }
+  ],
+  "dependency_wait_seconds": 0.011788699994212948,
+  "options_audit": {
+    "status": "passed",
+    "images": 7,
+    "candidate_callbacks": 30,
+    "rows": [
+      {
+        "index": 0,
+        "path": "Assets/CustomMode/ModeDemoTestMode/Scenes/Art/Effect/Materials/PVP_MLBC_AS_WHM_01.png",
+        "need_alpha": true,
+        "profile": 0,
+        "normal_pack": false,
+        "channel": 4,
+        "rgba_sha256": "6c6b79128ca49fd9e46299da50cdd018b65bd9cbf7eaa19bb9630f48129ffdf1",
+        "width": 256,
+        "height": 256,
+        "srgb_importer": true,
+        "texture_type_importer": "Default",
+        "candidates_recorded": 5,
+        "candidate_keys": [
+          [
+            "12x12",
+            "exhaustive"
+          ],
+          [
+            "12x12",
+            "fast"
+          ],
+          [
+            "12x12",
+            "fastest"
+          ],
+          [
+            "12x12",
+            "medium"
+          ],
+          [
+            "12x12",
+            "thorough"
+          ]
+        ],
+        "input_hash_ms": 58.4157,
+        "metadata_source": "actual optimized encoder callback; raw RGBA hash matches archived PNG"
+      },
+      {
+        "index": 1,
+        "path": "Assets/Art/Prefabs/Effect/UI/guangquan/ALL/NewAdd/guangquan_sanxing_S7830_add_cns/guangquan_sanxing_S7830_cns.png",
+        "need_alpha": true,
+        "profile": 0,
+        "normal_pack": false,
+        "channel": 4,
+        "rgba_sha256": "fd3ed7fe0c3f23f85bde36d5fa7c1a061d61ca27ad02f04edd9473bc5e4c35e0",
+        "width": 512,
+        "height": 512,
+        "srgb_importer": true,
+        "texture_type_importer": "Default",
+        "candidates_recorded": 1,
+        "candidate_keys": [
+          [
+            "12x12",
+            "fastest"
+          ]
+        ],
+        "input_hash_ms": 44.3679,
+        "metadata_source": "actual optimized encoder callback; raw RGBA hash matches archived PNG"
+      },
+      {
+        "index": 2,
+        "path": "Assets/UI/UITexture/Atlas_add/Atlas_ShareBackground26_add/Atlas_ShareBackground26_add.png",
+        "need_alpha": true,
+        "profile": 0,
+        "normal_pack": false,
+        "channel": 4,
+        "rgba_sha256": "cf5efb9e835bbb8189b0655e072553bf03b14fb0951b5fa8090c5134463cfc5f",
+        "width": 2048,
+        "height": 2048,
+        "srgb_importer": true,
+        "texture_type_importer": "Default",
+        "candidates_recorded": 4,
+        "candidate_keys": [
+          [
+            "12x12",
+            "fast"
+          ],
+          [
+            "12x12",
+            "fastest"
+          ],
+          [
+            "12x12",
+            "medium"
+          ],
+          [
+            "12x12",
+            "thorough"
+          ]
+        ],
+        "input_hash_ms": 2903.2817,
+        "metadata_source": "actual optimized encoder callback; raw RGBA hash matches archived PNG"
+      },
+      {
+        "index": 3,
+        "path": "Assets/RuledAssets/System_TittleGet/UI/UITexture/Atlas_add/Atlas_TittleGet_add/pic_mmrframe05.png",
+        "need_alpha": true,
+        "profile": 0,
+        "normal_pack": false,
+        "channel": 4,
+        "rgba_sha256": "37730cbf2d9c0adbf66ed77570887476c577e5d1e194156c175171cfbce82f3e",
+        "width": 224,
+        "height": 386,
+        "srgb_importer": true,
+        "texture_type_importer": "Default",
+        "candidates_recorded": 3,
+        "candidate_keys": [
+          [
+            "12x12",
+            "fast"
+          ],
+          [
+            "12x12",
+            "fastest"
+          ],
+          [
+            "12x12",
+            "medium"
+          ]
+        ],
+        "input_hash_ms": 44.7749,
+        "metadata_source": "actual optimized encoder callback; raw RGBA hash matches archived PNG"
+      },
+      {
+        "index": 4,
+        "path": "Assets/Art/Effects/media/Hero/CityAction/36_frozen/skin03/yun03.png",
+        "need_alpha": true,
+        "profile": 0,
+        "normal_pack": false,
+        "channel": 4,
+        "rgba_sha256": "f5b33b0343d582d5ecbfefc79a30083f49e26e55ac5c68b4aa51553792710a17",
+        "width": 256,
+        "height": 256,
+        "srgb_importer": true,
+        "texture_type_importer": "Default",
+        "candidates_recorded": 10,
+        "candidate_keys": [
+          [
+            "10x10",
+            "exhaustive"
+          ],
+          [
+            "10x10",
+            "fast"
+          ],
+          [
+            "10x10",
+            "fastest"
+          ],
+          [
+            "10x10",
+            "medium"
+          ],
+          [
+            "10x10",
+            "thorough"
+          ],
+          [
+            "12x12",
+            "exhaustive"
+          ],
+          [
+            "12x12",
+            "fast"
+          ],
+          [
+            "12x12",
+            "fastest"
+          ],
+          [
+            "12x12",
+            "medium"
+          ],
+          [
+            "12x12",
+            "thorough"
+          ]
+        ],
+        "input_hash_ms": 114.88090000000001,
+        "metadata_source": "actual optimized encoder callback; raw RGBA hash matches archived PNG"
+      },
+      {
+        "index": 5,
+        "path": "Assets/RuledAssets/System_Gift/UI/UITexture/Atlas_add/Atlas_GiftShow03_add/Atlas_GiftShow03_add.png",
+        "need_alpha": true,
+        "profile": 0,
+        "normal_pack": false,
+        "channel": 4,
+        "rgba_sha256": "2511b9d35486f6d771328d174dce7f82aeba1ad5b68a02bb6ce4ab003a9e7331",
+        "width": 1024,
+        "height": 1024,
+        "srgb_importer": true,
+        "texture_type_importer": "Default",
+        "candidates_recorded": 6,
+        "candidate_keys": [
+          [
+            "10x10",
+            "fastest"
+          ],
+          [
+            "12x12",
+            "exhaustive"
+          ],
+          [
+            "12x12",
+            "fast"
+          ],
+          [
+            "12x12",
+            "fastest"
+          ],
+          [
+            "12x12",
+            "medium"
+          ],
+          [
+            "12x12",
+            "thorough"
+          ]
+        ],
+        "input_hash_ms": 1085.6229,
+        "metadata_source": "actual optimized encoder callback; raw RGBA hash matches archived PNG"
+      },
+      {
+        "index": 6,
+        "path": "Assets/Editor/ShaderBaker/ShaderBakerRes/Soft.psd",
+        "need_alpha": false,
+        "profile": 0,
+        "normal_pack": false,
+        "channel": 4,
+        "rgba_sha256": "3aaff1a2de5acf886baa7479151823a9ecfcf61c761696f4d0acd21af866d512",
+        "width": 128,
+        "height": 128,
+        "srgb_importer": true,
+        "texture_type_importer": "Default",
+        "candidates_recorded": 1,
+        "candidate_keys": [
+          [
+            "12x12",
+            "fastest"
+          ]
+        ],
+        "input_hash_ms": 3.1525000000000003,
+        "metadata_source": "actual optimized encoder callback; raw RGBA hash matches archived PNG"
+      }
+    ],
+    "options_sha256": "7c1bbb78eacfecd094f130e285015fa2175b0ace21657d7693e5728309a8b7e1",
+    "audit_source_sha256": "bac40a03cce2635ff96b8171c8a95804b129f3ed465aef22a196faeb51e4b80d",
+    "capture_receipt_sha256": "6870c8076c8d27925c24e98087017cf504614fde23eba947997d5d28bcc8e23b",
+    "native_provenance": {
+      "protocol_sha256": "3f31aebbe54b4e32def0a19b848e29e88365b1be872a09e7047e26a2fd07282c",
+      "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+      "source_hashes_verified": 7,
+      "native_policy_verified": true,
+      "assembly_sha256": null
+    },
+    "run_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-near-v3-remaining7"
+  },
+  "managed_source_restoration": {
+    "status": "restored",
+    "source": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\astccustom.cs",
+    "original_sha256": "64dfbd63ce9baf390299ff70881b38fb6505bacab8d1ff42e0a8507447ef7265",
+    "instrumented_sha256": "f6578a1104eb3228687a9d7dc8bb2a6a50e55cc1a8ecc320773c9df35b559903",
+    "restored_sha256": "64dfbd63ce9baf390299ff70881b38fb6505bacab8d1ff42e0a8507447ef7265"
+  },
+  "run_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-near-v3-remaining7",
+  "wall_seconds": 171.60887870000442
+}

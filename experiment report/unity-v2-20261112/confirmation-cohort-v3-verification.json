@@ -1,0 +1,138 @@
+{
+  "status": "passed_data_and_revised_protocol_preparation",
+  "verified_utc": "2026-11-13T10:53:30.006179+00:00",
+  "data_result": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-cohort-v3-result.json",
+    "sha256": "c225515e350cd641be58d6c418a898fc965ca648eee071e01574d724d2358ef6"
+  },
+  "protocol_config": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-system-protocol-config-v4.json",
+    "sha256": "ecd275e7568316d6548c1691d4ebde8f7d76ff0ce501193c930b3c13565a9c14"
+  },
+  "protocol_readiness": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-system-protocol-readiness-v4.json",
+    "sha256": "a5d8c6f0b8a6ff2219155ff4a8fdeee4e3b07b7c3ecc436e8923c3312b058a19"
+  },
+  "protocol_prepare_job": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\forward-system-protocol-prepare-revised-v4\\job.json",
+    "sha256": "e3086002740dd4199f71e41a05070286dd0eddad90b28c3cca4169ad8860e2e2"
+  },
+  "protocol_prepare_receipt": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\forward-system-protocol-prepare-revised-v4\\receipt.json",
+    "sha256": "24730a1e19630f8f72340d6298863dfbe8ff0da295af57b56238a46dc0419676"
+  },
+  "protocol_prepare_guard": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\forward-system-protocol-prepare-revised-v4\\guard.json",
+    "sha256": "9e52083d511521b56618ec37d005840ccd4e77c0c30f385b5f980ab0969852fa"
+  },
+  "disabled_public_execute_probe": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\forward-system-protocol-v4-disabled-execution.json",
+    "sha256": "99a188d0909f4283117e27799647e7c0dc4c4404792598080a0fe137ed8283b0"
+  },
+  "data_source_archive": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\confirmation-revision-source-v3\\manifest.json",
+    "sha256": "2cccb348ea01c9b734455cdbc78f1233c2e718701bbb50bd799738c09d124115"
+  },
+  "protocol_source_archive": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\revised-forward-protocol-source-v4\\manifest.json",
+    "sha256": "f3a7b2edb120ed7d002e31a25b4f693f8eea67401c4920dc897cdcef8b85d469"
+  },
+  "focused_cpu_tests": {
+    "command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-revised-cohort-all-v4' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-revised-cohort-all-v4' tests/test_unity_confirmation_near_revision.py tests/test_unity_confirmation_revision_pixels.py tests/test_unity_revised_confirmation_evidence.py tests/test_unity_confirmation_revision.py tests/test_unity_confirmation_capture.py tests/test_unity_confirmation_series.py tests/test_unity_pixel_identity.py tests/test_unity_revised_pixel_identity.py tests/test_unity_near_duplicates.py",
+    "passed": 156,
+    "seconds": 20.33,
+    "scope": "CPU native-data/evidence regression, no model execution"
+  },
+  "production_and_test_ruff": {
+    "command": "uv run ruff check src script tests reproductions",
+    "status": "passed"
+  },
+  "whole_repository_ruff": {
+    "command": "uv run ruff check --output-format json",
+    "status": "failed_in_unrelated_concurrently_created_pdf_temporary_scripts",
+    "diagnostics": 34,
+    "paths": [
+      "tmp/pdfs/chat-export-20261113/build_chat.py",
+      "tmp/pdfs/chat-export-20261113/finish_text.py"
+    ],
+    "full_diagnostics": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\final-whole-ruff-v4.json",
+    "full_diagnostics_sha256": "5d92754cd627646ab577cce73f7fec14df1a924003708291e7de52dbc7be0023"
+  },
+  "basedpyright": {
+    "command": "uv run basedpyright",
+    "status": "passed",
+    "errors": 0,
+    "warnings": 0
+  },
+  "independent_data_review": {
+    "verdict": "CLEAN",
+    "unique_capture_exact_json_shas": 304,
+    "near_input_json_shas": 301,
+    "native_metadata_rows_reconstructed": 2010,
+    "final_unique_origin_coverage": 2000,
+    "development_rows_field_exact": 11000,
+    "full_pixel_order_exact": 13000,
+    "near_internal_pairs": {
+      "train": 6,
+      "validation": 2,
+      "confirmation": 6
+    },
+    "near_cross_split_pairs": 0,
+    "pixel_payload_reads_in_independent_review": 0
+  },
+  "independent_code_review": {
+    "verdict": "CLEAN",
+    "resolved_findings": [
+      "C16 six native flags cross-check",
+      "C17 optional absent source semantics",
+      "C18 complete policy.py source binding",
+      "C19 capture report/config/guard source cross-binding"
+    ]
+  },
+  "independent_runtime_metadata_review": {
+    "verdict": "CLEAN",
+    "bound_files": 28747,
+    "existing_digests": 28723,
+    "optional_absent": 24,
+    "payload_bindings_matched_to_frozen_metadata": 27115,
+    "execution_sources_verified": 65,
+    "protocol_archive_files_verified": 67,
+    "data_archive_files_verified": 40,
+    "native_input_fingerprint_matches_exact": true,
+    "registry_parent_and_revised_manifest_lineage_verified": true,
+    "job_guard_and_disabled_execution_receipt_verified": true,
+    "payload_or_large_file_reads_by_independent_reviewer": 0
+  },
+  "independent_document_review": {
+    "verdict": "CLEAN",
+    "resolved_findings": [
+      "C20 current system admission versus historical pure-model gate"
+    ]
+  },
+  "protocol_input_bindings": 28747,
+  "protocol_existing_file_bindings": 28723,
+  "protocol_optional_absent_bindings": 24,
+  "protocol_execution_sources": 65,
+  "protocol_archive_files": 67,
+  "data_archive_files": 40,
+  "protocol_prepare_internal_seconds": 177.75301899999613,
+  "protocol_prepare_process_seconds": 181.96343440000783,
+  "protocol_prepare_guard_counters": {
+    "model_forward_calls": 0,
+    "model_initializations": 0,
+    "optimizer_constructions": 0,
+    "encoder_constructions": 0,
+    "cuda_initialization_attempts": 0,
+    "checkpoint_deserializations": 0,
+    "confirmation_metadata_reads": 2089,
+    "confirmation_png_reads": 10108
+  },
+  "model_forward_calls": 0,
+  "training_updates": 0,
+  "test_opened": false,
+  "formal_confirmation_execution_authorized": false,
+  "formal_confirmation_model_evaluations": 0,
+  "shared_registry_parent_manifest_sha256": "c1c5e2493de8fb875665c98d8faadf2936c20a4f500ad75889806938be7d4398",
+  "native_confirmation_input_fingerprint": "4bf92bf4e4659afa6c5d733f92d9125af69a2ae0fb215eb3bcb0fc5bfb5abc92",
+  "git_diff_check": "passed"
+}

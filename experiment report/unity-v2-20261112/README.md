@@ -4,9 +4,11 @@
 
 ## 当前结果
 
-确认集身份元数据只读核验已完成。10份元数据SHA、2000张有序采集身份及13000张精确／近重复审计身份对应通过，11条训练—确认近重复关系涉及10张确认图。逐位置修订方案沿用冻结备用顺序，保留1990个原位置，应用后备用余431张；方案及10张补入图的原生补采／像素复审待批准。模型、训练和编码调用均为0。详见[确认集范围提案](confirmation-scope-proposal-v1.md)与[结构化核验](confirmation-identity-metadata-review-v1.json)。`[verified: confirmation-identity-metadata-review-v1.json metadata_files_verified、ordered_capture_reservation_identity_matches、ordered_exact_near_audit_identity_matches、near_confirmation_training_pair_records、in_memory_proposal_checks、model_forward_calls、training_updates、actual_encoding_calls]`
+获批的10图确认范围修订、1＋2＋7图Unity原生补采及完整13000图复审均已完成。主名单2000张、复用1990张、备用余431张，精确RGBA与同尺寸对齐RGBA近重复的跨划分关系均为0。新协议准备入口已绑定2000张确认图与12个规则上下文，模型构造／forward、优化器、编码器、CUDA及检查点反序列化六类guard均0，正式执行开关为false。详见[修订确认集结果](confirmation-cohort-v3.md)、[数据交付](confirmation-cohort-v3-result.json)与[协议准备](forward-system-protocol-readiness-v4.json)。`[verified: confirmation-cohort-v3-result.json；forward-system-protocol-readiness-v4.json；jobs/forward-system-protocol-prepare-revised-v4/guard.json]`
 
-系统组合独立确认协议已完成实现与开发验证。开发准备入口核验通过，新执行引擎在8张验证图／70patch上完成一次预热加三次配对重复，累计136次实际编码，四轮预测逐位一致。CPU1014项与串行GPU2项检查通过，16306份来源／输入及148份产物核验通过。确认集执行开关为false，cohort像素／采集证据处于待绑定状态。`[verified: forward-system-protocol-readiness-v1.json；forward-system-protocol-smoke8-v1.json；forward-system-protocol-verification.json]`
+此前确认集身份元数据只读核验已完成。10份元数据SHA、2000张有序采集身份及13000张精确／近重复审计身份对应通过，11条训练—确认近重复关系涉及10张确认图。逐位置修订方案沿用冻结备用顺序，保留1990个原位置，应用后备用余431张；当时方案及10张补入图的原生补采／像素复审待批准，后续已按用户授权完成。模型、训练和编码调用均为0。详见[确认集范围提案](confirmation-scope-proposal-v1.md)与[结构化核验](confirmation-identity-metadata-review-v1.json)。`[verified: confirmation-identity-metadata-review-v1.json metadata_files_verified、ordered_capture_reservation_identity_matches、ordered_exact_near_audit_identity_matches、near_confirmation_training_pair_records、in_memory_proposal_checks、model_forward_calls、training_updates、actual_encoding_calls；confirmation-cohort-v3-result.json status]`
+
+系统组合独立确认协议的首版实现与开发验证已完成。开发准备入口核验通过，新执行引擎在8张验证图／70patch上完成一次预热加三次配对重复，累计136次实际编码，四轮预测逐位一致。CPU1014项与串行GPU2项检查通过，16306份来源／输入及148份产物核验通过。随后获批的v3确认像素／采集证据已通过独立新入口绑定，正式执行开关为false。`[verified: forward-system-protocol-readiness-v1.json；forward-system-protocol-smoke8-v1.json；forward-system-protocol-verification.json；forward-system-protocol-readiness-v4.json]`
 
 用户选定的ResNet34原始预测＋预测候选索引起点向后续搜已完成真实validation1000评估。块大小Top-1为93.6%，平均1.627次实际编码，严格质量通过87.5%，相对原标签质量回退0张。一次预热和三次正式配对运行均通过预测、候选编码、解码像素、原生质量和查询顺序审计；三轮整集计时的中位数摊销到每图为续搜195.80ms、fixed8／medium 21.34ms。训练更新0，确认集文件访问0。`[verified: forward-search-full1000-v1.json status、summary、measurements；forward-search-verification.json runtime_reports]`
 
@@ -42,7 +44,7 @@
 
 已使用现有UnityEvaluationSeal以validation身份冻结选定ResNet34模型、原始零余量、0.5零通道门槛、逐图原生规则、候选索引起点及无固定预算的canonical20向后续搜。合同绑定8238份文件、1000张有序验证输入与7173patch运行形状，指纹为`218fe31a56c94b32f946121063cf8c82533074d4e53cf2eb25e5d8231e216d27`。封存与重开同一合同核验通过。`[verified: forward-search-validation-freeze.json identity、bound_files、seal_fingerprint]`
 
-此次封存forward尝试为0，模型／编码／CUDA初始化／优化器构造／确认集文件访问计数均为0。原单次预测模型验证为86.9%，系统真实验证为93.6%。用户随后批准采用系统组合作为独立确认对象，对应协议实现与开发验证已完成，后续cohort范围及正式执行授权待决定。既有封存类及封存推理的24项检查通过，冻结脚本ruff与basedpyright通过。`[verified: forward-search-validation-freeze.json seal_forward_attempts、runtime_guards、independent_confirmation_admission、validation_pure_model_accuracy、validation_system_accuracy；pytest输出24 passed in4.20s；ruff和basedpyright输出]`
+此次封存forward尝试为0，模型／编码／CUDA初始化／优化器构造／确认集文件访问计数均为0。原单次预测模型验证为86.9%，系统真实验证为93.6%。用户随后批准采用系统组合作为独立确认对象，对应协议实现与开发验证已完成，后续cohort范围修订及v3来源准备已通过，正式执行授权待决定。既有封存类及封存推理的24项检查通过，冻结脚本ruff与basedpyright通过。`[verified: forward-search-validation-freeze.json seal_forward_attempts、runtime_guards、independent_confirmation_admission、validation_pure_model_accuracy、validation_system_accuracy；pytest输出24 passed in4.20s；ruff和basedpyright输出；forward-system-protocol-readiness-v4.json cohort_evidence_ready]`
 
 ## 系统组合独立确认协议
 
@@ -60,12 +62,12 @@ uv run python script/evaluate_unity_forward_confirmation.py --config "experiment
 
 CPU检查1014通过、6跳过、2项CUDA测试排除，94.27秒；两项实际GPU feature-pool测试随后独立串行通过，3.79秒。配置同字节SHA绑定、冻结quality build的实际执行入口检查、计时／预测重放／审计失败后的完整产物保留均有回归检查，独立审查CLEAN。`[verified: forward-system-protocol-verification.json cpu_checks、cuda_checks、review]`
 
-配置当前记录confirmation_execution_authorized=false、pixel_audit=null，正式执行入口首先核验执行授权与完整cohort证据。后续工作为既有10张近重复候选的范围方案决定，以及完整cohort像素／采集来源绑定和一次独立确认授权。`[verified: forward-system-protocol-config-v1.json；forward-system-protocol-readiness-v1.json pending、formal_confirmation_ready；progress.json confirmation_overlap_decision、next]`
+首版配置记录confirmation_execution_authorized=false、pixel_audit=null。获批10图修订完成后，新配置通过`script/evaluate_unity_revised_forward_confirmation.py`绑定完整v3来源，公开准备入口通过、正式执行入口的false授权拒绝检查通过。后续为取得一次正式系统确认评价授权。`[verified: forward-system-protocol-config-v1.json；forward-system-protocol-config-v4.json；forward-system-protocol-readiness-v4.json；forward-system-protocol-v4-disabled-execution.json]`
 
 ## 数据与执行身份
 
 - 开发语料 SHA-256 为 `560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57`，包含10000／1000张、67436／7173个patch及220000组候选。启动时已重算开发语料、确认清单及总交接报告哈希。`[verified: launch-binding.json development；本轮 development／confirmation／verification sha256_verified 输出]`
-- 原数据交接保留的11对跨划分近重复问题继续列入评价边界，划分保持。`[verified: ../unity-accuracy90-20261111/unity-v2-data-inputs.json pixel_audit.cross_split_near_identity_pairs、scope]`
+- 首次数据交接保留11对跨划分近重复候选，后续经批准的10位置修订与完整复审已将检测跨划分关系清零。`[verified: ../unity-accuracy90-20261111/unity-v2-data-inputs.json pixel_audit.cross_split_near_identity_pairs、scope；confirmation-cohort-v3-result.json near_identity_pairs_cross_split]`
 - 模型使用原生随机初始化配方，每批16图、每图4patch、workers2、lr0.0003、weight decay0.05，30轮上限，1轮warmup，patience5，seed20261112。`[verified: r0-config.json；launch-binding.json recipe]`
 - 检查点及任务日志位于本机 `experiment report/.local/unity-v2-20261112/`，运行使用独立身份。公开配置、结果和来源哈希保存在本目录。`[verified: r0-config.json output、report；launch-binding.json]`
 
@@ -272,9 +274,9 @@ ImageNet头部阶段完成30轮／18,746次更新，选中epoch25，原始／同
 
 ## 确认集准入与新版证据适配
 
-完整近重复审计的11对跨划分候选均位于训练与确认之间，涉及10张确认图和11张训练图。精确RGBA跨确认／开发重复为0。已核对前10张冻结备用图的源文件、字节数及meta SHA，形成按原位置与备用顺序替换的[提案](<../.local/unity-v2-20261112/confirmation-near-replacement-proposal.json>)，当前名单修订待用户决定。提案只读取输入身份和像素审计，model forward为0。`[verified: confirmation-overlap-readiness.json overlap、unique_confirmation_images、unique_training_images、replacement_source_checks_all_passed、proposal、model_forward_calls]`
+首次完整近重复审计的11对跨划分候选均位于训练与确认之间，涉及10张确认图和11张训练图。精确RGBA跨确认／开发重复为0。当时核对前10张冻结备用图的源文件、字节数及meta SHA，形成按原位置与备用顺序替换的[提案](<../.local/unity-v2-20261112/confirmation-near-replacement-proposal.json>)，model forward为0。用户随后批准具体10行修订及补采／完整复审，当前v3的两类跨划分关系均为0。`[verified: confirmation-overlap-readiness.json overlap、unique_confirmation_images、unique_training_images、replacement_source_checks_all_passed、proposal、model_forward_calls；confirmation-scope-revision-approval-v3.json；confirmation-cohort-v3-result.json]`
 
-现有确认入口会拒绝跨确认／开发的精确或检测近重复，V2交接记录当前冻结名单的独立隔离尚未证明。新版修订像素证据与11000开发图全部匹配，旧管线的像素证据缺少18个新版资产身份。正式入口已支持批准的开发图替换和阶段训练证据，确认名单的近重复处理仍待用户决定。`[verified: confirmation_evidence.py pixel_audit、model；confirmation-v2-pixel-interface-verification.json；confirmation-stage-interface-verification.json；confirmation-overlap-readiness.json]`
+确认入口会拒绝跨确认／开发的精确或检测近重复，V2首次交接记录当时冻结名单的独立隔离尚未证明。新版修订像素证据与11000开发图全部匹配，旧管线的像素证据缺少18个新版资产身份。阶段训练和开发图替换证据适配后，新增独立v3适配已完成获批确认名单的来源绑定。`[verified: confirmation_evidence.py pixel_audit、model；confirmation-v2-pixel-interface-verification.json；confirmation-stage-interface-verification.json；forward-system-protocol-readiness-v4.json]`
 
 已修复上游任务识别对UTF-8参数与绝对脚本路径的兼容。原有相对路径及`-u`命令可用，额外执行参数会被拒绝；三份实际已完成任务的命令／receipt身份核验通过，此项核验的forward为0。相关34项CPU检查和只读审阅通过，完整相关检查为152项。`[verified: confirmation-job-interface-verification.json completed_jobs、cpu_tests、model_forward_calls；tests/test_unity_confirmation_evaluation.py test_completed_job_binding；本轮pytest“152 passed in 6.96s”]`
 
