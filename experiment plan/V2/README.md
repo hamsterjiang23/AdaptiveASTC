@@ -12,6 +12,8 @@ V2 初版记录于 2026-11-12，当时状态为待执行。开发、选模与验
 
 ## 目标与验收
 
+确认集身份元数据只读核验已完成，10份来源SHA、2000张名单／采集顺序及13000张像素审计身份对应通过。现有11条训练—确认近重复关系涉及10张确认图，逐位置修订方案使用前10张冻结备用，保留1990个位置，应用后备用余431张。具体[范围提案](<../../experiment report/unity-v2-20261112/confirmation-scope-proposal-v1.md>)及原生补采／完整像素复审待用户批准。该核验模型／训练／编码次数均为0。`[verified: experiment report/unity-v2-20261112/confirmation-identity-metadata-review-v1.json metadata_files_verified、ordered_capture_reservation_identity_matches、ordered_exact_near_audit_identity_matches、in_memory_proposal_checks、model_forward_calls、training_updates、actual_encoding_calls]`
+
 - **主验收**：独立确认集 2000 张上，块大小 Top-1≥90%，对照同次原搜索的选中配置。`[verified: unity-accuracy90 README“主验收保持…独立测试块大小Top-1≥90%”]`
 - **开发准入**：同一个选中权重在 validation1000 上块大小 Top-1≥90%，且 10000／1000／2000 的完整像素审计和 2000 张确认采集都通过，才封存模型并打开确认集。`[verified: unity-confirmation-evaluation.md“准入与数据边界”]`
 - **同时报告，不设门槛**：块大小＋preset 完整匹配；实际解码后的严格质量通过率；质量回退，即原标签严格合格而模型选择不合格的图数；错误方向（选大／选小）；相对固定 8×8／medium 和原搜索标签的 payload；预处理、推理、决策和最终编码耗时。质量约束不进入验收，preset 只报告完整配置匹配率，均由用户 2026-11-12 确认。`[verified: unity-confirmation-evaluation.md“指标与成本”；unity-deployment.md fixed8 路径；用户本轮选择“只看 Top-1≥90%，质量和字节全部报告但不设门槛”“只报告块大小＋preset 完整匹配率，不设门槛”] [opinion: 指标定义]`

@@ -4,6 +4,8 @@
 
 ## 当前结果
 
+确认集身份元数据只读核验已完成。10份元数据SHA、2000张有序采集身份及13000张精确／近重复审计身份对应通过，11条训练—确认近重复关系涉及10张确认图。逐位置修订方案沿用冻结备用顺序，保留1990个原位置，应用后备用余431张；方案及10张补入图的原生补采／像素复审待批准。模型、训练和编码调用均为0。详见[确认集范围提案](confirmation-scope-proposal-v1.md)与[结构化核验](confirmation-identity-metadata-review-v1.json)。`[verified: confirmation-identity-metadata-review-v1.json metadata_files_verified、ordered_capture_reservation_identity_matches、ordered_exact_near_audit_identity_matches、near_confirmation_training_pair_records、in_memory_proposal_checks、model_forward_calls、training_updates、actual_encoding_calls]`
+
 系统组合独立确认协议已完成实现与开发验证。开发准备入口核验通过，新执行引擎在8张验证图／70patch上完成一次预热加三次配对重复，累计136次实际编码，四轮预测逐位一致。CPU1014项与串行GPU2项检查通过，16306份来源／输入及148份产物核验通过。确认集执行开关为false，cohort像素／采集证据处于待绑定状态。`[verified: forward-system-protocol-readiness-v1.json；forward-system-protocol-smoke8-v1.json；forward-system-protocol-verification.json]`
 
 用户选定的ResNet34原始预测＋预测候选索引起点向后续搜已完成真实validation1000评估。块大小Top-1为93.6%，平均1.627次实际编码，严格质量通过87.5%，相对原标签质量回退0张。一次预热和三次正式配对运行均通过预测、候选编码、解码像素、原生质量和查询顺序审计；三轮整集计时的中位数摊销到每图为续搜195.80ms、fixed8／medium 21.34ms。训练更新0，确认集文件访问0。`[verified: forward-search-full1000-v1.json status、summary、measurements；forward-search-verification.json runtime_reports]`
