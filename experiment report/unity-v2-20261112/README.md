@@ -34,6 +34,12 @@
 
 先期8图编码pilot保留完整1000图新推理形状，完整进程168.08秒。pilot与全量合计执行6次完整验证预测、10576次实际编码，包含预热与fixed8配对；训练更新0，确认集访问0。9436次输入／源码SHA绑定检查、8050份输出产物SHA检查，以及1000份QA target的后置SHA复核全部通过。运行前Dataset逐项核验target SHA，后置verification补全了运行报告inputs_sha256中省略的target路径清单。`[verified: forward-search-smoke8-v1.json；forward-search-verification.json hash_verification、qa_target_source_evidence、encoding_calls_including_pilot_and_warmups、fresh_full1000_prediction_passes_including_pilot_and_warmups、runtime_reports]`
 
+## 开发系统冻结
+
+已使用现有UnityEvaluationSeal以validation身份冻结选定ResNet34模型、原始零余量、0.5零通道门槛、逐图原生规则、候选索引起点及无固定预算的canonical20向后续搜。合同绑定8238份文件、1000张有序验证输入与7173patch运行形状，指纹为`218fe31a56c94b32f946121063cf8c82533074d4e53cf2eb25e5d8231e216d27`。封存与重开同一合同核验通过。`[verified: forward-search-validation-freeze.json identity、bound_files、seal_fingerprint]`
+
+此次封存forward尝试为0，模型／编码／CUDA初始化／优化器构造／确认集文件访问计数均为0。独立确认的评估对象及准入协议处于待决定状态，原单次预测模型准入证据为86.9%，系统真实验证为93.6%。既有封存类及封存推理的24项检查通过，冻结脚本ruff与basedpyright通过。`[verified: forward-search-validation-freeze.json seal_forward_attempts、runtime_guards、independent_confirmation_admission、validation_pure_model_accuracy、validation_system_accuracy；pytest输出24 passed in4.20s；ruff和basedpyright输出]`
+
 ## 数据与执行身份
 
 - 开发语料 SHA-256 为 `560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57`，包含10000／1000张、67436／7173个patch及220000组候选。启动时已重算开发语料、确认清单及总交接报告哈希。`[verified: launch-binding.json development；本轮 development／confirmation／verification sha256_verified 输出]`

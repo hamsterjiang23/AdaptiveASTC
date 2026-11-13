@@ -516,3 +516,10 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 - 完整1000图一次预热加三次正式配对已完成，每轮1627次实际续搜编码，Top-1为93.6%、严格通过87.5%、相对质量回退0；模型预测、所有查询与最终产物均匹配冻结归档，模型参数和buffer保持。三轮续搜中位195.795秒，fixed8为21.335秒，评估内部wall1867.739秒，完整进程1872.118秒。`[verified: forward-search-full1000-v1.json status、summary、measurements、wall_seconds；forward-search-verification.json runtime_reports.full.job.wall_seconds]`
 - 审核发现新报告扁平inputs_sha256未列出1000个QA target路径。UnityPatchDataset构造时已在读取target前逐项验证SHA；verification另行补齐1000份target的后置SHA复核和完整映射，保留已完成运行的源码、配置与报告身份。`[verified: src/adaptive_astc/data/unity_patch_dataset.py L83–89；forward-search-verification.json qa_target_source_evidence]`
 - 真实结果按预测起点加实际续搜系统记录，原单次预测权重仍为86.9%。后续确认协议和确认集授权保持待决定，确认集文件未访问。`[verified: forward-search-full1000-v1.json summary；imagenet-resnet34-head-sampled4.json best_validation_accuracy；progress.json best_raw_validation_accuracy、next；forward-search-verification.json runtime_reports]`
+
+### 2026-11-13 validation系统合同冻结
+
+- 复用UnityEvaluationSeal，以validation身份冻结选定ResNet34原始B1系统、1000张输入和逐图policy表、0余量／0.5零通道门槛及8238文件；执行acquire与verify，forward尝试0。封存及重开同合同核验通过，全部五类运行guard计数0。`[verified: forward-search-validation-freeze.json identity、seal_fingerprint、seal_forward_attempts、runtime_guards]`
+- 冻结注册表使用新的validation专用身份。当前独立确认入口要求单次预测模型验证≥90%，该模型86.9%；本轮实测系统93.6%，独立确认的评估对象与准入协议待用户决定。合同split字段为validation，确认集文件访问计数0。`[verified: confirmation_evidence.py model、_model；imagenet-resnet34-head-evidence.json final_model_admission；forward-search-validation-freeze.json independent_confirmation_authorized、independent_confirmation_admission]`
+- 既有封存类及封存推理24项检查通过4.20秒，冻结脚本ruff／basedpyright通过。当前公开推送授权问题仍待答复。`[verified: pytest、ruff、basedpyright输出；progress.json external_push]`
+- 独立只读复核通过实际seal、1000输入与规则表指纹及8238文件SHA，封存attempt为0，复核五类guard均0，结论CLEAN。`[verified: review_v2_diagnostics最终复核输出；progress.json validation_system_freeze.verification]`

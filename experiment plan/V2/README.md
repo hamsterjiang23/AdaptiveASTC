@@ -6,7 +6,7 @@ V2 初版记录于 2026-11-12，当时状态为待执行。开发、选模与验
 
 当前V2 goal已启动，完整原生基线、权重0.03、仅均值池化及ImageNet初始化对照、冻结预测归因和验证余量拟合已完成。当前随机初始化参照原始／同集拟合Top-1为81.3%／81.5%，ImageNet加整图头再训练为86.3%／86.7%；EMA、BN及两项随机初始化头部再训练对照已完成，PSNR两阶段训练及重载已完成，原始／同集拟合Top-1为76.4%／77.1%。资产族限额与法线重复对照已完成，原始／同集拟合Top-1分别为78.0%／79.0%和79.2%／79.8%。ResNet-34随机初始化容量对照完成30轮，原始／同集拟合Top-1为79.2%／79.4%，所选权重近阈值RMSE为2.7386dB，完整验证输入的推理成本已测，ResNet-18／34批量摊销18.31／18.88ms每图；ResNet-34 ImageNet独立初始化对照已完成30轮和重载，原始／同集拟合Top-1为86.2%／86.8%，同权重近阈值RMSE1.6128dB，sampled4整图头单项对照已完成30轮，原始／同集拟合Top-1为86.9%／87.1%，所选权重近阈值RMSE1.6135dB；ResNet-50随机初始化完整30轮完成，原始／同集拟合Top-1为80.5%／81.1%、同权重近阈值RMSE2.6311dB，重载通过；同配方ImageNet IMAGENET1K_V1独立初始化对照已完成30轮，原始／同集拟合Top-1为85.6%／85.9%、近阈值RMSE1.6411dB；其sampled4整图头对照已完成30轮，原始／同集拟合Top-1为86.0%／86.3%、近阈值RMSE1.6389dB；同架构的IMAGENET1K_V2权重版本对照已完成30轮及原生重载，原始／同集拟合Top-1均为85.4%，所选权重近阈值RMSE1.9043dB，sampled4整图头单项对照已完成30轮及重载，原始／同集拟合Top-1为85.3%／85.5%、同权重近阈值RMSE1.8845dB。确认集10张近重复候选的名单修订待决定。结果与活动状态见[执行报告](<../../experiment report/unity-v2-20261112/README.md>)；计划初版源码哈希和归档位置见[执行绑定](<../../experiment report/unity-v2-20261112/plan-execution-binding.json>)。`[verified: 用户“查看V2版本的实验之后，创建一个goal开始实验”；experiment report/unity-v2-20261112/comparison.json、progress.json]`
 
-核心做法：对每张图预测 20 个候选在 Unity 口径下的质量，交给原规则 `UnitySearchPolicy` 选出块大小和 preset，最后只编码一次。`[opinion]`
+基础模型路径对每张图预测20个候选在Unity口径下的质量，交给原规则`UnitySearchPolicy`选出块大小和preset并完成最终编码。用户选定的系统实测主线从预测选中的具体候选起点沿canonical20向后实测，由实际原生质量决定停止与回退。该系统已完成validation1000真实评估和validation身份的开发冻结。`[verified: 用户选择预测起点向后续搜；experiment report/unity-v2-20261112/forward-search-full1000-v1.json；forward-search-validation-freeze.json identity.decision、status]`
 
 2026-11-13用户授权系统变体离线评估，3模型、原始／既有校准两口径、39变体的234组validation1000重放已完成。ResNet34原始预测的预测preset双向探测K=2为94.0%／平均1.547次，向后续搜为93.6%／平均1.627次且本验证集相对原标签回退0张；所有模型／训练／实际编码／确认集访问计数为0。详见[系统变体](<../../experiment report/unity-v2-20261112/system-variants-result.json>)及[核验](<../../experiment report/unity-v2-20261112/system-variants-verification.json>)。`[verified: 用户本次系统变体授权；system-variants-result.json；system-variants-verification.json]`
 
@@ -116,7 +116,9 @@ V2 数据采集与完整性验收已完成：训练10000张、验证1000张、�
 
 以下事项按最新执行状态记录。系统变体离线评估已完成。`[verified: system-variants-verification.json status]`
 
-1. **初始化**：维持随机初始化为主线；如果 E4 中 ImageNet 预训练在 validation 上明显更好，是否允许改为主线。`[opinion]`
+选定的预测起点向后续搜系统已用UnityEvaluationSeal的validation身份冻结模型、输入、规则、运行参数及8238份来源文件。封存forward尝试为0，确认集文件访问为0。正式独立确认的评估对象与准入协议仍待决定。`[verified: experiment report/unity-v2-20261112/forward-search-validation-freeze.json status、identity、bound_files、seal_forward_attempts、runtime_guards、independent_confirmation_admission]`
+
+1. **初始化**：随机初始化模型作为参照，系统实测主线按用户选择采用ResNet34 ImageNet整图头原始预测。独立确认的系统协议待决定。`[verified: 用户选择预测起点向后续搜；experiment report/unity-v2-20261112/progress.json runtime_mainline；forward-search-validation-freeze.json independent_confirmation_admission]`
 2. **系统变体**：用户已授权在validation1000上离线评估法线原搜索、预测起点续搜、双向探测及其组合，234组重放完成。最少平均编码达到90%的方案为ResNet18预训练整图头原始预测＋预测preset双向K=2，92.6%／平均1.543次；完整参数、质量与成本按系统变体单列。`[verified: 用户2026-11-13本次范围；system-variants-result.json minimum_encoding_solutions_at90；system-variants-verification.json]`
 3. **确认失败后的处理**：确认集只能使用一次。完成本次V2范围修订后剩余441张备用，后续只用于身份或像素重复替换。E6 未达标时，是否另外预留新的独立确认集。`[verified: unity-confirmation-cohort.md；unity-confirmation2000-v2.json reserve_images] [opinion]`
 

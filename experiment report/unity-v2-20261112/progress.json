@@ -1,6 +1,6 @@
 {
-  "status": "forward_search_runtime_completed",
-  "updated_utc": "2026-11-13T05:22:52.493288+00:00",
+  "status": "validation_system_frozen_decisions_pending",
+  "updated_utc": "2026-11-13T05:41:27.930311+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,8 +10,8 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Keep confirmation2000 sealed",
-    "Review measured forward-search runtime and decide the subsequent independent-confirmation protocol and scope"
+    "Independent-confirmation system protocol requires a user decision, confirmation2000 remains sealed",
+    "Public push authorization request remains pending"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
   "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
@@ -269,5 +269,28 @@
     "verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-search-verification.json"
   },
   "system_validation90_achieved": true,
-  "best_system_validation_accuracy": 0.936
+  "best_system_validation_accuracy": 0.936,
+  "validation_system_freeze": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-search-validation-freeze.json",
+    "report_sha256": "6fb3e5cda23ea5b510adf87e2adeaf4fc059fbf9e7553d156fe584ce2cd4d783",
+    "status": "passed_validation_only_freeze",
+    "split": "validation",
+    "seal_fingerprint": "218fe31a56c94b32f946121063cf8c82533074d4e53cf2eb25e5d8231e216d27",
+    "bound_files": 8238,
+    "seal_forward_attempts": 0,
+    "model_forward_calls": 0,
+    "training_updates": 0,
+    "actual_encoding_calls": 0,
+    "test_opened": false,
+    "verification": {
+      "pytest_command": "uv run pytest -q --tb=short --basetemp 'experiment report/.local/unity-v2-20261112/pytest-validation-freeze-v1' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-validation-freeze-v1' tests/test_unity_evaluation_seal.py tests/test_unity_sealed_inference.py",
+      "pytest_passed": 24,
+      "pytest_seconds": 4.2,
+      "ruff": "passed",
+      "basedpyright": "0 errors, 0 warnings",
+      "independent_review": "CLEAN",
+      "independent_bound_file_hashes_verified": 8238,
+      "actual_seal_attempts": 0
+    }
+  }
 }
