@@ -123,6 +123,8 @@
 | ResNet-34 ImageNet初始化 | 86.2% | 1.6128dB | 86.8%。`[verified: comparison.json results.imagenet_resnet34_full30]` |
 | ResNet-34 ImageNet整图头再训练 | 86.9% | 1.6135dB | 87.1%。`[verified: comparison.json results.imagenet_resnet34_head_sampled4]` |
 | ResNet-50随机初始化 | 80.5% | 2.6311dB | 81.1%。`[verified: comparison.json results.mean_resnet50_full30]` |
+| ResNet-50 ImageNet初始化 | 85.6% | 1.6411dB | 85.9%。`[verified: comparison.json results.imagenet_resnet50_full30]` |
+| ResNet-50 ImageNet整图头再训练 | 86.0% | 1.6389dB | 86.3%。`[verified: comparison.json results.imagenet_resnet50_head_sampled4]` |
 
 前三组完成时，仅均值池化作为初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
 
@@ -293,3 +295,11 @@ ResNet-50随机初始化完整对照完成30轮、18,740次更新及10次AMP跳�
 同1000图／7173patch的实际推理数组与选参完全重放，批量摊销19.1192ms／图。原始Top-1低于81.3%的随机初始化参照，本次负结果保留。冻结预测分别替换真实通道MSE、MS-SSIM和角度得到88.8%、89.0%、82.6%，全实测指标重放100%。`[verified: inference-cost-r50-full1000.json；mean-resnet50-full30-result.json attribution_accuracy；comparison.json reference_model、results.mean_full30]`
 
 独立初始化对照显式使用官方ResNet50_Weights.IMAGENET1K_V1，102,530,333字节，SHA256为`0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a`。真实RGB首卷积和深层权重迁移、Alpha／mask置零、六个共同头张量及CPU RNG配对通过，CUDA预检4更新、0跳步、重载通过，随后启动同配方完整30轮。主线初始化晋级仍待用户决定。`[verified: imagenet-resnet50-weights.json；imagenet-resnet50-design.json；imagenet-resnet50-smoke.json；progress.json active_job]`
+
+ImageNet IMAGENET1K_V1初始化的ResNet-50完成30轮、18,741更新与9次AMP跳步，选中epoch25／raw，原始／同验证集拟合Top-1为85.6%／85.9%，所选权重近阈值RMSE1.6411dB。严格质量68.1%、质量回退196张、payload31,248,448字节，训练器2974.38秒，原生重载通过。22份血缘通过只读核验，正式准入以低于90%拒绝、forward为0。`[verified: imagenet-resnet50-full30-result.json；imagenet-resnet50-full30-verification.json；imagenet-resnet50-evidence.json]`
+
+同1000图／7173patch批量摊销19.3270ms／图，实际PNG身份／顺序、预测数组与选参复核通过。冻结预测分别替换真实通道MSE、MS-SSIM和角度，Top-1为92.8%、91.2%、87.0%，全实测指标100%。287,980参数的整图头32图CUDA预检复现初始1000图85.6%，完成4更新、冻结及重载，完整30轮头部对照已启动。`[verified: inference-cost-imagenet-r50-full1000.json；imagenet-resnet50-full30-result.json attribution_accuracy；imagenet-resnet50-head-design.json]`
+
+ResNet-50 IMAGENET1K_V1整图头完成30轮、18,747更新及3次AMP跳步，选中epoch7／image_head_refit，原始／同验证集拟合Top-1为86.0%／86.3%，所选近阈值RMSE1.6389dB。严格质量68.7%、质量回退190张、payload31,441,648字节，头部训练器367.67秒，两阶段合计3342.04秒。287,980参数参与训练，非头部状态与重载核验通过，39份血缘通过只读核验，正式90%准入拒绝，forward为0。`[verified: imagenet-resnet50-head-sampled4-result.json；imagenet-resnet50-head-evidence.json；imagenet-resnet50-head-verification.json]`
+
+同1000图／7173patch推理数组及选参精确重放，批量摊销19.0296ms／图。下一初始化版本对照仅将权重来源从IMAGENET1K_V1切换为官方IMAGENET1K_V2，同模型、数据及训练配置的四项差异为权重路径／SHA和输出位置。实际CPU权重迁移、六份共同头及后续RNG配对通过，32图CUDA预检4更新、0跳步、重载通过，同配方完整30轮已启动。`[verified: inference-cost-imagenet-r50-head-full1000.json；imagenet1k-v2-resnet50-design.json；imagenet1k-v2-resnet50-smoke.json；opinion: 权重版本对照选择]`

@@ -166,3 +166,10 @@ Unity V2原生图像采样预检已完成，关闭模式／资产族cap2／法�
 | 随机初始化完整训练 | 10000／1000图，30轮 | 训练器2974.96s，18,740更新、10跳步，峰值张量显存3,749,087,232字节。`[verified: experiment report/unity-v2-20261112/mean-resnet50-full30-result.json；mean-resnet50-full30-verification.json resource_observation]` |
 | 随机初始化验证推理 | 1000图／7173patch，1预热3测量 | 批量摊销19.1192ms／图，patch forward／transfer摊销5.5967ms／图。`[verified: experiment report/unity-v2-20261112/inference-cost-r50-full1000.json amortized_preprocess_inference_decision_seconds_per_image、amortized_patch_forward_and_transfer_seconds_per_image]` |
 | ImageNet初始化预检 | 32／16图，2轮4更新 | 训练器12.97s，0跳步，峰值张量显存3,749,087,232字节，重载通过。`[verified: experiment report/unity-v2-20261112/imagenet-resnet50-smoke.json]` |
+
+| Unity V2 ImageNet R50新增任务 | 实测范围 | 观测成本 |
+|---|---|---|
+| IMAGENET1K_V1完整训练 | 10000／1000图，30轮 | 训练器2974.38s，18,741更新、9跳步。`[verified: experiment report/unity-v2-20261112/imagenet-resnet50-full30-result.json]` |
+| IMAGENET1K_V1整图头 | 10000／1000图，30轮 | 训练器367.67s，两阶段合计3342.04s，18,747更新、3跳步。`[verified: experiment report/unity-v2-20261112/imagenet-resnet50-head-sampled4-result.json]` |
+| IMAGENET1K_V1整图头推理 | 1000图／7173patch，1预热3测量 | 批量摊销19.0296ms／图。`[verified: experiment report/unity-v2-20261112/inference-cost-imagenet-r50-head-full1000.json amortized_preprocess_inference_decision_seconds_per_image]` |
+| IMAGENET1K_V2预检 | 32／16图，2轮4更新 | 训练器12.56s，0跳步，峰值张量显存3,749,087,232字节，重载通过。`[verified: experiment report/unity-v2-20261112/imagenet1k-v2-resnet50-smoke.json]` |

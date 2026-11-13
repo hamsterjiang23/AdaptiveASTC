@@ -4,7 +4,7 @@ V2 初版记录于 2026-11-12，当时状态为待执行。开发、选模与验
 
 [V1](../V1/README.md) 的历史方法与实测结果保留，执行状态按用户最新指示更新。V2 复用 V1 执行期间完成的 Unity 原生组件，包括采集、补测、Dataset、`UnityQualityRegressor`、训练器、规则重放和确认集入口，不复用 GDC 数据、权重或结果。用户最初选择只指定 V2；随后于 2026-11-12 明确数据 goal 在完成采集后结束，后续执行 V2。当时只继续[数据交接](<../../experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)，V1 正式训练自动启动已取消；V2 的 R0 复用保留的配方，以新的实验身份启动。`[verified: 用户先前“先不切换，只是指定”及后续“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json training_auto_start]`
 
-当前V2 goal已启动，完整原生基线、权重0.03、仅均值池化及ImageNet初始化对照、冻结预测归因和验证余量拟合已完成。当前随机初始化参照原始／同集拟合Top-1为81.3%／81.5%，ImageNet加整图头再训练为86.3%／86.7%，主线晋级等待用户决定；EMA、BN及两项随机初始化头部再训练对照已完成，PSNR两阶段训练及重载已完成，原始／同集拟合Top-1为76.4%／77.1%。资产族限额与法线重复对照已完成，原始／同集拟合Top-1分别为78.0%／79.0%和79.2%／79.8%。ResNet-34随机初始化容量对照完成30轮，原始／同集拟合Top-1为79.2%／79.4%，所选权重近阈值RMSE为2.7386dB，完整验证输入的推理成本已测，ResNet-18／34批量摊销18.31／18.88ms每图；ResNet-34 ImageNet独立初始化对照已完成30轮和重载，原始／同集拟合Top-1为86.2%／86.8%，同权重近阈值RMSE1.6128dB，sampled4整图头单项对照已完成30轮，原始／同集拟合Top-1为86.9%／87.1%，所选权重近阈值RMSE1.6135dB；ResNet-50随机初始化完整30轮完成，原始／同集拟合Top-1为80.5%／81.1%、同权重近阈值RMSE2.6311dB，重载通过；同配方ImageNet IMAGENET1K_V1独立初始化对照通过CUDA预检后已启动30轮。确认集10张近重复候选的名单修订待决定。结果与活动状态见[执行报告](<../../experiment report/unity-v2-20261112/README.md>)；计划初版源码哈希和归档位置见[执行绑定](<../../experiment report/unity-v2-20261112/plan-execution-binding.json>)。`[verified: 用户“查看V2版本的实验之后，创建一个goal开始实验”；experiment report/unity-v2-20261112/comparison.json、progress.json]`
+当前V2 goal已启动，完整原生基线、权重0.03、仅均值池化及ImageNet初始化对照、冻结预测归因和验证余量拟合已完成。当前随机初始化参照原始／同集拟合Top-1为81.3%／81.5%，ImageNet加整图头再训练为86.3%／86.7%，主线晋级等待用户决定；EMA、BN及两项随机初始化头部再训练对照已完成，PSNR两阶段训练及重载已完成，原始／同集拟合Top-1为76.4%／77.1%。资产族限额与法线重复对照已完成，原始／同集拟合Top-1分别为78.0%／79.0%和79.2%／79.8%。ResNet-34随机初始化容量对照完成30轮，原始／同集拟合Top-1为79.2%／79.4%，所选权重近阈值RMSE为2.7386dB，完整验证输入的推理成本已测，ResNet-18／34批量摊销18.31／18.88ms每图；ResNet-34 ImageNet独立初始化对照已完成30轮和重载，原始／同集拟合Top-1为86.2%／86.8%，同权重近阈值RMSE1.6128dB，sampled4整图头单项对照已完成30轮，原始／同集拟合Top-1为86.9%／87.1%，所选权重近阈值RMSE1.6135dB；ResNet-50随机初始化完整30轮完成，原始／同集拟合Top-1为80.5%／81.1%、同权重近阈值RMSE2.6311dB，重载通过；同配方ImageNet IMAGENET1K_V1独立初始化对照已完成30轮，原始／同集拟合Top-1为85.6%／85.9%、近阈值RMSE1.6411dB；其sampled4整图头对照已完成30轮，原始／同集拟合Top-1为86.0%／86.3%、近阈值RMSE1.6389dB；同架构的IMAGENET1K_V2权重版本对照已通过CPU迁移及CUDA预检，完整30轮已启动。确认集10张近重复候选的名单修订待决定。结果与活动状态见[执行报告](<../../experiment report/unity-v2-20261112/README.md>)；计划初版源码哈希和归档位置见[执行绑定](<../../experiment report/unity-v2-20261112/plan-execution-binding.json>)。`[verified: 用户“查看V2版本的实验之后，创建一个goal开始实验”；experiment report/unity-v2-20261112/comparison.json、progress.json]`
 
 核心做法：对每张图预测 20 个候选在 Unity 口径下的质量，交给原规则 `UnitySearchPolicy` 选出块大小和 preset，最后只编码一次。`[opinion]`
 
@@ -120,7 +120,7 @@ V2 数据采集与完整性验收已完成：训练10000张、验证1000张、�
 
 - 训练和推理使用 CUDA，GPU 任务与现有队列串行。`[verified: AGENTS.md CUDA 与串行调度条目]`
 - 活动任务绑定的源码不热改；需要修订时使用新的实验身份，必要时先处理对应任务并保留原记录。`[verified: AGENTS.md“活动期间保持配置绑定的14个源码文件不变”]`
-- 先小样本、再全量；输出和报告不可覆盖，失败保留。进度写入 [progress.json](<../../experiment report/unity-accuracy90-20261111/progress.json>)，阶段结果同步仓库。`[verified: AGENTS.md 实现与实验条目]`
+- 先小样本、再全量；输出和报告不可覆盖，失败保留。进度写入 [progress.json](<../../experiment report/unity-v2-20261112/progress.json>)，阶段结果同步仓库。`[verified: AGENTS.md 实现与实验条目]`
 
 ## 限制与待核实
 

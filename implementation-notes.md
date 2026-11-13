@@ -466,3 +466,7 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 - ResNet-50采用2048维Bottleneck编码器和配套FiLM／预测头，三处特征缓冲区统一由channel_head.in_features获取，均值模型24,003,068参数。旧18／34四组初始化状态和RNG、实际旧权重CPU恢复、旧18CUDA训练及旧34完整1000图CUDA预测重放均精确一致。新50模型4更新／重载及实际16图流式CUDA预检通过，完整30轮已启动。`[verified: resnet50-design.json；resnet50-legacy-cpu-verification.json；resnet50-verification.json；opinion: 容量实现选择]`
 
 - ResNet-50随机初始化30轮完成，epoch26／raw为80.5%、近阈值RMSE2.6311dB，同验证拟合81.1%，原生重载通过，负结果保留。全1000图预测重放和22份只读模型血缘通过，正式90%准入拒绝。下一独立初始化显式选择官方IMAGENET1K_V1，实际CPU迁移及CUDA4更新预检通过，同配方完整训练已启动。`[verified: mean-resnet50-full30-result.json；mean-resnet50-full30-verification.json；imagenet-resnet50-design.json；opinion: 初始化版本选择]`
+
+- ResNet-50 ImageNet IMAGENET1K_V1完整30轮完成，epoch25／raw为85.6%、近阈值RMSE1.6411dB，同验证拟合85.9%，原生重载通过。同1000图推理重放、22份模型血缘通过，正式90%准入拒绝。2048维整图头CUDA预检完成4更新、初始1000图复现、冻结及重载后启动完整对照。另将V2计划的进度链接从旧数据采集目录修正到当前V2实验目录。`[verified: imagenet-resnet50-full30-result.json；imagenet-resnet50-head-design.json；experiment plan/V2/README.md 运行约束]`
+
+- ResNet-50 ImageNet V1整图头30轮完成，epoch7／image_head_refit为86.0%、近阈值RMSE1.6389dB，同验证拟合86.3%，冻结与重载通过。1000图重放及39份血缘通过，正式90%准入拒绝。下一同架构权重版本对照选择官方IMAGENET1K_V2，四项配置差异为权重路径／SHA和输出位置，实际CPU迁移、六个共同头／RNG配对及CUDA4更新预检通过。`[verified: imagenet-resnet50-head-sampled4-result.json；imagenet-resnet50-head-evidence.json；imagenet1k-v2-resnet50-design.json；opinion: 下一权重版本选择]`

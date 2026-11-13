@@ -1,0 +1,119 @@
+{
+  "status": "completed",
+  "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet50-full30.json",
+  "training_report_sha256": "ad651d5c06e30fa2f6fc1dc95f7c91933a3f012d49fb3a6f9e27b47653293bb3",
+  "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet50-full30-attribution.json",
+  "attribution_report_sha256": "4141f9c34132a45a7f2f5afe9e6ccfea27b77eb63019c7c4fa5116a370b94856",
+  "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet50-full30-calibration.json",
+  "calibration_report_sha256": "8e43a8cc68df0d58cda81f146eac13ad091df9801befd91ba5a06e00ae2100c2",
+  "epochs": 30,
+  "updates": 18741,
+  "optimizer_attempts": 18750,
+  "amp_skips": 9,
+  "selected_checkpoint_epoch": 25,
+  "selected_variant": "raw",
+  "selected_checkpoint_metrics": {
+    "count": 1000,
+    "accuracy": 0.856,
+    "balanced_accuracy": 0.7661322086251316,
+    "full_choice_accuracy": 0.596,
+    "confusion_matrix": [
+      [
+        96,
+        20,
+        2,
+        2
+      ],
+      [
+        20,
+        98,
+        24,
+        1
+      ],
+      [
+        2,
+        20,
+        85,
+        31
+      ],
+      [
+        1,
+        1,
+        20,
+        577
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 120,
+        "recall": 0.8
+      },
+      "8x8": {
+        "support": 143,
+        "recall": 0.6853146853146853
+      },
+      "10x10": {
+        "support": 138,
+        "recall": 0.6159420289855072
+      },
+      "12x12": {
+        "support": 599,
+        "recall": 0.9632721202003339
+      }
+    },
+    "actual_quality_pass_rate": 0.681,
+    "no_strict_feasible_images": 34,
+    "color_near_threshold_candidate_count": 4687,
+    "color_near_threshold_rmse_db": 1.6410658686783017,
+    "selected_payload_bytes": 31248448,
+    "original_payload_bytes": 31661520,
+    "fixed8_payload_bytes": 59761616,
+    "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+    "seconds": 13.309367100002419
+  },
+  "same_validation_fitted_top1": 0.859,
+  "same_validation_fitted_parameters": {
+    "zero_probability_threshold": 0.75,
+    "psnr_margin_db": -0.5,
+    "ssim_margin_db": 0.0,
+    "mean_angle_margin_deg": 0.0,
+    "p95_angle_margin_deg": 0.0
+  },
+  "same_validation_fitted_metrics": {
+    "images": 1000,
+    "accuracy": 0.859,
+    "full_choice_accuracy": 0.599,
+    "actual_strict_quality_pass_rate": 0.654,
+    "quality_regression_images": 221,
+    "larger_block_images": 93,
+    "smaller_block_images": 48,
+    "payload_bytes": 31015440,
+    "original_payload_bytes": 31661520,
+    "fixed8_medium_payload_bytes": 59761616,
+    "payload_ratio_to_original": 0.9795941571977593,
+    "payload_ratio_to_fixed8": 0.518985965841352
+  },
+  "quality_regression_images": 196,
+  "trainer_wall_seconds": 2974.3781774000017,
+  "parameters": 24003068,
+  "training_seconds": 2456.5870146000234,
+  "validation_seconds": 395.10959120000916,
+  "preparation_seconds": 82.82911250000325,
+  "checkpoint_audit": "passed",
+  "deployment_timings": null,
+  "confirmation_test_opened": false,
+  "validation90_achieved": false,
+  "attribution_accuracy": {
+    "frozen_predictions": 0.856,
+    "true_channel_mse": 0.928,
+    "true_zero_mask": 0.855,
+    "true_channel_mse_and_zero": 0.928,
+    "true_ms_ssim": 0.912,
+    "true_angles": 0.87,
+    "all_true_metrics": 1.0
+  },
+  "inference_cost_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-imagenet-r50-full1000.json",
+  "inference_cost_status": "passed",
+  "inference_cost_scope": "Batch-amortized PNG preparation, input batching, CUDA inference and policy decision. Loading, binding audit and final encoding separate",
+  "formal_model_admission": "rejected_below90"
+}
