@@ -1,0 +1,151 @@
+{
+  "variant": "B1_candidate_idx",
+  "prediction_mode": "raw",
+  "smoke": true,
+  "warmups": 1,
+  "repetitions": 1,
+  "fixed8_preset": "medium",
+  "encoding_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-search-binding.json",
+  "encoding_config_sha256": "c0dd47616b98caf8b3ae7eb3307ea872905a0155fbccd13288bfc5dbfe9c62bb",
+  "dependencies": [
+    {
+      "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet34-head-sampled4\\job.json",
+      "sha256": "9ada779be785c5fde6577c43a939a07e155186907e59cc58a146e1a2305256b7"
+    }
+  ],
+  "checkpoint_sha256": "8e8945fcb0e1b71c6d9cf8e26eb2110eca2f2a918f3c96eaabc11a38cfa8788b",
+  "training_source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-resnet50",
+  "offline_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\system-variants-result.json",
+  "offline_report_sha256": "fe5bb00d074cc75c90b4c3ec2f71c5dba86d07d0c7501d63320213f042682924",
+  "encoding_indices": [
+    0,
+    2,
+    4,
+    6,
+    7,
+    24,
+    41,
+    176
+  ],
+  "pilot_selection": {
+    "srgb_small": {
+      "index": 0,
+      "path": "Assets/Art/Characters/11_bane/3.0Battle/ColorSkin/skin06_low_Colour01/bane_skin06_pbs_Colour01_m2.png",
+      "reason": "first_valid",
+      "queries": [
+        0
+      ]
+    },
+    "srgb_large": {
+      "index": 4,
+      "path": "Assets/Art/Characters/11_bane/Show/ColorSkin/skin06_high_Colour02/Bane_skin06_high_body_Colour02_g.tga",
+      "reason": "size_first_relaxed",
+      "queries": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    "normal": {
+      "index": 7,
+      "path": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_n5x5.tga",
+      "reason": "first_valid",
+      "queries": [
+        10
+      ]
+    },
+    "linear": {
+      "index": 176,
+      "path": "Assets/Art/Characters/jubi/Materials/skin04_high/jubi_skin04_high_d.jpg",
+      "reason": "first_valid",
+      "queries": [
+        0
+      ]
+    },
+    "relaxed": {
+      "index": 6,
+      "path": "Assets/Art/Characters/11_bane/Show/skin06_high/Bane_skin06_high_body_g.tga",
+      "reason": "size_first_relaxed",
+      "queries": [
+        4,
+        5
+      ]
+    },
+    "fallback": {
+      "index": 24,
+      "path": "Assets/Art/Characters/131_Cirrus/Show/skin_high/Smoke_SD_CJB_0001_new.png",
+      "reason": "highest_psnr_fallback",
+      "queries": [
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    "continuation": {
+      "index": 2,
+      "path": "Assets/Art/Characters/11_bane/3.0Battle/skin02next/bane_skin02_pbs_s.png",
+      "reason": "first_valid",
+      "queries": [
+        8,
+        9
+      ]
+    },
+    "long_continuation": {
+      "index": 41,
+      "path": "Assets/Art/Characters/3_xixuegui/Show/skin07_high/Alice_skin07_high_hair2_g.tga",
+      "reason": "first_valid",
+      "queries": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  },
+  "sources_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\final_encoding.py": "820913a7bf0eb773b10387c8e6ae06ffc809e68870630b285b08cb57b0486141",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\candidate_completion.py": "d4ae0638766d647679a08552f2e4a333123a04c8a72d3f2fe68fdbff41cec2dc",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+    "E:\\ASTC_Compression\\reproductions\\common\\encoder.py": "60d325ec28aa3e80443e5c377f5c66add099bee93b08bee3f1803a3cf5784e08",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "E:\\ASTC_Compression\\script\\encode_unity_predictions.py": "f5d37b6e175be82b2feaf2dadaba064120ee98d76ab9e084b41753b6e6736e84",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_inference.py": "a4ca5d78edef060431d71ee58d174f25098b7455c1a3130ed2f8bf190d2aca13",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\patch_targets.py": "0a46c12756ce373ed6dabb8dd8ae46f5a8574cfa5c21c74579ae5ef7a1476ee0",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "0a49302ab3ac621d9ea3f9cc0c01e12112e9b4419875d298fdbad06b907ee0ac",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\artifacts.py": "f05a08b7e47a7b5e164e60d2042033f6f814df344254f07ad795b59e29fbf045",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\patch_normalization.py": "74151a5e93f99755f5f90ede3bebd01a63b1d018a14c3a94ba64b52872e3b7e1",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\inference_benchmark.py": "93146a6a0915395751890ce5ed4f63f2ddcb93676965705b9b4719d476e1952e",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\native_data_pipeline.py": "43c96cbf54072554ce1678c41a9e918d79808a7f5359de79e9a54dc6c0459be2",
+    "E:\\ASTC_Compression\\script\\benchmark_unity_inference.py": "510ed28b2de3f998d4c97204b40ac75197a42a430e0a5a0a30f731da44a0e3fd",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\deployment.py": "0f1eb725b178de32acddb53826a4cfaffec33d4144134226923b5914210351b1",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\deployment_benchmark.py": "9881df35eda04cbd2de003187e8198ad6578772aad4af97729f716a3a0454266",
+    "E:\\ASTC_Compression\\script\\benchmark_unity_deployment.py": "e0d112813634ae05e6263d78398c88c2951c5520c89d7a2de98e7d5ddc71436f",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\forward_deployment.py": "b95abbaccbeaff30f65971400cf31c73450a5c6369b8717a203e1f16aa6d2d4f",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\forward_benchmark.py": "6f4253a28ae0b4559983171a16bb1a59db1dd54b9654ec173d233e336bac2161",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\system_variant_policy.py": "5b5fe48fc84172c9bc26b64eeced09c2afc3c53bb2d54b0d544968db16116834",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\system_variants.py": "e793e82c4410ede81372210e34c544dad81955261745045bd164cffb8379b9a3",
+    "E:\\ASTC_Compression\\script\\attribute_unity_errors.py": "c405702ba6f7c0d02dbfe0ef491f3cd2c576e7c45014174b1d5af6d384707cc3",
+    "E:\\ASTC_Compression\\script\\diagnose_unity_rules.py": "3dc5681effc2dd36d346caea66bfe58f938b3fa963a92c0c343318013938658d",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d",
+    "E:\\ASTC_Compression\\script\\benchmark_unity_forward_search.py": "757f5dcdef7d977e4090c63168dc2961ee86f5856b735c4b6aacaad30f9b2eaf",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\run_forward_search_guarded.py": "c3ddb15511228b6d92379d68a082a69b9ab489022d9169cc0016dbe28907ae4e"
+  },
+  "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\forward-search-smoke8-v1",
+  "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-search-smoke8-v1.json"
+}

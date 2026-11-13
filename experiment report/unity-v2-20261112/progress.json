@@ -1,6 +1,6 @@
 {
-  "status": "system_variants_offline_completed",
-  "updated_utc": "2026-11-13T03:45:56.979268+00:00",
+  "status": "forward_search_runtime_completed",
+  "updated_utc": "2026-11-13T05:22:52.493288+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,8 +10,8 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Review validation-only system-variant Pareto and quality trade-offs before selecting the next experiment",
-    "Retain the user-requested confirmation-data boundary for this experiment"
+    "Keep confirmation2000 sealed",
+    "Review measured forward-search runtime and decide the subsequent independent-confirmation protocol and scope"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
   "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
@@ -90,7 +90,7 @@
     "before_resnet34": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-resnet34",
     "before_resnet50": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-resnet50"
   },
-  "pretrained_mainline_promotion": "pending_user_decision",
+  "pretrained_mainline_promotion": "approved_for_resnet34_forward_search_validation",
   "current_bn_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30-bn.json",
   "current_bn_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\mean-full30-bn\\receipt.json",
   "next_training_config": null,
@@ -221,5 +221,53 @@
     "independent_review": "CLEAN"
   },
   "system_variant_validation90_achieved": true,
-  "preceding_development_fit_diagnostic": "interrupted_on_user_scope_change"
+  "preceding_development_fit_diagnostic": "interrupted_on_user_scope_change",
+  "forward_search_runtime_design": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-search-runtime-design.json",
+  "runtime_mainline": {
+    "model": "imagenet-resnet34-head-sampled4",
+    "variant": "B1_candidate_idx",
+    "prediction_mode": "raw",
+    "scope": "real validation1000 only",
+    "approved_by_user": true,
+    "smoke_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-search-smoke8-v1-config.json",
+    "full_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-search-full1000-v1-config.json",
+    "cpu_checks": {
+      "command": "uv run pytest --tb=short -q --basetemp 'experiment report/.local/unity-v2-20261112/pytest-forward-all-v2' -o 'cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-forward-all-v2' --junitxml 'experiment report/.local/unity-v2-20261112/forward-search-pytest.xml' -k 'not test_cuda_feature_pool_repeated_outputs_are_bit_identical'",
+      "passed": 974,
+      "skipped": 6,
+      "deselected": 2,
+      "wall_seconds": 91.34,
+      "junit_xml": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\forward-search-pytest.xml",
+      "junit_sha256": "38755876e0b7d351cd03b349c2db2eb0e4a3bcbf55db1afda69a30e2d83da79a"
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "smoke_status": "passed",
+    "smoke_process_seconds": 168.07776190000004,
+    "smoke_query_counts_per_trial": 26,
+    "smoke_fresh_prediction_max_difference": 0.0,
+    "full_status": "passed",
+    "full_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-search-full1000-v1.json",
+    "full_report_sha256": "354fc89505d6392e61bf0cfc23ddd6c21ef5de5e7fc695b194fdc50acd0a447d",
+    "accuracy": 0.936,
+    "balanced_accuracy": 0.9199905910546833,
+    "full_choice_accuracy": 0.804,
+    "actual_quality_pass_rate": 0.875,
+    "quality_regression_images": 0,
+    "candidates_measured": {
+      "mean": 1.627,
+      "median": 1.0,
+      "p95": 5.0,
+      "max": 16,
+      "total": 1627
+    },
+    "payload_bytes": 32067120,
+    "amortized_ms_per_image": 195.79514409990225,
+    "fixed8_amortized_ms_per_image": 21.335400399999344,
+    "training_updates": 0,
+    "test_opened": false,
+    "verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-search-verification.json"
+  },
+  "system_validation90_achieved": true,
+  "best_system_validation_accuracy": 0.936
 }

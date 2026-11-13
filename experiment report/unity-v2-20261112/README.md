@@ -4,9 +4,35 @@
 
 ## 当前结果
 
+用户选定的ResNet34原始预测＋预测候选索引起点向后续搜已完成真实validation1000评估。块大小Top-1为93.6%，平均1.627次实际编码，严格质量通过87.5%，相对原标签质量回退0张。一次预热和三次正式配对运行均通过预测、候选编码、解码像素、原生质量和查询顺序审计；三轮整集计时的中位数摊销到每图为续搜195.80ms、fixed8／medium 21.34ms。训练更新0，确认集文件访问0。`[verified: forward-search-full1000-v1.json status、summary、measurements；forward-search-verification.json runtime_reports]`
+
 系统变体离线评估已完成3模型×2预测口径×39变体。ResNet34原始预测的预测preset双向探测K=2达到94.0%、平均1.547次编码；向后续搜达到93.6%、平均1.627次且相对原标签质量回退0张。模型调用、训练更新、实际编码与确认集文件访问均为0。`[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw；system-variants-verification.json runtime_guards]`
 
 当前单次预测＋原规则决策的独立预训练对照最佳原始validation1000 Top-1为86.9%，来自ResNet-34 ImageNet加sampled4整图头再训练，选中epoch15／image_head_refit；同一验证集拟合余量后为87.1%。所选权重近阈值RMSE1.6135dB，重载和冻结参数审计通过。单次预测模型的开发90%准入尚未达到，确认集模型推理保持封存。随机初始化参照保持81.3%的ResNet-18均值池化模型。`[verified: imagenet-resnet34-head-sampled4-result.json；imagenet-resnet34-head-evidence.json final_model_admission、model_forward_calls；comparison.json reference_model]`
+
+## 预测起点向后续搜的真实运行
+
+冻结的ResNet34原始预测用于选择具体候选起点，随后按canonical20向后进行实际编码、解码与原生质量判定。最终输出复用已经生成的ASTC。所有1000图输入与7173patch的训练端输入一致，四个完整运行的新预测数组与保存数组逐位一致，模型参数与buffer保持。`[verified: forward-search-full1000-v1.json input_parity_patches、measurements、model_parameters_and_buffers_unchanged；forward_deployment.py UnityForwardSearchTrial.run、NativeForwardQueries.measure]`
+
+| 指标 | 真实续搜结果 |
+|---|---|
+| 块大小Top-1／balanced accuracy | 93.6%／92.00%。`[verified: forward-search-full1000-v1.json summary.forward.validation_metrics]` |
+| 块大小与preset完整匹配 | 80.4%。`[verified: forward-search-full1000-v1.json summary.forward.validation_metrics.full_choice_accuracy]` |
+| 严格质量通过／相对原标签质量回退 | 875／1000，0张。`[verified: forward-search-full1000-v1.json summary.forward.validation_metrics.actual_quality_pass_rate、quality_regression_images]` |
+| 块大小选大／选小 | 0／64张。`[verified: forward-search-full1000-v1.json summary.forward.validation_metrics.larger_block_images、smaller_block_images]` |
+| 候选编码平均／中位／P95／最大 | 1.627／1／5／16次。`[verified: forward-search-full1000-v1.json summary.forward.validation_metrics.candidates_measured]` |
+| mip0 payload | 32,067,120字节，为fixed8／medium的53.6584%、原标签的101.2811%。`[verified: forward-search-full1000-v1.json summary.forward.validation_metrics.payload_bytes、payload_ratio_to_fixed8、payload_ratio_to_original]` |
+| sRGB小图612／大图326 | 91.34%／98.47%。`[verified: forward-search-full1000-v1.json summary.forward.validation_metrics.groups.srgb_small、srgb_large]` |
+| 法线45／Linear17 | 88.89%／94.12%。`[verified: forward-search-full1000-v1.json summary.forward.validation_metrics.groups.normal、linear]` |
+| 487直接父目录／189资产族宏平均 | 95.34%／93.51%。`[verified: forward-search-full1000-v1.json summary.forward.validation_metrics.groups.direct_parent_macro、asset_family_macro]` |
+
+702张图一次编码完成，873张两次内完成，926张三次内完成。实际选择包括643张first_valid、232张size_first_strict、92张大图放宽及33张最高PSNR回退，后两组共125张未通过严格质量门槛。完整混淆矩阵和逐类precision／recall保存在结构化报告。`[verified: forward-search-verification.json encoding_count_distribution、selection_reason_distribution；forward-search-full1000-v1.json summary.forward.validation_metrics.confusion_matrix、per_class]`
+
+三次正式测量的整集耗时分别为续搜195.795／194.446／197.245秒，fixed8为21.306／21.341／21.335秒。参考PNG到内存mip0 ASTC路径包含新推理与候选实际质量门控，模型／DLL加载、同步trace哈希、进度写入、计时后真值审计和产物写入分别记录。计时使用预热后的模型、DLL与文件系统，评估内部wall为1867.74秒，完整进程1872.12秒。`[verified: forward-search-full1000-v1.json measurements、scope、wall_seconds；forward-search-verification.json runtime_reports.full.job.wall_seconds]`
+
+归档原搜索平均7.061次、search_ms均值1068.42ms；历史均值与本次续搜摊销中位数的比值为5.457。本次配对实测参照为fixed8／medium，续搜耗时为其9.177倍，二者严格质量通过率为87.5%／81.1%。`[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B1_candidate_idx.original_candidates_measured、encoding_cost_estimate；forward-search-verification.json historical_original_mean_over_measured_forward、forward_seconds_over_fixed8；forward-search-full1000-v1.json summary]`
+
+先期8图编码pilot保留完整1000图新推理形状，完整进程168.08秒。pilot与全量合计执行6次完整验证预测、10576次实际编码，包含预热与fixed8配对；训练更新0，确认集访问0。9436次输入／源码SHA绑定检查、8050份输出产物SHA检查，以及1000份QA target的后置SHA复核全部通过。运行前Dataset逐项核验target SHA，后置verification补全了运行报告inputs_sha256中省略的target路径清单。`[verified: forward-search-smoke8-v1.json；forward-search-verification.json hash_verification、qa_target_source_evidence、encoding_calls_including_pilot_and_warmups、fresh_full1000_prediction_passes_including_pilot_and_warmups、runtime_reports]`
 
 ## 数据与执行身份
 

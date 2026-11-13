@@ -488,3 +488,31 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 - ResNet34原始的预测preset双向K=2为94.0%／1.547次、K=3为95.3%／1.712次；向后续搜93.6%／1.627次、质量回退0。全局最少平均达到90%为ResNet18预训练原始双向K=2，92.6%／1.543次。`[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw、minimum_encoding_solutions_at90]`
 - 原搜索与A法线路由主费用用原始search_ms，独立保留archive-matched估算；首版费用口径及17文件源码/配置/结果SHA归档保留。先写成本回归测试确认48ms与应有123ms冲突，修正后重跑小样本与全量并通过独立234臂费用重算。`[verified: system-variants-verification.json cost_correction、independent_readonly_review；tests/test_unity_system_variants.py test_native_route_uses_original_search_time_and_archive_reference]`
 - 本轮切换前的训练集推理诊断已停止，原部分报告及中止回执保留。新离线评估采用独立身份和零执行守卫。`[verified: system-variants-verification.json preceding_development_fit_diagnostic、runtime_guards]`
+
+
+## 2026-11-13 预测起点向后续搜真实验证
+
+### Deviations
+
+- 用户在离线交付后选择ResNet34原始预测的B1_candidate_idx，授权下一阶段真实validation1000推理、编码及质量门控；确认集继续封存。`[verified: 用户本次选择“预测起点向后续搜”]`
+- 编码预检拟使用8图，推理保持冻结validation1000的完整图级批合同，记录1000推理／8编码范围后再扩全量；预检只验闭环。`[opinion]`
+
+### Discovered edge cases
+
+- 大图锁块仍按原循环在跨块边界多实测一次，选中结果复用；运行时仅给已查询候选填入真实质量，未测前缀补测需求保留为待审计值。`[verified: reproductions/unity_search_baseline/system_variant_policy.py forward_search；opinion: 真实查询接口设计]`
+- 历史ResNet34头部来源通过before-resnet50显式归档解析，实际回调profile／Alpha／normal-pack与参考RGBA哈希在计时前复核。`[verified: source-archive-before-resnet50/manifest.json；reproductions/unity_search_baseline/deployment_benchmark.py run；opinion: 复用边界]`
+
+### Questions for review
+
+- 检查真实查询分支无法访问20候选实测档案或标签；候选哈希、原生质量和离线预期在两个计时臂完成后核验。`[opinion]`
+### 2026-11-13 真实向后续搜的运行前审查与小样本
+
+- C10发现两条配对路径中后执行路径失败时，前一路径的计时和当前失败位置未即时记录。新模块已在每个计时路径返回后保存timings，审计时分别更新阶段及路径；失败时保存已返回的选择。旧fixed8入口失败前的尝试数明确为空，实际续搜入口记录当前run真实尝试数。独立AST故障注入覆盖fixed8计时失败、续搜计时失败、续搜审计失败和准备失败，四项通过。`[verified: forward_benchmark.py UnityForwardSearchBenchmark.run；review_v2_diagnostics四路径AST输出]`
+- 全仓CPU检查974通过、6跳过、2项指定CUDA测试排除，87.72秒；ruff和basedpyright通过。审核代理的两项临时目录fixture受目录ACL影响，root使用独立目录及所需执行权限完成完整测试。`[verified: pytest输出“974 passed, 6 skipped, 2 deselected in 87.72s”；ruff和basedpyright输出；forward-search-verification.json cpu_checks、review]`
+- 真实小样本8图包含四种输入属性和放宽／最高PSNR回退／多步续搜；每轮实际26次续搜编码及8次固定8×8编码，两次1000图新预测逐位一致，模型参数和buffer保持。完整进程168.08秒，其中全1000图输入一致性与来源检查91.56秒。该小样本保留1000图推理形状，只对8图编码，平均每图时间不作外推。`[verified: forward-search-smoke8-v1-config.json pilot_selection；forward-search-smoke8-v1.json measurements、binding_and_input_audit_seconds、model_parameters_and_buffers_unchanged；jobs/forward-search-smoke8-v1/receipt.json wall_seconds]`
+
+### 2026-11-13 完整真实续搜测量与target来源清单
+
+- 完整1000图一次预热加三次正式配对已完成，每轮1627次实际续搜编码，Top-1为93.6%、严格通过87.5%、相对质量回退0；模型预测、所有查询与最终产物均匹配冻结归档，模型参数和buffer保持。三轮续搜中位195.795秒，fixed8为21.335秒，评估内部wall1867.739秒，完整进程1872.118秒。`[verified: forward-search-full1000-v1.json status、summary、measurements、wall_seconds；forward-search-verification.json runtime_reports.full.job.wall_seconds]`
+- 审核发现新报告扁平inputs_sha256未列出1000个QA target路径。UnityPatchDataset构造时已在读取target前逐项验证SHA；verification另行补齐1000份target的后置SHA复核和完整映射，保留已完成运行的源码、配置与报告身份。`[verified: src/adaptive_astc/data/unity_patch_dataset.py L83–89；forward-search-verification.json qa_target_source_evidence]`
+- 真实结果按预测起点加实际续搜系统记录，原单次预测权重仍为86.9%。后续确认协议和确认集授权保持待决定，确认集文件未访问。`[verified: forward-search-full1000-v1.json summary；imagenet-resnet34-head-sampled4.json best_validation_accuracy；progress.json best_raw_validation_accuracy、next；forward-search-verification.json runtime_reports]`

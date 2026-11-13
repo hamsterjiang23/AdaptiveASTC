@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+Unity预测起点向后续搜已完成8图真实编码pilot及完整validation1000配对测量。pilot进程168.08秒，全量评估内部wall1867.74秒、完整进程1872.12秒；全量一次预热、三次正式重复，每轮续搜1627次／fixed8编码1000次。正式整集耗时中位195.795／21.335秒，即195.795／21.335ms每图批量摊销；新推理、候选编码／解码／原生质量门控包含在续搜计时内，模型／DLL加载、trace哈希、进度写入、真值审计与产物保存分别记录。单GPU串行、冻结ResNet34 ImageNet整图头，输入SHA与输出8050份产物复核通过，训练0，确认集访问0。原搜索均值1068.42ms取历史search_ms，本次配对参照为fixed8／medium。`[verified: unity-v2-20261112/forward-search-smoke8-v1.json；forward-search-full1000-v1.json measurements、summary、wall_seconds；forward-search-verification.json hash_verification、runtime_reports、historical_original_search_mean_ms]`
+
 确认集范围修订：核对2500份源文件／meta，2441张范围内图读取RGB，替换47张，内部44.41秒。只读原资产／名单，写新版本，不启动Editor或GPU；后续两图预检与256张串行批次使用独立任务，启动前空闲RAM34.25GiB、E盘863.02GiB、F盘441.85GiB，无Unity进程。历史256张批次Editor1282.91秒、完整采集1417.40秒，仅作当前机器的调度参考。`[verified: unity-confirmation2000-v2.json wall_seconds；jobs/unity-confirmation-capture-smoke2-data-v2/launch-preflight.json；unity-confirmation-series2000-data-v1-from00002.json；opinion: 调度范围]`
 
 原生采集到最终压缩验证2图：旧smoke8权重、CUDA、预热1轮＋正式3轮，每轮每图每分支一次编码；预测／固定8×8两图端到端中位83.09／66.12毫秒，完整进程20.31秒，内部8.58秒。实际16份ASTC与解码PNG另行核对，质量达标1/2与2/2；仅mip0，解码／评分／写文件在部署计时外。读取原采集、已冻结模型及编码／质量DLL，写独立.local；本轮无训练，原采集／归档同机运行，无等质量生产加速结论。`[verified: unity-capture-deployment-verification.json summary、process_seconds、internal_seconds、jobs；capture_deployment.py run；opinion: 成本边界]`
