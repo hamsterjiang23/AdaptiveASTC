@@ -1,5 +1,7 @@
 # 实验成本与读写依赖
 
+系统组合独立确认协议准备已完成，公开prepare-only内部wall20.12秒，模型／优化器／编码器／CUDA／确认文件访问guard均0。新协议真实8验证图／70patch闭环内部wall75.78秒，一次预热加3次配对重复，实际104次续搜编码＋32次fixed8编码，4次新预测；8图续搜／fixed8的整集耗时中位2.823／0.286秒。模型按完整8图预测，产物按8图审计，开发准备16304与真实smoke16305份绑定合并16306路径SHA通过，148份产物通过。CPU1014项94.27秒，实际GPU feature-pool2项随后独立串行3.79秒，独立审查CLEAN。确认数据访问0，正式cohort执行授权与像素证据待绑定。`[verified: unity-v2-20261112/forward-system-protocol-readiness-v1.json；forward-system-protocol-smoke8-v1.json；forward-system-protocol-verification.json]`
+
 Unity预测起点向后续搜已完成8图真实编码pilot及完整validation1000配对测量。pilot进程168.08秒，全量评估内部wall1867.74秒、完整进程1872.12秒；全量一次预热、三次正式重复，每轮续搜1627次／fixed8编码1000次。正式整集耗时中位195.795／21.335秒，即195.795／21.335ms每图批量摊销；新推理、候选编码／解码／原生质量门控包含在续搜计时内，模型／DLL加载、trace哈希、进度写入、真值审计与产物保存分别记录。单GPU串行、冻结ResNet34 ImageNet整图头，输入SHA与输出8050份产物复核通过，训练0，确认集访问0。原搜索均值1068.42ms取历史search_ms，本次配对参照为fixed8／medium。`[verified: unity-v2-20261112/forward-search-smoke8-v1.json；forward-search-full1000-v1.json measurements、summary、wall_seconds；forward-search-verification.json hash_verification、runtime_reports、historical_original_search_mean_ms]`
 
 确认集范围修订：核对2500份源文件／meta，2441张范围内图读取RGB，替换47张，内部44.41秒。只读原资产／名单，写新版本，不启动Editor或GPU；后续两图预检与256张串行批次使用独立任务，启动前空闲RAM34.25GiB、E盘863.02GiB、F盘441.85GiB，无Unity进程。历史256张批次Editor1282.91秒、完整采集1417.40秒，仅作当前机器的调度参考。`[verified: unity-confirmation2000-v2.json wall_seconds；jobs/unity-confirmation-capture-smoke2-data-v2/launch-preflight.json；unity-confirmation-series2000-data-v1-from00002.json；opinion: 调度范围]`

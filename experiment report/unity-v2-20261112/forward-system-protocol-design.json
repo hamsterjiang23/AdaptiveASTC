@@ -1,0 +1,42 @@
+{
+  "status": "completed_protocol_implementation_and_development_validation",
+  "approved_utc": "2026-11-13T06:05:18.035427+00:00",
+  "approval": "User selected the frozen prediction plus forward-search system as independent-confirmation object and authorized protocol implementation/validation. Confirmation data remains sealed.",
+  "system": "imagenet-resnet34-head-sampled4/raw/B1_candidate_idx",
+  "admission_metric": "Frozen real validation1000 system footprint Top-1 >=0.90",
+  "model_validation_accuracy": 0.869,
+  "system_validation_accuracy": 0.936,
+  "training_updates": 0,
+  "test_opened": false,
+  "formal_confirmation_execution_authorized": false,
+  "new_modules": [
+    "reproductions/unity_search_baseline/forward_system_evidence.py",
+    "reproductions/unity_search_baseline/forward_capture_output.py",
+    "reproductions/unity_search_baseline/forward_confirmation.py",
+    "script/evaluate_unity_forward_confirmation.py"
+  ],
+  "reuse": [
+    "UnityConfirmationEvidence capture/pixel isolation checks",
+    "UnityConfirmationEvaluation shared cohort seal and run orchestration",
+    "UnityForwardSearchTrial lazy real quality gating",
+    "UnityCaptureOutputAudit threshold and statistics",
+    "UnityEvaluationSeal immutable model/decision/file contract"
+  ],
+  "inference": "Whole cohort per repeated arm, patch batch16 and image head over the full cohort. Artifact auditing/writing in chunks up to8.",
+  "training_source_replay": "Explicit historical source archive for current evidence replay. Original launched and recorded archive identities remain as recorded.",
+  "validation": [
+    "Small synthetic tests first",
+    "Guarded development-only admission preparation via public entry",
+    "Real8-validation-image native output/paired runner smoke",
+    "Full CPU suite plus idle-GPU feature-pool checks serially",
+    "Independent code and report review"
+  ],
+  "formal_inputs_pending": [
+    "Explicit future confirmation execution authorization",
+    "Approved cohort/pixel/capture evidence after the outstanding cohort-scope decision"
+  ],
+  "completed_utc": "2026-11-13T06:50:48.745420+00:00",
+  "readiness": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-system-protocol-readiness-v1.json",
+  "smoke": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-system-protocol-smoke8-v1.json",
+  "verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-system-protocol-verification.json"
+}

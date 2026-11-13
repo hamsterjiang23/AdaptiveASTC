@@ -2,7 +2,7 @@
 
 根据最终压缩质量，为每张贴图选择合适的ASTC块大小，在项目质量要求下减少纹理体积，并研究通过机器学习实现预测选参后单次压缩的生产流程。相关资料从网易雷火GDC 2023演讲及其公开字幕、视频画面开始整理。`[verified: 用户需求说明（2026-11-09）“主要目的就是通过最终压缩质量选择合适的压缩参数”“一张图压缩一次”；本文“从这里阅读”]`
 
-V2随机初始化完整模型验证Top-1为81.3%，ImageNet初始化加整图头再训练为86.3%；同验证集余量拟合分别为81.5%／86.7%，最佳权重重载通过。EMA及随机初始化的两种头部再训练结果已记录，PSNR两阶段训练及重载已完成，原始／同集拟合Top-1为76.4%／77.1%。资产族限额与法线重复对照已完成，原始／同集拟合Top-1分别为78.0%／79.0%和79.2%／79.8%。ResNet-34容量对照已启动。预训练主线晋级及10张确认图近重复候选的名单修订等待用户决定。配置、结果和进度见[V2执行报告](<experiment report/unity-v2-20261112/README.md>)。`[verified: experiment report/unity-v2-20261112/comparison.json results；progress.json；confirmation-overlap-readiness.json]`
+V2单次预测最佳原始validation1000 Top-1为86.9%，来自ResNet34 ImageNet整图头。用户选定的预测起点向后续搜系统已完成真实验证，Top-1为93.6%，平均1.627次编码，严格质量通过87.5%，相对原标签质量回退0张。系统独立确认协议已完成开发证据准备和8图原生闭环，CPU1014项、串行GPU2项检查通过。确认集范围及正式执行授权为后续待定项。配置、结果和进度见[V2执行报告](<experiment report/unity-v2-20261112/README.md>)。`[verified: experiment report/unity-v2-20261112/imagenet-resnet34-head-sampled4.json；forward-search-full1000-v1.json summary；forward-system-protocol-verification.json；progress.json next]`
 
 ## 项目需求与优化目标
 

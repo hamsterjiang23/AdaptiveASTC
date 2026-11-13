@@ -4,6 +4,8 @@
 
 ## 当前结果
 
+系统组合独立确认协议已完成实现与开发验证。开发准备入口核验通过，新执行引擎在8张验证图／70patch上完成一次预热加三次配对重复，累计136次实际编码，四轮预测逐位一致。CPU1014项与串行GPU2项检查通过，16306份来源／输入及148份产物核验通过。确认集执行开关为false，cohort像素／采集证据处于待绑定状态。`[verified: forward-system-protocol-readiness-v1.json；forward-system-protocol-smoke8-v1.json；forward-system-protocol-verification.json]`
+
 用户选定的ResNet34原始预测＋预测候选索引起点向后续搜已完成真实validation1000评估。块大小Top-1为93.6%，平均1.627次实际编码，严格质量通过87.5%，相对原标签质量回退0张。一次预热和三次正式配对运行均通过预测、候选编码、解码像素、原生质量和查询顺序审计；三轮整集计时的中位数摊销到每图为续搜195.80ms、fixed8／medium 21.34ms。训练更新0，确认集文件访问0。`[verified: forward-search-full1000-v1.json status、summary、measurements；forward-search-verification.json runtime_reports]`
 
 系统变体离线评估已完成3模型×2预测口径×39变体。ResNet34原始预测的预测preset双向探测K=2达到94.0%、平均1.547次编码；向后续搜达到93.6%、平均1.627次且相对原标签质量回退0张。模型调用、训练更新、实际编码与确认集文件访问均为0。`[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw；system-variants-verification.json runtime_guards]`
@@ -38,7 +40,25 @@
 
 已使用现有UnityEvaluationSeal以validation身份冻结选定ResNet34模型、原始零余量、0.5零通道门槛、逐图原生规则、候选索引起点及无固定预算的canonical20向后续搜。合同绑定8238份文件、1000张有序验证输入与7173patch运行形状，指纹为`218fe31a56c94b32f946121063cf8c82533074d4e53cf2eb25e5d8231e216d27`。封存与重开同一合同核验通过。`[verified: forward-search-validation-freeze.json identity、bound_files、seal_fingerprint]`
 
-此次封存forward尝试为0，模型／编码／CUDA初始化／优化器构造／确认集文件访问计数均为0。独立确认的评估对象及准入协议处于待决定状态，原单次预测模型准入证据为86.9%，系统真实验证为93.6%。既有封存类及封存推理的24项检查通过，冻结脚本ruff与basedpyright通过。`[verified: forward-search-validation-freeze.json seal_forward_attempts、runtime_guards、independent_confirmation_admission、validation_pure_model_accuracy、validation_system_accuracy；pytest输出24 passed in4.20s；ruff和basedpyright输出]`
+此次封存forward尝试为0，模型／编码／CUDA初始化／优化器构造／确认集文件访问计数均为0。原单次预测模型验证为86.9%，系统真实验证为93.6%。用户随后批准采用系统组合作为独立确认对象，对应协议实现与开发验证已完成，后续cohort范围及正式执行授权待决定。既有封存类及封存推理的24项检查通过，冻结脚本ruff与basedpyright通过。`[verified: forward-search-validation-freeze.json seal_forward_attempts、runtime_guards、independent_confirmation_admission、validation_pure_model_accuracy、validation_system_accuracy；pytest输出24 passed in4.20s；ruff和basedpyright输出]`
+
+## 系统组合独立确认协议
+
+新入口为`script/evaluate_unity_forward_confirmation.py`，系统准入核验复用完整训练、检查点与原生来源证据，以冻结的真实validation1000系统Top-1≥90%作为准入条件，单次预测模型86.9%与系统93.6%分别记录。历史训练中的archive=None记录保留，当前来源重放单列before-resnet50归档。`[verified: forward_system_evidence.py training_stage、model、validate_system；forward-system-protocol-readiness-v1.json system_admission]`
+
+开发准备使用以下入口，配置绑定已冻结的模型、B1候选索引起点、原始零余量、0.5零通道门槛及原生质量库。`[verified: forward-system-protocol-config-v1.json；forward-system-protocol-readiness-v1.json]`
+
+```powershell
+uv run python script/evaluate_unity_forward_confirmation.py --config "experiment report/unity-v2-20261112/forward-system-protocol-config-v1.json" --prepare-only
+```
+
+执行引擎按完整cohort预测，patch批量16，完成两条路径计时后按最多8图分块审计和保存。候选查询按实际native质量重放停止规则，最终ASTC复用已测字节，最终解码再次核验指标与像素。正式cohort使用既有共享registry与UnityEvaluationSeal，协议、模型和全部非输出参数绑定，失败记录与已完成产物保留。`[verified: forward_confirmation.py evaluate、slice_result、preserve_failed_pair；forward_capture_output.py replay_choice、run；继承的confirmation_evaluation.py run、seal_files]`
+
+公开准备入口在拒绝模型／优化器／编码器／CUDA初始化／确认数据访问的guard下通过，内部wall20.12秒。实际8图验证使用validation seal，一次预热加三次重复均为完整8图／70patch，每轮26次续搜编码与8次fixed8编码，累计136次编码、4次新预测，内部wall75.78秒。四数组精确重复，104条实际查询与先前冻结记录的顺序、ASTC、像素哈希及原生指标一致。该8图覆盖性样本用于协议集成验证，完整准入统计采用已冻结validation1000的93.6%。`[verified: forward-system-protocol-prepare-guard-v1.json；forward-system-protocol-readiness-v1.json wall_seconds；forward-system-protocol-smoke8-v1.json；forward-system-protocol-verification.json real_validation_smoke]`
+
+CPU检查1014通过、6跳过、2项CUDA测试排除，94.27秒；两项实际GPU feature-pool测试随后独立串行通过，3.79秒。配置同字节SHA绑定、冻结quality build的实际执行入口检查、计时／预测重放／审计失败后的完整产物保留均有回归检查，独立审查CLEAN。`[verified: forward-system-protocol-verification.json cpu_checks、cuda_checks、review]`
+
+配置当前记录confirmation_execution_authorized=false、pixel_audit=null，正式执行入口首先核验执行授权与完整cohort证据。后续工作为既有10张近重复候选的范围方案决定，以及完整cohort像素／采集来源绑定和一次独立确认授权。`[verified: forward-system-protocol-config-v1.json；forward-system-protocol-readiness-v1.json pending、formal_confirmation_ready；progress.json confirmation_overlap_decision、next]`
 
 ## 数据与执行身份
 

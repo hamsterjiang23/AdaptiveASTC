@@ -527,3 +527,11 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 ### 2026-11-13 获批V2提交公开推送
 
 - 用户明确批准截至ab63476的16个V2提交公开推送，origin/main已从562a1cf快进至ab63476，git ls-remote复核一致。授权问题发出后形成的validation冻结提交9b54d4d在本地后续历史中。推送回执与原自动审批拒绝记录分别保留，下一步为独立确认系统协议决定。`[verified: git push与git ls-remote输出；publication-ab63476.json；progress.json external_push]`
+
+### 2026-11-13 系统组合独立确认协议实现
+
+- 用户批准采用已冻结的ResNet34原始预测加向后续搜系统作为独立确认对象，本阶段实现和验证协议，确认集数据继续封存。新增模块复用原采集／像素证据及共享cohort seal，系统90%准入与模型86.9%分别记录。`[verified: 用户本次选择；forward-system-protocol-config-v1.json；forward-system-protocol-readiness-v1.json system_admission]`
+- 推理按完整cohort执行，patch批量16，产物按最多8图分块审计／保存。原单次编码审计有单次计数约束，新增审计按实际查询重放、复核最终解码及原生质量，复用既有门槛与统计。历史训练归档身份保留，新来源重放单列历史源码归档。`[verified: forward_confirmation.py evaluate；forward_capture_output.py run、replay_choice；forward_system_evidence.py training_stage]`
+- C13配置读后采样SHA竞态、C14执行入口质量build与冻结合同缺交叉检查、C15审计失败后两臂产物未完整保存，均已修复并通过独立注入复核。开发准备入口在五类拒绝guard下通过，全仓CPU1014通过／6跳过／2指定CUDA测试排除，94.27秒。`[verified: review_v2_diagnostics复核输出；forward-system-protocol-prepare-guard-v1.json；pytest输出]`
+- 真实公开prepare-only入口20.12秒通过，模型／优化器／编码器／CUDA／确认访问guard均0。新执行器8图／70patch、四轮全cohort推理与真实配对通过，每轮26+8编码，累计136编码、4次新预测，内部wall75.78秒；104条查询匹配原冻结记录，148产物SHA通过。`[verified: forward-system-protocol-readiness-v1.json；forward-system-protocol-smoke8-v1.json；forward-system-protocol-verification.json]`
+- 偏离原逐8图推理入口1项，采用完整cohort推理与按8图产物审计。最可能再评估的是完整2000图的内存与实测成本，当前已有动态内存门槛。边界问题3项C13–C15均修复，后续先读forward-system-protocol-verification.json与config-v1；确认集范围、像素证据及实际执行授权待决定。`[verified: forward_confirmation.py evaluate；forward-system-protocol-verification.json review；forward-system-protocol-config-v1.json pixel_audit、confirmation_execution_authorized]`

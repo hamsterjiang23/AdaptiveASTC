@@ -1,6 +1,6 @@
 {
-  "status": "validation_system_frozen_decisions_pending",
-  "updated_utc": "2026-11-13T05:45:54.389493+00:00",
+  "status": "system_confirmation_protocol_prepared",
+  "updated_utc": "2026-11-13T06:50:48.748414+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,7 +10,8 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Independent-confirmation system protocol requires a user decision, confirmation2000 remains sealed"
+    "Decide the permitted cohort-scope review and existing10 near-identity replacement proposal",
+    "Bind approved full cohort pixel/capture evidence and obtain future independent confirmation execution authorization"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
   "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
@@ -303,5 +304,49 @@
       "independent_bound_file_hashes_verified": 8238,
       "actual_seal_attempts": 0
     }
+  },
+  "system_confirmation_protocol": {
+    "approved_by_user": true,
+    "scope": "Protocol implementation and validation, confirmation data sealed",
+    "config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-system-protocol-config-v1.json",
+    "readiness": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-system-protocol-readiness-v1.json",
+    "readiness_status": "passed_development_protocol_preparation",
+    "system_admission_top1": 0.936,
+    "pure_model_top1": 0.869,
+    "confirmation_execution_authorized": false,
+    "test_opened": false,
+    "cpu_checks": {
+      "passed": 1014,
+      "skipped": 6,
+      "deselected": 2,
+      "seconds": 94.27
+    },
+    "review": {
+      "verdict": "CLEAN",
+      "fixed_findings": [
+        "C13 same-byte configuration hash binding",
+        "C14 frozen quality build enforced in execution",
+        "C15 complete paired results retained for replay/audit failures"
+      ]
+    },
+    "status": "passed_protocol_preparation",
+    "verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\forward-system-protocol-verification.json",
+    "verification_sha256": "f76d4ebdd6a420d949d72e9c675b719b8f799ac0df8905a889b5b3349eaab6c3",
+    "formal_confirmation_ready": false,
+    "smoke_status": "passed_validation_smoke",
+    "smoke_validation_images": 8,
+    "smoke_whole_cohort_patches": 70,
+    "smoke_actual_encoding_calls": 136,
+    "smoke_model_prediction_passes": 4,
+    "smoke_selected_query_receipts_matching_prior_validation": 104,
+    "smoke_output_artifacts_verified": 148,
+    "source_input_files_verified": 16306,
+    "cuda_checks": {
+      "passed": 2,
+      "seconds": 3.79,
+      "execution": "Serial real GPU after CPU suite and validation smoke"
+    },
+    "ruff": "passed",
+    "basedpyright": "passed"
   }
 }
