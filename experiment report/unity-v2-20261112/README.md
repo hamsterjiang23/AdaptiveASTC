@@ -4,7 +4,9 @@
 
 ## 当前结果
 
-当前独立预训练对照的最佳原始validation1000 Top-1为86.9%，来自ResNet-34 ImageNet加sampled4整图头再训练，选中epoch15／image_head_refit；同一验证集拟合余量后为87.1%。所选权重近阈值RMSE1.6135dB，重载和冻结参数审计通过。开发90%准入尚未达到，确认集模型推理保持封存。随机初始化参照保持81.3%的ResNet-18均值池化模型。`[verified: imagenet-resnet34-head-sampled4-result.json；imagenet-resnet34-head-evidence.json final_model_admission、model_forward_calls；comparison.json reference_model]`
+系统变体离线评估已完成3模型×2预测口径×39变体。ResNet34原始预测的预测preset双向探测K=2达到94.0%、平均1.547次编码；向后续搜达到93.6%、平均1.627次且相对原标签质量回退0张。模型调用、训练更新、实际编码与确认集文件访问均为0。`[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw；system-variants-verification.json runtime_guards]`
+
+当前单次预测＋原规则决策的独立预训练对照最佳原始validation1000 Top-1为86.9%，来自ResNet-34 ImageNet加sampled4整图头再训练，选中epoch15／image_head_refit；同一验证集拟合余量后为87.1%。所选权重近阈值RMSE1.6135dB，重载和冻结参数审计通过。单次预测模型的开发90%准入尚未达到，确认集模型推理保持封存。随机初始化参照保持81.3%的ResNet-18均值池化模型。`[verified: imagenet-resnet34-head-sampled4-result.json；imagenet-resnet34-head-evidence.json final_model_admission、model_forward_calls；comparison.json reference_model]`
 
 ## 数据与执行身份
 
@@ -54,7 +56,7 @@
 
 ## 进度
 
-规则诊断、完整原生基线、初始化与固定容量对照、冻结预测归因及同验证集余量拟合已完成。当前随机初始化参照Top-1为81.3%，最佳独立ImageNet对照为86.3%，PSNR两阶段为76.4%。后续状态与结果写入[本轮进度](progress.json)。`[verified: rules.json status；comparison.json；progress.json]`
+规则诊断、完整原生基线、初始化与固定容量对照、冻结预测归因及同验证集余量拟合已完成。当前随机初始化参照Top-1为81.3%，最佳独立ImageNet对照为86.9%，PSNR两阶段为76.4%。后续状态与结果写入[本轮进度](progress.json)。`[verified: rules.json status；comparison.json；progress.json]`
 
 全量训练的首轮启动快照为验证Top-1 63.0%、近阈值RMSE 3.4667dB，实际624次更新、1次AMP跳步；训练47.43秒、验证11.67秒，首次数据准备170.30秒。这是训练过程记录，后续最佳权重仍按完整验证和重载审计确定。`[verified: r0.json history中epoch1、preparation_seconds；opinion: 过程与最终选模范围]`
 
@@ -125,6 +127,8 @@
 | ResNet-50随机初始化 | 80.5% | 2.6311dB | 81.1%。`[verified: comparison.json results.mean_resnet50_full30]` |
 | ResNet-50 ImageNet初始化 | 85.6% | 1.6411dB | 85.9%。`[verified: comparison.json results.imagenet_resnet50_full30]` |
 | ResNet-50 ImageNet整图头再训练 | 86.0% | 1.6389dB | 86.3%。`[verified: comparison.json results.imagenet_resnet50_head_sampled4]` |
+| ResNet-50 IMAGENET1K_V2初始化 | 85.4% | 1.9043dB | 85.4%。`[verified: comparison.json results.imagenet1k_v2_resnet50_full30]` |
+| ResNet-50 IMAGENET1K_V2整图头 | 85.3% | 1.8845dB | 85.5%。`[verified: comparison.json results.imagenet1k_v2_resnet50_head_sampled4]` |
 
 前三组完成时，仅均值池化作为初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
 
@@ -303,3 +307,132 @@ ImageNet IMAGENET1K_V1初始化的ResNet-50完成30轮、18,741更新与9次AMP�
 ResNet-50 IMAGENET1K_V1整图头完成30轮、18,747更新及3次AMP跳步，选中epoch7／image_head_refit，原始／同验证集拟合Top-1为86.0%／86.3%，所选近阈值RMSE1.6389dB。严格质量68.7%、质量回退190张、payload31,441,648字节，头部训练器367.67秒，两阶段合计3342.04秒。287,980参数参与训练，非头部状态与重载核验通过，39份血缘通过只读核验，正式90%准入拒绝，forward为0。`[verified: imagenet-resnet50-head-sampled4-result.json；imagenet-resnet50-head-evidence.json；imagenet-resnet50-head-verification.json]`
 
 同1000图／7173patch推理数组及选参精确重放，批量摊销19.0296ms／图。下一初始化版本对照仅将权重来源从IMAGENET1K_V1切换为官方IMAGENET1K_V2，同模型、数据及训练配置的四项差异为权重路径／SHA和输出位置。实际CPU权重迁移、六份共同头及后续RNG配对通过，32图CUDA预检4更新、0跳步、重载通过，同配方完整30轮已启动。`[verified: inference-cost-imagenet-r50-head-full1000.json；imagenet1k-v2-resnet50-design.json；imagenet1k-v2-resnet50-smoke.json；opinion: 权重版本对照选择]`
+
+
+## IMAGENET1K_V2权重版本结果
+
+同配方ResNet-50完成30轮、18,741更新及9次AMP跳步，选中epoch19／raw。原始与同验证集余量拟合Top-1均为85.4%，所选权重近阈值RMSE1.9043dB，完整配置匹配57.1%、严格质量66.3%、质量回退213张、payload31,436,016字节。训练器2996.74秒，原生重载和22份来源绑定通过。`[verified: imagenet1k-v2-resnet50-full30-result.json；imagenet1k-v2-resnet50-evidence.json]`
+
+冻结预测分别替换实测通道MSE、MS-SSIM和角度后，Top-1为91.9%、91.9%和86.5%，全部实测指标为100%。这些数值来自固定预测的条件替换诊断。后续按原sampled4配方执行整图头对照，先做32训练图预检。`[verified: imagenet1k-v2-resnet50-full30-attribution.json variants；imagenet1k-v2-resnet50-head-sampled4-smoke-config.json；opinion: 后续实验顺序]`
+
+完整验证1000图／7173patch推理完成1预热与3次测量，四份预测数组和选参全部精确复现。批量摊销参考PNG准备、输入组装、CUDA推理和规则决策为20.3587ms／图，模型加载与身份审计成本单列。整图头32训练图预检已串行启动。`[verified: inference-cost-imagenet1k-v2-r50-full1000.json measurements、amortized_preprocess_inference_decision_seconds_per_image；imagenet1k-v2-resnet50-full30-verification.json；progress.json active_job]`
+
+
+## IMAGENET1K_V2整图头结果
+
+32训练图预检完成4更新、0跳步、初始结果复现及冻结状态／原生重载核验，训练器126.02秒。正式整图头完成30轮、18,745更新及5次AMP跳步，选中epoch20／image_head_refit，原始／同验证集拟合Top-1为85.3%／85.5%，所选权重近阈值RMSE1.8845dB。完整配置匹配57.4%、严格质量69.1%、质量回退185张、payload31,739,888字节。阶段训练器370.73秒，两阶段合计3367.47秒，287,980参数参与训练，全部非头部状态及原生重载通过。`[verified: imagenet1k-v2-resnet50-head-sampled4-smoke.json；imagenet1k-v2-resnet50-head-sampled4-result.json]`
+
+冻结预测分别替换实测通道MSE、MS-SSIM和角度后，Top-1为92.1%、91.8%和86.5%，全部实测指标为100%。39份来源绑定通过只读核验，正式90%准入拒绝，模型forward为0。后续先比较当前最佳ResNet34整图头模型在训练与验证上的全patch表现，固定权重、原规则和输入口径。`[verified: imagenet1k-v2-resnet50-head-sampled4-attribution.json variants；imagenet1k-v2-resnet50-head-evidence.json；opinion: 后续诊断选择]`
+
+完整验证1000图／7173patch的四份预测数组及选参精确复现，1预热3测量的批量摊销准备、推理与决策为19.6064ms／图，单列加载和身份审计成本。资源监控首个受限CIM内存查询失败，原样本与错误说明保留，后续使用通过权限核验的采样，正式训练与计时均成功退出。`[verified: inference-cost-imagenet1k-v2-r50-head-full1000.json；imagenet1k-v2-resnet50-head-verification.json]`
+
+
+## 系统变体离线评估（validation1000）
+
+三个冻结模型的原始和既有校准预测各评估39个系统变体，共234组；147组非参照系统变体达到块大小Top-1≥90%，原搜索六组参照均为100%。运行守卫的模型调用、优化器构造、编码器构造、CUDA初始化及确认集文件访问均为0。`[verified: system-variants-verification.json evaluated_arms、qualifying_system_variant_arms_excluding_reference、runtime_guards]`
+
+输入为冻结的validation1000和开发语料20候选归档。四组计数为srgb_small612、srgb_large326、normal45、linear17，直接父目录487组、资产族189组。逐类precision／recall、混淆矩阵、分组及宏平均、体积与成本详见[完整结果](system-variants-result.json)，输入身份见[配置](system-variants-config.json)，运行与检查见[核验记录](system-variants-verification.json)。`[verified: system-variants-verification.json group_counts、direct_parent_groups、asset_family_groups]`
+
+### ResNet34整图头原始预测
+
+| 系统变体 | 块大小Top-1 | 完整匹配 | 严格质量 | 质量回退图数 | 编码均值／P95／最大 | 证据 |
+|---|---|---|---|---|---|---|
+| `0_pure_model` | 86.9% | 58.8% | 68.2% | 192 | 1.000／1／1 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.0_pure_model]` |
+| `original_search` | 100.0% | 100.0% | 87.4% | 0 | 7.061／18／20 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.original_search]` |
+| `normal_native_search` | 87.9% | 61.8% | 69.3% | 181 | 1.437／1／20 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.normal_native_search]` |
+| `B1_candidate_idx` | 93.6% | 80.4% | 87.5% | 0 | 1.627／5／16 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B1_candidate_idx]` |
+| `B1_block_start` | 93.9% | 93.9% | 87.4% | 0 | 3.404／7／20 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B1_block_start]` |
+| `B2_candidate_idx_predicted_preset_K2` | 94.0% | 70.1% | 77.3% | 101 | 1.547／2／2 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B2_candidate_idx_predicted_preset_K2]` |
+| `B2_candidate_idx_predicted_preset_K3` | 95.3% | 75.0% | 81.9% | 55 | 1.712／3／3 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B2_candidate_idx_predicted_preset_K3]` |
+| `B2_candidate_idx_predicted_preset_K5` | 98.5% | 79.6% | 85.7% | 17 | 1.837／5／5 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B2_candidate_idx_predicted_preset_K5]` |
+| `B2_candidate_idx_predicted_preset_unlimited` | 99.3% | 82.1% | 87.5% | 0 | 1.914／5／16 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B2_candidate_idx_predicted_preset_unlimited]` |
+| `B2_candidate_idx_canonical_block_K2` | 88.6% | 68.6% | 77.3% | 101 | 1.547／2／2 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B2_candidate_idx_canonical_block_K2]` |
+| `B2_candidate_idx_canonical_block_K3` | 89.8% | 73.5% | 81.9% | 55 | 1.923／3／3 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B2_candidate_idx_canonical_block_K3]` |
+| `normal_native_search+B2_candidate_idx_predicted_preset_K2` | 94.5% | 72.5% | 78.0% | 94 | 1.948／2／20 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.normal_native_search+B2_candidate_idx_predicted_preset_K2]` |
+| `normal_native_search+B2_candidate_idx_predicted_preset_K3` | 95.7% | 77.1% | 82.3% | 51 | 2.102／3／20 | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.normal_native_search+B2_candidate_idx_predicted_preset_K3]` |
+
+原始模型131个块大小错误中125个为相邻档，占95.42%；向后续搜的702图只编码一次，171图编码两次。纯预测起点的严格质量通过率为68.2%。`[verified: system-variants-verification.json locality_diagnostics、raw_r34_encoding_count_distributions；system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.0_pure_model]`
+
+### 各模型达到90%的最少平均编码方案
+
+| 模型 | 预测口径 | 系统变体 | Top-1 | 平均编码 | 严格质量 | 回退图数 | 证据 |
+|---|---|---|---|---|---|---|---|
+| `imagenet-resnet34-head-sampled4` | raw | `B2_candidate_idx_predicted_preset_K2` | 94.0% | 1.547 | 77.3% | 101 | `[verified: system-variants-verification.json minimum_by_model]` |
+| `imagenet-resnet34-head-sampled4` | calibrated | `B2_candidate_idx_predicted_preset_K2` | 93.8% | 1.547 | 78.2% | 93 | `[verified: system-variants-verification.json minimum_by_model]` |
+| `imagenet-head-sampled4` | raw | `B2_candidate_idx_predicted_preset_K2` | 92.6% | 1.543 | 77.1% | 104 | `[verified: system-variants-verification.json minimum_by_model]` |
+| `imagenet-head-sampled4` | calibrated | `B2_candidate_idx_predicted_preset_K2` | 91.7% | 1.549 | 74.8% | 126 | `[verified: system-variants-verification.json minimum_by_model]` |
+| `mean-full30` | raw | `B2_candidate_idx_predicted_preset_K3` | 93.1% | 1.818 | 78.8% | 87 | `[verified: system-variants-verification.json minimum_by_model]` |
+| `mean-full30` | calibrated | `B2_candidate_idx_predicted_preset_K3` | 92.9% | 1.815 | 78.6% | 89 | `[verified: system-variants-verification.json minimum_by_model]` |
+
+全局最少平均编码方案是ResNet18预训练整图头原始预测配合预测preset的双向探测K=2，Top-1为92.6%、平均1.543次；ResNet34同策略为94.0%、平均1.547次。完整二维Pareto点保存在结果的pareto_frontier中。`[verified: system-variants-result.json minimum_encoding_solutions_at90、pareto_frontier]`
+
+### 回溯成本估算
+
+法线路由原搜索的图使用原始search_ms；模型路由的图累加归档编码耗时、实际需要门控的解码与质量评价耗时，以及已测PNG准备／输入／推理／原规则决策的批量摊销成本。选中ASTC复用；纯预测只计一次最终编码。原搜索主基准均值为1068.42ms，同归档重放基准为461.47ms。`[verified: system-variants-result.json timing_scope、models.imagenet-resnet34-head-sampled4.raw.original_search.encoding_cost_estimate]`
+
+| ResNet34原始预测方案 | 主路径估算均值ms | 相对历史原搜索估算加速比 | 同归档匹配估算加速比 | 证据 |
+|---|---|---|---|---|
+| `original_search` | 1068.42 | 1.000× | 1.000× | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.original_search.encoding_cost_estimate]` |
+| `0_pure_model` | 130.10 | 8.212× | 3.547× | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.0_pure_model.encoding_cost_estimate]` |
+| `normal_native_search` | 294.48 | 3.628× | 2.439× | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.normal_native_search.encoding_cost_estimate]` |
+| `B1_candidate_idx` | 201.12 | 5.312× | 2.295× | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B1_candidate_idx.encoding_cost_estimate]` |
+| `B2_candidate_idx_predicted_preset_K2` | 215.57 | 4.956× | 2.141× | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B2_candidate_idx_predicted_preset_K2.encoding_cost_estimate]` |
+| `B2_candidate_idx_predicted_preset_K3` | 227.87 | 4.689× | 2.025× | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B2_candidate_idx_predicted_preset_K3.encoding_cost_estimate]` |
+| `B2_candidate_idx_predicted_preset_K5` | 234.05 | 4.565× | 1.972× | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B2_candidate_idx_predicted_preset_K5.encoding_cost_estimate]` |
+| `B2_candidate_idx_predicted_preset_unlimited` | 240.97 | 4.434× | 1.915× | `[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw.B2_candidate_idx_predicted_preset_unlimited.encoding_cost_estimate]` |
+
+这些时间来自归档候选耗时与既有批量摊销模型计时的组合估算，覆盖参考PNG到mip0 ASTC及实测门控所需的解码／质量评价，模型加载、Unity导入及完整mip链成本单列。`[verified: system-variants-result.json timing_scope；system-variants-config.json quality_query_cost、pure_model_cost；opinion: 成本估计范围]`
+
+### 完整变体对照
+
+下表单元格为块大小Top-1／平均编码次数，粗体表示达到90%。R34对应imagenet-resnet34-head-sampled4，R18预训练对应imagenet-head-sampled4，R18随机对应mean-full30；校准为已有同验证集余量拟合。`[verified: system-variants-config.json models；system-variants-result.json calibration_scope]`
+
+| 系统变体 | R34原始 | R34校准 | R18预训练原始 | R18预训练校准 | R18随机原始 | R18随机校准 | 证据 |
+|---|---|---|---|---|---|---|---|
+| `0_pure_model` | 86.9%／1.000 | 87.1%／1.000 | 86.3%／1.000 | 86.7%／1.000 | 81.3%／1.000 | 81.5%／1.000 | `[verified: system-variants-result.json models各模型raw/calibrated的0_pure_model]` |
+| `original_search` | **100.0%／7.061** | **100.0%／7.061** | **100.0%／7.061** | **100.0%／7.061** | **100.0%／7.061** | **100.0%／7.061** | `[verified: system-variants-result.json models各模型raw/calibrated的original_search]` |
+| `normal_native_search` | 87.9%／1.437 | 88.1%／1.437 | 87.4%／1.437 | 87.8%／1.437 | 82.9%／1.437 | 83.0%／1.437 | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search]` |
+| `B1_candidate_idx` | **93.6%／1.627** | **93.0%／1.590** | **93.2%／1.661** | **95.3%／1.777** | **91.5%／1.868** | **91.9%／1.871** | `[verified: system-variants-result.json models各模型raw/calibrated的B1_candidate_idx]` |
+| `B2_candidate_idx_predicted_preset_unlimited` | **99.3%／1.914** | **99.1%／1.894** | **98.8%／1.949** | **99.2%／2.021** | **99.0%／2.157** | **99.0%／2.150** | `[verified: system-variants-result.json models各模型raw/calibrated的B2_candidate_idx_predicted_preset_unlimited]` |
+| `B2_candidate_idx_predicted_preset_K2` | **94.0%／1.547** | **93.8%／1.547** | **92.6%／1.543** | **91.7%／1.549** | 89.6%／1.585 | 89.3%／1.582 | `[verified: system-variants-result.json models各模型raw/calibrated的B2_candidate_idx_predicted_preset_K2]` |
+| `B2_candidate_idx_predicted_preset_K3` | **95.3%／1.712** | **95.2%／1.703** | **94.4%／1.712** | **93.6%／1.729** | **93.1%／1.818** | **92.9%／1.815** | `[verified: system-variants-result.json models各模型raw/calibrated的B2_candidate_idx_predicted_preset_K3]` |
+| `B2_candidate_idx_predicted_preset_K5` | **98.5%／1.837** | **98.3%／1.821** | **97.3%／1.851** | **97.2%／1.897** | **96.9%／2.013** | **96.9%／2.011** | `[verified: system-variants-result.json models各模型raw/calibrated的B2_candidate_idx_predicted_preset_K5]` |
+| `B2_candidate_idx_canonical_block_unlimited` | **99.5%／3.001** | **99.3%／3.041** | **99.2%／3.039** | **99.6%／2.964** | **99.3%／3.184** | **99.3%／3.143** | `[verified: system-variants-result.json models各模型raw/calibrated的B2_candidate_idx_canonical_block_unlimited]` |
+| `B2_candidate_idx_canonical_block_K2` | 88.6%／1.547 | 88.1%／1.547 | 87.4%／1.543 | 88.0%／1.549 | 83.6%／1.585 | 83.7%／1.582 | `[verified: system-variants-result.json models各模型raw/calibrated的B2_candidate_idx_canonical_block_K2]` |
+| `B2_candidate_idx_canonical_block_K3` | 89.8%／1.923 | 89.4%／1.925 | 89.2%／1.918 | 89.9%／1.921 | 86.8%／2.013 | 87.0%／2.004 | `[verified: system-variants-result.json models各模型raw/calibrated的B2_candidate_idx_canonical_block_K3]` |
+| `B2_candidate_idx_canonical_block_K5` | **96.8%／2.543** | **96.4%／2.566** | **95.9%／2.551** | **96.4%／2.525** | **95.4%／2.682** | **95.4%／2.659** | `[verified: system-variants-result.json models各模型raw/calibrated的B2_candidate_idx_canonical_block_K5]` |
+| `B1_block_start` | **93.9%／3.404** | **93.3%／3.346** | **93.6%／3.417** | **95.6%／3.554** | **91.9%／3.601** | **92.3%／3.618** | `[verified: system-variants-result.json models各模型raw/calibrated的B1_block_start]` |
+| `B2_block_start_predicted_preset_unlimited` | **97.7%／3.528** | **97.5%／3.480** | **97.9%／3.554** | **98.4%／3.655** | **97.3%／3.746** | **97.5%／3.756** | `[verified: system-variants-result.json models各模型raw/calibrated的B2_block_start_predicted_preset_unlimited]` |
+| `B2_block_start_predicted_preset_K2` | **90.7%／1.793** | **91.2%／1.793** | **90.4%／1.793** | 89.5%／1.793 | 86.1%／1.795 | 86.1%／1.795 | `[verified: system-variants-result.json models各模型raw/calibrated的B2_block_start_predicted_preset_K2]` |
+| `B2_block_start_predicted_preset_K3` | **90.7%／2.491** | **91.3%／2.485** | **90.6%／2.487** | 89.5%／2.492 | 86.6%／2.503 | 86.6%／2.507 | `[verified: system-variants-result.json models各模型raw/calibrated的B2_block_start_predicted_preset_K3]` |
+| `B2_block_start_predicted_preset_K5` | **90.7%／3.196** | **91.3%／3.170** | **90.6%／3.182** | 89.5%／3.228 | 86.7%／3.255 | 86.7%／3.267 | `[verified: system-variants-result.json models各模型raw/calibrated的B2_block_start_predicted_preset_K5]` |
+| `B2_block_start_canonical_block_unlimited` | **97.8%／3.975** | **97.6%／3.959** | **98.2%／4.044** | **98.7%／4.030** | **97.5%／4.211** | **97.7%／4.196** | `[verified: system-variants-result.json models各模型raw/calibrated的B2_block_start_canonical_block_unlimited]` |
+| `B2_block_start_canonical_block_K2` | 87.1%／1.793 | 87.3%／1.793 | 86.5%／1.793 | 86.9%／1.793 | 82.2%／1.795 | 82.4%／1.795 | `[verified: system-variants-result.json models各模型raw/calibrated的B2_block_start_canonical_block_K2]` |
+| `B2_block_start_canonical_block_K3` | 87.1%／2.553 | 87.4%／2.551 | 86.7%／2.552 | 86.9%／2.551 | 82.4%／2.560 | 82.6%／2.561 | `[verified: system-variants-result.json models各模型raw/calibrated的B2_block_start_canonical_block_K3]` |
+| `B2_block_start_canonical_block_K5` | 89.6%／3.442 | **90.0%／3.434** | 89.6%／3.449 | 88.9%／3.447 | 85.6%／3.506 | 85.6%／3.505 | `[verified: system-variants-result.json models各模型raw/calibrated的B2_block_start_canonical_block_K5]` |
+| `normal_native_search+B1_candidate_idx` | **94.1%／2.036** | **93.5%／1.999** | **93.8%／2.071** | **95.9%／2.187** | **92.5%／2.271** | **92.5%／2.260** | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B1_candidate_idx]` |
+| `normal_native_search+B2_candidate_idx_predicted_preset_unlimited` | **99.3%／2.296** | **99.1%／2.276** | **98.8%／2.330** | **99.2%／2.402** | **99.0%／2.526** | **99.0%／2.515** | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_candidate_idx_predicted_preset_unlimited]` |
+| `normal_native_search+B2_candidate_idx_predicted_preset_K2` | **94.5%／1.948** | **94.3%／1.948** | **93.1%／1.946** | **92.2%／1.952** | **90.1%／1.981** | **90.1%／1.980** | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_candidate_idx_predicted_preset_K2]` |
+| `normal_native_search+B2_candidate_idx_predicted_preset_K3` | **95.7%／2.102** | **95.6%／2.093** | **94.8%／2.101** | **94.0%／2.118** | **93.4%／2.200** | **93.4%／2.197** | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_candidate_idx_predicted_preset_K3]` |
+| `normal_native_search+B2_candidate_idx_predicted_preset_K5` | **98.6%／2.220** | **98.4%／2.204** | **97.4%／2.234** | **97.3%／2.280** | **97.1%／2.385** | **97.1%／2.380** | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_candidate_idx_predicted_preset_K5]` |
+| `normal_native_search+B2_candidate_idx_canonical_block_unlimited` | **99.5%／3.281** | **99.3%／3.321** | **99.2%／3.309** | **99.6%／3.234** | **99.3%／3.431** | **99.3%／3.420** | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_candidate_idx_canonical_block_unlimited]` |
+| `normal_native_search+B2_candidate_idx_canonical_block_K2` | 89.6%／1.948 | 89.1%／1.948 | 88.5%／1.946 | 89.1%／1.952 | 85.1%／1.981 | 85.1%／1.980 | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_candidate_idx_canonical_block_K2]` |
+| `normal_native_search+B2_candidate_idx_canonical_block_K3` | **90.7%／2.292** | **90.3%／2.294** | **90.2%／2.290** | **90.9%／2.293** | 88.1%／2.371 | 88.1%／2.368 | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_candidate_idx_canonical_block_K3]` |
+| `normal_native_search+B2_candidate_idx_canonical_block_K5` | **97.1%／2.859** | **96.7%／2.882** | **96.2%／2.871** | **96.7%／2.845** | **95.7%／2.974** | **95.7%／2.969** | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_candidate_idx_canonical_block_K5]` |
+| `normal_native_search+B1_block_start` | **94.4%／3.748** | **93.8%／3.690** | **94.2%／3.766** | **96.2%／3.903** | **92.9%／3.945** | **92.9%／3.940** | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B1_block_start]` |
+| `normal_native_search+B2_block_start_predicted_preset_unlimited` | **97.7%／3.857** | **97.5%／3.809** | **97.9%／3.884** | **98.4%／3.985** | **97.7%／4.072** | **97.7%／4.067** | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_block_start_predicted_preset_unlimited]` |
+| `normal_native_search+B2_block_start_predicted_preset_K2` | **91.2%／2.186** | **91.7%／2.186** | **90.9%／2.186** | **90.0%／2.186** | 87.1%／2.188 | 87.2%／2.188 | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_block_start_predicted_preset_K2]` |
+| `normal_native_search+B2_block_start_predicted_preset_K3` | **91.2%／2.853** | **91.8%／2.847** | **91.1%／2.847** | **90.0%／2.852** | 87.6%／2.865 | 87.7%／2.865 | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_block_start_predicted_preset_K3]` |
+| `normal_native_search+B2_block_start_predicted_preset_K5` | **91.2%／3.535** | **91.8%／3.509** | **91.1%／3.522** | **90.0%／3.568** | 87.7%／3.594 | 87.8%／3.594 | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_block_start_predicted_preset_K5]` |
+| `normal_native_search+B2_block_start_canonical_block_unlimited` | **97.8%／4.250** | **97.6%／4.234** | **98.2%／4.303** | **98.7%／4.289** | **97.9%／4.474** | **97.9%／4.469** | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_block_start_canonical_block_unlimited]` |
+| `normal_native_search+B2_block_start_canonical_block_K2` | 88.1%／2.186 | 88.3%／2.186 | 87.6%／2.186 | 88.0%／2.186 | 83.8%／2.188 | 83.9%／2.188 | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_block_start_canonical_block_K2]` |
+| `normal_native_search+B2_block_start_canonical_block_K3` | 88.1%／2.906 | 88.4%／2.904 | 87.8%／2.905 | 88.0%／2.904 | 84.0%／2.914 | 84.1%／2.914 | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_block_start_canonical_block_K3]` |
+| `normal_native_search+B2_block_start_canonical_block_K5` | **90.3%／3.750** | **90.7%／3.742** | **90.3%／3.756** | 89.6%／3.754 | 86.7%／3.812 | 86.8%／3.812 | `[verified: system-variants-result.json models各模型raw/calibrated的normal_native_search+B2_block_start_canonical_block_K5]` |
+
+### 执行约定与核验
+
+- `candidate_idx`从预测的具体preset开始，`block_start`从预测块的fastest开始。双向探测仅在首次实测strict达标时向粗块推进，分别评估预测preset和canonical块内候选两种策略。`[verified: system_variant_policy.py replay_variant、preferred_preset；system-variants-result.json variants]`
+- K计入起点和所有后续唯一编码，选中结果复用。A组合中的法线图按原搜索完整计数，K约束其余模型路由图；表中最大次数与max_model_route_candidates_measured同时报告。`[verified: system-variants-result.json budget_scope；system_variant_policy.py replay_variant]`
+- 预算耗尽保留已测严格合格候选；大图已有锁块时保留最后实测PSNR合格者；其余情况取已测最高PSNR的首个候选。大图跨块多测一次按原生循环计数。未测前缀的PSNR比较只用于事后补测诊断。`[verified: system_variant_policy.py forward_search、CandidateQueries.outcome；system-variants-result.json budget_exhaustion_rule、large_rule]`
+- 新模块25项CPU测试通过；完整套件967通过、6项原生环境集成检查跳过、2项CUDA检查排除，ruff和basedpyright通过。独立复核重算234臂，并检查180个原规则重放、7020个唯一预算和5400个未测指标扰动案例。`[verified: system-variants-verification.json cpu_tests、new_unit_tests、ruff、basedpyright、independent_readonly_review]`
+- 首版费用把原搜索路由计为归档候选和，已用原search_ms修正并重跑小样本与全量；首版17份代码／配置／结果文件的SHA归档保留。此前训练集推理诊断在切换到本次范围时中止，原记录保留。`[verified: system-variants-verification.json cost_correction、preceding_development_fit_diagnostic]`

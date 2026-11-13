@@ -470,3 +470,21 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 - ResNet-50 ImageNet IMAGENET1K_V1完整30轮完成，epoch25／raw为85.6%、近阈值RMSE1.6411dB，同验证拟合85.9%，原生重载通过。同1000图推理重放、22份模型血缘通过，正式90%准入拒绝。2048维整图头CUDA预检完成4更新、初始1000图复现、冻结及重载后启动完整对照。另将V2计划的进度链接从旧数据采集目录修正到当前V2实验目录。`[verified: imagenet-resnet50-full30-result.json；imagenet-resnet50-head-design.json；experiment plan/V2/README.md 运行约束]`
 
 - ResNet-50 ImageNet V1整图头30轮完成，epoch7／image_head_refit为86.0%、近阈值RMSE1.6389dB，同验证拟合86.3%，冻结与重载通过。1000图重放及39份血缘通过，正式90%准入拒绝。下一同架构权重版本对照选择官方IMAGENET1K_V2，四项配置差异为权重路径／SHA和输出位置，实际CPU迁移、六个共同头／RNG配对及CUDA4更新预检通过。`[verified: imagenet-resnet50-head-sampled4-result.json；imagenet-resnet50-head-evidence.json；imagenet1k-v2-resnet50-design.json；opinion: 下一权重版本选择]`
+
+
+## 2026-11-13 IMAGENET1K_V2 ResNet50完整结果
+
+- 同架构权重版本对照完成30轮，原始／同集拟合Top-1均85.4%，所选epoch19／raw近阈值RMSE1.9043dB，22份只读来源绑定和原生重载通过，正式90%准入拒绝。`[verified: experiment report/unity-v2-20261112/imagenet1k-v2-resnet50-full30-result.json；imagenet1k-v2-resnet50-evidence.json]`
+- 冻结预测实测MSE与MS-SSIM单项替换各91.9%，角度86.5%，全部实测100%；按既有sampled4配方准备独立整图头预检和完整配置。`[verified: imagenet1k-v2-resnet50-full30-attribution.json variants；imagenet1k-v2-resnet50-head-sampled4-config.json；opinion: 后续顺序]`
+- 执行报告概览内残留的最佳独立ImageNet86.3%已与实际ResNet34头部结果86.9%对齐。`[verified: README.md“当前结果”；imagenet-resnet34-head-sampled4-result.json]`
+
+- IMAGENET1K_V2整图头完成30轮，85.3%／同集拟合85.5%，epoch20近阈值RMSE1.8845dB；冻结状态和原生重载通过，正式90%准入拒绝，39份来源绑定通过。`[verified: experiment report/unity-v2-20261112/imagenet1k-v2-resnet50-head-sampled4-result.json；imagenet1k-v2-resnet50-head-evidence.json]`
+- 首次内存监控的受限CIM查询失败，原日志及错误说明保留，转用通过权限核验的resource-monitor-v2.jsonl，实际训练顺序保持并成功结束。`[verified: .local/unity-v2-20261112/jobs/imagenet1k-v2-resnet50-head-sampled4/resource-monitor-v1-error.json；resource-monitor-v2.jsonl；receipt.json]`
+
+
+## 2026-11-13 validation1000系统变体离线评估
+
+- 依用户本次授权执行3模型、原始／已校准预测两口径、39变体共234组。输入为保存预测与开发语料20候选指标，运行守卫中模型、优化器、编码器、CUDA及确认集访问均为0。`[verified: experiment report/unity-v2-20261112/system-variants-verification.json runtime_guards、evaluated_arms]`
+- ResNet34原始的预测preset双向K=2为94.0%／1.547次、K=3为95.3%／1.712次；向后续搜93.6%／1.627次、质量回退0。全局最少平均达到90%为ResNet18预训练原始双向K=2，92.6%／1.543次。`[verified: system-variants-result.json models.imagenet-resnet34-head-sampled4.raw、minimum_encoding_solutions_at90]`
+- 原搜索与A法线路由主费用用原始search_ms，独立保留archive-matched估算；首版费用口径及17文件源码/配置/结果SHA归档保留。先写成本回归测试确认48ms与应有123ms冲突，修正后重跑小样本与全量并通过独立234臂费用重算。`[verified: system-variants-verification.json cost_correction、independent_readonly_review；tests/test_unity_system_variants.py test_native_route_uses_original_search_time_and_archive_reference]`
+- 本轮切换前的训练集推理诊断已停止，原部分报告及中止回执保留。新离线评估采用独立身份和零执行守卫。`[verified: system-variants-verification.json preceding_development_fit_diagnostic、runtime_guards]`

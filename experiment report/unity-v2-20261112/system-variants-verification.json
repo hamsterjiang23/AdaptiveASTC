@@ -1,0 +1,288 @@
+{
+  "status": "passed",
+  "completed_utc": "2026-11-13T03:45:56.973272+00:00",
+  "config": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\system-variants-config.json",
+    "sha256": "121493f8631e36089a187011d865e652a2287919dd2d76e6977509bbb2332ea9"
+  },
+  "result": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\system-variants-result.json",
+    "sha256": "fe5bb00d074cc75c90b4c3ec2f71c5dba86d07d0c7501d63320213f042682924"
+  },
+  "corpus_sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+  "source_and_input_files_sha256_verified": 1142,
+  "validation_images": 1000,
+  "models": [
+    "imagenet-resnet34-head-sampled4",
+    "imagenet-head-sampled4",
+    "mean-full30"
+  ],
+  "prediction_modes": [
+    "raw",
+    "calibrated"
+  ],
+  "variants_per_prediction_arm": 39,
+  "evaluated_arms": 234,
+  "qualifying_arms_including_original_search": 153,
+  "qualifying_system_variant_arms_excluding_reference": 147,
+  "model_forward_calls": 0,
+  "training_updates": 0,
+  "actual_encoding_calls": 0,
+  "test_opened": false,
+  "confirmation_file_accesses": 0,
+  "cuda_initialized": false,
+  "runtime_guards": {
+    "system-variants-smoke-v2": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\system-variants-smoke-v2-guard.json",
+      "sha256": "3657c9c7929c87fe517b498179fd16aa99c73192219c6f0562e994e312744ea4",
+      "status": "passed",
+      "counters": {
+        "model_forward_calls": 0,
+        "optimizer_constructions": 0,
+        "encoder_constructions": 0,
+        "cuda_initialization_attempts": 0,
+        "confirmation_file_accesses": 0
+      },
+      "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\system-variants-smoke-v2-config.json",
+      "evaluation_status": "passed_smoke",
+      "cuda_initialized": false
+    },
+    "system-variants-full-v2": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\system-variants-full-v2-guard.json",
+      "sha256": "ef34ab3897daa9985005843df638a3e14aa8e47315f7f88d0a51aef97db851f9",
+      "status": "passed",
+      "counters": {
+        "model_forward_calls": 0,
+        "optimizer_constructions": 0,
+        "encoder_constructions": 0,
+        "cuda_initialization_attempts": 0,
+        "confirmation_file_accesses": 0
+      },
+      "config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\system-variants-config.json",
+      "evaluation_status": "completed",
+      "cuda_initialized": false
+    }
+  },
+  "full_canonical_index0_budget20_original_replay_images": 1000,
+  "zero_extra_measurement_pure_model_controls": 6,
+  "group_counts": {
+    "srgb_small": 612,
+    "srgb_large": 326,
+    "normal": 45,
+    "linear": 17
+  },
+  "direct_parent_groups": 487,
+  "asset_family_groups": 189,
+  "minimum_mean_candidates_at90": 1.543,
+  "minimum_encoding_solutions_at90": [
+    {
+      "model": "imagenet-head-sampled4",
+      "prediction_mode": "raw",
+      "variant": "B2_candidate_idx_predicted_preset_K2",
+      "accuracy": 0.926,
+      "mean_candidates_measured": 1.543,
+      "estimated_total_mean_ms": 214.741686199799,
+      "reaches_validation90": true
+    }
+  ],
+  "minimum_by_model": [
+    {
+      "model": "imagenet-resnet34-head-sampled4",
+      "prediction_mode": "raw",
+      "variant": "B2_candidate_idx_predicted_preset_K2",
+      "accuracy": 0.94,
+      "mean_candidates_measured": 1.547,
+      "quality_pass_rate": 0.773,
+      "quality_regression_images": 101
+    },
+    {
+      "model": "imagenet-resnet34-head-sampled4",
+      "prediction_mode": "calibrated",
+      "variant": "B2_candidate_idx_predicted_preset_K2",
+      "accuracy": 0.938,
+      "mean_candidates_measured": 1.547,
+      "quality_pass_rate": 0.782,
+      "quality_regression_images": 93
+    },
+    {
+      "model": "imagenet-head-sampled4",
+      "prediction_mode": "raw",
+      "variant": "B2_candidate_idx_predicted_preset_K2",
+      "accuracy": 0.926,
+      "mean_candidates_measured": 1.543,
+      "quality_pass_rate": 0.771,
+      "quality_regression_images": 104
+    },
+    {
+      "model": "imagenet-head-sampled4",
+      "prediction_mode": "calibrated",
+      "variant": "B2_candidate_idx_predicted_preset_K2",
+      "accuracy": 0.917,
+      "mean_candidates_measured": 1.549,
+      "quality_pass_rate": 0.748,
+      "quality_regression_images": 126
+    },
+    {
+      "model": "mean-full30",
+      "prediction_mode": "raw",
+      "variant": "B2_candidate_idx_predicted_preset_K3",
+      "accuracy": 0.931,
+      "mean_candidates_measured": 1.818,
+      "quality_pass_rate": 0.788,
+      "quality_regression_images": 87
+    },
+    {
+      "model": "mean-full30",
+      "prediction_mode": "calibrated",
+      "variant": "B2_candidate_idx_predicted_preset_K3",
+      "accuracy": 0.929,
+      "mean_candidates_measured": 1.815,
+      "quality_pass_rate": 0.786,
+      "quality_regression_images": 89
+    }
+  ],
+  "locality_diagnostics": {
+    "raw_r34_wrong_block_images": 131,
+    "adjacent_wrong_block_images": 125,
+    "adjacent_fraction_of_errors": 0.9541984732824428
+  },
+  "raw_r34_encoding_count_distributions": {
+    "B1_candidate_idx": {
+      "1": 702,
+      "2": 171,
+      "3": 53,
+      "4": 23,
+      "5": 24,
+      "6": 10,
+      "7": 13,
+      "14": 1,
+      "15": 1,
+      "16": 2
+    },
+    "B2_candidate_idx_predicted_preset_K2": {
+      "1": 453,
+      "2": 547
+    },
+    "B2_candidate_idx_predicted_preset_K3": {
+      "1": 453,
+      "2": 382,
+      "3": 165
+    }
+  },
+  "cpu_tests": {
+    "passed": 967,
+    "skipped": 6,
+    "cuda_cases_deselected": 2,
+    "seconds": 87.1,
+    "junit_xml": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\system-variants-tests-v2.xml",
+    "junit_sha256": "909f69f1ae3325723f2986d8b4cf5bdd5da23d41ae44266a8c29a7abb50cc08a",
+    "skip_details": [
+      {
+        "test": "test_channel_aggregation_matches_native_library[False-False]",
+        "reason": "Native quality library not configured"
+      },
+      {
+        "test": "test_channel_aggregation_matches_native_library[True-False]",
+        "reason": "Native quality library not configured"
+      },
+      {
+        "test": "test_channel_aggregation_matches_native_library[True-True]",
+        "reason": "Native quality library not configured"
+      },
+      {
+        "test": "test_foreign_cache_cannot_substitute_for_original_policy",
+        "reason": "Captured development policy audit not configured"
+      },
+      {
+        "test": "test_native_metric_excludes_lossless_channels_and_constant_alpha",
+        "reason": "Native integration requires UNITY_QUALITY_RECEIPT from build-metrics"
+      },
+      {
+        "test": "test_native_metrics_identical_image_and_normal_angle",
+        "reason": "Native integration requires UNITY_QUALITY_RECEIPT from build-metrics"
+      }
+    ],
+    "command": [
+      "uv",
+      "run",
+      "pytest",
+      "-q",
+      "--tb=short",
+      "-k",
+      "not test_cuda_feature_pool_repeated_outputs_are_bit_identical",
+      "--basetemp",
+      "experiment report/.local/unity-v2-20261112/pytest-system-variants-full-suite-v2",
+      "-o",
+      "cache_dir=experiment report/.local/unity-v2-20261112/pytest-cache-system-variants-full-v2",
+      "--junitxml",
+      "experiment report/.local/unity-v2-20261112/system-variants-tests-v2.xml"
+    ]
+  },
+  "new_unit_tests": {
+    "passed": 25,
+    "test_file": "tests/test_unity_system_variants.py"
+  },
+  "ruff": {
+    "status": "passed",
+    "command": [
+      "uv",
+      "run",
+      "ruff",
+      "check",
+      "reproductions/unity_search_baseline/system_variant_policy.py",
+      "reproductions/unity_search_baseline/system_variants.py",
+      "script/evaluate_unity_system_variants.py",
+      "tests/test_unity_system_variants.py"
+    ]
+  },
+  "basedpyright": {
+    "status": "passed",
+    "errors": 0,
+    "warnings": 0,
+    "command": [
+      "uv",
+      "run",
+      "basedpyright",
+      "reproductions/unity_search_baseline/system_variant_policy.py",
+      "reproductions/unity_search_baseline/system_variants.py",
+      "script/evaluate_unity_system_variants.py",
+      "tests/test_unity_system_variants.py"
+    ]
+  },
+  "full_evaluation_command": [
+    "uv",
+    "run",
+    "python",
+    "-X",
+    "utf8",
+    "-u",
+    "experiment report/.local/unity-v2-20261112/run_system_variants_guarded.py",
+    "--config",
+    "experiment report/unity-v2-20261112/system-variants-config.json",
+    "--guard-report",
+    "experiment report/.local/unity-v2-20261112/system-variants-full-v2-guard.json"
+  ],
+  "independent_readonly_review": {
+    "verdict": "CLEAN",
+    "canonical_property_checks": 180,
+    "unique_budget_property_checks": 7020,
+    "unmeasured_truth_perturbation_checks": 5400,
+    "full_trace_arms_independently_recomputed": 234,
+    "native_normal_route_cost_observations_checked": 5130,
+    "classification_groups_costs_pareto": "passed",
+    "model_forward_calls": 0,
+    "confirmation_file_accesses": 0,
+    "cuda_initialized": false
+  },
+  "cost_correction": {
+    "resolved": true,
+    "detail": "Native-routed primary cost uses original search_ms. Archive-matched speedups retain their matching archive denominator.",
+    "prior_attempt_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\system-variants-attempt-v1\\manifest.json",
+    "prior_attempt_manifest_sha256": "1b1d0a9267c4304374fab2c691052faefca388cdbae41ec5b62b9001eeaf3419"
+  },
+  "preceding_development_fit_diagnostic": {
+    "status": "interrupted_on_user_scope_change",
+    "receipt": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\development-fit-best-r34-head\\receipt.json",
+    "interruption_note": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\development-fit-best-r34-head\\interrupted-for-system-variants.json"
+  }
+}

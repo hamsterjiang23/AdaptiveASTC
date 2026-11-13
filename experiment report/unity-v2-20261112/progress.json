@@ -1,6 +1,6 @@
 {
-  "status": "imagenet1k_v2_resnet50_full30_running",
-  "updated_utc": "2026-11-13T01:34:44.116225+00:00",
+  "status": "system_variants_offline_completed",
+  "updated_utc": "2026-11-13T03:45:56.979268+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,9 +10,8 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Complete independent official ImageNet weight-version ResNet50 full30 and native checkpoint audit",
-    "Attribute, calibrate and benchmark the selected frozen validation predictions",
-    "Resolve pending mainline initialization, confirmation replacements and public publication decisions"
+    "Review validation-only system-variant Pareto and quality trade-offs before selecting the next experiment",
+    "Retain the user-requested confirmation-data boundary for this experiment"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
   "smoke_report_sha256": "0fd91bd4e77b4508b4fd24283a19897460cd4cc58a3d0d85b205371f5f273d7f",
@@ -61,24 +60,25 @@
     "full_status": "completed",
     "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\attribution-stable-smoke.json"
   },
-  "current_training_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30-config.json",
-  "current_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30.json",
-  "current_training_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\mean-resnet34-full30\\job.json",
+  "current_training_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet1k-v2-resnet50-full30-config.json",
+  "current_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet1k-v2-resnet50-full30.json",
+  "current_training_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet1k-v2-resnet50-full30\\job.json",
   "recovery_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\recovery-verification.json",
-  "current_training_completed_epochs": 1,
-  "current_training_best_validation_accuracy": 0.571,
+  "current_training_completed_epochs": 30,
+  "current_training_best_validation_accuracy": 0.854,
   "current_training_observation": {
-    "status": "running",
-    "runner_pid": 17100,
-    "runner_verified_alive": true
+    "status": "completed",
+    "training_updates": 18741,
+    "selected_epoch": 19,
+    "checkpoint_audit": "passed"
   },
   "completed_baseline_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\baseline-result.json",
   "completed_attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-attribution.json",
   "validation90_achieved": false,
   "comparison_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\comparison.json",
   "reference_model_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-full30.json",
-  "best_raw_validation_accuracy": 0.863,
-  "best_same_validation_fitted_accuracy": 0.867,
+  "best_raw_validation_accuracy": 0.869,
+  "best_same_validation_fitted_accuracy": 0.871,
   "source_archive": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-mean\\manifest.json",
   "source_archives": {
     "before_mean": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\source-archive-before-mean\\manifest.json",
@@ -96,7 +96,7 @@
   "next_training_config": null,
   "external_push": {
     "status": "pending_explicit_approval_after_auto_review_rejection",
-    "local_commit": "2094744",
+    "local_commit": "376814c",
     "destination": "hamsterjiang23/AdaptiveASTC main",
     "authenticated_login": "hamsterjiang23",
     "repository_owner": "hamsterjiang23",
@@ -120,9 +120,9 @@
   "confirmation_overlap_readiness": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-overlap-readiness.json",
   "confirmation_overlap_decision": "pending_user_decision_on_10_primary_replacements",
   "confirmation_interface_pending": [],
-  "best_development_contrast_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-head-sampled4-result.json",
+  "best_development_contrast_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-head-sampled4-result.json",
   "current_training_selection_metric": "accuracy",
-  "current_training_best_near_rmse": 3.927472377729204,
+  "current_training_best_near_rmse": 1.9042503319174473,
   "confirmation_stage_interface_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-stage-interface-verification.json",
   "confirmation_pixel_interface_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\confirmation-v2-pixel-interface-verification.json",
   "completed_psnr_preparation_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\psnr-preparation-result.json",
@@ -142,13 +142,7 @@
   },
   "resnet34_full30_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30-result.json",
   "inference_cost_comparison": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-capacity-comparison.json",
-  "active_job": {
-    "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet1k-v2-resnet50-full30\\job.json",
-    "runner_pid": 29428,
-    "child_pid": 8288,
-    "started_utc": "2026-11-13T01:32:24.123754+00:00",
-    "status": "running"
-  },
+  "active_job": null,
   "imagenet_resnet34_observation": {
     "status": "completed",
     "completed_epochs": 30,
@@ -157,7 +151,7 @@
     "terminal_checkpoint_audit": "passed",
     "job_status": "passed"
   },
-  "resource_monitor": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet1k-v2-resnet50-full30\\resource-monitor-v1.jsonl",
+  "resource_monitor": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet1k-v2-resnet50-head-sampled4\\resource-monitor-v2.jsonl",
   "imagenet_resnet34_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-result.json",
   "best_independent_control": {
     "model": "imagenet_resnet34_head_sampled4",
@@ -188,11 +182,44 @@
   "imagenet_resnet50_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet50-full30-result.json",
   "imagenet_resnet50_head_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet50-head-sampled4-result.json",
   "imagenet1k_v2_resnet50_observation": {
-    "status": "preparing",
-    "completed_epochs": 0,
+    "status": "completed",
+    "completed_epochs": 30,
+    "training_updates": 18741,
+    "selected_top1": 0.854,
+    "selected_near_rmse_db": 1.9042503319174473,
+    "job_status": "passed",
+    "checkpoint_audit": "passed"
+  },
+  "imagenet1k_v2_resnet50_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet1k-v2-resnet50-full30-result.json",
+  "imagenet1k_v2_resnet50_head_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet1k-v2-resnet50-head-sampled4-result.json",
+  "imagenet1k_v2_resnet50_head_observation": {
+    "status": "completed",
+    "completed_epochs": 30,
+    "training_updates": 18745,
+    "selected_epoch": 20,
+    "selected_top1": 0.853,
+    "same_validation_fit_top1": 0.855,
+    "checkpoint_audit": "passed"
+  },
+  "system_variants_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\system-variants-config.json",
+  "system_variants_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\system-variants-result.json",
+  "system_variants_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\system-variants-verification.json",
+  "system_variants_observation": {
+    "status": "completed",
+    "validation_images": 1000,
+    "evaluated_arms": 234,
+    "models": 3,
+    "prediction_modes": 2,
+    "variants_per_arm": 39,
+    "qualifying_system_variant_arms": 147,
+    "model_forward_calls": 0,
     "training_updates": 0,
-    "best_development_top1_so_far": null,
-    "job_status": "running",
-    "source_files_sha256_verified": 13
-  }
+    "actual_encoding_calls": 0,
+    "test_opened": false,
+    "confirmation_file_accesses": 0,
+    "best_minimum_mean_encodes_at90": 1.543,
+    "independent_review": "CLEAN"
+  },
+  "system_variant_validation90_achieved": true,
+  "preceding_development_fit_diagnostic": "interrupted_on_user_scope_change"
 }

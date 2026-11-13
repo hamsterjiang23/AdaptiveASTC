@@ -1,0 +1,121 @@
+{
+  "status": "completed",
+  "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet1k-v2-resnet50-full30.json",
+  "training_report_sha256": "6404411c025d1103f2d35ae32edbc688536faf92d80b06ee6d9834d282837f74",
+  "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet1k-v2-resnet50-full30-attribution.json",
+  "attribution_report_sha256": "41fc04f504c3476e5a0de2a56901e9f646f303d77ed9751d31acde8759df41cf",
+  "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet1k-v2-resnet50-full30-calibration.json",
+  "calibration_report_sha256": "0b1b52ead077f79cfd3e0a9359c146117d9239a7819f102e93a27f5f030ab68f",
+  "epochs": 30,
+  "updates": 18741,
+  "optimizer_attempts": 18750,
+  "amp_skips": 9,
+  "selected_checkpoint_epoch": 19,
+  "selected_variant": "raw",
+  "selected_checkpoint_metrics": {
+    "count": 1000,
+    "accuracy": 0.854,
+    "balanced_accuracy": 0.7682943446249137,
+    "full_choice_accuracy": 0.571,
+    "confusion_matrix": [
+      [
+        97,
+        17,
+        2,
+        4
+      ],
+      [
+        19,
+        99,
+        21,
+        4
+      ],
+      [
+        1,
+        21,
+        85,
+        31
+      ],
+      [
+        1,
+        3,
+        22,
+        573
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 120,
+        "recall": 0.8083333333333333
+      },
+      "8x8": {
+        "support": 143,
+        "recall": 0.6923076923076923
+      },
+      "10x10": {
+        "support": 138,
+        "recall": 0.6159420289855072
+      },
+      "12x12": {
+        "support": 599,
+        "recall": 0.9565943238731218
+      }
+    },
+    "actual_quality_pass_rate": 0.663,
+    "no_strict_feasible_images": 34,
+    "color_near_threshold_candidate_count": 4687,
+    "color_near_threshold_rmse_db": 1.9042503319174473,
+    "selected_payload_bytes": 31436016,
+    "original_payload_bytes": 31661520,
+    "fixed8_payload_bytes": 59761616,
+    "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+    "seconds": 13.35378280000441
+  },
+  "same_validation_fitted_top1": 0.854,
+  "same_validation_fitted_parameters": {
+    "zero_probability_threshold": 0.5,
+    "psnr_margin_db": 0.0,
+    "ssim_margin_db": 0.0,
+    "mean_angle_margin_deg": 0.0,
+    "p95_angle_margin_deg": 0.0
+  },
+  "same_validation_fitted_metrics": {
+    "images": 1000,
+    "accuracy": 0.854,
+    "full_choice_accuracy": 0.571,
+    "actual_strict_quality_pass_rate": 0.663,
+    "quality_regression_images": 213,
+    "larger_block_images": 79,
+    "smaller_block_images": 67,
+    "payload_bytes": 31436016,
+    "original_payload_bytes": 31661520,
+    "fixed8_medium_payload_bytes": 59761616,
+    "payload_ratio_to_original": 0.9928776634855181,
+    "payload_ratio_to_fixed8": 0.5260235265391753
+  },
+  "quality_regression_images": 213,
+  "trainer_wall_seconds": 2996.738987799996,
+  "parameters": 24003068,
+  "training_seconds": 2478.712234599996,
+  "validation_seconds": 397.12828670002636,
+  "preparation_seconds": 80.4051846999937,
+  "checkpoint_audit": "passed",
+  "deployment_timings": null,
+  "confirmation_test_opened": false,
+  "validation90_achieved": false,
+  "attribution_accuracy": {
+    "frozen_predictions": 0.854,
+    "true_channel_mse": 0.919,
+    "true_zero_mask": 0.853,
+    "true_channel_mse_and_zero": 0.919,
+    "true_ms_ssim": 0.919,
+    "true_angles": 0.865,
+    "all_true_metrics": 1.0
+  },
+  "inference_cost_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-imagenet1k-v2-r50-full1000.json",
+  "inference_cost_status": "passed",
+  "inference_cost_scope": "Batch-amortized PNG preparation, native input batching, CUDA inference and policy decision; encoding measured separately",
+  "formal_model_admission": "rejected_below90",
+  "imagenet_weight_version": "ResNet50_Weights.IMAGENET1K_V2",
+  "metric_provenance": "Near-threshold RMSE belongs to the selected checkpoint audit"
+}

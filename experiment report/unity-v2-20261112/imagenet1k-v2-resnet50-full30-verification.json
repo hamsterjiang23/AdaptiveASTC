@@ -1,0 +1,90 @@
+{
+  "status": "completed_below_accuracy_gate",
+  "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet1k-v2-resnet50-full30.json",
+  "training_report_sha256": "6404411c025d1103f2d35ae32edbc688536faf92d80b06ee6d9834d282837f74",
+  "epochs": 30,
+  "updates": 18741,
+  "amp_skips": 9,
+  "selected_epoch": 19,
+  "selected_variant": "raw",
+  "selected_top1": 0.854,
+  "selected_near_rmse_db": 1.9042503319174473,
+  "same_validation_fit_top1": 0.854,
+  "checkpoint_audit": "passed",
+  "structural_lineage_files": 22,
+  "formal_model_admission": "rejected_below90",
+  "formal_model_forward_calls": 0,
+  "inference_cost_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-imagenet1k-v2-r50-full1000.json",
+  "inference_actual_png_sha256_verified": 1000,
+  "inference_patches": 7173,
+  "inference_arrays_and_choices_exact": true,
+  "inference_after_training_terminal": true,
+  "resource_monitor_observations": 50,
+  "resource_monitor_min_ram_available_gib": 31.50851058959961,
+  "resource_monitor_min_disk_free_gib": 837.5603981018066,
+  "test_opened": false,
+  "executed_commands": {
+    "cuda_jobs": [
+      {
+        "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet1k-v2-resnet50-full30\\job.json",
+        "command": [
+          "E:\\ASTC_Compression\\.venv\\Scripts\\python.exe",
+          "-X",
+          "utf8",
+          "-u",
+          "E:\\ASTC_Compression\\script\\train_unity_quality.py",
+          "--config",
+          "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet1k-v2-resnet50-full30-config.json"
+        ],
+        "status": "passed",
+        "process_exit_code": 0
+      },
+      {
+        "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\inference-cost-imagenet1k-v2-r50-full1000\\job.json",
+        "command": [
+          "E:\\ASTC_Compression\\.venv\\Scripts\\python.exe",
+          "-X",
+          "utf8",
+          "-u",
+          "E:\\ASTC_Compression\\script\\benchmark_unity_inference.py",
+          "--config",
+          "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-imagenet1k-v2-r50-full1000-config.json"
+        ],
+        "status": "passed",
+        "process_exit_code": 0
+      }
+    ],
+    "attribution": [
+      "uv",
+      "run",
+      "python",
+      "-X",
+      "utf8",
+      "-u",
+      "script/attribute_unity_errors.py",
+      "--config",
+      "experiment report/unity-v2-20261112/imagenet1k-v2-resnet50-full30-attribution-config.json"
+    ],
+    "calibration": [
+      "uv",
+      "run",
+      "python",
+      "-X",
+      "utf8",
+      "-u",
+      "script/calibrate_unity_decisions.py",
+      "--config",
+      "experiment report/unity-v2-20261112/imagenet1k-v2-resnet50-full30-calibration-config.json"
+    ]
+  },
+  "independent_readonly_review": {
+    "verdict": "CLEAN",
+    "frozen_source_input_artifact_hashes_verified": 2055,
+    "actual_png_sha256_verified": 1000,
+    "same_ordered_cost_arms": 9,
+    "cost_intervals_serial": true,
+    "selected_checkpoint_epoch_and_metrics_match": true,
+    "three_source_report_chain": "passed",
+    "comparison_and_readme": "passed"
+  }
+}

@@ -173,3 +173,15 @@ Unity V2原生图像采样预检已完成，关闭模式／资产族cap2／法�
 | IMAGENET1K_V1整图头 | 10000／1000图，30轮 | 训练器367.67s，两阶段合计3342.04s，18,747更新、3跳步。`[verified: experiment report/unity-v2-20261112/imagenet-resnet50-head-sampled4-result.json]` |
 | IMAGENET1K_V1整图头推理 | 1000图／7173patch，1预热3测量 | 批量摊销19.0296ms／图。`[verified: experiment report/unity-v2-20261112/inference-cost-imagenet-r50-head-full1000.json amortized_preprocess_inference_decision_seconds_per_image]` |
 | IMAGENET1K_V2预检 | 32／16图，2轮4更新 | 训练器12.56s，0跳步，峰值张量显存3,749,087,232字节，重载通过。`[verified: experiment report/unity-v2-20261112/imagenet1k-v2-resnet50-smoke.json]` |
+| IMAGENET1K_V2完整训练 | 10000／1000图，30轮 | 训练器2996.74s，18,741更新、9跳步，张量显存峰值3,749,087,232字节。`[verified: experiment report/unity-v2-20261112/imagenet1k-v2-resnet50-full30.json training_updates、wall_seconds、peak_vram_bytes、history]` |
+| IMAGENET1K_V2完整验证推理 | 1000图／7173patch，1预热3测量 | 批量摊销20.3587ms／图，进程160.39s，四数组及选择精确复现。`[verified: experiment report/unity-v2-20261112/inference-cost-imagenet1k-v2-r50-full1000.json]` |
+| IMAGENET1K_V2整图头预检 | 32训练／1000验证图，2轮 | 训练器126.02s，4更新、0跳步，初始预测复现、冻结状态与重载通过。`[verified: experiment report/unity-v2-20261112/imagenet1k-v2-resnet50-head-sampled4-smoke.json]` |
+| IMAGENET1K_V2整图头完整训练 | 10000／1000图，30轮 | 训练器370.73s，两阶段合计3367.47s，18,745更新、5跳步。`[verified: experiment report/unity-v2-20261112/imagenet1k-v2-resnet50-head-sampled4-result.json]` |
+| IMAGENET1K_V2整图头完整验证推理 | 1000图／7173patch，1预热3测量 | 批量摊销19.6064ms／图，进程156.51s，四数组及选择精确复现。`[verified: experiment report/unity-v2-20261112/inference-cost-imagenet1k-v2-r50-head-full1000.json]` |
+
+
+| 系统变体离线任务 | 实测范围 | 观测成本 |
+|---|---|---|
+| 小样本系统变体 | 32验证图，3模型×2口径×39变体 | 零模型／训练／实际编码，完整输入来源核验。`[verified: experiment report/.local/unity-v2-20261112/system-variants-smoke-v2-result.json wall_seconds；system-variants-smoke-v2-guard.json]` |
+| 全量系统变体 | 1000验证图，234组，20000候选归档 | 进程14.99s，零模型／训练／实际编码／确认集访问。`[verified: experiment report/unity-v2-20261112/system-variants-result.json wall_seconds；system-variants-verification.json runtime_guards]` |
+| 完整CPU检查 | 排除指定CUDA函数 | 967通过、6集成环境跳过、2CUDA排除，87.10s。`[verified: experiment report/unity-v2-20261112/system-variants-verification.json cpu_tests]` |

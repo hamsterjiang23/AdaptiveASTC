@@ -4,9 +4,11 @@ V2 初版记录于 2026-11-12，当时状态为待执行。开发、选模与验
 
 [V1](../V1/README.md) 的历史方法与实测结果保留，执行状态按用户最新指示更新。V2 复用 V1 执行期间完成的 Unity 原生组件，包括采集、补测、Dataset、`UnityQualityRegressor`、训练器、规则重放和确认集入口，不复用 GDC 数据、权重或结果。用户最初选择只指定 V2；随后于 2026-11-12 明确数据 goal 在完成采集后结束，后续执行 V2。当时只继续[数据交接](<../../experiment report/unity-accuracy90-20261111/unity-data-handoff.md>)，V1 正式训练自动启动已取消；V2 的 R0 复用保留的配方，以新的实验身份启动。`[verified: 用户先前“先不切换，只是指定”及后续“完成数据采集之后goal就能完成了…我要执行V2了”；unity-data-handoff-v1.json training_auto_start]`
 
-当前V2 goal已启动，完整原生基线、权重0.03、仅均值池化及ImageNet初始化对照、冻结预测归因和验证余量拟合已完成。当前随机初始化参照原始／同集拟合Top-1为81.3%／81.5%，ImageNet加整图头再训练为86.3%／86.7%，主线晋级等待用户决定；EMA、BN及两项随机初始化头部再训练对照已完成，PSNR两阶段训练及重载已完成，原始／同集拟合Top-1为76.4%／77.1%。资产族限额与法线重复对照已完成，原始／同集拟合Top-1分别为78.0%／79.0%和79.2%／79.8%。ResNet-34随机初始化容量对照完成30轮，原始／同集拟合Top-1为79.2%／79.4%，所选权重近阈值RMSE为2.7386dB，完整验证输入的推理成本已测，ResNet-18／34批量摊销18.31／18.88ms每图；ResNet-34 ImageNet独立初始化对照已完成30轮和重载，原始／同集拟合Top-1为86.2%／86.8%，同权重近阈值RMSE1.6128dB，sampled4整图头单项对照已完成30轮，原始／同集拟合Top-1为86.9%／87.1%，所选权重近阈值RMSE1.6135dB；ResNet-50随机初始化完整30轮完成，原始／同集拟合Top-1为80.5%／81.1%、同权重近阈值RMSE2.6311dB，重载通过；同配方ImageNet IMAGENET1K_V1独立初始化对照已完成30轮，原始／同集拟合Top-1为85.6%／85.9%、近阈值RMSE1.6411dB；其sampled4整图头对照已完成30轮，原始／同集拟合Top-1为86.0%／86.3%、近阈值RMSE1.6389dB；同架构的IMAGENET1K_V2权重版本对照已通过CPU迁移及CUDA预检，完整30轮已启动。确认集10张近重复候选的名单修订待决定。结果与活动状态见[执行报告](<../../experiment report/unity-v2-20261112/README.md>)；计划初版源码哈希和归档位置见[执行绑定](<../../experiment report/unity-v2-20261112/plan-execution-binding.json>)。`[verified: 用户“查看V2版本的实验之后，创建一个goal开始实验”；experiment report/unity-v2-20261112/comparison.json、progress.json]`
+当前V2 goal已启动，完整原生基线、权重0.03、仅均值池化及ImageNet初始化对照、冻结预测归因和验证余量拟合已完成。当前随机初始化参照原始／同集拟合Top-1为81.3%／81.5%，ImageNet加整图头再训练为86.3%／86.7%，主线晋级等待用户决定；EMA、BN及两项随机初始化头部再训练对照已完成，PSNR两阶段训练及重载已完成，原始／同集拟合Top-1为76.4%／77.1%。资产族限额与法线重复对照已完成，原始／同集拟合Top-1分别为78.0%／79.0%和79.2%／79.8%。ResNet-34随机初始化容量对照完成30轮，原始／同集拟合Top-1为79.2%／79.4%，所选权重近阈值RMSE为2.7386dB，完整验证输入的推理成本已测，ResNet-18／34批量摊销18.31／18.88ms每图；ResNet-34 ImageNet独立初始化对照已完成30轮和重载，原始／同集拟合Top-1为86.2%／86.8%，同权重近阈值RMSE1.6128dB，sampled4整图头单项对照已完成30轮，原始／同集拟合Top-1为86.9%／87.1%，所选权重近阈值RMSE1.6135dB；ResNet-50随机初始化完整30轮完成，原始／同集拟合Top-1为80.5%／81.1%、同权重近阈值RMSE2.6311dB，重载通过；同配方ImageNet IMAGENET1K_V1独立初始化对照已完成30轮，原始／同集拟合Top-1为85.6%／85.9%、近阈值RMSE1.6411dB；其sampled4整图头对照已完成30轮，原始／同集拟合Top-1为86.0%／86.3%、近阈值RMSE1.6389dB；同架构的IMAGENET1K_V2权重版本对照已完成30轮及原生重载，原始／同集拟合Top-1均为85.4%，所选权重近阈值RMSE1.9043dB，sampled4整图头单项对照已完成30轮及重载，原始／同集拟合Top-1为85.3%／85.5%、同权重近阈值RMSE1.8845dB。确认集10张近重复候选的名单修订待决定。结果与活动状态见[执行报告](<../../experiment report/unity-v2-20261112/README.md>)；计划初版源码哈希和归档位置见[执行绑定](<../../experiment report/unity-v2-20261112/plan-execution-binding.json>)。`[verified: 用户“查看V2版本的实验之后，创建一个goal开始实验”；experiment report/unity-v2-20261112/comparison.json、progress.json]`
 
 核心做法：对每张图预测 20 个候选在 Unity 口径下的质量，交给原规则 `UnitySearchPolicy` 选出块大小和 preset，最后只编码一次。`[opinion]`
+
+2026-11-13用户授权系统变体离线评估，3模型、原始／既有校准两口径、39变体的234组validation1000重放已完成。ResNet34原始预测的预测preset双向探测K=2为94.0%／平均1.547次，向后续搜为93.6%／平均1.627次且本验证集相对原标签回退0张；所有模型／训练／实际编码／确认集访问计数为0。详见[系统变体](<../../experiment report/unity-v2-20261112/system-variants-result.json>)及[核验](<../../experiment report/unity-v2-20261112/system-variants-verification.json>)。`[verified: 用户本次系统变体授权；system-variants-result.json；system-variants-verification.json]`
 
 ## 目标与验收
 
@@ -110,10 +112,10 @@ V2 数据采集与完整性验收已完成：训练10000张、验证1000张、�
 - **preset**：只报告块大小＋preset 完整匹配率，不设目标。preset 不影响字节，只影响质量和编码时间。`[verified: 用户本轮选择“只报告块大小＋preset 完整匹配率，不设门槛”；AGENTS.md“同图同尺寸同blockSize的payload容量相同”]`
 - **执行依据**：此前数据goal已完成采集与验收，用户随后要求创建新goal执行V2；V1正式训练自动队列已取消。`[verified: 用户“查看V2版本的实验之后，创建一个goal开始实验”；unity-data-handoff-v1.json；unity-data-delivery-v3-verification.json]`
 
-以下三项等 E4／E6 有结果再定：
+以下事项按最新执行状态记录。系统变体离线评估已完成。`[verified: system-variants-verification.json status]`
 
 1. **初始化**：维持随机初始化为主线；如果 E4 中 ImageNet 预训练在 validation 上明显更好，是否允许改为主线。`[opinion]`
-2. **系统变体**：是否增加两个系统对照，一是把预测结果作为搜索起点、按原顺序实测续搜，二是法线图直接走原搜索。两者改变 Top-1 和成本的含义，需要单独报告。`[opinion]`
+2. **系统变体**：用户已授权在validation1000上离线评估法线原搜索、预测起点续搜、双向探测及其组合，234组重放完成。最少平均编码达到90%的方案为ResNet18预训练整图头原始预测＋预测preset双向K=2，92.6%／平均1.543次；完整参数、质量与成本按系统变体单列。`[verified: 用户2026-11-13本次范围；system-variants-result.json minimum_encoding_solutions_at90；system-variants-verification.json]`
 3. **确认失败后的处理**：确认集只能使用一次。完成本次V2范围修订后剩余441张备用，后续只用于身份或像素重复替换。E6 未达标时，是否另外预留新的独立确认集。`[verified: unity-confirmation-cohort.md；unity-confirmation2000-v2.json reserve_images] [opinion]`
 
 ## 运行约束
