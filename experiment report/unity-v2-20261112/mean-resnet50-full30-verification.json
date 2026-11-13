@@ -1,0 +1,112 @@
+{
+  "status": "completed_below_accuracy_gate",
+  "selected_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-full30.json",
+  "selected_training_report_sha256": "99578404887d5109a65368336d7365cbc39d0ad7b2a34d7e95904b6c6c19ea42",
+  "epochs": 30,
+  "updates": 18740,
+  "amp_skips": 10,
+  "selected_epoch": 26,
+  "selected_variant": "raw",
+  "selected_top1": 0.805,
+  "selected_near_rmse_db": 2.631071632882594,
+  "same_validation_fit_top1": 0.811,
+  "calibration_scope": "Same validation1000 used to fit and score margins",
+  "checkpoint_audit": "passed",
+  "inference_cost_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-r50-full1000.json",
+  "inference_cost_images": 1000,
+  "inference_cost_patches": 7173,
+  "all_frozen_predictions_and_choices_exact": true,
+  "source_png_sha256_independently_verified": 1000,
+  "amortized_inference_seconds_per_image": 0.01911922699999559,
+  "structural_model_evidence_files": 22,
+  "final_model_admission": "rejected_below90",
+  "formal_model_forward_calls": 0,
+  "independent_readonly_review": "CLEAN",
+  "resource_observation": {
+    "log": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\mean-resnet50-full30\\resource-monitor-v1.jsonl",
+    "log_sha256": "ca2465e6fa541aa1c7a2135b59a01f0466adefccbe34af3c4b7898a6594d0382",
+    "observations": 47,
+    "first_epoch_observed": 1,
+    "minimum_observed_available_ram_gib": 38.46747970581055,
+    "maximum_observed_device_memory_mib": 4953,
+    "trainer_peak_tensor_vram_bytes": 3749087232,
+    "terminal_job": "passed"
+  },
+  "test_opened": false,
+  "executed_commands": {
+    "cuda_jobs": [
+      {
+        "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\mean-resnet50-full30\\job.json",
+        "command": [
+          "E:\\ASTC_Compression\\.venv\\Scripts\\python.exe",
+          "-X",
+          "utf8",
+          "-u",
+          "E:\\ASTC_Compression\\script\\train_unity_quality.py",
+          "--config",
+          "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-full30-config.json"
+        ],
+        "status": "passed",
+        "process_exit_code": 0
+      },
+      {
+        "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\inference-cost-r50-full1000\\job.json",
+        "command": [
+          "E:\\ASTC_Compression\\.venv\\Scripts\\python.exe",
+          "-X",
+          "utf8",
+          "-u",
+          "E:\\ASTC_Compression\\script\\benchmark_unity_inference.py",
+          "--config",
+          "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-r50-full1000-config.json"
+        ],
+        "status": "passed",
+        "process_exit_code": 0
+      },
+      {
+        "job_config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet50-smoke\\job.json",
+        "command": [
+          "E:\\ASTC_Compression\\.venv\\Scripts\\python.exe",
+          "-X",
+          "utf8",
+          "-u",
+          "E:\\ASTC_Compression\\script\\train_unity_quality.py",
+          "--config",
+          "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet50-smoke-config.json"
+        ],
+        "status": "passed",
+        "process_exit_code": 0
+      }
+    ],
+    "attribution": [
+      "uv",
+      "run",
+      "python",
+      "-X",
+      "utf8",
+      "-u",
+      "script/attribute_unity_errors.py",
+      "--config",
+      "experiment report/unity-v2-20261112/mean-resnet50-full30-attribution-config.json"
+    ],
+    "calibration": [
+      "uv",
+      "run",
+      "python",
+      "-X",
+      "utf8",
+      "-u",
+      "script/calibrate_unity_decisions.py",
+      "--config",
+      "experiment report/unity-v2-20261112/mean-resnet50-full30-calibration-config.json"
+    ]
+  },
+  "independent_review": {
+    "verdict": "CLEAN",
+    "six_cost_arms_serial_receipts": true,
+    "current_actual_png_sha256_verified": 1000,
+    "all_prediction_arrays_and_choices_exact": true,
+    "selected_checkpoint_metrics_and_three_source_sha256_match": true,
+    "imageNet_cpu_weight_transfer_and_five_changed_config_fields_verified": true
+  }
+}

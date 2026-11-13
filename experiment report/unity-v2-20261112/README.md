@@ -122,6 +122,7 @@
 | ResNet-34随机初始化 | 79.2% | 2.7386dB | 79.4%。`[verified: comparison.json results.mean_resnet34_full30]` |
 | ResNet-34 ImageNet初始化 | 86.2% | 1.6128dB | 86.8%。`[verified: comparison.json results.imagenet_resnet34_full30]` |
 | ResNet-34 ImageNet整图头再训练 | 86.9% | 1.6135dB | 87.1%。`[verified: comparison.json results.imagenet_resnet34_head_sampled4]` |
+| ResNet-50随机初始化 | 80.5% | 2.6311dB | 81.1%。`[verified: comparison.json results.mean_resnet50_full30]` |
 
 前三组完成时，仅均值池化作为初始化对照的参照。三组训练器时长分别529.26／421.97／630.16秒，各自按8／6／10轮早停记录，部署成本另测。`[verified: comparison.json reference_model、results；opinion: 参照选择]`
 
@@ -286,3 +287,9 @@ ResNet-50采用Torchvision Bottleneck的[3,4,6,3]布局，编码特征为2048维
 四组ResNet-18／34与mean／mean_max的初始化状态及后续CPU RNG逐位复现，两个实际历史检查点的CPU状态和探针输出一致。旧ResNet-18 CUDA预检全部逐轮损失与非计时指标复现，旧ResNet-34的1000图／7173patch新运行库预测数组及选参均完全一致。238项CPU检查、2项独立CUDA池化检查和静态检查通过，代码只读审阅CLEAN。`[verified: resnet50-legacy-cpu-verification.json；resnet50-verification.json cpu_tests、cuda_pool_tests、static_checks、independent_readonly_code_review]`
 
 ResNet-50原生32图CUDA预检完成4次更新与重载，峰值张量显存3,749,087,232字节，训练器11.98秒；16图／128patch实际流式CUDA推理与原保存数组、选参一致。随后启动10000／1000图、30轮随机初始化容量对照，当前训练效果等待终态结果。接口核对使用已安装Torchvision0.23.0及对应官方源码。`[verified: mean-resnet50-smoke.json；resnet50-inference-smoke.json；resnet50-verification.json full_training_started；resnet50-verification.json api_documentation]`
+
+ResNet-50随机初始化完整对照完成30轮、18,740次更新及10次AMP跳步，选中epoch26／raw。原始／同验证集拟合Top-1为80.5%／81.1%，同一权重近阈值RMSE2.6311dB，严格质量66.6%、质量回退208张、payload31,720,688字节。训练器2974.96秒，峰值张量显存3,749,087,232字节，完整重载通过。22份模型证据通过只读核验，正式准入以低于90%拒绝、forward为0。`[verified: mean-resnet50-full30-result.json；mean-resnet50-full30-verification.json；mean-resnet50-evidence.json]`
+
+同1000图／7173patch的实际推理数组与选参完全重放，批量摊销19.1192ms／图。原始Top-1低于81.3%的随机初始化参照，本次负结果保留。冻结预测分别替换真实通道MSE、MS-SSIM和角度得到88.8%、89.0%、82.6%，全实测指标重放100%。`[verified: inference-cost-r50-full1000.json；mean-resnet50-full30-result.json attribution_accuracy；comparison.json reference_model、results.mean_full30]`
+
+独立初始化对照显式使用官方ResNet50_Weights.IMAGENET1K_V1，102,530,333字节，SHA256为`0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a`。真实RGB首卷积和深层权重迁移、Alpha／mask置零、六个共同头张量及CPU RNG配对通过，CUDA预检4更新、0跳步、重载通过，随后启动同配方完整30轮。主线初始化晋级仍待用户决定。`[verified: imagenet-resnet50-weights.json；imagenet-resnet50-design.json；imagenet-resnet50-smoke.json；progress.json active_job]`

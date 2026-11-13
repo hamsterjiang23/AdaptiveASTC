@@ -1,6 +1,6 @@
 {
-  "status": "resnet50_scratch_full30_running",
-  "updated_utc": "2026-11-12T23:17:00.189145+00:00",
+  "status": "imagenet_resnet50_full30_running",
+  "updated_utc": "2026-11-13T00:21:12.680569+00:00",
   "plan": "E:\\ASTC_Compression\\experiment plan\\V2\\README.md",
   "data_inputs": "E:\\ASTC_Compression\\experiment report\\unity-accuracy90-20261111\\unity-v2-data-inputs.json",
   "smoke_counts": {
@@ -10,9 +10,8 @@
   "training_started": true,
   "test_opened": false,
   "next": [
-    "Complete scratch ResNet50 full30 and native checkpoint audit",
-    "Attribute and calibrate selected frozen validation predictions and measure inference cost",
-    "Continue authorized capacity or independent initialization controls according to measured outcomes",
+    "Complete independent ImageNet V1 ResNet50 full30 and checkpoint audit",
+    "Attribute, calibrate and benchmark the selected frozen validation predictions",
     "Resolve pending mainline initialization, confirmation replacements and public publication decisions"
   ],
   "smoke_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\r0-smoke-retry.json",
@@ -97,7 +96,7 @@
   "next_training_config": null,
   "external_push": {
     "status": "pending_explicit_approval_after_auto_review_rejection",
-    "local_commit": "ba985e2",
+    "local_commit": "d7b507e",
     "destination": "hamsterjiang23/AdaptiveASTC main",
     "authenticated_login": "hamsterjiang23",
     "repository_owner": "hamsterjiang23",
@@ -144,10 +143,10 @@
   "resnet34_full30_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet34-full30-result.json",
   "inference_cost_comparison": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-capacity-comparison.json",
   "active_job": {
-    "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\mean-resnet50-full30\\job.json",
-    "runner_pid": 13792,
-    "child_pid": 27800,
-    "started_utc": "2026-11-12T23:12:15.948323+00:00",
+    "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet50-full30\\job.json",
+    "runner_pid": 32048,
+    "child_pid": 28808,
+    "started_utc": "2026-11-13T00:14:32.403930+00:00",
     "status": "running"
   },
   "imagenet_resnet34_observation": {
@@ -158,7 +157,7 @@
     "terminal_checkpoint_audit": "passed",
     "job_status": "passed"
   },
-  "resource_monitor": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\mean-resnet50-full30\\resource-monitor-v1.jsonl",
+  "resource_monitor": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet50-full30\\resource-monitor-v1.jsonl",
   "imagenet_resnet34_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-result.json",
   "best_independent_control": {
     "model": "imagenet_resnet34_head_sampled4",
@@ -169,11 +168,20 @@
   },
   "resnet50_verification": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\resnet50-verification.json",
   "resnet50_observation": {
+    "status": "completed",
+    "completed_epochs": 30,
+    "training_updates": 18740,
+    "selected_top1": 0.805,
+    "selected_near_rmse_db": 2.631071632882594,
+    "job_status": "passed",
+    "checkpoint_audit": "passed"
+  },
+  "resnet50_result": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-full30-result.json",
+  "imagenet_resnet50_observation": {
     "status": "running",
-    "completed_epochs": 1,
-    "training_updates": 624,
-    "best_development_top1_so_far": 0.475,
-    "job_status": "running",
+    "completed_epochs": 3,
+    "training_updates": 1874,
+    "best_development_top1_so_far": 0.769,
     "source_files_sha256_verified": 13
   }
 }

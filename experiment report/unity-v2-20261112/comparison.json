@@ -1822,14 +1822,134 @@
       "inference_cost_status": "passed",
       "inference_cost_scope": "Batch-amortized PNG preparation, input batching, CUDA inference and original policy decision. Loading and binding audit separate",
       "independent_readonly_review": "CLEAN"
+    },
+    "mean_resnet50_full30": {
+      "status": "completed",
+      "training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-full30.json",
+      "training_report_sha256": "99578404887d5109a65368336d7365cbc39d0ad7b2a34d7e95904b6c6c19ea42",
+      "attribution_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-full30-attribution.json",
+      "attribution_report_sha256": "f229b1de72919b281d239c87e4aa6d1d119a5f7af3f613f8ea48cf9f30d3af67",
+      "calibration_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-full30-calibration.json",
+      "calibration_report_sha256": "f021d994f027f903ef411fcef36ac96cd4c975f57675b04c8ac9e7aa68387ae6",
+      "epochs": 30,
+      "updates": 18740,
+      "optimizer_attempts": 18750,
+      "amp_skips": 10,
+      "selected_checkpoint_epoch": 26,
+      "selected_variant": "raw",
+      "selected_checkpoint_metrics": {
+        "count": 1000,
+        "accuracy": 0.805,
+        "balanced_accuracy": 0.7013620383149308,
+        "full_choice_accuracy": 0.501,
+        "confusion_matrix": [
+          [
+            92,
+            20,
+            3,
+            5
+          ],
+          [
+            27,
+            85,
+            21,
+            10
+          ],
+          [
+            1,
+            30,
+            71,
+            36
+          ],
+          [
+            1,
+            5,
+            36,
+            557
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 120,
+            "recall": 0.7666666666666667
+          },
+          "8x8": {
+            "support": 143,
+            "recall": 0.5944055944055944
+          },
+          "10x10": {
+            "support": 138,
+            "recall": 0.5144927536231884
+          },
+          "12x12": {
+            "support": 599,
+            "recall": 0.9298831385642737
+          }
+        },
+        "actual_quality_pass_rate": 0.666,
+        "no_strict_feasible_images": 34,
+        "color_near_threshold_candidate_count": 4687,
+        "color_near_threshold_rmse_db": 2.631071632882594,
+        "selected_payload_bytes": 31720688,
+        "original_payload_bytes": 31661520,
+        "fixed8_payload_bytes": 59761616,
+        "scope": "Original Unity decision agreement; measured selected quality and actual payload; no encoding timing",
+        "seconds": 13.429598700000497
+      },
+      "same_validation_fitted_top1": 0.811,
+      "same_validation_fitted_parameters": {
+        "zero_probability_threshold": 0.5,
+        "psnr_margin_db": 0.0,
+        "ssim_margin_db": 0.0,
+        "mean_angle_margin_deg": 0.0,
+        "p95_angle_margin_deg": -1.5
+      },
+      "same_validation_fitted_metrics": {
+        "images": 1000,
+        "accuracy": 0.811,
+        "full_choice_accuracy": 0.502,
+        "actual_strict_quality_pass_rate": 0.653,
+        "quality_regression_images": 221,
+        "larger_block_images": 103,
+        "smaller_block_images": 86,
+        "payload_bytes": 30721808,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 0.9703200604392966,
+        "payload_ratio_to_fixed8": 0.514072577957062
+      },
+      "quality_regression_images": 208,
+      "trainer_wall_seconds": 2974.9598878000033,
+      "parameters": 24003068,
+      "training_seconds": 2460.027251200001,
+      "validation_seconds": 390.781172100018,
+      "preparation_seconds": 82.80613350000203,
+      "checkpoint_audit": "passed",
+      "deployment_timings": null,
+      "confirmation_test_opened": false,
+      "validation90_achieved": false,
+      "attribution_accuracy": {
+        "frozen_predictions": 0.805,
+        "true_channel_mse": 0.888,
+        "true_zero_mask": 0.804,
+        "true_channel_mse_and_zero": 0.889,
+        "true_ms_ssim": 0.89,
+        "true_angles": 0.826,
+        "all_true_metrics": 1.0
+      },
+      "inference_cost_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\inference-cost-r50-full1000.json",
+      "inference_cost_status": "passed",
+      "metric_provenance": "Near-threshold RMSE belongs to the selected checkpoint audit",
+      "inference_cost_scope": "Batch-amortized frozen validation input cost. Individual texture latency and final encoding require corresponding measurements",
+      "formal_model_admission": "rejected_below90"
     }
   },
   "reference_model": "mean_full30",
-  "next_experiment": "ResNet50 capacity control after finalizing selected ResNet34 head inference cost and preserving source snapshots",
-  "decision": "Keep scratch mean-full30 reference. Best independent pretrained control is ResNet34 sampled4 head at86.9percent, same-validation margin fit87.1percent",
+  "next_experiment": "Independent ImageNet IMAGENET1K_V1 initialization for ResNet50 after scratch inference-cost measurement",
+  "decision": "Keep scratch mean-full30 reference. Scratch ResNet50 selected validation80.5percent, same-validation margin fit81.1percent",
   "calibration_scope": "Finite two-pass coordinate fitting on the same1000 validation predictions; no confirmation evaluation",
   "test_opened": false,
-  "updated_utc": "2026-11-12T22:40:10.698669+00:00",
+  "updated_utc": "2026-11-13T00:07:38.167519+00:00",
   "calibration_deployment_integrated": false,
   "best_development_contrast": "imagenet_resnet34_head_sampled4",
   "postprocessing_results": {

@@ -1,0 +1,36 @@
+{
+  "status": "full_job_running",
+  "created_utc": "2026-11-12T23:28:02.812751+00:00",
+  "comparison_parent_config": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-full30-config.json",
+  "comparison_parent_config_sha256": "c24c03422671da2cf1b386f4be508a32096311a079b93fc606da9a10b1f3a1ca",
+  "factor": "ImageNet IMAGENET1K_V1 initialization",
+  "parameters": 24003068,
+  "actual_weights_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+  "rgb_stem_exact": true,
+  "alpha_mask_stem_zero": true,
+  "deep_layer4_conv3_exact": true,
+  "shared_head_tensor_count": 6,
+  "shared_heads_exact": true,
+  "following_cpu_rng_exact": true,
+  "gpu_context_initialized_in_cpu_probe": false,
+  "configs": {
+    "imagenet-resnet50-smoke": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet50-smoke-config.json",
+    "imagenet-resnet50-full30": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet50-full30-config.json"
+  },
+  "cuda_smoke": {
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet50-smoke.json",
+    "updates": 4,
+    "amp_skips": 0,
+    "checkpoint_audit": "passed",
+    "trainer_seconds": 12.967449800002214,
+    "peak_vram_bytes": 3749087232
+  },
+  "mainline_initialization_promotion": "pending_user_decision",
+  "test_opened": false,
+  "comparison_parent_training_report": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\mean-resnet50-full30.json",
+  "comparison_parent_training_report_sha256": "99578404887d5109a65368336d7365cbc39d0ad7b2a34d7e95904b6c6c19ea42",
+  "comparison_parent_selected_top1": 0.805,
+  "independent_readonly_review": "CLEAN",
+  "full_job": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v2-20261112\\jobs\\imagenet-resnet50-full30\\job.json",
+  "full_job_started_utc": "2026-11-13T00:14:32.403930+00:00"
+}

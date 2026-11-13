@@ -160,3 +160,9 @@ Unity V2原生图像采样预检已完成，关闭模式／资产族cap2／法�
 |---|---|---|
 | 原生CUDA训练预检 | 32训练／16验证图，2轮4更新 | 训练器11.98s，峰值张量显存3,749,087,232字节，重载通过。`[verified: experiment report/unity-v2-20261112/mean-resnet50-smoke.json wall_seconds、peak_vram_bytes、training_updates、checkpoint_audit]` |
 | 实际流式CUDA预检 | 16图／128patch，1预热3测量 | 数组与选参重放一致，进程耗时见job receipt，完整训练效果待测。`[verified: experiment report/unity-v2-20261112/resnet50-inference-smoke.json status、validation_images、input_patches、measurements]` |
+
+| Unity V2 ResNet-50新增任务 | 实测范围 | 观测成本 |
+|---|---|---|
+| 随机初始化完整训练 | 10000／1000图，30轮 | 训练器2974.96s，18,740更新、10跳步，峰值张量显存3,749,087,232字节。`[verified: experiment report/unity-v2-20261112/mean-resnet50-full30-result.json；mean-resnet50-full30-verification.json resource_observation]` |
+| 随机初始化验证推理 | 1000图／7173patch，1预热3测量 | 批量摊销19.1192ms／图，patch forward／transfer摊销5.5967ms／图。`[verified: experiment report/unity-v2-20261112/inference-cost-r50-full1000.json amortized_preprocess_inference_decision_seconds_per_image、amortized_patch_forward_and_transfer_seconds_per_image]` |
+| ImageNet初始化预检 | 32／16图，2轮4更新 | 训练器12.97s，0跳步，峰值张量显存3,749,087,232字节，重载通过。`[verified: experiment report/unity-v2-20261112/imagenet-resnet50-smoke.json]` |
