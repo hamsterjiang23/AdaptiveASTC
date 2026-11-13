@@ -523,3 +523,7 @@ RGBA监督保存20候选×4通道int64 SSE；先整图聚合再应用恒定Alpha
 - 冻结注册表使用新的validation专用身份。当前独立确认入口要求单次预测模型验证≥90%，该模型86.9%；本轮实测系统93.6%，独立确认的评估对象与准入协议待用户决定。合同split字段为validation，确认集文件访问计数0。`[verified: confirmation_evidence.py model、_model；imagenet-resnet34-head-evidence.json final_model_admission；forward-search-validation-freeze.json independent_confirmation_authorized、independent_confirmation_admission]`
 - 既有封存类及封存推理24项检查通过4.20秒，冻结脚本ruff／basedpyright通过。当前公开推送授权问题仍待答复。`[verified: pytest、ruff、basedpyright输出；progress.json external_push]`
 - 独立只读复核通过实际seal、1000输入与规则表指纹及8238文件SHA，封存attempt为0，复核五类guard均0，结论CLEAN。`[verified: review_v2_diagnostics最终复核输出；progress.json validation_system_freeze.verification]`
+
+### 2026-11-13 获批V2提交公开推送
+
+- 用户明确批准截至ab63476的16个V2提交公开推送，origin/main已从562a1cf快进至ab63476，git ls-remote复核一致。授权问题发出后形成的validation冻结提交9b54d4d在本地后续历史中。推送回执与原自动审批拒绝记录分别保留，下一步为独立确认系统协议决定。`[verified: git push与git ls-remote输出；publication-ab63476.json；progress.json external_push]`
