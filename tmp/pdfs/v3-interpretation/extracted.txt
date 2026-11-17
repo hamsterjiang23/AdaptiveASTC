@@ -1,0 +1,377 @@
+ASTC COMPRESSION
+V3 实验解读
+V3 ASTC 自动选参解读报告
+实验目的、实施方法、最终结论与实际含义
+当前选定方案是Unity参考图输入、ResNet-34候选质量预测、20候选起点续搜。1000张开发验证
+图的块大小匹配率为93.6%，批量实测195.60 ms／图。 [verified: 结果汇总 recommendation]
+所选系统指标
+结果
+统计含义
+块大小准确率
+[verified: 结果汇总 accuracy]
+93.6%
+936张的Blocksize与原Unity标签一致
+完整配置匹配
+[verified: 结果汇总 full_choice_accuracy]
+80.4%
+804张的Blocksize和Quality档位均一致
+严格质量通过
+[verified: 结果汇总 actual_strict_quality_pass_
+rate]
+87.5%
+875张满足原生严格质量阈值
+为什么做V3
+V2已有可用的预测起点续搜系统。V3继续验证三件事：处理一张图实际花多久，删除exhaustive的代价是什
+么，以及模型能否直接读取源图。 [verified: V3计划 第1、2节]
+问题
+本轮结论
+真实成本
+[verified: 冻结实测 original-full20；结果汇总]
+原规则同DLL搜索445.02 ms／图，所选系统195.60 ms／图
+删除exhaustive
+[verified: 实测Unity no_exhaustive16]
+Unity系统105.33 ms／图，块大小准确率86.7%
+原图输入
+[verified: 实测原图 full20]
+尺寸对齐原图重训练后，续搜92.1%，208.32 ms／图
+这些数字对应10000张训练图、1000张开发验证图，范围为LDR、Tex2D、RGBA8、mip0、RDO关闭。2000张独立确认图的合同已
+准备，执行授权为false。 [verified: V3计划 第1节；确认合同 cohort、test_opened]
+1000张开发验证图 / LDR Tex2D / mip0 / RDO关闭
+01 / 08
+
+ASTC COMPRESSION
+V3 实验解读
+图片经过什么处理
+源图、Unity参考图和ASTC解码图承担不同用途
+源文件及配置
+Unity参考像素
+ASTC编码
+ASTC解码像素
+质量监督与实际门控比较Unity参考像素和ASTC解码像素
+源图是磁盘资产。Unity参考图是完成导入处理后、进入ASTC编码前的RGBA像素。解码图是ASTC重新解码得
+到的像素。训练质量目标与实际质量检查均使用Unity参考图和解码图的差异。 [verified: 完整报告 输入与质量监督；编码
+代码 measure]
+原图入口怎样使用
+模型接收源文件或RGBA数据，以及源尺寸、目标导入尺寸、srgb、normal、need_alpha、
+normal_metric_mips。黑像素比例与Alpha恒定性由原图输入计算，法线用途由调用方提供。 [verified: 输入代码 
+SourceTextureSpec、UnityV3InferenceInput]
+尺寸对齐原图用Pillow解码为RGBA，并以BICUBIC缩放至Unity目标尺寸。起点预测完成后，真实编码和门控
+使用Unity参考像素及其实际属性。 [verified: 输入代码 pixels；计时代码 run]
+实际存在多少输入差异
+核验项目
+观察结果
+开发源文件
+[verified: 原图核验 counts、failures]
+10000张训练图、1000张验证图全部解码，原采集MD4匹配，失败0张
+尺寸变化
+[verified: 原图核验 counts]
+训练3167张、验证368张的源尺寸与Unity目标尺寸不同
+对齐后的RGB与Alpha
+[verified: 输入诊断 group_indices]
+验证集653张有RGB差异，60张有Alpha差异，分组可重叠
+属性与规则阈值
+[verified: 输入诊断 controls[4].input_context_
+differences]
+对齐原图的347张黑像素比例变化，50张的预测分支PSNR阈值变化
+原图路线支持已知配置下的起点预测，训练监督和最终质量门控继续采用Unity协议。输入像素差异需要在模型与完整系统中共同评价。
+ [verified: V3计划 第3节]
+1000张开发验证图 / LDR Tex2D / mip0 / RDO关闭
+02 / 08
+
+ASTC COMPRESSION
+V3 实验解读
+模型与实验怎么做
+固定数据、训练配方与评价目标，比较输入和候选集合
+使用ImageNet初始化的ResNet-34。图像按240×240切patch，边缘复制填充并携带有效mask，结合8项导
+入属性预测候选质量。逐patch四通道误差聚合为PSNR，整图头预测MS-SSIM与法线角度等指标，规则层决
+定Blocksize和Quality。 [verified: 模型代码 encode、predict_images；完整报告 模型与配对训练]
+训练约定
+两条输入路线共用
+训练输入
+[verified: V3计划 第3节]
+Unity参考图，或BICUBIC尺寸对齐原图
+两阶段
+[verified: 完整报告 配对训练；训练
+回执 history]
+全模型30轮，再冻结编码器等部分训练整图头30轮
+采样与优化
+[verified: V3计划 第3节；训练回执 
+config]
+每批16图，每图4patch，学习率3e-4，weight decay 0.05
+选模
+[verified: V3计划 第3节；训练回执 
+checkpoint_audit]
+seed 20261112，块大小Top-1优先、近阈值PSNR RMSE次之，最佳权重重载核验
+输入
+全模型最佳
+整图头最佳
+进程时间
+Unity参考图
+[verified: 训练回执；结果汇总 
+training_costs.unity]
+86.2%
+86.9%
+2227.99 + 412.73秒
+尺寸对齐原图
+[verified: 训练回执；结果汇总 
+training_costs.source_aligned]
+81.0%
+81.7%
+2767.52 + 617.31秒
+20候选怎样裁成16候选
+块大小按12×12、10×10、8×8、6×6排列。每块包含fastest、fast、medium、thorough、exhaustive。
+16候选屏蔽每块的exhaustive，模型保留20个输出位置，预测、真实查询和回退使用同一有效候选集合。主评
+分仍对照原20候选Unity标签。 [verified: 续搜代码 NativeCandidateSet；V3计划 第2、3节]
+整套执行包含24组正式对照、288次正式测量和120轮训练。每阶段先做32训练图／8验证图的小样本闭环，再扩展到完整数据。 
+[verified: 归档复核 formal_cases、formal_measurements、paired_training_epochs；V3计划 第4节]
+1000张开发验证图 / LDR Tex2D / mip0 / RDO关闭
+03 / 08
+
+ASTC COMPRESSION
+V3 实验解读
+结果与最终选型
+主指标为最终块大小对原20候选Unity标签的匹配率
+配对训练后的输入与候选
+纯预测
+续搜后
+编码次数
+ms／图
+Unity参考图 / 20
+[verified: 实测Unity full20]
+86.9%
+93.6%
+1.627
+195.60
+Unity参考图 / 16
+[verified: 实测Unity no_exhaustive16]
+84.9%
+86.7%
+1.562
+105.33
+尺寸对齐原图 / 20
+[verified: 实测原图 full20]
+81.7%
+92.1%
+1.838
+208.32
+尺寸对齐原图 / 16
+[verified: 实测原图 no_exhaustive16]
+80.9%
+85.3%
+1.693
+121.26
+按已约定的准确率优先排序，选定Unity参考图、20候选、预测起点续搜。Unity输入重训练的完整1000图质
+量预测存档SHA与V2相同，验证预测得到复现。 [verified: 结果汇总 recommendation、unity_input_retraining_reproduction]
+真实成本的四组基线
+冻结V2的同批对照
+块大小匹配
+严格质量
+次数／图
+ms／图
+原规则搜索重放
+[verified: 冻结实测 original-full20]
+100.0%
+87.4%
+7.061
+445.02
+固定8×8 / medium
+[verified: 冻结实测 fixed8-full20]
+14.3%
+81.1%
+1.000
+23.70
+纯预测后一次编码
+[verified: 冻结实测 pure-unity-full20]
+86.9%
+68.2%
+1.000
+128.38
+预测起点后续搜
+[verified: 冻结实测 forward-unity-full20]
+93.6%
+87.5%
+1.627
+200.84
+本轮原规则重放与所选系统的实测耗时相差56.05%。所选系统耗时约为固定8×8的8.25倍，同时严格质量通过
+87.5%，payload为固定8×8的53.66%。这些数值共同描述逐图选参的质量、体积与成本取舍。 [verified: 报告复核
+ derived.timing_comparisons；结果汇总 recommendation.metrics]
+历史Unity采集的search_ms平均1068.42 ms，中位514.70 ms，P95为4219.77 ms，保留原采集计时范围。上表使用本轮文件到内
+存ASTC的实际重放口径。 [verified: 结果汇总 historical_unity_capture_timings.search_ms]
+1000张开发验证图 / LDR Tex2D / mip0 / RDO关闭
+04 / 08
+
+ASTC COMPRESSION
+V3 实验解读
+原图结果为什么这样
+续搜效果同时取决于预测准确率与起点错误方向
+20候选下的输入与模型
+纯预测
+续搜后
+次数／图
+ms／图
+原尺寸源图 / 冻结V2
+[verified: 冻结实测 source_native]
+76.9%
+92.8%
+2.382
+239.33
+尺寸对齐原图 / 冻结V2
+[verified: 冻结实测 source_aligned]
+81.9%
+87.3%
+1.577
+197.14
+尺寸对齐原图 / 重训练
+[verified: 实测原图 full20]
+81.7%
+92.1%
+1.838
+208.32
+原尺寸源图方案达到92.8%，同时需要2.382次平均编码。尺寸对齐原图重训练后为92.1%，平均1.838次编码。
+输入处理和权重不同的两条路线各自体现了准确率与处理成本的取舍。 [verified: 结果汇总 controls、systems]
+大白话理解单向续搜
+假设原标签为8×8。起点在12×12时，候选后缀还包含10×10和8×8。起点已到6×6时，查询范围只剩6×6的
+后续档位。更小块通常占用更多payload，偏小的起点会跳过前面的更大块候选。 [verified: 续搜代码 GRID、search；模
+型评分的payload计算]
+尺寸对齐原图
+偏小起点
+偏大起点
+续搜后正确
+冻结V2
+[verified: 结果汇总 冻结原图 controls、systems]
+125张
+56张
+873张
+原图重训练
+[verified: 结果汇总 重训练原图 controls、systems]
+77张
+106张
+921张
+逐张配对后，续搜纠正65张旧错误，同时新增17张错误，净增加48张正确。纯预测纠正63张、增加65张错误
+，净减少2张正确。 [verified: 报告复核 derived.source_training_paired_transitions]
+错误方向的分布变化与续搜收益相符。评价原图训练时，起点质量、后续查询次数及最终系统结果需要一起读。
+ [opinion]
+颜色候选近阈值PSNR RMSE从2.0300变为2.4997 dB。当前收益体现在续搜后的标签匹配，纯预测准确率和该误差指标各保留其实际
+结果。 [verified: 输入诊断 controls[2]、controls[4]；实测原图 full20]
+1000张开发验证图 / LDR Tex2D / mip0 / RDO关闭
+05 / 08
+
+ASTC COMPRESSION
+V3 实验解读
+Quality与质量怎么解读
+标签匹配、严格达标和相对回退各自回答一个问题
+所选系统的四项结果
+正确含义
+93.6% 块大小匹配
+[verified: 结果汇总 accuracy]
+936／1000张的最终Blocksize与原标签一致
+80.4% 完整配置匹配
+[verified: 结果汇总 full_choice_accuracy]
+804张的Blocksize与Quality档位均一致
+87.5% 严格质量通过
+[verified: 结果汇总 actual_strict_quality_pass_rate]
+875张的实际压缩结果达到原生严格质量阈值
+0张 相对质量回退
+[verified: 结果汇总 quality_regression_images；原规则基线]
+原标签已严格合格的874张全部保留，另新增1张合格
+其余125张严格未通过图中，92张来自大图锁块后的放宽分支，33张来自最高PSNR回退。原标签的126张严
+格未通过图为93张放宽、33张回退。 [verified: 报告复核 derived.strict_quality_outcomes]
+删除exhaustive节省多少，代价是什么
+Unity输入系统从20候选改为16候选，耗时195.60降至105.33 ms／图，实测相差46.15%。平均编码次数
+1.627变为1.562，块大小准确率93.6%降至86.7%，相对原标签出现14张严格质量回退。 [verified: 实测Unity full20、
+no_exhaustive16；报告复核 timing_comparisons]
+当前开发准入按块大小Top-1达到90%执行，因此本轮选定20候选。16候选规则参照本身与原20候选标签有
+6.2%的块大小变化，模型评分继续使用原20候选标签。 [verified: V3计划 第2、4节；结果汇总 recommendation；候选重放 
+no_exhaustive16.oracle]
+严格质量遵循什么标准
+颜色图PSNR基础门槛30 dB，纯黑比例大于40%时为35 dB，大于80%时为37 dB。sRGB颜色图还要求原生
+MS-SSIM的dB表达达到21 dB，Linear非法线按PSNR判断。法线要求平均角度不超过3.2°、p95不超过9°，
+均按原采集规则的float32精度判定。 [verified: 报告复核 derived.policy_values；续搜代码 effective_threshold、_strict]
+1000张开发验证图 / LDR Tex2D / mip0 / RDO关闭
+06 / 08
+
+ASTC COMPRESSION
+V3 实验解读
+时间花在哪里
+批量摊销与单图等待预算使用各自的实际测量
+下表取所选系统第2次files／batch正式重复，1000图总耗时195.5956秒，正好对应三次总耗时中位数。各行
+是同一次重复的分段摊销，末位差异包含循环及计时开销。 [verified: 单次分段 repeat=1.timings]
+处理环节
+ms／图
+模型输入准备
+[verified: 单次分段 input_preparation_seconds]
+6.28
+patch读取、推理、传输和聚合
+[verified: 单次分段 inference_wall_seconds]
+12.72
+编码参考像素、属性和行序准备
+[verified: 单次分段 reference_load_metadata_and_flip_seconds]
+6.85
+策略与簿记
+[verified: 单次分段 policy_and_bookkeeping_seconds]
+0.78
+ASTC编码
+[verified: 单次分段 native_encode_seconds]
+134.99
+ASTC解码
+[verified: 单次分段 native_decode_seconds]
+12.60
+原生质量计算
+[verified: 单次分段 native_quality_seconds]
+21.33
+文件到最终内存ASTC总时间
+[verified: 单次分段 end_to_end_seconds]
+195.60
+逐图正式重复
+平均ms
+中位ms
+P95 ms
+第1次
+[verified: 结果汇总 single_image_latency_ms.files[0]]
+228.48
+91.46
+608.67
+第2次
+[verified: 结果汇总 single_image_latency_ms.files[1]]
+229.12
+93.40
+610.91
+第3次
+[verified: 结果汇总 single_image_latency_ms.files[2]]
+230.49
+95.04
+612.54
+纯预测一次编码与固定8×8都只进行一次编码，各自耗时包含所选Blocksize和Quality的编码成本。预测输入准备和推理成本直接参考
+上表的独立字段。 [verified: 冻结实测 pure、fixed8；单次分段]
+1000张开发验证图 / LDR Tex2D / mip0 / RDO关闭
+07 / 08
+
+ASTC COMPRESSION
+V3 实验解读
+适用范围与证据
+开发准入已达到，独立确认按已准备的合同执行
+主计时在所需模型与DLL就绪后开始。搜索和续搜在真实门控完成、最终ASTC确定并保留时结束。纯预测和固定8×8在内存ASTC生
+成时结束，其质量由输出审计评价。Unity导入与标签准备复用归档，加载、训练、最终审计及写盘另有记录，轨迹哈希与进度写盘成
+本单列。 [verified: 计时代码 run；完整报告 计时与评价口径]
+各路线预热8图一次、正式重复三次，并做GPU同步。files批量覆盖1000图，pixels_ready按8图分组。原图pixels_ready接收解码后
+的源尺寸RGBA，尺寸对齐仍计时。并发Blender CPU活动已记录，200.84与195.60 ms／图两批时间的模型归因存在不确定性。 
+[verified: 计时代码 measure、run；资源记录；完整报告 实际时间花在哪里]
+法线用途由调用方normal属性给定。45张法线图中，所选系统40张块大小匹配、42张严格角度合格。mask／MSAK专项通道语义按
+本轮约定暂缓。2000张确认图合同状态为prepared_for_execution_review，授权和test_opened均为false，正式确认需单独授权。 
+[verified: 结果汇总 groups.normal；V3计划；确认合同]
+配套证据定位
+以下路径均以E:/ASTC_Compression为仓库根。页内verified标记使用下列内容名称及对应字段。 [verified: 完整报告 实施与证据入口]
+完整报告 experiment report/V3/README.md 报告复核 experiment report/V3/verification.json V3计划 experiment
+plan/V3/README.md
+其余数据位于experiment report/unity-v3-20261113/。 [verified: 完整报告 实施与证据入口]
+结果汇总 summary.json 输入诊断 input-diagnostics.json 原图核验 source-input-audit.json 冻结实测
+benchmark-v2-full1000-v1.json 实测Unity benchmark-trained-unity-full1000-v1.json 实测原图
+benchmark-trained-source_aligned-full1000-v1.json 候选重放 candidate-ablation.json 确认合同 confirmation-contract.json
+归档复核 final-integrity-verification.json 资源记录 resource-observations.jsonl
+单次分段对应实测Unity中forward-unity-full20、files、batch、repeat=1的timings。训练回执为train-unity-full-full-v1.json、
+train-unity-head-full-v1.json及两个train-source_aligned-*报告。
+模型代码 src/adaptive_astc/models/unity_quality.py 输入代码 src/adaptive_astc/data/unity_v3_input.py 续搜代码
+reproductions/unity_search_baseline/v3_policy.py 计时代码 reproductions/unity_search_baseline/v3_deployment.py及
+v3_benchmark.py
+1000张开发验证图 / LDR Tex2D / mip0 / RDO关闭
+08 / 08

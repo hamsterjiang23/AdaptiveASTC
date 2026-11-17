@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "source_result_sha256": "2c307200e8d9bbef3f0e43c129b413e2da9a27440189ce9436b29358cc65f32a",
+  "validation_summary_sha256": "8fe6cf823a49185a6c37da6fd249e1783f7bf090c4f02b20ff8c3628f4d3cd8f",
+  "hardware_sha256": "dc39f6823a622341b4770f685c494f07e4987d26f2b3a3ff6be53e8dd5f8ad1c",
+  "development_input_audit_sha256": "d972718ebe36044b0c3304aeaa52cbeb83976ac8c463306765dac66a0abba75f",
+  "development_source_manifest_sha256": "10968d1612d84bd091dba235cde39c4e170851d619800ec23a04a16e53b5902d",
+  "dataset_size": {
+    "validation_images": 1000,
+    "validation_pixels": 238941165,
+    "confirmation_images": 2000,
+    "confirmation_pixels": 2021930100,
+    "mean_pixel_ratio": 4.23102084565462
+  },
+  "images": 2000,
+  "unique_assets": 2000,
+  "timing_cells": 12,
+  "saved_files_verified": 16008,
+  "traces_verified": 12,
+  "prediction_archives_verified": 12,
+  "per_image_trace_consistency_checks": 24000,
+  "repeated_trace_identity_verified": true,
+  "shared_seal_verified": true,
+  "formal_attempts": 1,
+  "seal_fingerprint": "8107309f811f8057fd90cbe6776272cdfc4bf2aa138c703a82be65b77958ccb8",
+  "sealed_runtime": {
+    "torch": "2.8.0+cu128",
+    "numpy": "2.5.4",
+    "device": "cuda",
+    "threads": 4
+  },
+  "native_libraries": {
+    "astcenc-avx2-shared.dll": {
+      "path": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-shared.dll",
+      "sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64"
+    },
+    "unity_astc_quality.dll": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+      "sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3"
+    }
+  },
+  "quality_outcomes": {
+    "original_strict_pass_images": 1768,
+    "system_strict_pass_images": 1772,
+    "strict_failures_by_original_reason": {
+      "size_first_relaxed": 186,
+      "highest_psnr_fallback": 42
+    }
+  },
+  "paired_start_to_final": {
+    "kept_correct": 1829,
+    "corrected": 124,
+    "new_errors": 0,
+    "still_wrong": 47
+  },
+  "visual_review": "passed",
+  "document_sha256": "021d7dd7f5806fe0b527b4e68175aa01dff6c9365ccc7f88ec6145bc6646c68a",
+  "figures": [
+    {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v3-confirmation-20261116\\figures\\test-results.png",
+      "sha256": "516089383068b88a59fa7a0a1b8a94cd40a85ed18bbfd3fb0894c70b528d4826",
+      "pixels": [
+        2400,
+        1660
+      ]
+    },
+    {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v3-confirmation-20261116\\figures\\test-timing.png",
+      "sha256": "4ec59f96721b316cff0a517754c5a67d920aacea3e22d2f074924b8dad902a2b",
+      "pixels": [
+        2400,
+        1660
+      ]
+    }
+  ],
+  "csv_rows": 2000,
+  "csv_sha256": "00ee0b9e0f46cb7aa26fa20697f5b1f1f112575617031b2b893057b5114cd246",
+  "latest_cpu_tests": {
+    "passed": 106,
+    "seconds": 8.95,
+    "exit_code": 0
+  }
+}

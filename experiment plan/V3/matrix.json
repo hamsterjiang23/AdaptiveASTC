@@ -1,0 +1,100 @@
+{
+  "schema": "unity-v3-experiment-matrix-v1",
+  "primary_reference": "original_unity_canonical20",
+  "primary_acceptance": {
+    "system_block_top1_min": 0.9
+  },
+  "priority": [
+    "system_block_top1",
+    "measured_file_batch_time",
+    "payload_bytes",
+    "fewer_changes"
+  ],
+  "candidate_sets": {
+    "full20": {
+      "blocks": [
+        12,
+        10,
+        8,
+        6
+      ],
+      "presets": [
+        "fastest",
+        "fast",
+        "medium",
+        "thorough",
+        "exhaustive"
+      ]
+    },
+    "no_exhaustive16": {
+      "blocks": [
+        12,
+        10,
+        8,
+        6
+      ],
+      "presets": [
+        "fastest",
+        "fast",
+        "medium",
+        "thorough"
+      ]
+    }
+  },
+  "models": [
+    {
+      "name": "frozen_v2",
+      "input_modes": [
+        "unity",
+        "source_native",
+        "source_aligned"
+      ]
+    },
+    {
+      "name": "paired_unity",
+      "input_modes": [
+        "unity"
+      ]
+    },
+    {
+      "name": "paired_source_aligned",
+      "input_modes": [
+        "source_aligned"
+      ]
+    }
+  ],
+  "arms": [
+    "pure",
+    "forward"
+  ],
+  "baselines": [
+    "original",
+    "fixed8_medium"
+  ],
+  "timing": {
+    "warmups": 1,
+    "warmup_images": 8,
+    "repetitions": 3,
+    "scopes": [
+      "files",
+      "pixels_ready"
+    ],
+    "measurement_modes": [
+      "batch",
+      "single"
+    ],
+    "pixels_ready_chunk_images": 8
+  },
+  "training": {
+    "paired_modes": [
+      "unity",
+      "source_aligned"
+    ],
+    "full_epochs": 30,
+    "head_epochs": 30,
+    "seed": 20261112,
+    "image_batch_size": 16,
+    "patches_per_image": 4
+  },
+  "confirmation_execution_authorized": false
+}

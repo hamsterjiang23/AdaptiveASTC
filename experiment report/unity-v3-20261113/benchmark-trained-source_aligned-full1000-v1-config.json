@@ -1,0 +1,65 @@
+{
+  "schema": "unity-v3-benchmark-v1",
+  "smoke": false,
+  "source_manifest": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\source-manifest.json",
+    "sha256": "10968d1612d84bd091dba235cde39c4e170851d619800ec23a04a16e53b5902d"
+  },
+  "cases": [
+    {
+      "name": "pure-source_aligned-full20",
+      "arm": "pure",
+      "input_mode": "source_aligned",
+      "candidate_set": "full20"
+    },
+    {
+      "name": "forward-source_aligned-full20",
+      "arm": "forward",
+      "input_mode": "source_aligned",
+      "candidate_set": "full20"
+    },
+    {
+      "name": "pure-source_aligned-no_exhaustive16",
+      "arm": "pure",
+      "input_mode": "source_aligned",
+      "candidate_set": "no_exhaustive16"
+    },
+    {
+      "name": "forward-source_aligned-no_exhaustive16",
+      "arm": "forward",
+      "input_mode": "source_aligned",
+      "candidate_set": "no_exhaustive16"
+    }
+  ],
+  "warmups": 1,
+  "repetitions": 3,
+  "scopes": [
+    "files",
+    "pixels_ready"
+  ],
+  "measurement_modes": [
+    "batch",
+    "single"
+  ],
+  "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\benchmark-trained-source_aligned-full1000-v1",
+  "report": "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-trained-source_aligned-full1000-v1.json",
+  "execution_sources_sha256": {
+    "reproductions/unity_search_baseline/v3_benchmark.py": "f84dd54ed629c0374b745e21f12e0a3cce245e74fb33d0317727432024ef7a2b",
+    "reproductions/unity_search_baseline/v3_deployment.py": "bc0d52d6167ccaaa440260cf460dbe058fc5c03e83b09cf506436c0c79dc7632",
+    "reproductions/unity_search_baseline/v3_policy.py": "eaad388769e1fce9ba066888856abef49a923f4de01f6aac43715aec16fcf029",
+    "reproductions/unity_search_baseline/v3_evidence.py": "2e414b7c32f9870a61c465c1ab3c1c2cf180f3f10bf8e69aae483d728d737030",
+    "reproductions/unity_search_baseline/v3_experiment.py": "31046f23c5aa100954905ce0b82d689bbb829a906b4a0f448f95ee48ef0b8004",
+    "src/adaptive_astc/data/unity_v3_input.py": "45702dbdf6ead728e83ea70d729b4055bc2a4f78fdaa46ee6fbb1dad80f58c19",
+    "src/adaptive_astc/data/unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+    "src/adaptive_astc/evaluation/unity_inference.py": "a4ca5d78edef060431d71ee58d174f25098b7455c1a3130ed2f8bf190d2aca13",
+    "src/adaptive_astc/evaluation/unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "src/adaptive_astc/models/unity_quality.py": "0a49302ab3ac621d9ea3f9cc0c01e12112e9b4419875d298fdbad06b907ee0ac",
+    "reproductions/unity_search_baseline/supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "reproductions/unity_search_baseline/quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+    "reproductions/unity_search_baseline/policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "script/run_unity_v3.py": "d62df84efaa01275000d9de46b7160a451ec0cf7eae460e1de3f892ae96ae7c3"
+  },
+  "confirmation_execution_authorized": false,
+  "checkpoint": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\train-source_aligned-head-full-v1\\best.pt",
+  "checkpoint_sha256": "85f414f92934acaedaa542405573d2b5b32525122278f21fe203dc96ae9731d8"
+}

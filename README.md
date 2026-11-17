@@ -1,5 +1,9 @@
 # AdaptiveASTC
 
+V3按已确认的原图输入、exhaustive裁剪和真实耗时计划实施，计划见[V3](<experiment plan/V3/README.md>)，目的、方法与结论解读见[V3实验报告](<experiment report/V3/README.md>)，执行状态见[V3执行记录](<experiment report/unity-v3-20261113/README.md>)。`[verified: experiment plan/V3/README.md；experiment report/V3/README.md；experiment report/unity-v3-20261113/progress.json]`
+
+2026-11-16完成V3选定系统的2000张独立确认测试，系统块大小匹配率97.65%，完整配置匹配86.65%，严格质量通过88.60%，相对原标签严格质量回退0张。文件输入逐图平均耗时的三轮中位数为630.12 ms／图，模型与buffer复核通过。`[verified: experiment report/unity-v3-confirmation-20261116/result.json summary、results.files_single、model_parameters_and_buffers_unchanged]` [独立测试报告](<experiment report/unity-v3-confirmation-20261116/README.md>) [PDF解读](<output/pdf/V3-ASTC-独立测试解读报告.pdf>)。
+
 根据最终压缩质量，为每张贴图选择合适的ASTC块大小，在项目质量要求下减少纹理体积，并研究通过机器学习实现预测选参后单次压缩的生产流程。相关资料从网易雷火GDC 2023演讲及其公开字幕、视频画面开始整理。`[verified: 用户需求说明（2026-11-09）“主要目的就是通过最终压缩质量选择合适的压缩参数”“一张图压缩一次”；本文“从这里阅读”]`
 
 V2单次预测最佳原始validation1000 Top-1为86.9%，来自ResNet34 ImageNet整图头。用户选定的预测起点向后续搜系统已完成真实验证，Top-1为93.6%，平均1.627次编码，严格质量通过87.5%，相对原标签质量回退0张。系统独立确认协议完成开发验证后，获批的10图确认范围修订、原生补采和13000图完整复审已通过，两类跨划分像素关系均为0。修订来源的协议准备入口已绑定2000图与12个原生规则上下文，模型／训练／编码准备调用为0，正式确认执行授权为后续待定项。配置、结果和进度见[V2执行报告](<experiment report/unity-v2-20261112/README.md>)。`[verified: experiment report/unity-v2-20261112/imagenet-resnet34-head-sampled4.json；forward-search-full1000-v1.json summary；confirmation-cohort-v3-result.json；forward-system-protocol-readiness-v4.json；progress.json next]`

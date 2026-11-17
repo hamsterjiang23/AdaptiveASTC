@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-full-full-v1.json": "6451e18cd90ca2c65ab47656ceb89c36092abb07d51c5ee795faa5dbf9e02cb7",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-head-full-v1.json": "4e2124b351ceffdeac4975624a55adb2837e29e9b4cd2e0f6c2b486055d2af7b",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\summary.json": "8fe6cf823a49185a6c37da6fd249e1783f7bf090c4f02b20ff8c3628f4d3cd8f",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\confirmation-contract.json": "1ea704f218586298679af4a1bfcb2ca016cf6c38d19ce74fe47945c091a89ebc"
+  },
+  "training_rows": 60,
+  "epochs_per_stage": [
+    30,
+    30
+  ],
+  "loss_reconstruction": "all60 epoch totals match recorded weighted components within1e-6",
+  "selected_epochs": [
+    29,
+    15
+  ],
+  "selected_accuracy": [
+    0.862,
+    0.869
+  ],
+  "current_checkpoint_binding": "matched recommendation checkpoint SHA256",
+  "training_report_binding": "matched both training hashes in archived summary parents_sha256",
+  "validation_scope": "Per-epoch pure-model selection,1000 images, original20-candidate Unity labels",
+  "confirmation_execution_authorized": false,
+  "test_opened": false,
+  "confirmation_shared_seal_exists": false,
+  "plot_design": "separate30-epoch stages, raw unsmoothed observations, weighted component losses, no joined stage loss",
+  "plots": [
+    {
+      "path": "E:\\ASTC_Compression\\output\\plots\\v3-training-curves\\training-loss.png",
+      "dimensions": [
+        2400,
+        1620
+      ],
+      "sha256": "94e8590df42e232460396d4e1c84845ef78904bbfdae24b500d963cea3e94732"
+    },
+    {
+      "path": "E:\\ASTC_Compression\\output\\plots\\v3-training-curves\\validation-curves.png",
+      "dimensions": [
+        2400,
+        1620
+      ],
+      "sha256": "e448446669d71bcf61c631e43ba3aed07c6dc6f1580730b0c53b49d2b623991d"
+    }
+  ],
+  "csv": "E:\\ASTC_Compression\\output\\plots\\v3-training-curves\\epoch-metrics.csv",
+  "visual_review": {
+    "status": "passed",
+    "plots_reviewed": 2,
+    "clipping": false,
+    "missing_glyphs": false,
+    "epoch_axes_and_selected_checkpoint_markers": "passed"
+  },
+  "csv_roundtrip_checked_rows": 60,
+  "ruff_check": "passed"
+}

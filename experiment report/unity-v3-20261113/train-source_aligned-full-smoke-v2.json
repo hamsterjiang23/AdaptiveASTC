@@ -1,0 +1,489 @@
+{
+  "status": "passed_smoke",
+  "test_opened": false,
+  "training_updates": 4,
+  "config": {
+    "corpus": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\smoke-corpus",
+    "corpus_sha256": "f0c9607758cdd731f053f659e41c80ad9b9718c0a336760a55fed942ccffd951",
+    "output": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\train-source_aligned-full-smoke-v2",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-full-smoke-v2.json",
+    "smoke": true,
+    "train_image_indices": [],
+    "epochs": 2,
+    "image_batch_size": 16,
+    "patches_per_image": 4,
+    "validation_batch_size": 16,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.05,
+    "warmup_epochs": 1,
+    "patience": 0,
+    "workers": 2,
+    "seed": 20261112,
+    "zero_probability_threshold": 0.5,
+    "zero_weight": 0.1,
+    "ssim_weight": 0.1,
+    "angle_weight": 0.1,
+    "image_pooling": "mean",
+    "initialization": "pretrained",
+    "pretrained_weights": "E:\\ASTC_Compression\\.cache\\torch\\hub\\checkpoints\\resnet34-b627a593.pth",
+    "pretrained_weights_sha256": "b627a593bcbe140c234610266fe4f8ae95ea42fc881d091c9b6052e6b1d0590f",
+    "ema_decay": 0.0,
+    "selection_metric": "accuracy",
+    "group_image_cap": 0,
+    "normal_image_repeats": 1,
+    "backbone_name": "resnet34",
+    "parameters": 21414140,
+    "fp32_parameter_bytes": 85656560,
+    "gpu": "NVIDIA GeForce RTX 4070",
+    "torch": "2.8.0+cu128",
+    "source_sha256": {
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_v3_trainer.py": "e9f0092bd6827339f6e10557cd5e373f06652c54631020eb3949c5e6499ca357",
+      "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-full-smoke-v2-config.json": "d52890c1fb0c6173d87b15efb543c538e8e3209a41ed227f50305960cd8694c3",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_bags.py": "3335fb574352daef63fda800f2ab339ad147c6406528de27f6cb76e098be816b",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_image_sampling.py": "6b24c5e1c2d59430d59de4516567dd8300966b32440b10cfba916c99ca53a331",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\splitting.py": "1fe2a7aee0e775c4a74244eb1a07e7a374419f38aee5401c4fe3021fea80ef4d",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_patch_dataset.py": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "0a49302ab3ac621d9ea3f9cc0c01e12112e9b4419875d298fdbad06b907ee0ac",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_loss.py": "82d0c55e7db5e02407e326cd8208b51b60e42aa2ec9a2c22de9c755d258f9a37",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\evaluation\\unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\prediction_audit.py": "d0c62d1b28cfb25bd4e0a836e19c5d497185c3c415de77b11a1dc4f0f9ad2c46",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+      "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\policy_audit.py": "64a3bcdd0a7581b7ce4fbb8e2f6c31ceceaef5c1721dfaf647fbddb21ddf683c",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\utils\\runtime.py": "3420b058e865f1dd028f22cf32b71c57ae1d749938b1acb0519f081d532f19c5",
+      "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-config.json": "47796892f3907b61904cb61905b374cfb11f90904935710e079a2cdf2eb0e68c",
+      "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\source-manifest-smoke.json": "4aec9b2c3501aaa5d27b0674d7af7a63ef26669760ea820b8be6ade204621b42",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_v3_input.py": "45702dbdf6ead728e83ea70d729b4055bc2a4f78fdaa46ee6fbb1dad80f58c19",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_v3_dataset.py": "6000dc0a71d55fb56630ec20276d58af9f51a2aba5e5a157ef3f487048daeb68",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_v3_head.py": "5e56a4d061b9a087d450705a95405659f006ef74e93e7f6c24f222e2276d459c",
+      "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_quality_trainer.py": "940979f7cd0c725bbebabe7260fc33f991a77dd2071c1e78c16ab7f8b7ce1ea2",
+      "E:\\ASTC_Compression\\script\\train_unity_v3.py": "c7af44360edd6625d98d76ebe020cee0a7430dad5e3ee09a63015a2d9634d458",
+      "E:\\ASTC_Compression\\script\\refit_unity_image_head.py": "4b35d9a6c65343a8fda74a13c3a97d011b0358a11185d92511531f5a814eacb3"
+    },
+    "corpus_fingerprint": "26f0c264e3f8a9e9710276cb3c84156510e4b03c3752323692ac5df3c72ad2ca",
+    "train_images": 32,
+    "train_epoch_image_draws": 32,
+    "validation_images": 8,
+    "sampling": "Each selected train image once per epoch, shuffled; within-image patches with replacement",
+    "image_target_scope": "Full-image quality and zero-channel supervision, sampled patch inputs at training",
+    "selection": "Validation footprint accuracy, then color near-threshold RMSE; margin and zero threshold fixed",
+    "augmentations": [],
+    "ema": false,
+    "policy_origins": [
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-validation2-20261111\\references\\normalized-batch",
+        "cache_sha256": "5d1cc96dddb5480fc42170e8344587e9645fc3acaaa2d184c35beed9ce5db47e",
+        "protocol_sha256": "d95e38874c500c578cd158012100659bd72c2ac9e49a9a836be5537f6425a81d",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 2,
+        "native_policy_verified": true,
+        "assembly_sha256": null
+      },
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-001-20261111\\references\\normalized-batch",
+        "cache_sha256": "0108b26d355310464a3ed2af4a4abe7a5109f03bb9d9ca43c2ceef067369bc13",
+        "protocol_sha256": "bb3a8d3090e99441a52f86c414d12dfaaa1bd6c22801c3e3bfcbb52a7c2ab23f",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 256,
+        "native_policy_verified": true,
+        "assembly_sha256": null
+      },
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-002-20261111\\references\\normalized-batch",
+        "cache_sha256": "7c521dc19cfc5d1e5934e2f0d93c3bf7bbeeda78ea02c29eae208d7cbd18a122",
+        "protocol_sha256": "f9097b34fd435afaad67d3a76aaaa766e9cee4a65543c758534c7d9a014ff9df",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 256,
+        "native_policy_verified": true,
+        "assembly_sha256": null
+      },
+      {
+        "capture_directory": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v1-validation-004-20261111\\references\\normalized-batch",
+        "cache_sha256": "c5cbf15ec1a996372316e038d4c9bd5740a54c0ee61aac5f8f974ce3e6d7b523",
+        "protocol_sha256": "9dbd1664daa2028b883e31fc59abf9b9943835e0514b68e44bdbc56fe9f8649d",
+        "editor_sha256": "6188a8d2903d2a66ead18fddfe826c74fb474342c444e81193bda9fdf8c46970",
+        "source_hashes_verified": 230,
+        "native_policy_verified": true,
+        "assembly_sha256": null
+      }
+    ],
+    "v3_schema": "unity-v3-training-v1",
+    "input_mode": "source_aligned",
+    "source_manifest": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\source-manifest-smoke.json",
+      "sha256": "4aec9b2c3501aaa5d27b0674d7af7a63ef26669760ea820b8be6ade204621b42"
+    },
+    "base_training_config": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v2-20261112\\imagenet-resnet34-full30-config.json",
+      "sha256": "47796892f3907b61904cb61905b374cfb11f90904935710e079a2cdf2eb0e68c"
+    },
+    "training_config_path": "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-full-smoke-v2-config.json",
+    "prediction_context": "Model-input pixels and explicit importer settings only",
+    "supervision_context": "Original Unity reference patch SSE and full-image quality"
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": {
+        "total": 0.9096028804779053,
+        "patch": 0.12970434501767159,
+        "zero": 0.016575075685977936,
+        "ssim": 6.399528503417969,
+        "angle": 1.3828814029693604
+      },
+      "images_seen": 32,
+      "patch_draws": 128,
+      "step_attempts": 2,
+      "optimizer_updates": 2,
+      "amp_skipped_steps": 0,
+      "training_seconds": 7.675793000002159,
+      "validation": {
+        "count": 8,
+        "accuracy": 0.625,
+        "balanced_accuracy": 0.3333333333333333,
+        "full_choice_accuracy": 0.125,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            5
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 1,
+            "recall": 0.0
+          },
+          "8x8": {
+            "support": 2,
+            "recall": 0.0
+          },
+          "10x10": {
+            "support": 0,
+            "recall": null
+          },
+          "12x12": {
+            "support": 5,
+            "recall": 1.0
+          }
+        },
+        "actual_quality_pass_rate": 0.375,
+        "no_strict_feasible_images": 0,
+        "color_near_threshold_candidate_count": 26,
+        "color_near_threshold_rmse_db": 9.926509460584304,
+        "selected_payload_bytes": 224176,
+        "original_payload_bytes": 370256,
+        "fixed8_payload_bytes": 494480,
+        "scope": "V3 source-aware prediction vs original Unity labels; true-reference quality/payload; no encoding timing",
+        "seconds": 0.15659070000401698
+      },
+      "validation_variants": {
+        "raw": {
+          "count": 8,
+          "accuracy": 0.625,
+          "balanced_accuracy": 0.3333333333333333,
+          "full_choice_accuracy": 0.125,
+          "confusion_matrix": [
+            [
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              5
+            ]
+          ],
+          "per_class": {
+            "6x6": {
+              "support": 1,
+              "recall": 0.0
+            },
+            "8x8": {
+              "support": 2,
+              "recall": 0.0
+            },
+            "10x10": {
+              "support": 0,
+              "recall": null
+            },
+            "12x12": {
+              "support": 5,
+              "recall": 1.0
+            }
+          },
+          "actual_quality_pass_rate": 0.375,
+          "no_strict_feasible_images": 0,
+          "color_near_threshold_candidate_count": 26,
+          "color_near_threshold_rmse_db": 9.926509460584304,
+          "selected_payload_bytes": 224176,
+          "original_payload_bytes": 370256,
+          "fixed8_payload_bytes": 494480,
+          "scope": "V3 source-aware prediction vs original Unity labels; true-reference quality/payload; no encoding timing",
+          "seconds": 0.15659070000401698
+        }
+      },
+      "selected_validation_variant": "raw",
+      "ema_updates": 0,
+      "learning_rate": 0.0003
+    },
+    {
+      "epoch": 2,
+      "loss": {
+        "total": 0.8443888127803802,
+        "patch": 0.10373583063483238,
+        "zero": 0.010558059439063072,
+        "ssim": 6.066028118133545,
+        "angle": 1.3299435377120972
+      },
+      "images_seen": 32,
+      "patch_draws": 128,
+      "step_attempts": 2,
+      "optimizer_updates": 2,
+      "amp_skipped_steps": 0,
+      "training_seconds": 0.49253719999978784,
+      "validation": {
+        "count": 8,
+        "accuracy": 0.625,
+        "balanced_accuracy": 0.3333333333333333,
+        "full_choice_accuracy": 0.125,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            5
+          ]
+        ],
+        "per_class": {
+          "6x6": {
+            "support": 1,
+            "recall": 0.0
+          },
+          "8x8": {
+            "support": 2,
+            "recall": 0.0
+          },
+          "10x10": {
+            "support": 0,
+            "recall": null
+          },
+          "12x12": {
+            "support": 5,
+            "recall": 1.0
+          }
+        },
+        "actual_quality_pass_rate": 0.375,
+        "no_strict_feasible_images": 0,
+        "color_near_threshold_candidate_count": 26,
+        "color_near_threshold_rmse_db": 13.389113783968817,
+        "selected_payload_bytes": 224176,
+        "original_payload_bytes": 370256,
+        "fixed8_payload_bytes": 494480,
+        "scope": "V3 source-aware prediction vs original Unity labels; true-reference quality/payload; no encoding timing",
+        "seconds": 0.13839079999888781
+      },
+      "validation_variants": {
+        "raw": {
+          "count": 8,
+          "accuracy": 0.625,
+          "balanced_accuracy": 0.3333333333333333,
+          "full_choice_accuracy": 0.125,
+          "confusion_matrix": [
+            [
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              5
+            ]
+          ],
+          "per_class": {
+            "6x6": {
+              "support": 1,
+              "recall": 0.0
+            },
+            "8x8": {
+              "support": 2,
+              "recall": 0.0
+            },
+            "10x10": {
+              "support": 0,
+              "recall": null
+            },
+            "12x12": {
+              "support": 5,
+              "recall": 1.0
+            }
+          },
+          "actual_quality_pass_rate": 0.375,
+          "no_strict_feasible_images": 0,
+          "color_near_threshold_candidate_count": 26,
+          "color_near_threshold_rmse_db": 13.389113783968817,
+          "selected_payload_bytes": 224176,
+          "original_payload_bytes": 370256,
+          "fixed8_payload_bytes": 494480,
+          "scope": "V3 source-aware prediction vs original Unity labels; true-reference quality/payload; no encoding timing",
+          "seconds": 0.13839079999888781
+        }
+      },
+      "selected_validation_variant": "raw",
+      "ema_updates": 0,
+      "learning_rate": 0.0003
+    }
+  ],
+  "preparation_seconds": 2.045140700007323,
+  "best_artifacts_sha256": {
+    "best.pt": "d67c87c4e9db5604ba176db82a166af7c8b685a640caaf3a5aa36e8848c24d65",
+    "best-validation.npz": "b420a21ae2a5bca6de91fe103315d069d0057a36f911b29ebc2a47356ac74830",
+    "best-decisions.json": "a4118fe17d8915a94a2216000eda7be50345ac4de64f0c52b8f720558b159c35"
+  },
+  "best_validation_variant": "raw",
+  "best_validation_accuracy": 0.625,
+  "best_color_near_threshold_rmse_db": 9.926509460584304,
+  "wall_seconds": 13.201540900001419,
+  "peak_vram_bytes": 1735203328,
+  "stop_reason": "epoch_budget",
+  "checkpoint_sha256": "d67c87c4e9db5604ba176db82a166af7c8b685a640caaf3a5aa36e8848c24d65",
+  "checkpoint_audit": {
+    "status": "passed",
+    "epoch": 1,
+    "selected_variant": "raw",
+    "metrics": {
+      "count": 8,
+      "accuracy": 0.625,
+      "balanced_accuracy": 0.3333333333333333,
+      "full_choice_accuracy": 0.125,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          5
+        ]
+      ],
+      "per_class": {
+        "6x6": {
+          "support": 1,
+          "recall": 0.0
+        },
+        "8x8": {
+          "support": 2,
+          "recall": 0.0
+        },
+        "10x10": {
+          "support": 0,
+          "recall": null
+        },
+        "12x12": {
+          "support": 5,
+          "recall": 1.0
+        }
+      },
+      "actual_quality_pass_rate": 0.375,
+      "no_strict_feasible_images": 0,
+      "color_near_threshold_candidate_count": 26,
+      "color_near_threshold_rmse_db": 9.926509460584304,
+      "selected_payload_bytes": 224176,
+      "original_payload_bytes": 370256,
+      "fixed8_payload_bytes": 494480,
+      "scope": "V3 source-aware prediction vs original Unity labels; true-reference quality/payload; no encoding timing",
+      "seconds": 0.13947229999757838
+    },
+    "checkpoint_sha256": "d67c87c4e9db5604ba176db82a166af7c8b685a640caaf3a5aa36e8848c24d65",
+    "predictions_sha256": "b420a21ae2a5bca6de91fe103315d069d0057a36f911b29ebc2a47356ac74830",
+    "selected_artifacts_sha256": {
+      "best.pt": "d67c87c4e9db5604ba176db82a166af7c8b685a640caaf3a5aa36e8848c24d65",
+      "best-validation.npz": "b420a21ae2a5bca6de91fe103315d069d0057a36f911b29ebc2a47356ac74830",
+      "best-decisions.json": "a4118fe17d8915a94a2216000eda7be50345ac4de64f0c52b8f720558b159c35"
+    },
+    "test_opened": false,
+    "wall_seconds": 1.8455080999992788
+  }
+}

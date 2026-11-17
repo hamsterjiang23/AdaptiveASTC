@@ -1,0 +1,89 @@
+{
+  "status": "passed",
+  "output": "E:\\ASTC_Compression\\output\\imagegen\\v3-model-feature-architecture.png",
+  "sha256": "a98a8dbfd1518e2f606df5b8ca39e21fe6f381507123e9c0b5e12c6f040d0a73",
+  "size_pixels": [
+    1774,
+    887
+  ],
+  "mode": "RGB",
+  "generation_tool": "image_gen.imagegen",
+  "requested_model_version": "gptimage2.5",
+  "actual_model_version": null,
+  "version_verification": "The image tool exposes no model-selection parameter or model-version receipt.",
+  "visual_checks": {
+    "input_channels": "R G B A M, five slabs",
+    "resnet34_stage_blocks": [
+      3,
+      4,
+      6,
+      3
+    ],
+    "resnet34_stage_channels": [
+      64,
+      128,
+      256,
+      512
+    ],
+    "pooled_feature_dimensions": 512,
+    "metadata_conditioning": "8 to 1024, gain512 and offset512, affine fusion",
+    "patch_head": "512 to 80, P x 20 x 4",
+    "image_pooling": "within-image pixel-weighted mean",
+    "image_concat": "512 + 8 = 520",
+    "image_head": "520 to 140, outputs20x4 and20x3",
+    "connectors": "checked from image-generation preview"
+  },
+  "source_code_sha256": {
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\models\\unity_quality.py": "0a49302ab3ac621d9ea3f9cc0c01e12112e9b4419875d298fdbad06b907ee0ac",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337"
+  },
+  "cpu_forward_check": {
+    "checkpoint": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\train-unity-head-full-v1\\best.pt",
+    "backbone_stages": [
+      [
+        64,
+        120,
+        120
+      ],
+      [
+        64,
+        60,
+        60
+      ],
+      [
+        64,
+        60,
+        60
+      ],
+      [
+        128,
+        30,
+        30
+      ],
+      [
+        256,
+        15,
+        15
+      ],
+      [
+        512,
+        8,
+        8
+      ]
+    ],
+    "conditioner": [
+      8,
+      1024
+    ],
+    "patch_head": [
+      512,
+      80
+    ],
+    "image_head": [
+      520,
+      140
+    ]
+  },
+  "illustration_scope": "Model inputs, backbone features, metadata fusion and neural quality outputs. Spatial depth is schematic; residual-stage labels show channel counts.",
+  "prompt_set": "E:\\ASTC_Compression\\output\\imagegen\\v3-model-feature-architecture.prompt.md"
+}

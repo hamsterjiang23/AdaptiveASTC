@@ -1,0 +1,156 @@
+{
+  "status": "passed_development_execution",
+  "cpu_tests": 122,
+  "test_files": [
+    "tests/test_unity_v3_policy.py",
+    "tests/test_unity_v3_input.py",
+    "tests/test_unity_v3_deployment.py",
+    "tests/test_unity_v3_training.py"
+  ],
+  "ruff": "passed",
+  "basedpyright": "0 errors, 0 warnings",
+  "new_python_files": 21,
+  "source_sha256": {
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_benchmark.py": "f84dd54ed629c0374b745e21f12e0a3cce245e74fb33d0317727432024ef7a2b",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_config.py": "d5433ea40e40a00dbe4269151cc1ab7dac92bb2c2dbd954b4038896cb59b7c42",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_deployment.py": "bc0d52d6167ccaaa440260cf460dbe058fc5c03e83b09cf506436c0c79dc7632",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_evidence.py": "2e414b7c32f9870a61c465c1ab3c1c2cf180f3f10bf8e69aae483d728d737030",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_experiment.py": "31046f23c5aa100954905ce0b82d689bbb829a906b4a0f448f95ee48ef0b8004",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_input_diagnostics.py": "06f9693bbc7228e197074a7c3bf30a1d3163283634defaf6e915dd5b81bd49c0",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_policy.py": "eaad388769e1fce9ba066888856abef49a923f4de01f6aac43715aec16fcf029",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_suite.py": "bfa6a219acc6858e8467ae2a09536c709d80d8c4b7c9036df43b906a02d4d6f8",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_summary.py": "b92f4ee97a056144bc33ae345251f7d5b8912ff4873f7749126a5fa889164283",
+    "E:\\ASTC_Compression\\script\\execute_unity_v3.py": "113712f1d07e3e89be8c8e6de4c9d7f8478e09e0d86be86ed3c2cdd4da0b27c2",
+    "E:\\ASTC_Compression\\script\\prepare_unity_v3.py": "5ef999a57ea7f309d2c21a738a5d4741be773e317aed89b9b3d9158f316b7f3a",
+    "E:\\ASTC_Compression\\script\\run_unity_v3.py": "d62df84efaa01275000d9de46b7160a451ec0cf7eae460e1de3f892ae96ae7c3",
+    "E:\\ASTC_Compression\\script\\train_unity_v3.py": "c7af44360edd6625d98d76ebe020cee0a7430dad5e3ee09a63015a2d9634d458",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_v3_dataset.py": "6000dc0a71d55fb56630ec20276d58af9f51a2aba5e5a157ef3f487048daeb68",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_v3_input.py": "45702dbdf6ead728e83ea70d729b4055bc2a4f78fdaa46ee6fbb1dad80f58c19",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_v3_head.py": "5e56a4d061b9a087d450705a95405659f006ef74e93e7f6c24f222e2276d459c",
+    "E:\\ASTC_Compression\\src\\adaptive_astc\\training\\unity_v3_trainer.py": "e9f0092bd6827339f6e10557cd5e373f06652c54631020eb3949c5e6499ca357",
+    "E:\\ASTC_Compression\\tests\\test_unity_v3_deployment.py": "4dc950624abdeed0cef030822a06e8ba32b1cac1fdde0fcb4ca0a981f09b4e8a",
+    "E:\\ASTC_Compression\\tests\\test_unity_v3_input.py": "61018570de7520afebebef761bbda4829e5e61caff10c2741df839d223f2b897",
+    "E:\\ASTC_Compression\\tests\\test_unity_v3_policy.py": "097e4bafd9ea23a9d165d0bfda199c6b6a0c4531687a4bcd74d0c178f9e99959",
+    "E:\\ASTC_Compression\\tests\\test_unity_v3_training.py": "a254715ff81384c7ed22d61d5669dd4083be44d8a0a48ac8b8e2b34561c809fc"
+  },
+  "markdown_local_links_checked": 7,
+  "test_opened": false,
+  "cli_help_checks": [
+    "prepare_unity_v3.py",
+    "run_unity_v3.py",
+    "train_unity_v3.py",
+    "execute_unity_v3.py"
+  ],
+  "concurrent_execution_guard": "passed",
+  "source_difference_diagnostic_cpu_check": "passed exact RGB/Alpha error, target-size grouping, normal grouping, modified-reference rejection",
+  "final_diagnostic_static_checks": {
+    "ruff": "passed",
+    "basedpyright": "0 errors, 0 warnings"
+  },
+  "summary_sha256": "8fe6cf823a49185a6c37da6fd249e1783f7bf090c4f02b20ff8c3628f4d3cd8f",
+  "full_validation_images": 1000,
+  "paired_training_complete": true,
+  "confirmation_execution_authorized": false,
+  "selected_output_audit": "passed",
+  "final_checks": {
+    "client_date": "2026-11-16",
+    "pytest": {
+      "command": "uv run --no-sync pytest -q -p no:cacheprovider --basetemp 'experiment report/.local/unity-v3-20261113/tests-integrated-final-20261116' tests/test_unity_v3_policy.py tests/test_unity_v3_input.py tests/test_unity_v3_deployment.py tests/test_unity_v3_training.py",
+      "result": "passed",
+      "tests": 122,
+      "seconds": 13.45
+    },
+    "ruff": {
+      "command": "$v3Files = @(rg --files reproductions/unity_search_baseline src/adaptive_astc/data src/adaptive_astc/training script tests -g '*v3*.py')\nuv run --no-sync ruff check $v3Files",
+      "result": "passed",
+      "files": 21
+    },
+    "basedpyright": {
+      "command": "$v3Files = @(rg --files reproductions/unity_search_baseline src/adaptive_astc/data src/adaptive_astc/training script tests -g '*v3*.py')\nuv run --no-sync basedpyright $v3Files",
+      "result": "0 errors, 0 warnings, 0 notes",
+      "files": 21
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "passed"
+    },
+    "cli": {
+      "commands": [
+        "uv run --no-sync python script/prepare_unity_v3.py --help",
+        "uv run --no-sync python script/run_unity_v3.py --help",
+        "uv run --no-sync python script/train_unity_v3.py --help",
+        "uv run --no-sync python script/execute_unity_v3.py --help",
+        "uv run --no-sync python script/execute_unity_v3.py --status"
+      ],
+      "result": "passed"
+    },
+    "integrity": {
+      "result": "passed",
+      "report": "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\final-integrity-verification.json",
+      "report_sha256": "ea407d208b7b1fbcd8abab4c8abfafca6cf9ad1e9da34ad22017578952a4e538",
+      "checks": {
+        "status": "passed",
+        "formal_measurements": 288,
+        "formal_cases": 24,
+        "paired_training_epochs": 120,
+        "optimizer_updates": 74979,
+        "source_file_hashes_checked": 11000,
+        "benchmark_bound_files_checked": 2035,
+        "selected_astc_png_hashes_checked": 2000,
+        "selection_recomputed": true,
+        "original_label_matches": 936,
+        "validation_seal_verified": true,
+        "confirmation_registry_unopened": true,
+        "local_markdown_links_checked": 7,
+        "new_python_source_hashes_checked": 21
+      }
+    }
+  },
+  "final_artifacts_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-smoke8-v1-config.json": "56da826b439f775683cc258233b711b5907ba732d8481f7d220d3913d679b1b2",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-smoke8-v1.json": "0541421364f640c7c8a539f8eaa8b73b9d417c117113e06d74ed63106e0596f6",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-trained-source_aligned-full1000-v1-config.json": "fb016cf427ee5d8c2a381057c56ed6ac34b9d5221f3b97d9b529cafbd35c9782",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-trained-source_aligned-full1000-v1.json": "35069d6cbd97b1cf844ebab2a24d7f103016c427011832b27866d36e6317b391",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-trained-unity-full1000-v1-config.json": "c921ae8b0e57dd890d6bde8092713f48e16488441465eccfac402589e1141928",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-trained-unity-full1000-v1.json": "8ce55bcfed5e68c55e577de9a7fa33db11a67b1e9008a5a72fc823d3a1e2e52b",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-v2-full1000-v1-config.json": "850a9a43777ddf414c8d10e945264ac8239135ce4d368dc5221f6c9d635b4cf8",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-v2-full1000-v1.json": "32ecbd32d2453a2e541fbddce8d8488493501d4eea54ece2129a4ea2c4092c43",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\candidate-ablation.json": "b9c2b53f5652b8743cc2c893c720cef90425098d3fdd69884611a82fa9502e61",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\confirmation-contract.json": "1ea704f218586298679af4a1bfcb2ca016cf6c38d19ce74fe47945c091a89ebc",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\final-integrity-verification.json": "ea407d208b7b1fbcd8abab4c8abfafca6cf9ad1e9da34ad22017578952a4e538",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\implementation-notes.md": "3ecdc0d71b5a0f76ccd9f12a72f540c9d9e7ae98f88e0775563250a519909e63",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\input-diagnostics.json": "c7b85be96b0df60005048328720d73decb3ffd576255355a91537c00487f6c11",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\progress.json": "c2c968ea7a691acd0ca0f832888978e41ff8acba12cbe3419319f230f3546e6f",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\README.md": "9989fb470cee3028cd9002c216d608a228ab4fad9a5552c32b5e9c642b8d1d00",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\resource-observations.jsonl": "b036c10602b210fc92153893ec7a6cc34dda1ff237d008f2dc1efb9e2c2b4c0b",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\selected-output-audit.json": "defbd14658aa551a7d96b8e65a8ee3dc8c1415526b8fb851b3a5ba8ec3c52a6b",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\source-file-duplicates.json": "541759a5049980911538036dca47c2109854c8aeb76245c3416943a5f3ae399c",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\source-input-audit-smoke.json": "428d3ec9c627ce23202cd9ce9826e96f97cfc41e5d04b9567c6553e76cab66d1",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\source-input-audit.json": "d972718ebe36044b0c3304aeaa52cbeb83976ac8c463306765dac66a0abba75f",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\summary.json": "8fe6cf823a49185a6c37da6fd249e1783f7bf090c4f02b20ff8c3628f4d3cd8f",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-full-full-v1-config.json": "62c4e4c44e5073001044111c95aa1607ee2cdddce72a4553db6d9578765fb9fa",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-full-full-v1.json": "ffa740acea680fe8c6aa780adca69a7363714fbd84a7999d3f67b591db5decf7",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-full-smoke-v1-config.json": "b3726cab3a8485de4328c05254b50771ad44529c2f2fc95c7c605ba512475638",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-full-smoke-v2-config.json": "d52890c1fb0c6173d87b15efb543c538e8e3209a41ed227f50305960cd8694c3",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-full-smoke-v2.json": "8fc5eb29d1c8d5c241435c67a22236501ae97e15dbc3ce3f3161ce1f5ff4958e",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-head-full-v1-config.json": "940d565706da2ee31fda6c685208fe927926ba0e0def5b221a5063805473c335",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-head-full-v1.json": "133d6c27c5dbf3afa915250176e400ee0675f27ddd03f9381eee2bc8468f38a1",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-head-smoke-v2-config.json": "92af8022b752a0d847a2663909f793ccb478c2be712f76bd544872ea11baed93",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-source_aligned-head-smoke-v2.json": "e4709515b915995f1c680f791552e0ab320f9000d35f347328bfcce3b567c44c",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-full-full-v1-config.json": "b619e435bbf235aa2c7fdfc4e47e114ab6c0f469074746d38b931ce6168e354c",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-full-full-v1.json": "6451e18cd90ca2c65ab47656ceb89c36092abb07d51c5ee795faa5dbf9e02cb7",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-full-smoke-v1-config.json": "eac0f0792abb5d987988a549ea8736accf66c141e401615963ecb61f1f5a4cdf",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-full-smoke-v1.json": "d6c2ed5bf68153fbdaf06cc1ceee6b7a6b0a14aa4c2baae9ce1f3c0028790dd2",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-full-smoke-v2-config.json": "417d28cd2125312821ed9a9eef6e75f9d0b7d77b7220c3ffe8b87cd1827cb26c",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-full-smoke-v2.json": "db7811270c6f8a18f8ba6a213ddbfaaa36a3f813ab35d310d30a624201859f72",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-head-full-v1-config.json": "499440b21d3c7e462a6591933ac320fef1adbe1d9c1830079f0862c7eeafcaf7",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-head-full-v1.json": "4e2124b351ceffdeac4975624a55adb2837e29e9b4cd2e0f6c2b486055d2af7b",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-head-smoke-v2-config.json": "044b467d350031cc626daaa9e1204ea5628be58e2966fd40500745154b1e5eb0",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\train-unity-head-smoke-v2.json": "937730701f85fb078669abf75f797cc18d1ba6cb21a4c926e5da0c03def37ded"
+  },
+  "plan_artifacts_sha256": {
+    "E:\\ASTC_Compression\\experiment plan\\V3\\evidence.json": "7c800f1841baf7903071ce70b36557de3a17229e073c8eab7b242cbb418e9fff",
+    "E:\\ASTC_Compression\\experiment plan\\V3\\matrix.json": "6a16fdb6699f871b0d615382943d44e19cd5b0d93fc120889fdd4797ea3a4cef",
+    "E:\\ASTC_Compression\\experiment plan\\V3\\README.md": "c939610dec8a998dfca452d458d9124b6a359d7de4dcf92d646a1d555e447ccf"
+  }
+}

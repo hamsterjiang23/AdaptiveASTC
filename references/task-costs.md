@@ -189,3 +189,12 @@ Unity V2原生图像采样预检已完成，关闭模式／资产族cap2／法�
 | 小样本系统变体 | 32验证图，3模型×2口径×39变体 | 零模型／训练／实际编码，完整输入来源核验。`[verified: experiment report/.local/unity-v2-20261112/system-variants-smoke-v2-result.json wall_seconds；system-variants-smoke-v2-guard.json]` |
 | 全量系统变体 | 1000验证图，234组，20000候选归档 | 进程14.99s，零模型／训练／实际编码／确认集访问。`[verified: experiment report/unity-v2-20261112/system-variants-result.json wall_seconds；system-variants-verification.json runtime_guards]` |
 | 完整CPU检查 | 排除指定CUDA函数 | 967通过、6集成环境跳过、2CUDA排除，87.10s。`[verified: experiment report/unity-v2-20261112/system-variants-verification.json cpu_tests]` |
+
+## V3独立确认测试
+
+| 任务 | 范围与资源 | 已观测成本与读写 |
+|---|---|---|
+| V3确认入口开发闭环 | 8张开发验证图，2种计时口径×2种模式×3次正式重复 | 评价内部34.72秒，12个单元输出审计通过。读取冻结V3权重及开发参考图，写独立smoke目录。`[verified: experiment report/unity-v3-confirmation-20261116/smoke-result.json]` |
+| 修订确认集复审 | 10000训练／1000验证／2000确认及12个原生规则上下文，0次模型forward | 160.31秒，确认输入指纹与V3合同一致。读取原采集、像素和隔离证据，写prepared-inputs.json与preparation.json。`[verified: experiment report/unity-v3-confirmation-20261116/preparation.json]` |
+| V3正式独立测试 | 2000图、约8.09GB参考RGBA、单GPU串行，12个正式计时单元 | 评价内部16380.20秒，约4小时33分，含预热、12次正式测量及输出审计。各轮平均1.6035次编码／图，正式计时累计38484次编码。写4组完整ASTC／PNG、12份轨迹及12份重复预测档案。`[verified: experiment report/unity-v3-confirmation-20261116/result.json wall_seconds、measurements；report-verification.json]` |
+| V3选定系统每图成本 | 文件输入与像素就绪分别实测，三轮重复 | 文件批量摊销620.91 ms／图、文件逐图均值630.12 ms／图；像素就绪分别为591.35和616.81 ms／图。Unity导入、模型／DLL加载与最终写盘另列。`[verified: experiment report/unity-v3-confirmation-20261116/result.json results、measurements.timings.scope_details]` |

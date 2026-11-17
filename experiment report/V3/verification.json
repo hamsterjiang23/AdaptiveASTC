@@ -1,0 +1,145 @@
+{
+  "status": "passed",
+  "document": "E:\\ASTC_Compression\\experiment report\\V3\\README.md",
+  "document_sha256": "2719238db89574073d82e3a6d667eadf35d3d0c8c9c1bf2c8845fbfd8a62e5d2",
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\summary.json": "8fe6cf823a49185a6c37da6fd249e1783f7bf090c4f02b20ff8c3628f4d3cd8f",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\input-diagnostics.json": "c7b85be96b0df60005048328720d73decb3ffd576255355a91537c00487f6c11",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\source-input-audit.json": "d972718ebe36044b0c3304aeaa52cbeb83976ac8c463306765dac66a0abba75f",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\candidate-ablation.json": "b9c2b53f5652b8743cc2c893c720cef90425098d3fdd69884611a82fa9502e61",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-v2-full1000-v1.json": "32ecbd32d2453a2e541fbddce8d8488493501d4eea54ece2129a4ea2c4092c43",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-trained-unity-full1000-v1.json": "8ce55bcfed5e68c55e577de9a7fa33db11a67b1e9008a5a72fc823d3a1e2e52b",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-trained-source_aligned-full1000-v1.json": "35069d6cbd97b1cf844ebab2a24d7f103016c427011832b27866d36e6317b391",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\selected-output-audit.json": "defbd14658aa551a7d96b8e65a8ee3dc8c1415526b8fb851b3a5ba8ec3c52a6b",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\confirmation-contract.json": "1ea704f218586298679af4a1bfcb2ca016cf6c38d19ce74fe47945c091a89ebc",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\final-integrity-verification.json": "ea407d208b7b1fbcd8abab4c8abfafca6cf9ad1e9da34ad22017578952a4e538",
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\verification.json": "dd7fc245f2f6c60f5da40f50c8c7e3368ec2ea05343c1cb79e8c727d26f659f7"
+  },
+  "trace_files_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\benchmark-v2-full1000-v1\\pure-source_aligned-full20-files-batch-0.json.gz": "7e019df7a800f2054ae43e46de3a828e1a23b98fcb671398c670cdc790ebf0c6",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\benchmark-v2-full1000-v1\\forward-source_aligned-full20-files-batch-0.json.gz": "4e5e4bf960ba18145123afa89e4e5e713d60784a27f5b2105d748f13815ec9c8",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\benchmark-trained-source_aligned-full1000-v1\\pure-source_aligned-full20-files-batch-0.json.gz": "a26e322469acebcab982076cf89aadffff01c09e5ef9e57df4c8eec286159c11",
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\benchmark-trained-source_aligned-full1000-v1\\forward-source_aligned-full20-files-batch-0.json.gz": "9e39698ad159cabf683c1a4bd71783c2db66c2e7097ba65143550d2df555c548"
+  },
+  "checks": {
+    "archived_artifact_hashes": 40,
+    "archived_python_source_hashes": 21,
+    "paired_system_rows": 4,
+    "local_links": 9,
+    "markdown_whitespace_and_tables": "passed",
+    "validation_seal": "passed",
+    "confirmation_registry_unopened": true,
+    "root_navigation": "passed",
+    "timing_scope_and_validation_output_ownership": "passed",
+    "git_diff_check": "passed",
+    "threshold_citations": "derived.policy_values checked from all 1000 captured policy tables"
+  },
+  "derived": {
+    "source_training_paired_transitions": {
+      "pure": {
+        "both_correct": 754,
+        "new_errors": 65,
+        "corrected": 63,
+        "both_wrong": 118
+      },
+      "forward": {
+        "both_correct": 856,
+        "new_errors": 17,
+        "corrected": 65,
+        "both_wrong": 62
+      }
+    },
+    "strict_quality_outcomes": {
+      "original_strict": 874,
+      "selected_strict": 875,
+      "original_unpassed_reasons": {
+        "size_first_relaxed": 93,
+        "highest_psnr_fallback": 33
+      },
+      "selected_unpassed_reasons": {
+        "size_first_relaxed": 92,
+        "highest_psnr_fallback": 33
+      }
+    },
+    "policy_values": {
+      "targetPsnrDb": [
+        30.0
+      ],
+      "blackPixelRatioMild": [
+        0.4000000059604645
+      ],
+      "blackPixelRatioStrong": [
+        0.800000011920929
+      ],
+      "blackElevatedPsnrMildDb": [
+        35.0
+      ],
+      "blackElevatedPsnrStrongDb": [
+        37.0
+      ],
+      "targetMsSsimDb": [
+        21.0
+      ],
+      "targetNormalMeanDeg": [
+        3.200000047683716
+      ],
+      "targetNormalP95Deg": [
+        9.0
+      ],
+      "sizeFirstMinSideLarge": [
+        512
+      ]
+    },
+    "selected_timing_repeat": 1,
+    "selected_timing": {
+      "arm": "forward",
+      "input_mode": "unity",
+      "candidate_set": "full20",
+      "end_to_end_seconds": 195.59558310006105,
+      "file_to_astc_seconds": 195.59558310006105,
+      "pixels_ready_seconds": null,
+      "wall_including_trace_and_progress_seconds": 196.50946800000384,
+      "trace_hash_seconds": 0.9138848999427864,
+      "progress_write_seconds": 0.0,
+      "input_preparation_seconds": 6.28388439999253,
+      "inference": {
+        "total_seconds": 12.721957799993106,
+        "patch_input_seconds": 7.386578699792153,
+        "patch_forward_and_transfer_seconds": 5.31757170020137,
+        "image_head_and_transfer_seconds": 0.0035517999931471422,
+        "mse_aggregation_seconds": 0.01375519999419339,
+        "images": 1000,
+        "patches": 7173,
+        "batch_size": 16,
+        "scope": "Input batching, forward/transfers and MSE aggregation; excludes initial PNG/metadata preparation and policy/encoding"
+      },
+      "inference_wall_seconds": 12.724344200003543,
+      "reference_pixel_load_seconds": 12.27790399992955,
+      "reference_load_metadata_and_flip_seconds": 6.853064799986896,
+      "source_input_timings": {},
+      "policy_and_bookkeeping_seconds": 0.7776853999966988,
+      "native_encode_seconds": 134.9869495999592,
+      "native_decode_seconds": 12.601035599873285,
+      "native_quality_seconds": 21.334869699916453,
+      "encoding_calls": 1627,
+      "prediction_passes": 1,
+      "images": 1000,
+      "batch_amortized_seconds_per_image": 0.19559558310006106,
+      "single_image_latency_seconds": null,
+      "scope": "Required source/reference files to selected in-memory mip0 ASTC",
+      "scope_details": "Includes input preparation, actual read/decode/resize, fresh prediction, decision, native encoding and runtime quality gating where applicable. Trace hashes/progress writes excluded and reported separately; model/DLL loading, Unity import, output writes and post-selection audit excluded. Nested component timings may overlap; do not sum them."
+    },
+    "timing_comparisons": {
+      "search_measured_time_difference_percent": 56.047705447081086,
+      "relative_time_to_fixed8": 8.253083703982837,
+      "remove_exhaustive_measured_time_difference_percent": 46.15004120713427
+    }
+  },
+  "reader_review": {
+    "status": "passed",
+    "questions_answered": 8,
+    "timing_scope_clarified": true,
+    "paired_transition_interpretation_checked": true,
+    "validation_outputs_distinguished_from_confirmation": true
+  }
+}
