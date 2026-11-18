@@ -1,12 +1,53 @@
 # V3 ASTC 自动选参实验报告
 
-## 实验结论
+## 综合结论与阅读入口
+
+报告更新于2026-11-17，覆盖V3开发实验和2026-11-16完成的2000张独立确认。选定系统为Unity参考图输入、ResNet-34预测20候选质量、规则选起点、真实ASTC编码与质量门控续搜。独立测试系统块大小匹配率97.65%，达到约定的90%目标。`[verified: ../unity-v3-confirmation-20261116/result.json status、accuracy90_met、summary；completion-verification.json]`
+
+| 指标 | 开发验证1000张 | 独立确认2000张 |
+|---|---|---|
+| 纯模型起点块大小匹配 | 86.90% | 91.45%。`[verified: ../unity-v3-20261113/summary.json controls；../unity-v3-confirmation-20261116/result.json summary.pure_start_block_accuracy]` |
+| 续搜系统块大小匹配 | 93.60% | 97.65%，1953／2000张。`[verified: 两阶段summary的accuracy、footprint_accuracy]` |
+| Blocksize与Quality均匹配 | 80.40% | 86.65%。`[verified: 两阶段summary.full_choice_accuracy]` |
+| 严格质量通过 | 87.50% | 88.60%，1772／2000张。`[verified: 开发summary.actual_strict_quality_pass_rate；确认summary.strict_quality_pass_rate]` |
+| 相对原标签严格质量回退 | 0张 | 0张。`[verified: 两阶段summary.quality_regression_images]` |
+| 平均实际编码次数 | 1.627次／图 | 1.6035次／图。`[verified: 开发summary.mean_encoding_count；确认summary.candidates_measured.mean]` |
+| 文件输入批量摊销 | 195.60 ms／图 | 620.91 ms／图。`[verified: 开发recommendation.median_file_batch_seconds；确认results.files_batch]` |
+
+训练完成后的完整文件输入逐图处理平均耗时，取三轮中位数为630.12 ms／图；像素就绪逐图口径为616.81 ms／图。时间覆盖输入准备、模型推理、规则选参及所有续搜编码、解码和质量门控，Unity导入、模型／DLL加载、最终审计与写盘单列。`[verified: ../unity-v3-confirmation-20261116/result.json results、measurements.timings.scope_details]`
+
+确认图平均1.011百万像素，开发验证图平均0.239百万像素，前者平均像素数约为后者4.23倍。两个阶段的时间结合各自输入尺寸与候选分布解读。`[verified: ../unity-v3-confirmation-20261116/report-verification.json dataset_size]` `[opinion: 时间比较]`
+
+独立确认中，续搜保留1829张正确起点，纠正124张错误起点，新增错误0张；47张最终块大小未匹配均使用更小块。原标签严格合格1768张全部保留，系统另增加4张合格。严格未通过228张，按原标签分支分组为186张放宽、42张最高PSNR回退。mip0 payload为248140176字节，相对原标签增加0.1796%。`[verified: ../unity-v3-confirmation-20261116/report-verification.json paired_start_to_final、quality_outcomes；result.json summary]`
+
+法线用途由导入属性提供。独立确认覆盖13张法线、16张Linear，专项泛化判断结合当前样本量解读；mask／MSAK的专项通道语义沿用既定实验范围。`[verified: 确认result.json summary.groups；../../experiment plan/V3/README.md 第1节]` `[opinion: 适用范围]`
+
+- [综合PDF解读](<../../output/pdf/V3-ASTC-实验报告-综合版.pdf>)汇总开发取舍和独立测试。`[opinion: 阅读顺序]`
+- [独立确认完整记录](<../unity-v3-confirmation-20261116/README.md>)包含耗时、混淆矩阵和各类召回率。`[verified: 该报告结果图及真实耗时节]`
+- [独立确认逐图CSV](<../unity-v3-confirmation-20261116/test-image-metrics.csv>)覆盖完整2000张。`[verified: 确认report-verification.json csv_rows]`
+- [开发阶段原始报告](development-report-20261113.md)保存开发期记录及当时的确认准备状态。`[verified: development-verification-20261113.json document_sha256]`
+
+## 输入数据、代码与决策分工
+
+Unity输入分支从语料清单的reference读取导入后、进入编码器前的RGBA参考像素。采集插桩在工程侧HandleOptimizeCompress回调记录srcdata哈希，读取时将PNG解码RGBA并对齐上下行顺序，与回调哈希逐字节身份校验。`[verified: ../../reproductions/unity_search_baseline/metadata.py L57–62；../../reproductions/unity_search_baseline/native/capture_options.cs.txt L23–44；../../src/adaptive_astc/data/unity_capture_input.py L89–101]`
+
+Dataset按240×240裁patch，边缘复制填充，并输出RGBA、有效区域mask和8项输入属性。卷积输入由RGBA与mask拼成5通道，属性经metadata_conditioner调节特征。训练监督为20候选的四通道误差、零误差及整图质量，每批16图、每图4次patch采样。`[verified: ../../src/adaptive_astc/data/unity_patch_dataset.py __getitem__、METADATA_NAMES；../../src/adaptive_astc/models/unity_quality.py L75、L107–114；../../src/adaptive_astc/training/unity_v3_trainer.py L507–523；V2基础训练配置]`
+
+模型预测候选质量，规则从预测质量选起点，再从该起点向后进行真实编码与质量检查。质量门槛、大图锁块、放宽和回退依据原UnitySearch逻辑重放，后缀搜索范围会影响最终选择。sRGB非法线图面积达到512²时进入锁块分支；先锁定首个PSNR达标块，在同块继续检查完整质量条件，必要时返回该块最后一个PSNR达标候选。`[verified: ../../reproductions/unity_search_baseline/v3_policy.py select、search]`
+
+独立测试完成12个计时单元，模型参数与buffer不变，训练更新0次。源文件、权重、规则、DLL及单次共享封存身份均复核通过。文件批量对整集预测，像素就绪批量按8图分组聚合，两者分别采用实测时间。`[verified: 确认result.json model_parameters_and_buffers_unchanged、training_updates、measurements；completion-verification.json checks；v3_confirmation.py measure]`
+
+240×240为单个patch尺寸，整图使用Unity导入目标尺寸。本次2000张独立确认图的最大输入为4096×4096。`[verified: UnityPatchDataset.__getitem__；确认prepared-inputs.json rows尺寸统计]`
+
+## 开发实验结果与方案选择
+
+### 开发验证结论
 
 当前选定方案为 **Unity参考图输入、ResNet-34候选质量预测、20候选起点续搜**。在1000张开发验证图上，最终块大小与原Unity标签一致的比例为 **93.6%**，平均编码 **1.627次／图**，文件到内存mip0 ASTC的批量耗时为 **195.60 ms／图**。Blocksize与Quality均一致的完整配置匹配率为 **80.4%**，严格质量通过率为 **87.5%**，相对原标签的严格质量回退为 **0张**。`[verified: ../unity-v3-20261113/summary.json recommendation.metrics、median_file_batch_seconds]`
 
 原图输入路线通过配对训练和实际续搜达到 **92.1%**，耗时 **208.32 ms／图**。删除exhaustive后，Unity输入系统耗时下降到 **105.33 ms／图**，块大小准确率为 **86.7%**。按已经约定的准确率优先排序，最终采用20候选的Unity输入方案。`[verified: ../unity-v3-20261113/summary.json systems、recommendation；../../experiment plan/V3/README.md 第2节“选定与冻结”]`
 
-上述结论覆盖本轮LDR、Tex2D、RGBA8、mip0、RDO关闭协议，以及用于开发、选模的10000张训练图和1000张验证图。2000张确认图的独立评价合同已准备，正式执行授权字段为false。`[verified: ../../experiment plan/V3/README.md 第1节；../unity-v3-20261113/source-input-audit.json counts；../unity-v3-20261113/confirmation-contract.json cohort、confirmation_execution_authorized、test_opened]`
+上述开发结论覆盖LDR、Tex2D、RGBA8、mip0、RDO关闭协议，以及10000张训练图和1000张验证图。开发阶段记录的2000张确认合同授权字段为false，后续正式确认已由独立执行合同授权并完成。`[verified: ../../experiment plan/V3/README.md 第1节；../unity-v3-20261113/source-input-audit.json counts；../unity-v3-20261113/confirmation-contract.json cohort、confirmation_execution_authorized、test_opened]`
 
 ## 一 实验目的
 
@@ -210,11 +251,11 @@ Quality档位改变了每次实际编码的成本，因而编码次数相近时�
 
 同批数据的原规则实际重放为445.02 ms／图，所选系统为195.60 ms／图，本轮实测耗时相差56.05%。固定8×8／medium为23.70 ms／图，所选系统耗时约为其8.25倍。固定8×8的严格质量通过率为81.1%，所选系统为87.5%，同时payload为固定8×8的53.66%。这组数值描述逐图选参在质量、体积和处理成本之间的取舍。`[verified: ../unity-v3-20261113/summary.json controls、recommendation.metrics；按对应median_file_batch_seconds比值计算]`
 
-### 法线用途通过显式属性接入，独立确认按后续合同执行
+### 法线用途与独立确认覆盖
 
 法线用途由外部normal属性提供。验证集45张法线图中，所选系统40张块大小匹配、42张严格角度合格，对应88.89%和93.33%。这些结果评价带明确用途信息的法线选参效果。mask／MSAK专项通道语义沿用本轮暂缓约定。`[verified: ../unity-v3-20261113/summary.json recommendation.metrics.groups.normal；../../src/adaptive_astc/data/unity_v3_input.py SourceTextureSpec；../../experiment plan/V3/README.md 第1节]`
 
-最终合同绑定了所选权重、Unity输入方式、20候选、规则、DLL、计时范围和2000图确认集身份，共享确认封存检查通过。当前状态为prepared_for_execution_review，正式执行授权为false，test_opened为false。后续一次独立确认以原Unity标签块大小Top-1≥90%验收，执行需要单独授权。`[verified: ../unity-v3-20261113/confirmation-contract.json；final-integrity-verification.json confirmation_registry_unopened；../../experiment plan/V3/README.md 第5节]`
+开发期合同绑定所选权重、Unity输入方式、20候选、规则、DLL、计时范围和2000图确认集身份，记录当时prepared_for_execution_review状态。2026-11-16正式确认使用新的execution-config-v2.json和共享seal执行，终态为passed、test_opened=true，系统块大小Top-1为97.65%。`[verified: ../unity-v3-confirmation-20261116/result.json status、test_opened、summary；execution-seal.json]``[verified: ../unity-v3-20261113/confirmation-contract.json；final-integrity-verification.json confirmation_registry_unopened；../../experiment plan/V3/README.md 第5节]`
 
 ## 实施与证据入口
 

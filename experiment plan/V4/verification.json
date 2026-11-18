@@ -1,0 +1,66 @@
+{
+  "schema": "unity-v4-plan-verification-v1",
+  "status": "passed",
+  "date": "2026-11-17",
+  "scope": "plan_documents_and_source_identity_only",
+  "checks": [
+    {
+      "name": "matrix_consistency",
+      "status": "passed",
+      "controls": 9,
+      "start_configurations": 19,
+      "gate_margins": 4,
+      "candidate_count": 20
+    },
+    {
+      "name": "plan_status_and_execution_scope",
+      "status": "passed",
+      "pending_stages": 5
+    },
+    {
+      "name": "bound_source_sha256",
+      "status": "passed",
+      "files": 20
+    },
+    {
+      "name": "baseline_and_failure_statistics",
+      "status": "passed"
+    },
+    {
+      "name": "markdown_navigation",
+      "status": "passed",
+      "existing_targets_checked": 2,
+      "verification_target": "generated_by_this_check",
+      "root_link": true
+    },
+    {
+      "name": "epistemic_markers",
+      "status": "passed",
+      "paragraphs": 34
+    },
+    {
+      "name": "git_diff_and_new_file_whitespace",
+      "status": "passed"
+    }
+  ],
+  "execution": {
+    "scope": "plan_creation",
+    "development_experiments_started": false,
+    "model_forward_calls": 0,
+    "training_updates": 0,
+    "actual_encoding_calls": 0,
+    "confirmation_execution_authorized": false,
+    "new_confirmation_scope": "protocol_preparation_only",
+    "results": null
+  },
+  "files_sha256": {
+    "README.md": "f9ad9646269c49f9fd8d5a840743380cfe804a2f09a2367c16d8dd49edb8273a",
+    "experiment plan\\V4\\README.md": "778f0d5f55c27205a36ffaf76eb1e55dbbd6877dc83c59a1024462bc22410c90",
+    "experiment plan\\V4\\matrix.json": "88a7801c2cd00157be6394343a09e9d958c1c75c0a22a147bf445202a68cfcbd",
+    "experiment plan\\V4\\evidence.json": "b20fdd911429c802872df428345cbf338ea5cd5b6c587c415f735124695602b8"
+  },
+  "check_limitations": [
+    "Plan document consistency and source identities checked",
+    "Runtime implementation and experimental outcomes remain pending"
+  ]
+}

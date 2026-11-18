@@ -1,0 +1,41 @@
+{
+  "status": "passed_focused_cache_reuse_checks",
+  "scope": "6 synthetic cases and primary files/batch native traces for 4 controls",
+  "actual_primary_counts": {
+    "v3_baseline": {
+      "gate_probe_cache_hits": 0,
+      "unlock_rescue_cache_hits": 0,
+      "candidate_cache_hits": 0,
+      "selected_payload_reused": 1000
+    },
+    "exhaustive_gate": {
+      "gate_probe_cache_hits": 6,
+      "unlock_rescue_cache_hits": 0,
+      "candidate_cache_hits": 6,
+      "selected_payload_reused": 1000
+    },
+    "bounded_unlock": {
+      "gate_probe_cache_hits": 0,
+      "unlock_rescue_cache_hits": 75,
+      "candidate_cache_hits": 75,
+      "selected_payload_reused": 1000
+    },
+    "calibrated_gate_no_lookahead": {
+      "gate_probe_cache_hits": 11,
+      "unlock_rescue_cache_hits": 0,
+      "candidate_cache_hits": 11,
+      "selected_payload_reused": 1000
+    }
+  },
+  "native_encoder_calls": 0,
+  "new_model_forward_calls": 0,
+  "source_sha256": "f09ba2b605dcf088b3b9078ccc7e107829127b72c2529735f4b6e2e8f782c759",
+  "all9000_csv_enrichment": "pending_complete_native_matrix",
+  "matched_native_unlock_check": {
+    "main_trajectories_checked": 1000,
+    "rescue_candidate_requests": 310,
+    "additional_unique_encodings": 235,
+    "cache_hits_from_requests_minus_new_encodings": 75,
+    "agrees_with_recorded_search_path_reconstruction": true
+  }
+}

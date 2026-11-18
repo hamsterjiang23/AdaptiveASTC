@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "document": "E:\\ASTC_Compression\\experiment report\\V4\\README.md",
+  "document_sha256": "7c6c98e4215847c77d400d6817514aa69be0dca7c9c39d37628c50cd4b4e75f9",
+  "report_date": "2026-11-18",
+  "scope": "V4 completed development experiments and prepared future confirmation protocols",
+  "source_files_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\README.md": "1edad5d1b2de767fd1c3d7b4c4bf35a0054b53993de9d98e9ed1f097b6d7bc56",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\summary.json": "c233fa6de27470d87b16104ab1598a7ea26871123146cdbd9a270e3c8691ae6b",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\interpretation.json": "86bbb90c28e1d24e3c6dab1e764ed62a4acad936dd54efd3c3d42a33b5f7e6b0",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\offline.json": "4b9cd6b657a221a889453762faf177b8ae5d2b5cf4594f1bcf49eed2d8b7905e",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\diagnostic-analysis.json": "ffbfadd4c54453a9a108ae98e6c29214bf4ec0249ce631f1a04c9fddf35ef2c1",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\complete-artifact-audit.json": "c132ffb406d2b838265efd05f1c63221f28ad881c468b2766f82848f83e9498a",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\completion-audit.json": "21072e2f87665b5c2de3fbf16accbc6eaa8fe90ba0394dd7b91781c3d4dda5f6",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\delivery-verification.json": "efc35dc7f1b961a423721df5acde6d6d6d1cca805ffe84dc6ab6557f865e8f5a",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\verification.json": "f79153a93ddc0308fd9f5a2f9a9b51c776b13d3353a48e67ccda1221f1c68e8d",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\report-rebuild-verification.json": "7b147331e57f2bac75ebdbd347108770185c2e6d76b0f2353899e201f4d0d4c7",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\confirmation-protocol-compatibility.json": "46c75f65dfa8d99629a0bc0a158f714122a68dbdd29e5ef3fa444aa30d1d5414",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\confirmation-protocol-quality.json": "135aba7db6221a2f8d5a574a86cef925b7acf7eaea6338c28b8d4cb9ef6ec5cc",
+    "E:\\ASTC_Compression\\experiment plan\\V4\\README.md": "2dbcfab7c6792c6cb504cc1500ac09fd23c108f9492796ec7505654eb18525a2",
+    "E:\\ASTC_Compression\\experiment plan\\V4\\matrix.json": "88a7801c2cd00157be6394343a09e9d958c1c75c0a22a147bf445202a68cfcbd",
+    "E:\\ASTC_Compression\\experiment plan\\V4\\evidence.json": "b20fdd911429c802872df428345cbf338ea5cd5b6c587c415f735124695602b8",
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v4_policy.py": "e3c0d9b4d3ad00e60b9f828f1cd5c94e97ad9a98266e29bcd68e8083ab096d04"
+  },
+  "checks": {
+    "completion_evidence_sha256_checked": 25,
+    "nine_result_rows_matched": 9,
+    "four_scope_timing_rows_matched": 9,
+    "markdown_table_lines": 139,
+    "local_links": 9,
+    "csv_rows": 9000,
+    "root_navigation": "passed",
+    "independent_confirmation": "pending_new_cohort",
+    "training_updates": 0,
+    "experiments_rerun_this_report_task": false
+  },
+  "recommendations": {
+    "compatibility": "remove_lookahead",
+    "quality": "bounded_unlock"
+  },
+  "report_task_checks": {
+    "policy_tests": {
+      "command": "uv run --no-sync pytest -q tests/test_unity_v3_policy.py tests/test_unity_v4_policy.py",
+      "passed": 75
+    },
+    "ruff": "passed on ten V4 implementation and reporting files",
+    "basedpyright": "0 errors, 0 warnings, 0 notes on the same ten files",
+    "staged_python_compilation": 12,
+    "gitleaks": {
+      "version": "8.30.1",
+      "staged_diff_bytes_scanned": 105991388,
+      "lfs_payload_bytes_scanned": 213407186,
+      "findings": 0,
+      "release_zip_sha256": "d29144deff3a68aa93ced33dddf84b7fdc26070add4aa0f4513094c8332afc4e"
+    },
+    "staged_files": 271,
+    "new_lfs_payloads": [
+      {
+        "path": "experiment report/unity-v4-20261117/summary.json",
+        "sha256": "c233fa6de27470d87b16104ab1598a7ea26871123146cdbd9a270e3c8691ae6b",
+        "bytes": 107742776
+      },
+      {
+        "path": "experiment report/unity-v4-20261117/benchmark1000-v3/result.json",
+        "sha256": "003f52c07412a2676abc844667c4a6a778dbbf76b3e30401fe769d2d10df8472",
+        "bytes": 105664410
+      }
+    ]
+  }
+}

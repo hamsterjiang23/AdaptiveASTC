@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "scope": "V3/V4 CPU policy tests and ten V4 implementation/reporting files",
+  "checks": [
+    {
+      "name": "pytest",
+      "command": "uv run --no-sync pytest -q tests/test_unity_v3_policy.py tests/test_unity_v4_policy.py",
+      "chunk_id": "66307f",
+      "wall_time_seconds": 1.3943162,
+      "exit_code": 0,
+      "original_token_count": 46,
+      "output": "........................................................................ [ 96%]\r\n...                                                                      [100%]\r\n75 passed in 0.56s\r\n"
+    },
+    {
+      "name": "ruff",
+      "command": "uv run --no-sync ruff check reproductions/unity_search_baseline/v4_policy.py reproductions/unity_search_baseline/v4_experiment.py reproductions/unity_search_baseline/v4_runtime.py reproductions/unity_search_baseline/v4_benchmark.py reproductions/unity_search_baseline/v4_report.py script/run_unity_v4.py script/execute_unity_v4.py script/verify_unity_v4.py script/finalize_unity_v4_report.py tests/test_unity_v4_policy.py",
+      "chunk_id": "192aa0",
+      "wall_time_seconds": 0.5805546,
+      "exit_code": 0,
+      "original_token_count": 5,
+      "output": "All checks passed!\n"
+    },
+    {
+      "name": "basedpyright",
+      "command": "uv run --no-sync basedpyright reproductions/unity_search_baseline/v4_policy.py reproductions/unity_search_baseline/v4_experiment.py reproductions/unity_search_baseline/v4_runtime.py reproductions/unity_search_baseline/v4_benchmark.py reproductions/unity_search_baseline/v4_report.py script/run_unity_v4.py script/execute_unity_v4.py script/verify_unity_v4.py script/finalize_unity_v4_report.py tests/test_unity_v4_policy.py",
+      "chunk_id": "765d0e",
+      "wall_time_seconds": 3.3559313,
+      "exit_code": 0,
+      "original_token_count": 8,
+      "output": "0 errors, 0 warnings, 0 notes\n"
+    }
+  ],
+  "training_updates": 0
+}

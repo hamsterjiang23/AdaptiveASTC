@@ -1,0 +1,236 @@
+{
+  "status": "passed_baseline_all_four_modes",
+  "images": 1000,
+  "cells": 12,
+  "groups": {
+    "files_batch": {
+      "mean_or_amortized_ms_median3": 201.96004469995023,
+      "encoding_calls_each_repeat": [
+        1627,
+        1627,
+        1627
+      ]
+    },
+    "files_single": {
+      "mean_or_amortized_ms_median3": 229.54750630008857,
+      "encoding_calls_each_repeat": [
+        1626,
+        1626,
+        1626
+      ],
+      "median_ms_median3": 84.55694999975094,
+      "p95_ms_median3": 656.9109900054173
+    },
+    "pixels_ready_batch": {
+      "mean_or_amortized_ms_median3": 202.2010016000895,
+      "encoding_calls_each_repeat": [
+        1626,
+        1626,
+        1626
+      ]
+    },
+    "pixels_ready_single": {
+      "mean_or_amortized_ms_median3": 228.17063099992083,
+      "encoding_calls_each_repeat": [
+        1626,
+        1626,
+        1626
+      ],
+      "median_ms_median3": 78.16789999742468,
+      "p95_ms_median3": 672.5284349953653
+    }
+  },
+  "measurements": [
+    {
+      "scope": "files",
+      "mode": "batch",
+      "repeat": 0,
+      "seconds": 206.24671809990105,
+      "encoding_calls": 1627,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 0,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-files-batch-0.json",
+      "receipt_sha256": "488f0aab63447f47eefeb4669590cda0b5a477646ff5da620b648f94aed6f2bd"
+    },
+    {
+      "scope": "files",
+      "mode": "batch",
+      "repeat": 1,
+      "seconds": 201.60801030005678,
+      "encoding_calls": 1627,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 0,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-files-batch-1.json",
+      "receipt_sha256": "5dd025476cf53ab16359f44acebdfbbee7907ff7cb3165fd4e1dda6aad60b29c"
+    },
+    {
+      "scope": "files",
+      "mode": "batch",
+      "repeat": 2,
+      "seconds": 201.96004469995023,
+      "encoding_calls": 1627,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 0,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-files-batch-2.json",
+      "receipt_sha256": "462ec75bbbca3e87545e663ac1d4e1fe3a4eda5f93282e2e65a4b32ca1f8caf1"
+    },
+    {
+      "scope": "files",
+      "mode": "single",
+      "repeat": 0,
+      "seconds": 231.7871890000315,
+      "encoding_calls": 1626,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 1,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-files-single-0.json",
+      "receipt_sha256": "8afaed538e4b12009887d50275932f333d54cdb35c5ae77132ccd16e8cdf299f",
+      "mean_ms": 231.7871890000315,
+      "median_ms": 85.67750000111118,
+      "p95_ms": 664.2975699976884
+    },
+    {
+      "scope": "files",
+      "mode": "single",
+      "repeat": 1,
+      "seconds": 229.54750630008857,
+      "encoding_calls": 1626,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 1,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-files-single-1.json",
+      "receipt_sha256": "7bc0a4e5cd9272695bcc4366aebd78ca4b3e02725d252e80df7744a542c6fb40",
+      "mean_ms": 229.54750630008857,
+      "median_ms": 84.55694999975094,
+      "p95_ms": 656.9109900054173
+    },
+    {
+      "scope": "files",
+      "mode": "single",
+      "repeat": 2,
+      "seconds": 222.87967820013364,
+      "encoding_calls": 1626,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 1,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-files-single-2.json",
+      "receipt_sha256": "da057706e45e6faf9f081524e9dff0cd3d448cda21ee040dec3f913c773a9df1",
+      "mean_ms": 222.87967820013364,
+      "median_ms": 79.44954999766196,
+      "p95_ms": 643.2474499988525
+    },
+    {
+      "scope": "pixels_ready",
+      "mode": "batch",
+      "repeat": 0,
+      "seconds": 202.2010016000895,
+      "encoding_calls": 1626,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 1,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-pixels_ready-batch-0.json",
+      "receipt_sha256": "3886c9bf29564b2fb96cf2b19a13962c7901d18b40fd3f9c985eea140488b1bf"
+    },
+    {
+      "scope": "pixels_ready",
+      "mode": "batch",
+      "repeat": 1,
+      "seconds": 201.6430837999833,
+      "encoding_calls": 1626,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 1,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-pixels_ready-batch-1.json",
+      "receipt_sha256": "d246f8b03cfe58ec20ad08951d58398fa8cf1bb6df0ec5ef2d49e1f580bfd4c0"
+    },
+    {
+      "scope": "pixels_ready",
+      "mode": "batch",
+      "repeat": 2,
+      "seconds": 205.4851239999516,
+      "encoding_calls": 1626,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 1,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-pixels_ready-batch-2.json",
+      "receipt_sha256": "156692e9723bfe14d216ca76be181d578c28644fba918626d337d2b5c1a1d215"
+    },
+    {
+      "scope": "pixels_ready",
+      "mode": "single",
+      "repeat": 0,
+      "seconds": 227.33291249996182,
+      "encoding_calls": 1626,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 1,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-pixels_ready-single-0.json",
+      "receipt_sha256": "833b5c92fe83c12df393a657ee67e42480d9c4b0095a490094c0ad52c0924f54",
+      "mean_ms": 227.33291249996182,
+      "median_ms": 83.51314999890747,
+      "p95_ms": 634.4969950006997
+    },
+    {
+      "scope": "pixels_ready",
+      "mode": "single",
+      "repeat": 1,
+      "seconds": 228.17063099992083,
+      "encoding_calls": 1626,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 1,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-pixels_ready-single-1.json",
+      "receipt_sha256": "02d8d2c72a281a5f76f03539893e8894e448a81627235d741e616b09f44323ce",
+      "mean_ms": 228.17063099992083,
+      "median_ms": 72.69785000244156,
+      "p95_ms": 672.5284349953653
+    },
+    {
+      "scope": "pixels_ready",
+      "mode": "single",
+      "repeat": 2,
+      "seconds": 237.13498649992835,
+      "encoding_calls": 1626,
+      "actual_quality_pass_rate": 0.875,
+      "block_accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "frozen_prediction_difference_images": 1,
+      "astc_differences_from_files_batch0": 0,
+      "receipt": "experiment report\\unity-v4-20261117\\benchmark1000-v3\\v3_baseline-pixels_ready-single-2.json",
+      "receipt_sha256": "057ce654885cdc0a40ad0b3d956d6372a66643f476b5b59f610601b984ebc6f5",
+      "mean_ms": 237.13498649992835,
+      "median_ms": 78.16789999742468,
+      "p95_ms": 738.3984550016974
+    }
+  ],
+  "astc_same_across_all12": true,
+  "replay_source": "per_measurement_actual_predictions",
+  "training_updates": 0,
+  "new_encoder_calls": 0,
+  "new_model_forward_calls": 0
+}

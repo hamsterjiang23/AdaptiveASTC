@@ -1,0 +1,82 @@
+{
+  "status": "passed_implementation_and_complete_development_checks",
+  "scope": "75 CPU policy tests, scoped Ruff/basedpyright, offline1000, smoke32-v3 and all108 native cells with report verification",
+  "cpu_tests_passed": 75,
+  "offline_images": 1000,
+  "smoke_images": 32,
+  "smoke_controls": 9,
+  "smoke_result": "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\smoke32-v3\\result.json",
+  "smoke_result_sha256": "d55173bd8c43ca66f004a4efa5d9d557a8cec1dc9518aeec41f903c8291da931",
+  "formal_development_complete": true,
+  "training_updates": 0,
+  "additional_checks": {
+    "cpu_policy_tests_passed": 75,
+    "scope": "V3 and V4 CPU policy tests, including exact payload budget, normal branch, float32, cache reuse and gate false negatives",
+    "smoke32_v2_sha256": "6e67950576ebe9ed0f6a7efd3d6c8820d8ab91b0419299c962a3e5390303b0d8",
+    "smoke32_v2_lookahead_astc_equivalence": true,
+    "independent_artifact_audit": "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\complete-artifact-audit.json"
+  },
+  "runtime_replay_recovery": {
+    "diagnosis": "runtime-mismatch901-diagnosis.json",
+    "four_mode_regression": "runtime-mismatch901-recovery-check.json",
+    "current_smoke_audit": "smoke32-v3-artifact-audit.json",
+    "smoke_cells": 36,
+    "smoke_images": 32,
+    "cpu_policy_checks": 75,
+    "actual_prediction_replay": true
+  },
+  "report_finalizer_precheck": {
+    "artifact": "report-finalizer-precheck.json",
+    "scope": "8 completed timing groups and distribution checks",
+    "ruff": "passed",
+    "basedpyright": "0 errors, 0 warnings, 0 notes",
+    "full_report_execution": "passed_all108_cells",
+    "script_sha256": "5d3bc83c60a43a4327f40032ac6f052d4f093f4d66b446e929724516fdeed2c2",
+    "csv_native_validation": "passed_all9000_rows",
+    "current_static_check_sha256": "f09ba2b605dcf088b3b9078ccc7e107829127b72c2529735f4b6e2e8f782c759",
+    "markdown_schema_smoke": "two synthetic fixtures, 117 table rows each, including unlock outcomes and zero-gain branch",
+    "offline_alternative_disclosure": "report retains all19 starts and identifies zero-regression offline alternative separately from the measured winner"
+  },
+  "independent_verifier_extension": {
+    "source_sha256": "8f51c7e901abd7b4548dda4a4f605f0cf2dbbf4bf7d9bd2e3701730fadee96f4",
+    "inherited_v3_sources_checked": 14,
+    "parent_identity_report": "parent-code-identity.json",
+    "full_artifact_audit": "passed_complete_108_cells",
+    "ruff": "passed",
+    "basedpyright": "0 errors, 0 warnings, 0 notes"
+  },
+  "first_native_budget_audit": {
+    "artifact": "unlock-first-native-budget-audit.json",
+    "images": 1000,
+    "actual_native_payloads_checked": 2000,
+    "terminal_6x6_checked": true,
+    "failed_unlock_retention_checked": true,
+    "full_artifact_audit": "passed_all108000_actual_native_payload_sizes"
+  },
+  "cache_reuse_precheck": {
+    "artifact": "cache-reuse-precheck.json",
+    "synthetic_cases": 6,
+    "primary_native_controls_checked": 4,
+    "matched_main_trajectories": 1000,
+    "rescue_requests": 310,
+    "additional_unique_encodings": 235,
+    "unlock_cache_hits": 75,
+    "all9000_csv_enrichment": "passed_9000_rows_35_columns",
+    "original_csv_identity_preservation": "passed_original_and_enriched_sha256_retained"
+  },
+  "initial_implementation_checks": {
+    "status": "passed_implementation_checks",
+    "scope": "69 CPU policy checks, scoped Ruff/basedpyright, offline validation1000 and smoke32-v1",
+    "cpu_tests_passed": 69,
+    "smoke_result": "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\smoke32-v1\\result.json",
+    "smoke_result_sha256": "b93beb544e56310cfb99d25f8e1ed0355c39caad80babccfb2666ac0255918c2"
+  },
+  "final_code_verification": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\code-verification.json",
+    "sha256": "5717d72800c34cb88e87c2864218f1e45d46a85a6432d48e833c79df33e616ae"
+  },
+  "final_delivery_verification": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\delivery-verification.json",
+    "sha256": "efc35dc7f1b961a423721df5acde6d6d6d1cca805ffe84dc6ab6557f865e8f5a"
+  }
+}

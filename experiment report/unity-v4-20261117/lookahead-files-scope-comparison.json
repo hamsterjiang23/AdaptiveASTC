@@ -1,0 +1,125 @@
+{
+  "status": "passed_files_scope_comparison",
+  "scope": "files_only_three_batch_and_three_single_repeats",
+  "images": 1000,
+  "groups": {
+    "batch": {
+      "baseline_mean_or_amortized_ms_median3": 201.96004469995023,
+      "optimized_mean_or_amortized_ms_median3": 218.24998610009425,
+      "queries_removed_each_repeat": [
+        91,
+        91,
+        91
+      ]
+    },
+    "single": {
+      "baseline_mean_or_amortized_ms_median3": 229.54750630008857,
+      "optimized_mean_or_amortized_ms_median3": 228.41464969998196,
+      "queries_removed_each_repeat": [
+        91,
+        91,
+        91
+      ],
+      "baseline_latency_median_ms_median3": 84.55694999975094,
+      "baseline_p95_ms_median3": 656.9109900054173,
+      "optimized_latency_median_ms_median3": 74.88649999686459,
+      "optimized_p95_ms_median3": 669.1570250050063
+    }
+  },
+  "paired_measurements": [
+    {
+      "mode": "batch",
+      "repeat": 0,
+      "baseline_seconds": 206.24671809990105,
+      "optimized_seconds": 218.24998610009425,
+      "baseline_queries": 1627,
+      "optimized_queries": 1536,
+      "astc_equal_images": 1000,
+      "receipt_sha256": {
+        "v3_baseline": "488f0aab63447f47eefeb4669590cda0b5a477646ff5da620b648f94aed6f2bd",
+        "remove_lookahead": "f18417636a0b02fa4e01dfac2d6e7482984b8acdd6008e93766776b9097a33e2"
+      }
+    },
+    {
+      "mode": "batch",
+      "repeat": 1,
+      "baseline_seconds": 201.60801030005678,
+      "optimized_seconds": 224.71849410001596,
+      "baseline_queries": 1627,
+      "optimized_queries": 1536,
+      "astc_equal_images": 1000,
+      "receipt_sha256": {
+        "v3_baseline": "5dd025476cf53ab16359f44acebdfbbee7907ff7cb3165fd4e1dda6aad60b29c",
+        "remove_lookahead": "f7a9d77fc40a46ec9b82f98ce94bb8a98d4ca83824f2a663536263fc319ee8d4"
+      }
+    },
+    {
+      "mode": "batch",
+      "repeat": 2,
+      "baseline_seconds": 201.96004469995023,
+      "optimized_seconds": 214.62945440004478,
+      "baseline_queries": 1627,
+      "optimized_queries": 1536,
+      "astc_equal_images": 1000,
+      "receipt_sha256": {
+        "v3_baseline": "462ec75bbbca3e87545e663ac1d4e1fe3a4eda5f93282e2e65a4b32ca1f8caf1",
+        "remove_lookahead": "6ac183f54a133bc5047935bf24316f40ee5805446f5554fa19c07b00d98527a2"
+      }
+    },
+    {
+      "mode": "single",
+      "repeat": 0,
+      "baseline_seconds": 231.7871890000315,
+      "optimized_seconds": 224.4460846001275,
+      "baseline_queries": 1626,
+      "optimized_queries": 1535,
+      "astc_equal_images": 1000,
+      "receipt_sha256": {
+        "v3_baseline": "8afaed538e4b12009887d50275932f333d54cdb35c5ae77132ccd16e8cdf299f",
+        "remove_lookahead": "30b48035c78229759119663ca2f9ead59b5b85d1f63f8e4735798b0a77310f7f"
+      },
+      "baseline_median_ms": 85.67750000111118,
+      "baseline_p95_ms": 664.2975699976884,
+      "optimized_median_ms": 71.98120000430208,
+      "optimized_p95_ms": 714.3423149998853
+    },
+    {
+      "mode": "single",
+      "repeat": 1,
+      "baseline_seconds": 229.54750630008857,
+      "optimized_seconds": 228.41464969998196,
+      "baseline_queries": 1626,
+      "optimized_queries": 1535,
+      "astc_equal_images": 1000,
+      "receipt_sha256": {
+        "v3_baseline": "7bc0a4e5cd9272695bcc4366aebd78ca4b3e02725d252e80df7744a542c6fb40",
+        "remove_lookahead": "933ff2383f16295701e6579b0087234caed2012284111c883ccf01f67febd906"
+      },
+      "baseline_median_ms": 84.55694999975094,
+      "baseline_p95_ms": 656.9109900054173,
+      "optimized_median_ms": 74.88649999686459,
+      "optimized_p95_ms": 669.1570250050063
+    },
+    {
+      "mode": "single",
+      "repeat": 2,
+      "baseline_seconds": 222.87967820013364,
+      "optimized_seconds": 230.17591229999016,
+      "baseline_queries": 1626,
+      "optimized_queries": 1535,
+      "astc_equal_images": 1000,
+      "receipt_sha256": {
+        "v3_baseline": "da057706e45e6faf9f081524e9dff0cd3d448cda21ee040dec3f913c773a9df1",
+        "remove_lookahead": "5568d5ab844c6683753fd514eb3956ddc1883126901863bf8d80c044955ddae8"
+      },
+      "baseline_median_ms": 79.44954999766196,
+      "baseline_p95_ms": 643.2474499988525,
+      "optimized_median_ms": 77.88724999954866,
+      "optimized_p95_ms": 665.9300049968804
+    }
+  ],
+  "strict_quality_regressions": 0,
+  "all_paired_astc_equal": true,
+  "timing_conditions": "sequentially measured controls; stage resource observation recorded separately",
+  "resource_observations": "resource-observations.jsonl"
+}

@@ -1,0 +1,128 @@
+{
+  "status": "passed_files_scope_only",
+  "images": 1000,
+  "cells": 6,
+  "scope": "files_batch_and_single_three_repeats",
+  "controls": {
+    "v3_baseline": {
+      "batch": {
+        "mean_or_amortized_ms_median3": 201.96004469995023,
+        "all_repeat_ms": [
+          206.24671809990105,
+          201.60801030005678,
+          201.96004469995023
+        ],
+        "encoding_calls": [
+          1627,
+          1627,
+          1627
+        ],
+        "strict_regressions": [
+          0,
+          0,
+          0
+        ],
+        "block_accuracy": [
+          0.936,
+          0.936,
+          0.936
+        ],
+        "full_configuration_accuracy": [
+          0.804,
+          0.804,
+          0.804
+        ]
+      },
+      "single": {
+        "mean_or_amortized_ms_median3": 229.54750630008857,
+        "all_repeat_ms": [
+          231.7871890000315,
+          229.54750630008857,
+          222.87967820013364
+        ],
+        "encoding_calls": [
+          1626,
+          1626,
+          1626
+        ],
+        "strict_regressions": [
+          0,
+          0,
+          0
+        ],
+        "block_accuracy": [
+          0.936,
+          0.936,
+          0.936
+        ],
+        "full_configuration_accuracy": [
+          0.804,
+          0.804,
+          0.804
+        ],
+        "latency_median_ms_median3": 84.55694999975094,
+        "latency_p95_ms_median3": 656.9109900054173
+      }
+    },
+    "calibrated_start": {
+      "batch": {
+        "mean_or_amortized_ms_median3": 256.3435042000965,
+        "all_repeat_ms": [
+          256.3435042000965,
+          260.2792394999087,
+          253.65572269988115
+        ],
+        "encoding_calls": [
+          2376,
+          2376,
+          2376
+        ],
+        "strict_regressions": [
+          1,
+          1,
+          1
+        ],
+        "block_accuracy": [
+          0.974,
+          0.974,
+          0.974
+        ],
+        "full_configuration_accuracy": [
+          0.925,
+          0.925,
+          0.925
+        ]
+      },
+      "single": {
+        "mean_or_amortized_ms_median3": 279.4304455999809,
+        "all_repeat_ms": [
+          278.1051084999817,
+          279.4304455999809,
+          285.5770779000777
+        ],
+        "encoding_calls": [
+          2376,
+          2376,
+          2376
+        ],
+        "strict_regressions": [
+          1,
+          1,
+          1
+        ],
+        "block_accuracy": [
+          0.974,
+          0.974,
+          0.974
+        ],
+        "full_configuration_accuracy": [
+          0.925,
+          0.925,
+          0.925
+        ],
+        "latency_median_ms_median3": 112.43005000324047,
+        "latency_p95_ms_median3": 918.239649998394
+      }
+    }
+  }
+}

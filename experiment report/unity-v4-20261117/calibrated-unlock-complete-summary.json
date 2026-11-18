@@ -1,0 +1,880 @@
+{
+  "status": "passed_all_four_modes",
+  "images": 1000,
+  "cells_per_control": 12,
+  "controls": {
+    "bounded_unlock": {
+      "primary_metrics": {
+        "images": 1000,
+        "accuracy": 0.884,
+        "full_choice_accuracy": 0.752,
+        "actual_strict_quality_pass_rate": 0.927,
+        "quality_regression_images": 0,
+        "larger_block_images": 0,
+        "smaller_block_images": 116,
+        "payload_bytes": 33160800,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 1.0473533803809798,
+        "payload_ratio_to_fixed8": 0.5548845934822111,
+        "strict_regressions_vs_v3": 0,
+        "new_strict_pass_vs_v3": 52,
+        "queries": 1862,
+        "exhaustive_queries": 329,
+        "mean_encoding_count": 1.862,
+        "gate_events": 0,
+        "skipped_exhaustive": 0,
+        "unlock_replacements": 52
+      },
+      "strict_regressions_across_cells": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "new_strict_pass_across_cells": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52
+      ],
+      "strict_pass_rates_across_cells": [
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927
+      ],
+      "all_mode_astc_outputs_equal": true,
+      "primary_cache_counts": {
+        "gate_probe_cache_hits": 0,
+        "unlock_rescue_cache_hits": 75,
+        "candidate_cache_hits": 75,
+        "selected_payload_reused": 1000
+      },
+      "timing": {
+        "files_batch": {
+          "repetitions": [
+            {
+              "repeat": 0,
+              "total_seconds": 261.64909440004703,
+              "mean_ms": 261.64909440004703,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 6.392843900001026,
+                "reference_load_metadata_and_flip": 7.100172900114558,
+                "inference_wall": 13.973661500000162,
+                "policy_and_bookkeeping": 1.0888828002352966,
+                "native_encode": 187.7733570998971,
+                "native_decode": 14.707680799867376,
+                "native_quality": 30.588760500148055
+              },
+              "encoding_calls": 1862,
+              "output_audit_seconds": 48.06697870000062
+            },
+            {
+              "repeat": 1,
+              "total_seconds": 259.3712908000525,
+              "mean_ms": 259.3712908000525,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 6.3643579999989015,
+                "reference_load_metadata_and_flip": 7.0095080000464804,
+                "inference_wall": 13.974331600002188,
+                "policy_and_bookkeeping": 1.0649560000747442,
+                "native_encode": 185.95726000004652,
+                "native_decode": 14.636374600006093,
+                "native_quality": 30.340761499959626
+              },
+              "encoding_calls": 1862,
+              "output_audit_seconds": 57.78473519999534
+            },
+            {
+              "repeat": 2,
+              "total_seconds": 262.1926606001143,
+              "mean_ms": 262.1926606001143,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 6.459862900002918,
+                "reference_load_metadata_and_flip": 7.225189600037993,
+                "inference_wall": 13.237746299993887,
+                "policy_and_bookkeeping": 1.1409061000013025,
+                "native_encode": 188.1663736000919,
+                "native_decode": 15.048405999856186,
+                "native_quality": 30.889404200090212
+              },
+              "encoding_calls": 1862,
+              "output_audit_seconds": 48.02010679999512
+            }
+          ],
+          "median_mean_ms": 261.64909440004703,
+          "mean_ms_range": [
+            259.3712908000525,
+            262.1926606001143
+          ],
+          "component_ms_per_image_median3": {
+            "input_preparation": 6.392843900001026,
+            "reference_load_metadata_and_flip": 7.100172900114558,
+            "inference_wall": 13.973661500000162,
+            "policy_and_bookkeeping": 1.0888828002352966,
+            "native_encode": 187.7733570998971,
+            "native_decode": 14.707680799867376,
+            "native_quality": 30.588760500148055
+          }
+        },
+        "files_single": {
+          "repetitions": [
+            {
+              "repeat": 0,
+              "total_seconds": 295.74394479979674,
+              "mean_ms": 295.74394479979674,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 295.74394479979674,
+                "minimum": 14.655000006314367,
+                "median": 95.82729999601725,
+                "p95": 1175.5391549992055,
+                "maximum": 9247.757900004217
+              },
+              "component_ms_per_image": {
+                "input_preparation": 6.958029699853796,
+                "reference_load_metadata_and_flip": 2.647388199919078,
+                "inference_wall": 51.192616299893416,
+                "policy_and_bookkeeping": 1.0719794999240548,
+                "native_encode": 188.12613830004557,
+                "native_decode": 15.06417239982693,
+                "native_quality": 30.599742500009597
+              },
+              "encoding_calls": 1861,
+              "output_audit_seconds": 50.20329660000425
+            },
+            {
+              "repeat": 1,
+              "total_seconds": 297.0495645999981,
+              "mean_ms": 297.0495645999981,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 297.0495645999981,
+                "minimum": 18.296400005056057,
+                "median": 93.95659999427153,
+                "p95": 1137.5887149966698,
+                "maximum": 9572.980399992957
+              },
+              "component_ms_per_image": {
+                "input_preparation": 7.047833899887337,
+                "reference_load_metadata_and_flip": 2.680700299992168,
+                "inference_wall": 51.18490350001957,
+                "policy_and_bookkeeping": 1.0446311998239253,
+                "native_encode": 189.49248280015308,
+                "native_decode": 15.033252799992624,
+                "native_quality": 30.48218099991209
+              },
+              "encoding_calls": 1861,
+              "output_audit_seconds": 51.87550149999879
+            },
+            {
+              "repeat": 2,
+              "total_seconds": 297.2443564999703,
+              "mean_ms": 297.2443564999703,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 297.2443564999703,
+                "minimum": 16.104900001664646,
+                "median": 84.91989999674843,
+                "p95": 1142.18601001339,
+                "maximum": 9965.173199991114
+              },
+              "component_ms_per_image": {
+                "input_preparation": 7.368572900093568,
+                "reference_load_metadata_and_flip": 2.8062177000683732,
+                "inference_wall": 41.01010099999985,
+                "policy_and_bookkeeping": 1.1687473995334585,
+                "native_encode": 196.7022058000366,
+                "native_decode": 15.583270200258994,
+                "native_quality": 32.51089650020003
+              },
+              "encoding_calls": 1861,
+              "output_audit_seconds": 49.773157399999036
+            }
+          ],
+          "median_mean_ms": 297.0495645999981,
+          "mean_ms_range": [
+            295.74394479979674,
+            297.2443564999703
+          ],
+          "component_ms_per_image_median3": {
+            "input_preparation": 7.047833899887337,
+            "reference_load_metadata_and_flip": 2.680700299992168,
+            "inference_wall": 51.18490350001957,
+            "policy_and_bookkeeping": 1.0719794999240548,
+            "native_encode": 189.49248280015308,
+            "native_decode": 15.06417239982693,
+            "native_quality": 30.599742500009597
+          },
+          "median_latency_ms_median3": 93.95659999427153,
+          "p95_latency_ms_median3": 1142.18601001339
+        },
+        "pixels_ready_batch": {
+          "repetitions": [
+            {
+              "repeat": 0,
+              "total_seconds": 271.19718719976663,
+              "mean_ms": 271.19718719976663,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.6828335000318475,
+                "reference_load_metadata_and_flip": 2.82040100008453,
+                "inference_wall": 22.132314999966184,
+                "policy_and_bookkeeping": 1.2106299994702567,
+                "native_encode": 194.92346129997168,
+                "native_decode": 15.573060800175881,
+                "native_quality": 31.82057650003844
+              },
+              "encoding_calls": 1861,
+              "output_audit_seconds": 52.65900429999601
+            },
+            {
+              "repeat": 1,
+              "total_seconds": 269.2941301998362,
+              "mean_ms": 269.2941301998362,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.602704000004451,
+                "reference_load_metadata_and_flip": 2.720660999737447,
+                "inference_wall": 21.113063000011607,
+                "policy_and_bookkeeping": 1.181628200567502,
+                "native_encode": 194.54868769983295,
+                "native_decode": 15.372100099673844,
+                "native_quality": 31.722188399879087
+              },
+              "encoding_calls": 1861,
+              "output_audit_seconds": 51.213611400002264
+            },
+            {
+              "repeat": 2,
+              "total_seconds": 268.51666569995723,
+              "mean_ms": 268.51666569995723,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.642444900062401,
+                "reference_load_metadata_and_flip": 2.74313930014614,
+                "inference_wall": 21.56206670003303,
+                "policy_and_bookkeeping": 1.1900550000282237,
+                "native_encode": 193.25326769999083,
+                "native_decode": 15.592064399941592,
+                "native_quality": 31.499757900099212
+              },
+              "encoding_calls": 1861,
+              "output_audit_seconds": 50.18420920000062
+            }
+          ],
+          "median_mean_ms": 269.2941301998362,
+          "mean_ms_range": [
+            268.51666569995723,
+            271.19718719976663
+          ],
+          "component_ms_per_image_median3": {
+            "input_preparation": 2.642444900062401,
+            "reference_load_metadata_and_flip": 2.74313930014614,
+            "inference_wall": 21.56206670003303,
+            "policy_and_bookkeeping": 1.1900550000282237,
+            "native_encode": 194.54868769983295,
+            "native_decode": 15.573060800175881,
+            "native_quality": 31.722188399879087
+          }
+        },
+        "pixels_ready_single": {
+          "repetitions": [
+            {
+              "repeat": 0,
+              "total_seconds": 296.6086624000818,
+              "mean_ms": 296.6086624000818,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 296.6086624000818,
+                "minimum": 17.9504999978235,
+                "median": 86.42560000225785,
+                "p95": 1194.5650449983066,
+                "maximum": 10427.006699981575
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.7616104999469826,
+                "reference_load_metadata_and_flip": 2.8775117998811766,
+                "inference_wall": 43.897479100036435,
+                "policy_and_bookkeeping": 1.1831838001089636,
+                "native_encode": 196.62369069993292,
+                "native_decode": 15.836555200061412,
+                "native_quality": 33.33458179993613
+              },
+              "encoding_calls": 1861,
+              "output_audit_seconds": 53.05913959999452
+            },
+            {
+              "repeat": 1,
+              "total_seconds": 289.90383330026816,
+              "mean_ms": 289.90383330026816,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 289.90383330026816,
+                "minimum": 14.820000003965106,
+                "median": 85.39604999896255,
+                "p95": 1148.07624500754,
+                "maximum": 9433.667200013588
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.5864844999232446,
+                "reference_load_metadata_and_flip": 2.6699930999675416,
+                "inference_wall": 46.20684870004334,
+                "policy_and_bookkeeping": 1.096375199893373,
+                "native_encode": 191.14312880012585,
+                "native_decode": 15.059855999948923,
+                "native_quality": 31.05233140013297
+              },
+              "encoding_calls": 1861,
+              "output_audit_seconds": 50.41678750000574
+            },
+            {
+              "repeat": 2,
+              "total_seconds": 296.73213999997097,
+              "mean_ms": 296.73213999997097,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 296.73213999997097,
+                "minimum": 16.18589999998221,
+                "median": 89.35314999689581,
+                "p95": 1131.4380649862856,
+                "maximum": 10021.781899995403
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.7257574999384815,
+                "reference_load_metadata_and_flip": 2.802980700005719,
+                "inference_wall": 47.03590579998854,
+                "policy_and_bookkeeping": 1.1479097999690566,
+                "native_encode": 194.9019393999697,
+                "native_decode": 15.530447099925368,
+                "native_quality": 32.494027700144215
+              },
+              "encoding_calls": 1861,
+              "output_audit_seconds": 53.96511559999635
+            }
+          ],
+          "median_mean_ms": 296.6086624000818,
+          "mean_ms_range": [
+            289.90383330026816,
+            296.73213999997097
+          ],
+          "component_ms_per_image_median3": {
+            "input_preparation": 2.7257574999384815,
+            "reference_load_metadata_and_flip": 2.802980700005719,
+            "inference_wall": 46.20684870004334,
+            "policy_and_bookkeeping": 1.1479097999690566,
+            "native_encode": 194.9019393999697,
+            "native_decode": 15.530447099925368,
+            "native_quality": 32.494027700144215
+          },
+          "median_latency_ms_median3": 86.42560000225785,
+          "p95_latency_ms_median3": 1148.07624500754
+        }
+      }
+    },
+    "calibrated_unlock_no_lookahead": {
+      "primary_metrics": {
+        "images": 1000,
+        "accuracy": 0.921,
+        "full_choice_accuracy": 0.872,
+        "actual_strict_quality_pass_rate": 0.927,
+        "quality_regression_images": 0,
+        "larger_block_images": 0,
+        "smaller_block_images": 79,
+        "payload_bytes": 32976336,
+        "original_payload_bytes": 31661520,
+        "fixed8_medium_payload_bytes": 59761616,
+        "payload_ratio_to_original": 1.0415272545348422,
+        "payload_ratio_to_fixed8": 0.5517979299622687,
+        "strict_regressions_vs_v3": 0,
+        "new_strict_pass_vs_v3": 52,
+        "queries": 2599,
+        "exhaustive_queries": 435,
+        "mean_encoding_count": 2.599,
+        "gate_events": 0,
+        "skipped_exhaustive": 0,
+        "unlock_replacements": 53
+      },
+      "strict_regressions_across_cells": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "new_strict_pass_across_cells": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52
+      ],
+      "strict_pass_rates_across_cells": [
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927,
+        0.927
+      ],
+      "all_mode_astc_outputs_equal": true,
+      "primary_cache_counts": {
+        "gate_probe_cache_hits": 0,
+        "unlock_rescue_cache_hits": 0,
+        "candidate_cache_hits": 0,
+        "selected_payload_reused": 1000
+      },
+      "timing": {
+        "files_batch": {
+          "repetitions": [
+            {
+              "repeat": 0,
+              "total_seconds": 298.98765010030183,
+              "mean_ms": 298.98765010030183,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 7.549764499999583,
+                "reference_load_metadata_and_flip": 7.207867100092699,
+                "inference_wall": 14.44300540000404,
+                "policy_and_bookkeeping": 1.4830657004422392,
+                "native_encode": 207.65171269988787,
+                "native_decode": 21.581956799913314,
+                "native_quality": 39.04516980005428
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 49.436420400001225
+            },
+            {
+              "repeat": 1,
+              "total_seconds": 297.2013528000534,
+              "mean_ms": 297.2013528000534,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 6.501377300002787,
+                "reference_load_metadata_and_flip": 7.195389099870226,
+                "inference_wall": 13.626513499999419,
+                "policy_and_bookkeeping": 1.5763527000017348,
+                "native_encode": 207.81732699998975,
+                "native_decode": 21.326323400149704,
+                "native_quality": 39.133292899838125
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 47.44275669999479
+            },
+            {
+              "repeat": 2,
+              "total_seconds": 292.78255689999787,
+              "mean_ms": 292.78255689999787,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 6.8713440999999875,
+                "reference_load_metadata_and_flip": 6.988126099968213,
+                "inference_wall": 14.857401900000696,
+                "policy_and_bookkeeping": 1.3820759001537226,
+                "native_encode": 204.1066664999089,
+                "native_decode": 20.361264500097604,
+                "native_quality": 38.191025299915054
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 48.70204889999877
+            }
+          ],
+          "median_mean_ms": 297.2013528000534,
+          "mean_ms_range": [
+            292.78255689999787,
+            298.98765010030183
+          ],
+          "component_ms_per_image_median3": {
+            "input_preparation": 6.8713440999999875,
+            "reference_load_metadata_and_flip": 7.195389099870226,
+            "inference_wall": 14.44300540000404,
+            "policy_and_bookkeeping": 1.4830657004422392,
+            "native_encode": 207.65171269988787,
+            "native_decode": 21.326323400149704,
+            "native_quality": 39.04516980005428
+          }
+        },
+        "files_single": {
+          "repetitions": [
+            {
+              "repeat": 0,
+              "total_seconds": 327.74728450017574,
+              "mean_ms": 327.74728450017574,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 327.74728450017574,
+                "minimum": 23.807199992006645,
+                "median": 113.48239999642828,
+                "p95": 1241.862985000989,
+                "maximum": 9699.425300008443
+              },
+              "component_ms_per_image": {
+                "input_preparation": 6.816963300007046,
+                "reference_load_metadata_and_flip": 2.627312900025572,
+                "inference_wall": 53.564435499938554,
+                "policy_and_bookkeeping": 1.363317799870856,
+                "native_encode": 204.77800819999538,
+                "native_decode": 20.278700700109766,
+                "native_quality": 38.23392929997499
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 47.988864599996305
+            },
+            {
+              "repeat": 1,
+              "total_seconds": 326.69955499986827,
+              "mean_ms": 326.69955499986827,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 326.69955499986827,
+                "minimum": 28.39210000092862,
+                "median": 112.44034999981523,
+                "p95": 1240.4125149980243,
+                "maximum": 9454.142400005367
+              },
+              "component_ms_per_image": {
+                "input_preparation": 6.8220261000678875,
+                "reference_load_metadata_and_flip": 2.6779411998577416,
+                "inference_wall": 52.775678000027256,
+                "policy_and_bookkeeping": 1.335768400131201,
+                "native_encode": 204.62644690002344,
+                "native_decode": 20.31542669974442,
+                "native_quality": 38.06106820000423
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 48.313550400001986
+            },
+            {
+              "repeat": 2,
+              "total_seconds": 331.2415518000198,
+              "mean_ms": 331.2415518000198,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 331.2415518000198,
+                "minimum": 27.390000002924353,
+                "median": 115.83349999636994,
+                "p95": 1262.5137399925732,
+                "maximum": 9399.509500013664
+              },
+              "component_ms_per_image": {
+                "input_preparation": 7.009372300126415,
+                "reference_load_metadata_and_flip": 2.666357000154676,
+                "inference_wall": 53.86727090011118,
+                "policy_and_bookkeeping": 1.4403729998812196,
+                "native_encode": 206.42360189990723,
+                "native_decode": 20.83797000013874,
+                "native_quality": 38.909366900137684
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 48.07279649999691
+            }
+          ],
+          "median_mean_ms": 327.74728450017574,
+          "mean_ms_range": [
+            326.69955499986827,
+            331.2415518000198
+          ],
+          "component_ms_per_image_median3": {
+            "input_preparation": 6.8220261000678875,
+            "reference_load_metadata_and_flip": 2.666357000154676,
+            "inference_wall": 53.564435499938554,
+            "policy_and_bookkeeping": 1.363317799870856,
+            "native_encode": 204.77800819999538,
+            "native_decode": 20.31542669974442,
+            "native_quality": 38.23392929997499
+          },
+          "median_latency_ms_median3": 113.48239999642828,
+          "p95_latency_ms_median3": 1241.862985000989
+        },
+        "pixels_ready_batch": {
+          "repetitions": [
+            {
+              "repeat": 0,
+              "total_seconds": 299.15292460015917,
+              "mean_ms": 299.15292460015917,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.52981799999543,
+                "reference_load_metadata_and_flip": 2.6523914000135846,
+                "inference_wall": 25.58270000007178,
+                "policy_and_bookkeeping": 1.4566484996830695,
+                "native_encode": 206.91505770000367,
+                "native_decode": 21.24798720029503,
+                "native_quality": 38.73555850001139
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 49.67016650000005
+            },
+            {
+              "repeat": 1,
+              "total_seconds": 296.9041575002266,
+              "mean_ms": 296.9041575002266,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.5003201000145054,
+                "reference_load_metadata_and_flip": 2.664069899910828,
+                "inference_wall": 23.250720399984857,
+                "policy_and_bookkeeping": 1.4765061009093188,
+                "native_encode": 207.00794729992776,
+                "native_decode": 21.27455819970055,
+                "native_quality": 38.6971507997805
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 50.08622920000198
+            },
+            {
+              "repeat": 2,
+              "total_seconds": 297.91454439973313,
+              "mean_ms": 297.91454439973313,
+              "latency_ms": {
+                "count": 0
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.517233699960343,
+                "reference_load_metadata_and_flip": 2.6389012000581715,
+                "inference_wall": 23.042384200016386,
+                "policy_and_bookkeeping": 1.4532559996368946,
+                "native_encode": 208.28898429984838,
+                "native_decode": 21.302950400109694,
+                "native_quality": 38.63799930003006
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 50.003707299998496
+            }
+          ],
+          "median_mean_ms": 297.91454439973313,
+          "mean_ms_range": [
+            296.9041575002266,
+            299.15292460015917
+          ],
+          "component_ms_per_image_median3": {
+            "input_preparation": 2.517233699960343,
+            "reference_load_metadata_and_flip": 2.6523914000135846,
+            "inference_wall": 23.250720399984857,
+            "policy_and_bookkeeping": 1.4566484996830695,
+            "native_encode": 207.00794729992776,
+            "native_decode": 21.27455819970055,
+            "native_quality": 38.6971507997805
+          }
+        },
+        "pixels_ready_single": {
+          "repetitions": [
+            {
+              "repeat": 0,
+              "total_seconds": 328.45589420020406,
+              "mean_ms": 328.45589420020406,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 328.45589420020406,
+                "minimum": 19.978399999672547,
+                "median": 114.90090000006603,
+                "p95": 1236.7755800150915,
+                "maximum": 9316.234600002645
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.5853521997778444,
+                "reference_load_metadata_and_flip": 2.7003725999311428,
+                "inference_wall": 53.54998400020122,
+                "policy_and_bookkeeping": 1.4210656998839113,
+                "native_encode": 208.02589830023499,
+                "native_decode": 21.319870699880994,
+                "native_quality": 38.76287530014815
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 52.127366300002905
+            },
+            {
+              "repeat": 1,
+              "total_seconds": 327.5746121994889,
+              "mean_ms": 327.5746121994889,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 327.5746121994889,
+                "minimum": 20.52700000058394,
+                "median": 112.79765000654152,
+                "p95": 1249.5803499874455,
+                "maximum": 9347.623200003
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.5829845999833196,
+                "reference_load_metadata_and_flip": 2.6703964998669107,
+                "inference_wall": 52.21008319999237,
+                "policy_and_bookkeeping": 1.4169631996337557,
+                "native_encode": 208.4068552000099,
+                "native_decode": 21.40043580003112,
+                "native_quality": 38.79801050000242
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 50.79080599999725
+            },
+            {
+              "repeat": 2,
+              "total_seconds": 325.66785059988615,
+              "mean_ms": 325.66785059988615,
+              "latency_ms": {
+                "count": 1000,
+                "mean": 325.66785059988615,
+                "minimum": 24.922100004914682,
+                "median": 113.49650000192923,
+                "p95": 1246.383844999218,
+                "maximum": 9478.454600000987
+              },
+              "component_ms_per_image": {
+                "input_preparation": 2.5713535000686534,
+                "reference_load_metadata_and_flip": 2.621214299942949,
+                "inference_wall": 52.87347810011124,
+                "policy_and_bookkeeping": 1.4031129007198615,
+                "native_encode": 206.52370789981796,
+                "native_decode": 21.06203689982067,
+                "native_quality": 38.526527999587415
+              },
+              "encoding_calls": 2599,
+              "output_audit_seconds": 49.931341199997405
+            }
+          ],
+          "median_mean_ms": 327.5746121994889,
+          "mean_ms_range": [
+            325.66785059988615,
+            328.45589420020406
+          ],
+          "component_ms_per_image_median3": {
+            "input_preparation": 2.5829845999833196,
+            "reference_load_metadata_and_flip": 2.6703964998669107,
+            "inference_wall": 52.87347810011124,
+            "policy_and_bookkeeping": 1.4169631996337557,
+            "native_encode": 208.02589830023499,
+            "native_decode": 21.319870699880994,
+            "native_quality": 38.76287530014815
+          },
+          "median_latency_ms_median3": 113.49650000192923,
+          "p95_latency_ms_median3": 1246.383844999218
+        }
+      }
+    }
+  },
+  "source_cells_sha256": {
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-files-batch-0.json": "5a0b6bda596e25da98ae3a365b0ba0d560f197c5830d081fe391ad34b738b367",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-files-batch-1.json": "00c357d4fd8d52e82005d33740628eabc191ea2fd3a0f05f2c9164b0bae9e472",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-files-batch-2.json": "cfd865de617baaf29cee75a0fd72f9ea94fe221d28b99ca13276f3b98df3de81",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-files-single-0.json": "72d5f1df1652baed85f84554e03c438afe58da806e4eb8ad799e3a739887848d",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-files-single-1.json": "f6ecd86cca897cfd0c102408542311dc9dc10b681b175cf0637d01308b3b6fb8",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-files-single-2.json": "3ed542253ea0e7937fdf0f6d2ab682c19dab1417e5d56247234973b833ff4fa9",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-pixels_ready-batch-0.json": "b114352a0a2b6be59515831d16e23fc0d38d1c2af178bfb16972dfda24d48e52",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-pixels_ready-batch-1.json": "8f3142b88401a141b2ed33440fcf9c6d1edde20e281e85dc0ba06dceacb0655d",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-pixels_ready-batch-2.json": "1e6e9f35adeca04b115944d75b604f73e035ff2b00b12a1ad70e30c55025902e",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-pixels_ready-single-0.json": "d86430381009851a365fac1cdec82683c413c1f4241eca95b89696cc2e290ade",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-pixels_ready-single-1.json": "8eed40324086e79ac2a0f05b8116f1021ad09b44e81104b5e1988859cb363658",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\bounded_unlock-pixels_ready-single-2.json": "93fe4a7e178e07fe44d97d55b4981fb37abfe7d827fb4f95096446d284739c39",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-files-batch-0.json": "d7269f21082c111b2455e1d4b1e8cac28a662716e25f8b8c12937b888ab27f9e",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-files-batch-1.json": "3026db652841156f0ff0f2fcf227b3b0cc18db72c4c25b777b516cf14d85c3a6",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-files-batch-2.json": "86545e99897806952aa2f6190959dc03ab740f1d19ae389f929f2dd367e3511f",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-files-single-0.json": "21d6b6da3de1e8b5854580ea0158f485a8e3e16a5fc492d9b719721c622b3c25",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-files-single-1.json": "35c79632578534e69c7281123609aae9344f4d09e60d26f3a7fbf123f2664065",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-files-single-2.json": "94397a9284120f4561f543c471ee6d3fdd7adbf00dd160aa882a71caba101885",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-pixels_ready-batch-0.json": "691cf4d6c52235fd5938715dc88e54e9297663475d78821ca6e312f10216d35f",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-pixels_ready-batch-1.json": "dbe944d7bde32c7df130fba97d37ae0bed3b7b79044c50199d1a01c4d1e6d269",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-pixels_ready-batch-2.json": "0388d0ff635ee5633796151d01bc9391cf7ef4ececd6ad7dfe7be240bb61f633",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-pixels_ready-single-0.json": "df94913163cfb76b35c6f4faa9a1d45031420969a237ef1f153a8c1aefad6fc8",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-pixels_ready-single-1.json": "cc46723af96998eefbb45872b84ef94503dc82012c26c199367d9bd1c5a2c476",
+    "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\calibrated_unlock_no_lookahead-pixels_ready-single-2.json": "c8086d2d65fe884381988ba44d37ea67d00158e9490115d648255f0f50715ff4"
+  },
+  "recovered_calibration_image94": {
+    "selected_index": 9,
+    "selection_reason": "bounded_unlock_strict",
+    "strict_quality_met": true,
+    "selected_metrics": {
+      "psnr": 32.894676208496094,
+      "black_pixel_ratio": 7.62939453125e-06,
+      "ms_ssim_db": 21.367185592651367,
+      "normal_mean_deg": null,
+      "normal_p95_deg": null,
+      "mip_count": 1,
+      "need_alpha": false
+    },
+    "unlock_event": {
+      "before_index": 3,
+      "before_payload_bytes": 29584,
+      "next_block": 10,
+      "proposed_payload_bytes": 43264,
+      "budget_permitted": true,
+      "replaced": true,
+      "rescue_queries": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    }
+  }
+}

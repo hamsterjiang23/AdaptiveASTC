@@ -1,0 +1,119 @@
+{
+  "status": "complete",
+  "scope": "full_V4_development_goal_requirements",
+  "requirements": [
+    {
+      "requirement": "frozen_inputs_and_no_training",
+      "status": "passed",
+      "evidence": {
+        "benchmark1000-v3/execution-binding.json": "38be5f92886acbfb480cfd1f89ea9d62347f24a4d7d66e1f66c4d9d6e127ebe8",
+        "benchmark1000-v3/result.json": "003f52c07412a2676abc844667c4a6a778dbbf76b3e30401fe769d2d10df8472",
+        "complete-artifact-audit.json": "c132ffb406d2b838265efd05f1c63221f28ad881c468b2766f82848f83e9498a"
+      }
+    },
+    {
+      "requirement": "baseline_replay_validation1000",
+      "status": "passed",
+      "evidence": {
+        "offline.json": "4b9cd6b657a221a889453762faf177b8ae5d2b5cf4594f1bcf49eed2d8b7905e"
+      }
+    },
+    {
+      "requirement": "19_start_4_gate_scans_and_reachability",
+      "status": "passed",
+      "evidence": {
+        "offline.json": "4b9cd6b657a221a889453762faf177b8ae5d2b5cf4594f1bcf49eed2d8b7905e",
+        "diagnostic-analysis.json": "ffbfadd4c54453a9a108ae98e6c29214bf4ec0249ce631f1a04c9fddf35ef2c1"
+      }
+    },
+    {
+      "requirement": "boundary_checks",
+      "status": "passed",
+      "evidence": {
+        "code-verification.json": "5717d72800c34cb88e87c2864218f1e45d46a85a6432d48e833c79df33e616ae"
+      }
+    },
+    {
+      "requirement": "native_smoke32_all9controls",
+      "status": "passed",
+      "evidence": {
+        "smoke32-v3/result.json": "d55173bd8c43ca66f004a4efa5d9d557a8cec1dc9518aeec41f903c8291da931",
+        "smoke32-v3-artifact-audit.json": "131d7699f742824c900fa0a8d25150e8df0d9f9cfe91b68dd71829a223eefdd3"
+      }
+    },
+    {
+      "requirement": "108_complete_native_timing_cells",
+      "status": "passed",
+      "evidence": {
+        "benchmark1000-v3/result.json": "003f52c07412a2676abc844667c4a6a778dbbf76b3e30401fe769d2d10df8472",
+        "complete-artifact-audit.json": "c132ffb406d2b838265efd05f1c63221f28ad881c468b2766f82848f83e9498a"
+      }
+    },
+    {
+      "requirement": "full_replay_query_output_consistency",
+      "status": "passed",
+      "evidence": {
+        "complete-artifact-audit.json": "c132ffb406d2b838265efd05f1c63221f28ad881c468b2766f82848f83e9498a",
+        "runtime-mismatch901-recovery-check.json": "ed42b0d7f656e34bf12fd24b91c58e4108de14bf53b8895504eb9b7a35c1faea"
+      }
+    },
+    {
+      "requirement": "full1000_lookahead_astc_equivalence",
+      "status": "passed",
+      "evidence": {
+        "lookahead-complete-comparison.json": "f5c2ed17b45461a9cf89f73d7463abc598b2707b6910d914744c29a94b6a54ea",
+        "complete-artifact-audit.json": "c132ffb406d2b838265efd05f1c63221f28ad881c468b2766f82848f83e9498a"
+      }
+    },
+    {
+      "requirement": "dual_recommendations_and_negative_results",
+      "status": "passed",
+      "evidence": {
+        "summary.json": "c233fa6de27470d87b16104ab1598a7ea26871123146cdbd9a270e3c8691ae6b",
+        "interpretation.json": "86bbb90c28e1d24e3c6dab1e764ed62a4acad936dd54efd3c3d42a33b5f7e6b0",
+        "README.md": "1edad5d1b2de767fd1c3d7b4c4bf35a0054b53993de9d98e9ed1f097b6d7bc56"
+      }
+    },
+    {
+      "requirement": "complete_report_and_csv_reproduction",
+      "status": "passed",
+      "evidence": {
+        "README.md": "1edad5d1b2de767fd1c3d7b4c4bf35a0054b53993de9d98e9ed1f097b6d7bc56",
+        "per-image-results.csv": "23f8cbbea3e455ba9f91664bf66617034e7bc933aa7147f1374acf684541a4c0",
+        "delivery-verification.json": "efc35dc7f1b961a423721df5acde6d6d6d1cca805ffe84dc6ab6557f865e8f5a",
+        "report-rebuild-verification.json": "7b147331e57f2bac75ebdbd347108770185c2e6d76b0f2353899e201f4d0d4c7"
+      }
+    },
+    {
+      "requirement": "new_independent_confirmation_protocols",
+      "status": "passed",
+      "evidence": {
+        "confirmation-protocol-compatibility.json": "46c75f65dfa8d99629a0bc0a158f714122a68dbdd29e5ef3fa444aa30d1d5414",
+        "confirmation-protocol-quality.json": "135aba7db6221a2f8d5a574a86cef925b7acf7eaea6338c28b8d4cb9ef6ec5cc",
+        "delivery-verification.json": "efc35dc7f1b961a423721df5acde6d6d6d1cca805ffe84dc6ab6557f865e8f5a"
+      }
+    }
+  ],
+  "current_attempt": "benchmark1000-v3",
+  "formal_cells": 108,
+  "images_per_cell": 1000,
+  "training_updates": 0,
+  "model_parameters_and_buffers_unchanged": true,
+  "recommendations": {
+    "compatibility": "remove_lookahead",
+    "quality": "bounded_unlock"
+  },
+  "native_files_audited": 216000,
+  "native_payload_sizes_checked": 108000,
+  "new_confirmation_execution": false,
+  "independent_confirmation": "pending_new_cohort",
+  "previous_attempt": {
+    "name": "benchmark1000-v2",
+    "status": "failed",
+    "passed_formal_cells": 3,
+    "failure": "frozen_batch_vs_fresh_single_prediction_trace_comparison",
+    "diagnosis": "runtime-mismatch901-diagnosis.json",
+    "recovery_check": "runtime-mismatch901-recovery-check.json"
+  },
+  "completed_utc": "2026-11-17T17:14:34.622046+00:00"
+}

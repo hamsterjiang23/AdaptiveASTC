@@ -1,0 +1,167 @@
+{
+  "schema": "unity-v4-future-confirmation-protocol-v1",
+  "status": "prepared_pending_new_cohort",
+  "system": "bounded_unlock",
+  "options": {
+    "start_mode": "original",
+    "psnr_margin_db": 0.0,
+    "ms_ssim_margin_db": 0.0,
+    "remove_lookahead": false,
+    "gate_margin_db": null,
+    "unlock": true
+  },
+  "checkpoint": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\train-unity-head-full-v1\\best.pt",
+    "sha256": "783c69281d127362882a6a84935d928857f33745bb90e282cfb4b648062ada85",
+    "bytes": 86391673
+  },
+  "binaries": {
+    "astcenc-avx2-shared.dll": {
+      "path": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-shared.dll",
+      "sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+      "bytes": 814592
+    },
+    "build-receipt.json": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+      "sha256": "870ad425363c6e415a9504020f7e72424ed03b5aac5401a615c240d5bfb902f9",
+      "bytes": 1757
+    },
+    "unity_astc_quality.dll": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+      "sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+      "bytes": 32256
+    }
+  },
+  "execution_binding": "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\execution-binding.json",
+  "execution_binding_sha256": "38be5f92886acbfb480cfd1f89ea9d62347f24a4d7d66e1f66c4d9d6e127ebe8",
+  "candidate_set": {
+    "name": "full20",
+    "blocks": [
+      12,
+      10,
+      8,
+      6
+    ],
+    "presets": [
+      "fastest",
+      "fast",
+      "medium",
+      "thorough",
+      "exhaustive"
+    ],
+    "order": "block_major",
+    "stable_id_count": 20
+  },
+  "quality_policy": "same_frozen_per-image_protocol",
+  "timing": {
+    "warmups": 1,
+    "repetitions": 3,
+    "scopes": [
+      "files",
+      "pixels_ready"
+    ],
+    "modes": [
+      "batch",
+      "single"
+    ],
+    "pixels_ready_chunk_images": 8,
+    "gpu_synchronization": true,
+    "fresh_inference_and_encoding_each_repeat": true,
+    "selection_metric": "median_of_three_files_single_mean_ms",
+    "phases": [
+      "input_preparation",
+      "inference",
+      "decision",
+      "encode",
+      "decode",
+      "quality"
+    ],
+    "separately_reported": [
+      "model_loading",
+      "dll_loading",
+      "unity_import",
+      "output_audit",
+      "writes"
+    ],
+    "statistics": [
+      "mean",
+      "median",
+      "p95",
+      "dataset_total",
+      "batch_amortized"
+    ]
+  },
+  "development_evidence": "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\benchmark1000-v3\\result.json",
+  "development_result_sha256": "003f52c07412a2676abc844667c4a6a778dbbf76b3e30401fe769d2d10df8472",
+  "new_cohort": null,
+  "confirmation_execution_authorized": false,
+  "cohort_requirements": [
+    "new_reserved_assets",
+    "unity_capture",
+    "pixel_isolation_audit",
+    "freeze_before_forward"
+  ],
+  "inherited_v3_execution_sources_sha256": {
+    "reproductions/unity_search_baseline/v3_benchmark.py": "f84dd54ed629c0374b745e21f12e0a3cce245e74fb33d0317727432024ef7a2b",
+    "reproductions/unity_search_baseline/v3_deployment.py": "bc0d52d6167ccaaa440260cf460dbe058fc5c03e83b09cf506436c0c79dc7632",
+    "reproductions/unity_search_baseline/v3_policy.py": "eaad388769e1fce9ba066888856abef49a923f4de01f6aac43715aec16fcf029",
+    "reproductions/unity_search_baseline/v3_evidence.py": "2e414b7c32f9870a61c465c1ab3c1c2cf180f3f10bf8e69aae483d728d737030",
+    "reproductions/unity_search_baseline/v3_experiment.py": "31046f23c5aa100954905ce0b82d689bbb829a906b4a0f448f95ee48ef0b8004",
+    "src/adaptive_astc/data/unity_v3_input.py": "45702dbdf6ead728e83ea70d729b4055bc2a4f78fdaa46ee6fbb1dad80f58c19",
+    "src/adaptive_astc/data/unity_inference.py": "487564435db2103ecdc13095b91b65959ec84050e57ffeaa50d9faf54388b337",
+    "src/adaptive_astc/evaluation/unity_inference.py": "a4ca5d78edef060431d71ee58d174f25098b7455c1a3130ed2f8bf190d2aca13",
+    "src/adaptive_astc/evaluation/unity_quality.py": "bf6a680828c18e2b3829e333540d8c1f078a4b7e562489ea62f67eae25611360",
+    "src/adaptive_astc/models/unity_quality.py": "0a49302ab3ac621d9ea3f9cc0c01e12112e9b4419875d298fdbad06b907ee0ac",
+    "reproductions/unity_search_baseline/supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "reproductions/unity_search_baseline/quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03",
+    "reproductions/unity_search_baseline/policy.py": "e87091f28b8a0ac6d32d4b278d9e70a654c86720182f6b95cc0bcf668a88129b",
+    "script/run_unity_v3.py": "d62df84efaa01275000d9de46b7160a451ec0cf7eae460e1de3f892ae96ae7c3"
+  },
+  "inherited_v3_config_sha256": "c921ae8b0e57dd890d6bde8092713f48e16488441465eccfac402589e1141928",
+  "development_artifact_audit": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117\\complete-artifact-audit.json",
+    "sha256": "c132ffb406d2b838265efd05f1c63221f28ad881c468b2766f82848f83e9498a"
+  },
+  "pending_cohort_binding": [
+    "ordered_new_asset_manifest_and_source_identities",
+    "unity_reference_pixels_and_actual_import_options",
+    "original_unity_search_labels_and_per_image_rule_tables",
+    "complete_pixel_isolation_audit_against_observed_development_and_confirmation_assets",
+    "cohort_assignment_and_shared_seal_contract_before_first_forward"
+  ],
+  "planned_metrics": [
+    "block_and_full_configuration_match_against_original_unity_labels",
+    "actual_strict_quality_and_paired_v3_regressions_and_new_passes",
+    "continuous_quality_changes_and_per_image_unlock_payload_budget",
+    "encoding_calls_and_four_timing_modes_with_three_repetitions"
+  ],
+  "paired_comparison": {
+    "system": "v3_baseline",
+    "options": {
+      "start_mode": "original",
+      "psnr_margin_db": 0.0,
+      "ms_ssim_margin_db": 0.0,
+      "remove_lookahead": false,
+      "gate_margin_db": null,
+      "unlock": false
+    },
+    "same_scope_mode_and_repeat": true
+  },
+  "unlock_budget": {
+    "trigger": "strict_failed_size_first_relaxed_including_gate_relaxed",
+    "next_block": {
+      "12": 10,
+      "10": 8,
+      "8": 6
+    },
+    "max_block_steps": 1,
+    "payload_ratio_max": 1.5,
+    "payload_reference": "pre_unlock_locked_output",
+    "budget_comparison": "2 * new_payload_bytes <= 3 * locked_payload_bytes",
+    "preset_order": "original_canonical_order",
+    "replacement": "first_actually_strict_qualified_candidate",
+    "failure": "retain_pre_unlock_output",
+    "gate_during_rescue": false
+  },
+  "test_opened": false
+}

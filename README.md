@@ -1,5 +1,7 @@
 # AdaptiveASTC
 
+V4于2026-11-18完成1000张开发验证图的九组对照、108个真实计时单元及216000份原生输出文件复核，训练更新为0。原规则兼容推荐为删除跨块前瞻，块匹配93.6%、严格质量通过87.5%、文件逐图平均228.41 ms。质量提升推荐为50%预算大图解锁，严格通过92.7%、新增合格52张、总payload增加3.41%、文件逐图平均297.05 ms。两类推荐相对同批V3的严格质量回退均为0，新资产独立确认协议已准备。目的、方法、负结果与计时解读见[V4实验报告](<experiment report/V4/README.md>)，逐单元结果见[V4执行明细](<experiment report/unity-v4-20261117/README.md>)，计划与来源绑定见[V4实验计划](<experiment plan/V4/README.md>)。`[verified: experiment report/unity-v4-20261117/summary.json recommendations、controls；interpretation.json controls.*.timing；complete-artifact-audit.json counts；confirmation-protocol-compatibility.json、confirmation-protocol-quality.json status]`
+
 V3按已确认的原图输入、exhaustive裁剪和真实耗时计划实施，计划见[V3](<experiment plan/V3/README.md>)，目的、方法与结论解读见[V3实验报告](<experiment report/V3/README.md>)，执行状态见[V3执行记录](<experiment report/unity-v3-20261113/README.md>)。`[verified: experiment plan/V3/README.md；experiment report/V3/README.md；experiment report/unity-v3-20261113/progress.json]`
 
 2026-11-16完成V3选定系统的2000张独立确认测试，系统块大小匹配率97.65%，完整配置匹配86.65%，严格质量通过88.60%，相对原标签严格质量回退0张。文件输入逐图平均耗时的三轮中位数为630.12 ms／图，模型与buffer复核通过。`[verified: experiment report/unity-v3-confirmation-20261116/result.json summary、results.files_single、model_parameters_and_buffers_unchanged]` [独立测试报告](<experiment report/unity-v3-confirmation-20261116/README.md>) [PDF解读](<output/pdf/V3-ASTC-独立测试解读报告.pdf>)。

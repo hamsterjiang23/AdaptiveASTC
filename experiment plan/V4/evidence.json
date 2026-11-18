@@ -1,0 +1,463 @@
+{
+  "schema": "unity-v4-plan-evidence-v1",
+  "status": "verified_plan_sources",
+  "scope": "plan_creation_and_source_identity_checks",
+  "artifacts": {
+    "checkpoint": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\train-unity-head-full-v1\\best.pt",
+      "sha256": "783c69281d127362882a6a84935d928857f33745bb90e282cfb4b648062ada85",
+      "bytes": 86391673
+    },
+    "validation_predictions": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\train-unity-head-full-v1\\best-validation.npz",
+      "sha256": "fed4a9f572757000d120f9636283e316235156f9db8169263d391aa71e407626",
+      "bytes": 964743
+    },
+    "validation_decisions": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\train-unity-head-full-v1\\best-decisions.json",
+      "sha256": "f751a0b999870353371e6025eda428a8febbf760bbf4b8c7813700faf3c4e3e6",
+      "bytes": 1574048
+    },
+    "corpus": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json",
+      "sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+      "bytes": 164680479
+    },
+    "source_manifest": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\source-manifest.json",
+      "sha256": "10968d1612d84bd091dba235cde39c4e170851d619800ec23a04a16e53b5902d",
+      "bytes": 8032076
+    }
+  },
+  "binaries": {
+    "astcenc-avx2-shared.dll": {
+      "path": "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-shared.dll",
+      "sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+      "bytes": 814592
+    },
+    "build-receipt.json": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json",
+      "sha256": "870ad425363c6e415a9504020f7e72424ed03b5aac5401a615c240d5bfb902f9",
+      "bytes": 1757
+    },
+    "unity_astc_quality.dll": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll",
+      "sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+      "bytes": 32256
+    }
+  },
+  "dataset": {
+    "counts": {
+      "train": 10000,
+      "validation": 1000
+    },
+    "coverage": "complete",
+    "corpus": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json",
+      "sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+      "bytes": 164680479
+    },
+    "selection_split": "validation"
+  },
+  "development_baseline": {
+    "source": "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\summary.json",
+    "json_pointer": "/recommendation",
+    "system": "forward-unity-full20",
+    "metrics": {
+      "images": 1000,
+      "accuracy": 0.936,
+      "full_choice_accuracy": 0.804,
+      "actual_strict_quality_pass_rate": 0.875,
+      "quality_regression_images": 0,
+      "larger_block_images": 0,
+      "smaller_block_images": 64,
+      "payload_bytes": 32067120,
+      "original_payload_bytes": 31661520,
+      "fixed8_medium_payload_bytes": 59761616,
+      "payload_ratio_to_original": 1.0128105030965033,
+      "payload_ratio_to_fixed8": 0.5365838835415696,
+      "mean_encoding_count": 1.627,
+      "p95_encoding_count": 5.0,
+      "max_encoding_count": 16,
+      "exhaustive_outputs": 218,
+      "groups": {
+        "normal": {
+          "images": 45,
+          "accuracy": 0.8888888888888888,
+          "full_choice_accuracy": 0.6,
+          "actual_strict_quality_pass_rate": 0.9333333333333333,
+          "quality_regression_images": 0,
+          "larger_block_images": 0,
+          "smaller_block_images": 5,
+          "payload_bytes": 3532704,
+          "original_payload_bytes": 3448224,
+          "fixed8_medium_payload_bytes": 3760128,
+          "payload_ratio_to_original": 1.0244995684735099,
+          "payload_ratio_to_fixed8": 0.9395169526143791
+        },
+        "linear": {
+          "images": 17,
+          "accuracy": 0.9411764705882353,
+          "full_choice_accuracy": 0.7647058823529411,
+          "actual_strict_quality_pass_rate": 1.0,
+          "quality_regression_images": 0,
+          "larger_block_images": 0,
+          "smaller_block_images": 1,
+          "payload_bytes": 596144,
+          "original_payload_bytes": 593072,
+          "fixed8_medium_payload_bytes": 1114112,
+          "payload_ratio_to_original": 1.005179809534087,
+          "payload_ratio_to_fixed8": 0.5350844439338235
+        },
+        "srgb_small": {
+          "images": 612,
+          "accuracy": 0.9133986928104575,
+          "full_choice_accuracy": 0.7712418300653595,
+          "actual_strict_quality_pass_rate": 0.954248366013072,
+          "quality_regression_images": 0,
+          "larger_block_images": 0,
+          "smaller_block_images": 53,
+          "payload_bytes": 4566384,
+          "original_payload_bytes": 4402176,
+          "fixed8_medium_payload_bytes": 5942848,
+          "payload_ratio_to_original": 1.0373015526866713,
+          "payload_ratio_to_fixed8": 0.7683831052047773
+        },
+        "srgb_large": {
+          "images": 326,
+          "accuracy": 0.9846625766871165,
+          "full_choice_accuracy": 0.8957055214723927,
+          "actual_strict_quality_pass_rate": 0.7116564417177914,
+          "quality_regression_images": 0,
+          "larger_block_images": 0,
+          "smaller_block_images": 5,
+          "payload_bytes": 23371888,
+          "original_payload_bytes": 23218048,
+          "fixed8_medium_payload_bytes": 48944528,
+          "payload_ratio_to_original": 1.006625880005072,
+          "payload_ratio_to_fixed8": 0.4775178953610504
+        }
+      }
+    },
+    "timing": {
+      "historical_file_batch_amortized_ms": 195.59558310006105,
+      "historical_files_single_mean_ms_median3": 229.12181380011316,
+      "historical_files_single_repetitions": [
+        {
+          "mean_ms": 228.47855039994465,
+          "median_ms": 91.46089999558171,
+          "p95_ms": 608.6700150175595
+        },
+        {
+          "mean_ms": 229.12181380011316,
+          "median_ms": 93.39885000372306,
+          "p95_ms": 610.9062999988961
+        },
+        {
+          "mean_ms": 230.48821459984174,
+          "median_ms": 95.0410000004922,
+          "p95_ms": 612.5447150196118
+        }
+      ]
+    }
+  },
+  "confirmation_baseline": {
+    "images": 2000,
+    "classes": [
+      "6x6",
+      "8x8",
+      "10x10",
+      "12x12"
+    ],
+    "confusion": [
+      [
+        194,
+        0,
+        0,
+        0
+      ],
+      [
+        11,
+        148,
+        0,
+        0
+      ],
+      [
+        1,
+        18,
+        147,
+        0
+      ],
+      [
+        1,
+        1,
+        15,
+        1464
+      ]
+    ],
+    "per_class": {
+      "6x6": {
+        "support": 194,
+        "predicted": 207,
+        "recall": 1.0,
+        "precision": 0.9371980676328503
+      },
+      "8x8": {
+        "support": 159,
+        "predicted": 167,
+        "recall": 0.9308176100628931,
+        "precision": 0.8862275449101796
+      },
+      "10x10": {
+        "support": 166,
+        "predicted": 162,
+        "recall": 0.8855421686746988,
+        "precision": 0.9074074074074074
+      },
+      "12x12": {
+        "support": 1481,
+        "predicted": 1464,
+        "recall": 0.9885212694125591,
+        "precision": 1.0
+      }
+    },
+    "footprint_accuracy": 0.9765,
+    "full_choice_accuracy": 0.8665,
+    "balanced_accuracy": 0.9512202620375378,
+    "strict_quality_pass_rate": 0.886,
+    "quality_violation_count": 228,
+    "payload_bytes": 248140176,
+    "container_bytes": 248172176,
+    "selected_color_near_threshold_count": 0,
+    "selected_color_near_threshold_rmse_db": null,
+    "all_candidate_rmse_db": null,
+    "rmse_scope": "Stored model PSNR versus selected final output. Full20 candidate RMSE unavailable",
+    "actual_quality_pass_rate": 0.886,
+    "quality_regression_images": 0,
+    "larger_block_images": 0,
+    "smaller_block_images": 47,
+    "payload_ratio_to_original": 1.0017960129984211,
+    "payload_ratio_to_fixed8": 0.49071833836267525,
+    "candidates_measured": {
+      "mean": 1.6035,
+      "median": 1.0,
+      "p95": 4.0,
+      "max": 15,
+      "total": 3207
+    },
+    "groups": {
+      "srgb_large": {
+        "images": 1310,
+        "accuracy": 0.9923664122137404,
+        "actual_quality_pass_rate": 0.8557251908396947
+      },
+      "srgb_small": {
+        "images": 661,
+        "accuracy": 0.9455370650529501,
+        "actual_quality_pass_rate": 0.9425113464447806
+      },
+      "linear": {
+        "images": 16,
+        "accuracy": 0.9375,
+        "actual_quality_pass_rate": 1.0
+      },
+      "normal": {
+        "images": 13,
+        "accuracy": 1.0,
+        "actual_quality_pass_rate": 0.9230769230769231
+      },
+      "direct_parent_macro": {
+        "groups": 1233,
+        "accuracy": 0.9810653458463677
+      },
+      "asset_family_macro": {
+        "groups": 1234,
+        "accuracy": 0.9814858763602686
+      }
+    },
+    "pure_start_block_accuracy": 0.9145,
+    "source": "E:\\ASTC_Compression\\experiment report\\unity-v3-confirmation-20261116\\result.json",
+    "json_pointer": "/summary",
+    "usage": "historical_failure_description"
+  },
+  "failure_observations": {
+    "source": "E:\\ASTC_Compression\\experiment report\\unity-v3-confirmation-20261116\\failure-analysis-20261117\\summary.json",
+    "images": 2000,
+    "strict_quality_failures": 228,
+    "config_mismatches": 267,
+    "block_mismatches": 47,
+    "quality_pass_among_config_mismatches": 267,
+    "quality_failure_metrics": {
+      "MS-SSIM": 190,
+      "PSNR": 31,
+      "PSNR+MS-SSIM": 6,
+      "法线平均角度+法线P95角度": 1
+    },
+    "final_failure_reasons": {
+      "size_first_relaxed": 186,
+      "highest_psnr_fallback": 42
+    },
+    "all_quality_failures_already_failed_original": true,
+    "same_block_different_quality": 220,
+    "original_configuration_before_start": 267,
+    "types": {
+      "sRGB大图": {
+        "images": 1310,
+        "quality_failures": 189,
+        "quality_failure_rate": 0.14427480916030536,
+        "config_mismatches": 123,
+        "block_mismatches": 10,
+        "mean_ms": 912.9222118320889,
+        "median_ms": 352.434300000823,
+        "p95_ms": 3685.5234850025226
+      },
+      "sRGB小图": {
+        "images": 661,
+        "quality_failures": 38,
+        "quality_failure_rate": 0.057488653555219364,
+        "config_mismatches": 140,
+        "block_mismatches": 36,
+        "mean_ms": 68.60978895615028,
+        "median_ms": 46.05530000117142,
+        "p95_ms": 201.42970000233618
+      },
+      "Linear": {
+        "images": 16,
+        "quality_failures": 0,
+        "quality_failure_rate": 0.0,
+        "config_mismatches": 3,
+        "block_mismatches": 1,
+        "mean_ms": 137.45949375015698,
+        "median_ms": 77.49569999759842,
+        "p95_ms": 398.3189250002397
+      },
+      "法线": {
+        "images": 13,
+        "quality_failures": 1,
+        "quality_failure_rate": 0.07692307692307693,
+        "config_mismatches": 1,
+        "block_mismatches": 0,
+        "mean_ms": 1027.6648153840842,
+        "median_ms": 181.5905000003113,
+        "p95_ms": 4809.805320002477
+      }
+    }
+  },
+  "rule_source": {
+    "path": "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_policy.py",
+    "regions": {
+      "thresholds": [
+        114,
+        151
+      ],
+      "large_rule": [
+        194,
+        198
+      ],
+      "measure_before_lock_check": [
+        219,
+        230
+      ],
+      "fallbacks": [
+        238,
+        241
+      ]
+    }
+  },
+  "files": {
+    "E:\\ASTC_Compression\\AGENTS.md": {
+      "sha256": "995b8dc9d3ab69c33f1fda3e73bc2517a4b35dc3e71a9f1a1830f7633b26b375",
+      "bytes": 69451
+    },
+    "E:\\ASTC_Compression\\experiment plan\\V3\\README.md": {
+      "sha256": "c939610dec8a998dfca452d458d9124b6a359d7de4dcf92d646a1d555e447ccf",
+      "bytes": 10763
+    },
+    "E:\\ASTC_Compression\\experiment plan\\V3\\matrix.json": {
+      "sha256": "6a16fdb6699f871b0d615382943d44e19cd5b0d93fc120889fdd4797ea3a4cef",
+      "bytes": 1682
+    },
+    "E:\\ASTC_Compression\\experiment plan\\V3\\evidence.json": {
+      "sha256": "7c800f1841baf7903071ce70b36557de3a17229e073c8eab7b242cbb418e9fff",
+      "bytes": 9048
+    },
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\benchmark-trained-unity-full1000-v1-config.json": {
+      "sha256": "c921ae8b0e57dd890d6bde8092713f48e16488441465eccfac402589e1141928",
+      "bytes": 3286
+    },
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\summary.json": {
+      "sha256": "8fe6cf823a49185a6c37da6fd249e1783f7bf090c4f02b20ff8c3628f4d3cd8f",
+      "bytes": 2576509
+    },
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-confirmation-20261116\\result.json": {
+      "sha256": "2c307200e8d9bbef3f0e43c129b413e2da9a27440189ce9436b29358cc65f32a",
+      "bytes": 31864972
+    },
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-confirmation-20261116\\failure-analysis-20261117\\summary.json": {
+      "sha256": "decdaea877fcf0c6394163b7cb5eb0adf2e5a48d66578b49456d58d5fb321bfb",
+      "bytes": 64892
+    },
+    "E:\\ASTC_Compression\\experiment report\\unity-v3-20261113\\candidate-ablation.json": {
+      "sha256": "b9c2b53f5652b8743cc2c893c720cef90425098d3fdd69884611a82fa9502e61",
+      "bytes": 19481
+    },
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_policy.py": {
+      "sha256": "eaad388769e1fce9ba066888856abef49a923f4de01f6aac43715aec16fcf029",
+      "bytes": 9804
+    },
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_deployment.py": {
+      "sha256": "bc0d52d6167ccaaa440260cf460dbe058fc5c03e83b09cf506436c0c79dc7632",
+      "bytes": 25190
+    },
+    "E:\\ASTC_Compression\\reproductions\\unity_search_baseline\\v3_benchmark.py": {
+      "sha256": "f84dd54ed629c0374b745e21f12e0a3cce245e74fb33d0317727432024ef7a2b",
+      "bytes": 15451
+    },
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\train-unity-head-full-v1\\best.pt": {
+      "sha256": "783c69281d127362882a6a84935d928857f33745bb90e282cfb4b648062ada85",
+      "bytes": 86391673
+    },
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\train-unity-head-full-v1\\best-validation.npz": {
+      "sha256": "fed4a9f572757000d120f9636283e316235156f9db8169263d391aa71e407626",
+      "bytes": 964743
+    },
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\train-unity-head-full-v1\\best-decisions.json": {
+      "sha256": "f751a0b999870353371e6025eda428a8febbf760bbf4b8c7813700faf3c4e3e6",
+      "bytes": 1574048
+    },
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\development-corpus11000-v2\\corpus.json": {
+      "sha256": "560094e9d87b220b037ed37574e5941f0eff0675ffb43f34737f904e1f895c57",
+      "bytes": 164680479
+    },
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-v3-20261113\\source-manifest.json": {
+      "sha256": "10968d1612d84bd091dba235cde39c4e170851d619800ec23a04a16e53b5902d",
+      "bytes": 8032076
+    },
+    "F:\\MLBB_Test\\haijiangli1_HAMSTERMLBB\\Assets\\Editor\\Astc\\Plugins\\astcenc-avx2-shared.dll": {
+      "sha256": "e78f35b6fc12654118b97a3edf6e0785dbdf865131abdd730963f6d2e6d32d64",
+      "bytes": 814592
+    },
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build-receipt.json": {
+      "sha256": "870ad425363c6e415a9504020f7e72424ed03b5aac5401a615c240d5bfb902f9",
+      "bytes": 1757
+    },
+    "E:\\ASTC_Compression\\experiment report\\.local\\unity-accuracy90-20261111\\unity-quality-native-retry1\\build\\Release\\unity_astc_quality.dll": {
+      "sha256": "445e037d1aa598527e38b0fa0ae3418a1926fe47339ddd2888a196960f6e41f3",
+      "bytes": 32256
+    }
+  },
+  "parent_declared_sha256_checks": {
+    "checked": 9,
+    "all_match": true
+  },
+  "execution": {
+    "scope": "plan_creation",
+    "development_experiments_started": false,
+    "model_forward_calls": 0,
+    "training_updates": 0,
+    "actual_encoding_calls": 0,
+    "confirmation_execution_authorized": false,
+    "new_confirmation_scope": "protocol_preparation_only",
+    "results": null
+  }
+}

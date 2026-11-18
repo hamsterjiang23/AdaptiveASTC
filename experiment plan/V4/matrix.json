@@ -1,0 +1,164 @@
+{
+  "schema": "unity-v4-experiment-plan-v1",
+  "status": "plan_ready_execution_pending",
+  "created_date": "2026-11-17",
+  "execution": {
+    "scope": "plan_creation",
+    "development_experiments_started": false,
+    "model_forward_calls": 0,
+    "training_updates": 0,
+    "actual_encoding_calls": 0,
+    "confirmation_execution_authorized": false,
+    "new_confirmation_scope": "protocol_preparation_only",
+    "results": null
+  },
+  "dataset": {
+    "train_images": 10000,
+    "validation_images": 1000,
+    "selection_split": "validation",
+    "observed_confirmation_usage": "historical_failure_description",
+    "input_mode": "unity",
+    "texture_scope": ["LDR", "Tex2D", "RGBA8", "mip0", "RDO_off"]
+  },
+  "model": {
+    "architecture": "ResNet34",
+    "parent_system": "V3 selected paired Unity input model",
+    "checkpoint_evidence": "evidence.json#artifacts.checkpoint",
+    "frozen": true,
+    "outputs": "canonical20_candidate_quality"
+  },
+  "reference_labels": "original_unity_canonical20",
+  "quality_policy": "per_image_frozen_development_policy_tables",
+  "candidate_set": {
+    "name": "full20",
+    "blocks": [12, 10, 8, 6],
+    "presets": ["fastest", "fast", "medium", "thorough", "exhaustive"],
+    "order": "block_major",
+    "stable_id_count": 20
+  },
+  "stages": [
+    {"name": "implementation_and_smoke32", "status": "pending"},
+    {"name": "development_reachability_and_replay", "status": "pending"},
+    {"name": "real_encoding_and_timing", "status": "pending"},
+    {"name": "dual_recommendation_and_report", "status": "pending"},
+    {"name": "new_confirmation_protocol", "status": "pending"}
+  ],
+  "reachability": {
+    "candidate_metrics_source": "archived_development_measurements",
+    "checks": ["same_block", "other_blocks", "skipped_prefix", "within_unlock_payload_budget"],
+    "prediction_diagnostics": ["residuals", "threshold_distance", "false_pass", "false_fail"],
+    "runtime_inputs": ["image", "import_properties", "model_predictions", "current_search_measurements"],
+    "oracle_usage": ["offline_replay", "diagnostics", "scoring"]
+  },
+  "start_scan": {
+    "direct_modes": ["original", "back_one", "back_two", "same_block_fastest"],
+    "prediction_margin_db": {
+      "psnr": [0.0, 0.25, 0.5, 1.0],
+      "ms_ssim": [0.0, 0.25, 0.5, 1.0]
+    },
+    "normal_margin_db": 0.0,
+    "linear_margin": "psnr_only",
+    "zero_margin_alias": "original",
+    "unique_configuration_count": 19,
+    "front_boundary": "clamp_to_first_canonical_candidate",
+    "search_state": "rebuild_from_adjusted_start",
+    "actual_gate_thresholds": "original_unmodified_threshold_values",
+    "prescreen_order": [
+      "block_accuracy_desc", "full_choice_accuracy_desc", "query_count_asc",
+      "effective_prediction_margin_sum_asc", "start_shift_asc", "declaration_order_asc"
+    ]
+  },
+  "lookahead_removal": {
+    "exit_check": "before_measurement_when_leaving_locked_block",
+    "equivalence": ["final_candidate", "selection_reason", "strict_quality", "astc_bytes"],
+    "trace_difference": "remove_terminal_cross_block_query_only"
+  },
+  "exhaustive_gate_scan": {
+    "margins_db": [0.0, 0.5, 1.0, 2.0],
+    "trigger": "large_branch_and_eligible_exhaustive_predicted_ms_ssim_below_threshold_minus_margin",
+    "prediction_source": "raw_frozen_model_outputs",
+    "probe": "same_block_thorough",
+    "probe_strict_pass": "accept",
+    "probe_psnr_only_pass": "accept_size_first_relaxed_with_gate_audit",
+    "probe_psnr_fail": "continue_original_exhaustive_path",
+    "cache_scope": "current_image_search",
+    "prescreen": {
+      "strict_quality_regressions_vs_v3_max": 0,
+      "order": ["strict_pass_rate_desc", "exhaustive_queries_asc", "total_queries_asc", "margin_desc"],
+      "no_eligible_configuration": "disable_in_combinations_and_report_all_negative_controls"
+    },
+    "diagnostics": ["triggered", "probe_cost", "skipped_exhaustive", "skipped_actual_strict_pass", "continuous_quality_change"]
+  },
+  "unlock": {
+    "trigger": "strict_failed_size_first_relaxed_including_gate_relaxed",
+    "next_block": {"12": 10, "10": 8, "8": 6},
+    "max_block_steps": 1,
+    "payload_ratio_max": 1.5,
+    "payload_reference": "pre_unlock_locked_output",
+    "budget_comparison": "2 * new_payload_bytes <= 3 * locked_payload_bytes",
+    "preset_order": "original_canonical_order",
+    "replacement": "first_actually_strict_qualified_candidate",
+    "failure": "retain_pre_unlock_output",
+    "gate_during_rescue": false
+  },
+  "controls": [
+    {"name": "v3_baseline", "start": "original", "remove_lookahead": false, "gate": "off", "unlock": false},
+    {"name": "remove_lookahead", "start": "original", "remove_lookahead": true, "gate": "off", "unlock": false},
+    {"name": "calibrated_start", "start": "selected", "remove_lookahead": false, "gate": "off", "unlock": false},
+    {"name": "exhaustive_gate", "start": "original", "remove_lookahead": false, "gate": "selected", "unlock": false},
+    {"name": "bounded_unlock", "start": "original", "remove_lookahead": false, "gate": "off", "unlock": true},
+    {"name": "calibrated_start_no_lookahead", "start": "selected", "remove_lookahead": true, "gate": "off", "unlock": false},
+    {"name": "calibrated_gate_no_lookahead", "start": "selected", "remove_lookahead": true, "gate": "selected", "unlock": false},
+    {"name": "calibrated_unlock_no_lookahead", "start": "selected", "remove_lookahead": true, "gate": "off", "unlock": true},
+    {"name": "combined", "start": "selected", "remove_lookahead": true, "gate": "selected", "unlock": true}
+  ],
+  "alias_merge_requires": ["effective_config", "final_decisions", "query_traces", "gate_and_unlock_events"],
+  "smoke": {
+    "images": 32,
+    "split": "validation",
+    "selection": "deterministic_coverage_in_original_asset_order_then_fill_earliest",
+    "coverage": ["color", "linear", "normal", "alpha", "size_first_relaxed", "highest_psnr_fallback", "size_variation"],
+    "missing_real_scenario": "record_gap_and_cover_with_synthetic_boundary_check"
+  },
+  "timing": {
+    "warmups": 1,
+    "repetitions": 3,
+    "scopes": ["files", "pixels_ready"],
+    "modes": ["batch", "single"],
+    "pixels_ready_chunk_images": 8,
+    "gpu_synchronization": true,
+    "fresh_inference_and_encoding_each_repeat": true,
+    "selection_metric": "median_of_three_files_single_mean_ms",
+    "phases": ["input_preparation", "inference", "decision", "encode", "decode", "quality"],
+    "separately_reported": ["model_loading", "dll_loading", "unity_import", "output_audit", "writes"],
+    "statistics": ["mean", "median", "p95", "dataset_total", "batch_amortized"]
+  },
+  "recommendations": {
+    "compatibility": {
+      "eligible_controls": ["v3_baseline", "remove_lookahead", "calibrated_start", "calibrated_start_no_lookahead"],
+      "system_block_top1_min": 0.9,
+      "strict_quality_regressions_vs_v3_max": 0,
+      "order": ["block_accuracy_desc", "full_choice_accuracy_desc", "measured_time_asc", "total_payload_asc", "change_count_asc"]
+    },
+    "quality": {
+      "eligible_controls": "all",
+      "strict_quality_regressions_vs_v3_max": 0,
+      "per_image_unlock_payload_ratio_max": 1.5,
+      "order": ["strict_pass_rate_desc", "measured_time_asc", "total_payload_asc", "change_count_asc"],
+      "no_new_strict_pass": "report_no_quality_gain_and_deliver_best_control"
+    }
+  },
+  "reporting": {
+    "metrics": ["block_accuracy", "full_choice_accuracy", "confusion", "per_class_recall", "strict_pass_rate", "new_strict_pass", "strict_regressions_vs_v3", "strict_regressions_vs_unity", "continuous_quality_change", "payload_bytes", "encoding_count", "timing"],
+    "groups": ["texture_type", "alpha", "max_side", "preset", "encoding_count", "search_branch"],
+    "special_max_side_values": [2048, 4096],
+    "special_resolutions": [[1780, 1000]],
+    "zero_count_group": "report_missing_coverage",
+    "per_image_fields": ["original_start", "adjusted_start", "input_provenance", "thresholds", "query_trace", "gate_events", "skipped_candidates", "pre_unlock_choice", "pre_unlock_payload", "budget_decision", "final_choice", "timings"]
+  },
+  "planned_outputs": {
+    "public_report": "E:\\ASTC_Compression\\experiment report\\unity-v4-20261117",
+    "private_artifacts": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v4-20261117",
+    "deliverables": ["reachability", "prediction_diagnostics", "parameter_scans", "real_benchmarks", "per_image_csv", "aliases", "failed_attempts", "dual_recommendation", "reproduction_steps", "new_confirmation_protocols"]
+  }
+}
