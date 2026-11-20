@@ -1,0 +1,149 @@
+{
+  "status": "prototype_complete",
+  "counts": {
+    "train": 512,
+    "validation": 198
+  },
+  "epochs": 5,
+  "training_updates_all_attempts": 497,
+  "split_scope": "All 198 real native 128x128 validation inputs and a seeded 512-image native 128x128 training sample",
+  "smokes": {
+    "dense-smoke128-v1": {
+      "path": "experiment report/.local/unity-v5-20261119/dense-smoke128-v1/report.json",
+      "sha256": "9d456aed8a4a006941df003f5d6a3899fbdeb7f5d91d42d4780bfa7d358c3735",
+      "patch_counts": {
+        "train": 4,
+        "validation": 4
+      },
+      "training_updates": 4
+    },
+    "dense-smoke128-v2": {
+      "path": "experiment report/.local/unity-v5-20261119/dense-smoke128-v2/report.json",
+      "sha256": "8e8d971e313c4be8ff8217b06a05a3313f6e25f34141c8169ff3ed5fb561116a",
+      "patch_counts": {
+        "train": 4,
+        "validation": 4
+      },
+      "training_updates": 4
+    },
+    "dense-aligned-smoke-v1": {
+      "path": "experiment report/.local/unity-v5-20261119/dense-aligned-smoke-v1/report.json",
+      "sha256": "e8091cf0101d7f8e63299f47c0e16c3f079f1db8610e73f763e21cf46312d3d6",
+      "patch_counts": {
+        "train": 26,
+        "validation": 5
+      },
+      "training_updates": 7
+    },
+    "dense-smoke128-cap45-v1": {
+      "path": "experiment report/.local/unity-v5-20261119/dense-smoke128-cap45-v1/report.json",
+      "sha256": "855391bdfe7c28c777da9f819b2a7dc0336c4bde20b0add9c5136c62fbb4d9fd",
+      "patch_counts": {
+        "train": 4,
+        "validation": 4
+      },
+      "training_updates": 2
+    }
+  },
+  "uncensored_repeat_validation_bit_identical": true,
+  "variants": {
+    "matched": {
+      "training_report": "experiment report/.local/unity-v5-20261119/dense-prototype128-matched-v1/report.json",
+      "training_report_sha256": "a38dc2a8db8871ad8ee23a8e86b5638a263f033f1cec9b7d6ff817ac6b6a3a05",
+      "screening_report": "experiment report/.local/unity-v5-20261119/screen-prototype128-matched-v1/report.json",
+      "screening_report_sha256": "77e04f09d77272d7e0fcd4ecff7283b8a5a8ff076705b1e86b0dc5849129d8ba",
+      "training_updates": 160,
+      "best_epoch": 5,
+      "checkpoint_sha256": "294e3fefc3108a751e54f771867b9524b09b1b905d204c9386e65569611fe41f",
+      "wall_seconds": 21.154783099977067,
+      "peak_cuda_memory_bytes": 184986624,
+      "all_candidate_display_log_mse_rmse": 2.566006694964226,
+      "screening_images": 196,
+      "thresholds": {
+        "28": {
+          "all_candidate_image_content_bad_share_mae": 0.09737229741082848,
+          "8x8_fastest_true_content_bad_share_mean": 0.10378107051953164,
+          "8x8_fastest_predicted_content_bad_share_mean": 0.019841294199460954,
+          "8x8_fastest_image_content_bad_share_mae": 0.08499064936895476,
+          "8x8_fastest_near_psnr_rmse_db": 17.80208492801144,
+          "8x8_fastest_rank_correlations": {
+            "dense_vs_exact_spearman": 0.45515262361658976,
+            "step_vs_exact_spearman": 0.242278622732413,
+            "dense_vs_exact_spearman_on_step_matched_images": 0.47524762473752125,
+            "step_matched_images": 94
+          }
+        },
+        "30": {
+          "all_candidate_image_content_bad_share_mae": 0.13206399131498442,
+          "8x8_fastest_true_content_bad_share_mean": 0.15808725825296382,
+          "8x8_fastest_predicted_content_bad_share_mean": 0.03769330307231287,
+          "8x8_fastest_image_content_bad_share_mae": 0.12449523256244541,
+          "8x8_fastest_near_psnr_rmse_db": 17.448562587028015,
+          "8x8_fastest_rank_correlations": {
+            "dense_vs_exact_spearman": 0.4734271946993196,
+            "step_vs_exact_spearman": 0.30828740849861147,
+            "dense_vs_exact_spearman_on_step_matched_images": 0.464697809830625,
+            "step_matched_images": 94
+          }
+        }
+      }
+    },
+    "cap45": {
+      "training_report": "experiment report/.local/unity-v5-20261119/dense-prototype128-cap45-v1/report.json",
+      "training_report_sha256": "abdaf7b3bd57c1bbc11770ed91ed4ddab57a724c74e53659cba401e3db31e46e",
+      "screening_report": "experiment report/.local/unity-v5-20261119/screen-prototype128-cap45-v1/report.json",
+      "screening_report_sha256": "7286ada78e0d6cf9634d6acb1fb5d747c0c685a84dc3c3ddfaa76758df0120e2",
+      "training_updates": 160,
+      "best_epoch": 5,
+      "checkpoint_sha256": "2056f71b6c101b56f29eb28a45015702e69b6ecaee604b8abb48d6a9500d2d77",
+      "wall_seconds": 25.470526199991582,
+      "peak_cuda_memory_bytes": 222998016,
+      "all_candidate_display_log_mse_rmse": 3.26782791580238,
+      "screening_images": 196,
+      "thresholds": {
+        "28": {
+          "all_candidate_image_content_bad_share_mae": 0.09611131944016513,
+          "8x8_fastest_true_content_bad_share_mean": 0.10378107051953164,
+          "8x8_fastest_predicted_content_bad_share_mean": 0.01914819808069918,
+          "8x8_fastest_image_content_bad_share_mae": 0.08496293405247417,
+          "8x8_fastest_near_psnr_rmse_db": 7.845371210191085,
+          "8x8_fastest_rank_correlations": {
+            "dense_vs_exact_spearman": 0.5165592293345014,
+            "step_vs_exact_spearman": 0.242278622732413,
+            "dense_vs_exact_spearman_on_step_matched_images": 0.4925738234670158,
+            "step_matched_images": 94
+          }
+        },
+        "30": {
+          "all_candidate_image_content_bad_share_mae": 0.12687206024210954,
+          "8x8_fastest_true_content_bad_share_mean": 0.15808725825296382,
+          "8x8_fastest_predicted_content_bad_share_mean": 0.03889200576815286,
+          "8x8_fastest_image_content_bad_share_mae": 0.12099158194780925,
+          "8x8_fastest_near_psnr_rmse_db": 6.900559384983211,
+          "8x8_fastest_rank_correlations": {
+            "dense_vs_exact_spearman": 0.5862403409062846,
+            "step_vs_exact_spearman": 0.30828740849861147,
+            "dense_vs_exact_spearman_on_step_matched_images": 0.5275302061425695,
+            "step_matched_images": 94
+          }
+        }
+      }
+    }
+  },
+  "step_baseline": {
+    "path": "experiment report/.local/unity-v5-20261119/step-validation-v1/report.json",
+    "sha256": "1e7310cb20fd71199dd53f4bca70f6f71992e0d5fb1181abc25529d1732dd4c8",
+    "images": 938,
+    "scored": 554,
+    "psnr_ge35_scored": 361,
+    "known_ranks_in_psnr_ge35": {
+      "615": 2,
+      "616": 43,
+      "617": 6
+    },
+    "wall_seconds": 225.12572720000753
+  },
+  "choice_for_full_frozen_stage": "cap45 matched setup improves around 28/30 dB and overall bad-share MAE on these development images; high-PSNR log-MSE accuracy decreases and underprediction persists",
+  "holdout_opened": false,
+  "human_recall": null
+}

@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "native_parent_replay": {
+    "path": "experiment report/.local/unity-v5-20261119/v3-regression-parent1000-v2/report.json",
+    "sha256": "33899fb2ceb74755e1e7d857d790c28c2803593b0a58173d92b5c4994e977a83",
+    "images": 1000,
+    "block_match": 0.936,
+    "strict_quality_pass": 0.875,
+    "trace_differences": 0
+  },
+  "joint_smoke": {
+    "path": "experiment report/.local/unity-v5-20261119/dense-joint-smoke-v2/report.json",
+    "sha256": "2c3369acf91c3faba78ff9ad942bfee78d6fadfeea11fe3e4559b9ebfe87c06a",
+    "training_updates": 7,
+    "native_batches": 1,
+    "backbone_updated": true,
+    "checkpoint_reloaded": true
+  },
+  "review_partition": {
+    "path": "experiment report/.local/unity-v5-20261119/review-partition-v1.json",
+    "sha256": "bf2b47a3b0d2094856f7ee9de03463b84c62e2e0cc5f82149961cd9883e6850c",
+    "counts": {
+      "calibration": 415,
+      "holdout": 443,
+      "illustration": 80
+    },
+    "group_counts": {
+      "calibration": 235,
+      "holdout": 225,
+      "illustration": 1
+    }
+  },
+  "review_packet_prototype": {
+    "path": "experiment report/.local/unity-v5-20261119/review-packet-prototype-v1/manifest.json",
+    "sha256": "f36874829093d9cb79c382c403d8378daf5322e08f880a27253a81a387b4dd57",
+    "pairs": {
+      "calibration": 31,
+      "holdout": 59,
+      "illustration": 3
+    },
+    "human_ratings_collected": 0
+  },
+  "prototype_step_calibration": {
+    "path": "experiment report/.local/unity-v5-20261119/step-calibration-prototype-v1.json",
+    "sha256": "bd136b20c611d7dfee652a1fd3904e2b14383a4630c5c3b8c6c2d4f0f8ff7aac",
+    "dense_beats_step_on_primary_gate": true,
+    "content": {
+      "display@28:content": {
+        "calibration_images": 10,
+        "holdout_images": 34,
+        "holdout_step_mae": 0.06826192442226646,
+        "holdout_dense_mae": 0.058383528023916866
+      },
+      "display@30:content": {
+        "calibration_images": 10,
+        "holdout_images": 34,
+        "holdout_step_mae": 0.092169029032312,
+        "holdout_dense_mae": 0.07475984845602568
+      }
+    }
+  },
+  "confirmation_source_reservation": {
+    "path": "experiment report/unity-v5-20261119/confirmation-protocol-preparation.json",
+    "sha256": "b9c98553e09793825536ca29b48dccfdd29cb58184df98d4252fabc08f8be297"
+  },
+  "formal_joint_trained": false,
+  "confirmation_opened": false
+}

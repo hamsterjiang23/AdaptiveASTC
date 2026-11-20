@@ -1,0 +1,124 @@
+{
+  "status": "passed_with_batch_threshold_differences",
+  "checkpoint": {
+    "epoch": 2,
+    "sha256": "165dcf5021f25159d2a8eff0c09990f8318a8b98e35114a30fa2c408a5a16f5d"
+  },
+  "validation": {
+    "path": "experiment report/.local/unity-v5-20261119/dense-joint-full-v1/best-validation.json",
+    "sha256": "26a4b04113bd249bde47f618bda877f16ac4facb3e9bd0d74e46344b51cd9fc2",
+    "batch_size": 8
+  },
+  "device": "cuda",
+  "images": {
+    "616": {
+      "input_only_report": {
+        "path": "experiment report/.local/unity-v5-20261119/inference-joint-dev616-v1/report.json",
+        "sha256": "a3593f25b2f5bf9224d7523edca67a11904fd89e6acbe3e1cd5d24293ed942d6"
+      },
+      "prediction_shape_candidate_rows_columns": [
+        20,
+        16,
+        16
+      ],
+      "training_batch_counts_matched": 360,
+      "input_only_counts_matched": 360,
+      "single_sample_model_tensor_bit_identical_to_cli": true,
+      "max_absolute_log_mse_batch_difference": 0.0022220611572265625,
+      "count_differences": [],
+      "tile_threshold_crossings": []
+    },
+    "901": {
+      "input_only_report": {
+        "path": "experiment report/.local/unity-v5-20261119/inference-joint-dev901-v1/report.json",
+        "sha256": "d63c5a1c76dbd1664389805f0b6029ee16d0f566e692d52fa2d84ce3eadb426f"
+      },
+      "prediction_shape_candidate_rows_columns": [
+        20,
+        13,
+        13
+      ],
+      "training_batch_counts_matched": 360,
+      "input_only_counts_matched": 356,
+      "single_sample_model_tensor_bit_identical_to_cli": true,
+      "max_absolute_log_mse_batch_difference": 0.0010170936584472656,
+      "count_differences": [
+        {
+          "view": "native_rgba",
+          "y_db": 30.0,
+          "region": "all",
+          "candidate": [
+            10,
+            "medium"
+          ],
+          "validation_count": 54,
+          "input_only_count": 55
+        },
+        {
+          "view": "native_rgba",
+          "y_db": 30.0,
+          "region": "content",
+          "candidate": [
+            10,
+            "medium"
+          ],
+          "validation_count": 48,
+          "input_only_count": 49
+        },
+        {
+          "view": "display",
+          "y_db": 28.0,
+          "region": "all",
+          "candidate": [
+            10,
+            "exhaustive"
+          ],
+          "validation_count": 41,
+          "input_only_count": 40
+        },
+        {
+          "view": "display",
+          "y_db": 28.0,
+          "region": "content",
+          "candidate": [
+            10,
+            "exhaustive"
+          ],
+          "validation_count": 39,
+          "input_only_count": 38
+        }
+      ],
+      "tile_threshold_crossings": [
+        {
+          "view": "native_rgba",
+          "y_db": 30.0,
+          "candidate": [
+            10,
+            "medium"
+          ],
+          "tile": [
+            3,
+            10
+          ],
+          "validation_psnr_db": 30.000469207763672,
+          "input_only_psnr_db": 29.993940353393555
+        },
+        {
+          "view": "display",
+          "y_db": 28.0,
+          "candidate": [
+            10,
+            "exhaustive"
+          ],
+          "tile": [
+            11,
+            4
+          ],
+          "validation_psnr_db": 27.99817657470703,
+          "input_only_psnr_db": 28.00116539001465
+        }
+      ]
+    }
+  },
+  "test_opened": false
+}

@@ -1,0 +1,610 @@
+{
+ "images": 196,
+ "replay_mismatch": [],
+ "label_blocks": {
+  "10x10": 30,
+  "12x12": 94,
+  "8x8": 41,
+  "6x6": 31
+ },
+ "monotonicity_tol_max(0.5,10pct)_floor3": {
+  "seam": {
+   "preset_seq_monotone": "206/367",
+   "block_seq_monotone": "338/517"
+  },
+  "grid_p95": {
+   "preset_seq_monotone": "330/505",
+   "block_seq_monotone": "539/685"
+  },
+  "change_p95": {
+   "preset_seq_monotone": "415/496",
+   "block_seq_monotone": "521/636"
+  },
+  "b3": {
+   "preset_seq_monotone": "210/284",
+   "block_seq_monotone": "264/369"
+  },
+  "e1_p90": {
+   "preset_seq_monotone": "260/402",
+   "block_seq_monotone": "383/515"
+  }
+ },
+ "known_ranks_among_196": {
+  "seam": {
+   "label": {
+    "615": {
+     "rank": 43,
+     "value": 6.41
+    },
+    "616": {
+     "rank": 9,
+     "value": 16.11
+    },
+    "617": {
+     "rank": 20,
+     "value": 10.91
+    }
+   },
+   "fixed8_medium": {
+    "615": {
+     "rank": 30,
+     "value": 6.41
+    },
+    "616": {
+     "rank": 19,
+     "value": 8.89
+    },
+    "617": {
+     "rank": 7,
+     "value": 11.02
+    }
+   },
+   "fixed8_fastest": {
+    "615": {
+     "rank": 7,
+     "value": 15.77
+    },
+    "616": {
+     "rank": 12,
+     "value": 12.92
+    },
+    "617": {
+     "rank": 19,
+     "value": 11.11
+    }
+   }
+  },
+  "grid_p95": {
+   "label": {
+    "615": {
+     "rank": 65,
+     "value": 6.32
+    },
+    "616": {
+     "rank": 20,
+     "value": 12.24
+    },
+    "617": {
+     "rank": 29,
+     "value": 9.86
+    }
+   },
+   "fixed8_medium": {
+    "615": {
+     "rank": 39,
+     "value": 6.32
+    },
+    "616": {
+     "rank": 36,
+     "value": 6.61
+    },
+    "617": {
+     "rank": 32,
+     "value": 6.98
+    }
+   },
+   "fixed8_fastest": {
+    "615": {
+     "rank": 30,
+     "value": 9.57
+    },
+    "616": {
+     "rank": 41,
+     "value": 8.24
+    },
+    "617": {
+     "rank": 29,
+     "value": 9.8
+    }
+   }
+  },
+  "change_p95": {
+   "label": {
+    "615": {
+     "rank": 89,
+     "value": 3.66
+    },
+    "616": {
+     "rank": 46,
+     "value": 5.89
+    },
+    "617": {
+     "rank": 27,
+     "value": 7.25
+    }
+   },
+   "fixed8_medium": {
+    "615": {
+     "rank": 71,
+     "value": 3.66
+    },
+    "616": {
+     "rank": 47,
+     "value": 4.68
+    },
+    "617": {
+     "rank": 45,
+     "value": 4.77
+    }
+   },
+   "fixed8_fastest": {
+    "615": {
+     "rank": 46,
+     "value": 6.34
+    },
+    "616": {
+     "rank": 54,
+     "value": 5.72
+    },
+    "617": {
+     "rank": 48,
+     "value": 6.15
+    }
+   }
+  },
+  "b3": {
+   "label": {
+    "615": {
+     "rank": 14,
+     "value": 6.58
+    },
+    "616": {
+     "rank": 30,
+     "value": 4.97
+    },
+    "617": {
+     "rank": 1,
+     "value": 14.22
+    }
+   },
+   "fixed8_medium": {
+    "615": {
+     "rank": 6,
+     "value": 6.58
+    },
+    "616": {
+     "rank": 55,
+     "value": 1.84
+    },
+    "617": {
+     "rank": 1,
+     "value": 8.38
+    }
+   },
+   "fixed8_fastest": {
+    "615": {
+     "rank": 2,
+     "value": 11.63
+    },
+    "616": {
+     "rank": 23,
+     "value": 5.67
+    },
+    "617": {
+     "rank": 8,
+     "value": 9.7
+    }
+   }
+  },
+  "e1_p90": {
+   "label": {
+    "615": {
+     "rank": 51,
+     "value": 8.75
+    },
+    "616": {
+     "rank": 30,
+     "value": 12.57
+    },
+    "617": {
+     "rank": 4,
+     "value": 27.5
+    }
+   },
+   "fixed8_medium": {
+    "615": {
+     "rank": 22,
+     "value": 8.75
+    },
+    "616": {
+     "rank": 85,
+     "value": 3.21
+    },
+    "617": {
+     "rank": 1,
+     "value": 24.44
+    }
+   },
+   "fixed8_fastest": {
+    "615": {
+     "rank": 4,
+     "value": 21.53
+    },
+    "616": {
+     "rank": 34,
+     "value": 10.59
+    },
+    "617": {
+     "rank": 1,
+     "value": 33.11
+    }
+   }
+  }
+ },
+ "gate_sim": {
+  "seam<= 11.11": {
+   "moved": 16,
+   "kinds": {
+    "valid": 185,
+    "psnr_fallback": 10,
+    "gate_fallback": 1
+   },
+   "bytes_ratio": 1.017,
+   "shift": {
+    "12->12 preset": 10,
+    "10->8": 2,
+    "12->10": 1,
+    "8->8 preset": 1,
+    "12->6": 1,
+    "12->8": 1
+   },
+   "known": {
+    "615": "8x8_medium -> 8x8_medium (valid)",
+    "616": "12x12_medium -> 12x12_thorough (valid)",
+    "617": "12x12_fastest -> 12x12_fastest (valid)"
+   }
+  },
+  "seam<= 8.33": {
+   "moved": 30,
+   "kinds": {
+    "valid": 184,
+    "psnr_fallback": 10,
+    "gate_fallback": 2
+   },
+   "bytes_ratio": 1.034,
+   "shift": {
+    "12->12 preset": 16,
+    "10->8": 3,
+    "10->10 preset": 2,
+    "8->6": 2,
+    "8->8 preset": 2,
+    "12->8": 2,
+    "12->10": 2,
+    "12->6": 1
+   },
+   "known": {
+    "615": "8x8_medium -> 8x8_medium (valid)",
+    "616": "12x12_medium -> 10x10_exhaustive (valid)",
+    "617": "12x12_fastest -> 12x12_fast (valid)"
+   }
+  },
+  "seam<= 5.55": {
+   "moved": 50,
+   "kinds": {
+    "valid": 183,
+    "psnr_fallback": 10,
+    "gate_fallback": 3
+   },
+   "bytes_ratio": 1.11,
+   "shift": {
+    "12->12 preset": 17,
+    "12->8": 8,
+    "12->10": 4,
+    "12->6": 4,
+    "8->6": 4,
+    "10->8": 4,
+    "8->8 preset": 4,
+    "6->6 preset": 2
+   },
+   "known": {
+    "615": "8x8_medium -> 8x8_thorough (valid)",
+    "616": "12x12_medium -> 8x8_thorough (valid)",
+    "617": "12x12_fastest -> 6x6_fastest (valid)"
+   }
+  },
+  "grid_p95<= 8.24": {
+   "moved": 40,
+   "kinds": {
+    "valid": 186,
+    "psnr_fallback": 10
+   },
+   "bytes_ratio": 1.06,
+   "shift": {
+    "12->12 preset": 19,
+    "8->6": 5,
+    "12->10": 5,
+    "10->10 preset": 2,
+    "10->8": 2,
+    "12->8": 2,
+    "8->8 preset": 2,
+    "10->6": 1
+   },
+   "known": {
+    "615": "8x8_medium -> 8x8_medium (valid)",
+    "616": "12x12_medium -> 12x12_exhaustive (valid)",
+    "617": "12x12_fastest -> 12x12_fast (valid)"
+   }
+  },
+  "grid_p95<= 6.18": {
+   "moved": 65,
+   "kinds": {
+    "gate_fallback": 7,
+    "valid": 179,
+    "psnr_fallback": 10
+   },
+   "bytes_ratio": 1.136,
+   "shift": {
+    "12->12 preset": 18,
+    "12->10": 9,
+    "8->6": 8,
+    "12->8": 8,
+    "8->8 preset": 7,
+    "10->8": 4,
+    "6->6 preset": 4,
+    "10->6": 3
+   },
+   "known": {
+    "615": "8x8_medium -> 8x8_thorough (valid)",
+    "616": "12x12_medium -> 10x10_exhaustive (valid)",
+    "617": "12x12_fastest -> 6x6_medium (valid)"
+   }
+  },
+  "grid_p95<= 4.12": {
+   "moved": 94,
+   "kinds": {
+    "gate_fallback": 16,
+    "valid": 170,
+    "psnr_fallback": 10
+   },
+   "bytes_ratio": 1.25,
+   "shift": {
+    "12->12 preset": 23,
+    "12->10": 14,
+    "8->6": 13,
+    "12->8": 11,
+    "12->6": 9,
+    "8->8 preset": 6,
+    "10->8": 6,
+    "6->6 preset": 6
+   },
+   "known": {
+    "615": "8x8_medium -> 6x6_medium (valid)",
+    "616": "12x12_medium -> 8x8_thorough (valid)",
+    "617": "12x12_fastest -> 6x6_thorough (valid)"
+   }
+  },
+  "change_p95<= 5.72": {
+   "moved": 43,
+   "kinds": {
+    "gate_fallback": 9,
+    "valid": 177,
+    "psnr_fallback": 10
+   },
+   "bytes_ratio": 1.133,
+   "shift": {
+    "12->12 preset": 13,
+    "8->6": 9,
+    "12->6": 5,
+    "12->8": 4,
+    "10->6": 3,
+    "6->6 preset": 3,
+    "10->10 preset": 2,
+    "10->8": 2
+   },
+   "known": {
+    "615": "8x8_medium -> 8x8_medium (valid)",
+    "616": "12x12_medium -> 12x12_thorough (valid)",
+    "617": "12x12_fastest -> 12x12_thorough (valid)"
+   }
+  },
+  "change_p95<= 4.29": {
+   "moved": 70,
+   "kinds": {
+    "gate_fallback": 23,
+    "valid": 163,
+    "psnr_fallback": 10
+   },
+   "bytes_ratio": 1.212,
+   "shift": {
+    "12->12 preset": 13,
+    "8->6": 11,
+    "12->10": 9,
+    "12->6": 9,
+    "12->8": 7,
+    "6->6 preset": 6,
+    "10->6": 5,
+    "10->10 preset": 4
+   },
+   "known": {
+    "615": "8x8_medium -> 8x8_medium (valid)",
+    "616": "12x12_medium -> 10x10_exhaustive (valid)",
+    "617": "12x12_fastest -> 6x6_medium (valid)"
+   }
+  },
+  "change_p95<= 2.86": {
+   "moved": 102,
+   "kinds": {
+    "gate_fallback": 40,
+    "valid": 146,
+    "psnr_fallback": 10
+   },
+   "bytes_ratio": 1.442,
+   "shift": {
+    "12->6": 26,
+    "8->6": 22,
+    "12->12 preset": 17,
+    "10->6": 8,
+    "12->8": 8,
+    "10->10 preset": 6,
+    "6->6 preset": 6,
+    "12->10": 5
+   },
+   "known": {
+    "615": "8x8_medium -> 6x6_medium (valid)",
+    "616": "12x12_medium -> 6x6_exhaustive (gate_fallback)",
+    "617": "12x12_fastest -> 6x6_thorough (gate_fallback)"
+   }
+  },
+  "b3<= 5.67": {
+   "moved": 23,
+   "kinds": {
+    "valid": 186,
+    "psnr_fallback": 10
+   },
+   "bytes_ratio": 1.025,
+   "shift": {
+    "12->12 preset": 14,
+    "12->10": 3,
+    "8->8 preset": 2,
+    "10->6": 1,
+    "8->6": 1,
+    "12->6": 1,
+    "10->10 preset": 1
+   },
+   "known": {
+    "615": "8x8_medium -> 8x8_thorough (valid)",
+    "616": "12x12_medium -> 12x12_medium (valid)",
+    "617": "12x12_fastest -> 6x6_thorough (valid)"
+   }
+  },
+  "b3<= 4.25": {
+   "moved": 39,
+   "kinds": {
+    "valid": 185,
+    "psnr_fallback": 10,
+    "gate_fallback": 1
+   },
+   "bytes_ratio": 1.049,
+   "shift": {
+    "12->12 preset": 21,
+    "12->10": 6,
+    "8->6": 3,
+    "12->8": 3,
+    "8->8 preset": 2,
+    "10->10 preset": 2,
+    "10->6": 1,
+    "12->6": 1
+   },
+   "known": {
+    "615": "8x8_medium -> 6x6_medium (valid)",
+    "616": "12x12_medium -> 12x12_thorough (valid)",
+    "617": "12x12_fastest -> 6x6_exhaustive (gate_fallback)"
+   }
+  },
+  "b3<= 2.83": {
+   "moved": 66,
+   "kinds": {
+    "valid": 180,
+    "psnr_fallback": 10,
+    "gate_fallback": 6
+   },
+   "bytes_ratio": 1.095,
+   "shift": {
+    "12->12 preset": 34,
+    "12->10": 8,
+    "8->8 preset": 6,
+    "8->6": 5,
+    "10->8": 4,
+    "12->8": 3,
+    "12->6": 3,
+    "10->6": 2
+   },
+   "known": {
+    "615": "8x8_medium -> 6x6_thorough (gate_fallback)",
+    "616": "12x12_medium -> 12x12_exhaustive (valid)",
+    "617": "12x12_fastest -> 6x6_exhaustive (gate_fallback)"
+   }
+  },
+  "e1_p90<= 10.59": {
+   "moved": 39,
+   "kinds": {
+    "valid": 186,
+    "psnr_fallback": 10
+   },
+   "bytes_ratio": 1.037,
+   "shift": {
+    "12->12 preset": 25,
+    "12->10": 7,
+    "8->6": 2,
+    "10->6": 1,
+    "8->8 preset": 1,
+    "10->8": 1,
+    "12->6": 1,
+    "10->10 preset": 1
+   },
+   "known": {
+    "615": "8x8_medium -> 8x8_medium (valid)",
+    "616": "12x12_medium -> 12x12_thorough (valid)",
+    "617": "12x12_fastest -> 6x6_fastest (valid)"
+   }
+  },
+  "e1_p90<= 7.94": {
+   "moved": 56,
+   "kinds": {
+    "valid": 185,
+    "psnr_fallback": 10,
+    "gate_fallback": 1
+   },
+   "bytes_ratio": 1.06,
+   "shift": {
+    "12->12 preset": 31,
+    "12->10": 10,
+    "8->6": 4,
+    "8->8 preset": 3,
+    "10->8": 2,
+    "12->8": 2,
+    "10->10 preset": 2,
+    "10->6": 1
+   },
+   "known": {
+    "615": "8x8_medium -> 6x6_fastest (valid)",
+    "616": "12x12_medium -> 12x12_exhaustive (valid)",
+    "617": "12x12_fastest -> 6x6_fast (valid)"
+   }
+  },
+  "e1_p90<= 5.29": {
+   "moved": 70,
+   "kinds": {
+    "valid": 180,
+    "gate_fallback": 6,
+    "psnr_fallback": 10
+   },
+   "bytes_ratio": 1.114,
+   "shift": {
+    "12->12 preset": 32,
+    "12->10": 12,
+    "12->8": 7,
+    "8->8 preset": 5,
+    "8->6": 5,
+    "12->6": 4,
+    "10->8": 4,
+    "10->6": 1
+   },
+   "known": {
+    "615": "8x8_medium -> 6x6_medium (gate_fallback)",
+    "616": "12x12_medium -> 10x10_thorough (valid)",
+    "617": "12x12_fastest -> 6x6_fast (gate_fallback)"
+   }
+  }
+ }
+}

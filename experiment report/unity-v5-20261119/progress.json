@@ -1,0 +1,213 @@
+{
+  "status": "completed_independent_human_evaluation",
+  "confirmation_opened": true,
+  "label_audit": {
+    "status": "passed",
+    "path": "experiment report/unity-v5-20261119/label-audit32.json",
+    "sha256": "f094aaa8b4625078bca55be1578d39a721a3cad0a5b1ffcd09ea5b3731b1952e"
+  },
+  "label_pilot": {
+    "status": "passed",
+    "binding": "2a3e2446d6955fa9f7d23652b66698805ad194de4e9e1d8e382e16fbc31bd91c",
+    "counts": {
+      "train": 2,
+      "validation": 2
+    },
+    "coverage": "partial",
+    "candidate_images": 80,
+    "tiles": 278953,
+    "bytes": 112422035,
+    "test_opened": false,
+    "wall_seconds": 25.903031800000463,
+    "path": "experiment report/.local/unity-v5-20261119/labels-pilot-v2/corpus.json",
+    "sha256": "d3e41f365bf7f507ba0d7f153145fe12bb7a785550004703382b107500a53932",
+    "receipt_unchanged_after_rerun": true
+  },
+  "label_generation": {
+    "status": "passed",
+    "job_receipt": "experiment report/.local/unity-v5-20261119/jobs/labels-full-v1/receipt.json",
+    "config_sha256": "a773be2b5d8bce700590d3f886f02229ad0ff37bdcef4ccab3cffdc9a329d8b6",
+    "raw_output": "experiment report/.local/unity-v5-20261119/labels-full-v1",
+    "last_observed_progress": "All 11000 development labels verified",
+    "committed_train_receipts": 10000,
+    "committed_validation_receipts": 1000,
+    "full_corpus": {
+      "path": "experiment report/.local/unity-v5-20261119/labels-full-v1/corpus.json",
+      "sha256": "66c7dddd786fea0e85199b9cc1e0045232f8878dde4884827c61c88ac09af597"
+    },
+    "verification": {
+      "path": "experiment report/unity-v5-20261119/full-label-verification.json",
+      "sha256": "c7aa2e3c718fc87909811609fcdf984ea7c5f56a33f1f8f9ba0c659940943224"
+    }
+  },
+  "model_training_updates": 46884,
+  "actual_encoding_calls": 0,
+  "frozen_dense_prototype": {
+    "status": "passed",
+    "path": "experiment report/unity-v5-20261119/prototype128.json",
+    "sha256": "e4dc05b128cc37b11275f5502d4b47f3eb5e827742ca1cb3bd2c57bd40858378"
+  },
+  "step_baseline": {
+    "path": "experiment report/.local/unity-v5-20261119/step-validation-v1/report.json",
+    "sha256": "1e7310cb20fd71199dd53f4bca70f6f71992e0d5fb1181abc25529d1732dd4c8",
+    "images": 938,
+    "scored": 554,
+    "psnr_ge35_scored": 361,
+    "known_ranks_in_psnr_ge35": {
+      "615": 2,
+      "616": 43,
+      "617": 6
+    },
+    "wall_seconds": 225.12572720000753
+  },
+  "frozen_full_training": {
+    "status": "passed",
+    "job_receipt": "experiment report/.local/unity-v5-20261119/jobs/dense-full-cap45-v1/receipt.json",
+    "report": "experiment report/.local/unity-v5-20261119/dense-full-cap45-v1/report.json",
+    "corpus_sha256": "66c7dddd786fea0e85199b9cc1e0045232f8878dde4884827c61c88ac09af597",
+    "last_report_status": "passed",
+    "epochs_completed": 5,
+    "verified_training_updates": 21075,
+    "first_epoch_observation": {
+      "path": "experiment report/unity-v5-20261119/full-frozen-epoch1-observation.json",
+      "sha256": "d0442c51c4e04e869b35013a86d51612f33d08de4eb13f0814d694b016922e71"
+    },
+    "result": {
+      "path": "experiment report/unity-v5-20261119/full-frozen-result.json",
+      "sha256": "5d6a64a64cdd07ce7cbffb955f7db08a5ed6082950033fdf587764bc25cd0b89"
+    }
+  },
+  "joint_review_readiness": {
+    "path": "experiment report/unity-v5-20261119/joint-review-readiness.json",
+    "sha256": "28e00f6595590c7cbb476d3f1655319beb600e86307fc55b03ac588a8ff223ed"
+  },
+  "joint_full_training": {
+    "status": "passed",
+    "job_receipt": "experiment report/.local/unity-v5-20261119/jobs/dense-joint-full-v1/receipt.json",
+    "report": "experiment report/.local/unity-v5-20261119/dense-joint-full-v1/report.json",
+    "last_report_status": "passed",
+    "initial_v3_parity": {
+      "path": "experiment report/.local/unity-v5-20261119/dense-joint-full-v1/frozen-native-control.json",
+      "sha256": "2615e495b036d2e44b07f0be6103a3207f2ef33184328709238c66201ae675a1",
+      "images": 1000,
+      "block_match": 0.936,
+      "strict_quality_pass": 0.875,
+      "all_choices_match": true
+    },
+    "epochs_completed": 3,
+    "verified_training_updates": 25290,
+    "first_epoch_observation": {
+      "path": "experiment report/unity-v5-20261119/full-joint-epoch1-observation.json",
+      "sha256": "f1a790ebf9051ba73ca4331698296258b08f82af1fbb66a9740c7eef06d9313a"
+    },
+    "job_result": {
+      "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/jobs/dense-joint-full-v1/receipt.json",
+      "sha256": "9e6733c30c363334e4b456de874459b10f9e57971c356471dbc3ad719303c30c"
+    },
+    "best_epoch": 2
+  },
+  "full_evaluation_readiness": {
+    "path": "experiment report/unity-v5-20261119/full-evaluation-readiness.json",
+    "sha256": "94641c74175a5245db756df7690290c3fc53ebcf8ab0283f1ef2bcbf1f8aab7f"
+  },
+  "historical_gradient_pool": {
+    "path": "experiment report/.local/unity-v5-20261119/gradient-pool-exact560-v1.json",
+    "sha256": "606c23d34a47ed22269b599dbfc0fd4d620faaf8d34f47a7b779b07cb66a33b4",
+    "images": 560,
+    "counts": {
+      "tiles": 2614061,
+      "content_tiles": 2068611,
+      "smooth_tiles": 152723,
+      "smooth_content_tiles": 152723,
+      "bad_tiles": 35112,
+      "bad_content_tiles": 35112,
+      "bad_smooth_tiles": 92,
+      "bad_smooth_content_tiles": 92
+    }
+  },
+  "input_only_inference": {
+    "path": "experiment report/unity-v5-20261119/input-only-inference-verification.json",
+    "sha256": "6c308aab2f2dfaad079d7e3797a7723f8990304c6fc7aba4ce63b672107ffa48"
+  },
+  "exact_candidate_controls": {
+    "path": "experiment report/unity-v5-20261119/exact-candidate-controls.json",
+    "sha256": "b57b43a9d7ba5061cd6c3073cd97f81e49c0dace0aa833beb77efc7866af8fd8",
+    "srgb_validation_images": 938,
+    "content_images": 936
+  },
+  "full_development_result": {
+    "path": "E:/ASTC_Compression/experiment report/unity-v5-20261119/full-development-result.json",
+    "sha256": "9ff936f82f299d3d9b3578b5ffef657e5c63f81833b768bd99c2d3b79e057140"
+  },
+  "human_review": {
+    "status": "completed",
+    "calibration_count": 71,
+    "holdout_count": 64,
+    "manifest": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\development-evaluation-v1\\review-packet\\manifest.json",
+      "sha256": "9d03740f639a2f38cd990ed5ba0c0c42a9356d62f0ca32ad159c5cb10a758f37"
+    },
+    "formal_rule_selected": true,
+    "frozen_calibration_ratings": {
+      "path": "experiment report/.local/unity-v5-20261119/development-evaluation-v1/calibration-ratings-frozen-v1.csv",
+      "sha256": "c5d5f70a87e326e3ed0edc12c11a767b63b63cedda362186426f1187d9013041",
+      "yes": 52,
+      "no": 18,
+      "uncertain": 1
+    },
+    "calibration_receipt": {
+      "path": "experiment report/.local/unity-v5-20261119/development-evaluation-v1/calibration-human-v1.json",
+      "sha256": "45cb17a672eec6d13321408a5295d42daf59b9267d901f3fe678b12ccfd9ffb3"
+    },
+    "frozen_holdout_ratings": {
+      "path": "experiment report/.local/unity-v5-20261119/development-evaluation-v1/holdout-ratings-frozen-v1.csv",
+      "sha256": "5617fb04a5e792f9289aac6679611924526d14e85574d7fb9e27d7e321038083",
+      "yes": 54,
+      "no": 10,
+      "uncertain": 0
+    },
+    "holdout_receipt": {
+      "path": "experiment report/.local/unity-v5-20261119/development-evaluation-v1/holdout-human-v1.json",
+      "sha256": "772094c115ffd8a0d668fc641d7313d87bb958b6db9afe78628b1ac51b3ff0d1"
+    },
+    "result": {
+      "path": "experiment report/unity-v5-20261119/human-review-result.json",
+      "sha256": "72579a6f771f8d58955e623bd59899cde12e62cc43d227856ebb382367f77f94"
+    },
+    "frozen_rule": {
+      "view": "display",
+      "region": "content",
+      "y_db": 28,
+      "x_share": 0.1
+    }
+  },
+  "confirmation_protocol": {
+    "path": "experiment report/unity-v5-20261119/confirmation-frozen-protocol-v1.json",
+    "sha256": "4f5ef7a639954619359be05c5dafe53fe099eba8c0f99c2044d9cbe8a26156dd",
+    "execution_authorized": false,
+    "native_pixels_audited": false
+  },
+  "formal_confirmation_execution": {
+    "status": "completed_independent_human_evaluation",
+    "user_authorized": true,
+    "preflight": "experiment report/unity-v5-20261119/confirmation-execution-preflight-v1.json",
+    "status_report": "experiment report/unity-v5-20261119/confirmation-execution-v2.json",
+    "pixel_revision_preflight": "experiment report/unity-v5-20261119/confirmation-pixel-revision-preflight-v2.json",
+    "native_capture_report": "experiment report/unity-v5-20261119/confirmation-complete-capture-v2.json",
+    "pixel_audit_report": "experiment report/unity-v5-20261119/confirmation-pixel-isolation-v2.json",
+    "evaluation": {
+      "path": "experiment report/unity-v5-20261119/confirmation-evaluation-v1.json",
+      "sha256": "7c9ccebbf77659473f2e0a9f3f74e338a29ead901bb23b0bb3a0f7453097dc56"
+    },
+    "images_evaluated": 1000,
+    "human_evaluation": {
+      "path": "experiment report/unity-v5-20261119/confirmation-human-v1.json",
+      "sha256": "5597d8f155329230bc0b793b041655212ebc2fa4cdac7faae0f805ccdfd90422"
+    },
+    "human_ratings": 1000,
+    "prior_native_capture_report": "experiment report/unity-v5-20261119/unity-v5-confirmation1000-v1-series-recovered-v1.json",
+    "prior_failed_status_report": "experiment report/unity-v5-20261119/confirmation-execution-v1.json",
+    "prior_pixel_audit_report": "experiment report/unity-v5-20261119/confirmation-pixel-isolation-v1.json",
+    "pixel_isolation_required_before_model_evaluation": true
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "status": "post_hoc_same_cohort_descriptive_analysis",
+  "scope": "V5 confirmation1000 after completion of frozen human evaluation",
+  "human_counts": {
+    "no": 809,
+    "yes": 190,
+    "uncertain": 1
+  },
+  "target_positive_count": 171,
+  "verified_pairs": 1000,
+  "source": {
+    "human_result": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v5-20261119\\confirmation-human-v1.json",
+      "sha256": "5597d8f155329230bc0b793b041655212ebc2fa4cdac7faae0f805ccdfd90422"
+    },
+    "frozen_ratings": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\confirmation-execution1000-v1\\formal-evaluation-v1\\confirmation-ratings-frozen-v1.csv",
+      "sha256": "c40b5669f81ff94ea4fe3f020ae47f18ed16aae7bc3a2ef93004d22cdd9575fd"
+    },
+    "blind_pairs": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\confirmation-execution1000-v1\\formal-evaluation-v1\\blind-review\\manifest.json",
+      "sha256": "b75ec81c1267cd953e9d0791490242377a04d7dda8c18aae9fbc281a405d0253"
+    },
+    "measurements": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\confirmation-execution1000-v1\\formal-evaluation-v1\\measurements.json",
+      "sha256": "623953af90d7d41c0f0c87deb3dd5a2369b15991b805fd74f2cdd9e4166b736f"
+    },
+    "machine_result": {
+      "path": "E:\\ASTC_Compression\\experiment report\\unity-v5-20261119\\confirmation-evaluation-v1.json",
+      "sha256": "7c9ccebbf77659473f2e0a9f3f74e338a29ead901bb23b0bb3a0f7453097dc56"
+    },
+    "gradient_mask_and_tile_grid": {
+      "path": "E:\\ASTC_Compression\\src\\adaptive_astc\\data\\unity_tile_errors.py",
+      "sha256": "f91108d1f07138cb944bb3c827651f2e023c9a349adc4b5d80094e39e2685630"
+    },
+    "diagnostic_stdout_sha256": "f27bbb05acb619270e0e1cce7ca3bff732a619000d871365a982f3505d3a6198"
+  },
+  "score_selection": "For each score take the inclusive cutoff at the 171st highest score among the 190 human positives. Include all ties. Calculate precision excluding uncertain labels from the selected count.",
+  "feature_definitions": {
+    "reference": "Unity reference RGB as displayed in the blind review. Preserve aspect ratio and cap the longest side at 384 pixels for reference-only features.",
+    "smooth_area": "Apply UnityTileViews.smooth_mask to the reference reduced with Pillow BOX when required. Report total area fraction and largest four-connected mask component fraction.",
+    "smooth_color_span": "Euclidean norm of the coordinate-wise CIELAB p95 minus p5 in the largest smooth component.",
+    "smooth_span_x_area": "Largest smooth component image area fraction multiplied by smooth_color_span.",
+    "dominant_connected_color": "Use Pillow nearest-neighbor reduction when required. Quantize each RGB channel to 5 bits, identify the most frequent joint RGB bin, then take its largest four-connected region as an image-area fraction.",
+    "strong_neighbor_edge_share": "Fraction of horizontal and vertical pixel adjacencies on the BOX-reduced reference with at least one RGB channel differing by 16 or more.",
+    "reference_only_combined": "Use scipy.stats.rankdata with average tie ranks, divide ranks by 1000, then score max(rank(smooth_span_x_area), (rank(dominant_connected_color) + rank(strong_neighbor_edge_share)) / 2).",
+    "measured_psnr_sweep": "On the original-sized reference/decoded displays, use the frozen bottom-anchored grid and frozen content mask. Compare RGB SSE against the per-tile PSNR cutoff. The 28 dB count and content denominator match every stored formal measurement."
+  },
+  "predicted_at_28_db": [
+    {
+      "name": "frozen_10_percent",
+      "share_threshold": 0.1,
+      "candidates": 120,
+      "true_positive": 68,
+      "uncertain": 0,
+      "recall": 0.35789473684210527
+    },
+    {
+      "name": "5_percent",
+      "share_threshold": 0.05,
+      "candidates": 253,
+      "true_positive": 94,
+      "uncertain": 0,
+      "recall": 0.49473684210526314
+    },
+    {
+      "name": "one_or_more_bad_tiles",
+      "share_threshold": null,
+      "candidates": 829,
+      "true_positive": 138,
+      "uncertain": 1,
+      "recall": 0.7263157894736842
+    }
+  ],
+  "measured_psnr_at_90_recall": [
+    {
+      "y_db": 28,
+      "cutoff_inclusive": 0.0,
+      "candidates": 996,
+      "true_positive": 190,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.19095477386934673,
+      "recall": 1.0,
+      "positives_with_at_least_one_bad_tile": 157
+    },
+    {
+      "y_db": 30,
+      "cutoff_inclusive": 0.0,
+      "candidates": 996,
+      "true_positive": 190,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.19095477386934673,
+      "recall": 1.0,
+      "positives_with_at_least_one_bad_tile": 166
+    },
+    {
+      "y_db": 32,
+      "cutoff_inclusive": 0.0078125,
+      "candidates": 867,
+      "true_positive": 171,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.197459584295612,
+      "recall": 0.9,
+      "positives_with_at_least_one_bad_tile": 172
+    },
+    {
+      "y_db": 35,
+      "cutoff_inclusive": 0.04454454454454455,
+      "candidates": 836,
+      "true_positive": 171,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.20479041916167665,
+      "recall": 0.9,
+      "positives_with_at_least_one_bad_tile": 181
+    },
+    {
+      "y_db": 38,
+      "cutoff_inclusive": 0.12857142857142856,
+      "candidates": 787,
+      "true_positive": 171,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.21755725190839695,
+      "recall": 0.9,
+      "positives_with_at_least_one_bad_tile": 187
+    },
+    {
+      "y_db": 41,
+      "cutoff_inclusive": 0.265625,
+      "candidates": 730,
+      "true_positive": 172,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.23593964334705075,
+      "recall": 0.9052631578947369,
+      "positives_with_at_least_one_bad_tile": 188
+    }
+  ],
+  "reference_only_at_90_recall": {
+    "smooth_share": {
+      "cutoff_inclusive": 0.0028211805555555555,
+      "candidates": 896,
+      "true_positive": 171,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.19106145251396647,
+      "recall": 0.9,
+      "positive_median": 0.04562717013888889,
+      "negative_median": 0.053507486979166664
+    },
+    "largest_smooth_share": {
+      "cutoff_inclusive": 0.0007798936631944445,
+      "candidates": 910,
+      "true_positive": 171,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.18811881188118812,
+      "recall": 0.9,
+      "positive_median": 0.01019287109375,
+      "negative_median": 0.007269965277777778
+    },
+    "smooth_color_span": {
+      "cutoff_inclusive": 4.9607096920719895,
+      "candidates": 891,
+      "true_positive": 173,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.1943820224719101,
+      "recall": 0.9105263157894737,
+      "positive_median": 31.71843533295313,
+      "negative_median": 29.16341563178983
+    },
+    "smooth_span_x_area": {
+      "cutoff_inclusive": 0.008141741405574433,
+      "candidates": 888,
+      "true_positive": 171,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.1927846674182638,
+      "recall": 0.9,
+      "positive_median": 0.2834947606457226,
+      "negative_median": 0.20562673282568888
+    },
+    "dominant_connected_color": {
+      "cutoff_inclusive": 0.121,
+      "candidates": 673,
+      "true_positive": 171,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.2544642857142857,
+      "recall": 0.9,
+      "positive_median": 0.5128173828125,
+      "negative_median": 0.15059407552083334
+    },
+    "strong_neighbor_edge_share": {
+      "cutoff_inclusive": 0.008189866187989557,
+      "candidates": 911,
+      "true_positive": 171,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.1879120879120879,
+      "recall": 0.9,
+      "positive_median": 0.07167747769799826,
+      "negative_median": 0.0849277904699739
+    },
+    "ranks OR grad + mean flat/edge": {
+      "cutoff_inclusive": 0.601,
+      "candidates": 613,
+      "true_positive": 171,
+      "uncertain": 0,
+      "precision_on_resolved_candidates": 0.27895595432300163,
+      "recall": 0.9
+    }
+  },
+  "reference_and_prediction_at_90_recall": {
+    "ranks OR grad + PSNR": {
+      "cutoff_inclusive": 0.587,
+      "candidates": 678,
+      "true_positive": 171,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.25258493353028066,
+      "recall": 0.9
+    },
+    "ranks mean grad + PSNR": {
+      "cutoff_inclusive": 0.39249999999999996,
+      "candidates": 772,
+      "true_positive": 171,
+      "uncertain": 1,
+      "precision_on_resolved_candidates": 0.22178988326848248,
+      "recall": 0.9
+    }
+  }
+}

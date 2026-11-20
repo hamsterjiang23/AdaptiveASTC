@@ -1,0 +1,232 @@
+{
+  "status": "completed_development_review",
+  "scope": "Human-labeled union of five development Top-20 queues in each group-disjoint partition",
+  "selected_variant": "joint",
+  "frozen_rule": {
+    "view": "display",
+    "region": "content",
+    "y_db": 28,
+    "x_share": 0.1
+  },
+  "screening_candidate": [
+    8,
+    "fastest"
+  ],
+  "calibration": {
+    "images": 71,
+    "yes": 52,
+    "no": 18,
+    "uncertain": 1,
+    "receipt": {
+      "path": "experiment report/.local/unity-v5-20261119/development-evaluation-v1/calibration-human-v1.json",
+      "sha256": "45cb17a672eec6d13321408a5295d42daf59b9267d901f3fe678b12ccfd9ffb3"
+    },
+    "ratings_sha256": "c5d5f70a87e326e3ed0edc12c11a767b63b63cedda362186426f1187d9013041",
+    "threshold": {
+      "dense": {
+        "true_positive": 28,
+        "false_positive": 6,
+        "true_negative": 12,
+        "false_negative": 24,
+        "resolved": 70,
+        "covered_resolved": 70,
+        "not_rated_definitively": 1,
+        "precision": 0.8235294117647058,
+        "recall": 0.5384615384615384,
+        "specificity": 0.6666666666666666
+      },
+      "exact_tiles": {
+        "true_positive": 37,
+        "false_positive": 5,
+        "true_negative": 13,
+        "false_negative": 15,
+        "resolved": 70,
+        "covered_resolved": 70,
+        "not_rated_definitively": 1,
+        "precision": 0.8809523809523809,
+        "recall": 0.7115384615384616,
+        "specificity": 0.7222222222222222
+      }
+    },
+    "top20": {
+      "scope": "Recall over resolved positives in the annotated queue union",
+      "methods": {
+        "dense": {
+          "true_positive": 15,
+          "false_positive": 4,
+          "true_negative": 14,
+          "false_negative": 37,
+          "resolved": 70,
+          "covered_resolved": 70,
+          "not_rated_definitively": 1,
+          "precision": 0.7894736842105263,
+          "recall": 0.28846153846153844,
+          "specificity": 0.7777777777777778
+        },
+        "exact_tile_psnr": {
+          "true_positive": 19,
+          "false_positive": 1,
+          "true_negative": 17,
+          "false_negative": 33,
+          "resolved": 70,
+          "covered_resolved": 70,
+          "not_rated_definitively": 1,
+          "precision": 0.95,
+          "recall": 0.36538461538461536,
+          "specificity": 0.9444444444444444
+        },
+        "fixed_rule_selected_exact_tiles": {
+          "true_positive": 20,
+          "false_positive": 0,
+          "true_negative": 18,
+          "false_negative": 32,
+          "resolved": 70,
+          "covered_resolved": 70,
+          "not_rated_definitively": 1,
+          "precision": 1.0,
+          "recall": 0.38461538461538464,
+          "specificity": 1.0
+        },
+        "l_p95_primary": {
+          "true_positive": 9,
+          "false_positive": 10,
+          "true_negative": 8,
+          "false_negative": 43,
+          "resolved": 70,
+          "covered_resolved": 70,
+          "not_rated_definitively": 1,
+          "precision": 0.47368421052631576,
+          "recall": 0.17307692307692307,
+          "specificity": 0.4444444444444444
+        },
+        "exact_smooth_tile_psnr": {
+          "true_positive": 14,
+          "false_positive": 5,
+          "true_negative": 13,
+          "false_negative": 38,
+          "resolved": 70,
+          "covered_resolved": 70,
+          "not_rated_definitively": 1,
+          "precision": 0.7368421052631579,
+          "recall": 0.2692307692307692,
+          "specificity": 0.7222222222222222
+        }
+      }
+    }
+  },
+  "holdout": {
+    "images": 64,
+    "yes": 54,
+    "no": 10,
+    "uncertain": 0,
+    "receipt": {
+      "path": "experiment report/.local/unity-v5-20261119/development-evaluation-v1/holdout-human-v1.json",
+      "sha256": "772094c115ffd8a0d668fc641d7313d87bb958b6db9afe78628b1ac51b3ff0d1"
+    },
+    "ratings_sha256": "5617fb04a5e792f9289aac6679611924526d14e85574d7fb9e27d7e321038083",
+    "threshold": {
+      "dense": {
+        "true_positive": 36,
+        "false_positive": 1,
+        "true_negative": 9,
+        "false_negative": 18,
+        "resolved": 64,
+        "covered_resolved": 64,
+        "not_rated_definitively": 0,
+        "precision": 0.972972972972973,
+        "recall": 0.6666666666666666,
+        "specificity": 0.9
+      },
+      "exact_tiles": {
+        "true_positive": 43,
+        "false_positive": 3,
+        "true_negative": 7,
+        "false_negative": 11,
+        "resolved": 64,
+        "covered_resolved": 64,
+        "not_rated_definitively": 0,
+        "precision": 0.9347826086956522,
+        "recall": 0.7962962962962963,
+        "specificity": 0.7
+      }
+    },
+    "top20": {
+      "scope": "Recall over resolved positives in the annotated queue union",
+      "methods": {
+        "dense": {
+          "true_positive": 20,
+          "false_positive": 0,
+          "true_negative": 10,
+          "false_negative": 34,
+          "resolved": 64,
+          "covered_resolved": 64,
+          "not_rated_definitively": 0,
+          "precision": 1.0,
+          "recall": 0.37037037037037035,
+          "specificity": 1.0
+        },
+        "exact_tile_psnr": {
+          "true_positive": 20,
+          "false_positive": 0,
+          "true_negative": 10,
+          "false_negative": 34,
+          "resolved": 64,
+          "covered_resolved": 64,
+          "not_rated_definitively": 0,
+          "precision": 1.0,
+          "recall": 0.37037037037037035,
+          "specificity": 1.0
+        },
+        "fixed_rule_selected_exact_tiles": {
+          "true_positive": 18,
+          "false_positive": 2,
+          "true_negative": 8,
+          "false_negative": 36,
+          "resolved": 64,
+          "covered_resolved": 64,
+          "not_rated_definitively": 0,
+          "precision": 0.9,
+          "recall": 0.3333333333333333,
+          "specificity": 0.8
+        },
+        "l_p95_primary": {
+          "true_positive": 14,
+          "false_positive": 6,
+          "true_negative": 4,
+          "false_negative": 40,
+          "resolved": 64,
+          "covered_resolved": 64,
+          "not_rated_definitively": 0,
+          "precision": 0.7,
+          "recall": 0.25925925925925924,
+          "specificity": 0.4
+        },
+        "exact_smooth_tile_psnr": {
+          "true_positive": 18,
+          "false_positive": 2,
+          "true_negative": 8,
+          "false_negative": 36,
+          "resolved": 64,
+          "covered_resolved": 64,
+          "not_rated_definitively": 0,
+          "precision": 0.9,
+          "recall": 0.3333333333333333,
+          "specificity": 0.8
+        }
+      }
+    }
+  },
+  "verification": {
+    "independent_confusion_and_top20_replay_from_bound_csv_and_tile_counts": true,
+    "paired_images_rehashed": 270,
+    "disjoint_asset_groups_and_review_images": true,
+    "frozen_protocol_file_bindings_verified": true,
+    "source_identity_overlap": 0,
+    "native_pixel_isolation_verified": false
+  },
+  "confirmation_protocol": {
+    "path": "experiment report/unity-v5-20261119/confirmation-frozen-protocol-v1.json",
+    "sha256": "4f5ef7a639954619359be05c5dafe53fe099eba8c0f99c2044d9cbe8a26156dd"
+  },
+  "confirmation_opened": false
+}

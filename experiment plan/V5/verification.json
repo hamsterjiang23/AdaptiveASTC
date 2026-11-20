@@ -1,0 +1,64 @@
+{
+  "schema": "unity-v5-plan-verification-v1",
+  "status": "passed",
+  "date": "2026-11-19",
+  "scope": "plan_documents_and_source_identity_only",
+  "checks": [
+    {
+      "name": "json_parse",
+      "status": "passed",
+      "files": ["matrix.json", "evidence.json"]
+    },
+    {
+      "name": "epistemic_markers",
+      "status": "passed",
+      "prose_paragraphs": 12,
+      "unmarked_prose_paragraphs": 0,
+      "table_rows": 41,
+      "unmarked_data_rows": 0,
+      "unmarked_rows_are_headers": 7
+    },
+    {
+      "name": "markdown_navigation",
+      "status": "passed",
+      "relative_targets_checked": "all relative links in README.md resolve",
+      "broken_links": 0
+    },
+    {
+      "name": "cited_source_lines",
+      "status": "passed",
+      "checked": [
+        "experiment plan/V4/README.md L13 contains the checkpoint SHA-256 783c6928...ada85",
+        "experiment plan/V4/README.md L18 contains 93.6% / 80.4% / 87.5% / 1.627",
+        "experiment plan/V4/matrix.json L16-L18 contains train 10000, validation 1000"
+      ]
+    },
+    {
+      "name": "bound_source_sha256",
+      "status": "passed",
+      "files": 10,
+      "detail": "see evidence.json code_bindings / plan_documents / tile_label_scripts"
+    },
+    {
+      "name": "directory_was_empty_before_write",
+      "status": "passed",
+      "detail": "Glob experiment plan/V5/** returned no files before creation; no existing file was overwritten"
+    }
+  ],
+  "execution": {
+    "scope": "plan_creation",
+    "development_experiments_started": false,
+    "model_forward_calls": 0,
+    "training_updates": 0,
+    "actual_encoding_calls": 0,
+    "tile_labels_generated": false,
+    "confirmation_execution_authorized": false,
+    "results": null
+  },
+  "check_limitations": [
+    "Plan document consistency and source identities only",
+    "Numbers carried from the pre-compaction session are marked [opinion] in the plan and remain unverified until the label audit stage reproduces them",
+    "No runtime implementation, tile labels, model training or encoding was performed",
+    "The tile-PSNR scripts are untracked tmp scratch; they are bound by SHA here but are not yet tracked implementations"
+  ]
+}

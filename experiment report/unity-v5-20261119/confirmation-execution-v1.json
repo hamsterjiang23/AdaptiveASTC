@@ -1,0 +1,50 @@
+{
+  "status": "stopped",
+  "phase": "capture_all_native_inputs",
+  "images": 1000,
+  "screening_rule": {
+    "view": "display",
+    "region": "content",
+    "y_db": 28,
+    "x_share": 0.1
+  },
+  "authorization_record": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v5-20261119\\confirmation-execution-preflight-v1.json",
+    "sha256": "59ac62b96f2fdcbc7840c0d3dfec7c2d2c06c49a2243bb8d0f390921f6c34a48"
+  },
+  "frozen_protocol": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v5-20261119\\confirmation-frozen-protocol-v1.json",
+    "sha256": "4f5ef7a639954619359be05c5dafe53fe099eba8c0f99c2044d9cbe8a26156dd"
+  },
+  "execution_sources": {
+    "script/run_unity_v5_confirmation.py": "5a2576d699119733cc8668b7ce431bd64c4b04d263ff97ba479074a38c83bc7c",
+    "script/audit_unity_v5_confirmation_pixels.py": "15782fe749e5f7aea2cf1c7fcdd6bb7a8ed33733f8ddef83d10ceda6ef0f05ea",
+    "script/evaluate_unity_v5_confirmation.py": "d0c1624459938427d76535cb24a590851a2731ae9c5aad06d0de382f6523462a",
+    "script/prepare_unity_v5_confirmation_capture.py": "8495c57d2f0dba694928fe6755add17a0523966363e0b5fe5f698c78f2575469",
+    "src/adaptive_astc/data/unity_capture_input.py": "d3de1264d6a495941d00fc4824dadaaf054e71644320c43bca1d48ca1317e7fb",
+    "src/adaptive_astc/utils/unity_evaluation_seal.py": "b10a2e420acfb90eaf97c677b0b25d62e732645717ad01a79451afc66c8cd143",
+    "reproductions/unity_search_baseline/capture_policy.py": "ebd3062dbb5712515d24931d42475fe77aed6898177d7109a2cd88b0f5694619",
+    "reproductions/unity_search_baseline/near_duplicates.py": "4d5bd163dadd82285e74b4ae4e5ae4290336f81b7fb890cb73d3b810337dc913",
+    "reproductions/unity_search_baseline/supplement.py": "0bf58810a71d30cfebe497d7a67012d6370802001c7297ac3013636a30be48f8",
+    "reproductions/unity_search_baseline/v3_deployment.py": "bc0d52d6167ccaaa440260cf460dbe058fc5c03e83b09cf506436c0c79dc7632",
+    "reproductions/unity_search_baseline/quality.py": "d75e67aea394cfafe5cf1e30fffd63abc74f8d29f99893b574f4d9ca1566bc03"
+  },
+  "formal_evaluation_started": false,
+  "smoke": {
+    "start": 0,
+    "images": 2,
+    "run_id": "unity-v5-confirmation1000-v1-smoke2",
+    "config": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\confirmation-execution1000-v1\\smoke-config.json",
+    "config_sha256": "df5c4dffb4062159eb05d1f5dc19df8a50a8dfbc818390eb594cf3809c9f7720",
+    "report": "E:\\ASTC_Compression\\experiment report\\unity-v5-20261119\\unity-v5-confirmation1000-v1-smoke2.json",
+    "report_sha256": "06e92a70c734162a72705f204255fbb3b5d3bc6493261935e200fd162002dfb5",
+    "reference_receipt_sha256": "5a9e3328d50e860541b9af05c2eeb6fbc6bdf4f812223bbfb1fd1dc03024db6f",
+    "phase_receipt_sha256": "2505398c8ee867dec4357a55a945783b8c811263a1b5a88e10d3ce57317dc3c4",
+    "managed_restoration_sha256": "910918214a69e78155ac257e6028f04877fda7ed093ef8d2b728f9040bdcd66c",
+    "editor_process_seconds": 454.5145449999836,
+    "capture_wall_seconds": 466.30393160000676,
+    "callbacks": 5
+  },
+  "error": "RuntimeError('Full native capture stopped. See E:\\\\ASTC_Compression\\\\experiment report\\\\unity-v5-20261119\\\\unity-v5-confirmation1000-v1-series.json')",
+  "wall_seconds": 6001.345248400001
+}

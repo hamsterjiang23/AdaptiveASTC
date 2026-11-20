@@ -1,0 +1,121 @@
+{
+  "status": "observed_first_epoch",
+  "scope": "Interim full frozen training development observation, recorded before final checkpoint selection and reload",
+  "epoch": 1,
+  "training_updates": 4215,
+  "counts": {
+    "train": 10000,
+    "validation": 1000
+  },
+  "patch_counts": {
+    "train": 67436,
+    "validation": 7173
+  },
+  "label_corpus_sha256": "66c7dddd786fea0e85199b9cc1e0045232f8878dde4884827c61c88ac09af597",
+  "validation_at_observation_sha256": "2eba2fa49d0cdbefa917d76eeb9711ddd0b21ac70d13756ad38830c1bb5a76dc",
+  "report_epoch_record_fingerprint": "ad440aa24c997c2a0016daa7034c2088b134b41cb8876931d5c74c902b470443",
+  "display": {
+    "log_mse_rmse": 2.5170527275729966,
+    "near_threshold_psnr_rmse_db": {
+      "28": [
+        4.229129451042509,
+        4.2172855005986305,
+        3.729371018124533,
+        3.725486429960206,
+        3.7228504067805597,
+        3.7827116901629227,
+        3.741174186595545,
+        3.506765686201346,
+        3.6204679499192642,
+        3.5628035051209888,
+        3.798281994954099,
+        3.767382604616005,
+        3.9330609425433485,
+        3.7803906795231685,
+        3.7659628603650814,
+        4.076539954156493,
+        3.7949652374733724,
+        3.666502181536196,
+        3.7726165496635407,
+        3.7358548490878363
+      ],
+      "30": [
+        4.017402048663564,
+        4.013918408853632,
+        3.647346004844736,
+        3.626509454412527,
+        3.6629044932907626,
+        3.683810207968431,
+        3.67131706304436,
+        3.3787856042392614,
+        3.5387088278858383,
+        3.503797476208673,
+        3.6769573090311005,
+        3.6500431819407537,
+        3.669121941672264,
+        3.644999582654864,
+        3.6775332851595692,
+        3.7886480116958494,
+        3.5571857699470577,
+        3.516451697100309,
+        3.9179115149335777,
+        3.893327118299838
+      ]
+    },
+    "bad_share_mae": {
+      "28": {
+        "all": 0.02789877556423563,
+        "content": 0.04058352024432946,
+        "smooth": 0.01439739344240782
+      },
+      "30": {
+        "all": 0.03405444746750302,
+        "content": 0.049077173563319594,
+        "smooth": 0.02613620800616697
+      }
+    }
+  },
+  "first_epoch_oracle_comparison": {
+    "image_count": 938,
+    "top20_overlap_for_display_content_30db": 11,
+    "spearman_for_display_content_30db": 0.8430570885377121,
+    "6x6_fastest_at_30_db": {
+      "images": 936,
+      "true_mean_delta": -0.08633064666906988,
+      "predicted_mean_delta": -0.07948913584971626,
+      "delta_mae": 0.041512950095135635,
+      "moves_below_bad_share_threshold": {
+        "0.03": {
+          "predicted": 319,
+          "measured": 330,
+          "both": 227
+        },
+        "0.05": {
+          "predicted": 274,
+          "measured": 315,
+          "both": 202
+        },
+        "0.1": {
+          "predicted": 213,
+          "measured": 248,
+          "both": 156
+        }
+      }
+    },
+    "step_comparison": {
+      "display@28:content": {
+        "calibration_images": 247,
+        "holdout_images": 252,
+        "holdout_step_mae": 0.05413411995872992,
+        "holdout_dense_mae": 0.019608759660586516
+      },
+      "display@30:content": {
+        "calibration_images": 247,
+        "holdout_images": 252,
+        "holdout_step_mae": 0.07816095627471695,
+        "holdout_dense_mae": 0.026697474868663248
+      }
+    }
+  },
+  "test_opened": false
+}

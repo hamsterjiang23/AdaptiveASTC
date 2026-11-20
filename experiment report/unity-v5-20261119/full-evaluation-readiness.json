@@ -1,0 +1,107 @@
+{
+  "status": "ready_awaiting_completed_training",
+  "jobs_observed": {
+    "labels": {
+      "receipt": "experiment report/.local/unity-v5-20261119/jobs/labels-full-v1/receipt.json",
+      "pid": 87128,
+      "log": "train: 7808/10000 labels verified"
+    },
+    "frozen": {
+      "receipt": "experiment report/.local/unity-v5-20261119/jobs/dense-full-cap45-v1/receipt.json",
+      "pid": 20884,
+      "log": "Waiting for label job 87128"
+    },
+    "joint": {
+      "receipt": "experiment report/.local/unity-v5-20261119/jobs/dense-joint-full-v1/receipt.json",
+      "pid": 53608,
+      "log": "Waiting for frozen V5 job 20884"
+    }
+  },
+  "committed_training_tile_labels": 7837,
+  "joint_formal_recipe_smoke": {
+    "path": "experiment report/.local/unity-v5-20261119/dense-joint-cap45-b8-smoke-v1/report.json",
+    "sha256": "d057e61ff365ef591d044012529075feaf3a5e43e8578a33a6581d611348d83a",
+    "training_updates": 4,
+    "peak_cuda_memory_bytes": 664627200
+  },
+  "prototype_candidate_change_diagnostic": {
+    "path": "experiment report/.local/unity-v5-20261119/screen-prototype128-upgrade-v2/report.json",
+    "sha256": "1a8d0bad24f9c5ca5a1763543170e20b29498aeae0b7d311581695dc810aded7",
+    "scope": "128px development prototype, display view content tile share",
+    "content_30_db": {
+      "8x8_fast@30": {
+        "images": 195,
+        "true_mean_delta": -0.0071198975006678345,
+        "predicted_mean_delta": -0.004223316714386119,
+        "delta_mae": 0.010408660505886971,
+        "moves_below_bad_share_threshold": {
+          "0.03": {
+            "predicted": 7,
+            "measured": 4,
+            "both": 0
+          },
+          "0.05": {
+            "predicted": 2,
+            "measured": 3,
+            "both": 0
+          },
+          "0.1": {
+            "predicted": 3,
+            "measured": 7,
+            "both": 0
+          }
+        }
+      },
+      "8x8_thorough@30": {
+        "images": 195,
+        "true_mean_delta": -0.03329561907302923,
+        "predicted_mean_delta": -0.021049422155330486,
+        "delta_mae": 0.03821460841584025,
+        "moves_below_bad_share_threshold": {
+          "0.03": {
+            "predicted": 24,
+            "measured": 15,
+            "both": 0
+          },
+          "0.05": {
+            "predicted": 18,
+            "measured": 17,
+            "both": 1
+          },
+          "0.1": {
+            "predicted": 15,
+            "measured": 19,
+            "both": 1
+          }
+        }
+      },
+      "6x6_fastest@30": {
+        "images": 195,
+        "true_mean_delta": -0.09991237180469954,
+        "predicted_mean_delta": -0.026572452993206257,
+        "delta_mae": 0.08822679054553886,
+        "moves_below_bad_share_threshold": {
+          "0.03": {
+            "predicted": 30,
+            "measured": 71,
+            "both": 8
+          },
+          "0.05": {
+            "predicted": 25,
+            "measured": 69,
+            "both": 8
+          },
+          "0.1": {
+            "predicted": 18,
+            "measured": 60,
+            "both": 5
+          }
+        }
+      }
+    },
+    "same_pool_psnr35_step_valid": 62
+  },
+  "full_outputs_pending": true,
+  "human_ratings_collected": 0,
+  "confirmation_opened": false
+}

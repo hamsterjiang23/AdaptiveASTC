@@ -1,0 +1,83 @@
+{
+  "schema": "unity-v5-plan-evidence-v1",
+  "created_date": "2026-11-19",
+  "scope": "plan_creation",
+  "artifacts": {
+    "checkpoint": {
+      "path": "V3 selected Unity input model checkpoint",
+      "sha256": "783c69281d127362882a6a84935d928857f33745bb90e282cfb4b648062ada85",
+      "source": "experiment plan/V4/README.md#L13 (artifacts.checkpoint cited there)"
+    }
+  },
+  "dataset": {
+    "train_images": 10000,
+    "validation_images": 1000,
+    "selection_split": "validation",
+    "confirmation": "sealed_untouched",
+    "source": "experiment plan/V4/matrix.json#L16-L18"
+  },
+  "parent_baseline": {
+    "block_accuracy": 0.936,
+    "full_choice_accuracy": 0.804,
+    "strict_quality_pass": 0.875,
+    "encodes_per_image": 1.627,
+    "source": "experiment plan/V4/README.md#L18"
+  },
+  "existing_supervision": {
+    "granularity": "per_240_patch_rgba_channel_sse",
+    "has_per_8x8_tile": false,
+    "source": "AGENTS.md 原生patch监督条目"
+  },
+  "tile_label_scripts": {
+    "tile_psnr.py": {
+      "sha256": "2b99907cc9c79e95f22f239e377ae4a017b2d540cefef721115414e25036d684",
+      "role": "8x8 tile PSNR over native RGB / native RGBA / display views",
+      "note": "untracked tmp scratch; to be re-derived as a tracked implementation in the label audit stage"
+    },
+    "check_xy.py": {
+      "sha256": "52e005abc6afce145d880dda33db9b400b2faa586c229d14ce211ae429236412",
+      "role": "read-only X/Y follow-up: denominators, smooth vs other content, budget table, RMSE equivalents",
+      "note": "writes nothing"
+    }
+  },
+  "code_bindings": {
+    "src/adaptive_astc/models/unity_quality.py": {
+      "sha256": "0a49302ab3ac621d9ea3f9cc0c01e12112e9b4419875d298fdbad06b907ee0ac",
+      "role": "V3 model; metadata_conditioner is figure-level, spatial broadcast required for the dense head"
+    },
+    "src/adaptive_astc/data/unity_patch_dataset.py": {
+      "sha256": "daf0217e9e566e36864a2daa69594d0736ee641a0a5c72d97f688be804d8f008",
+      "role": "240 patch padding: edge fill on right and bottom, valid mask"
+    },
+    "reproductions/unity_search_baseline/candidate_archive.py": {
+      "sha256": "3aea5d23bebb5dc39685480b31ac565919c252a6ca58331822b0addb30d0e72b",
+      "role": "archived decoded PNG identity; native PNG compared after vertical flip"
+    }
+  },
+  "plan_documents": {
+    "experiment plan/V3/README.md": "c939610dec8a998dfca452d458d9124b6a359d7de4dcf92d646a1d555e447ccf",
+    "experiment plan/V3/matrix.json": "6a16fdb6699f871b0d615382943d44e19cd5b0d93fc120889fdd4797ea3a4cef",
+    "experiment plan/V4/README.md": "2dbcfab7c6792c6cb504cc1500ac09fd23c108f9492796ec7505654eb18525a2",
+    "experiment plan/V4/matrix.json": "88a7801c2cd00157be6394343a09e9d958c1c75c0a22a147bf445202a68cfcbd",
+    "experiment report/V4/README.md": "7c6c98e4215847c77d400d6817514aa69be0dca7c9c39d37628c50cd4b4e75f9"
+  },
+  "unverified_observations": {
+    "note": "Numbers quoted from the pre-compaction session are marked [opinion] in the plan and must be reproduced in the label audit stage before being used for a decision.",
+    "items": [
+      "known-image bad-tile counts and shares at Y=28",
+      "560-image pool smooth vs other-content bad rates",
+      "Spearman of tile-PSNR against L_p95_primary and native PSNR",
+      "L_p95_primary ranks of 615/616/617",
+      "budget table and 110-image subset results"
+    ]
+  },
+  "execution": {
+    "scope": "plan_creation",
+    "development_experiments_started": false,
+    "model_forward_calls": 0,
+    "training_updates": 0,
+    "actual_encoding_calls": 0,
+    "tile_labels_generated": false,
+    "confirmation_execution_authorized": false
+  }
+}

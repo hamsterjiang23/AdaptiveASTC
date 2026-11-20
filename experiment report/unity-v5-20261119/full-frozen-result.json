@@ -1,0 +1,93 @@
+{
+  "status": "passed",
+  "scope": "Completed V5 frozen development training and full checkpoint reload",
+  "counts": {
+    "train": 10000,
+    "validation": 1000
+  },
+  "patch_counts": {
+    "train": 67436,
+    "validation": 7173
+  },
+  "epochs": 5,
+  "training_updates": 21075,
+  "best_epoch": 1,
+  "selection_metric": "Average of 28 and 30 dB display content bad-share MAE, then log MSE RMSE",
+  "per_epoch": [
+    {
+      "epoch": 1,
+      "display_content_bad_share_mae": {
+        "28": 0.04058352024432946,
+        "30": 0.049077173563319594
+      },
+      "mean_content_mae": 0.04483034690382452,
+      "display_log_mse_rmse": 2.5170527275729966
+    },
+    {
+      "epoch": 2,
+      "display_content_bad_share_mae": {
+        "28": 0.04487724901497061,
+        "30": 0.054798804354229624
+      },
+      "mean_content_mae": 0.04983802668460012,
+      "display_log_mse_rmse": 2.422698898053424
+    },
+    {
+      "epoch": 3,
+      "display_content_bad_share_mae": {
+        "28": 0.055978533390121,
+        "30": 0.06892790108466282
+      },
+      "mean_content_mae": 0.06245321723739191,
+      "display_log_mse_rmse": 2.477003805890951
+    },
+    {
+      "epoch": 4,
+      "display_content_bad_share_mae": {
+        "28": 0.047205807063761776,
+        "30": 0.05704389071659141
+      },
+      "mean_content_mae": 0.052124848890176594,
+      "display_log_mse_rmse": 2.5728266049575326
+    },
+    {
+      "epoch": 5,
+      "display_content_bad_share_mae": {
+        "28": 0.05731249387942012,
+        "30": 0.06995253060570808
+      },
+      "mean_content_mae": 0.0636325122425641,
+      "display_log_mse_rmse": 2.3944685295773946
+    }
+  ],
+  "checkpoint_reloaded": true,
+  "native_parameters_and_buffers_unchanged": true,
+  "native_state_sha256": "ef8ebc46d9d92b32cb3a841650cb2e499ff5eb6917319f09b16d8006ca125c01",
+  "wall_seconds": 1984.6017883000022,
+  "peak_cuda_memory_bytes": 240864768,
+  "label_corpus": {
+    "path": "experiment report/.local/unity-v5-20261119/labels-full-v1/corpus.json",
+    "sha256": "66c7dddd786fea0e85199b9cc1e0045232f8878dde4884827c61c88ac09af597"
+  },
+  "training_report": {
+    "path": "experiment report/.local/unity-v5-20261119/dense-full-cap45-v1/report.json",
+    "sha256": "d5dd07258821835a642efc4824dbc1b8e30a23803e62e23a0027e2133f3b7817"
+  },
+  "job_receipt": {
+    "path": "experiment report/.local/unity-v5-20261119/jobs/dense-full-cap45-v1/receipt.json",
+    "sha256": "14606b8e7c28c4e9c4d6a3851055e8711d0fafec8508d0206527797840820d3a"
+  },
+  "checkpoint": {
+    "path": "experiment report/.local/unity-v5-20261119/dense-full-cap45-v1/best-head.pt",
+    "sha256": "f37770193c98b41669380d906704f03ddf07b4e044338a01ea7e28f08878cf7b"
+  },
+  "validation": {
+    "path": "experiment report/.local/unity-v5-20261119/dense-full-cap45-v1/best-validation.json",
+    "sha256": "2eba2fa49d0cdbefa917d76eeb9711ddd0b21ac70d13756ad38830c1bb5a76dc"
+  },
+  "selected_epoch_development_observation": {
+    "path": "experiment report/unity-v5-20261119/full-frozen-epoch1-observation.json",
+    "sha256": "d0442c51c4e04e869b35013a86d51612f33d08de4eb13f0814d694b016922e71"
+  },
+  "test_opened": false
+}

@@ -1,0 +1,65 @@
+{
+  "status": "machine_evaluation_complete_awaiting_independent_human_ratings",
+  "test_opened": true,
+  "images": 1000,
+  "training_updates": 0,
+  "pixel_gate": {
+    "path": "E:\\ASTC_Compression\\experiment report\\unity-v5-20261119\\confirmation-pixel-isolation-v2.json",
+    "sha256": "3820c40525cde780f4dbd0f6c6dc22d33747b92b8f01f2cb08e343095d43d1f8"
+  },
+  "seal": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-confirmation-seals\\cec2764f249936a64393cee7326e2ca7fa6ce1df51f9acb508161f668138b8e1\\seal.json",
+    "sha256": "7093eec62f3761acca80b161afba1a792c27a844a67c84d2ad2e423fbf4a6a15"
+  },
+  "screening_rule": {
+    "view": "display",
+    "region": "content",
+    "y_db": 28,
+    "x_share": 0.1
+  },
+  "wall_seconds": 2351.2269329000264,
+  "screening_all": {
+    "images": 1000,
+    "images_with_content": 996,
+    "predicted_flags": 120,
+    "exact_flags": 172,
+    "true_positive_against_exact_rule": 117,
+    "precision_against_exact_rule": 0.975,
+    "recall_against_exact_rule": 0.6802325581395349,
+    "mean_absolute_bad_share_error": 0.02226110741604287
+  },
+  "screening_srgb_color": {
+    "images": 991,
+    "images_with_content": 987,
+    "predicted_flags": 119,
+    "exact_flags": 171,
+    "true_positive_against_exact_rule": 116,
+    "precision_against_exact_rule": 0.9747899159663865,
+    "recall_against_exact_rule": 0.6783625730994152,
+    "mean_absolute_bad_share_error": 0.022383372603358185
+  },
+  "native_policy": {
+    "v3": {
+      "block_size_match_rate": 0.984,
+      "strict_quality_pass_rate": 0.862
+    },
+    "v5": {
+      "block_size_match_rate": 0.991,
+      "strict_quality_pass_rate": 0.86
+    }
+  },
+  "native_strict_regressions_from_v3": [
+    22,
+    713
+  ],
+  "native_encoding_calls": 2658,
+  "blind_review_packet": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\confirmation-execution1000-v1\\formal-evaluation-v1\\blind-review\\manifest.json",
+    "sha256": "b75ec81c1267cd953e9d0791490242377a04d7dda8c18aae9fbc281a405d0253"
+  },
+  "human_precision_and_recall": null,
+  "measurements": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\confirmation-execution1000-v1\\formal-evaluation-v1\\measurements.json",
+    "sha256": "623953af90d7d41c0f0c87deb3dd5a2369b15991b805fd74f2cdd9e4166b736f"
+  }
+}

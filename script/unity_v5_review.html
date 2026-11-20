@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V5 渐变台阶盲评</title>
+<style>
+  :root { color-scheme: dark; --ink: #eeece4; --muted: #bab8ae; --edge: #45443e; --accent: #e6c479; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #1c1d1b; color: var(--ink); font: 16px/1.55 "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; }
+  main { max-width: 1500px; margin: auto; padding: clamp(16px, 3vw, 44px); }
+  header { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 12px 32px; }
+  h1 { margin: 0; font: 700 clamp(26px, 4vw, 44px)/1.16 "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; letter-spacing: -.025em; }
+  p { margin: 8px 0 0; }
+  header p, #shortcut, #status { color: var(--muted); }
+  aside { display: grid; gap: 5px; font-variant-numeric: tabular-nums; }
+  progress { width: 150px; height: 6px; border: 0; border-radius: 0; accent-color: var(--accent); }
+  nav, footer { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+  nav { margin-top: 24px; padding: 12px 0; border-top: 1px solid var(--edge); }
+  #position { min-width: 132px; font: 14px/1.4 Consolas, monospace; color: var(--muted); }
+  .zoom { display: flex; align-items: center; gap: 4px; }
+  #zoom-reset { min-width: 68px; font-variant-numeric: tabular-nums; }
+  .spacer { flex: 1; }
+  button { background: #262724; border: 1px solid var(--edge); color: var(--ink); padding: 8px 13px; font: inherit; cursor: pointer; }
+  button:hover:not(:disabled), button:focus-visible { border-color: var(--accent); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button:disabled { opacity: .5; cursor: default; }
+  .compare { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+  figure { margin: 0; min-width: 0; border: 1px solid var(--edge); background: #292a27; }
+  figcaption { padding: 8px 12px; font-size: 14px; border-bottom: 1px solid var(--edge); }
+  .viewport { height: clamp(220px, 55vh, 780px); overflow: auto; background: #3b3b38; overscroll-behavior: contain; }
+  img { display: block; max-width: none; margin: auto; }
+  img.enlarged { image-rendering: pixelated; }
+  .viewport.pannable { cursor: grab; }
+  .viewport.panning { cursor: grabbing; user-select: none; }
+  footer { padding-top: 14px; }
+  footer button[aria-pressed="true"] { background: var(--accent); color: #242119; border-color: var(--accent); }
+  kbd { font: 13px Consolas, monospace; opacity: .82; margin-right: 6px; }
+  #status { min-height: 1.55em; }
+  #status[data-error="true"] { color: #ffbdad; }
+  #shortcut { font-size: 13px; }
+  @media (max-width: 550px) { main { padding: 12px; } #position { width: 100%; } button { padding: 6px 9px; } }
+</style>
+<main>
+  <header>
+    <div>
+      <h1 id="title">渐变台阶盲评</h1>
+      <p>比较原始尺寸的两个版本。压缩是否在原本平滑的颜色渐变处引入了可见台阶？</p>
+    </div>
+    <aside><output id="progress-text">加载中</output><progress id="progress" value="0" max="1" aria-label="已评分数量"></progress></aside>
+  </header>
+  <nav aria-label="图片导航">
+    <span id="position">—</span>
+    <div class="zoom" role="group" aria-label="两图同步缩放">
+      <button id="zoom-out" type="button" aria-label="缩小" disabled>−</button>
+      <button id="zoom-reset" type="button" title="恢复原始尺寸" aria-label="恢复原始尺寸" disabled>100%</button>
+      <button id="zoom-in" type="button" aria-label="放大" disabled>＋</button>
+    </div>
+    <span class="spacer"></span>
+    <button id="previous" type="button" disabled>上一组</button>
+    <button id="next" type="button" disabled>下一组</button>
+    <button id="unrated" type="button" disabled>跳到未评分</button>
+  </nav>
+  <div class="compare">
+    <figure><figcaption>参考图</figcaption><div class="viewport" tabindex="0" aria-label="参考图滚动区域"><img alt="参考图" draggable="false"></div></figure>
+    <figure><figcaption>ASTC 8×8 fastest</figcaption><div class="viewport" tabindex="0" aria-label="压缩图滚动区域"><img alt="ASTC 8×8 fastest 压缩图" draggable="false"></div></figure>
+  </div>
+  <footer aria-label="可见台阶评分">
+    <button type="button" data-choice="yes" aria-pressed="false" disabled><kbd>1</kbd>有台阶</button>
+    <button type="button" data-choice="no" aria-pressed="false" disabled><kbd>2</kbd>无台阶</button>
+    <button type="button" data-choice="uncertain" aria-pressed="false" disabled><kbd>3</kbd>不确定</button>
+    <span id="shortcut">点击即保存。Ctrl + 滚轮缩放，拖动图片可同步平移。</span>
+    <button id="retry" type="button" hidden>重试保存</button>
+  </footer>
+  <p id="status" role="status" aria-live="polite"></p>
+</main>
+<script>
+  const rows = [];
+  const choices = [...document.querySelectorAll('[data-choice]')];
+  const images = [...document.querySelectorAll('img')];
+  const panes = [...document.querySelectorAll('.viewport')];
+  const previous = document.querySelector('#previous');
+  const next = document.querySelector('#next');
+  const unrated = document.querySelector('#unrated');
+  const status = document.querySelector('#status');
+  const progress = document.querySelector('#progress');
+  const progressText = document.querySelector('#progress-text');
+  const position = document.querySelector('#position');
+  const zoomOut = document.querySelector('#zoom-out');
+  const zoomReset = document.querySelector('#zoom-reset');
+  const zoomIn = document.querySelector('#zoom-in');
+  const retry = document.querySelector('#retry');
+  const zoomLevels = [0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8];
+  const originalZoom = zoomLevels.indexOf(1);
+  let zoom = originalZoom;
+  let current = 0;
+  let ready = false;
+  let saving = false;
+  let revision = 0;
+  let draftKey = null;
+  let draft = null;
+  let reviewName = '校准';
+
+  function message(text, error = false) {
+    status.textContent = text;
+    status.dataset.error = error;
+  }
+
+  function controls() {
+    const count = rows.filter(row => row.choice).length;
+    progress.max = rows.length || 1;
+    progress.value = count;
+    progressText.textContent = `已评分 ${count} / ${rows.length}`;
+    const navigationLocked = saving || draft !== null;
+    previous.disabled = navigationLocked || current === 0;
+    next.disabled = navigationLocked || current >= rows.length - 1;
+    unrated.disabled = navigationLocked || count === rows.length;
+    retry.hidden = !draft || saving;
+    retry.disabled = !ready || saving;
+    zoomOut.disabled = !ready || zoom === 0;
+    zoomIn.disabled = !ready || zoom === zoomLevels.length - 1;
+    zoomReset.disabled = !ready || zoom === originalZoom;
+    zoomReset.textContent = `${zoomLevels[zoom] * 100}%`;
+    const selection = draft?.choice ?? rows[current]?.choice;
+    choices.forEach(button => {
+      button.disabled = saving || !ready;
+      button.setAttribute('aria-pressed', selection === button.dataset.choice);
+    });
+  }
+
+  function storeDraft(entry) {
+    draft = entry;
+    try {
+      if (entry) sessionStorage.setItem(draftKey, JSON.stringify(entry));
+      else sessionStorage.removeItem(draftKey);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function restoreDraft() {
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(draftKey));
+      if (saved && choices.some(button => button.dataset.choice === saved.choice)) {
+        const index = rows.findIndex(row => row.id === saved.id);
+        if (index >= 0 && rows[index].choice !== saved.choice) {
+          draft = saved;
+          message('已恢复一条待保存评分。点「重试保存」提交。');
+          return index;
+        }
+      }
+      storeDraft(null);
+    } catch {
+      // The form can still save directly when browser storage is unavailable.
+    }
+    return -1;
+  }
+
+  function resizeImages() {
+    const scale = zoomLevels[zoom];
+    images.forEach(image => {
+      image.style.width = `${image.naturalWidth * scale}px`;
+      image.style.height = `${image.naturalHeight * scale}px`;
+      image.classList.toggle('enlarged', scale > 1);
+    });
+    panes.forEach(pane => pane.classList.toggle('pannable',
+      pane.scrollWidth > pane.clientWidth || pane.scrollHeight > pane.clientHeight));
+  }
+
+  function setZoom(level, index = 0, point = null) {
+    const target = Math.max(0, Math.min(zoomLevels.length - 1, level));
+    if (!ready || target === zoom) return;
+    const pane = panes[index];
+    const image = images[index];
+    const viewport = pane.getBoundingClientRect();
+    const x = point?.clientX ?? viewport.left + pane.clientWidth / 2;
+    const y = point?.clientY ?? viewport.top + pane.clientHeight / 2;
+    const before = image.getBoundingClientRect();
+    const fractionX = Math.max(0, Math.min(1, (x - before.left) / before.width));
+    const fractionY = Math.max(0, Math.min(1, (y - before.top) / before.height));
+    zoom = target;
+    resizeImages();
+    const after = image.getBoundingClientRect();
+    const left = pane.scrollLeft + after.left + fractionX * after.width - x;
+    const top = pane.scrollTop + after.top + fractionY * after.height - y;
+    panes.forEach(view => view.scrollTo(left, top));
+    controls();
+  }
+
+  async function show(index) {
+    current = index;
+    ready = false;
+    controls();
+    const version = ++revision;
+    const row = rows[current];
+    position.textContent = `${current + 1} / ${rows.length} · ${row.id}`;
+    panes.forEach(pane => pane.scrollTo(0, 0));
+    images.forEach((image, i) => { image.src = `/pairs/${row.id}-${i === 0 ? 'reference' : 'decoded'}.png`; });
+    try {
+      await Promise.all(images.map(image => image.decode()));
+      if (version === revision) {
+        resizeImages();
+        ready = true;
+        controls();
+      }
+    } catch {
+      if (version === revision) message('这组图片加载失败。请刷新页面后重试。', true);
+    }
+  }
+
+  function draftStorageKey(response) {
+    const phase = response.headers.get('X-Review-Phase') || 'calibration';
+    return `unity-v5-draft:${response.headers.get('X-Review-Packet')}:${phase}`;
+  }
+
+  async function confirmSave(entry) {
+    try {
+      const response = await fetch('/api/ratings', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(entry), signal: AbortSignal.timeout(8000)
+      });
+      if (response.ok && draftStorageKey(response) === draftKey) {
+        const saved = await response.json();
+        if (saved.id === entry.id && saved.choice === entry.choice) return true;
+      }
+    } catch {
+      // The server may have written the rating before the reply was interrupted.
+    }
+    try {
+      const response = await fetch('/api/ratings', {
+        cache: 'no-store', signal: AbortSignal.timeout(3000)
+      });
+      if (!response.ok || draftStorageKey(response) !== draftKey) return false;
+      const ratings = await response.json();
+      return ratings.some(row => row.id === entry.id && row.choice === entry.choice);
+    } catch {
+      return false;
+    }
+  }
+
+  async function save(choice) {
+    if (saving || !ready) return;
+    const row = rows[current];
+    const entry = {id: row.id, choice};
+    const keptInTab = storeDraft(entry);
+    saving = true;
+    controls();
+    try {
+      if (!await confirmSave(entry)) {
+        message(keptInTab
+          ? '未收到保存确认。选择已暂存在此标签页，可点「重试保存」。'
+          : '未收到保存确认。请保持此页打开，点「重试保存」。', true);
+        return;
+      }
+      row.choice = choice;
+      storeDraft(null);
+      message(`已保存 ${row.id}。`);
+    } finally {
+      saving = false;
+      controls();
+    }
+    if (rows.every(item => item.choice)) {
+      message(`${reviewName}评分已全部保存。可以回到对话告诉 Codex 继续。`);
+    } else if (current < rows.length - 1) {
+      await show(current + 1);
+    }
+  }
+
+  previous.addEventListener('click', () => show(current - 1));
+  next.addEventListener('click', () => show(current + 1));
+  unrated.addEventListener('click', () => {
+    const index = rows.findIndex(row => !row.choice);
+    if (index >= 0) show(index);
+  });
+  choices.forEach(button => button.addEventListener('click', () => save(button.dataset.choice)));
+  retry.addEventListener('click', () => { if (draft) save(draft.choice); });
+  zoomOut.addEventListener('click', () => setZoom(zoom - 1));
+  zoomIn.addEventListener('click', () => setZoom(zoom + 1));
+  zoomReset.addEventListener('click', () => setZoom(originalZoom));
+  panes.forEach((pane, i) => {
+    pane.addEventListener('scroll', () => {
+      if (ready) panes[1 - i].scrollTo(pane.scrollLeft, pane.scrollTop);
+    });
+    pane.addEventListener('wheel', event => {
+      if (!event.ctrlKey || !ready || !event.deltaY) return;
+      event.preventDefault();
+      setZoom(zoom - Math.sign(event.deltaY), i, event);
+    }, {passive: false});
+    let drag = null;
+    images[i].addEventListener('pointerdown', event => {
+      if (!ready || event.pointerType !== 'mouse' || event.button !== 0 || !pane.classList.contains('pannable')) return;
+      event.preventDefault();
+      drag = {x: event.clientX, y: event.clientY, left: pane.scrollLeft, top: pane.scrollTop};
+      pane.setPointerCapture(event.pointerId);
+      pane.classList.add('panning');
+    });
+    pane.addEventListener('pointermove', event => {
+      if (drag) pane.scrollTo(drag.left + drag.x - event.clientX, drag.top + drag.y - event.clientY);
+    });
+    pane.addEventListener('lostpointercapture', () => {
+      drag = null;
+      pane.classList.remove('panning');
+    });
+  });
+  document.addEventListener('keydown', event => {
+    if (event.ctrlKey || event.metaKey || event.altKey || event.repeat) return;
+    const button = {'1': choices[0], '2': choices[1], '3': choices[2], ArrowLeft: previous, ArrowRight: next}[event.key];
+    if (button && !button.disabled && !event.target.closest('.viewport')) {
+      event.preventDefault();
+      button.click();
+    }
+  });
+
+  fetch('/api/ratings')
+    .then(response => {
+      if (!response.ok) throw new Error('Load failed');
+      const phase = response.headers.get('X-Review-Phase') || 'calibration';
+      reviewName = {holdout: '留出组', confirmation: '独立确认'}[phase] || '校准';
+      document.querySelector('#title').textContent = `渐变台阶盲评 · ${reviewName}`;
+      draftKey = draftStorageKey(response);
+      return response.json();
+    })
+    .then(data => {
+      rows.push(...data);
+      const draftIndex = restoreDraft();
+      if (draftIndex >= 0) return show(draftIndex);
+      const firstUnrated = rows.findIndex(row => !row.choice);
+      if (firstUnrated < 0) message(`${reviewName}评分已全部保存。`);
+      return show(Math.max(0, firstUnrated));
+    })
+    .catch(() => message('评分加载失败。请确认本地服务已启动，再刷新页面。', true));
+</script>
+</html>

@@ -5,3 +5,19 @@ experiment[[:space:]]report/unity-v3-20261113/benchmark-trained-unity-full1000-v
 experiment[[:space:]]report/unity-v4-20261117/summary.json filter=lfs diff=lfs merge=lfs -text
 experiment[[:space:]]report/unity-v4-20261117/benchmark1000-v3/result.json filter=lfs diff=lfs merge=lfs -text
 *.pdf binary
+
+# Keep V5 receipts byte-identical to their recorded SHA-256.
+experiment[[:space:]]plan/V5/** -text
+experiment[[:space:]]report/V5/** -text
+experiment[[:space:]]report/unity-v5-20261119/** -text
+
+# Keep the frozen V5 implementation checksums stable on Windows checkouts.
+script/*unity_v5_*.py text eol=lf
+script/*unity_dense_*.py text eol=lf
+src/adaptive_astc/data/unity_dense_*.py text eol=lf
+src/adaptive_astc/data/unity_tile_*.py text eol=lf
+src/adaptive_astc/evaluation/unity_dense_*.py text eol=lf
+src/adaptive_astc/models/unity_dense_tile.py text eol=lf
+src/adaptive_astc/models/unity_quality.py text eol=lf
+src/adaptive_astc/training/unity_dense_*.py text eol=lf
+reproductions/unity_search_baseline/v3_policy.py text eol=lf

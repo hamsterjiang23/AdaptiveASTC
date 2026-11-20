@@ -1,0 +1,101 @@
+{
+  "schema": "unity-v5-pre-execution-confirmation-v1",
+  "status": "model_rule_and_source_cohort_frozen_pending_native_capture",
+  "confirmation_execution_authorized": false,
+  "confirmation_opened": false,
+  "model": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\dense-joint-full-v1\\best-head.pt",
+    "sha256": "165dcf5021f25159d2a8eff0c09990f8318a8b98e35114a30fa2c408a5a16f5d"
+  },
+  "native_v3_parent_sha256": "783c69281d127362882a6a84935d928857f33745bb90e282cfb4b648062ada85",
+  "model_state_sha256": "65f6185d58bacab7795e25ff89eccb50a7d930145ab616de88701f3c392350ef",
+  "native_policy_model": {
+    "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/dense-joint-full-v1/best-native.pt",
+    "sha256": "49a787e4a007b36859bce6d8805b09662ffd7f93218d6b541f60314ebcdf124c"
+  },
+  "variant": "joint",
+  "numeric_gate_status": "machine_gate_passed_pending_human_evaluation",
+  "training_report": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\dense-joint-full-v1\\report.json",
+    "sha256": "2760ec340f0b53c1ce96c2220fb19e864bcacb8331936bfad6790e2ce4899039"
+  },
+  "source_manifest": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\confirmation-source1000-reserve250-v1\\manifest.json",
+    "sha256": "40ccb4796dddbde5b4e06045100439370e9e26382c8d7b0aecc9f8cfc3cf5d0a"
+  },
+  "source_isolation": {
+    "path": "experiment report/unity-v5-20261119/confirmation-source1000-reserve250-v1-verification.json",
+    "sha256": "d773c19299640fceb59db780ae4ddf82bc417999d5643b59c97b2804c2a6bc33"
+  },
+  "screening_rule": {
+    "view": "display",
+    "region": "content",
+    "y_db": 28,
+    "x_share": 0.1
+  },
+  "screening_candidate": [
+    8,
+    "fastest"
+  ],
+  "analysis_grid": {
+    "size": 8,
+    "grid_anchor": "bottom_row_display_orientation",
+    "edge_tiles": "top_and_right_partial_tiles_use_only_real_pixels",
+    "decoded_png_orientation": "flip_vertical_to_match_native_png",
+    "content_tile": "display_reference_range_ge_2",
+    "smooth_tile": "gradient_mask_cover_ge_0.5"
+  },
+  "canonical_candidates": {
+    "name": "full20",
+    "blocks": [
+      12,
+      10,
+      8,
+      6
+    ],
+    "presets": [
+      "fastest",
+      "fast",
+      "medium",
+      "thorough",
+      "exhaustive"
+    ],
+    "order": "block_major"
+  },
+  "development_evaluation_sha256": "0e118407579a8762e2d253c1b375aa8795186044c06d8fff5303521ea81fc49f",
+  "human_calibration_sha256": "45cb17a672eec6d13321408a5295d42daf59b9267d901f3fe678b12ccfd9ffb3",
+  "human_holdout_sha256": "772094c115ffd8a0d668fc641d7313d87bb958b6db9afe78628b1ac51b3ff0d1",
+  "human_rating_inputs": {
+    "calibration": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\development-evaluation-v1\\calibration-ratings-frozen-v1.csv",
+      "sha256": "c5d5f70a87e326e3ed0edc12c11a767b63b63cedda362186426f1187d9013041"
+    },
+    "holdout": {
+      "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\development-evaluation-v1\\holdout-ratings-frozen-v1.csv",
+      "sha256": "5617fb04a5e792f9289aac6679611924526d14e85574d7fb9e27d7e321038083"
+    }
+  },
+  "source_sha256": {
+    "script/freeze_unity_v5_confirmation.py": "ba400db7dbdcea86e2a477bd6d5c39f983bb660c853727dbaeb0d97b42c94d53",
+    "script/predict_unity_dense_tiles.py": "1f22c73cd3028bfdf1a70ccc992bc6f710a96ed06ddb322a718ae2400db075e3",
+    "script/score_unity_dense_review.py": "27c3fd2e463a86184e742b88837de8d562d0ae762191f0dddeba665a506c692a",
+    "src/adaptive_astc/models/unity_dense_tile.py": "f004046b185fc45a7f2359b30da2e3887df9ca92bef5fdf758361cb9cb824f1a",
+    "src/adaptive_astc/models/unity_quality.py": "0a49302ab3ac621d9ea3f9cc0c01e12112e9b4419875d298fdbad06b907ee0ac",
+    "src/adaptive_astc/data/unity_dense_tile_dataset.py": "46c8537010a51ae714bb01ce844ae8f6782f26c59d394d05b0d8e9242f68bd05",
+    "src/adaptive_astc/data/unity_tile_errors.py": "f91108d1f07138cb944bb3c827651f2e023c9a349adc4b5d80094e39e2685630",
+    "src/adaptive_astc/evaluation/unity_dense_review_scoring.py": "e61dd46dc9881d728788d21f53e3e1f9aed53611e88768f8aaaaa9136db6a40c",
+    "src/adaptive_astc/evaluation/unity_dense_tile_inference.py": "7b578ea39ca1c91da98bd0b7e1bd1bf3dfe8cd5219e3b83a55fc8494c07e40c5",
+    "src/adaptive_astc/evaluation/unity_dense_native_regression.py": "fb0ae555328801ed0aaa4cbd159ddccb89428cb9b79a576362a9ad932ba2954a",
+    "reproductions/unity_search_baseline/v3_policy.py": "eaad388769e1fce9ba066888856abef49a923f4de01f6aac43715aec16fcf029"
+  },
+  "planned_checks": [
+    "Supported per-image Unity import properties and ordered source/meta identity",
+    "Exact RGBA and aligned same-size duplicate audit against development pixels",
+    "Independent human screening precision/recall and exact score of 8x8 fastest",
+    "Paired V3 block match and strict quality with the frozen native policy"
+  ],
+  "requires_new_authorization": [
+    "New cohort Unity import or native capture",
+    "Independent encoding, inference or rating access"
+  ]
+}

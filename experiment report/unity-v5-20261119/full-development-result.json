@@ -1,0 +1,162 @@
+{
+  "status": "machine_development_complete_awaiting_human_calibration",
+  "selected_for_human_review": "joint",
+  "numeric_gate_status": "machine_gate_passed_pending_human_evaluation",
+  "evaluation": {
+    "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/development-evaluation-v1/report.json",
+    "sha256": "0e118407579a8762e2d253c1b375aa8795186044c06d8fff5303521ea81fc49f"
+  },
+  "joint_job": {
+    "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/jobs/dense-joint-full-v1/receipt.json",
+    "sha256": "9e6733c30c363334e4b456de874459b10f9e57971c356471dbc3ad719303c30c"
+  },
+  "joint_report": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\dense-joint-full-v1\\report.json",
+    "sha256": "2760ec340f0b53c1ce96c2220fb19e864bcacb8331936bfad6790e2ce4899039"
+  },
+  "joint_native_replay": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\dense-joint-native-replay-v1\\report.json",
+    "sha256": "8765566a9bbf4d5ec8bd1c5d0f461a0cb3ea9868a2fe1b52ecc4b9997abc1e1d"
+  },
+  "joint_epochs": [
+    {
+      "epoch": 1,
+      "dense_display_content_mae": 0.04381762729020735,
+      "native_block_match": 0.912,
+      "native_strict_quality_pass": 0.877,
+      "passed_v3_regression_gate": false,
+      "new_strict_regression_images": 0,
+      "native_replay": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/dense-joint-full-v1/epoch-001-native-replay.json",
+        "sha256": "c51c400578032d48ef22a3814915150c31763622faa478e434f89e9bf58e5ee4"
+      }
+    },
+    {
+      "epoch": 2,
+      "dense_display_content_mae": 0.04082476187077458,
+      "native_block_match": 0.942,
+      "native_strict_quality_pass": 0.877,
+      "passed_v3_regression_gate": true,
+      "new_strict_regression_images": 0,
+      "native_replay": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/dense-joint-full-v1/epoch-002-native-replay.json",
+        "sha256": "7b5afe92ea40b96a6054bf838c3c2d62f090f6ea9d7ff33549c0502455e66904"
+      }
+    },
+    {
+      "epoch": 3,
+      "dense_display_content_mae": 0.038057377120970105,
+      "native_block_match": 0.908,
+      "native_strict_quality_pass": 0.878,
+      "passed_v3_regression_gate": false,
+      "new_strict_regression_images": 0,
+      "native_replay": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/dense-joint-full-v1/epoch-003-native-replay.json",
+        "sha256": "52ce1767761d3a2c629fea77c0809638a5e524dade820057a1decf512fc04b0f"
+      }
+    }
+  ],
+  "joint_training_updates": 25290,
+  "joint_native_batches": 7500,
+  "joint_checkpoint_reloaded": true,
+  "joint_training_wall_seconds": 1971.891498699988,
+  "joint_peak_cuda_memory_bytes": 701761536,
+  "best_epoch": 2,
+  "model_metrics": {
+    "frozen": {
+      "mean_content_share_mae": 0.04483034690382452,
+      "content_share_mae_28": 0.04058352024432946,
+      "content_share_mae_30": 0.049077173563319594,
+      "display_log_mse_rmse": 2.5170527275729966,
+      "8x8_fastest_near_30db_rmse": 3.6769573090311005,
+      "paired_step_comparison_30db": {
+        "calibration_images": 247,
+        "holdout_images": 252,
+        "holdout_step_mae": 0.07816095627471695,
+        "holdout_dense_mae": 0.026697474868663248
+      },
+      "6x6_upgrade_30db_x5_percent": {
+        "predicted": 274,
+        "measured": 315,
+        "both": 202
+      },
+      "exact_proxy_top20_overlap_30db": 11
+    },
+    "joint": {
+      "mean_content_share_mae": 0.04082476187077458,
+      "content_share_mae_28": 0.03698402632091928,
+      "content_share_mae_30": 0.04466549742062988,
+      "display_log_mse_rmse": 2.494309245118189,
+      "8x8_fastest_near_30db_rmse": 3.186417348701492,
+      "paired_step_comparison_30db": {
+        "calibration_images": 247,
+        "holdout_images": 252,
+        "holdout_step_mae": 0.07816095627471695,
+        "holdout_dense_mae": 0.025115039014535077
+      },
+      "6x6_upgrade_30db_x5_percent": {
+        "predicted": 295,
+        "measured": 315,
+        "both": 209
+      },
+      "exact_proxy_top20_overlap_30db": 11
+    }
+  },
+  "review": {
+    "calibration": {
+      "images": 71,
+      "page": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/development-evaluation-v1/review-packet/calibration/index.html",
+        "sha256": "6ff1ddca164a570d43c66e5ad429f08ae9cdd81c29abacef704c3abc1c3e7ee2"
+      },
+      "blank_ratings": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/development-evaluation-v1/review-packet/calibration/ratings.csv",
+        "sha256": "34c6c82dc818d5ca3bf439a8e6321d8146c6166cef91818008d12bfa7b9f23d3"
+      },
+      "queue_pages": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/development-evaluation-v1/review-packet/calibration/queues.html",
+        "sha256": "a40b56797a0095ad21aadedec4e61e2c121ae532ed5685989af4715a4b47ca3d"
+      }
+    },
+    "holdout": {
+      "images": 64,
+      "page": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/development-evaluation-v1/review-packet/holdout/index.html",
+        "sha256": "ddde34f0776d5e609acbfe5e1c20cfd31339a9fc2ca1922cc12ca27cfd91a78e"
+      },
+      "blank_ratings": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/development-evaluation-v1/review-packet/holdout/ratings.csv",
+        "sha256": "a769a3c0fb64e58429ae258ce61c82a7357cc914c70261ae0840dd5639d4ff28"
+      },
+      "queue_pages": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/development-evaluation-v1/review-packet/holdout/queues.html",
+        "sha256": "237d773196aaa50b19262f06c6f0f8978971e26618739240a5135eb9fab54cc7"
+      }
+    },
+    "illustration": {
+      "images": 3,
+      "page": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/development-evaluation-v1/review-packet/illustration/index.html",
+        "sha256": "13c5e7ba7e5976199fc132257e34772752d94565b987d8cafac04cba9f5bd8c6"
+      },
+      "blank_ratings": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/development-evaluation-v1/review-packet/illustration/ratings.csv",
+        "sha256": "f1f59e714aa45b8a07444fb603e544309863bec2252449799d10cbfca7fac501"
+      },
+      "queue_pages": {
+        "path": "E:/ASTC_Compression/experiment report/.local/unity-v5-20261119/development-evaluation-v1/review-packet/illustration/queues.html",
+        "sha256": "27361c840f21156199b2adeda202358dd0fed1b7330c9f9c6457ab500e17f617"
+      }
+    }
+  },
+  "review_manifest": {
+    "path": "E:\\ASTC_Compression\\experiment report\\.local\\unity-v5-20261119\\development-evaluation-v1\\review-packet\\manifest.json",
+    "sha256": "9d03740f639a2f38cd990ed5ba0c0c42a9356d62f0ca32ad159c5cb10a758f37"
+  },
+  "human_ratings_collected": 0,
+  "confirmation_model_binding": {
+    "path": "E:/ASTC_Compression/experiment report/unity-v5-20261119/confirmation-model-binding.json",
+    "sha256": "ca2c442e35b967fbea8b78baf65022423efe2e8d82c3ef2d0e6ee0407b5f8ca5"
+  },
+  "confirmation_opened": false
+}
